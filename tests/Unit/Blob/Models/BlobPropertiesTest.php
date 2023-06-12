@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class BlobProperties
@@ -41,20 +41,20 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $actual = BlobProperties::createFromHttpHeaders($expected);
 
         // Assert
-        $this->assertEquals($expectedDate, $actual->getLastModified());
-        $this->assertEquals($expected['Etag'], $actual->getETag());
-        $this->assertEquals((int) ($expected['Content-Length']), $actual->getContentLength());
-        $this->assertEquals($expected['Content-Type'], $actual->getContentType());
-        $this->assertEquals($expected['Content-Encoding'], $actual->getContentEncoding());
-        $this->assertEquals($expected['Content-Language'], $actual->getContentLanguage());
-        $this->assertEquals($expected['Content-MD5'], $actual->getContentMD5());
-        $this->assertEquals($expected['Cache-Control'], $actual->getCacheControl());
-        $this->assertEquals((int) ($expected['x-ms-blob-sequence-number']), $actual->getSequenceNumber());
-        $this->assertEquals($expected['x-ms-blob-type'], $actual->getBlobType());
-        $this->assertEquals($expected['x-ms-lease-status'], $actual->getLeaseStatus());
-        $this->assertEquals(Utilities::toBoolean($expected['x-ms-server-encrypted']), $actual->getServerEncrypted());
-        $this->assertEquals(Utilities::toBoolean($expected['x-ms-incremental-copy']), $actual->getIncrementalCopy());
-        $this->assertEquals($expected['x-ms-copy-destination-snapshot'], $actual->getCopyDestinationSnapshot());
+        self::assertEquals($expectedDate, $actual->getLastModified());
+        self::assertEquals($expected['Etag'], $actual->getETag());
+        self::assertEquals((int) ($expected['Content-Length']), $actual->getContentLength());
+        self::assertEquals($expected['Content-Type'], $actual->getContentType());
+        self::assertEquals($expected['Content-Encoding'], $actual->getContentEncoding());
+        self::assertEquals($expected['Content-Language'], $actual->getContentLanguage());
+        self::assertEquals($expected['Content-MD5'], $actual->getContentMD5());
+        self::assertEquals($expected['Cache-Control'], $actual->getCacheControl());
+        self::assertEquals((int) ($expected['x-ms-blob-sequence-number']), $actual->getSequenceNumber());
+        self::assertEquals($expected['x-ms-blob-type'], $actual->getBlobType());
+        self::assertEquals($expected['x-ms-lease-status'], $actual->getLeaseStatus());
+        self::assertEquals(Utilities::toBoolean($expected['x-ms-server-encrypted']), $actual->getServerEncrypted());
+        self::assertEquals(Utilities::toBoolean($expected['x-ms-incremental-copy']), $actual->getIncrementalCopy());
+        self::assertEquals($expected['x-ms-copy-destination-snapshot'], $actual->getCopyDestinationSnapshot());
     }
 
     public function testSetLastModified()
@@ -67,7 +67,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setLastModified($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getLastModified());
+        self::assertEquals($expected, $properties->getLastModified());
     }
 
     public function testSetCreationTime()
@@ -80,7 +80,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setCreationTime($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getCreationTime());
+        self::assertEquals($expected, $properties->getCreationTime());
     }
 
     public function testSetETag()
@@ -94,7 +94,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setETag($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getETag());
+        self::assertEquals($expected, $properties->getETag());
     }
 
     public function testSetContentRange()
@@ -108,7 +108,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setContentRange($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getContentRange());
+        self::assertEquals($expected, $properties->getContentRange());
     }
 
     public function testSetContentType()
@@ -122,7 +122,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setContentType($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getContentType());
+        self::assertEquals($expected, $properties->getContentType());
     }
 
     public function testSetContentLength()
@@ -136,7 +136,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setContentLength($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getContentLength());
+        self::assertEquals($expected, $properties->getContentLength());
     }
 
     public function testSetContentEncoding()
@@ -150,7 +150,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setContentEncoding($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getContentEncoding());
+        self::assertEquals($expected, $properties->getContentEncoding());
     }
 
     public function testSetContentLanguage()
@@ -164,7 +164,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setContentLanguage($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getContentLanguage());
+        self::assertEquals($expected, $properties->getContentLanguage());
     }
 
     public function testSetContentMD5()
@@ -178,7 +178,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setContentMD5($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getContentMD5());
+        self::assertEquals($expected, $properties->getContentMD5());
     }
 
     public function testSetCacheControl()
@@ -192,7 +192,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setCacheControl($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getCacheControl());
+        self::assertEquals($expected, $properties->getCacheControl());
     }
 
     public function testSetContentDisposition()
@@ -206,7 +206,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setContentDisposition($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getContentDisposition());
+        self::assertEquals($expected, $properties->getContentDisposition());
     }
 
     public function testSetBlobType()
@@ -220,7 +220,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setBlobType($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getblobType());
+        self::assertEquals($expected, $properties->getblobType());
     }
 
     public function testSetLeaseStatus()
@@ -234,7 +234,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setLeaseStatus($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getLeaseStatus());
+        self::assertEquals($expected, $properties->getLeaseStatus());
     }
 
     public function testSetSequenceNumber()
@@ -247,7 +247,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setSequenceNumber($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getSequenceNumber());
+        self::assertEquals($expected, $properties->getSequenceNumber());
     }
 
     public function testSetCopyDestinationSnapshot()
@@ -260,7 +260,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setCopyDestinationSnapshot($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getCopyDestinationSnapshot());
+        self::assertEquals($expected, $properties->getCopyDestinationSnapshot());
     }
 
     public function testSetIncrementalCopy()
@@ -273,7 +273,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setIncrementalCopy($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getIncrementalCopy());
+        self::assertEquals($expected, $properties->getIncrementalCopy());
     }
 
     public function testSetServerEncrypted()
@@ -293,9 +293,9 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $propertiesNull->setServerEncrypted($expectedNull);
 
         // Assert
-        $this->assertEquals($expectedTrue, $propertiesTrue->getServerEncrypted());
-        $this->assertEquals($expectedFalse, $propertiesFalse->getServerEncrypted());
-        $this->assertEquals($expectedNull, $propertiesNull->getServerEncrypted());
+        self::assertEquals($expectedTrue, $propertiesTrue->getServerEncrypted());
+        self::assertEquals($expectedFalse, $propertiesFalse->getServerEncrypted());
+        self::assertEquals($expectedNull, $propertiesNull->getServerEncrypted());
     }
 
     public function testSetDeletedTime()
@@ -308,7 +308,7 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setDeletedTime($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getDeletedTime());
+        self::assertEquals($expected, $properties->getDeletedTime());
     }
 
     public function testSetRemainingRetentionDays()
@@ -321,6 +321,6 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         $properties->setRemainingRetentionDays($expected);
 
         // Assert
-        $this->assertEquals($expected, $properties->getRemainingRetentionDays());
+        self::assertEquals($expected, $properties->getRemainingRetentionDays());
     }
 }

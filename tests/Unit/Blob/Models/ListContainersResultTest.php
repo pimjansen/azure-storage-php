@@ -20,8 +20,8 @@
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Models\ListContainersResult;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class ListContainersResult
@@ -39,7 +39,7 @@ class ListContainersResultTest extends \PHPUnit\Framework\TestCase
         $actual = ListContainersResult::create($sample);
 
         // Assert
-        $this->assertCount(0, $actual->getContainers());
+        self::assertCount(0, $actual->getContainers());
     }
 
     public function testCreateWithOneEntry()
@@ -52,26 +52,26 @@ class ListContainersResultTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $containers = $actual->getContainers();
-        $this->assertCount(1, $containers);
-        $this->assertEquals($sample['Containers']['Container']['Name'], $containers[0]->getName());
-        $this->assertEquals(
+        self::assertCount(1, $containers);
+        self::assertEquals($sample['Containers']['Container']['Name'], $containers[0]->getName());
+        self::assertEquals(
             $sample['@attributes']['ServiceEndpoint'] .
                 $sample['Containers']['Container']['Name'],
             $containers[0]->getUrl()
         );
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime(
                 $sample['Containers']['Container']['Properties']['Last-Modified']
             ),
             $containers[0]->getProperties()->getLastModified()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $sample['Containers']['Container']['Properties']['Etag'],
             $containers[0]->getProperties()->getETag()
         );
-        $this->assertEquals($sample['Marker'], $actual->getMarker());
-        $this->assertEquals($sample['MaxResults'], $actual->getMaxResults());
-        $this->assertEquals($sample['NextMarker'], $actual->getNextMarker());
+        self::assertEquals($sample['Marker'], $actual->getMarker());
+        self::assertEquals($sample['MaxResults'], $actual->getMaxResults());
+        self::assertEquals($sample['NextMarker'], $actual->getNextMarker());
     }
 
     public function testCreateWithMultipleEntries()
@@ -84,42 +84,42 @@ class ListContainersResultTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $containers = $actual->getContainers();
-        $this->assertCount(2, $containers);
-        $this->assertEquals($sample['Containers']['Container'][0]['Name'], $containers[0]->getName());
-        $this->assertEquals(
+        self::assertCount(2, $containers);
+        self::assertEquals($sample['Containers']['Container'][0]['Name'], $containers[0]->getName());
+        self::assertEquals(
             $sample['@attributes']['ServiceEndpoint'] .
             $sample['Containers']['Container'][0]['Name'],
             $containers[0]->getUrl()
         );
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime($sample['Containers']['Container'][0]['Properties']['Last-Modified']),
             $containers[0]->getProperties()->getLastModified()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $sample['Containers']['Container'][0]['Properties']['Etag'],
             $containers[0]->getProperties()->getETag()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $sample['Containers']['Container'][1]['Name'],
             $containers[1]->getName()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $sample['@attributes']['ServiceEndpoint'] .
             $sample['Containers']['Container'][1]['Name'],
             $containers[1]->getUrl()
         );
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime($sample['Containers']['Container'][1]['Properties']['Last-Modified']),
             $containers[1]->getProperties()->getLastModified()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $sample['Containers']['Container'][1]['Properties']['Etag'],
             $containers[1]->getProperties()->getETag()
         );
-        $this->assertEquals($sample['MaxResults'], $actual->getMaxResults());
-        $this->assertEquals($sample['NextMarker'], $actual->getNextMarker());
-        $this->assertEquals($sample['Prefix'], $actual->getPrefix());
-        $this->assertEquals($sample['account'], $actual->getAccountName());
+        self::assertEquals($sample['MaxResults'], $actual->getMaxResults());
+        self::assertEquals($sample['NextMarker'], $actual->getNextMarker());
+        self::assertEquals($sample['Prefix'], $actual->getPrefix());
+        self::assertEquals($sample['account'], $actual->getAccountName());
 
         return $actual;
     }

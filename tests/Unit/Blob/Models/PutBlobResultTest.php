@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\PutBlobResult;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class PutBlobResult
@@ -41,9 +41,9 @@ class PutBlobResultTest extends \PHPUnit\Framework\TestCase
         $actual = PutBlobResult::create($expected);
 
         // Assert
-        $this->assertEquals($expectedDate, $actual->getLastModified());
-        $this->assertEquals($expected['Etag'], $actual->getETag());
-        $this->assertEquals($expected['Content-MD5'], $actual->getContentMD5());
-        $this->assertEquals(Utilities::toBoolean($expected['x-ms-request-server-encrypted']), $actual->getRequestServerEncrypted());
+        self::assertEquals($expectedDate, $actual->getLastModified());
+        self::assertEquals($expected['Etag'], $actual->getETag());
+        self::assertEquals($expected['Content-MD5'], $actual->getContentMD5());
+        self::assertEquals(Utilities::toBoolean($expected['x-ms-request-server-encrypted']), $actual->getRequestServerEncrypted());
     }
 }

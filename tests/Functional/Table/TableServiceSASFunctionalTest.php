@@ -72,20 +72,20 @@ class TableServiceSASFunctionalTest extends SASFunctionalTestBase
             //test raud.
             $proxy->insertEntity($table, $entity);
             $actual = $proxy->getEntity($table, '123', '456')->getEntity();
-            $this->assertEquals(
+            self::assertEquals(
                 $entity->getPropertyValue('CustomerId'),
                 $actual->getPropertyValue('CustomerId')
             );
             $entity->setPropertyValue('CustomerId', 891);
             $proxy->updateEntity($table, $entity);
             $actual = $proxy->getEntity($table, '123', '456')->getEntity();
-            $this->assertEquals(
+            self::assertEquals(
                 $entity->getPropertyValue('CustomerId'),
                 $actual->getPropertyValue('CustomerId')
             );
             $proxy->deleteEntity($table, '123', '456');
             $result = $proxy->queryEntities($table);
-            $this->assertEquals(0, \count($result->getEntities()));
+            self::assertCount(0, $result->getEntities());
         }
         //Validate that a cross access with wrong proxy/table pair
         //would not be successfull
@@ -128,20 +128,20 @@ class TableServiceSASFunctionalTest extends SASFunctionalTestBase
         //test raud.
         $tableProxy->insertEntity($table, $entity);
         $actual = $tableProxy->getEntity($table, '123', '456')->getEntity();
-        $this->assertEquals(
+        self::assertEquals(
             $entity->getPropertyValue('CustomerId'),
             $actual->getPropertyValue('CustomerId')
         );
         $entity->setPropertyValue('CustomerId', 891);
         $tableProxy->updateEntity($table, $entity);
         $actual = $tableProxy->getEntity($table, '123', '456')->getEntity();
-        $this->assertEquals(
+        self::assertEquals(
             $entity->getPropertyValue('CustomerId'),
             $actual->getPropertyValue('CustomerId')
         );
         $tableProxy->deleteEntity($table, '123', '456');
         $result = $tableProxy->queryEntities($table);
-        $this->assertEquals(0, \count($result->getEntities()));
+        self::assertCount(0, $result->getEntities());
 
         //test out of scope pk cannot be accessed.
         $entity = TestResources::getTestEntity('124', '456');

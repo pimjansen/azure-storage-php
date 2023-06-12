@@ -38,7 +38,7 @@ class BlockTest extends \PHPUnit\Framework\TestCase
         $block->setBlockId($expected);
 
         // Assert
-        $this->assertEquals($expected, $block->getBlockId());
+        self::assertEquals($expected, $block->getBlockId());
     }
 
     public function testSetType()
@@ -51,6 +51,6 @@ class BlockTest extends \PHPUnit\Framework\TestCase
         $block->setType($expected);
 
         // Assert
-        $this->assertEquals($expected, $block->getType());
+        self::assertEquals($expected, $block->getType());
     }
 }

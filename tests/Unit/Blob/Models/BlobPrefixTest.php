@@ -39,7 +39,7 @@ class BlobPrefixTest extends \PHPUnit\Framework\TestCase
         $blob->setName($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getName());
+        self::assertEquals($expected, $blob->getName());
     }
 
     public function testGetName()
@@ -53,6 +53,6 @@ class BlobPrefixTest extends \PHPUnit\Framework\TestCase
         $actual = $blob->getName();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

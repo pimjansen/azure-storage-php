@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Blob\Models\GetContainerACLResult;
 use MicrosoftAzure\Storage\Blob\Models\ContainerACL;
+use MicrosoftAzure\Storage\Blob\Models\GetContainerACLResult;
 
 /**
  * Unit tests for class GetContainerACLResult
@@ -47,8 +47,8 @@ class GetContainerACLResultTest extends \PHPUnit\Framework\TestCase
         );
 
         // Assert
-        $this->assertEquals($expectedContainerACL, $result->getContainerAcl());
-        $this->assertEquals($expectedDate, $result->getLastModified());
-        $this->assertEquals($expectedETag, $result->getETag());
+        self::assertEquals($expectedContainerACL, $result->getContainerAcl());
+        self::assertEquals($expectedDate, $result->getLastModified());
+        self::assertEquals($expectedETag, $result->getETag());
     }
 }

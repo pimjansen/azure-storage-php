@@ -30,7 +30,7 @@ class BlobTypeTest extends \PHPUnit\Framework\TestCase
 {
     public function testBlobType()
     {
-        $this->assertEquals(BlobType::BLOCK_BLOB, 'BlockBlob');
-        $this->assertEquals(BlobType::PAGE_BLOB, 'PageBlob');
+        self::assertEquals(BlobType::BLOCK_BLOB, 'BlockBlob');
+        self::assertEquals(BlobType::PAGE_BLOB, 'PageBlob');
     }
 }

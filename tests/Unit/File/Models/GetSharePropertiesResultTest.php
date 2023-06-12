@@ -19,10 +19,10 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
-use MicrosoftAzure\Storage\File\Internal\FileResources;
-use MicrosoftAzure\Storage\File\Models\GetSharePropertiesResult;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\File\Internal\FileResources;
+use MicrosoftAzure\Storage\File\Models\GetSharePropertiesResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
@@ -42,13 +42,13 @@ class GetSharePropertiesResultTest extends \PHPUnit\Framework\TestCase
         $expectedMeta = Utilities::getMetadataArray($sample);
         $expectedQuota = $sample[FileResources::X_MS_SHARE_QUOTA];
 
-        $this->assertEquals($expectedLastModified, $shareProperties->getLastModified());
-        $this->assertEquals($expectedEtag, $shareProperties->getETag());
-        $this->assertEquals($expectedQuota, $shareProperties->getQuota());
+        self::assertEquals($expectedLastModified, $shareProperties->getLastModified());
+        self::assertEquals($expectedEtag, $shareProperties->getETag());
+        self::assertEquals($expectedQuota, $shareProperties->getQuota());
         $actualMeta = $shareProperties->getMetadata();
         foreach ($expectedMeta as $key => $value) {
-            $this->assertArrayHasKey($key, $actualMeta);
-            $this->assertEquals($value, $actualMeta[$key]);
+            self::assertArrayHasKey($key, $actualMeta);
+            self::assertEquals($value, $actualMeta[$key]);
         }
     }
 }

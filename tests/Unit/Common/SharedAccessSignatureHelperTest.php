@@ -41,7 +41,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         $sasHelper = new SharedAccessSignatureHelper($accountName, $accountKey);
 
         // Assert
-        $this->assertNotNull($sasHelper);
+        self::assertNotNull($sasHelper);
 
         return $sasHelper;
     }
@@ -71,16 +71,15 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
             $actual = $validateAndSanitizeSignedService->invokeArgs($sasHelper, [$authorizedSignedService[$i]]);
 
             // Assert
-            $this->assertEquals($expected[$i], $actual);
+            self::assertEquals($expected[$i], $actual);
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The string should only be a combination of
-     */
     public function testValidateAndSanitizeSignedServiceThrowsException()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The string should only be a combination of');
+
         // Setup
         $sasHelper = $this->testConstruct();
         $validateAndSanitizeSignedService = self::getMethod('validateAndSanitizeSignedService', $sasHelper);
@@ -116,16 +115,15 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
             );
 
             // Assert
-            $this->assertEquals($expected[$i], $actual);
+            self::assertEquals($expected[$i], $actual);
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The string should only be a combination of
-     */
     public function testValidateAndSanitizeSignedResourceTypeThrowsException()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The string should only be a combination of');
+
         // Setup
         $sasHelper = $this->testConstruct();
         $validateAndSanitizeSignedResourceType = self::getMethod('validateAndSanitizeSignedResourceType', $sasHelper);
@@ -155,16 +153,15 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
             $actual = $validateAndSanitizeSignedProtocol->invokeArgs($sasHelper, [$authorizedSignedProtocol[$i]]);
 
             // Assert
-            $this->assertEquals($expected[$i], $actual);
+            self::assertEquals($expected[$i], $actual);
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage is invalid
-     */
     public function testValidateAndSanitizeSignedProtocolThrowsException()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('is invalid');
+
         // Setup
         $sasHelper = $this->testConstruct();
         $validateAndSanitizeSignedProtocol = self::getMethod('validateAndSanitizeSignedProtocol', $sasHelper);
@@ -204,7 +201,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
             );
 
             // assert
-            $this->assertEquals($testCase[8], urlencode($actualSignature));
+            self::assertEquals($testCase[8], urlencode($actualSignature));
         }
     }
 
@@ -236,7 +233,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
                 } catch (\InvalidArgumentException $e) {
                     $message = $e->getMessage();
                 }
-                $this->assertContains(
+                self::assertContains(
                     $expectedErrorMessage,
                     $message
                 );
@@ -245,7 +242,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
                     $sasHelper,
                     [$pair['sp'], $pair['sr']]
                 );
-                $this->assertEquals($pair['expected'], $result);
+                self::assertEquals($pair['expected'], $result);
             }
         }
     }
@@ -279,7 +276,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
             $actual = $validateAndSanitizeSignedService->invokeArgs($sasHelper, ['test', Resources::RESOURCE_TYPE_BLOB, $resourceNames[$i]]);
 
             // Assert
-            $this->assertEquals($expected[$i], $actual);
+            self::assertEquals($expected[$i], $actual);
         }
     }
 }

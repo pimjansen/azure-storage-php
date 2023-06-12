@@ -31,8 +31,8 @@ class PublicAccessTypeTest extends \PHPUnit\Framework\TestCase
 {
     public function testPublicAccessType()
     {
-        $this->assertEquals(PublicAccessType::BLOBS_ONLY, 'blob');
-        $this->assertEquals(PublicAccessType::CONTAINER_AND_BLOBS, 'container');
-        $this->assertEquals(PublicAccessType::NONE, Resources::EMPTY_STRING);
+        self::assertEquals(PublicAccessType::BLOBS_ONLY, 'blob');
+        self::assertEquals(PublicAccessType::CONTAINER_AND_BLOBS, 'container');
+        self::assertEquals(PublicAccessType::NONE, Resources::EMPTY_STRING);
     }
 }

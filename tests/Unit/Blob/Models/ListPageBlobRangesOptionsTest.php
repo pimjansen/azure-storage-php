@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesOptions;
 use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
+use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesOptions;
 use MicrosoftAzure\Storage\Common\Models\Range;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
@@ -42,7 +42,7 @@ class ListPageBlobRangesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setLeaseId($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 
     public function testGetAccessConditions()
@@ -56,7 +56,7 @@ class ListPageBlobRangesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $result->getAccessConditions();
 
         // Assert
-        $this->assertEquals($expected, $actual[0]);
+        self::assertEquals($expected, $actual[0]);
     }
 
     public function testSetAccessConditions()
@@ -69,7 +69,7 @@ class ListPageBlobRangesOptionsTest extends \PHPUnit\Framework\TestCase
         $result->setAccessConditions($expected);
 
         // Assert
-        $this->assertEquals($expected, $result->getAccessConditions()[0]);
+        self::assertEquals($expected, $result->getAccessConditions()[0]);
     }
 
     public function testSetSnapshot()
@@ -82,7 +82,7 @@ class ListPageBlobRangesOptionsTest extends \PHPUnit\Framework\TestCase
         $blob->setSnapshot($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getSnapshot());
+        self::assertEquals($expected, $blob->getSnapshot());
     }
 
     public function testGetSnapshot()
@@ -96,7 +96,7 @@ class ListPageBlobRangesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $blob->getSnapshot();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetRange()
@@ -109,6 +109,6 @@ class ListPageBlobRangesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setRange($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getRange());
+        self::assertEquals($expected, $options->getRange());
     }
 }

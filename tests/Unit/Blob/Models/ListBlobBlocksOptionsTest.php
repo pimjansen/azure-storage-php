@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Blob\Models\ListBlobBlocksOptions;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class ListBlobBlocksOptions
@@ -39,7 +39,7 @@ class ListBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
         $blob->setSnapshot($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getSnapshot());
+        self::assertEquals($expected, $blob->getSnapshot());
     }
 
     public function testGetSnapshot()
@@ -53,7 +53,7 @@ class ListBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $blob->getSnapshot();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetLeaseId()
@@ -67,7 +67,7 @@ class ListBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setLeaseId($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 
     public function testSetIncludeUncommittedBlobs()
@@ -80,7 +80,7 @@ class ListBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setIncludeUncommittedBlobs($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getIncludeUncommittedBlobs());
+        self::assertEquals($expected, $options->getIncludeUncommittedBlobs());
     }
 
     public function testGetIncludeUncommittedBlobs()
@@ -94,7 +94,7 @@ class ListBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getIncludeUncommittedBlobs();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetIncludeCommittedBlobs()
@@ -107,7 +107,7 @@ class ListBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setIncludeCommittedBlobs($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getIncludeCommittedBlobs());
+        self::assertEquals($expected, $options->getIncludeCommittedBlobs());
     }
 
     public function testGetIncludeCommittedBlobs()
@@ -121,7 +121,7 @@ class ListBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getIncludeCommittedBlobs();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetBlockListType()
@@ -134,6 +134,6 @@ class ListBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getBlockListType();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

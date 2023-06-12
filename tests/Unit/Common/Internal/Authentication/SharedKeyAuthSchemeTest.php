@@ -50,9 +50,9 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $mock = new SharedKeyAuthSchemeMock(TestResources::ACCOUNT_NAME, TestResources::KEY4);
 
-        $this->assertEquals(TestResources::ACCOUNT_NAME, $mock->getAccountName());
-        $this->assertEquals(TestResources::KEY4, $mock->getAccountKey());
-        $this->assertEquals($expected, $mock->getIncludedHeaders());
+        self::assertEquals(TestResources::ACCOUNT_NAME, $mock->getAccountName());
+        self::assertEquals(TestResources::KEY4, $mock->getAccountKey());
+        self::assertEquals($expected, $mock->getIncludedHeaders());
     }
 
     public function testComputeSignatureSimple()
@@ -70,7 +70,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->computeSignatureMock($headers, $url, $queryParams, $httpMethod);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetAuthorizationHeaderSimple()
@@ -89,7 +89,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->getAuthorizationHeader($headers, $url, $queryParams, $httpMethod);
 
-        $this->assertEquals($expected, substr($actual, 0, \strlen($expected)));
+        self::assertEquals($expected, substr($actual, 0, \strlen($expected)));
     }
 
     public function testComputeCanonicalizedHeadersMock()
@@ -105,7 +105,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->computeCanonicalizedHeadersMock($headers);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testComputeCanonicalizedResourceMockSimple()
@@ -119,7 +119,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->computeCanonicalizedResourceMock($url, $queryVariables);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testComputeCanonicalizedResourceMockMultipleValues()
@@ -141,7 +141,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->computeCanonicalizedResourceMock($url, $queryVariables);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testComputeCanonicalizedResourceForTableMock()
@@ -155,7 +155,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->computeCanonicalizedResourceForTableMock($url, $queryVariables);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSignRequest()
@@ -169,6 +169,6 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
         $actual = $mock->signRequest($request);
 
         // Assert
-        $this->assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
+        self::assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
     }
 }

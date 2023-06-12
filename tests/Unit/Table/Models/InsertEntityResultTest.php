@@ -19,11 +19,11 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\InsertEntityResult;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
+use MicrosoftAzure\Storage\Table\Models\InsertEntityResult;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class InsertEntityResult
@@ -52,6 +52,6 @@ class InsertEntityResultTest extends \PHPUnit\Framework\TestCase
         );
 
         // Assert
-        $this->assertEquals($expectedEntity, $result->getEntity());
+        self::assertEquals($expectedEntity, $result->getEntity());
     }
 }

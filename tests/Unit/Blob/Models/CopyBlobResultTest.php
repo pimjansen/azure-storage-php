@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\CopyBlobResult;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 
 /**
  * Unit tests for class SnapshotBlobResult
@@ -41,12 +41,12 @@ class CopyBlobResultTest extends \PHPUnit\Framework\TestCase
 
         $result = CopyBlobResult::create($headers);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedEtag,
             $result->getETag()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime($expectedLastModified),
             $result->getLastModified()
         );

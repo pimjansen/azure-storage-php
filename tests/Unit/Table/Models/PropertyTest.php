@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\Property;
 use MicrosoftAzure\Storage\Table\Models\EdmType;
+use MicrosoftAzure\Storage\Table\Models\Property;
 
 /**
  * Unit tests for class Property
@@ -39,7 +39,7 @@ class PropertyTest extends \PHPUnit\Framework\TestCase
         $pro->setEdmType($expected);
 
         // Assert
-        $this->assertEquals($expected, $pro->getEdmType());
+        self::assertEquals($expected, $pro->getEdmType());
     }
 
     public function testSetValue()
@@ -52,6 +52,6 @@ class PropertyTest extends \PHPUnit\Framework\TestCase
         $pro->setValue($expected);
 
         // Assert
-        $this->assertEquals($expected, $pro->getValue());
+        self::assertEquals($expected, $pro->getValue());
     }
 }

@@ -39,8 +39,8 @@ class ContainerACLTest extends \PHPUnit\Framework\TestCase
         $acl = ContainerACL::create($expectedPublicAccess, $sample);
 
         // Assert
-        $this->assertEquals($expectedPublicAccess, $acl->getPublicAccess());
-        $this->assertCount(0, $acl->getSignedIdentifiers());
+        self::assertEquals($expectedPublicAccess, $acl->getPublicAccess());
+        self::assertCount(0, $acl->getSignedIdentifiers());
     }
 
     public function testCreateOneEntry()
@@ -53,8 +53,8 @@ class ContainerACLTest extends \PHPUnit\Framework\TestCase
         $acl = ContainerACL::create($expectedPublicAccess, $sample['SignedIdentifiers']);
 
         // Assert
-        $this->assertEquals($expectedPublicAccess, $acl->getPublicAccess());
-        $this->assertCount(1, $acl->getSignedIdentifiers());
+        self::assertEquals($expectedPublicAccess, $acl->getPublicAccess());
+        self::assertCount(1, $acl->getSignedIdentifiers());
     }
 
     public function testCreateMultipleEntries()
@@ -67,8 +67,8 @@ class ContainerACLTest extends \PHPUnit\Framework\TestCase
         $acl = ContainerACL::create($expectedPublicAccess, $sample['SignedIdentifiers']);
 
         // Assert
-        $this->assertEquals($expectedPublicAccess, $acl->getPublicAccess());
-        $this->assertCount(2, $acl->getSignedIdentifiers());
+        self::assertEquals($expectedPublicAccess, $acl->getPublicAccess());
+        self::assertCount(2, $acl->getSignedIdentifiers());
 
         return $acl;
     }
@@ -84,6 +84,6 @@ class ContainerACLTest extends \PHPUnit\Framework\TestCase
         $acl->setPublicAccess($expected);
 
         // Assert
-        $this->assertEquals($expected, $acl->getPublicAccess());
+        self::assertEquals($expected, $acl->getPublicAccess());
     }
 }

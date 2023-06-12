@@ -38,7 +38,7 @@ class CreateQueueOptionsTest extends \PHPUnit\Framework\TestCase
         $queue->setMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $queue->getMetadata());
+        self::assertEquals($expected, $queue->getMetadata());
     }
 
     public function testGetMetadata()
@@ -52,7 +52,7 @@ class CreateQueueOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $queue->getMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testAddMetadata()
@@ -67,6 +67,6 @@ class CreateQueueOptionsTest extends \PHPUnit\Framework\TestCase
         $queue->addMetadata($key, $value);
 
         // Assert
-        $this->assertEquals($expected, $queue->getMetadata());
+        self::assertEquals($expected, $queue->getMetadata());
     }
 }

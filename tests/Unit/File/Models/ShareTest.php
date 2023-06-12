@@ -19,11 +19,11 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
-use MicrosoftAzure\Storage\File\Models\ShareProperties;
-use MicrosoftAzure\Storage\File\Models\Share;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\File\Models\Share;
+use MicrosoftAzure\Storage\File\Models\ShareProperties;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class Share
@@ -42,8 +42,8 @@ class ShareTest extends \PHPUnit\Framework\TestCase
             $responseArray[Resources::QP_PROPERTIES]
         );
 
-        $this->assertEquals($expectedMeta, $share->getMetadata());
-        $this->assertEquals($expectedName, $share->getName());
-        $this->assertEquals($expectedProperties, $share->getProperties());
+        self::assertEquals($expectedMeta, $share->getMetadata());
+        self::assertEquals($expectedName, $share->getName());
+        self::assertEquals($expectedProperties, $share->getProperties());
     }
 }

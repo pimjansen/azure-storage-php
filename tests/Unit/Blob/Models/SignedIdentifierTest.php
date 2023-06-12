@@ -40,7 +40,7 @@ class SignedIdentifierTest extends \PHPUnit\Framework\TestCase
         $actual = $signedIdentifier->getId();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetId()
@@ -53,7 +53,7 @@ class SignedIdentifierTest extends \PHPUnit\Framework\TestCase
         $signedIdentifier->setId($expected);
 
         // Assert
-        $this->assertEquals($expected, $signedIdentifier->getId());
+        self::assertEquals($expected, $signedIdentifier->getId());
     }
 
     public function testGetAccessPolicy()
@@ -70,7 +70,7 @@ class SignedIdentifierTest extends \PHPUnit\Framework\TestCase
         $actual = $signedIdentifier->getAccessPolicy();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetAccessPolicy()
@@ -86,7 +86,7 @@ class SignedIdentifierTest extends \PHPUnit\Framework\TestCase
         $signedIdentifier->setAccessPolicy($expected);
 
         // Assert
-        $this->assertEquals($expected, $signedIdentifier->getAccessPolicy());
+        self::assertEquals($expected, $signedIdentifier->getAccessPolicy());
 
         return $signedIdentifier;
     }
@@ -104,7 +104,7 @@ class SignedIdentifierTest extends \PHPUnit\Framework\TestCase
         $array = $signedIdentifier->toArray();
 
         // Assert
-        $this->assertEquals($id, $array['SignedIdentifier']['Id']);
-        $this->assertArrayHasKey('AccessPolicy', $array['SignedIdentifier']);
+        self::assertEquals($id, $array['SignedIdentifier']['Id']);
+        self::assertArrayHasKey('AccessPolicy', $array['SignedIdentifier']);
     }
 }

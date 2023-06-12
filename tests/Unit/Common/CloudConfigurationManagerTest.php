@@ -32,7 +32,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
     private $_key = 'my_connection_string';
     private $_value = 'connection string value';
 
-    public function setUp()
+    protected function setUp()
     {
         $isInitialized = new \ReflectionProperty('MicrosoftAzure\Storage\Common\CloudConfigurationManager', '_isInitialized');
         $isInitialized->setAccessible(true);
@@ -52,7 +52,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
         $actual = CloudConfigurationManager::getConnectionString($this->_key);
 
         // Assert
-        $this->assertEquals($this->_value, $actual);
+        self::assertEquals($this->_value, $actual);
 
         // Clean
         putenv($this->_key);
@@ -64,7 +64,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
         $actual = CloudConfigurationManager::getConnectionString('does not exist');
 
         // Assert
-        $this->assertEmpty($actual);
+        self::assertEmpty($actual);
     }
 
     public function testRegisterSource()
@@ -85,7 +85,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = CloudConfigurationManager::getConnectionString($expectedKey);
-        $this->assertEquals($expectedValue, $actual);
+        self::assertEquals($expectedValue, $actual);
     }
 
     public function testRegisterSourceWithPrepend()
@@ -108,7 +108,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = CloudConfigurationManager::getConnectionString($expectedKey);
-        $this->assertEquals($expectedValue, $actual);
+        self::assertEquals($expectedValue, $actual);
 
         // Clean
         putenv($this->_key);
@@ -134,8 +134,8 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = CloudConfigurationManager::getConnectionString($expectedKey);
-        $this->assertEmpty($actual);
-        $this->assertNotNull($callback);
+        self::assertEmpty($actual);
+        self::assertNotNull($callback);
     }
 
     public function testRegisterSourceWithDefaultSource()
@@ -151,7 +151,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = CloudConfigurationManager::getConnectionString($expectedKey);
-        $this->assertEquals($expectedValue, $actual);
+        self::assertEquals($expectedValue, $actual);
 
         // Clean
         putenv($expectedKey);
@@ -177,7 +177,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = CloudConfigurationManager::getConnectionString($expectedKey);
-        $this->assertEquals($expectedValue, $actual);
-        $this->assertNotNull($callback);
+        self::assertEquals($expectedValue, $actual);
+        self::assertNotNull($callback);
     }
 }

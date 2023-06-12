@@ -38,9 +38,9 @@ class TokenAuthSchemeTest extends ReflectionTestBase
         $bearerToken = '';
         $mock = new TokenAuthScheme($bearerToken, TestResources::TOKEN_CS);
 
-        $this->assertEquals('', $this->getProperty('tokenRef', $mock)->getValue($mock));
+        self::assertEquals('', $this->getProperty('tokenRef', $mock)->getValue($mock));
         $bearerToken = 'changed';
-        $this->assertEquals('changed', $this->getProperty('tokenRef', $mock)->getValue($mock));
+        self::assertEquals('changed', $this->getProperty('tokenRef', $mock)->getValue($mock));
     }
 
     public function testSignRequest()
@@ -50,8 +50,8 @@ class TokenAuthSchemeTest extends ReflectionTestBase
         $uri = new Uri(TestResources::URI2);
         $request = new Request('Get', $uri, [], null);
         $actual = $mock->signRequest($request);
-        $this->assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
-        $this->assertEquals(
+        self::assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
+        self::assertEquals(
             'Bearer', // Trims the trailing space
             $actual->getHeaders()[strtolower(Resources::AUTHENTICATION)][0]
         );
@@ -59,8 +59,8 @@ class TokenAuthSchemeTest extends ReflectionTestBase
         $bearerToken = 'changed';
         $request = new Request('Get', $uri, [], null);
         $actual = $mock->signRequest($request);
-        $this->assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
-        $this->assertEquals(
+        self::assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
+        self::assertEquals(
             'Bearer changed',
             $actual->getHeaders()[strtolower(Resources::AUTHENTICATION)][0]
         );

@@ -39,8 +39,8 @@ class QueueTest extends \PHPUnit\Framework\TestCase
         $queue = new Queue($expectedName, $expectedUrl);
 
         // Assert
-        $this->assertEquals($expectedName, $queue->getName());
-        $this->assertEquals($expectedUrl, $queue->getUrl());
+        self::assertEquals($expectedName, $queue->getName());
+        self::assertEquals($expectedUrl, $queue->getUrl());
     }
 
     public function testSetName()
@@ -53,7 +53,7 @@ class QueueTest extends \PHPUnit\Framework\TestCase
         $queue->setName($expected);
 
         // Assert
-        $this->assertEquals($expected, $queue->getName());
+        self::assertEquals($expected, $queue->getName());
     }
 
     public function testGetName()
@@ -67,7 +67,7 @@ class QueueTest extends \PHPUnit\Framework\TestCase
         $actual = $queue->getName();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetUrl()
@@ -80,7 +80,7 @@ class QueueTest extends \PHPUnit\Framework\TestCase
         $queue->setUrl($expected);
 
         // Assert
-        $this->assertEquals($expected, $queue->getUrl());
+        self::assertEquals($expected, $queue->getUrl());
     }
 
     public function testGetUrl()
@@ -94,7 +94,7 @@ class QueueTest extends \PHPUnit\Framework\TestCase
         $actual = $queue->getUrl();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetMetadata()
@@ -107,7 +107,7 @@ class QueueTest extends \PHPUnit\Framework\TestCase
         $queue->setMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $queue->getMetadata());
+        self::assertEquals($expected, $queue->getMetadata());
     }
 
     public function testGetMetadata()
@@ -121,6 +121,6 @@ class QueueTest extends \PHPUnit\Framework\TestCase
         $actual = $queue->getMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

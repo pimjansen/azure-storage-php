@@ -43,14 +43,14 @@ class AnonymousAccessFunctionalTest extends \PHPUnit\Framework\TestCase
         self::$accountName = self::$blobRestProxy->getAccountName();
     }
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         $this->containerName = TestResources::getInterestingName('con');
         self::$blobRestProxy->createContainer($this->containerName);
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
         self::$blobRestProxy->deleteContainer($this->containerName);
         parent::tearDown();
@@ -75,23 +75,22 @@ class AnonymousAccessFunctionalTest extends \PHPUnit\Framework\TestCase
 
         $result = $proxy->listBlobs($this->containerName);
 
-        $this->assertCount(0, $result->getBlobs());
+        self::assertCount(0, $result->getBlobs());
 
         $blob = TestResources::getInterestingName('b');
         self::$blobRestProxy->createPageBlob($this->containerName, $blob, 512);
         $result = $proxy->listBlobs($this->containerName);
-        $this->assertCount(1, $result->getBlobs());
+        self::assertCount(1, $result->getBlobs());
         self::$blobRestProxy->deleteBlob($this->containerName, $blob);
         $result = $proxy->listBlobs($this->containerName);
-        $this->assertCount(0, $result->getBlobs());
+        self::assertCount(0, $result->getBlobs());
     }
 
-    /**
-     * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-     * @expectedExceptionMessage 404
-     */
     public function testPublicAccessBlobOnly()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('404');
+
         $acl = self::$blobRestProxy->getContainerAcl($this->containerName)->getContainerAcl();
         $acl->setPublicAccess(PublicAccessType::BLOBS_ONLY);
         self::$blobRestProxy->setContainerAcl($this->containerName, $acl);
@@ -112,16 +111,16 @@ class AnonymousAccessFunctionalTest extends \PHPUnit\Framework\TestCase
         );
 
         $result = self::$blobRestProxy->listBlobs($this->containerName);
-        $this->assertCount(0, $result->getBlobs());
+        self::assertCount(0, $result->getBlobs());
         $blob = TestResources::getInterestingName('b');
         self::$blobRestProxy->createBlockBlob($this->containerName, $blob, 'test content');
         $result = self::$blobRestProxy->listBlobs($this->containerName);
-        $this->assertCount(1, $result->getBlobs());
+        self::assertCount(1, $result->getBlobs());
         $content = stream_get_contents($proxy->getBlob($this->containerName, $blob)->getContentStream());
-        $this->assertEquals('test content', $content);
+        self::assertEquals('test content', $content);
         self::$blobRestProxy->deleteBlob($this->containerName, $blob);
         $result = self::$blobRestProxy->listBlobs($this->containerName);
-        $this->assertCount(0, $result->getBlobs());
+        self::assertCount(0, $result->getBlobs());
         //The following line will generate ServiceException with 404.
         $result = $proxy->listBlobs($this->containerName);
     }

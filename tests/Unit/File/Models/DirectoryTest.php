@@ -19,10 +19,10 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
+use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\File\Internal\FileResources;
 use MicrosoftAzure\Storage\File\Models\Directory;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 
 /**
  * Unit tests for class Directory
@@ -51,7 +51,7 @@ class DirectoryTest extends \PHPUnit\Framework\TestCase
             $sample = $samples[$i];
             $actual = $actuals[$i];
 
-            $this->assertEquals($sample[Resources::QP_NAME], $actual->getName());
+            self::assertEquals($sample[Resources::QP_NAME], $actual->getName());
         }
     }
 }

@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
-use MicrosoftAzure\Storage\File\Models\GetDirectoryPropertiesResult;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\File\Models\GetDirectoryPropertiesResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
@@ -40,12 +40,12 @@ class GetDirectoryPropertiesResultTest extends \PHPUnit\Framework\TestCase
         $expectedEtag = $sample[Resources::QP_ETAG];
         $expectedMeta = Utilities::getMetadataArray($sample);
 
-        $this->assertEquals($expectedLastModified, $directoryPropertiesResult->getLastModified());
-        $this->assertEquals($expectedEtag, $directoryPropertiesResult->getETag());
+        self::assertEquals($expectedLastModified, $directoryPropertiesResult->getLastModified());
+        self::assertEquals($expectedEtag, $directoryPropertiesResult->getETag());
         $actualMeta = $directoryPropertiesResult->getMetadata();
         foreach ($expectedMeta as $key => $value) {
-            $this->assertArrayHasKey($key, $actualMeta);
-            $this->assertEquals($value, $actualMeta[$key]);
+            self::assertArrayHasKey($key, $actualMeta);
+            self::assertEquals($value, $actualMeta[$key]);
         }
     }
 }

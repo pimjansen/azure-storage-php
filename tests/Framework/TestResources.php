@@ -19,17 +19,17 @@
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
+use GuzzleHttp\Psr7\Response;
+use MicrosoftAzure\Storage\Common\Internal\Http\HttpCallContext;
+use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\File\Internal\FileResources;
 use MicrosoftAzure\Storage\Queue\Internal\QueueResources;
-use MicrosoftAzure\Storage\Table\Models\EdmType;
-use MicrosoftAzure\Storage\Table\Models\Entity;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Http\HttpCallContext;
 use MicrosoftAzure\Storage\Table\Models\BatchOperation;
 use MicrosoftAzure\Storage\Table\Models\BatchOperationType;
+use MicrosoftAzure\Storage\Table\Models\EdmType;
+use MicrosoftAzure\Storage\Table\Models\Entity;
 use MicrosoftAzure\Storage\Table\Models\UpdateEntityResult;
-use GuzzleHttp\Psr7\Response;
 
 /**
  * Resources for testing framework.

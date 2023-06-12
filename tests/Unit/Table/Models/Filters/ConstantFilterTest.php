@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters;
 
-use MicrosoftAzure\Storage\Table\Models\Filters\ConstantFilter;
 use MicrosoftAzure\Storage\Table\Models\EdmType;
+use MicrosoftAzure\Storage\Table\Models\Filters\ConstantFilter;
 
 /**
  * Unit tests for class ConstantFilter
@@ -36,7 +36,7 @@ class ConstantFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new ConstantFilter(null, $expected);
 
         // Assert
-        $this->assertEquals($expected, $filter->getValue());
+        self::assertEquals($expected, $filter->getValue());
     }
 
     public function testGetEdmType()
@@ -46,6 +46,6 @@ class ConstantFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new ConstantFilter($expected, '1234');
 
         // Assert
-        $this->assertEquals($expected, $filter->getEdmType());
+        self::assertEquals($expected, $filter->getEdmType());
     }
 }

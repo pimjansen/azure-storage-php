@@ -19,10 +19,10 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
+use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 use MicrosoftAzure\Storage\File\Models\Directory;
 use MicrosoftAzure\Storage\File\Models\File;
 use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesResult;
-use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
@@ -61,38 +61,38 @@ class ListDirectoriesAndFilesResultTest extends \PHPUnit\Framework\TestCase
             $actual = $actuals[$i];
             $entries = $sample[Resources::QP_ENTRIES];
             if (empty($entries)) {
-                $this->assertEmpty($actual->getDirectories());
-                $this->assertEmpty($actual->getFiles());
+                self::assertEmpty($actual->getDirectories());
+                self::assertEmpty($actual->getFiles());
             } else {
                 if (array_key_exists(Resources::QP_DIRECTORY, $entries)) {
-                    $this->assertEquals(
+                    self::assertEquals(
                         count($entries[Resources::QP_DIRECTORY]),
                         count($actual->getDirectories())
                     );
                     foreach ($actual->getDirectories() as $dir) {
-                        $this->assertInstanceOf(Directory::class, $dir);
-                        $this->assertStringStartsWith('testdirectory', $dir->getName());
+                        self::assertInstanceOf(Directory::class, $dir);
+                        self::assertStringStartsWith('testdirectory', $dir->getName());
                     }
                 } else {
-                    $this->assertEmpty($actual->getDirectories());
+                    self::assertEmpty($actual->getDirectories());
                 }
                 if (array_key_exists(Resources::QP_FILE, $entries)) {
-                    $this->assertEquals(
+                    self::assertEquals(
                         count($entries[Resources::QP_FILE]),
                         count($actual->getFiles())
                     );
                     foreach ($actual->getFiles() as $file) {
-                        $this->assertInstanceOf(File::class, $file);
-                        $this->assertStringStartsWith('testfile', $file->getName());
-                        $this->assertGreaterThanOrEqual(0, $file->getLength());
+                        self::assertInstanceOf(File::class, $file);
+                        self::assertStringStartsWith('testfile', $file->getName());
+                        self::assertGreaterThanOrEqual(0, $file->getLength());
                     }
                 } else {
-                    $this->assertEmpty($actual->getFiles());
+                    self::assertEmpty($actual->getFiles());
                 }
             }
-            $this->assertEquals('myaccount', $actual->getAccountName());
-            $this->assertEquals(5, $actual->getMaxResults());
-            $this->assertEquals(
+            self::assertEquals('myaccount', $actual->getAccountName());
+            self::assertEquals(5, $actual->getMaxResults());
+            self::assertEquals(
                 $sample[Resources::QP_NEXT_MARKER],
                 $actual->getNextMarker()
             );

@@ -20,9 +20,9 @@
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Models\Container;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Blob\Models\ContainerProperties;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class Container
@@ -41,7 +41,7 @@ class ContainerTest extends \PHPUnit\Framework\TestCase
         $container->setName($expected);
 
         // Assert
-        $this->assertEquals($expected, $container->getName());
+        self::assertEquals($expected, $container->getName());
     }
 
     public function testGetName()
@@ -55,7 +55,7 @@ class ContainerTest extends \PHPUnit\Framework\TestCase
         $actual = $container->getName();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetUrl()
@@ -68,7 +68,7 @@ class ContainerTest extends \PHPUnit\Framework\TestCase
         $container->setUrl($expected);
 
         // Assert
-        $this->assertEquals($expected, $container->getUrl());
+        self::assertEquals($expected, $container->getUrl());
     }
 
     public function testGetUrl()
@@ -82,7 +82,7 @@ class ContainerTest extends \PHPUnit\Framework\TestCase
         $actual = $container->getUrl();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetMetadata()
@@ -95,7 +95,7 @@ class ContainerTest extends \PHPUnit\Framework\TestCase
         $container->setMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $container->getMetadata());
+        self::assertEquals($expected, $container->getMetadata());
     }
 
     public function testGetMetadata()
@@ -109,7 +109,7 @@ class ContainerTest extends \PHPUnit\Framework\TestCase
         $actual = $container->getMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetProperties()
@@ -125,7 +125,7 @@ class ContainerTest extends \PHPUnit\Framework\TestCase
         $container->setProperties($expected);
 
         // Assert
-        $this->assertEquals($expected, $container->getProperties());
+        self::assertEquals($expected, $container->getProperties());
     }
 
     public function testGetProperties()
@@ -142,6 +142,6 @@ class ContainerTest extends \PHPUnit\Framework\TestCase
         $actual = $container->getProperties();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

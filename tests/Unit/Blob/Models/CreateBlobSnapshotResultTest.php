@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobSnapshotResult;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class SnapshotBlobResult
@@ -42,8 +42,8 @@ class CreateBlobSnapshotResultTest extends \PHPUnit\Framework\TestCase
         $actual = CreateBlobSnapshotResult::create($expected);
 
         // Assert
-        $this->assertEquals($expectedDate, $actual->getLastModified());
-        $this->assertEquals($expected['Etag'], $actual->getETag());
-        $this->assertEquals($expected['x-ms-snapshot'], $actual->getSnapshot());
+        self::assertEquals($expectedDate, $actual->getLastModified());
+        self::assertEquals($expected['Etag'], $actual->getETag());
+        self::assertEquals($expected['x-ms-snapshot'], $actual->getSnapshot());
     }
 }

@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\SetBlobMetadataResult;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
@@ -40,8 +40,8 @@ class SetBlobMetadataResultTest extends \PHPUnit\Framework\TestCase
         $result = SetBlobMetadataResult::create($sample);
 
         // Assert
-        $this->assertEquals($expectedDate, $result->getLastModified());
-        $this->assertEquals($sample['Etag'], $result->getETag());
-        $this->assertEquals(Utilities::toBoolean($sample['x-ms-request-server-encrypted']), $result->getRequestServerEncrypted());
+        self::assertEquals($expectedDate, $result->getLastModified());
+        self::assertEquals($sample['Etag'], $result->getETag());
+        self::assertEquals(Utilities::toBoolean($sample['x-ms-request-server-encrypted']), $result->getRequestServerEncrypted());
     }
 }

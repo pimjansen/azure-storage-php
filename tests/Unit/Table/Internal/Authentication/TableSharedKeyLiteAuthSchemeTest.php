@@ -20,8 +20,8 @@
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Internal\Authentication;
 
 use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
-use MicrosoftAzure\Storage\Tests\Mock\Table\Internal\Authentication\TableSharedKeyLiteAuthSchemeMock;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
+use MicrosoftAzure\Storage\Tests\Mock\Table\Internal\Authentication\TableSharedKeyLiteAuthSchemeMock;
 
 /**
  * Unit tests for TableSharedKeyLiteAuthScheme class.
@@ -37,7 +37,7 @@ class TableSharedKeyLiteAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $mock = new TableSharedKeyLiteAuthSchemeMock(TestResources::ACCOUNT_NAME, TestResources::KEY4);
 
-        $this->assertEquals($expected, $mock->getIncludedHeaders());
+        self::assertEquals($expected, $mock->getIncludedHeaders());
     }
 
     public function testComputeSignatureSimple()
@@ -54,7 +54,7 @@ class TableSharedKeyLiteAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->computeSignatureMock($headers, $url, $queryParams, $httpMethod);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetAuthorizationHeaderSimple()
@@ -73,6 +73,6 @@ class TableSharedKeyLiteAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->getAuthorizationHeader($headers, $url, $queryParams, $httpMethod);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

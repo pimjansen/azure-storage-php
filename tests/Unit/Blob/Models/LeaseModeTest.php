@@ -30,9 +30,9 @@ class LeaseModeTest extends \PHPUnit\Framework\TestCase
 {
     public function testLeaseMode()
     {
-        $this->assertEquals(LeaseMode::ACQUIRE_ACTION, 'acquire');
-        $this->assertEquals(LeaseMode::BREAK_ACTION, 'break');
-        $this->assertEquals(LeaseMode::RELEASE_ACTION, 'release');
-        $this->assertEquals(LeaseMode::RENEW_ACTION, 'renew');
+        self::assertEquals(LeaseMode::ACQUIRE_ACTION, 'acquire');
+        self::assertEquals(LeaseMode::BREAK_ACTION, 'break');
+        self::assertEquals(LeaseMode::RELEASE_ACTION, 'release');
+        self::assertEquals(LeaseMode::RENEW_ACTION, 'renew');
     }
 }

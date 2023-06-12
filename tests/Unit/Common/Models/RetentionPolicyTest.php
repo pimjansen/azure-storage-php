@@ -41,8 +41,8 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
         $actual = RetentionPolicy::create($sample['Logging']['RetentionPolicy']);
 
         // Assert
-        $this->assertEquals($expectedEnabled, $actual->getEnabled());
-        $this->assertEquals($expectedDays, $actual->getDays());
+        self::assertEquals($expectedEnabled, $actual->getEnabled());
+        self::assertEquals($expectedDays, $actual->getDays());
     }
 
     public function testGetEnabled()
@@ -57,7 +57,7 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
         $actual = $retentionPolicy->getEnabled();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetEnabled()
@@ -72,7 +72,7 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $retentionPolicy->getEnabled();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetDays()
@@ -87,7 +87,7 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
         $actual = $retentionPolicy->getDays();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetDays()
@@ -102,7 +102,7 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $retentionPolicy->getDays();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testToArray()
@@ -119,7 +119,7 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
         $actual = $retentionPolicy->toArray();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testToArrayWithoutDays()
@@ -134,6 +134,6 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
         $actual = $retentionPolicy->toArray();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

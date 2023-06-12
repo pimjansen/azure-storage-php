@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\GetTableResult;
 use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
+use MicrosoftAzure\Storage\Table\Models\GetTableResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
@@ -40,6 +40,6 @@ class GetTableResultTest extends \PHPUnit\Framework\TestCase
         $result = GetTableResult::create($sampleBody, $serializer);
 
         // Assert
-        $this->assertEquals($serializer->parseTable($sampleBody), $result->getName());
+        self::assertEquals($serializer->parseTable($sampleBody), $result->getName());
     }
 }

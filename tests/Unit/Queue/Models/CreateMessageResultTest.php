@@ -40,28 +40,28 @@ class CreateMessageResultTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $result->getQueueMessage();
-        $this->assertNotNull($actual);
-        $this->assertEquals(
+        self::assertNotNull($actual);
+        self::assertEquals(
             $sample['QueueMessage']['MessageId'],
             $actual->getMessageId()
         );
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime(
                 $sample['QueueMessage']['InsertionTime']
             ),
             $actual->getInsertionDate()
         );
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime(
                 $sample['QueueMessage']['ExpirationTime']
             ),
             $actual->getExpirationDate()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $sample['QueueMessage']['PopReceipt'],
             $actual->getPopReceipt()
         );
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime(
                 $sample['QueueMessage']['TimeNextVisible']
             ),

@@ -41,7 +41,7 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
         $actual = JsonSerializer::objectSerialize($testData['dataObject'], $rootName);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserializeArray()
@@ -55,7 +55,7 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
         $actual = $jsonSerializer->unserialize($testData['jsonArray']);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserializeObject()
@@ -69,7 +69,7 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
         $actual = $jsonSerializer->unserialize($testData['jsonObject']);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserializeEmptyString()
@@ -83,7 +83,7 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
         $actual = $jsonSerializer->unserialize($testData);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserializeInvalidString()
@@ -97,7 +97,7 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
         $actual = $jsonSerializer->unserialize($testData);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSerialize()
@@ -111,7 +111,7 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
         $actual = $jsonSerializer->serialize($testData['dataArray']);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSerializeNull()
@@ -120,7 +120,8 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
         $jsonSerializer = new JsonSerializer();
         $testData = null;
         $expected = "";
-        $this->setExpectedException('MicrosoftAzure\Storage\Common\Exceptions\InvalidArgumentTypeException', sprintf(Resources::INVALID_PARAM_MSG, 'array', 'array'));
+        $this->expectException('MicrosoftAzure\Storage\Common\Exceptions\InvalidArgumentTypeException');
+        $this->expectExceptionMessage(sprintf(Resources::INVALID_PARAM_MSG, 'array', 'array'));
 
         // Test
         $actual = $jsonSerializer->serialize($testData);

@@ -40,14 +40,14 @@ class ListMessagesResultTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $result->getQueueMessages();
-        $this->assertCount(1, $actual);
-        $this->assertEquals($sample['QueueMessage']['MessageId'], $actual[0]->getMessageId());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage']['InsertionTime']), $actual[0]->getInsertionDate());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage']['ExpirationTime']), $actual[0]->getExpirationDate());
-        $this->assertEquals($sample['QueueMessage']['PopReceipt'], $actual[0]->getPopReceipt());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage']['TimeNextVisible']), $actual[0]->getTimeNextVisible());
-        $this->assertEquals((int) ($sample['QueueMessage']['DequeueCount']), $actual[0]->getDequeueCount());
-        $this->assertEquals($sample['QueueMessage']['MessageText'], $actual[0]->getMessageText());
+        self::assertCount(1, $actual);
+        self::assertEquals($sample['QueueMessage']['MessageId'], $actual[0]->getMessageId());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage']['InsertionTime']), $actual[0]->getInsertionDate());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage']['ExpirationTime']), $actual[0]->getExpirationDate());
+        self::assertEquals($sample['QueueMessage']['PopReceipt'], $actual[0]->getPopReceipt());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage']['TimeNextVisible']), $actual[0]->getTimeNextVisible());
+        self::assertEquals((int) ($sample['QueueMessage']['DequeueCount']), $actual[0]->getDequeueCount());
+        self::assertEquals($sample['QueueMessage']['MessageText'], $actual[0]->getMessageText());
     }
 
     public function testCreateMultiple()
@@ -60,21 +60,21 @@ class ListMessagesResultTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $result->getQueueMessages();
-        $this->assertCount(2, $actual);
-        $this->assertEquals($sample['QueueMessage'][0]['MessageId'], $actual[0]->getMessageId());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][0]['InsertionTime']), $actual[0]->getInsertionDate());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][0]['ExpirationTime']), $actual[0]->getExpirationDate());
-        $this->assertEquals($sample['QueueMessage'][0]['PopReceipt'], $actual[0]->getPopReceipt());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][0]['TimeNextVisible']), $actual[0]->getTimeNextVisible());
-        $this->assertEquals((int) ($sample['QueueMessage'][0]['DequeueCount']), $actual[0]->getDequeueCount());
-        $this->assertEquals($sample['QueueMessage'][0]['MessageText'], $actual[0]->getMessageText());
+        self::assertCount(2, $actual);
+        self::assertEquals($sample['QueueMessage'][0]['MessageId'], $actual[0]->getMessageId());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][0]['InsertionTime']), $actual[0]->getInsertionDate());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][0]['ExpirationTime']), $actual[0]->getExpirationDate());
+        self::assertEquals($sample['QueueMessage'][0]['PopReceipt'], $actual[0]->getPopReceipt());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][0]['TimeNextVisible']), $actual[0]->getTimeNextVisible());
+        self::assertEquals((int) ($sample['QueueMessage'][0]['DequeueCount']), $actual[0]->getDequeueCount());
+        self::assertEquals($sample['QueueMessage'][0]['MessageText'], $actual[0]->getMessageText());
 
-        $this->assertEquals($sample['QueueMessage'][1]['MessageId'], $actual[1]->getMessageId());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][1]['InsertionTime']), $actual[1]->getInsertionDate());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][1]['ExpirationTime']), $actual[1]->getExpirationDate());
-        $this->assertEquals($sample['QueueMessage'][1]['PopReceipt'], $actual[1]->getPopReceipt());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][1]['TimeNextVisible']), $actual[1]->getTimeNextVisible());
-        $this->assertEquals((int) ($sample['QueueMessage'][1]['DequeueCount']), $actual[1]->getDequeueCount());
-        $this->assertEquals($sample['QueueMessage'][1]['MessageText'], $actual[1]->getMessageText());
+        self::assertEquals($sample['QueueMessage'][1]['MessageId'], $actual[1]->getMessageId());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][1]['InsertionTime']), $actual[1]->getInsertionDate());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][1]['ExpirationTime']), $actual[1]->getExpirationDate());
+        self::assertEquals($sample['QueueMessage'][1]['PopReceipt'], $actual[1]->getPopReceipt());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][1]['TimeNextVisible']), $actual[1]->getTimeNextVisible());
+        self::assertEquals((int) ($sample['QueueMessage'][1]['DequeueCount']), $actual[1]->getDequeueCount());
+        self::assertEquals($sample['QueueMessage'][1]['MessageText'], $actual[1]->getMessageText());
     }
 }

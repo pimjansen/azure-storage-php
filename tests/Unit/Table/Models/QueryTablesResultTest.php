@@ -38,7 +38,7 @@ class QueryTablesResultTest extends \PHPUnit\Framework\TestCase
         $result = QueryTablesResult::create($headers, $entries);
 
         // Assert
-        $this->assertEquals($entries, $result->getTables());
-        $this->assertEquals($headers['x-ms-continuation-nexttablename'], $result->getNextTableName());
+        self::assertEquals($entries, $result->getTables());
+        self::assertEquals($headers['x-ms-continuation-nexttablename'], $result->getNextTableName());
     }
 }

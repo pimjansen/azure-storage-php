@@ -38,7 +38,7 @@ class QueueACLTest extends \PHPUnit\Framework\TestCase
         $acl = QueueACL::create($sample);
 
         // Assert
-        $this->assertCount(0, $acl->getSignedIdentifiers());
+        self::assertCount(0, $acl->getSignedIdentifiers());
     }
 
     public function testCreateOneEntry()
@@ -50,7 +50,7 @@ class QueueACLTest extends \PHPUnit\Framework\TestCase
         $acl = QueueACL::create($sample['SignedIdentifiers']);
 
         // Assert
-        $this->assertCount(1, $acl->getSignedIdentifiers());
+        self::assertCount(1, $acl->getSignedIdentifiers());
     }
 
     public function testCreateMultipleEntries()
@@ -62,7 +62,7 @@ class QueueACLTest extends \PHPUnit\Framework\TestCase
         $acl = QueueACL::create($sample['SignedIdentifiers']);
 
         // Assert
-        $this->assertCount(2, $acl->getSignedIdentifiers());
+        self::assertCount(2, $acl->getSignedIdentifiers());
 
         return $acl;
     }

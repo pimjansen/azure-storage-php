@@ -35,7 +35,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $copyBlobOptions->setMetadata($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $copyBlobOptions->getMetadata()
         );
@@ -47,7 +47,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $expected = AccessCondition::ifMatch("12345");
         $copyBlobOptions->setAccessConditions($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $copyBlobOptions->getAccessConditions()[0]
         );
@@ -59,7 +59,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $expected = AccessCondition::IfMatch("x");
         $copyBlobOptions->setSourceAccessConditions($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $copyBlobOptions->getSourceAccessConditions()[0]
         );
@@ -71,7 +71,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options = new CopyBlobOptions();
 
         $options->setLeaseId($expected);
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 
     public function testSetSourceLeaseId()
@@ -80,7 +80,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options = new CopyBlobOptions();
 
         $options->setSourceLeaseId($expected);
-        $this->assertEquals($expected, $options->getSourceLeaseId());
+        self::assertEquals($expected, $options->getSourceLeaseId());
     }
 
     public function testSetIsIncrementalCopy()
@@ -89,7 +89,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options = new CopyBlobOptions();
 
         $options->setIsIncrementalCopy($expected);
-        $this->assertEquals($expected, $options->getIsIncrementalCopy());
+        self::assertEquals($expected, $options->getIsIncrementalCopy());
     }
 
     public function testSetSourceSnapshot()
@@ -98,6 +98,6 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options = new CopyBlobOptions();
 
         $options->setSourceSnapshot($expected);
-        $this->assertEquals($expected, $options->getSourceSnapshot());
+        self::assertEquals($expected, $options->getSourceSnapshot());
     }
 }

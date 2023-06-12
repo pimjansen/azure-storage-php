@@ -47,7 +47,7 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
         $child->setSignedIdentifiers($expected);
 
         // Assert
-        $this->assertEquals($expected, $child->getSignedIdentifiers());
+        self::assertEquals($expected, $child->getSignedIdentifiers());
     }
 
     public function testToXml()
@@ -65,7 +65,7 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
         // Assert
         $array = Utilities::unserialize($xml);
         $acl = QueueACL::create($array);
-        $this->assertEquals(
+        self::assertEquals(
             $expected->getSignedIdentifiers(),
             $acl->getSignedIdentifiers()
         );
@@ -83,22 +83,21 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
         $actual = $acl->toArray();
 
         // Assert
-        $this->assertEquals(
+        self::assertEquals(
             $expected['SignedIdentifier'][0],
             $actual[0]['SignedIdentifier']
         );
-        $this->assertEquals(
+        self::assertEquals(
             $expected['SignedIdentifier'][1],
             $actual[1]['SignedIdentifier']
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage There can be at most 5 signed identifiers
-     */
     public function testAddRemoveSignedIdentifier()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('There can be at most 5 signed identifiers');
+
         $sample = TestResources::getQueueACLMultipleArraySample();
         $acl = new QueueACL();
         for ($i = 0; $i < 5; ++$i) {
@@ -110,14 +109,14 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
             );
         }
 
-        $this->assertCount(5, $acl->getSignedIdentifiers());
+        self::assertCount(5, $acl->getSignedIdentifiers());
 
         //remove a non-exist signed identifier.
         $acl->removeSignedIdentifier('random_signed_identifier');
-        $this->assertCount(5, $acl->getSignedIdentifiers());
+        self::assertCount(5, $acl->getSignedIdentifiers());
         //remove an exist signed identifier.
         $acl->removeSignedIdentifier('a');
-        $this->assertCount(4, $acl->getSignedIdentifiers());
+        self::assertCount(4, $acl->getSignedIdentifiers());
         //add this signed identifier back.
         $acl->addSignedIdentifier(
             $sample[0]['Id'],
@@ -125,7 +124,7 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
             $sample[0]['AccessPolicy']['Expiry'],
             $sample[0]['AccessPolicy']['Permission']
         );
-        $this->assertCount(5, $acl->getSignedIdentifiers());
+        self::assertCount(5, $acl->getSignedIdentifiers());
         //add a signed identifier with existing ID.
         $acl->addSignedIdentifier(
             $sample[0]['Id'],
@@ -133,7 +132,7 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
             $sample[0]['AccessPolicy']['Expiry'],
             $sample[0]['AccessPolicy']['Permission']
         );
-        $this->assertCount(5, $acl->getSignedIdentifiers());
+        self::assertCount(5, $acl->getSignedIdentifiers());
         //add 6th signed identifier, expect error.
         $acl->addSignedIdentifier(
             $sample[5]['Id'],

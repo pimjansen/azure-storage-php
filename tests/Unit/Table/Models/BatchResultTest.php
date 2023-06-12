@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\BatchResult;
-use MicrosoftAzure\Storage\Table\Internal\MimeReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
+use MicrosoftAzure\Storage\Table\Internal\MimeReaderWriter;
+use MicrosoftAzure\Storage\Table\Models\BatchResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
@@ -51,6 +51,6 @@ class BatchResultTest extends \PHPUnit\Framework\TestCase
         );
 
         //Assert
-        $this->assertEquals($entries, $result->getEntries());
+        self::assertEquals($entries, $result->getEntries());
     }
 }

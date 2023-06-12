@@ -77,16 +77,16 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
             $proxy->createFileFromContent($share, $file, $content);
             //l
             $result = $proxy->listDirectoriesAndFiles($share);
-            $this->assertEquals($file, $result->getFiles()[0]->getName());
+            self::assertEquals($file, $result->getFiles()[0]->getName());
             //r
             $actualContent = \stream_get_contents(
                 $proxy->getFile($share, $file)->getContentStream()
             );
-            $this->assertEquals($content, $actualContent);
+            self::assertEquals($content, $actualContent);
             //d
             $proxy->deleteFile($share, $file);
             $result = $proxy->listDirectoriesAndFiles($share);
-            $this->assertEquals(0, \count($result->getFiles()));
+            self::assertCount(0, $result->getFiles());
         }
         //Validate that a cross access with wrong proxy/share pair
         //would not be successful
@@ -155,7 +155,7 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
         $options->setUseTransactionalMD5(true);
         $fileProxy->createFileFromContent($share, $file, $content, $options);
         $actual = stream_get_contents($fileProxy->getFile($share, $file)->getContentStream());
-        $this->assertEquals($content, $actual);
+        self::assertEquals($content, $actual);
         $fileProxy->deleteFile($share, $file);
     }
 

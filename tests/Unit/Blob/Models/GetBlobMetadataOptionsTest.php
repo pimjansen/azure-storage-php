@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
 use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataOptions;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class GetBlobMetadataOptions
@@ -41,7 +41,7 @@ class GetBlobMetadataOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setLeaseId($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 
     public function testGetAccessConditions()
@@ -55,7 +55,7 @@ class GetBlobMetadataOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $result->getAccessConditions();
 
         // Assert
-        $this->assertEquals($expected, $actual[0]);
+        self::assertEquals($expected, $actual[0]);
     }
 
     public function testSetAccessConditions()
@@ -68,7 +68,7 @@ class GetBlobMetadataOptionsTest extends \PHPUnit\Framework\TestCase
         $result->setAccessConditions($expected);
 
         // Assert
-        $this->assertEquals($expected, $result->getAccessConditions()[0]);
+        self::assertEquals($expected, $result->getAccessConditions()[0]);
     }
 
     public function testSetSnapshot()
@@ -81,7 +81,7 @@ class GetBlobMetadataOptionsTest extends \PHPUnit\Framework\TestCase
         $blob->setSnapshot($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getSnapshot());
+        self::assertEquals($expected, $blob->getSnapshot());
     }
 
     public function testGetSnapshot()
@@ -95,6 +95,6 @@ class GetBlobMetadataOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $blob->getSnapshot();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

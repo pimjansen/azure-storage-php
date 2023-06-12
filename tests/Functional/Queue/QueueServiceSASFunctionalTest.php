@@ -76,7 +76,7 @@ class QueueServiceSASFunctionalTest extends SASFunctionalTestBase
             $options = new ListMessagesOptions();
             $options->setNumberOfMessages(1);
             $actual = $proxy->listMessages($queue, $options)->getQueueMessages()[0];
-            $this->assertEquals($messageText, $actual->getMessageText());
+            self::assertEquals($messageText, $actual->getMessageText());
             $messageText = \uniqid();
             $proxy->updateMessage(
                 $queue,
@@ -89,7 +89,7 @@ class QueueServiceSASFunctionalTest extends SASFunctionalTestBase
             \sleep(2);
             $result = $proxy->peekMessages($queue);
             $actualMessage = $result->getQueueMessages()[0];
-            $this->assertEquals($messageText, $actualMessage->getMessageText());
+            self::assertEquals($messageText, $actualMessage->getMessageText());
         }
         //Validate that a cross access with wrong proxy/queue pair
         //would not be successfull

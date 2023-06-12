@@ -43,7 +43,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::tryGetValue($data, $key);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testTryGetValueUsingDefault()
@@ -56,7 +56,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::tryGetValue($data, $key, $expected);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testTryGetValueWithNull()
@@ -68,7 +68,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::tryGetValue($data, $key);
 
-        $this->assertNull($actual);
+        self::assertNull($actual);
     }
 
     public function testTryGetKeysChainValue()
@@ -82,16 +82,16 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $array['a1']['b1']['c1'] = 'value3';
 
         // Test - Level 1
-        $this->assertEquals('value1', Utilities::tryGetKeysChainValue($array, 'a2'));
-        $this->assertEquals(null, Utilities::tryGetKeysChainValue($array, 'a3'));
+        self::assertEquals('value1', Utilities::tryGetKeysChainValue($array, 'a2'));
+        self::assertNull(Utilities::tryGetKeysChainValue($array, 'a3'));
 
         // Test - Level 2
-        $this->assertEquals('value2', Utilities::tryGetKeysChainValue($array, 'a1', 'b2'));
-        $this->assertEquals(null, Utilities::tryGetKeysChainValue($array, 'a1', 'b3'));
+        self::assertEquals('value2', Utilities::tryGetKeysChainValue($array, 'a1', 'b2'));
+        self::assertNull(Utilities::tryGetKeysChainValue($array, 'a1', 'b3'));
 
         // Test - Level 3
-        $this->assertEquals('value3', Utilities::tryGetKeysChainValue($array, 'a1', 'b1', 'c1'));
-        $this->assertEquals(null, Utilities::tryGetKeysChainValue($array, 'a1', 'b1', 'c2'));
+        self::assertEquals('value3', Utilities::tryGetKeysChainValue($array, 'a1', 'b1', 'c1'));
+        self::assertNull(Utilities::tryGetKeysChainValue($array, 'a1', 'b1', 'c2'));
     }
 
     public function testStartsWith()
@@ -103,7 +103,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::startsWith($string, $prefix);
 
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testStartsWithDoesNotStartWithPrefix()
@@ -115,7 +115,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::startsWith($string, $prefix);
 
-        $this->assertFalse($actual);
+        self::assertFalse($actual);
     }
 
     public function testGetArray()
@@ -126,7 +126,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::getArray($expected);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetArrayWithFlatValue()
@@ -138,7 +138,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::getArray($flat);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetArrayWithMixtureValue()
@@ -150,7 +150,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::getArray($flat);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetArrayWithEmptyValue()
@@ -162,7 +162,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::getArray($empty);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserialize()
@@ -176,7 +176,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::unserialize($xml);
 
-        $this->assertEquals($propertiesSample, $actual);
+        self::assertEquals($propertiesSample, $actual);
     }
 
     public function testSerialize()
@@ -211,7 +211,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::serialize($array, "StorageServiceProperties");
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSerializeAttribute()
@@ -230,41 +230,41 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = Utilities::serialize($object, 'Object');
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testAllZero()
     {
-        $this->assertFalse(Utilities::allZero('hello'));
+        self::assertFalse(Utilities::allZero('hello'));
 
         for ($i = 1; $i < 256; ++$i) {
-            $this->assertFalse(Utilities::allZero(pack('c', $i)));
+            self::assertFalse(Utilities::allZero(pack('c', $i)));
         }
 
-        $this->assertTrue(Utilities::allZero(pack('c', 0)));
+        self::assertTrue(Utilities::allZero(pack('c', 0)));
 
-        $this->assertTrue(Utilities::allZero(''));
+        self::assertTrue(Utilities::allZero(''));
     }
 
     public function testToBoolean()
     {
-        $this->assertInternalType('bool', Utilities::toBoolean('true'));
-        $this->assertEquals(true, Utilities::toBoolean('true'));
+        self::assertIsBool(Utilities::toBoolean('true'));
+        self::assertTrue(Utilities::toBoolean('true'));
 
-        $this->assertInternalType('bool', Utilities::toBoolean('false'));
-        $this->assertEquals(false, Utilities::toBoolean('false'));
+        self::assertIsBool(Utilities::toBoolean('false'));
+        self::assertFalse(Utilities::toBoolean('false'));
 
-        $this->assertInternalType('bool', Utilities::toBoolean(null));
-        $this->assertEquals(false, Utilities::toBoolean(null));
+        self::assertIsBool(Utilities::toBoolean(null));
+        self::assertFalse(Utilities::toBoolean(null));
 
-        $this->assertInternalType('bool', Utilities::toBoolean('true', true));
-        $this->assertEquals(true, Utilities::toBoolean('true', true));
+        self::assertIsBool(Utilities::toBoolean('true', true));
+        self::assertTrue(Utilities::toBoolean('true', true));
 
-        $this->assertInternalType('bool', Utilities::toBoolean('false', true));
-        $this->assertEquals(false, Utilities::toBoolean('false', true));
+        self::assertIsBool(Utilities::toBoolean('false', true));
+        self::assertFalse(Utilities::toBoolean('false', true));
 
-        $this->assertNull(Utilities::toBoolean(null, true));
-        $this->assertEquals(null, Utilities::toBoolean(null, true));
+        self::assertNull(Utilities::toBoolean(null, true));
+        self::assertNull(Utilities::toBoolean(null, true));
     }
 
     public function testBooleanToString()
@@ -277,7 +277,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::booleanToString($value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testIsoDate()
@@ -286,7 +286,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $date = Utilities::isoDate(new \DateTimeImmutable('2016-02-03', new \DateTimeZone('America/Chicago')));
 
         // Assert
-        $this->assertSame('2016-02-03T06:00:00Z', $date);
+        self::assertSame('2016-02-03T06:00:00Z', $date);
     }
 
     public function testConvertToEdmDateTime()
@@ -295,7 +295,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::convertToEdmDateTime(new \DateTime());
 
         // Assert
-        $this->assertNotNull($actual);
+        self::assertNotNull($actual);
     }
 
     public function testConvertToDateTime()
@@ -307,7 +307,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::convertToDateTime($date);
 
         // Assert
-        $this->assertInstanceOf('\DateTime', $actual);
+        self::assertInstanceOf('\DateTime', $actual);
     }
 
     public function testConvertToDateTimeWithDate()
@@ -319,7 +319,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::convertToDateTime($date);
 
         // Assert
-        $this->assertEquals($date, $actual);
+        self::assertEquals($date, $actual);
     }
 
     public function testStringToStream()
@@ -331,7 +331,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::stringToStream($data);
 
         // Assert
-        $this->assertEquals(stream_get_contents($expected), stream_get_contents($actual));
+        self::assertEquals(stream_get_contents($expected), stream_get_contents($actual));
     }
 
     public function testWindowsAzureDateToDateTime()
@@ -343,7 +343,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::rfc1123ToDateTime($expected);
 
         // Assert
-        $this->assertEquals($expected, $actual->format('D, d M Y H:i:s T'));
+        self::assertEquals($expected, $actual->format('D, d M Y H:i:s T'));
     }
 
     public function testTryAddUrlSchemeWithScheme()
@@ -355,7 +355,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::tryAddUrlScheme($url);
 
         // Assert
-        $this->assertEquals($url, $actual);
+        self::assertEquals($url, $actual);
     }
 
     public function testTryAddUrlSchemeWithoutScheme()
@@ -368,48 +368,47 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::tryAddUrlScheme($url);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testTryGetSecondaryEndpointFromPrimaryEndpoint()
     {
-        $this->assertEquals(
+        self::assertEquals(
             'http://account-secondary.blob.core.windows.net',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
                 'http://account.blob.core.windows.net'
             )
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'https://account-secondary.blob.core.windows.net',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
                 'https://account.blob.core.windows.net'
             )
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'account-secondary.blob.core.windows.net',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
                 'account.blob.core.windows.net'
             )
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'http://account-secondary.customized',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
                 'http://account.customized'
             )
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'http://account-secondary.blob.core.windows.net/foo/bar?a=b',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
                 'http://account.blob.core.windows.net/foo/bar?a=b'
             )
         );
 
-        $this->assertEquals(
-            null,
+        self::assertNull(
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
                 ''
             )
@@ -426,7 +425,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::startsWith($string, $prefix, true);
 
         // Assert
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testInArrayInsensitive()
@@ -439,7 +438,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::inArrayInsensitive($value, $array);
 
         // Assert
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testArrayKeyExistsInsensitive()
@@ -452,7 +451,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::arrayKeyExistsInsensitive($key, $array);
 
         // Assert
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testTryGetValueInsensitive()
@@ -466,7 +465,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::tryGetValueInsensitive('keY', $array);
 
         // Assert
-        $this->assertEquals($value, $actual);
+        self::assertEquals($value, $actual);
     }
 
     public function testGetGuid()
@@ -476,11 +475,11 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual2 = Utilities::getGuid();
 
         // Assert
-        $this->assertNotNull($actual1);
-        $this->assertNotNull($actual2);
-        $this->assertInternalType('string', $actual1);
-        $this->assertInternalType('string', $actual2);
-        $this->assertNotEquals($actual1, $actual2);
+        self::assertNotNull($actual1);
+        self::assertNotNull($actual2);
+        self::assertIsString($actual1);
+        self::assertIsString($actual2);
+        self::assertNotEquals($actual1, $actual2);
     }
 
     public function testEndsWith()
@@ -494,7 +493,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::endsWith($haystack, $needle, true);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGenerateCryptoKey()
@@ -506,7 +505,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $result = Utilities::generateCryptoKey($length);
 
         // Assert
-        $this->assertEquals($length, strlen($result));
+        self::assertEquals($length, strlen($result));
     }
 
     public function testBase256ToDecF()
@@ -519,7 +518,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::base256ToDec($data);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testBase256ToDec0()
@@ -532,7 +531,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::base256ToDec($data);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testBase256ToDec()
@@ -545,7 +544,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::base256ToDec($data);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testBase256ToDecBig()
@@ -558,7 +557,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::base256ToDec($data);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testIsStreamLargerThanSizeOrNotSeekable()
@@ -595,10 +594,10 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
             4194304 * 16
         );
 
-        $this->assertFalse($result_1);
-        $this->assertFalse($result_3);
-        $this->assertTrue($result_0);
-        $this->assertTrue($result_2);
+        self::assertFalse($result_1);
+        self::assertFalse($result_3);
+        self::assertTrue($result_0);
+        self::assertTrue($result_2);
         if (is_resource($resource)) {
             fclose($resource);
         }
@@ -619,7 +618,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::getMetadataArray($metadataHeaders);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetMetadataArrayWithMsHeaders()
@@ -635,7 +634,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $actual = Utilities::getMetadataArray($metadataHeaders);
 
         // Assert
-        $this->assertCount(1, $actual);
-        $this->assertEquals($value, $actual[$key]);
+        self::assertCount(1, $actual);
+        self::assertEquals($value, $actual[$key]);
     }
 }

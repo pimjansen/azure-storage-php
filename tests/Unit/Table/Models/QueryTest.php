@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\Query;
-use MicrosoftAzure\Storage\Table\Models\Filters\Filter;
 use MicrosoftAzure\Storage\Table\Models\EdmType;
+use MicrosoftAzure\Storage\Table\Models\Filters\Filter;
+use MicrosoftAzure\Storage\Table\Models\Query;
 
 /**
  * Unit tests for class Query
@@ -40,7 +40,7 @@ class QueryTest extends \PHPUnit\Framework\TestCase
         $query->setSelectFields($expected);
 
         // Assert
-        $this->assertEquals($expected, $query->getSelectFields());
+        self::assertEquals($expected, $query->getSelectFields());
     }
 
     public function testSetTop()
@@ -53,7 +53,7 @@ class QueryTest extends \PHPUnit\Framework\TestCase
         $query->setTop($expected);
 
         // Assert
-        $this->assertEquals($expected, $query->getTop());
+        self::assertEquals($expected, $query->getTop());
     }
 
     public function testSetFilter()
@@ -66,7 +66,7 @@ class QueryTest extends \PHPUnit\Framework\TestCase
         $query->setFilter($expected);
 
         // Assert
-        $this->assertEquals($expected, $query->getFilter());
+        self::assertEquals($expected, $query->getFilter());
     }
 
     public function testAddSelectField()
@@ -80,6 +80,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
         $query->addSelectField($field);
 
         // Assert
-        $this->assertEquals($expected, $query->getSelectFields());
+        self::assertEquals($expected, $query->getSelectFields());
     }
 }

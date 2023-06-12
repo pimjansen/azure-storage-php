@@ -53,17 +53,17 @@ class CommonRequestMiddlewareTest extends ReflectionTestBase
         $signedRequest = $authScheme->signRequest($requestToSign);
 
         // Assert
-        $this->assertTrue(
+        self::assertTrue(
             (array_intersect($savedHeaders, $headers) === $headers),
             'Did not add proper headers.'
         );
-        $this->assertTrue(
+        self::assertTrue(
             $signedRequest->getHeaders() === $newRequest->getHeaders(),
             'Failed to create same signed request.'
         );
         $endTime = time();
         $requestTime = strtotime($newRequest->getHeaders()[Resources::DATE][0]);
-        $this->assertTrue(
+        self::assertTrue(
             $requestTime >= $beginTime && $requestTime <= $endTime,
             'Did not add proper date header.'
         );

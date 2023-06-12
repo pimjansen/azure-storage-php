@@ -38,6 +38,6 @@ class DeleteEntityOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setETag($ETag);
 
         // Assert
-        $this->assertEquals($ETag, $options->getETag());
+        self::assertEquals($ETag, $options->getETag());
     }
 }

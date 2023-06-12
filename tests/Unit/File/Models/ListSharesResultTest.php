@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\File\Models\ListSharesResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 
 /**
  * Unit tests for class ListSharesResult
@@ -39,7 +39,7 @@ class ListSharesResultTest extends \PHPUnit\Framework\TestCase
         $actual = ListSharesResult::create($sample);
 
         // Assert
-        $this->assertCount(0, $actual->getShares());
+        self::assertCount(0, $actual->getShares());
     }
 
     public function testCreateWithOneEntry()
@@ -52,21 +52,21 @@ class ListSharesResultTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $shares = $actual->getShares();
-        $this->assertCount(1, $shares);
-        $this->assertEquals($sample['Shares']['Share']['Name'], $shares[0]->getName());
-        $this->assertEquals(
+        self::assertCount(1, $shares);
+        self::assertEquals($sample['Shares']['Share']['Name'], $shares[0]->getName());
+        self::assertEquals(
             Utilities::rfc1123ToDateTime(
                 $sample['Shares']['Share']['Properties']['Last-Modified']
             ),
             $shares[0]->getProperties()->getLastModified()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $sample['Shares']['Share']['Properties']['Etag'],
             $shares[0]->getProperties()->getETag()
         );
-        $this->assertEquals($sample['Marker'], $actual->getMarker());
-        $this->assertEquals($sample['MaxResults'], $actual->getMaxResults());
-        $this->assertEquals($sample['NextMarker'], $actual->getNextMarker());
+        self::assertEquals($sample['Marker'], $actual->getMarker());
+        self::assertEquals($sample['MaxResults'], $actual->getMaxResults());
+        self::assertEquals($sample['NextMarker'], $actual->getNextMarker());
     }
 
     public function testCreateWithMultipleEntries()
@@ -79,14 +79,14 @@ class ListSharesResultTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $shares = $actual->getShares();
-        $this->assertCount(5, $shares);
+        self::assertCount(5, $shares);
         for ($i = 0; $i < 5; ++$i) {
-            $this->assertEquals($sample['Shares']['Share'][$i]['Name'], $shares[$i]->getName());
-            $this->assertEquals(
+            self::assertEquals($sample['Shares']['Share'][$i]['Name'], $shares[$i]->getName());
+            self::assertEquals(
                 Utilities::rfc1123ToDateTime($sample['Shares']['Share'][$i]['Properties']['Last-Modified']),
                 $shares[$i]->getProperties()->getLastModified()
             );
-            $this->assertEquals(
+            self::assertEquals(
                 $sample['Shares']['Share'][$i]['Properties']['Etag'],
                 $shares[$i]->getProperties()->getETag()
             );

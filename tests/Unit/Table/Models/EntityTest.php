@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
+use MicrosoftAzure\Storage\Table\Models\EdmType;
 use MicrosoftAzure\Storage\Table\Models\Entity;
 use MicrosoftAzure\Storage\Table\Models\Property;
-use MicrosoftAzure\Storage\Table\Models\EdmType;
 
 /**
  * Unit tests for class Entity
@@ -45,7 +45,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $actual = $entity->getPropertyValue($name);
 
         // Assert
-        $this->assertEquals($actual, $expected);
+        self::assertEquals($actual, $expected);
     }
 
     public function testSetETag()
@@ -59,7 +59,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $entity->setETag($expected);
 
         // Assert
-        $this->assertEquals($expected, $entity->getETag());
+        self::assertEquals($expected, $entity->getETag());
     }
 
     public function testSetPartitionKey()
@@ -72,7 +72,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $entity->setPartitionKey($expected);
 
         // Assert
-        $this->assertEquals($expected, $entity->getPartitionKey());
+        self::assertEquals($expected, $entity->getPartitionKey());
     }
 
     public function testSetRowKey()
@@ -85,7 +85,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $entity->setRowKey($expected);
 
         // Assert
-        $this->assertEquals($expected, $entity->getRowKey());
+        self::assertEquals($expected, $entity->getRowKey());
     }
 
     public function testSetTimestamp()
@@ -98,7 +98,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $entity->setTimestamp($expected);
 
         // Assert
-        $this->assertEquals($expected, $entity->getTimestamp());
+        self::assertEquals($expected, $entity->getTimestamp());
     }
 
     public function testSetProperties()
@@ -111,7 +111,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $entity->setProperties($expected);
 
         // Assert
-        $this->assertEquals($expected, $entity->getProperties());
+        self::assertEquals($expected, $entity->getProperties());
     }
 
     public function testSetProperty()
@@ -125,7 +125,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $entity->setProperty($name, $expected);
 
         // Assert
-        $this->assertEquals($expected, $entity->getProperty($name));
+        self::assertEquals($expected, $entity->getProperty($name));
     }
 
     public function testAddProperty()
@@ -143,7 +143,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $entity->addProperty($name, $edmType, $value);
 
         // Assert
-        $this->assertEquals($expected, $entity->getProperty($name));
+        self::assertEquals($expected, $entity->getProperty($name));
     }
 
     public function testIsValid()
@@ -157,7 +157,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $actual = $entity->isValid();
 
         // Assert
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testIsValidWithInvalid()
@@ -169,7 +169,7 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $actual = $entity->isValid();
 
         // Assert
-        $this->assertFalse($actual);
+        self::assertFalse($actual);
     }
 
     public function testIsValidWithEmptyPartitionKey()
@@ -182,6 +182,6 @@ class EntityTest extends \PHPUnit\Framework\TestCase
         $actual = $entity->isValid();
 
         // Assert
-        $this->assertFalse($actual);
+        self::assertFalse($actual);
     }
 }

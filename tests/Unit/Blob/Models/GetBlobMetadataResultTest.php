@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
+use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataResult;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataResult;
 
 /**
  * Unit tests for class GetBlobMetadataResult
@@ -45,13 +45,13 @@ class GetBlobMetadataResultTest extends \PHPUnit\Framework\TestCase
         $actual = GetBlobMetadataResult::create($expectedProperties);
 
         // Assert
-        $this->assertEquals($expectedDate, $actual->getLastModified());
-        $this->assertEquals($expectedProperties['Etag'], $actual->getETag());
+        self::assertEquals($expectedDate, $actual->getLastModified());
+        self::assertEquals($expectedProperties['Etag'], $actual->getETag());
 
         $metadata = $actual->getMetadata();
-        $this->assertEquals('test0', $metadata['test0']);
-        $this->assertEquals('test1', $metadata['test1']);
-        $this->assertEquals('test2', $metadata['test2']);
-        $this->assertEquals('test3', $metadata['test3']);
+        self::assertEquals('test0', $metadata['test0']);
+        self::assertEquals('test1', $metadata['test1']);
+        self::assertEquals('test2', $metadata['test2']);
+        self::assertEquals('test3', $metadata['test3']);
     }
 }

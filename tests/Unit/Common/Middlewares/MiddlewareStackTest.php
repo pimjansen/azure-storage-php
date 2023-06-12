@@ -50,8 +50,8 @@ class MiddlewareStackTest extends \PHPUnit\Framework\TestCase
 
         $result = $stack->apply($handler);
 
-        $this->assertEquals(4, $result);
-        $this->assertEquals(5, $this->count);
+        self::assertEquals(4, $result);
+        self::assertEquals(5, $this->count);
     }
 
     private function getInterestingMiddlewares($count)

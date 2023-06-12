@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Blob\Models\CreateBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
+use MicrosoftAzure\Storage\Blob\Models\CreateBlobOptions;
 
 /**
  * Unit tests for class CreateBlobOptions
@@ -40,7 +40,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentType($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentType());
+        self::assertEquals($expected, $options->getContentType());
     }
 
     public function testSetContentEncoding()
@@ -54,7 +54,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentEncoding($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentEncoding());
+        self::assertEquals($expected, $options->getContentEncoding());
     }
 
     public function testSetContentLanguage()
@@ -68,7 +68,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentLanguage($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentLanguage());
+        self::assertEquals($expected, $options->getContentLanguage());
     }
 
     public function testSetContentMD5()
@@ -82,7 +82,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentMD5($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentMD5());
+        self::assertEquals($expected, $options->getContentMD5());
     }
 
     public function testSetCacheControl()
@@ -96,7 +96,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setCacheControl($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getCacheControl());
+        self::assertEquals($expected, $options->getCacheControl());
     }
 
     public function testSetContentDisposition()
@@ -110,7 +110,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentDisposition($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentDisposition());
+        self::assertEquals($expected, $options->getContentDisposition());
     }
 
     public function testSetLeaseId()
@@ -124,7 +124,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setLeaseId($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 
     public function testSetSequenceNumber()
@@ -138,7 +138,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setSequenceNumber($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getSequenceNumber());
+        self::assertEquals($expected, $options->getSequenceNumber());
     }
 
     public function testSetMetadata()
@@ -151,7 +151,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $container->setMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $container->getMetadata());
+        self::assertEquals($expected, $container->getMetadata());
     }
 
     public function testGetMetadata()
@@ -165,7 +165,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $container->getMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetAccessConditions()
@@ -179,7 +179,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $result->getAccessConditions();
 
         // Assert
-        $this->assertEquals($expected, $actual[0]);
+        self::assertEquals($expected, $actual[0]);
     }
 
     public function testSetAccessConditions()
@@ -192,6 +192,6 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $result->setAccessConditions($expected);
 
         // Assert
-        $this->assertEquals($expected, $result->getAccessConditions()[0]);
+        self::assertEquals($expected, $result->getAccessConditions()[0]);
     }
 }

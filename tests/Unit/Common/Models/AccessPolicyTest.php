@@ -43,7 +43,7 @@ abstract class AccessPolicyTest extends \PHPUnit\Framework\TestCase
         $actual = $accessPolicy->getStart();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetStart()
@@ -56,7 +56,7 @@ abstract class AccessPolicyTest extends \PHPUnit\Framework\TestCase
         $accessPolicy->setStart($expected);
 
         // Assert
-        $this->assertEquals($expected, $accessPolicy->getStart());
+        self::assertEquals($expected, $accessPolicy->getStart());
     }
 
     public function testGetExpiry()
@@ -70,7 +70,7 @@ abstract class AccessPolicyTest extends \PHPUnit\Framework\TestCase
         $actual = $accessPolicy->getExpiry();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetExpiry()
@@ -83,7 +83,7 @@ abstract class AccessPolicyTest extends \PHPUnit\Framework\TestCase
         $accessPolicy->setExpiry($expected);
 
         // Assert
-        $this->assertEquals($expected, $accessPolicy->getExpiry());
+        self::assertEquals($expected, $accessPolicy->getExpiry());
     }
 
     public function testSetPermission()
@@ -98,7 +98,7 @@ abstract class AccessPolicyTest extends \PHPUnit\Framework\TestCase
             // Test
             $accessPolicy->setPermission($value[0]);
             // Assert
-            $this->assertEquals($expected, $accessPolicy->getPermission());
+            self::assertEquals($expected, $accessPolicy->getPermission());
         }
     }
 
@@ -113,13 +113,13 @@ abstract class AccessPolicyTest extends \PHPUnit\Framework\TestCase
             try {
                 $accessPolicy->setPermission($value);
             } catch (\InvalidArgumentException $e) {
-                $this->assertStringStartsWith(
+                self::assertStringStartsWith(
                     'Invalid permission provided',
                     $e->getMessage()
                 );
                 continue;
             }
-            $this->assertTrue(false);
+            self::assertTrue(false);
         }
     }
 
@@ -140,8 +140,8 @@ abstract class AccessPolicyTest extends \PHPUnit\Framework\TestCase
         $actual = $accessPolicy->toArray();
 
         // Assert
-        $this->assertEquals($permission, $actual['Permission']);
-        $this->assertEquals($start, urldecode($actual['Start']));
-        $this->assertEquals($expiry, urldecode($actual['Expiry']));
+        self::assertEquals($permission, $actual['Permission']);
+        self::assertEquals($start, urldecode($actual['Start']));
+        self::assertEquals($expiry, urldecode($actual['Expiry']));
     }
 }

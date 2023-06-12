@@ -40,7 +40,7 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $properties->getPublicAccess();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetPublicAccess()
@@ -54,7 +54,7 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $properties->getPublicAccess();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetPublicAccessInvalidValueFail()
@@ -62,7 +62,7 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $properties = new CreateContainerOptions();
         $expected = new \DateTime();
-        $this->setExpectedException(get_class(new InvalidArgumentTypeException('')));
+        $this->expectException(get_class(new InvalidArgumentTypeException('')));
 
         // Test
         $properties->setPublicAccess($expected);
@@ -78,7 +78,7 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
         $container->setMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $container->getMetadata());
+        self::assertEquals($expected, $container->getMetadata());
     }
 
     public function testGetMetadata()
@@ -92,7 +92,7 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $container->getMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testAddMetadata()
@@ -107,6 +107,6 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
         $container->addMetadata($key, $value);
 
         // Assert
-        $this->assertEquals($expected, $container->getMetadata());
+        self::assertEquals($expected, $container->getMetadata());
     }
 }

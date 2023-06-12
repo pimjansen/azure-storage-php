@@ -35,7 +35,7 @@ class UnaryFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new UnaryFilter($expected, null);
 
         // Assert
-        $this->assertEquals($expected, $filter->getOperator());
+        self::assertEquals($expected, $filter->getOperator());
     }
 
     public function testGetOperand()
@@ -45,6 +45,6 @@ class UnaryFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new UnaryFilter(null, $expected);
 
         // Assert
-        $this->assertEquals($expected, $filter->getOperand());
+        self::assertEquals($expected, $filter->getOperand());
     }
 }

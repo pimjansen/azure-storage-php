@@ -45,8 +45,8 @@ class ServicePropertiesTest extends \PHPUnit\Framework\TestCase
         $result = ServiceProperties::create($sample);
 
         // Assert
-        $this->assertEquals($logging, $result->getLogging());
-        $this->assertEquals($metrics, $result->getHourMetrics());
+        self::assertEquals($logging, $result->getLogging());
+        self::assertEquals($metrics, $result->getHourMetrics());
     }
 
     public function testSetLogging()
@@ -60,7 +60,7 @@ class ServicePropertiesTest extends \PHPUnit\Framework\TestCase
         $result->setLogging($logging);
 
         // Assert
-        $this->assertEquals($logging, $result->getLogging());
+        self::assertEquals($logging, $result->getLogging());
     }
 
     public function testGetLogging()
@@ -75,7 +75,7 @@ class ServicePropertiesTest extends \PHPUnit\Framework\TestCase
         $actual = $result->getLogging($logging);
 
         // Assert
-        $this->assertEquals($logging, $actual);
+        self::assertEquals($logging, $actual);
     }
 
     public function testSetHourMetrics()
@@ -89,7 +89,7 @@ class ServicePropertiesTest extends \PHPUnit\Framework\TestCase
         $result->setHourMetrics($metrics);
 
         // Assert
-        $this->assertEquals($metrics, $result->getHourMetrics());
+        self::assertEquals($metrics, $result->getHourMetrics());
     }
 
     public function testGetHourMetrics()
@@ -104,7 +104,7 @@ class ServicePropertiesTest extends \PHPUnit\Framework\TestCase
         $actual = $result->getHourMetrics($metrics);
 
         // Assert
-        $this->assertEquals($metrics, $actual);
+        self::assertEquals($metrics, $actual);
     }
 
     public function testToArray()
@@ -131,7 +131,7 @@ class ServicePropertiesTest extends \PHPUnit\Framework\TestCase
         $actual = $properties->toArray();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testToXml()
@@ -146,6 +146,6 @@ class ServicePropertiesTest extends \PHPUnit\Framework\TestCase
         // Assert
         $actualParsed = Utilities::unserialize($actual);
         $actualProperties = GetServicePropertiesResult::create($actualParsed);
-        $this->assertEquals($actualProperties->getValue(), $properties);
+        self::assertEquals($actualProperties->getValue(), $properties);
     }
 }

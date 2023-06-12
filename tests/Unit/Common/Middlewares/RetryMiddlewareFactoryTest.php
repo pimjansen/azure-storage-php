@@ -29,12 +29,11 @@ use MicrosoftAzure\Storage\Tests\Framework\ReflectionTestBase;
 
 class RetryMiddlewareFactoryTest extends ReflectionTestBase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage should be positive number
-     */
     public function testCreateWithNegativeNumberOfRetries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('should be positive number');
+
         $stack = RetryMiddlewareFactory::create(
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             -1,
@@ -43,12 +42,11 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage should be positive number
-     */
     public function testCreateWithNegativeInterval()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('should be positive number');
+
         $stack = RetryMiddlewareFactory::create(
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             Resources::DEFAULT_NUMBER_OF_RETRIES,
@@ -57,12 +55,11 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage is invalid
-     */
     public function testCreateWithInvalidType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('is invalid');
+
         $stack = RetryMiddlewareFactory::create(
             'string that does not make sense',
             Resources::DEFAULT_NUMBER_OF_RETRIES,
@@ -71,12 +68,11 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage is invalid
-     */
     public function testCreateWithInvalidAccumulationMethod()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('is invalid');
+
         $stack = RetryMiddlewareFactory::create(
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             Resources::DEFAULT_NUMBER_OF_RETRIES,
@@ -103,14 +99,14 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         $retryResult_8 = $generalDecider(1, $request, null, new RequestException('message', $request));//retry
 
         //assert
-        $this->assertTrue($retryResult_1);
-        $this->assertFalse($retryResult_2);
-        $this->assertFalse($retryResult_3);
-        $this->assertFalse($retryResult_4);
-        $this->assertTrue($retryResult_5);
-        $this->assertFalse($retryResult_6);
-        $this->assertFalse($retryResult_7);
-        $this->assertTrue($retryResult_8);
+        self::assertTrue($retryResult_1);
+        self::assertFalse($retryResult_2);
+        self::assertFalse($retryResult_3);
+        self::assertFalse($retryResult_4);
+        self::assertTrue($retryResult_5);
+        self::assertFalse($retryResult_6);
+        self::assertFalse($retryResult_7);
+        self::assertTrue($retryResult_8);
     }
 
     public function testCreateRetryDeciderWithConnectionRetries()
@@ -122,7 +118,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         );
         $request = new Request('PUT', '127.0.0.1');
         $retryResult = $generalDecider(1, $request, null, new ConnectException('message', $request));
-        $this->assertTrue($retryResult);
+        self::assertTrue($retryResult);
     }
 
     public function testCreateLinearDelayCalculator()
@@ -130,7 +126,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         $creator = self::getMethod('createLinearDelayCalculator', new RetryMiddlewareFactory());
         $linearDelayCalculator = $creator->invokeArgs(null, [1000]);
         for ($index = 0; $index < 10; ++$index) {
-            $this->assertEquals($index * 1000, $linearDelayCalculator($index));
+            self::assertEquals($index * 1000, $linearDelayCalculator($index));
         }
     }
 
@@ -140,7 +136,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         $exponentialDelayCalculator = $creator->invokeArgs(null, [1000]);
         for ($index = 0; $index < 3; ++$index) {
             $pow = (int) \pow(2, $index);
-            $this->assertEquals($pow * 1000, $exponentialDelayCalculator($index));
+            self::assertEquals($pow * 1000, $exponentialDelayCalculator($index));
         }
     }
 }

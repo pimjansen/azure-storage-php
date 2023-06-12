@@ -37,7 +37,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
     private static $isOneTimeSetup = false;
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         if (!self::$isOneTimeSetup) {
@@ -583,7 +583,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
             if (null !== $options->getQuery()
                 && null !== $options->getQuery()->getTop()
                 && $options->getQuery()->getTop() <= 0) {
-                $this->assertTrue(false, 'Expect non-positive Top in $options->query to throw');
+                self::assertTrue(false, 'Expect non-positive Top in $options->query to throw');
             }
 
             $this->verifyqueryEntitiesWorker($ret, $options);
@@ -596,16 +596,16 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
             if (null !== $options->getQuery()
                 && null !== $options->getQuery()->getTop()
                 && $options->getQuery()->getTop() <= 0) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
         }
     }
 
     private function verifyqueryEntitiesWorker($ret, $options)
     {
-        $this->assertNotNull($ret->getEntities(), 'getTables');
+        self::assertNotNull($ret->getEntities(), 'getTables');
 
         $expectedData = [];
         foreach (self::$entitiesInTable as $e) {
@@ -650,12 +650,12 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         // Need to sort the lists.
         $actualData = self::sortEntitiesByCompositeKey($actualData);
         $expectedData = self::sortEntitiesByCompositeKey($expectedData);
-        $this->assertEquals(count($expectedData), count($actualData), 'count(getEntities)');
+        self::assertEquals(count($expectedData), count($actualData), 'count(getEntities)');
         for ($i = 0; $i < count($expectedData); ++$i) {
             $e1 = $expectedData[$i];
             $e2 = $actualData[$i];
             if (!$projected) {
-                $this->assertTrue(
+                self::assertTrue(
                     ($e1->getPartitionKey() == $e2->getPartitionKey())
                         && ($e1->getRowKey() == $e2->getRowKey()),
                     '(' . $e1->getPartitionKey() . ',' . $e1->getRowKey() .

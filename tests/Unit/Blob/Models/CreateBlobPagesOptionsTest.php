@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Blob\Models\CreateBlobPagesOptions;
 use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
+use MicrosoftAzure\Storage\Blob\Models\CreateBlobPagesOptions;
 
 /**
  * Unit tests for class CreateBlobPagesOptions
@@ -40,7 +40,7 @@ class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getAccessConditions();
 
         // Assert
-        $this->assertEquals($expected, $actual[0]);
+        self::assertEquals($expected, $actual[0]);
     }
 
     public function testSetAccessConditions()
@@ -53,7 +53,7 @@ class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setAccessConditions($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getAccessConditions()[0]);
+        self::assertEquals($expected, $options->getAccessConditions()[0]);
     }
 
     public function testSetContentMD5()
@@ -67,7 +67,7 @@ class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentMD5($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentMD5());
+        self::assertEquals($expected, $options->getContentMD5());
     }
 
     public function testSetLeaseId()
@@ -81,6 +81,6 @@ class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setLeaseId($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 }

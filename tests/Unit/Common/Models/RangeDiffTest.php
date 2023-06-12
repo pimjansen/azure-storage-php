@@ -39,9 +39,9 @@ class RangeDiffTest extends \PHPUnit\Framework\TestCase
         $actual = new RangeDiff($expectedStart, $expectedEnd, $expectedIsClearedPageRange);
 
         // Assert
-        $this->assertEquals($expectedStart, $actual->getStart());
-        $this->assertEquals($expectedEnd, $actual->getEnd());
-        $this->assertEquals($expectedIsClearedPageRange, $actual->isClearedPageRange());
+        self::assertEquals($expectedStart, $actual->getStart());
+        self::assertEquals($expectedEnd, $actual->getEnd());
+        self::assertEquals($expectedIsClearedPageRange, $actual->isClearedPageRange());
 
         return $actual;
     }
@@ -59,7 +59,7 @@ class RangeDiffTest extends \PHPUnit\Framework\TestCase
         $actual = $obj->isClearedPageRange();
 
         // Assert
-        $this->assertEquals($excepted, $actual);
+        self::assertEquals($excepted, $actual);
 
         // Setup
         $excepted = false;
@@ -69,6 +69,6 @@ class RangeDiffTest extends \PHPUnit\Framework\TestCase
         $actual = $obj->isClearedPageRange();
 
         // Assert
-        $this->assertEquals($excepted, $actual);
+        self::assertEquals($excepted, $actual);
     }
 }

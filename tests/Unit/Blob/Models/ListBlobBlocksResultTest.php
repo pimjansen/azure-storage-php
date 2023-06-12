@@ -20,8 +20,8 @@
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Models\ListBlobBlocksResult;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class ListBlobBlocksResult
@@ -47,12 +47,12 @@ class ListBlobBlocksResultTest extends \PHPUnit\Framework\TestCase
         );
 
         // Assert
-        $this->assertEquals($expectedDate, $actual->getLastModified());
-        $this->assertEquals($sampleHeaders['Etag'], $actual->getETag());
-        $this->assertEquals($sampleHeaders['Content-Type'], $actual->getContentType());
-        $this->assertEquals($sampleHeaders['x-ms-blob-content-length'], $actual->getContentLength());
-        $this->assertEquals($uncommittedBlocks, $actual->getUncommittedBlocks());
-        $this->assertEquals($committedBlocks, $actual->getCommittedBlocks());
+        self::assertEquals($expectedDate, $actual->getLastModified());
+        self::assertEquals($sampleHeaders['Etag'], $actual->getETag());
+        self::assertEquals($sampleHeaders['Content-Type'], $actual->getContentType());
+        self::assertEquals($sampleHeaders['x-ms-blob-content-length'], $actual->getContentLength());
+        self::assertEquals($uncommittedBlocks, $actual->getUncommittedBlocks());
+        self::assertEquals($committedBlocks, $actual->getCommittedBlocks());
     }
 
     protected static function getMethod($name)

@@ -37,6 +37,6 @@ class UpdateEntityResultTest extends \PHPUnit\Framework\TestCase
         $result = UpdateEntityResult::create($headers);
 
         // Assert
-        $this->assertEquals($headers['ETag'], $result->getETag());
+        self::assertEquals($headers['ETag'], $result->getETag());
     }
 }

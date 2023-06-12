@@ -19,10 +19,10 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Blob\Models\GetBlobResult;
-use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use GuzzleHttp\Psr7;
+use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
+use MicrosoftAzure\Storage\Blob\Models\GetBlobResult;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class GetBlobResult
@@ -48,9 +48,9 @@ class GetBlobResultTest extends \PHPUnit\Framework\TestCase
         );
 
         // Assert
-        $this->assertEquals($expectedProperties, $actual->getProperties());
-        $this->assertEquals($expectedMetadata, $actual->getMetadata());
+        self::assertEquals($expectedProperties, $actual->getProperties());
+        self::assertEquals($expectedMetadata, $actual->getMetadata());
         $actualContent = stream_get_contents($actual->getContentStream());
-        $this->assertEquals($expectedBody, $actualContent);
+        self::assertEquals($expectedBody, $actualContent);
     }
 }

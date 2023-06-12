@@ -56,11 +56,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $shouldReturn = false;
         try {
             $this->restProxy->setServiceProperties($serviceProperties);
-            $this->assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
+            self::assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
         } catch (ServiceException $e) {
             // Expect failure in emulator, as v1.6 doesn't support this method
             if ($this->isEmulated()) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
                 $shouldReturn = true;
             } else {
                 throw $e;
@@ -79,11 +79,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         try {
             $this->restProxy->setServiceProperties($serviceProperties);
-            $this->assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
+            self::assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
         } catch (ServiceException $e) {
             // Expect failure in emulator, as v1.6 doesn't support this method
             if ($this->isEmulated()) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -100,14 +100,14 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 $this->restProxy->getServiceProperties() :
                 $this->restProxy->getServiceProperties($effOptions)
             );
-            $this->assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
+            self::assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
             $this->verifyServicePropertiesWorker($ret, null);
         } catch (ServiceException $e) {
             if ($this->isEmulated()) {
                 // Expect failure in emulator, as v1.6 doesn't support this method
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
         }
     }
@@ -119,60 +119,60 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         }
 
         $sp = $ret->getValue();
-        $this->assertNotNull($sp, 'getValue should be non-null');
+        self::assertNotNull($sp, 'getValue should be non-null');
 
         $l = $sp->getLogging();
-        $this->assertNotNull($l, 'getValue()->getLogging() should be non-null');
-        $this->assertEquals(
+        self::assertNotNull($l, 'getValue()->getLogging() should be non-null');
+        self::assertEquals(
             $serviceProperties->getLogging()->getVersion(),
             $l->getVersion(),
             'getValue()->getLogging()->getVersion'
         );
-        $this->assertEquals(
+        self::assertEquals(
             $serviceProperties->getLogging()->getDelete(),
             $l->getDelete(),
             'getValue()->getLogging()->getDelete'
         );
-        $this->assertEquals(
+        self::assertEquals(
             $serviceProperties->getLogging()->getRead(),
             $l->getRead(),
             'getValue()->getLogging()->getRead'
         );
-        $this->assertEquals(
+        self::assertEquals(
             $serviceProperties->getLogging()->getWrite(),
             $l->getWrite(),
             'getValue()->getLogging()->getWrite'
         );
 
         $r = $l->getRetentionPolicy();
-        $this->assertNotNull($r, 'getValue()->getLogging()->getRetentionPolicy should be non-null');
-        $this->assertEquals(
+        self::assertNotNull($r, 'getValue()->getLogging()->getRetentionPolicy should be non-null');
+        self::assertEquals(
             $serviceProperties->getLogging()->getRetentionPolicy()->getDays(),
             $r->getDays(),
             'getValue()->getLogging()->getRetentionPolicy()->getDays'
         );
 
         $m = $sp->getHourMetrics();
-        $this->assertNotNull($m, 'getValue()->getHourMetrics() should be non-null');
-        $this->assertEquals(
+        self::assertNotNull($m, 'getValue()->getHourMetrics() should be non-null');
+        self::assertEquals(
             $serviceProperties->getHourMetrics()->getVersion(),
             $m->getVersion(),
             'getValue()->getHourMetrics()->getVersion'
         );
-        $this->assertEquals(
+        self::assertEquals(
             $serviceProperties->getHourMetrics()->getEnabled(),
             $m->getEnabled(),
             'getValue()->getHourMetrics()->getEnabled'
         );
-        $this->assertEquals(
+        self::assertEquals(
             $serviceProperties->getHourMetrics()->getIncludeAPIs(),
             $m->getIncludeAPIs(),
             'getValue()->getHourMetrics()->getIncludeAPIs'
         );
 
         $r = $m->getRetentionPolicy();
-        $this->assertNotNull($r, 'getValue()->getHourMetrics()->getRetentionPolicy should be non-null');
-        $this->assertEquals(
+        self::assertNotNull($r, 'getValue()->getHourMetrics()->getRetentionPolicy should be non-null');
+        self::assertEquals(
             $serviceProperties->getHourMetrics()->getRetentionPolicy()->getDays(),
             $r->getDays(),
             'getValue()->getHourMetrics()->getRetentionPolicy()->getDays'
@@ -208,7 +208,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 $this->restProxy->setServiceProperties($serviceProperties, $options);
             }
 
-            $this->assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
+            self::assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
 
             \sleep(30);
 
@@ -220,7 +220,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $this->verifyServicePropertiesWorker($ret, $serviceProperties);
         } catch (ServiceException $e) {
             if ($this->isEmulated()) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -252,16 +252,16 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
             if ((null !== $options->getTop() && $options->getTop() <= 0)) {
                 if ($this->isEmulated()) {
-                    $this->assertEquals(0, count($ret->getTables()), "should be no tables");
+                    self::assertCount(0, $ret->getTables(), "should be no tables");
                 } else {
-                    $this->fail('Expect non-positive Top in $options to throw');
+                    self::fail('Expect non-positive Top in $options to throw');
                 }
             }
 
             $this->verifyqueryTablesWorker($ret, $options);
         } catch (ServiceException $e) {
             if ((null !== $options->getTop() && $options->getTop() <= 0) && !$this->isEmulated()) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -270,7 +270,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyqueryTablesWorker($ret, $options)
     {
-        $this->assertNotNull($ret->getTables(), 'getTables');
+        self::assertNotNull($ret->getTables(), 'getTables');
 
         $effectivePrefix = $options->getPrefix();
         if (null === $effectivePrefix) {
@@ -330,7 +330,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                     break;
                 }
             }
-            $this->assertTrue($foundNext, $expected . ' should be in getTables');
+            self::assertTrue($foundNext, $expected . ' should be in getTables');
         }
     }
 
@@ -376,7 +376,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $this->restProxy->deleteTable($table);
         }
 
-        $this->assertEquals(
+        self::assertEquals(
             count($qsStart->getTables()) + 1,
             count($qs->getTables()),
             'After adding one, with Prefix=(\'' .
@@ -413,7 +413,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         // Make sure that the list of all applicable Tables is correctly updated.
         $qs = $this->restProxy->queryTables($qto);
-        $this->assertEquals(
+        self::assertEquals(
             count($qsStart->getTables()) + 1,
             count($qs->getTables()),
             'After adding one, with Prefix=(\'' .
@@ -442,7 +442,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $this->restProxy->deleteTable($Table);
         }
 
-        $this->assertEquals(
+        self::assertEquals(
             count($qsStart->getTables()),
             count($qs->getTables()),
             'After adding then deleting one, with Prefix=(\'' .
@@ -484,8 +484,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
     private function verifygetTableWorker($ret, $tableName)
     {
-        $this->assertNotNull($ret, 'getTableEntry');
-        $this->assertEquals($tableName, $ret->getName(), 'getTableEntry->Name');
+        self::assertNotNull($ret, 'getTableEntry');
+        self::assertEquals($tableName, $ret->getName(), 'getTableEntry->Name');
     }
 
     public function testGetEntity()
@@ -522,13 +522,13 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 $options = new GetEntityOptions();
             }
 
-            $this->assertNotNull($qer->getEntity(), 'getEntity()');
+            self::assertNotNull($qer->getEntity(), 'getEntity()');
             $this->verifygetEntityWorker($ent, $qer->getEntity());
         } catch (ServiceException $e) {
             if (!$isGood) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } elseif (null === $ent->getPartitionKey() || null === $ent->getRowKey()) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -552,20 +552,20 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         }
 
         // Compare the entities to make sure they match.
-        $this->assertEquals($ent->getPartitionKey(), $entReturned->getPartitionKey(), 'getPartitionKey');
-        $this->assertEquals($ent->getRowKey(), $entReturned->getRowKey(), 'getRowKey');
-        $this->assertNotNull($entReturned->getETag(), 'getETag');
+        self::assertEquals($ent->getPartitionKey(), $entReturned->getPartitionKey(), 'getPartitionKey');
+        self::assertEquals($ent->getRowKey(), $entReturned->getRowKey(), 'getRowKey');
+        self::assertNotNull($entReturned->getETag(), 'getETag');
         if (null !== $ent->getETag()) {
-            $this->assertEquals($ent->getETag(), $entReturned->getETag(), 'getETag');
+            self::assertEquals($ent->getETag(), $entReturned->getETag(), 'getETag');
         }
-        $this->assertNotNull($entReturned->getTimestamp(), 'getTimestamp');
+        self::assertNotNull($entReturned->getTimestamp(), 'getTimestamp');
         if (null === $ent->getTimestamp()) {
             // This property will come back, so need to account for it.
             $expectedProps['Timestamp'] = null;
         } else {
-            $this->assertEquals($ent->getTimestamp(), $entReturned->getTimestamp(), 'getTimestamp');
+            self::assertEquals($ent->getTimestamp(), $entReturned->getTimestamp(), 'getTimestamp');
         }
-        $this->assertNotNull($ent->getProperties(), 'getProperties');
+        self::assertNotNull($ent->getProperties(), 'getProperties');
 
         $nullCount = 0;
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
@@ -575,7 +575,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         }
 
         // Need to skip null values from the count.
-        $this->assertEquals(
+        self::assertEquals(
             count($expectedProps) + $nullCount,
             count($entReturned->getProperties()),
             'getProperties()'
@@ -588,17 +588,17 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
             $expectedProp = Utilities::tryGetValue($expectedProps, $pname, null);
-            $this->assertNotNull($actualProp, 'getProperties[\'' . $pname . '\']');
+            self::assertNotNull($actualProp, 'getProperties[\'' . $pname . '\']');
             if (null !== $expectedProp) {
                 $this->compareProperties($pname, $actualProp, $expectedProp);
             }
 
-            $this->assertEquals(
+            self::assertEquals(
                 $entReturned->getProperty($pname),
                 $actualProp,
                 'getProperty(\'' . $pname . '\')'
             );
-            $this->assertEquals(
+            self::assertEquals(
                 $entReturned->getPropertyValue($pname),
                 $actualProp->getValue(),
                 'getPropertyValue(\'' . $pname . '\')'
@@ -632,7 +632,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $this->restProxy->deleteEntity($table, $ent->getPartitionKey(), $ent->getRowKey(), $options);
 
             if ($useETag == 2) {
-                $this->fail('Expect bad etag throws');
+                self::fail('Expect bad etag throws');
             }
 
             // Check that the entity really is gone
@@ -643,10 +643,10 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             } catch (ServiceException $e2) {
                 $gotError = ($e2->getCode() == TestResources::STATUS_NOT_FOUND);
             }
-            $this->assertTrue($gotError, 'Expect error when entity is deleted');
+            self::assertTrue($gotError, 'Expect error when entity is deleted');
         } catch (ServiceException $e) {
             if ($useETag == 2) {
-                $this->assertEquals(TestResources::STATUS_PRECONDITION_FAILED, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_PRECONDITION_FAILED, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -670,10 +670,10 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $options = new TableServiceCreateOptions();
             try {
                 $this->insertEntityWorker($ent, true, $options);
-                $this->fail('this call should fail');
+                self::fail('this call should fail');
             } catch (\InvalidArgumentException $e) {
-                $this->assertEquals(0, $e->getCode(), 'getCode');
-                $this->assertTrue(true, 'got expected exception');
+                self::assertEquals(0, $e->getCode(), 'getCode');
+                self::assertTrue(true, 'got expected exception');
             }
         }
     }
@@ -708,11 +708,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $ent->setRowKey(TableServiceFunctionalTestData::getNewKey());
             try {
                 $ent->addProperty('DATETIME', EdmType::DATETIME, $o);
-                $this->fail('Should get an exception when trying to parse this value');
+                self::fail('Should get an exception when trying to parse this value');
                 $this->insertEntityWorker($ent, false, null, $o);
             } catch (\Exception $e) {
-                $this->assertEquals(0, $e->getCode(), 'getCode');
-                $this->assertTrue(true, 'got expected exception');
+                self::assertEquals(0, $e->getCode(), 'getCode');
+                self::assertTrue(true, 'got expected exception');
             }
         }
     }
@@ -736,11 +736,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $ent->setRowKey(TableServiceFunctionalTestData::getNewKey());
             try {
                 $ent->addProperty('DOUBLE', EdmType::DOUBLE, $o);
-                $this->fail('Should get an exception when trying to parse this value');
+                self::fail('Should get an exception when trying to parse this value');
                 $this->insertEntityWorker($ent, false, null, $o);
             } catch (\Exception $e) {
-                $this->assertEquals(0, $e->getCode(), 'getCode');
-                $this->assertTrue(true, 'got expected exception');
+                self::assertEquals(0, $e->getCode(), 'getCode');
+                self::assertTrue(true, 'got expected exception');
             }
         }
     }
@@ -764,11 +764,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $ent->setRowKey(TableServiceFunctionalTestData::getNewKey());
             try {
                 $ent->addProperty('GUID', EdmType::GUID, $o);
-                $this->fail('Should get an exception when trying to parse this value');
+                self::fail('Should get an exception when trying to parse this value');
                 $this->insertEntityWorker($ent, false, null, $o);
             } catch (\Exception $e) {
-                $this->assertEquals(0, $e->getCode(), 'getCode');
-                $this->assertTrue(true, 'got expected exception');
+                self::assertEquals(0, $e->getCode(), 'getCode');
+                self::assertTrue(true, 'got expected exception');
             }
         }
     }
@@ -792,11 +792,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $ent->setRowKey(TableServiceFunctionalTestData::getNewKey());
             try {
                 $ent->addProperty('INT32', EdmType::INT32, $o);
-                $this->fail('Should get an exception when trying to parse this value');
+                self::fail('Should get an exception when trying to parse this value');
                 $this->insertEntityWorker($ent, false, null, $o);
             } catch (\Exception $e) {
-                $this->assertEquals(0, $e->getCode(), 'getCode');
-                $this->assertTrue(true, 'got expected exception');
+                self::assertEquals(0, $e->getCode(), 'getCode');
+                self::assertTrue(true, 'got expected exception');
             }
         }
     }
@@ -820,11 +820,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $ent->setRowKey(TableServiceFunctionalTestData::getNewKey());
             try {
                 $ent->addProperty('INT64', EdmType::INT64, $o);
-                $this->fail('Should get an exception when trying to parse this value');
+                self::fail('Should get an exception when trying to parse this value');
                 $this->insertEntityWorker($ent, false, null, $o);
             } catch (\Exception $e) {
-                $this->assertEquals(0, $e->getCode(), 'getCode');
-                $this->assertTrue(true, 'got expected exception');
+                self::assertEquals(0, $e->getCode(), 'getCode');
+                self::assertTrue(true, 'got expected exception');
             }
         }
     }
@@ -848,11 +848,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $ent->setRowKey(TableServiceFunctionalTestData::getNewKey());
             try {
                 $ent->addProperty('BINARY', EdmType::BINARY, $o);
-                $this->fail('Should get an exception when trying to parse this value');
+                self::fail('Should get an exception when trying to parse this value');
                 $this->insertEntityWorker($ent, false, null, $o);
             } catch (\Exception $e) {
-                $this->assertEquals(0, $e->getCode(), 'getCode');
-                $this->assertTrue(true, 'got expected exception');
+                self::assertEquals(0, $e->getCode(), 'getCode');
+                self::assertTrue(true, 'got expected exception');
             }
         }
     }
@@ -881,31 +881,31 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             }
 
             // Check that the message matches
-            $this->assertNotNull($ret->getEntity(), 'getEntity()');
+            self::assertNotNull($ret->getEntity(), 'getEntity()');
             $this->verifyinsertEntityWorker($ent, $ret->getEntity());
 
             if (null === $ent->getPartitionKey() || null === $ent->getRowKey()) {
-                $this->fail('Expect missing keys throw');
+                self::fail('Expect missing keys throw');
             }
 
             if (!$isGood) {
-                $this->fail('Expect bad values to throw: ' . self::tmptostring($specialValue));
+                self::fail('Expect bad values to throw: ' . self::tmptostring($specialValue));
             }
 
             // Check that the message matches
             $qer = $this->restProxy->queryEntities($table);
-            $this->assertNotNull($qer->getEntities(), 'getEntities()');
-            $this->assertEquals(1, count($qer->getEntities()), 'getEntities() count');
+            self::assertNotNull($qer->getEntities(), 'getEntities()');
+            self::assertCount(1, $qer->getEntities(), 'getEntities() count');
             $entReturned = $qer->getEntities();
             $entReturned = $entReturned[0];
-            $this->assertNotNull($entReturned, 'getEntities()[0]');
+            self::assertNotNull($entReturned, 'getEntities()[0]');
 
             $this->verifyinsertEntityWorker($ent, $entReturned);
         } catch (ServiceException $e) {
             if (!$isGood) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } elseif (null === $ent->getPartitionKey() || null === $ent->getRowKey()) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -945,11 +945,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         // Check that the message matches
         $qer = $this->restProxy->queryEntities($table);
-        $this->assertNotNull($qer->getEntities(), 'getEntities()');
-        $this->assertEquals(1, count($qer->getEntities()), 'getEntities()');
+        self::assertNotNull($qer->getEntities(), 'getEntities()');
+        self::assertCount(1, $qer->getEntities(), 'getEntities()');
         $entReturned = $qer->getEntities();
         $entReturned = $entReturned[0];
-        $this->assertNotNull($entReturned, 'getEntities()[0]');
+        self::assertNotNull($entReturned, 'getEntities()[0]');
         $this->verifyinsertEntityWorker($ent, $entReturned);
         $this->clearTable($table);
     }
@@ -986,11 +986,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         // Check that the message matches
         $qer = $this->restProxy->queryEntities($table);
-        $this->assertNotNull($qer->getEntities(), 'getEntities()');
-        $this->assertEquals(1, count($qer->getEntities()), 'getEntities() count');
+        self::assertNotNull($qer->getEntities(), 'getEntities()');
+        self::assertCount(1, $qer->getEntities(), 'getEntities() count');
         $entReturned = $qer->getEntities();
         $entReturned = $entReturned[0];
-        $this->assertNotNull($entReturned, 'getEntities()[0]');
+        self::assertNotNull($entReturned, 'getEntities()[0]');
 
         $this->verifymergeEntityWorker($initialEnt, $ent, $entReturned);
         $this->clearTable($table);
@@ -1006,11 +1006,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 TableServiceFunctionalTestUtils::mutateEntity($ent, $mutatePivot);
                 try {
                     $this->insertOrReplaceEntityWorker($initialEnt, $ent, $options);
-                    $this->assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
+                    self::assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
                 } catch (ServiceException $e) {
                     // Expect failure in emulator, as v1.6 doesn't support this method
                     if ($this->isEmulated()) {
-                        $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                        self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
                     } else {
                         throw $e;
                     }
@@ -1037,11 +1037,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         // Check that the message matches
         $qer = $this->restProxy->queryEntities($table);
-        $this->assertNotNull($qer->getEntities(), 'getEntities()');
-        $this->assertEquals(1, count($qer->getEntities()), 'getEntities() count');
+        self::assertNotNull($qer->getEntities(), 'getEntities()');
+        self::assertCount(1, $qer->getEntities(), 'getEntities() count');
         $entReturned = $qer->getEntities();
         $entReturned = $entReturned[0];
-        $this->assertNotNull($entReturned, 'getEntities()[0]');
+        self::assertNotNull($entReturned, 'getEntities()[0]');
 
         $this->verifyinsertEntityWorker($ent, $entReturned);
         $this->clearTable($table);
@@ -1057,11 +1057,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 TableServiceFunctionalTestUtils::mutateEntity($ent, $mutatePivot);
                 try {
                     $this->insertOrMergeEntityWorker($initialEnt, $ent, $options);
-                    $this->assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
+                    self::assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
                 } catch (ServiceException $e) {
                     // Expect failure in emulator, as v1.6 doesn't support this method
                     if ($this->isEmulated()) {
-                        $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                        self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
                     } else {
                         throw $e;
                     }
@@ -1089,11 +1089,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         // Check that the message matches
         $qer = $this->restProxy->queryEntities($table);
-        $this->assertNotNull($qer->getEntities(), 'getEntities()');
-        $this->assertEquals(1, count($qer->getEntities()), 'getEntities() count');
+        self::assertNotNull($qer->getEntities(), 'getEntities()');
+        self::assertCount(1, $qer->getEntities(), 'getEntities() count');
         $entReturned = $qer->getEntities();
         $entReturned = $entReturned[0];
-        $this->assertNotNull($entReturned, 'getEntities()[0]');
+        self::assertNotNull($entReturned, 'getEntities()[0]');
 
         $this->verifymergeEntityWorker($initialEnt, $ent, $entReturned);
         $this->clearTable($table);
@@ -1200,7 +1200,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $this->executeCrudMethod($table, $targetEnt, $opType, $concurType, $options);
 
             if (null !== $exptErr) {
-                $this->fail(
+                self::fail(
                     'Expected a failure when opType=' . $opType .
                         ' and concurType=' . $concurType . ' :' .
                         $this->expectConcurrencyFailure($opType, $concurType)
@@ -1210,7 +1210,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $this->verifyCrudWorker($opType, $table, $ent, $targetEnt, true);
         } catch (ServiceException $e) {
             if (null !== $exptErr) {
-                $this->assertEquals($exptErr, $e->getCode(), 'getCode');
+                self::assertEquals($exptErr, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -1321,43 +1321,43 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         }
 
         // Compare the entities to make sure they match.
-        $this->assertEquals($ent->getPartitionKey(), $entReturned->getPartitionKey(), 'getPartitionKey');
-        $this->assertEquals($ent->getRowKey(), $entReturned->getRowKey(), 'getRowKey');
+        self::assertEquals($ent->getPartitionKey(), $entReturned->getPartitionKey(), 'getPartitionKey');
+        self::assertEquals($ent->getRowKey(), $entReturned->getRowKey(), 'getRowKey');
         if (null !== $ent->getETag()) {
-            $this->assertTrue(
+            self::assertTrue(
                 $ent->getETag() != $entReturned->getETag(),
                 'getETag should change after submit: initial \'' .
                     $ent->getETag() . '\', returned \'' . $entReturned->getETag() . '\''
             );
         }
-        $this->assertNotNull($entReturned->getTimestamp(), 'getTimestamp');
+        self::assertNotNull($entReturned->getTimestamp(), 'getTimestamp');
         if (null === $ent->getTimestamp()) {
             // This property will come back, so need to account for it.
             $expectedProps['Timestamp'] = null;
         } else {
-            $this->assertEquals($ent->getTimestamp(), $entReturned->getTimestamp(), 'getTimestamp');
+            self::assertEquals($ent->getTimestamp(), $entReturned->getTimestamp(), 'getTimestamp');
         }
-        $this->assertNotNull($ent->getProperties(), 'getProperties');
+        self::assertNotNull($ent->getProperties(), 'getProperties');
 
         // Need to skip null values from the count.
-        $this->assertEquals(count($expectedProps), count($effectiveProps), 'getProperties()');
+        self::assertEquals(count($expectedProps), count($effectiveProps), 'getProperties()');
 
         foreach ($expectedProps as $pname => $expectedProp) {
             $actualProp = $effectiveProps;
             $actualProp = $actualProp[$pname];
 
-            $this->assertNotNull($actualProp, 'getProperties()[\'' . $pname . '\')');
+            self::assertNotNull($actualProp, 'getProperties()[\'' . $pname . '\')');
             if (null !== $expectedProp) {
                 $this->compareProperties($pname, $actualProp, $expectedProp);
             }
 
-            $this->assertEquals(
+            self::assertEquals(
                 $entReturned->getProperty($pname)->getEdmType(),
                 $actualProp->getEdmType(),
                 'getProperty(\'' . $pname . '\')'
             );
 
-            $this->assertEquals(
+            self::assertEquals(
                 $entReturned->getPropertyValue($pname),
                 $actualProp->getValue(),
                 'getPropertyValue(\'' . $pname . '\')'
@@ -1495,7 +1495,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                     $exception = $e;
                 }
 
-                $this->assertNotNull($exception, 'Caught exception should not be null');
+                self::assertNotNull($exception, 'Caught exception should not be null');
 
                 // No changes should have gone through.
                 for ($i = 0; $i < count($configs); ++$i) {
@@ -1512,7 +1512,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                     )
                 );
 
-                $this->assertEquals($expectedReturned, count($ret->getEntries()), 'count $ret->getEntries()');
+                self::assertCount($expectedReturned, $ret->getEntries(), 'count $ret->getEntries()');
                 for ($i = 0; $i < count($ret->getEntries()); ++$i) {
                     $opResult = $ret->getEntries()[$i];
                     $this->verifyBatchEntryType($configs[$i]->opType, $exptErrs[$i], $opResult);
@@ -1523,7 +1523,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             }
         } catch (ServiceException $e) {
             if ($expectedError) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -1538,11 +1538,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $this->verifyinsertEntityWorker($targetEnt, $opResult->getEntity());
         } elseif ($opResult instanceof UpdateEntityResult) {
             $ger = $this->restProxy->getEntity($table, $targetEnt->getPartitionKey(), $targetEnt->getRowKey());
-            $this->assertEquals($opResult->getETag(), $ger->getEntity()->getETag(), 'op->getETag');
+            self::assertEquals($opResult->getETag(), $ger->getEntity()->getETag(), 'op->getETag');
         } elseif (is_string($opResult)) {
             // Nothing special to do.
         } else {
-            $this->fail('opResult is of an unknown type');
+            self::fail('opResult is of an unknown type');
         }
     }
 
@@ -1551,14 +1551,13 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         if (null === $exptErr) {
             switch ($opType) {
                 case OpType::INSERT_ENTITY:
-                    $this->assertTrue(
-                        $opResult instanceof InsertEntityResult,
+                    self::assertInstanceOf(
+                        InsertEntityResult::class, $opResult,
                         'When opType=' . $opType . ' expect opResult instanceof InsertEntityResult'
                     );
                     break;
                 case OpType::DELETE_ENTITY:
-                    $this->assertTrue(
-                        is_string($opResult),
+                    self::assertIsString($opResult,
                         'When opType=' . $opType . ' expect opResult is a string'
                     );
                     break;
@@ -1566,8 +1565,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 case OpType::INSERT_OR_REPLACE_ENTITY:
                 case OpType::MERGE_ENTITY:
                 case OpType::INSERT_OR_MERGE_ENTITY:
-                    $this->assertTrue(
-                        $opResult instanceof UpdateEntityResult,
+                    self::assertInstanceOf(
+                        UpdateEntityResult::class, $opResult,
                         'When opType=' . $opType . ' expect opResult instanceof UpdateEntityResult'
                     );
                     break;
@@ -1670,7 +1669,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $ger = $this->restProxy->getEntity($table, $targetEnt->getPartitionKey(), $targetEnt->getRowKey());
             $entInTable = $ger->getEntity();
         } catch (ServiceException $e) {
-            $this->assertTrue(
+            self::assertTrue(
                 ($opType == OpType::DELETE_ENTITY)
                     && (TestResources::STATUS_NOT_FOUND == $e->getCode()),
                 '404:NotFound is expected for deletes'
@@ -1681,34 +1680,34 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             case OpType::DELETE_ENTITY:
                 // Check that the entity really is gone
                 if ($expectedSuccess) {
-                    $this->assertNull($entInTable, 'Entity from table');
+                    self::assertNull($entInTable, 'Entity from table');
                 } else {
                     // Check that the message matches
-                    $this->assertNotNull($entInTable, 'Entity from table');
+                    self::assertNotNull($entInTable, 'Entity from table');
                     $this->verifyinsertEntityWorker($targetEnt, $entInTable);
                 }
                 break;
             case OpType::INSERT_ENTITY:
                 // Check that the message matches
-                $this->assertNotNull($entInTable, 'Entity from table');
+                self::assertNotNull($entInTable, 'Entity from table');
                 $this->verifyinsertEntityWorker($targetEnt, $entInTable);
                 break;
             case OpType::INSERT_OR_MERGE_ENTITY:
-                $this->assertNotNull($entInTable, 'Entity from table');
+                self::assertNotNull($entInTable, 'Entity from table');
                 $this->verifymergeEntityWorker($initialEnt, $targetEnt, $entInTable);
                 break;
             case OpType::INSERT_OR_REPLACE_ENTITY:
                 // Check that the message matches
-                $this->assertNotNull($entInTable, 'Entity from table');
+                self::assertNotNull($entInTable, 'Entity from table');
                 $this->verifyinsertEntityWorker($targetEnt, $entInTable);
                 break;
             case OpType::MERGE_ENTITY:
-                $this->assertNotNull($entInTable, 'Entity from table');
+                self::assertNotNull($entInTable, 'Entity from table');
                 $this->verifymergeEntityWorker($initialEnt, $targetEnt, $entInTable);
                 break;
             case OpType::UPDATE_ENTITY:
                 // Check that the message matches
-                $this->assertNotNull($entInTable, 'Entity from table');
+                self::assertNotNull($entInTable, 'Entity from table');
                 $this->verifyinsertEntityWorker($targetEnt, $entInTable);
                 break;
         }
@@ -1731,7 +1730,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 $newETag = $this->restProxy->updateEntity($table, $initialEnt)->getETag();
                 $initialEnt->setETag($newETag);
                 // Now the $targetEnt ETag will not match.
-                $this->assertTrue(
+                self::assertTrue(
                     $targetEnt->getETag() != $initialEnt->getETag(),
                     'targetEnt->ETag(\'' . $targetEnt->getETag() .
                         '\') !=  updated->ETag(\'' . $initialEnt->getETag() . '\')'
@@ -1790,7 +1789,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $effectiveExpectedProp = (null === $expectedProp->getEdmType() ? EdmType::STRING : $expectedProp->getEdmType());
         $effectiveActualProp = (null === $expectedProp->getEdmType() ? EdmType::STRING : $expectedProp->getEdmType());
 
-        $this->assertEquals(
+        self::assertEquals(
             $effectiveExpectedProp,
             $effectiveActualProp,
             'getProperties()->get(\'' . $pname . '\')->getEdmType'
@@ -1806,7 +1805,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $effAct = $effAct->setTimezone(new \DateTimeZone('UTC'));
         }
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedProp->getValue(),
             $actualProp->getValue(),
             'getProperties()->get(\'' . $pname . '\')->getValue [' . $effectiveExpectedProp . ']'
@@ -1847,15 +1846,15 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $options = new QueryTablesOptions();
         $options->setMiddlewares([$retryMiddleware, $historyMiddleware]);
         $newResult = $mockProxy->queryTables($options);
-        $this->assertTrue(
+        self::assertTrue(
             $result == $newResult,
             'Mock result does not match server behavior'
         );
-        $this->assertTrue(
+        self::assertTrue(
             $historyMiddleware->getHistory()[1]['reason']->getMessage() == 'mock 408 exception',
             'Mock handler does not gave the first 408 exception correctly'
         );
-        $this->assertTrue(
+        self::assertTrue(
             $historyMiddleware->getHistory()[2]['reason']->getCode() == 500,
             'Mock handler does not gave the second 500 response correctly'
         );
@@ -1896,15 +1895,15 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $options->setMiddlewares([$retryMiddleware, $historyMiddleware]);
         $options->setLocationMode(LocationMode::PRIMARY_THEN_SECONDARY);
         $newResult = $mockProxy->queryTables($options);
-        $this->assertTrue(
+        self::assertTrue(
             $result == $newResult,
             'Mock result does not match server behavior'
         );
-        $this->assertTrue(
+        self::assertTrue(
             $historyMiddleware->getHistory()[2]['reason']->getMessage() == 'mock 404 exception',
             'Mock handler does not gave the first 404 exception correctly'
         );
-        $this->assertTrue(
+        self::assertTrue(
             $historyMiddleware->getHistory()[1]['reason']->getCode() == 500,
             'Mock handler does not gave the second 500 response correctly'
         );
@@ -1912,11 +1911,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $uri2 = (string) ($historyMiddleware->getHistory()[2]['request']->getUri());
         $uri3 = (string) ($historyMiddleware->getHistory()[3]['request']->getUri());
 
-        $this->assertTrue(
+        self::assertTrue(
             strpos($uri2, '-secondary') !== false,
             'Did not retry to secondary uri.'
         );
-        $this->assertFalse(
+        self::assertFalse(
             strpos($uri3, '-secondary'),
             'Did not switch back to primary uri.'
         );

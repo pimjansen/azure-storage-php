@@ -43,7 +43,7 @@ class LoggerTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = file_get_contents($virtualPath);
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testLogWithString()
@@ -59,6 +59,6 @@ class LoggerTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = file_get_contents($virtualPath);
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

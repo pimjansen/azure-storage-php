@@ -34,7 +34,7 @@ class CreateBlobSnapshotOptionsTest extends \PHPUnit\Framework\TestCase
         $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $createBlobSnapshotOptions->setMetadata($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $createBlobSnapshotOptions->getMetadata()
         );
@@ -46,7 +46,7 @@ class CreateBlobSnapshotOptionsTest extends \PHPUnit\Framework\TestCase
         $expected = "123456789";
         $createBlobSnapshotOptions->setLeaseId($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $createBlobSnapshotOptions->getLeaseId()
         );

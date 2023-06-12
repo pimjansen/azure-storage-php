@@ -38,7 +38,7 @@ class ListQueuesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setPrefix($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getPrefix());
+        self::assertEquals($expected, $options->getPrefix());
     }
 
     public function testGetPrefix()
@@ -52,7 +52,7 @@ class ListQueuesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getPrefix();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetMarker()
@@ -65,7 +65,7 @@ class ListQueuesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setMarker($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getNextMarker());
+        self::assertEquals($expected, $options->getNextMarker());
     }
 
     public function testSetMaxResults()
@@ -78,7 +78,7 @@ class ListQueuesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setMaxResults($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getMaxResults());
+        self::assertEquals($expected, $options->getMaxResults());
     }
 
     public function testGetMaxResults()
@@ -92,7 +92,7 @@ class ListQueuesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getMaxResults();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetIncludeMetadata()
@@ -105,7 +105,7 @@ class ListQueuesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setIncludeMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getIncludeMetadata());
+        self::assertEquals($expected, $options->getIncludeMetadata());
     }
 
     public function testGetIncludeMetadata()
@@ -119,6 +119,6 @@ class ListQueuesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getIncludeMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

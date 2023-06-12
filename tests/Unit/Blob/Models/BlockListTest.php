@@ -19,10 +19,10 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
-use MicrosoftAzure\Storage\Blob\Models\BlockList;
 use MicrosoftAzure\Storage\Blob\Models\BlobBlockType;
 use MicrosoftAzure\Storage\Blob\Models\Block;
+use MicrosoftAzure\Storage\Blob\Models\BlockList;
+use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 
 /**
  * Unit tests for class BlockList
@@ -43,7 +43,7 @@ class BlockListTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $entry = $blockList->getEntry($expectedId);
-        $this->assertEquals($expectedType, $entry->getType());
+        self::assertEquals($expectedType, $entry->getType());
     }
 
     public function testGetEntries()
@@ -58,7 +58,7 @@ class BlockListTest extends \PHPUnit\Framework\TestCase
         $entries = $blockList->getEntries();
 
         // Assert
-        $this->assertCount(1, $entries);
+        self::assertCount(1, $entries);
     }
 
     public function testAddCommittedEntry()
@@ -73,8 +73,8 @@ class BlockListTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $entry = $blockList->getEntry($expectedId);
-        $this->assertEquals($expectedId, $entry->getBlockId());
-        $this->assertEquals($expectedType, $entry->getType());
+        self::assertEquals($expectedId, $entry->getBlockId());
+        self::assertEquals($expectedType, $entry->getType());
     }
 
     public function testAddUncommittedEntry()
@@ -89,8 +89,8 @@ class BlockListTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $entry = $blockList->getEntry($expectedId);
-        $this->assertEquals($expectedId, $entry->getBlockId());
-        $this->assertEquals($expectedType, $entry->getType());
+        self::assertEquals($expectedId, $entry->getBlockId());
+        self::assertEquals($expectedType, $entry->getType());
     }
 
     public function testAddLatestEntry()
@@ -105,8 +105,8 @@ class BlockListTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $entry = $blockList->getEntry($expectedId);
-        $this->assertEquals($expectedId, $entry->getBlockId());
-        $this->assertEquals($expectedType, $entry->getType());
+        self::assertEquals($expectedId, $entry->getBlockId());
+        self::assertEquals($expectedType, $entry->getType());
     }
 
     public function testCreate()
@@ -126,13 +126,13 @@ class BlockListTest extends \PHPUnit\Framework\TestCase
         $blockList = BlockList::create([$block1, $block2, $block3]);
 
         // Assert
-        $this->assertCount(3, $blockList->getEntries());
+        self::assertCount(3, $blockList->getEntries());
         $b1 = $blockList->getEntry($block1->getBlockId());
         $b2 = $blockList->getEntry($block2->getBlockId());
         $b3 = $blockList->getEntry($block3->getBlockId());
-        $this->assertEquals($block1, $b1);
-        $this->assertEquals($block2, $b2);
-        $this->assertEquals($block3, $b3);
+        self::assertEquals($block1, $b1);
+        self::assertEquals($block2, $b2);
+        self::assertEquals($block3, $b3);
     }
 
     public function testToXml()
@@ -161,6 +161,6 @@ class BlockListTest extends \PHPUnit\Framework\TestCase
         $actual = $blockList->toXml(new XmlSerializer());
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

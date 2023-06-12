@@ -42,7 +42,7 @@ class MiddlewareBaseTest extends ReflectionTestBase
         };
         $callable = $middlewareBase($handler);
         $message = 'Not a callable returned by __invoke';
-        $this->assertTrue(is_callable($callable), $message);
+        self::assertIsCallable($callable, $message);
     }
 
     /**
@@ -54,7 +54,7 @@ class MiddlewareBaseTest extends ReflectionTestBase
         $onRequest = self::getMethod('onRequest', $middlewareBase);
         $request = new Request('GET', 'http://www.bing.com');
         $newRequest = $onRequest->invokeArgs($middlewareBase, [$request]);
-        $this->assertTrue($request === $newRequest, 'Not equal to original request');
+        self::assertTrue($request === $newRequest, 'Not equal to original request');
     }
 
     /**
@@ -68,7 +68,7 @@ class MiddlewareBaseTest extends ReflectionTestBase
         $callable = $onFulfilled->invokeArgs($middlewareBase, [$request, []]);
         $response = new Response();
         $newResponse = $callable($response);
-        $this->assertTrue($response === $newResponse, 'Not equal to original response');
+        self::assertTrue($response === $newResponse, 'Not equal to original response');
     }
 
     /**
@@ -88,6 +88,6 @@ class MiddlewareBaseTest extends ReflectionTestBase
         } catch (RequestException $e) {
             $newReason = $e;
         }
-        $this->assertTrue($reason === $newReason, 'Not equal to original response');
+        self::assertTrue($reason === $newReason, 'Not equal to original response');
     }
 }

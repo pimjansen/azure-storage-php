@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
+use MicrosoftAzure\Storage\Blob\Models\PutBlockResult;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Blob\Models\PutBlockResult;
 
 /**
  * Unit tests for class PutBlockResult
@@ -40,7 +40,7 @@ class PutBlockResultTest extends \PHPUnit\Framework\TestCase
         $actual = PutBlockResult::create($expected);
 
         // Assert
-        $this->assertEquals($expected['Content-MD5'], $actual->getContentMD5());
-        $this->assertEquals(Utilities::toBoolean($expected['x-ms-request-server-encrypted']), $actual->getRequestServerEncrypted());
+        self::assertEquals($expected['Content-MD5'], $actual->getContentMD5());
+        self::assertEquals(Utilities::toBoolean($expected['x-ms-request-server-encrypted']), $actual->getRequestServerEncrypted());
     }
 }

@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\GetEntityResult;
 use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
+use MicrosoftAzure\Storage\Table\Models\GetEntityResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
@@ -40,7 +40,7 @@ class GetEntityResultTest extends \PHPUnit\Framework\TestCase
         $result = GetEntityResult::create($sampleBody, $serializer);
 
         // Assert
-        $this->assertEquals(
+        self::assertEquals(
             $serializer->parseEntity($sampleBody),
             $result->getEntity()
         );

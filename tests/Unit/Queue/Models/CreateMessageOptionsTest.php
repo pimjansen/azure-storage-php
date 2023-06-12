@@ -39,7 +39,7 @@ class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $createMessageOptions->getVisibilityTimeoutInSeconds();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetVisibilityTimeoutInSeconds()
@@ -53,7 +53,7 @@ class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $createMessageOptions->getVisibilityTimeoutInSeconds();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetTimeToLiveInSeconds()
@@ -67,7 +67,7 @@ class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $createMessageOptions->getTimeToLiveInSeconds();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetTimeToLiveInSeconds()
@@ -81,6 +81,6 @@ class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $createMessageOptions->getTimeToLiveInSeconds();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

@@ -32,6 +32,6 @@ class InvalidArgumentTypeExceptionTest extends \PHPUnit\Framework\TestCase
     {
         $e = new InvalidArgumentTypeException('string');
 
-        $this->assertTrue(isset($e));
+        self::assertTrue(isset($e));
     }
 }

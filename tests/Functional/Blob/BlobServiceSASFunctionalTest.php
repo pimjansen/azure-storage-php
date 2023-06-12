@@ -75,7 +75,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
             $proxy->createAppendBlob($container, $blob0);
             //l
             $result = $proxy->listBlobs($container);
-            $this->assertEquals($blob0, $result->getBlobs()[0]->getName());
+            self::assertEquals($blob0, $result->getBlobs()[0]->getName());
             //a
             $content = \openssl_random_pseudo_bytes(1024);
             $proxy->appendBlock($container, $blob0, $content);
@@ -86,16 +86,16 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
             $actualContent = \stream_get_contents(
                 $proxy->getBlob($container, $blob0)->getContentStream()
             );
-            $this->assertEquals($content, $actualContent);
+            self::assertEquals($content, $actualContent);
             $actualContent = \stream_get_contents(
                 $proxy->getBlob($container, $blob1)->getContentStream()
             );
-            $this->assertEquals($content, $actualContent);
+            self::assertEquals($content, $actualContent);
             //d
             $proxy->deleteBlob($container, $blob0);
             $proxy->deleteBlob($container, $blob1);
             $result = $proxy->listBlobs($container);
-            $this->assertEquals(0, \count($result->getBlobs()));
+            self::assertCount(0, $result->getBlobs());
         }
         //Validate that a cross access with wrong proxy/container pair
         //would not be successful
@@ -169,7 +169,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         //rcwd can be performed.
         $blobProxy->createBlockBlob($container, $blob, $content);
         $actual = stream_get_contents($blobProxy->getBlob($container, $blob)->getContentStream());
-        $this->assertEquals($content, $actual);
+        self::assertEquals($content, $actual);
         $blobProxy->deleteBlob($container, $blob);
     }
 
@@ -219,7 +219,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
             $proxy->createAppendBlob($container, $blob0);
             //l
             $result = $proxy->listBlobs($container);
-            $this->assertEquals($blob0, $result->getBlobs()[0]->getName());
+            self::assertEquals($blob0, $result->getBlobs()[0]->getName());
             //a
             $content = \openssl_random_pseudo_bytes(1024);
             $proxy->appendBlock($container, $blob0, $content);
@@ -230,16 +230,16 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
             $actualContent = \stream_get_contents(
                 $proxy->getBlob($container, $blob0)->getContentStream()
             );
-            $this->assertEquals($content, $actualContent);
+            self::assertEquals($content, $actualContent);
             $actualContent = \stream_get_contents(
                 $proxy->getBlob($container, $blob1)->getContentStream()
             );
-            $this->assertEquals($content, $actualContent);
+            self::assertEquals($content, $actualContent);
             //d
             $proxy->deleteBlob($container, $blob0);
             $proxy->deleteBlob($container, $blob1);
             $result = $proxy->listBlobs($container);
-            $this->assertEquals(0, \count($result->getBlobs()));
+            self::assertCount(0, $result->getBlobs());
         }
         //Validate that a cross access with wrong proxy/container pair
         //would not be successful
@@ -313,7 +313,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         //rcwd can be performed.
         $blobProxy->createBlockBlob($container, $blob, $content);
         $actual = stream_get_contents($blobProxy->getBlob($container, $blob)->getContentStream());
-        $this->assertEquals($content, $actual);
+        self::assertEquals($content, $actual);
         $blobProxy->deleteBlob($container, $blob);
     }
 

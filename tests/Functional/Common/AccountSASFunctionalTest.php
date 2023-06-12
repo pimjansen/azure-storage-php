@@ -51,7 +51,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $count0 = count($this->blobRestProxy->listContainers()->getContainers());
         $this->safeCreateContainer($container);
         $count1 = count($this->blobRestProxy->listContainers()->getContainers());
-        $this->assertEquals(
+        self::assertEquals(
             $count0 + 1,
             $count1,
             sprintf("Expected %d container(s), listed %d container(s).", $count0 + 1, $count1)
@@ -60,10 +60,10 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $content = 'test content';
         $this->blobRestProxy->createBlockBlob($container, $blob, $content);
         $getContent = stream_get_contents($this->blobRestProxy->getBlob($container, $blob)->getContentStream());
-        $this->assertEquals($content, $getContent, "Expected {$content}, got {$getContent}.");
+        self::assertEquals($content, $getContent, "Expected {$content}, got {$getContent}.");
         $this->safeDeleteContainer($container);
         $count1 = count($this->blobRestProxy->listContainers()->getContainers());
-        $this->assertEquals(
+        self::assertEquals(
             $count0,
             $count1,
             sprintf("Expected %d container(s), listed %d container(s).", $count0, $count1)
@@ -73,7 +73,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $count0 = count($this->fileRestProxy->listShares()->getShares());
         $this->safeCreateShare($share);
         $count1 = count($this->fileRestProxy->listShares()->getShares());
-        $this->assertEquals(
+        self::assertEquals(
             $count0 + 1,
             $count1,
             sprintf("Expected %d share(s), listed %d share(s).", $count0 + 1, $count1)
@@ -82,10 +82,10 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $content = 'test content';
         $this->fileRestProxy->createFileFromContent($share, $file, $content);
         $getContent = stream_get_contents($this->fileRestProxy->getFile($share, $file)->getContentStream());
-        $this->assertEquals($content, $getContent, "Expected {$content}, got {$getContent}.");
+        self::assertEquals($content, $getContent, "Expected {$content}, got {$getContent}.");
         $this->safeDeleteShare($share);
         $count1 = count($this->fileRestProxy->listShares()->getShares());
-        $this->assertEquals(
+        self::assertEquals(
             $count0,
             $count1,
             sprintf("Expected %d share(s), listed %d share(s).", $count0, $count1)
@@ -96,7 +96,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $count0 = count($this->queueRestProxy->listQueues()->getQueues());
         $this->safeCreateQueue($queue);
         $count1 = count($this->queueRestProxy->listQueues()->getQueues());
-        $this->assertEquals(
+        self::assertEquals(
             $count0 + 1,
             $count1,
             sprintf("Expected %d queue(s), listed %d queue(s).", $count0 + 1, $count1)
@@ -114,7 +114,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
                 break;
             }
         }
-        $this->assertTrue($found, "Created message not found in the specified queue");
+        self::assertTrue($found, "Created message not found in the specified queue");
         $count3 = count($messages);
         $this->queueRestProxy->deleteMessage(
             $queue,
@@ -122,14 +122,14 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             $resultMessage->getPopReceipt()
         );
         $count1 = count($this->queueRestProxy->listMessages($queue)->getQueueMessages());
-        $this->assertEquals(
+        self::assertEquals(
             $count3 - 1,
             $count1,
             sprintf("Expected %d messages(s), listed %d messages(s).", $count3 - 1, $count1)
         );
         $this->safeDeleteQueue($queue);
         $count1 = count($this->queueRestProxy->listQueues()->getQueues());
-        $this->assertEquals(
+        self::assertEquals(
             $count0,
             $count1,
             sprintf("Expected %d queue(s), listed %d queue(s).", $count0, $count1)

@@ -20,13 +20,13 @@
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
+use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
 use MicrosoftAzure\Storage\File\FileRestProxy;
 use MicrosoftAzure\Storage\Queue\QueueRestProxy;
 use MicrosoftAzure\Storage\Table\TableRestProxy;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 
 /**
  * Test base for SAS functional tests.
@@ -202,7 +202,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
                 return FileRestProxy::createFileService($connectionString);
                 break;
             default:
-                $this->assertTrue(false);// Given signed resource not valid.
+                self::assertTrue(false);// Given signed resource not valid.
                 break;
         }
     }
@@ -298,6 +298,6 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains($errorMsg, $message, $failureMessage);
+        self::assertContains($errorMsg, $message, $failureMessage);
     }
 }

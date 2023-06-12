@@ -46,7 +46,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = $queueMessage->toXml($xmlSerializer);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testCreateListMessages()
@@ -59,13 +59,13 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = QueueMessage::createFromListMessages($sample);
 
         // Assert
-        $this->assertEquals($sample['MessageId'], $actual->getMessageId());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['InsertionTime']), $actual->getInsertionDate());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['ExpirationTime']), $actual->getExpirationDate());
-        $this->assertEquals($sample['PopReceipt'], $actual->getPopReceipt());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['TimeNextVisible']), $actual->getTimeNextVisible());
-        $this->assertEquals((int) ($sample['DequeueCount']), $actual->getDequeueCount());
-        $this->assertEquals($sample['MessageText'], $actual->getMessageText());
+        self::assertEquals($sample['MessageId'], $actual->getMessageId());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['InsertionTime']), $actual->getInsertionDate());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['ExpirationTime']), $actual->getExpirationDate());
+        self::assertEquals($sample['PopReceipt'], $actual->getPopReceipt());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['TimeNextVisible']), $actual->getTimeNextVisible());
+        self::assertEquals((int) ($sample['DequeueCount']), $actual->getDequeueCount());
+        self::assertEquals($sample['MessageText'], $actual->getMessageText());
     }
 
     public function testCreateFromPeekMessages()
@@ -78,11 +78,11 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = QueueMessage::createFromPeekMessages($sample);
 
         // Assert
-        $this->assertEquals($sample['MessageId'], $actual->getMessageId());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['InsertionTime']), $actual->getInsertionDate());
-        $this->assertEquals(Utilities::rfc1123ToDateTime($sample['ExpirationTime']), $actual->getExpirationDate());
-        $this->assertEquals((int) ($sample['DequeueCount']), $actual->getDequeueCount());
-        $this->assertEquals($sample['MessageText'], $actual->getMessageText());
+        self::assertEquals($sample['MessageId'], $actual->getMessageId());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['InsertionTime']), $actual->getInsertionDate());
+        self::assertEquals(Utilities::rfc1123ToDateTime($sample['ExpirationTime']), $actual->getExpirationDate());
+        self::assertEquals((int) ($sample['DequeueCount']), $actual->getDequeueCount());
+        self::assertEquals($sample['MessageText'], $actual->getMessageText());
     }
 
     public function testGetMessageText()
@@ -96,7 +96,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = $azureQueueMessage->getMessageText();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetMessageText()
@@ -110,7 +110,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $azureQueueMessage->getMessageText();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetMessageId()
@@ -124,7 +124,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = $azureQueueMessage->getMessageId();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetMessageId()
@@ -138,7 +138,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $azureQueueMessage->getMessageId();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetInsertionDate()
@@ -152,7 +152,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = $azureQueueMessage->getInsertionDate();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetInsertionDate()
@@ -166,7 +166,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $azureQueueMessage->getInsertionDate();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetExpirationDate()
@@ -180,7 +180,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = $azureQueueMessage->getExpirationDate();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetExpirationDate()
@@ -194,7 +194,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $azureQueueMessage->getExpirationDate();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetPopReceipt()
@@ -208,7 +208,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = $azureQueueMessage->getPopReceipt();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetPopReceipt()
@@ -222,7 +222,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $azureQueueMessage->getPopReceipt();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetTimeNextVisible()
@@ -236,7 +236,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = $azureQueueMessage->getTimeNextVisible();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetTimeNextVisible()
@@ -250,7 +250,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $azureQueueMessage->getTimeNextVisible();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetDequeueCount()
@@ -264,7 +264,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $actual = $azureQueueMessage->getDequeueCount();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetDequeueCount()
@@ -278,6 +278,6 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $azureQueueMessage->getDequeueCount();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

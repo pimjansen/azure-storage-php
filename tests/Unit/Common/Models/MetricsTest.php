@@ -40,10 +40,10 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         $actual = Metrics::create($sample['HourMetrics']);
 
         // Assert
-        $this->assertEquals(Utilities::toBoolean($sample['HourMetrics']['Enabled']), $actual->getEnabled());
-        $this->assertEquals(Utilities::toBoolean($sample['HourMetrics']['IncludeAPIs']), $actual->getIncludeAPIs());
-        $this->assertEquals(RetentionPolicy::create($sample['HourMetrics']['RetentionPolicy']), $actual->getRetentionPolicy());
-        $this->assertEquals($sample['HourMetrics']['Version'], $actual->getVersion());
+        self::assertEquals(Utilities::toBoolean($sample['HourMetrics']['Enabled']), $actual->getEnabled());
+        self::assertEquals(Utilities::toBoolean($sample['HourMetrics']['IncludeAPIs']), $actual->getIncludeAPIs());
+        self::assertEquals(RetentionPolicy::create($sample['HourMetrics']['RetentionPolicy']), $actual->getRetentionPolicy());
+        self::assertEquals($sample['HourMetrics']['Version'], $actual->getVersion());
     }
 
     public function testGetRetentionPolicy()
@@ -58,7 +58,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         $actual = $metrics->getRetentionPolicy();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetRetentionPolicy()
@@ -73,7 +73,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $metrics->getRetentionPolicy();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetVersion()
@@ -88,7 +88,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         $actual = $metrics->getVersion();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetVersion()
@@ -103,7 +103,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $metrics->getVersion();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetEnabled()
@@ -118,7 +118,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         $actual = $metrics->getEnabled();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetEnabled()
@@ -133,7 +133,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $metrics->getEnabled();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetIncludeAPIs()
@@ -148,7 +148,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         $actual = $metrics->getIncludeAPIs();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetIncludeAPIs()
@@ -163,7 +163,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $metrics->getIncludeAPIs();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testToArray()
@@ -182,7 +182,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         $actual = $metrics->toArray();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testToArrayWithNotEnabled()
@@ -201,6 +201,6 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         $actual = $metrics->toArray();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

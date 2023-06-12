@@ -38,9 +38,9 @@ class ServiceExceptionTest extends \PHPUnit\Framework\TestCase
         $e = new ServiceException($response);
 
         // Assert
-        $this->assertEquals(400, $e->getCode());
-        $this->assertEquals('test info', $e->getErrorText());
-        $this->assertEquals($response, $e->getResponse());
+        self::assertEquals(400, $e->getCode());
+        self::assertEquals('test info', $e->getErrorText());
+        self::assertEquals($response, $e->getResponse());
     }
 
     public function testGetErrorText()
@@ -52,7 +52,7 @@ class ServiceExceptionTest extends \PHPUnit\Framework\TestCase
         // Test
         $actualError = $e->getErrorText();
         // Assert
-        $this->assertEquals('test info', $actualError);
+        self::assertEquals('test info', $actualError);
     }
 
     public function testGetErrorMessage()
@@ -65,7 +65,7 @@ class ServiceExceptionTest extends \PHPUnit\Framework\TestCase
         $actualErrorMessage = $e->getErrorMessage();
 
         // Assert
-        $this->assertEquals($actualErrorMessage, TestResources::ERROR_MESSAGE);
+        self::assertEquals($actualErrorMessage, TestResources::ERROR_MESSAGE);
     }
 
     public function testGetRequestID()
@@ -75,7 +75,7 @@ class ServiceExceptionTest extends \PHPUnit\Framework\TestCase
         $e = new ServiceException($response);
 
         // Assert
-        $this->assertEquals($e->getRequestID(), TestResources::REQUEST_ID1);
+        self::assertEquals($e->getRequestID(), TestResources::REQUEST_ID1);
     }
 
     public function testGetDate()
@@ -85,7 +85,7 @@ class ServiceExceptionTest extends \PHPUnit\Framework\TestCase
         $e = new ServiceException($response);
 
         // Assert
-        $this->assertEquals($e->getDate(), TestResources::DATE1);
+        self::assertEquals($e->getDate(), TestResources::DATE1);
     }
 
     public function testGetResponse()
@@ -95,19 +95,19 @@ class ServiceExceptionTest extends \PHPUnit\Framework\TestCase
         $e = new ServiceException($response);
 
         // Assert
-        $this->assertEquals($e->getResponse(), $response);
+        self::assertEquals($e->getResponse(), $response);
     }
 
     public function testNoWarningForNonXmlErrorMessage()
     {
         // Warnings are silenced in parseErrorMessage once they are converted to exceptions
-        \PHPUnit_Framework_Error_Warning::$enabled = false;
+        \PHPUnit\Framework\Error\Warning::$enabled = false;
 
         // Setup
         $response = TestResources::getFailedResponseJson(210, 'test info');
         $e = new ServiceException($response);
 
         // Assert
-        $this->assertEquals($e->getErrorMessage(), TestResources::RESPONSE_BODY_JSON);
+        self::assertEquals($e->getErrorMessage(), TestResources::RESPONSE_BODY_JSON);
     }
 }

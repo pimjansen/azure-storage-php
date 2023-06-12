@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
+use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
 use MicrosoftAzure\Storage\Blob\Models\GetBlobPropertiesResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
 
 /**
  * Unit tests for class GetBlobPropertiesResult
@@ -42,7 +42,7 @@ class GetBlobPropertiesResultTest extends \PHPUnit\Framework\TestCase
         $actual = GetBlobPropertiesResult::create($expected);
 
         // Assert
-        $this->assertEquals($expectedProperties, $actual->getProperties());
-        $this->assertEquals(['' => $expected['x-ms-meta-']], $actual->getMetadata());
+        self::assertEquals($expectedProperties, $actual->getProperties());
+        self::assertEquals(['' => $expected['x-ms-meta-']], $actual->getMetadata());
     }
 }

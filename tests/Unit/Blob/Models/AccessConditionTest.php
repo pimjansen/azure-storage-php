@@ -39,8 +39,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifMatch($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeaderType, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeaderType, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testNone()
@@ -53,8 +53,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::none();
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIfModifiedSince()
@@ -67,8 +67,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifModifiedSince($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIfMatch()
@@ -81,8 +81,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifMatch($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIfNoneMatch()
@@ -95,8 +95,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifNoneMatch($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIfNotModifiedSince()
@@ -109,8 +109,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifNotModifiedSince($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIsValidWithValid()
@@ -119,7 +119,7 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::isValid(Resources::IF_MATCH);
 
         // Assert
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testIsValidWithInvalid()
@@ -128,6 +128,6 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::isValid('1234');
 
         // Assert
-        $this->assertFalse($actual);
+        self::assertFalse($actual);
     }
 }

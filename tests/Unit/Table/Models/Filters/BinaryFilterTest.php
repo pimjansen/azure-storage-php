@@ -35,7 +35,7 @@ class BinaryFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new BinaryFilter(null, $expected, null);
 
         // Assert
-        $this->assertEquals($expected, $filter->getOperator());
+        self::assertEquals($expected, $filter->getOperator());
     }
 
     public function testGetLeft()
@@ -45,7 +45,7 @@ class BinaryFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new BinaryFilter($expected, null, null);
 
         // Assert
-        $this->assertEquals($expected, $filter->getLeft());
+        self::assertEquals($expected, $filter->getLeft());
     }
 
     public function testGetRight()
@@ -55,6 +55,6 @@ class BinaryFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new BinaryFilter(null, null, $expected);
 
         // Assert
-        $this->assertEquals($expected, $filter->getRight());
+        self::assertEquals($expected, $filter->getRight());
     }
 }

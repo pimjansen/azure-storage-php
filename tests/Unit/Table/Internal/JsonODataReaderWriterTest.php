@@ -19,10 +19,10 @@
 
 namespace Tests\Unit\MicrosoftAzure\Storage\Table\Models\internal;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
 use MicrosoftAzure\Storage\Table\Models\EdmType;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class JsonODataReaderWriter
@@ -42,7 +42,7 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
         $actual = $serializer->getTable($tablename);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
 
         return $actual;
     }
@@ -59,7 +59,7 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
         $actual = $serializer->getEntity($entity);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
 
         return $actual;
     }
@@ -75,7 +75,7 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
         $actual = $serializer->parseTable($tableJSON);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testParseTables()
@@ -93,9 +93,9 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
         $actual2 = $serializer->parseTableEntries($tableJSON2);
 
         // Assert
-        $this->assertEquals($expected, $actual0);
-        $this->assertEquals($expected, $actual1);
-        $this->assertEquals($expected, $actual2);
+        self::assertEquals($expected, $actual0);
+        self::assertEquals($expected, $actual1);
+        self::assertEquals($expected, $actual2);
     }
 
     public function testParseEntity()
@@ -112,11 +112,11 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
         $expectedProperties = $expected->getProperties();
         $actualProperties = $actual->getProperties();
         foreach ($expectedProperties as $key => $property) {
-            $this->assertEquals(
+            self::assertEquals(
                 $property->getEdmType(),
                 $actualProperties[$key]->getEdmType()
             );
-            $this->assertEquals(
+            self::assertEquals(
                 $property->getValue(),
                 $actualProperties[$key]->getValue()
             );
@@ -134,11 +134,11 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
         $actual = $serializer->parseEntity($json);
 
         // Assert
-        $this->assertSame(
+        self::assertSame(
             $expected->getPartitionKey(),
             $actual->getPartitionKey()
         );
-        $this->assertSame(
+        self::assertSame(
             $expected->getRowKey(),
             $actual->getRowKey()
         );
@@ -171,11 +171,11 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
             $expectedProperties = $expected[$i]->getProperties();
             $actualProperties = $actual[$i]->getProperties();
             foreach ($expectedProperties as $key => $property) {
-                $this->assertEquals(
+                self::assertEquals(
                     $property->getEdmType(),
                     $actualProperties[$key]->getEdmType()
                 );
-                $this->assertEquals(
+                self::assertEquals(
                     $property->getValue(),
                     $actualProperties[$key]->getValue()
                 );
@@ -192,6 +192,6 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
 
         $a = $serializer->parseEntity($jsonString);
 
-        $this->assertEquals($e, $a);
+        self::assertEquals($e, $a);
     }
 }

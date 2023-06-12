@@ -39,7 +39,7 @@ class ContainerPropertiesTest extends \PHPUnit\Framework\TestCase
         $actual = $properties->getETag();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetETag()
@@ -53,7 +53,7 @@ class ContainerPropertiesTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $properties->getETag();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetLastModified()
@@ -67,7 +67,7 @@ class ContainerPropertiesTest extends \PHPUnit\Framework\TestCase
         $actual = $properties->getLastModified();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetLastModified()
@@ -81,6 +81,6 @@ class ContainerPropertiesTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $properties->getLastModified();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

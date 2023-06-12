@@ -42,8 +42,8 @@ class GetContainerPropertiesResultTest extends \PHPUnit\Framework\TestCase
         $result = GetContainerPropertiesResult::create($expectedProperties);
 
         // Assert
-        $this->assertEquals(['' => $expectedProperties['x-ms-meta-']], $result->getMetadata());
-        $this->assertEquals($expectedDate, $result->getLastModified());
-        $this->assertEquals($expectedProperties['Etag'], $result->getETag());
+        self::assertEquals(['' => $expectedProperties['x-ms-meta-']], $result->getMetadata());
+        self::assertEquals($expectedDate, $result->getLastModified());
+        self::assertEquals($expectedProperties['Etag'], $result->getETag());
     }
 }

@@ -39,7 +39,7 @@ class PeekMessagesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $peekMessagesOptions->getNumberOfMessages();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetNumberOfMessages()
@@ -53,6 +53,6 @@ class PeekMessagesOptionsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $peekMessagesOptions->getNumberOfMessages();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

@@ -37,7 +37,7 @@ class BatchOperationTypeTest extends \PHPUnit\Framework\TestCase
         $actual = BatchOperationType::isValid($name);
 
         // Assert
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testIsValidWithInvalid()
@@ -49,6 +49,6 @@ class BatchOperationTypeTest extends \PHPUnit\Framework\TestCase
         $actual = BatchOperationType::isValid($name);
 
         // Assert
-        $this->assertFalse($actual);
+        self::assertFalse($actual);
     }
 }

@@ -37,7 +37,7 @@ class GetServicePropertiesResultTest extends \PHPUnit\Framework\TestCase
         $expected = ServiceProperties::create(TestResources::getServicePropertiesSample());
 
         // Assert
-        $this->assertTrue(isset($result));
-        $this->assertEquals($expected, $result->getValue());
+        self::assertTrue(isset($result));
+        self::assertEquals($expected, $result->getValue());
     }
 }

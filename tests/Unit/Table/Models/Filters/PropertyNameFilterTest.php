@@ -35,6 +35,6 @@ class PropertyNameFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new PropertyNameFilter($expected);
 
         // Assert
-        $this->assertEquals($expected, $filter->getPropertyName());
+        self::assertEquals($expected, $filter->getPropertyName());
     }
 }

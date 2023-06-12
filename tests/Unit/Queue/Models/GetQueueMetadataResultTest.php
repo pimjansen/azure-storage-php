@@ -38,7 +38,7 @@ class GetQueueMetadataResultTest extends \PHPUnit\Framework\TestCase
         $actual = new GetQueueMetadataResult($count, $metadata);
 
         // Assert
-        $this->assertEquals($count, $actual->getApproximateMessageCount());
-        $this->assertEquals($metadata, $actual->getMetadata());
+        self::assertEquals($count, $actual->getApproximateMessageCount());
+        self::assertEquals($metadata, $actual->getMetadata());
     }
 }

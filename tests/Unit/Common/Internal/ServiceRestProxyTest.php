@@ -51,12 +51,12 @@ class ServiceRestProxyTest extends ReflectionTestBase
         );
 
         // Assert
-        $this->assertNotNull($proxy);
-        $this->assertEquals($accountName, $proxy->getAccountName());
+        self::assertNotNull($proxy);
+        self::assertEquals($accountName, $proxy->getAccountName());
 
         // Auto append an '/' at the end of uri.
-        $this->assertEquals($primaryUri . '/', (string) ($proxy->getPsrPrimaryUri()));
-        $this->assertEquals($secondaryUri . '/', (string) ($proxy->getPsrSecondaryUri()));
+        self::assertEquals($primaryUri . '/', (string) ($proxy->getPsrPrimaryUri()));
+        self::assertEquals($secondaryUri . '/', (string) ($proxy->getPsrSecondaryUri()));
 
         return $proxy;
     }
@@ -97,7 +97,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $actual = ServiceRestProxy::groupQueryValues($values);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     /**
@@ -113,7 +113,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $actual = ServiceRestProxy::groupQueryValues($values);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGroupQueryValuesWithNulls()
@@ -125,7 +125,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $actual = ServiceRestProxy::groupQueryValues($values);
 
         // Assert
-        $this->assertEmpty($actual);
+        self::assertEmpty($actual);
     }
 
     /**
@@ -141,7 +141,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $actual = ServiceRestProxy::groupQueryValues($values);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     /**
@@ -159,7 +159,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $actual = $processedPostParameters[$key];
 
         // Assert
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $actual
         );
@@ -181,7 +181,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $actual = $proxy->generateMetadataHeaders($metadata);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     /**
@@ -191,7 +191,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     {
         // Setup
         $metadata = ['key1' => "value1\n", 'MyName' => "\rAzurr", 'MyCompany' => "Micr\r\nosoft_"];
-        $this->setExpectedException(get_class(new \InvalidArgumentException(Resources::INVALID_META_MSG)));
+        $this->expectException(get_class(new \InvalidArgumentException(Resources::INVALID_META_MSG)));
 
         // Test
         $proxy->generateMetadataHeaders($metadata);
@@ -203,7 +203,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testOnRejectedWithException($proxy)
     {
         // Setup
-        $this->setExpectedException(\Exception::class);
+        $this->expectException(\Exception::class);
         $onRejected = self::getMethod('onRejected', $proxy);
 
         // Test
@@ -217,7 +217,8 @@ class ServiceRestProxyTest extends ReflectionTestBase
     {
         // Setup
         $message = 'test message';
-        $this->setExpectedException(\RuntimeException::class, $message);
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage($message);
         $onRejected = self::getMethod('onRejected', $proxy);
 
         // Test
@@ -230,7 +231,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testOnRejectedWithRequestExceptionNullResponse($proxy)
     {
         // Setup
-        $this->setExpectedException(RequestException::class);
+        $this->expectException(RequestException::class);
         $onRejected = self::getMethod('onRejected', $proxy);
 
         $request = new Request('GET', 'http://www.bing.com');
@@ -246,7 +247,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testOnRejectedWithRequestExceptionUnexpectedResponse($proxy)
     {
         // Setup
-        $this->setExpectedException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
         $onRejected = self::getMethod('onRejected', $proxy);
 
         $request = new Request('GET', 'http://www.bing.com');
@@ -273,6 +274,6 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $actual = $onRejected->invokeArgs($proxy, [$reason, 200]);
 
         // Assert
-        $this->assertSame($response, $actual);
+        self::assertSame($response, $actual);
     }
 }

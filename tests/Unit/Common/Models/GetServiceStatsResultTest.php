@@ -41,7 +41,7 @@ class GetServiceStatsResultTest extends \PHPUnit\Framework\TestCase
         $result = GetServiceStatsResult::create($sample);
 
         // Assert
-        $this->assertEquals($expectedSyncTime, $result->getLastSyncTime());
-        $this->assertEquals($expectedStatus, $result->getStatus());
+        self::assertEquals($expectedSyncTime, $result->getLastSyncTime());
+        self::assertEquals($expectedStatus, $result->getStatus());
     }
 }

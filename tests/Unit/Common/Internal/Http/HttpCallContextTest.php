@@ -34,14 +34,14 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context = new HttpCallContext();
 
         // Assert
-        $this->assertNull($context->getBody());
-        $this->assertNull($context->getMethod());
-        $this->assertNull($context->getPath());
-        $this->assertNull($context->getUri());
-        $this->assertInternalType('string', $context->__toString());
-        $this->assertInternalType('array', $context->getHeaders());
-        $this->assertInternalType('array', $context->getQueryParameters());
-        $this->assertInternalType('array', $context->getStatusCodes());
+        self::assertNull($context->getBody());
+        self::assertNull($context->getMethod());
+        self::assertNull($context->getPath());
+        self::assertNull($context->getUri());
+        self::assertIsString($context->__toString());
+        self::assertIsArray($context->getHeaders());
+        self::assertIsArray($context->getQueryParameters());
+        self::assertIsArray($context->getStatusCodes());
 
         return $context;
     }
@@ -58,7 +58,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context->setMethod($expected);
 
         // Assert
-        $this->assertEquals($expected, $context->getMethod());
+        self::assertEquals($expected, $context->getMethod());
     }
 
     /**
@@ -73,7 +73,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context->setBody($expected);
 
         // Assert
-        $this->assertEquals($expected, $context->getBody());
+        self::assertEquals($expected, $context->getBody());
     }
 
     /**
@@ -88,7 +88,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context->setPath($expected);
 
         // Assert
-        $this->assertEquals($expected, $context->getPath());
+        self::assertEquals($expected, $context->getPath());
     }
 
     /**
@@ -103,7 +103,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context->setUri($expected);
 
         // Assert
-        $this->assertEquals($expected, $context->getUri());
+        self::assertEquals($expected, $context->getUri());
     }
 
     /**
@@ -118,7 +118,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context->setHeaders($expected);
 
         // Assert
-        $this->assertEquals($expected, $context->getHeaders());
+        self::assertEquals($expected, $context->getHeaders());
     }
 
     /**
@@ -133,7 +133,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context->setQueryParameters($expected);
 
         // Assert
-        $this->assertEquals($expected, $context->getQueryParameters());
+        self::assertEquals($expected, $context->getQueryParameters());
     }
 
     /**
@@ -148,7 +148,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context->setStatusCodes($expected);
 
         // Assert
-        $this->assertEquals($expected, $context->getStatusCodes());
+        self::assertEquals($expected, $context->getStatusCodes());
     }
 
     /**
@@ -164,7 +164,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context->addHeader($key, $expected);
 
         // Assert
-        $this->assertEquals($expected, $context->getHeader($key));
+        self::assertEquals($expected, $context->getHeader($key));
     }
 
     /**
@@ -181,7 +181,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $context->removeHeader($key);
 
         // Assert
-        $this->assertArrayNotHasKey($key, $context->getHeaders());
+        self::assertArrayNotHasKey($key, $context->getHeaders());
     }
 
     /**
@@ -206,6 +206,6 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
         $actual = $context->__toString();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

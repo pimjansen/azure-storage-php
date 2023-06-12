@@ -43,10 +43,10 @@ class UpdateMessageResultTest extends \PHPUnit\Framework\TestCase
         $result = UpdateMessageResult::create($sample);
 
         // Assert
-        $this->assertEquals(
+        self::assertEquals(
             $sample[QueueResources::X_MS_POPRECEIPT],
             $result->getPopReceipt()
         );
-        $this->assertEquals($expectedDate, $result->getTimeNextVisible());
+        self::assertEquals($expectedDate, $result->getTimeNextVisible());
     }
 }

@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesDiffResult;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Models\RangeDiff;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
@@ -72,9 +72,9 @@ class ListPageBlobRangesDiffResultTest extends \PHPUnit\Framework\TestCase
         $result = ListPageBlobRangesDiffResult::create($headers, $bodyArray);
 
         //Assert
-        $this->assertEquals($pageRanges, $result->getRanges());
-        $this->assertEquals($expectedLastModified, $result->getLastModified());
-        $this->assertEquals($headers['Etag'], $result->getETag());
-        $this->assertEquals($headers['x-ms-blob-content-length'], $result->getContentLength());
+        self::assertEquals($pageRanges, $result->getRanges());
+        self::assertEquals($expectedLastModified, $result->getLastModified());
+        self::assertEquals($headers['Etag'], $result->getETag());
+        self::assertEquals($headers['x-ms-blob-content-length'], $result->getContentLength());
     }
 }

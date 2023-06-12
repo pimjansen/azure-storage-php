@@ -38,6 +38,6 @@ class BreakLeaseResultTest extends \PHPUnit\Framework\TestCase
         $result = BreakLeaseResult::create($headers);
 
         // Assert
-        $this->assertEquals($expected, $result->getLeaseTime());
+        self::assertEquals($expected, $result->getLeaseTime());
     }
 }

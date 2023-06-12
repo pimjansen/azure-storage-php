@@ -39,7 +39,7 @@ class ListMessagesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $listMessagesOptions->getVisibilityTimeoutInSeconds();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetVisibilityTimeoutInSeconds()
@@ -53,7 +53,7 @@ class ListMessagesOptionsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $listMessagesOptions->getVisibilityTimeoutInSeconds();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetNumberOfMessages()
@@ -67,7 +67,7 @@ class ListMessagesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $listMessagesOptions->getNumberOfMessages();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetNumberOfMessages()
@@ -81,6 +81,6 @@ class ListMessagesOptionsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $listMessagesOptions->getNumberOfMessages();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

@@ -41,7 +41,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = $xmlSerializer->unserialize($xml);
 
-        $this->assertEquals($propertiesSample, $actual);
+        self::assertEquals($propertiesSample, $actual);
     }
 
     public function testSerialize()
@@ -57,7 +57,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = $xmlSerializer->serialize($array, $serializerProperties);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSerializeAttribute()
@@ -78,7 +78,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = $xmlSerializer->serialize($object, $serializerProperties);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testObjectSerializeSucceess()
@@ -91,7 +91,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
         $actual = XmlSerializer::objectSerialize($target, 'DummyClass');
 
         // Assert
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $actual
         );
@@ -108,7 +108,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
         $actual = XmlSerializer::objectSerialize($target, 'DummyClass');
 
         // Assert
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $actual
         );
@@ -117,7 +117,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
     public function testObjectSerializeInvalidObject()
     {
         // Setup
-        $this->setExpectedException(get_class(new \InvalidArgumentException()));
+        $this->expectException(get_class(new \InvalidArgumentException()));
         // Test
         $actual = XmlSerializer::objectSerialize(null, null);
         // Assert

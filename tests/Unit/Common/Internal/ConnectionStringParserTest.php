@@ -42,13 +42,13 @@ class ConnectionStringParserTest extends \PHPUnit\Framework\TestCase
         $actual = ConnectionStringParser::parseConnectionString('connectionString', $connectionString);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     private function _parseTestFail($value)
     {
         // Setup
-        $this->setExpectedException('\RuntimeException');
+        $this->expectException('\RuntimeException');
 
         // Test
         ConnectionStringParser::parseConnectionString('connectionString', $value);

@@ -19,10 +19,10 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
+use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\File\Models\ShareProperties;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 
 /**
  * Unit tests for class ShareProperties
@@ -39,8 +39,8 @@ class SharePropertiesTest extends \PHPUnit\Framework\TestCase
         $expectedEtag = $responseArray[Resources::QP_ETAG];
         $expectedQuota = $responseArray[Resources::QP_QUOTA];
 
-        $this->assertEquals($expectedLastModified, $shareProperties->getLastModified());
-        $this->assertEquals($expectedEtag, $shareProperties->getETag());
-        $this->assertEquals($expectedQuota, $shareProperties->getQuota());
+        self::assertEquals($expectedLastModified, $shareProperties->getLastModified());
+        self::assertEquals($expectedEtag, $shareProperties->getETag());
+        self::assertEquals($expectedQuota, $shareProperties->getQuota());
     }
 }

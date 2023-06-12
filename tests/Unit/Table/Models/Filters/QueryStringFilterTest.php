@@ -35,6 +35,6 @@ class QueryStringFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new QueryStringFilter($expected);
 
         // Assert
-        $this->assertEquals($expected, $filter->getQueryString());
+        self::assertEquals($expected, $filter->getQueryString());
     }
 }

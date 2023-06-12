@@ -30,8 +30,8 @@ class BlobBlockTypeTest extends \PHPUnit\Framework\TestCase
 {
     public function testBlobBlockType()
     {
-        $this->assertEquals(BlobBlockType::COMMITTED_TYPE, 'Committed');
-        $this->assertEquals(BlobBlockType::UNCOMMITTED_TYPE, 'Uncommitted');
-        $this->assertEquals(BlobBlockType::LATEST_TYPE, 'Latest');
+        self::assertEquals(BlobBlockType::COMMITTED_TYPE, 'Committed');
+        self::assertEquals(BlobBlockType::UNCOMMITTED_TYPE, 'Uncommitted');
+        self::assertEquals(BlobBlockType::LATEST_TYPE, 'Latest');
     }
 }

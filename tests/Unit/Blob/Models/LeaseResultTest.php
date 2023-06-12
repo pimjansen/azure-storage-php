@@ -38,6 +38,6 @@ class LeaseResultTest extends \PHPUnit\Framework\TestCase
         $result = LeaseResult::create($headers);
 
         // Assert
-        $this->assertEquals($expected, $result->getLeaseId());
+        self::assertEquals($expected, $result->getLeaseId());
     }
 }

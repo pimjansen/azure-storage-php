@@ -41,7 +41,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $response = new Response();
         $newResponse = $callable($response);
         $entry = $middleware->getHistory()[0];
-        $this->assertTrue(
+        self::assertTrue(
             $response === $entry['response']
             && $request === $entry['request']
             && [] === $entry['options'],
@@ -64,7 +64,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         } catch (RequestException $e) {
             $newReason = $e;
         }
-        $this->assertTrue(
+        self::assertTrue(
             $newReason === $entry['reason']
             && $request === $entry['request']
             && [] === $entry['options'],
@@ -86,7 +86,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
             'options' => $options
         ]);
 
-        $this->assertTrue(count($middleware->getHistory()) == 1, 'Wrong array size');
+        self::assertTrue(count($middleware->getHistory()) == 1, 'Wrong array size');
 
         $middleware->addHistory([
             'request' => $request,
@@ -94,10 +94,10 @@ class HistoryMiddlewareTest extends ReflectionTestBase
             'options' => $options
         ]);
 
-        $this->assertTrue(count($middleware->getHistory()) == 2, 'Wrong array size');
+        self::assertTrue(count($middleware->getHistory()) == 2, 'Wrong array size');
 
         $middleware->clearHistory();
 
-        $this->assertTrue(count($middleware->getHistory()) == 0, 'Wrong array size');
+        self::assertTrue(count($middleware->getHistory()) == 0, 'Wrong array size');
     }
 }
