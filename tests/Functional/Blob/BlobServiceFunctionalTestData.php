@@ -69,8 +69,8 @@ class BlobServiceFunctionalTestData
         self::$testUniqueId = 'qa-' . $rint . '-';
         self::$nonExistContainerPrefix = 'qa-' . ($rint . 1) . '-';
         self::$nonExistBlobPrefix = 'qa-' . ($rint . 2) . '-';
-        self::$testContainerNames = array( self::$testUniqueId . 'a1', self::$testUniqueId . 'a2', self::$testUniqueId . 'b1' );
-        self::$testBlobNames = array( 'b' . self::$testUniqueId . 'a1', 'b' . self::$testUniqueId . 'a2', 'b' . self::$testUniqueId . 'b1' );
+        self::$testContainerNames = [ self::$testUniqueId . 'a1', self::$testUniqueId . 'a2', self::$testUniqueId . 'b1' ];
+        self::$testBlobNames = [ 'b' . self::$testUniqueId . 'a1', 'b' . self::$testUniqueId . 'a2', 'b' . self::$testUniqueId . 'b1' ];
         self::$blockIdCount = 0;
     }
 
@@ -125,7 +125,7 @@ class BlobServiceFunctionalTestData
 
     public static function getInterestingTimeoutValues()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, null);
         array_push($ret, -1);
         array_push($ret, 0);
@@ -190,7 +190,7 @@ class BlobServiceFunctionalTestData
 
     private static function getTemporalAccessConditions()
     {
-        $ret = array();
+        $ret = [];
 
         $past = new \DateTime("01/01/2010");
         $future = new \DateTime("01/01/2020");
@@ -246,7 +246,7 @@ class BlobServiceFunctionalTestData
 
     public static function getInterestingServiceProperties()
     {
-        $ret = array();
+        $ret = [];
 
         {
             // This is the default that comes from the server.
@@ -278,7 +278,7 @@ class BlobServiceFunctionalTestData
             $sp = new ServiceProperties();
             $sp->setLogging($l);
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c));
+            $sp->setCorses([$c]);
 
             array_push($ret, $sp);
         }
@@ -312,7 +312,7 @@ class BlobServiceFunctionalTestData
             $sp = new ServiceProperties();
             $sp->setLogging($l);
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+            $sp->setCorses([$c0, $c1]);
 
             array_push($ret, $sp);
         }
@@ -346,7 +346,7 @@ class BlobServiceFunctionalTestData
             $sp = new ServiceProperties();
             $sp->setLogging($l);
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+            $sp->setCorses([$c0, $c1]);
 
             array_push($ret, $sp);
         }
@@ -356,7 +356,7 @@ class BlobServiceFunctionalTestData
 
     public static function getInterestingListContainersOptions()
     {
-        $ret = array();
+        $ret = [];
 
 
         $options = new ListContainersOptions();
@@ -425,15 +425,15 @@ class BlobServiceFunctionalTestData
 
     public static function getInterestingMetadata()
     {
-        $ret = array();
+        $ret = [];
 
-        $metadata = array();
+        $metadata = [];
         array_push($ret, $metadata);
 
         array_push($ret, self::getNiceMetadata());
 
         // Some metadata that HTTP will not like.
-        $metadata = array('<>000' => '::::value');
+        $metadata = ['<>000' => '::::value'];
         array_push($ret, $metadata);
 
         return $ret;
@@ -441,15 +441,15 @@ class BlobServiceFunctionalTestData
 
     public static function getNiceMetadata()
     {
-        return array(
+        return [
             'key' => 'value',
             'foo' => 'bar',
-            'baz' => 'boo');
+            'baz' => 'boo'];
     }
 
     public static function getInterestingCreateBlobOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CreateBlobOptions();
         array_push($ret, $options);
@@ -463,16 +463,16 @@ class BlobServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateBlobOptions();
-        $metadata = array(
+        $metadata = [
             'foo' => 'bar',
             'foo2' => 'bar2',
-            'foo3' => 'bar3');
+            'foo3' => 'bar3'];
         $options->setMetadata($metadata);
         $options->setTimeout(10);
         array_push($ret, $options);
 
         $options = new CreateBlobOptions();
-        $metadata = array('foo' => 'bar');
+        $metadata = ['foo' => 'bar'];
         $options->setMetadata($metadata);
         $options->setTimeout(-10);
         array_push($ret, $options);
@@ -482,7 +482,7 @@ class BlobServiceFunctionalTestData
 
     public static function getInterestingListBlobsOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new ListBlobsOptions();
         array_push($ret, $options);
@@ -533,7 +533,7 @@ class BlobServiceFunctionalTestData
 
     public static function getInterestingCreateContainerOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CreateContainerOptions();
         array_push($ret, $options);
@@ -555,10 +555,10 @@ class BlobServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateContainerOptions();
-        $metadata = array(
+        $metadata = [
             'foo' => 'bar',
             'boo' => 'baz',
-        );
+        ];
         $options->setMetadata($metadata);
         array_push($ret, $options);
 
@@ -567,7 +567,7 @@ class BlobServiceFunctionalTestData
 
     public static function getInterestingDeleteContainerOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $past = new \DateTime("01/01/2010");
         $future = new \DateTime("01/01/2020");
@@ -604,7 +604,7 @@ class BlobServiceFunctionalTestData
 
     public static function getSetContainerMetadataOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new BlobServiceOptions();
         array_push($ret, $options);
@@ -630,7 +630,7 @@ class BlobServiceFunctionalTestData
 
     public static function getSetBlobMetadataOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new BlobServiceOptions();
         array_push($ret, $options);
@@ -659,7 +659,7 @@ class BlobServiceFunctionalTestData
 
     public static function getGetBlobPropertiesOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new GetBlobPropertiesOptions();
         array_push($ret, $options);
@@ -684,7 +684,7 @@ class BlobServiceFunctionalTestData
 
     public static function getSetBlobPropertiesOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new SetBlobPropertiesOptions();
         array_push($ret, $options);
@@ -745,7 +745,7 @@ class BlobServiceFunctionalTestData
 
     public static function getInterestingACL()
     {
-        $ret = array();
+        $ret = [];
 
         $past = new \DateTime("01/01/2010");
         $future = new \DateTime("01/01/2020");
@@ -774,7 +774,7 @@ class BlobServiceFunctionalTestData
 
     public static function getGetBlobOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new GetBlobOptions();
         array_push($ret, $options);
@@ -829,7 +829,7 @@ class BlobServiceFunctionalTestData
 
     public static function getDeleteBlobOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new DeleteBlobOptions();
         array_push($ret, $options);
@@ -865,7 +865,7 @@ class BlobServiceFunctionalTestData
 
     public static function getCreateBlobSnapshotOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CreateBlobSnapshotOptions();
         array_push($ret, $options);
@@ -893,7 +893,7 @@ class BlobServiceFunctionalTestData
 
     public static function getCopyBlobOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CopyBlobOptions();
         array_push($ret, $options);
@@ -919,10 +919,10 @@ class BlobServiceFunctionalTestData
         }
 
         $options = new CopyBlobOptions();
-        $metadata = array(
+        $metadata = [
             'Xkey' => 'Avalue',
             'Yfoo' => 'Bbar',
-            'Zbaz' => 'Cboo');
+            'Zbaz' => 'Cboo'];
         $options->setMetadata($metadata);
         array_push($ret, $options);
 
@@ -935,7 +935,7 @@ class BlobServiceFunctionalTestData
 
     public static function getCreateBlockBlobAttributes()
     {
-        $ret = array();
+        $ret = [];
         $ret[] = ['size' => Resources::MB_IN_BYTES_4];
         $ret[] = ['size' => Resources::MB_IN_BYTES_32];
         $ret[] = ['size' => Resources::MB_IN_BYTES_32 + Resources::MB_IN_BYTES_1];
@@ -959,7 +959,7 @@ class BlobServiceFunctionalTestData
 
     public static function getRangesArray()
     {
-        $ret = array();
+        $ret = [];
 
         $ret[] = [
             'putRange' => new Range(0, 511),
@@ -1007,7 +1007,7 @@ class BlobServiceFunctionalTestData
             'putRange' => null,
             'clearRange' => new Range(0, 2047),
             'listRange' => null,
-            'resultListRange' => array()
+            'resultListRange' => []
         ];
 
         return $ret;
@@ -1015,7 +1015,7 @@ class BlobServiceFunctionalTestData
 
     public static function getRangesDiffArray()
     {
-        $ret = array();
+        $ret = [];
 
         $ret[] = [
             'putRange' => null,
@@ -1085,7 +1085,7 @@ class BlobServiceFunctionalTestData
 
     public static function getAppendBlockSetup()
     {
-        $ret = array();
+        $ret = [];
 
         $size = Resources::MB_IN_BYTES_4;
         $options = new AppendBlockOptions();

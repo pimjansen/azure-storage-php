@@ -142,7 +142,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         );
 
         // Adding headers filter
-        $headers               = array();
+        $headers               = [];
         $currentVersion        = Resources::DATA_SERVICE_VERSION_VALUE;
         $maxVersion            = Resources::MAX_DATA_SERVICE_VERSION_VALUE;
         $accept                = Resources::ACCEPT_HEADER_VALUE;
@@ -188,7 +188,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      */
     private function createOperationsContexts(array $operations)
     {
-        $contexts = array();
+        $contexts = [];
 
         foreach ($operations as $operation) {
             $context = null;
@@ -312,7 +312,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      */
     private function createBatchRequestBody(array $operations, array $contexts)
     {
-        $mimeBodyParts = array();
+        $mimeBodyParts = [];
         $contentId     = 1;
         $count         = count($operations);
 
@@ -382,8 +382,8 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         Validate::isTrue(!is_null($rowKey), Resources::NULL_TABLE_KEY_MSG);
 
         $method      = Resources::HTTP_DELETE;
-        $headers     = array();
-        $queryParams = array();
+        $headers     = [];
+        $queryParams = [];
         $statusCode  = Resources::STATUS_NO_CONTENT;
         $path        = $this->getEntityPath($table, $partitionKey, $rowKey);
 
@@ -444,8 +444,8 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         Validate::isTrue($entity->isValid($msg), $msg);
 
         $method       = $verb;
-        $headers      = array();
-        $queryParams  = array();
+        $headers      = [];
+        $queryParams  = [];
         $statusCode   = Resources::STATUS_NO_CONTENT;
         $partitionKey = $entity->getPartitionKey();
         $rowKey       = $entity->getRowKey();
@@ -508,8 +508,8 @@ class TableRestProxy extends ServiceRestProxy implements ITable
 
         $method      = Resources::HTTP_POST;
         $context     = new HttpCallContext();
-        $headers     = array();
-        $queryParams = array();
+        $headers     = [];
+        $queryParams = [];
         $statusCode  = Resources::STATUS_CREATED;
         $path        = $table;
         $body        = $this->odataSerializer->getEntity($entity);
@@ -711,7 +711,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      */
     private function encodeODataUriValues(array $values)
     {
-        $list = array();
+        $list = [];
 
         foreach ($values as $value) {
             $list[] = $this->encodeODataUriValue($value);
@@ -796,9 +796,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
     public function queryTablesAsync($options = null)
     {
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = 'Tables';
 
         if (is_null($options)) {
@@ -925,9 +925,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         Validate::notNullOrEmpty($table, 'table');
 
         $method      = Resources::HTTP_POST;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = 'Tables';
         $body        = $this->odataSerializer->getTable($table);
 
@@ -994,9 +994,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         Validate::notNullOrEmpty($table, 'table');
 
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = "Tables('$table')";
 
         if (is_null($options)) {
@@ -1063,9 +1063,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         Validate::notNullOrEmpty($table, 'table');
 
         $method      = Resources::HTTP_DELETE;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = "Tables('$table')";
 
         if (is_null($options)) {
@@ -1122,9 +1122,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         Validate::notNullOrEmpty($table, 'table');
 
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = $table;
 
         if (is_null($options)) {
@@ -1539,8 +1539,8 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         Validate::isTrue(!is_null($rowKey), Resources::NULL_TABLE_KEY_MSG);
 
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
+        $headers     = [];
+        $queryParams = [];
         $path        = $this->getEntityPath($table, $partitionKey, $rowKey);
 
         if (is_null($options)) {
@@ -1564,7 +1564,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $context->setMethod($method);
         $context->setPath($path);
         $context->setQueryParameters($queryParams);
-        $context->setStatusCodes(array(Resources::STATUS_OK));
+        $context->setStatusCodes([Resources::STATUS_OK]);
         $context->setServiceOptions($options);
 
         $odataSerializer = $this->odataSerializer;
@@ -1615,8 +1615,8 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $mime        = $this->createBatchRequestBody($operations, $contexts);
         $body        = $mime['body'];
         $headers     = $mime['headers'];
-        $postParams  = array();
-        $queryParams = array();
+        $postParams  = [];
+        $queryParams = [];
         $path        = '$batch';
 
         if (is_null($options)) {
@@ -1693,9 +1693,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         Validate::canCastAsString($table, 'table');
 
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $statusCode  = Resources::STATUS_OK;
         $path        = $table;
 
@@ -1773,9 +1773,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         Validate::notNullOrEmpty($acl, 'acl');
 
         $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $body        = $acl->toXml($this->dataSerializer);
         $path        = $table;
 

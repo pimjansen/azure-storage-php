@@ -50,7 +50,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
 
         $sources = new \ReflectionProperty('MicrosoftAzure\Storage\Common\CloudConfigurationManager', '_sources');
         $sources->setAccessible(true);
-        $sources->setValue(array());
+        $sources->setValue([]);
     }
 
     public function testGetConnectionStringFromEnvironmentVariable()

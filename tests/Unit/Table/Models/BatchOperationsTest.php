@@ -58,7 +58,7 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $operation = new BatchOperation();
-        $expected = array($operation);
+        $expected = [$operation];
         $operations->addOperation($operation);
 
         // Test

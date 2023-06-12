@@ -46,7 +46,7 @@ class BatchOperations
      */
     public function __construct()
     {
-        $this->_operations = array();
+        $this->_operations = [];
     }
 
     /**
@@ -68,7 +68,7 @@ class BatchOperations
      */
     public function setOperations(array $operations)
     {
-        $this->_operations = array();
+        $this->_operations = [];
         foreach ($operations as $operation) {
             $this->addOperation($operation);
         }

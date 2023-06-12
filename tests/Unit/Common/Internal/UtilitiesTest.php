@@ -49,7 +49,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Setup
         $key = 0;
         $expected = 10;
-        $data = array(10, 20, 30);
+        $data = [10, 20, 30];
 
         // Test
         $actual = Utilities::tryGetValue($data, $key);
@@ -62,7 +62,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Setup
         $key = 10;
         $expected = 6;
-        $data = array(10, 20, 30);
+        $data = [10, 20, 30];
 
         // Test
         $actual = Utilities::tryGetValue($data, $key, $expected);
@@ -74,7 +74,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $key = 10;
-        $data = array(10, 20, 30);
+        $data = [10, 20, 30];
 
         // Test
         $actual = Utilities::tryGetValue($data, $key);
@@ -85,10 +85,10 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     public function testTryGetKeysChainValue()
     {
         // Setup
-        $array = array();
-        $array['a1'] = array();
+        $array = [];
+        $array['a1'] = [];
         $array['a2'] = 'value1';
-        $array['a1']['b1'] = array();
+        $array['a1']['b1'] = [];
         $array['a1']['b2'] = 'value2';
         $array['a1']['b1']['c1'] = 'value3';
 
@@ -132,7 +132,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     public function testGetArray()
     {
         // Setup
-        $expected = array(array(1, 2, 3, 4),  array(5, 6, 7, 8));
+        $expected = [[1, 2, 3, 4],  [5, 6, 7, 8]];
 
         // Test
         $actual = Utilities::getArray($expected);
@@ -143,8 +143,8 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     public function testGetArrayWithFlatValue()
     {
         // Setup
-        $flat = array(1, 2, 3, 4, 5, 6, 7, 8);
-        $expected = array(array(1, 2, 3, 4, 5, 6, 7, 8));
+        $flat = [1, 2, 3, 4, 5, 6, 7, 8];
+        $expected = [[1, 2, 3, 4, 5, 6, 7, 8]];
 
         // Test
         $actual = Utilities::getArray($flat);
@@ -155,8 +155,8 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     public function testGetArrayWithMixtureValue()
     {
         // Setup
-        $flat = array(array(10, 2), 1, 2, 3, 4, 5, 6, 7, 8);
-        $expected = array(array(array(10, 2), 1, 2, 3, 4, 5, 6, 7, 8));
+        $flat = [[10, 2], 1, 2, 3, 4, 5, 6, 7, 8];
+        $expected = [[[10, 2], 1, 2, 3, 4, 5, 6, 7, 8]];
 
         // Test
         $actual = Utilities::getArray($flat);
@@ -167,8 +167,8 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     public function testGetArrayWithEmptyValue()
     {
         // Setup
-        $empty = array();
-        $expected = array();
+        $empty = [];
+        $expected = [];
 
         // Test
         $actual = Utilities::getArray($empty);
@@ -231,12 +231,12 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $expected = '<?xml version="1.0" encoding="UTF-8"?>' . "\n" .
             '<Object field1="value1" field2="value2"/>';
 
-        $object = array(
-            '@attributes' => array(
+        $object = [
+            '@attributes' => [
                 'field1' => 'value1',
                 'field2' => 'value2'
-            )
-        );
+            ]
+        ];
 
         // Test
         $actual = Utilities::serialize($object, 'Object');
@@ -444,7 +444,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $value = 'CaseInsensitiVe';
-        $array = array('caSeinSenSitivE');
+        $array = ['caSeinSenSitivE'];
 
         // Test
         $actual = Utilities::inArrayInsensitive($value, $array);
@@ -457,7 +457,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $key = 'CaseInsensitiVe';
-        $array = array('caSeinSenSitivE' => '123');
+        $array = ['caSeinSenSitivE' => '123'];
 
         // Test
         $actual = Utilities::arrayKeyExistsInsensitive($key, $array);
@@ -471,7 +471,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         // Setup
         $key = 'KEy';
         $value = 1;
-        $array = array($key => $value);
+        $array = [$key => $value];
 
         // Test
         $actual = Utilities::tryGetValueInsensitive('keY', $array);
@@ -626,8 +626,8 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     public function testGetMetadataArray()
     {
         // Setup
-        $expected = array('key1' => 'value1', 'myname' => 'azure', 'mycompany' => 'microsoft_');
-        $metadataHeaders = array();
+        $expected = ['key1' => 'value1', 'myname' => 'azure', 'mycompany' => 'microsoft_'];
+        $metadataHeaders = [];
         foreach ($expected as $key => $value) {
             $metadataHeaders[Resources::X_MS_META_HEADER_PREFIX . strtolower($key)] = $value;
         }
@@ -645,8 +645,8 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $key = 'name';
         $validMetadataKey = Resources::X_MS_META_HEADER_PREFIX . $key;
         $value = 'correct';
-        $metadataHeaders = array('x-ms-key1' => 'value1', 'myname' => 'x-ms-date',
-            $validMetadataKey => $value, 'mycompany' => 'microsoft_');
+        $metadataHeaders = ['x-ms-key1' => 'value1', 'myname' => 'x-ms-date',
+            $validMetadataKey => $value, 'mycompany' => 'microsoft_'];
 
         // Test
         $actual = Utilities::getMetadataArray($metadataHeaders);

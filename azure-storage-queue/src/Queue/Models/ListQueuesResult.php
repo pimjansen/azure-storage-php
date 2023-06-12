@@ -95,8 +95,8 @@ class ListQueuesResult
             $parsedResponse,
             Resources::QP_MAX_RESULTS
         ));
-        $queues      = array();
-        $rawQueues            = array();
+        $queues      = [];
+        $rawQueues            = [];
 
         if (!empty($parsedResponse['Queues'])) {
             $rawQueues = Utilities::getArray($parsedResponse['Queues']['Queue']);
@@ -105,7 +105,7 @@ class ListQueuesResult
         foreach ($rawQueues as $value) {
             $queue    = new Queue($value['Name'], $serviceEndpoint . $value['Name']);
             $metadata = Utilities::tryGetValue($value, Resources::QP_METADATA);
-            $queue->setMetadata(is_null($metadata) ? array() : $metadata);
+            $queue->setMetadata(is_null($metadata) ? [] : $metadata);
             $queues[] = $queue;
         }
         $result->setQueues($queues);
@@ -133,7 +133,7 @@ class ListQueuesResult
      */
     protected function setQueues(array $queues)
     {
-        $this->_queues = array();
+        $this->_queues = [];
         foreach ($queues as $queue) {
             $this->_queues[] = clone $queue;
         }

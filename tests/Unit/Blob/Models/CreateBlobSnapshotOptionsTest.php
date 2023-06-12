@@ -43,7 +43,7 @@ class CreateBlobSnapshotOptionsTest extends \PHPUnit\Framework\TestCase
     public function testSetMetadata()
     {
         $createBlobSnapshotOptions = new CreateBlobSnapshotOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $createBlobSnapshotOptions->setMetadata($expected);
 
         $this->assertEquals(

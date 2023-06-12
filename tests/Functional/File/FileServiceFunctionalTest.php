@@ -1518,7 +1518,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                     $destShare,
                     $destFile,
                     $sourcePath,
-                    array(),
+                    [],
                     $options
                 );
             } else {

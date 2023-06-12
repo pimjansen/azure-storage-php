@@ -95,7 +95,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         $createRetryDecider = self::getMethod('createRetryDecider', new RetryMiddlewareFactory());
         $generalDecider = $createRetryDecider->invokeArgs(
             null,
-            array(RetryMiddlewareFactory::GENERAL_RETRY_TYPE, 3, false)
+            [RetryMiddlewareFactory::GENERAL_RETRY_TYPE, 3, false]
         );
         $request = new Request('PUT', '127.0.0.1');
         $retryResult_1 = $generalDecider(1, $request, new Response(408));//retry
@@ -123,7 +123,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         $createRetryDecider = self::getMethod('createRetryDecider', new RetryMiddlewareFactory());
         $generalDecider = $createRetryDecider->invokeArgs(
             null,
-            array(RetryMiddlewareFactory::GENERAL_RETRY_TYPE, 3, true)
+            [RetryMiddlewareFactory::GENERAL_RETRY_TYPE, 3, true]
         );
         $request = new Request('PUT', '127.0.0.1');
         $retryResult = $generalDecider(1, $request, null, new ConnectException('message', $request));
@@ -133,7 +133,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
     public function testCreateLinearDelayCalculator()
     {
         $creator = self::getMethod('createLinearDelayCalculator', new RetryMiddlewareFactory());
-        $linearDelayCalculator = $creator->invokeArgs(null, array(1000));
+        $linearDelayCalculator = $creator->invokeArgs(null, [1000]);
         for ($index = 0; $index < 10; ++$index) {
             $this->assertEquals($index * 1000, $linearDelayCalculator($index));
         }
@@ -142,7 +142,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
     public function testCreateExponentialDelayCalculator()
     {
         $creator = self::getMethod('createExponentialDelayCalculator', new RetryMiddlewareFactory());
-        $exponentialDelayCalculator = $creator->invokeArgs(null, array(1000));
+        $exponentialDelayCalculator = $creator->invokeArgs(null, [1000]);
         for ($index = 0; $index < 3; ++$index) {
             $pow = (int)\pow(2, $index);
             $this->assertEquals($pow * 1000, $exponentialDelayCalculator($index));

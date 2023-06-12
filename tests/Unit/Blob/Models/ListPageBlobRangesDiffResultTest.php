@@ -47,17 +47,17 @@ class ListPageBlobRangesDiffResultTest extends \PHPUnit\Framework\TestCase
         $headers   = TestResources::listPageRangeHeaders();
         $bodyArray = TestResources::listPageRangeDiffBodyInArray();
         // Prepare expected page range
-        $rawPageRanges = array();
+        $rawPageRanges = [];
         if (!empty($bodyArray['PageRange'])) {
             $rawPageRanges = Utilities::getArray($bodyArray['PageRange']);
         }
 
-        $rawClearRanges = array();
+        $rawClearRanges = [];
         if (!empty($bodyArray['ClearRange'])) {
             $rawClearRanges = Utilities::getArray($bodyArray['ClearRange']);
         }
 
-        $pageRanges = array();
+        $pageRanges = [];
 
         foreach ($rawPageRanges as $value) {
             $pageRanges[] = new RangeDiff(

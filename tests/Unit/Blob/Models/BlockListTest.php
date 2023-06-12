@@ -133,7 +133,7 @@ class BlockListTest extends \PHPUnit\Framework\TestCase
         $block3->setType(BlobBlockType::LATEST_TYPE);
 
         // Test
-        $blockList = BlockList::create(array($block1, $block2, $block3));
+        $blockList = BlockList::create([$block1, $block2, $block3]);
 
         // Assert
         $this->assertCount(3, $blockList->getEntries());

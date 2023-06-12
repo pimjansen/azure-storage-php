@@ -52,7 +52,7 @@ class ListMessagesResult
     public static function create(array $parsedResponse = null)
     {
         $result        = new ListMessagesResult();
-        $queueMessages = array();
+        $queueMessages = [];
 
         if (!empty($parsedResponse)) {
             $rawMessages = Utilities::getArray($parsedResponse['QueueMessage']);
@@ -88,7 +88,7 @@ class ListMessagesResult
      */
     protected function setQueueMessages(array $queueMessages)
     {
-        $this->_queueMessages = array();
+        $this->_queueMessages = [];
 
         foreach ($queueMessages as $value) {
             $this->_queueMessages[] = clone $value;

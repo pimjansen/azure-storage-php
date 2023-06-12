@@ -94,7 +94,7 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $serializer = new JsonODataReaderWriter();
-        $expected = array('mytable1', 'mytable2', 'mytable3', 'mytable4', 'mytable5');
+        $expected = ['mytable1', 'mytable2', 'mytable3', 'mytable4', 'mytable5'];
         $tableJSON0 = TestResources::getTableEntriesMinimalMetaResult();
         $tableJSON1 = TestResources::getTableEntriesNoMetaResult();
         $tableJSON2 = TestResources::getTableEntriesFullMetaResult();
@@ -173,7 +173,7 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
         $e1->setTimestamp(Utilities::convertToDateTime('2012-05-17T00:59:32.1131734Z'));
         $e2->setTimestamp(Utilities::convertToDateTime('2012-05-17T00:59:32.4252358Z'));
         $e3->setTimestamp(Utilities::convertToDateTime('2012-05-17T00:59:32.7533014Z'));
-        $expected = array($e1, $e2, $e3);
+        $expected = [$e1, $e2, $e3];
         $entitiesJSON = TestResources::getEntitiesMinimalMetaResult();
 
         // Test

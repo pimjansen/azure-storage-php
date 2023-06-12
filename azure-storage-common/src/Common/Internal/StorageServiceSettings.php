@@ -74,7 +74,7 @@ class StorageServiceSettings extends ServiceSettings
      * Valid setting keys
      * @internal
      */
-    protected static $validSettingKeys = array();
+    protected static $validSettingKeys = [];
 
     /**
      * Initializes static members of the class.

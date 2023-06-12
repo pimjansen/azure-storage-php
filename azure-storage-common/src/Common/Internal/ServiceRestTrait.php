@@ -74,9 +74,9 @@ trait ServiceRestTrait
         ServiceOptions $options = null
     ) {
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
+        $headers     = [];
+        $queryParams = [];
+        $postParams  = [];
         $path        = Resources::EMPTY_STRING;
 
         if (is_null($options)) {
@@ -154,9 +154,9 @@ trait ServiceRestTrait
         );
 
         $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
+        $headers     = [];
+        $queryParams = [];
+        $postParams  = [];
         $path        = Resources::EMPTY_STRING;
         $body        = $serviceProperties->toXml($this->dataSerializer);
 
@@ -218,9 +218,9 @@ trait ServiceRestTrait
     public function getServiceStatsAsync(ServiceOptions $options = null)
     {
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
+        $headers     = [];
+        $queryParams = [];
+        $postParams  = [];
         $path        = Resources::EMPTY_STRING;
 
         if (is_null($options)) {

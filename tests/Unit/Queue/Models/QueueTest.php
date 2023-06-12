@@ -111,7 +111,7 @@ class QueueTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $queue = new Queue('myqueue', 'myurl');
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $queue->setMetadata($expected);
@@ -124,7 +124,7 @@ class QueueTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $queue = new Queue('myqueue', 'myurl');
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $queue->setMetadata($expected);
 
         // Test

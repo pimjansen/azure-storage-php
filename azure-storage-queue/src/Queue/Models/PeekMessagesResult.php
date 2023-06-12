@@ -53,7 +53,7 @@ class PeekMessagesResult
     public static function create($parsedResponse)
     {
         $result        = new PeekMessagesResult();
-        $queueMessages = array();
+        $queueMessages = [];
 
         if (!empty($parsedResponse)) {
             $rawMessages = Utilities::getArray(
@@ -77,7 +77,7 @@ class PeekMessagesResult
      */
     public function getQueueMessages()
     {
-        $clonedMessages = array();
+        $clonedMessages = [];
 
         foreach ($this->queueMessages as $value) {
             $clonedMessages[] = clone $value;

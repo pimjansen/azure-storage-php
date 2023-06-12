@@ -106,8 +106,8 @@ class SignedIdentifier
      */
     public function toArray()
     {
-        $array = array();
-        $accessPolicyArray = array();
+        $array = [];
+        $accessPolicyArray = [];
         $accessPolicyArray[Resources::XTAG_SIGNED_ID] = $this->getId();
         $accessPolicyArray[Resources::XTAG_ACCESS_POLICY] =
             $this->getAccessPolicy()->toArray();

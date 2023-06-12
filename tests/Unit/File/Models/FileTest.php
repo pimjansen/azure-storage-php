@@ -52,7 +52,7 @@ class FileTest extends \PHPUnit\Framework\TestCase
         $samples = $listArray[Resources::QP_ENTRIES][FileResources::QP_FILE];
 
         // Test
-        $actuals = array();
+        $actuals = [];
         $actuals[] = File::create($samples[0]);
         $actuals[] = File::create($samples[1]);
         $actuals[] = File::create($samples[2]);

@@ -43,7 +43,7 @@ class ConnectionStringParserTest extends \PHPUnit\Framework\TestCase
         // Setup
         $arguments = func_get_args();
         $count = func_num_args();
-        $expected = array();
+        $expected = [];
         for ($i = 1; $i < $count; $i += 2) {
             $expected[$arguments[$i]] = $arguments[$i + 1];
         }

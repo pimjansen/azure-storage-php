@@ -52,7 +52,7 @@ class Validate
     public static function isArray($var, $name)
     {
         if (!is_array($var)) {
-            throw new InvalidArgumentTypeException(gettype(array()), $name);
+            throw new InvalidArgumentTypeException(gettype([]), $name);
         }
     }
 

@@ -71,12 +71,12 @@ class TableServiceIntegrationTest extends IntegrationTestBase
         self::$testTablesPrefix .= rand(0, 1000);
         // Setup container names array (list of container names used by
         // integration tests)
-        self::$testTables = array();
+        self::$testTables = [];
         for ($i = 0; $i < 10; $i++) {
             self::$testTables[$i] = self::$testTablesPrefix . ($i + 1);
         }
 
-        self::$creatableTables = array();
+        self::$creatableTables = [];
         for ($i = 0; $i < 10; $i++) {
             self::$creatableTables[$i] = self::$createableTablesPrefix . ($i + 1);
         }
@@ -146,7 +146,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
 
     private function listTables($prefix)
     {
-        $result = array();
+        $result = [];
         $qto = new QueryTablesOptions();
         $qto->setPrefix($prefix);
         $list = $this->restProxy->queryTables($qto);
@@ -860,7 +860,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
         // Arrange
         $table = self::$testTable5;
         $numberOfEntries = 5;
-        $entities = array();
+        $entities = [];
         for ($i = 0; $i < $numberOfEntries; $i++) {
             $entity = new Entity();
             $entity->setPartitionKey('001');

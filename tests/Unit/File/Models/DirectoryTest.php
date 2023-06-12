@@ -49,7 +49,7 @@ class DirectoryTest extends \PHPUnit\Framework\TestCase
         $samples = $listArray[Resources::QP_ENTRIES][FileResources::QP_DIRECTORY];
 
         // Test
-        $actuals = array();
+        $actuals = [];
         $actuals[] = Directory::create($samples[0]);
         $actuals[] = Directory::create($samples[1]);
         $actuals[] = Directory::create($samples[2]);

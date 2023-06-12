@@ -84,7 +84,7 @@ class QueryEntitiesOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $options = new QueryEntitiesOptions();
-        $expected = array('customerId', 'customerName');
+        $expected = ['customerId', 'customerName'];
 
         // Test
         $options->setSelectFields($expected);
@@ -124,7 +124,7 @@ class QueryEntitiesOptionsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $options = new QueryEntitiesOptions();
         $field = 'customerId';
-        $expected = array($field);
+        $expected = [$field];
 
         // Test
         $options->addSelectField($field);

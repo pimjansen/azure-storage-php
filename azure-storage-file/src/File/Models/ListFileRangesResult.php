@@ -65,12 +65,12 @@ class ListFileRangesResult
         $date          = $headers[Resources::LAST_MODIFIED];
         $date          = Utilities::rfc1123ToDateTime($date);
         $fileLength    = intval($headers[Resources::X_MS_CONTENT_LENGTH]);
-        $rawRanges = array();
+        $rawRanges = [];
         if (!empty($parsed['Range'])) {
             $rawRanges = Utilities::getArray($parsed['Range']);
         }
 
-        $ranges = array();
+        $ranges = [];
         foreach ($rawRanges as $value) {
             $ranges[] = new Range(
                 intval($value['Start']),
@@ -173,7 +173,7 @@ class ListFileRangesResult
      */
     protected function setRanges(array $ranges)
     {
-        $this->ranges = array();
+        $this->ranges = [];
         foreach ($ranges as $range) {
             $this->ranges[] = clone $range;
         }

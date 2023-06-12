@@ -88,7 +88,7 @@ class ServiceException extends \LogicException
         try {
             $internalErrors = libxml_use_internal_errors(true);
             $parsedArray = $serializer->unserialize($response->getBody());
-            $messages = array();
+            $messages = [];
             foreach (libxml_get_errors() as $error) {
                 $messages[] = $error->message;
             }

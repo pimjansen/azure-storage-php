@@ -50,8 +50,8 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         //setup the proxies for creating containers
         $this->setUpWithConnectionString($this->connectionString);
 
-        $containerProxies = array();
-        $containers = array();
+        $containerProxies = [];
+        $containers = [];
         $containers[] = TestResources::getInterestingName('con');
         $this->safeCreateContainer($containers[0]);
         $containers[] = TestResources::getInterestingName('con');
@@ -193,8 +193,8 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         //setup the proxies for creating containers
         $this->setUpWithConnectionString($this->connectionString);
 
-        $containerProxies = array();
-        $containers = array();
+        $containerProxies = [];
+        $containers = [];
         $containers[] = TestResources::getInterestingName('con');
         $this->safeCreateContainer($containers[0]);
         $containers[] = TestResources::getInterestingName('con');

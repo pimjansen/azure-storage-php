@@ -63,7 +63,7 @@ class CommonRequestMiddleware extends MiddlewareBase
         IAuthScheme $authenticationScheme = null,
         $storageAPIVersion,
         $serviceSDKVersion,
-        array $headers = array()
+        array $headers = []
     ) {
         $this->authenticationScheme = $authenticationScheme;
         $this->msVersion            = $storageAPIVersion;

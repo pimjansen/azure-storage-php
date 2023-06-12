@@ -69,12 +69,12 @@ class ListPageBlobRangesDiffResult extends ListPageBlobRangesResult
 
         $parsed = array_change_key_case($parsed);
 
-        $rawRanges = array();
+        $rawRanges = [];
         if (!empty($parsed[strtolower(Resources::XTAG_PAGE_RANGE)])) {
             $rawRanges = Utilities::getArray($parsed[strtolower(Resources::XTAG_PAGE_RANGE)]);
         }
 
-        $pageRanges = array();
+        $pageRanges = [];
         foreach ($rawRanges as $value) {
             $pageRanges[] = new RangeDiff(
                 intval($value[Resources::XTAG_RANGE_START]),
@@ -82,7 +82,7 @@ class ListPageBlobRangesDiffResult extends ListPageBlobRangesResult
             );
         }
 
-        $rawRanges = array();
+        $rawRanges = [];
         if (!empty($parsed[strtolower(Resources::XTAG_CLEAR_RANGE)])) {
             $rawRanges = Utilities::getArray($parsed[strtolower(Resources::XTAG_CLEAR_RANGE)]);
         }

@@ -63,7 +63,7 @@ class MiddlewareBaseTest extends ReflectionTestBase
         $middlewareBase = new MiddlewareBase();
         $onRequest = self::getMethod('onRequest', $middlewareBase);
         $request = new Request('GET', 'http://www.bing.com');
-        $newRequest = $onRequest->invokeArgs($middlewareBase, array($request));
+        $newRequest = $onRequest->invokeArgs($middlewareBase, [$request]);
         $this->assertTrue($request === $newRequest, 'Not equal to original request');
     }
 
@@ -75,7 +75,7 @@ class MiddlewareBaseTest extends ReflectionTestBase
         $middlewareBase = new MiddlewareBase();
         $onFulfilled = self::getMethod('onFulfilled', $middlewareBase);
         $request = new Request('GET', 'http://www.bing.com');
-        $callable = $onFulfilled->invokeArgs($middlewareBase, array($request, array()));
+        $callable = $onFulfilled->invokeArgs($middlewareBase, [$request, []]);
         $response = new Response();
         $newResponse = $callable($response);
         $this->assertTrue($response === $newResponse, 'Not equal to original response');
@@ -89,7 +89,7 @@ class MiddlewareBaseTest extends ReflectionTestBase
         $middlewareBase = new MiddlewareBase();
         $onFulfilled = self::getMethod('onRejected', $middlewareBase);
         $request = new Request('GET', 'http://www.bing.com');
-        $callable = $onFulfilled->invokeArgs($middlewareBase, array($request, array()));
+        $callable = $onFulfilled->invokeArgs($middlewareBase, [$request, []]);
         $reason = new RequestException('test message', $request);
         $promise = $callable($reason);
         $newReason = null;

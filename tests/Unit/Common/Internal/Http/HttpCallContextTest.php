@@ -122,7 +122,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
     public function testSetHeaders($context)
     {
         // Setup
-        $expected = array('value1', 'value2', 'value3');
+        $expected = ['value1', 'value2', 'value3'];
 
         // Test
         $context->setHeaders($expected);
@@ -137,7 +137,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
     public function testSetQueryParameters($context)
     {
         // Setup
-        $expected = array('value1', 'value2', 'value3');
+        $expected = ['value1', 'value2', 'value3'];
 
         // Test
         $context->setQueryParameters($expected);
@@ -152,7 +152,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
     public function testSetStatusCodes($context)
     {
         // Setup
-        $expected = array(1, 2, 3);
+        $expected = [1, 2, 3];
 
         // Test
         $context->setStatusCodes($expected);
@@ -200,7 +200,7 @@ class HttpCallContextTest extends \PHPUnit\Framework\TestCase
     public function testToString($context)
     {
         // Setup
-        $headers = array('h1' => 'v1', 'h2' => 'v2');
+        $headers = ['h1' => 'v1', 'h2' => 'v2'];
         $method = 'GET';
         $uri = 'http://microsoft.com';
         $path = 'windowsazure/services';

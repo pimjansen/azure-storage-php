@@ -44,7 +44,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
     public function testSetMetadata()
     {
         $copyBlobOptions = new CopyBlobOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $copyBlobOptions->setMetadata($expected);
 
         $this->assertEquals(

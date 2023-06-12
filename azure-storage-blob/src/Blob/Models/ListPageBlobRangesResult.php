@@ -64,14 +64,14 @@ class ListPageBlobRangesResult
         $date          = $headers[Resources::LAST_MODIFIED];
         $date          = Utilities::rfc1123ToDateTime($date);
         $blobLength    = intval($headers[Resources::X_MS_BLOB_CONTENT_LENGTH]);
-        $rawRanges = array();
+        $rawRanges = [];
 
         if (!empty($parsed[Resources::XTAG_PAGE_RANGE])) {
             $parsed        = array_change_key_case($parsed);
             $rawRanges = Utilities::getArray($parsed[strtolower(RESOURCES::XTAG_PAGE_RANGE)]);
         }
 
-        $pageRanges = array();
+        $pageRanges = [];
         foreach ($rawRanges as $value) {
             $pageRanges[] = new Range(
                 intval($value[Resources::XTAG_RANGE_START]),
@@ -174,7 +174,7 @@ class ListPageBlobRangesResult
      */
     protected function setRanges(array $pageRanges)
     {
-        $this->_pageRanges = array();
+        $this->_pageRanges = [];
         foreach ($pageRanges as $pageRange) {
             $this->_pageRanges[] = clone $pageRange;
         }

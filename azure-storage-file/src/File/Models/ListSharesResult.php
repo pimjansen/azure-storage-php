@@ -98,8 +98,8 @@ class ListSharesResult
             $parsedResponse,
             Resources::QP_MAX_RESULTS
         ));
-        $shares = array();
-        $shareArrays = array();
+        $shares = [];
+        $shareArrays = [];
 
         if (!empty($parsedResponse[Resources::QP_SHARES])) {
             $array = $parsedResponse[Resources::QP_SHARES][Resources::QP_SHARE];
@@ -123,7 +123,7 @@ class ListSharesResult
      */
     protected function setShares(array $shares)
     {
-        $this->shares = array();
+        $this->shares = [];
         foreach ($shares as $share) {
             $this->shares[] = clone $share;
         }

@@ -50,7 +50,7 @@ class JsonODataReaderWriter implements IODataReaderWriter
      */
     public function getTable($name)
     {
-        return json_encode(array(Resources::JSON_TABLE_NAME => $name));
+        return json_encode([Resources::JSON_TABLE_NAME => $name]);
     }
 
     /**
@@ -75,7 +75,7 @@ class JsonODataReaderWriter implements IODataReaderWriter
      */
     public function parseTableEntries($body)
     {
-        $tables     = array();
+        $tables     = [];
         $result     = json_decode($body, true);
 
         $rawEntries = $result[Resources::JSON_VALUE];
@@ -97,7 +97,7 @@ class JsonODataReaderWriter implements IODataReaderWriter
     public function getEntity(Entity $entity)
     {
         $entityProperties = $entity->getProperties();
-        $properties       = array();
+        $properties       = [];
 
         foreach ($entityProperties as $name => $property) {
             $edmType    = $property->getEdmType();
@@ -146,7 +146,7 @@ class JsonODataReaderWriter implements IODataReaderWriter
     public function parseEntities($body)
     {
         $rawEntities = json_decode($body, true);
-        $entities   = array();
+        $entities   = [];
 
         foreach ($rawEntities[Resources::JSON_VALUE] as $rawEntity) {
             $entities[] = $this->parseOneEntity($rawEntity);

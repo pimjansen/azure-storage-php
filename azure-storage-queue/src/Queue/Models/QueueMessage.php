@@ -302,8 +302,8 @@ class QueueMessage
      */
     public function toXml(XmlSerializer $xmlSerializer)
     {
-        $array      = array('MessageText' => $this->_messageText);
-        $properties = array(XmlSerializer::ROOT_NAME => self::$xmlRootName);
+        $array      = ['MessageText' => $this->_messageText];
+        $properties = [XmlSerializer::ROOT_NAME => self::$xmlRootName];
 
         return $xmlSerializer->serialize($array, $properties);
     }

@@ -56,7 +56,7 @@ class CORSTest extends \PHPUnit\Framework\TestCase
      */
     public function testCreateNegative()
     {
-        $parsedResponse = array();
+        $parsedResponse = [];
 
         $cors = CORS::create($parsedResponse);
     }

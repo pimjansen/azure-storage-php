@@ -95,7 +95,7 @@ class ServiceOptions
             $this->setLocationMode(LocationMode::PRIMARY_ONLY);
             $this->setIsStreaming(false);
             $this->setDecodeContent(false);
-            $this->middlewares = array();
+            $this->middlewares = [];
             $this->middlewareStack = null;
         } else {
             $this->setNumberOfConcurrency($options->getNumberOfConcurrency());
@@ -285,7 +285,7 @@ class ServiceOptions
      */
     public function generateRequestOptions(array $options)
     {
-        $result = array();
+        $result = [];
 
         return $result;
     }

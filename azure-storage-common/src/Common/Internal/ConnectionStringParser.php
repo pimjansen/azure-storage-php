@@ -95,7 +95,7 @@ class ConnectionStringParser
     {
         $key                    = null;
         $value                  = null;
-        $connectionStringValues = array();
+        $connectionStringValues = [];
 
         while (true) {
             $this->_skipWhiteSpaces();

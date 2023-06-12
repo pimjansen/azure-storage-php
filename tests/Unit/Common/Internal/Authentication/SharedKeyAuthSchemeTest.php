@@ -44,7 +44,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstruct()
     {
-        $expected = array();
+        $expected = [];
         $expected[] = Resources::CONTENT_ENCODING;
         $expected[] = Resources::CONTENT_LANGUAGE;
         $expected[] = Resources::CONTENT_LENGTH;
@@ -67,12 +67,12 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
     public function testComputeSignatureSimple()
     {
         $httpMethod = 'GET';
-        $queryParams = array(Resources::QP_COMP => 'list');
+        $queryParams = [Resources::QP_COMP => 'list'];
         $url = TestResources::URI1;
         $date = TestResources::DATE1;
         $apiVersion = "2016-05-31";
         $accountName = TestResources::ACCOUNT_NAME;
-        $headers = array(Resources::X_MS_DATE => $date, Resources::X_MS_VERSION => $apiVersion);
+        $headers = [Resources::X_MS_DATE => $date, Resources::X_MS_VERSION => $apiVersion];
         $expected = "GET\n\n\n\n\n\n\n\n\n\n\n\n" . Resources::X_MS_DATE . ":$date\n" . Resources::X_MS_VERSION .
                 ":$apiVersion\n/$accountName" . parse_url($url, PHP_URL_PATH) . "\ncomp:list";
         $mock = new SharedKeyAuthSchemeMock($accountName, TestResources::KEY4);
@@ -89,8 +89,8 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
         $accountKey = TestResources::KEY4;
         $url = TestResources::URI2;
         $date1 = TestResources::DATE2;
-        $headers = array(Resources::X_MS_VERSION => $apiVersion, Resources::X_MS_DATE => $date1);
-        $queryParams = array(Resources::QP_COMP => 'list');
+        $headers = [Resources::X_MS_VERSION => $apiVersion, Resources::X_MS_DATE => $date1];
+        $queryParams = [Resources::QP_COMP => 'list'];
         $httpMethod = 'GET';
         $expected = 'SharedKey ' . $accountName;
 
@@ -104,10 +104,10 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
     public function testComputeCanonicalizedHeadersMock()
     {
         $date = TestResources::DATE1;
-        $headers = array();
+        $headers = [];
         $headers[Resources::X_MS_DATE] = $date;
         $headers[Resources::X_MS_VERSION] = '2016-05-31';
-        $expected = array();
+        $expected = [];
         $expected[] = Resources::X_MS_DATE . ':' . $date;
         $expected[] = Resources::X_MS_VERSION . ':' . $headers[Resources::X_MS_VERSION];
         $mock = new SharedKeyAuthSchemeMock(TestResources::ACCOUNT_NAME, TestResources::KEY4);
@@ -119,7 +119,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
     public function testComputeCanonicalizedResourceMockSimple()
     {
-        $queryVariables = array();
+        $queryVariables = [];
         $queryVariables['COMP'] = 'list';
         $accountName = TestResources::ACCOUNT_NAME;
         $url = TestResources::URI1;
@@ -133,14 +133,14 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
     public function testComputeCanonicalizedResourceMockMultipleValues()
     {
-        $queryVariables = array();
+        $queryVariables = [];
         $queryVariables['COMP'] = 'list';
         $queryVariables[Resources::QP_INCLUDE] = ServiceRestProxy::groupQueryValues(
-            array(
+            [
                 'snapshots',
                 'metadata',
                 'uncommittedblobs'
-            )
+            ]
         );
         $expectedQueryPart = "comp:list\ninclude:metadata,snapshots,uncommittedblobs";
         $accountName = TestResources::ACCOUNT_NAME;
@@ -155,7 +155,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
     public function testComputeCanonicalizedResourceForTableMock()
     {
-        $queryVariables = array();
+        $queryVariables = [];
         $queryVariables['COMP'] = 'list';
         $accountName = TestResources::ACCOUNT_NAME;
         $url = TestResources::URI1;
@@ -172,7 +172,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
         // Setup
         $mock = new SharedKeyAuthSchemeMock(TestResources::ACCOUNT_NAME, TestResources::KEY4);
         $uri = new Uri(TestResources::URI2);
-        $request = new Request('Get', $uri, array(), null);
+        $request = new Request('Get', $uri, [], null);
 
         // Test
         $actual = $mock->signRequest($request);

@@ -1085,7 +1085,7 @@ interface IFile
         $share,
         $path,
         $sourcePath,
-        array $metadata = array(),
+        array $metadata = [],
         FileModels\FileServiceOptions $options = null
     );
 
@@ -1122,7 +1122,7 @@ interface IFile
         $share,
         $path,
         $sourcePath,
-        array $metadata = array(),
+        array $metadata = [],
         FileModels\FileServiceOptions $options = null
     );
 

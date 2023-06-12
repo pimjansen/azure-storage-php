@@ -45,7 +45,7 @@ class GetContainerACLResultTest extends \PHPUnit\Framework\TestCase
     public function testCreate()
     {
         // Setup
-        $sample = array();
+        $sample = [];
         $expectedETag = '0x8CAFB82EFF70C46';
         $expectedDate = new \DateTime('Sun, 25 Sep 2011 19:42:18 GMT');
         $expectedPublicAccess = 'container';

@@ -183,7 +183,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $type      = EdmType::DOUBLE;
-        $values    = array();
+        $values    = [];
         $values[]  = 1;
         $values[]  = PHP_INT_MAX;
         $values[]  = pi();

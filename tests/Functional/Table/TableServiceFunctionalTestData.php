@@ -62,11 +62,11 @@ class TableServiceFunctionalTestData
         $rint = rand(0, 1000000);
         self::$testUniqueId = 'qaX' . $rint . 'X';
         self::$nonExistTablePrefix = 'qaX' . ($rint + 1) . 'X';
-        self::$testTableNames = array(
+        self::$testTableNames = [
             self::$testUniqueId . 'a1',
             self::$testUniqueId . 'a2',
             self::$testUniqueId . 'b1'
-        );
+        ];
     }
 
     public static function getInterestingTableName()
@@ -119,7 +119,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingServiceProperties()
     {
-        $ret = array();
+        $ret = [];
 
         // This is the default that comes from the server.
         array_push($ret, self::getDefaultServiceProperties());
@@ -149,7 +149,7 @@ class TableServiceFunctionalTestData
             $sp = new ServiceProperties();
             $sp->setLogging($l);
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c));
+            $sp->setCorses([$c]);
 
             array_push($ret, $sp);
         }
@@ -182,7 +182,7 @@ class TableServiceFunctionalTestData
             $sp = new ServiceProperties();
             $sp->setLogging($l);
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+            $sp->setCorses([$c0, $c1]);
 
             array_push($ret, $sp);
         }
@@ -216,7 +216,7 @@ class TableServiceFunctionalTestData
             $sp = new ServiceProperties();
             $sp->setLogging($l);
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+            $sp->setCorses([$c0, $c1]);
 
             array_push($ret, $sp);
         }
@@ -226,7 +226,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingQueryTablesOptions($isEmulated)
     {
-        $ret = array();
+        $ret = [];
 
 
         $options = new QueryTablesOptions();
@@ -358,7 +358,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingEntities()
     {
-        $ret = array();
+        $ret = [];
 
         array_push($ret, self::getSimpleEntity());
 
@@ -410,7 +410,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadEntities()
     {
-        $ret = array();
+        $ret = [];
 
         $e = new Entity();
         array_push($ret, $e);
@@ -428,7 +428,7 @@ class TableServiceFunctionalTestData
 
     public static function getSimpleEntities($count)
     {
-        $ret = array();
+        $ret = [];
 
         $e = new Entity();
         $e->setPartitionKey('singlePartition');
@@ -476,7 +476,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodBooleans()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, true);
         array_push($ret, false);
         //        array_push($ret, 'TRUE');
@@ -486,14 +486,14 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadBooleans()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 'BOO!');
         return $ret;
     }
 
     public static function getInterestingGoodDates()
     {
-        $ret = array();
+        $ret = [];
 
         array_push($ret, new \DateTime());
 
@@ -515,7 +515,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadDates()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, true);
         array_push($ret, 0);
         return $ret;
@@ -523,7 +523,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodDoubles()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, pi());
         array_push($ret, 0.0);
         array_push($ret, floatval(self::INT_MAX_VALUE));
@@ -535,14 +535,14 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadDoubles()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 'ABCDEFGH-D3F8-49EC-B837-B8B5B6367B74');
         return $ret;
     }
 
     public static function getInterestingGoodGuids()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, '90ab64d6-d3f8-49ec-b837-b8b5b6367b74');
         array_push($ret, '00000000-0000-0000-0000-000000000000');
         return $ret;
@@ -550,7 +550,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadGuids()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 'ABCDEFGH-D3F8-49EC-B837-B8B5B6367B74');
         array_push($ret, '');
         return $ret;
@@ -558,7 +558,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodInts()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 0);
         array_push($ret, self::INT_MAX_VALUE);
         array_push($ret, self::$INT_MIN_VALUE);
@@ -568,7 +568,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadInts()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, false);
         array_push($ret, self::INT_MAX_VALUE + 1);
         return $ret;
@@ -576,7 +576,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodLongs()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, '0');
         array_push($ret, strval(self::LONG_BIG_VALUE));
         array_push($ret, strval(self::LONG_BIG_VALUE_NEGATIVE));
@@ -586,7 +586,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadLongs()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, false);
         array_push($ret, '9223372036854775808');
         return $ret;
@@ -594,7 +594,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodBinaries()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, '');
         array_push($ret, chr(1) . chr(2) . chr(3) . chr(4) . chr(5));
         array_push($ret, chr(255) . chr(254) . chr(253));
@@ -603,7 +603,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadBinaries()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 12345);
         array_push($ret, new \DateTime());
         return $ret;
@@ -611,7 +611,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodStrings()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 'AQIDBAU='); // Base-64 encoded byte array { 0x01, 0x02, 0x03, 0x04, 0x05 };
         array_push($ret, 'false');
         array_push($ret, '12345');
@@ -626,7 +626,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadStrings()
     {
-        $ret = array();
+        $ret = [];
         // Are there any?
         return $ret;
     }

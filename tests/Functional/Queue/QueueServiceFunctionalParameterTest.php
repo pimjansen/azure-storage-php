@@ -122,14 +122,14 @@ class QueueServiceFunctionalParameterTest extends FunctionalTestBase
     public function testSetQueueMetadataEmptyMetadata()
     {
         $queue = QueueServiceFunctionalTestData::$testQueueNames[0];
-        $this->restProxy->setQueueMetadata($queue, array());
+        $this->restProxy->setQueueMetadata($queue, []);
         $this->assertTrue(true, 'Should just work');
     }
 
     public function testSetQueueMetadataNullOptions()
     {
         $queue = QueueServiceFunctionalTestData::$testQueueNames[0];
-        $this->restProxy->setQueueMetadata($queue, array(), null);
+        $this->restProxy->setQueueMetadata($queue, [], null);
         $this->assertTrue(true, 'Should just work');
     }
 

@@ -181,12 +181,12 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $sample = TestResources::getServicePropertiesSample();
         $metrics = Metrics::create($sample['HourMetrics']);
-        $expected = array(
+        $expected = [
             'Version'         => $sample['HourMetrics']['Version'],
             'Enabled'         => $sample['HourMetrics']['Enabled'],
             'IncludeAPIs'     => $sample['HourMetrics']['IncludeAPIs'],
             'RetentionPolicy' => $metrics->getRetentionPolicy()->toArray()
-        );
+        ];
 
         // Test
         $actual = $metrics->toArray();
@@ -201,11 +201,11 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         $sample = TestResources::getServicePropertiesSample();
         $sample['HourMetrics']['Enabled'] = 'false';
         $metrics = Metrics::create($sample['HourMetrics']);
-        $expected = array(
+        $expected = [
             'Version'         => $sample['HourMetrics']['Version'],
             'Enabled'         => $sample['HourMetrics']['Enabled'],
             'RetentionPolicy' => $metrics->getRetentionPolicy()->toArray()
-        );
+        ];
 
         // Test
         $actual = $metrics->toArray();

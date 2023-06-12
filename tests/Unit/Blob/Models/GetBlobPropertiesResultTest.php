@@ -53,6 +53,6 @@ class GetBlobPropertiesResultTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $this->assertEquals($expectedProperties, $actual->getProperties());
-        $this->assertEquals(array('' => $expected['x-ms-meta-']), $actual->getMetadata());
+        $this->assertEquals(['' => $expected['x-ms-meta-']], $actual->getMetadata());
     }
 }

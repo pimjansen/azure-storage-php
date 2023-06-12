@@ -137,7 +137,7 @@ class SharedAccessSignatureHelper
         $signedProtocol = $this->validateAndSanitizeSignedProtocol($signedProtocol);
 
         // construct an array with the parameters to generate the shared access signature at the account level
-        $parameters = array();
+        $parameters = [];
         $parameters[] = $this->accountName;
         $parameters[] = $signedPermissions;
         $parameters[] = $signedService;
@@ -316,12 +316,12 @@ class SharedAccessSignatureHelper
         $service,
         $resource
     ) {
-        static $serviceMap = array(
+        static $serviceMap = [
             Resources::RESOURCE_TYPE_BLOB  => 'blob',
             Resources::RESOURCE_TYPE_FILE  => 'file',
             Resources::RESOURCE_TYPE_QUEUE => 'queue',
             Resources::RESOURCE_TYPE_TABLE => 'table',
-        );
+        ];
         $serviceName = $serviceMap[$service];
         if (Utilities::startsWith($resource, '/')) {
             $resource = substr($resource, 1);

@@ -96,8 +96,8 @@ class ListContainersResult
             $parsedResponse,
             Resources::QP_MAX_RESULTS
         ));
-        $containers   = array();
-        $rawContainer = array();
+        $containers   = [];
+        $rawContainer = [];
 
         if (!empty($parsedResponse['Containers'])) {
             $containersArray = $parsedResponse['Containers']['Container'];
@@ -109,7 +109,7 @@ class ListContainersResult
             $container->setName($value['Name']);
             $container->setUrl($serviceEndpoint . $value['Name']);
             $container->setMetadata(
-                Utilities::tryGetValue($value, Resources::QP_METADATA, array())
+                Utilities::tryGetValue($value, Resources::QP_METADATA, [])
             );
             $properties = new ContainerProperties();
             $date       = $value['Properties']['Last-Modified'];
@@ -145,7 +145,7 @@ class ListContainersResult
      */
     protected function setContainers(array $containers)
     {
-        $this->containers = array();
+        $this->containers = [];
         foreach ($containers as $container) {
             $this->containers[] = clone $container;
         }

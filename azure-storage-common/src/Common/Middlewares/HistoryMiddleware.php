@@ -75,7 +75,7 @@ class HistoryMiddleware extends MiddlewareBase
      */
     public function __construct($path = '')
     {
-        $this->history = array();
+        $this->history = [];
         $this->path = $path;
         $this->count = 0;
     }
@@ -109,7 +109,7 @@ class HistoryMiddleware extends MiddlewareBase
      */
     public function clearHistory()
     {
-        $this->history = array();
+        $this->history = [];
         $this->count = 0;
     }
 

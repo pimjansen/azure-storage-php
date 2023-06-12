@@ -41,7 +41,7 @@ class UpdateEntityResultTest extends \PHPUnit\Framework\TestCase
     public function testCreate()
     {
         // Setup
-        $headers = array('ETag' => '0x8CACB9BD7C6B1B2');
+        $headers = ['ETag' => '0x8CACB9BD7C6B1B2'];
 
         // Test
         $result = UpdateEntityResult::create($headers);

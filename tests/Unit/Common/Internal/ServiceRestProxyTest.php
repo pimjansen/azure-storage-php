@@ -106,7 +106,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testGroupQueryValues()
     {
         // Setup
-        $values = array('A', 'B', 'C');
+        $values = ['A', 'B', 'C'];
         $expected = 'A,B,C';
 
         // Test
@@ -122,7 +122,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testGroupQueryValuesWithUnorderedValues()
     {
         // Setup
-        $values = array('B', 'C', 'A');
+        $values = ['B', 'C', 'A'];
         $expected = 'A,B,C';
 
         // Test
@@ -135,7 +135,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testGroupQueryValuesWithNulls()
     {
         // Setup
-        $values = array(null, '', null);
+        $values = [null, '', null];
 
         // Test
         $actual = ServiceRestProxy::groupQueryValues($values);
@@ -150,7 +150,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testGroupQueryValuesWithMix()
     {
         // Setup
-        $values = array(null, 'B', 'C', '');
+        $values = [null, 'B', 'C', ''];
         $expected = 'B,C';
 
         // Test
@@ -166,7 +166,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testPostParameter($restRestProxy)
     {
         // Setup
-        $postParameters = array();
+        $postParameters = [];
         $key = 'a';
         $expected = 'b';
 
@@ -187,8 +187,8 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testGenerateMetadataHeader($proxy)
     {
         // Setup
-        $metadata = array('key1' => 'value1', 'MyName' => 'WindowsAzure', 'MyCompany' => 'Microsoft_');
-        $expected = array();
+        $metadata = ['key1' => 'value1', 'MyName' => 'WindowsAzure', 'MyCompany' => 'Microsoft_'];
+        $expected = [];
         foreach ($metadata as $key => $value) {
             $expected[Resources::X_MS_META_HEADER_PREFIX . $key] = $value;
         }
@@ -206,7 +206,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testGenerateMetadataHeaderInvalidNameFail($proxy)
     {
         // Setup
-        $metadata = array('key1' => "value1\n", 'MyName' => "\rAzurr", 'MyCompany' => "Micr\r\nosoft_");
+        $metadata = ['key1' => "value1\n", 'MyName' => "\rAzurr", 'MyCompany' => "Micr\r\nosoft_"];
         $this->setExpectedException(get_class(new \InvalidArgumentException(Resources::INVALID_META_MSG)));
 
         // Test
@@ -223,7 +223,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $onRejected = self::getMethod('onRejected', $proxy);
 
         // Test
-        $onRejected->invokeArgs($proxy, array(new \Exception('test message'), 200));
+        $onRejected->invokeArgs($proxy, [new \Exception('test message'), 200]);
     }
 
     /**
@@ -237,7 +237,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $onRejected = self::getMethod('onRejected', $proxy);
 
         // Test
-        $onRejected->invokeArgs($proxy, array($message, 200));
+        $onRejected->invokeArgs($proxy, [$message, 200]);
     }
 
     /**
@@ -253,7 +253,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $reason = new RequestException('test message', $request);
 
         // Test
-        $onRejected->invokeArgs($proxy, array($reason, 200));
+        $onRejected->invokeArgs($proxy, [$reason, 200]);
     }
 
     /**
@@ -270,7 +270,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $reason = new RequestException('test message', $request, $response);
 
         // Test
-        $onRejected->invokeArgs($proxy, array($reason, 200));
+        $onRejected->invokeArgs($proxy, [$reason, 200]);
     }
 
     /**
@@ -286,7 +286,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $reason = new RequestException('test message', $request, $response);
 
         // Test
-        $actual = $onRejected->invokeArgs($proxy, array($reason, 200));
+        $actual = $onRejected->invokeArgs($proxy, [$reason, 200]);
 
         // Assert
         $this->assertSame($response, $actual);

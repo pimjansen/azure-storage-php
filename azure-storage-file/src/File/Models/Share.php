@@ -55,7 +55,7 @@ class Share
         $result = new Share();
         $result->setName($parsedResponse[Resources::QP_NAME]);
         $result->setMetadata(
-            Utilities::tryGetValue($parsedResponse, Resources::QP_METADATA, array())
+            Utilities::tryGetValue($parsedResponse, Resources::QP_METADATA, [])
         );
         $result->setProperties(ShareProperties::create(
             $parsedResponse[Resources::QP_PROPERTIES]

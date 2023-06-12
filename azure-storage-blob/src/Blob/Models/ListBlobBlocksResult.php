@@ -57,10 +57,10 @@ class ListBlobBlocksResult
      */
     private static function getEntries(array $parsed, $type)
     {
-        $entries = array();
+        $entries = [];
 
         if (is_array($parsed)) {
-            $rawEntries = array();
+            $rawEntries = [];
 
             if (array_key_exists($type, $parsed)
                 &&     is_array($parsed[$type])

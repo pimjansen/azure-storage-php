@@ -25,4 +25,7 @@ return $config
     ->setRules([
         '@PSR12' => true,
         'array_indentation' => true,
+        'array_syntax' => [
+            'syntax' => 'short',
+        ],
     ]);

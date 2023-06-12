@@ -45,7 +45,7 @@ class QueueACLTest extends \PHPUnit\Framework\TestCase
     public function testCreateEmpty()
     {
         // Setup
-        $sample = array();
+        $sample = [];
 
         // Test
         $acl = QueueACL::create($sample);

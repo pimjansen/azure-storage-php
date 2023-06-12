@@ -141,7 +141,7 @@ class CommitBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $container = new CommitBlobBlocksOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $container->setMetadata($expected);
@@ -154,7 +154,7 @@ class CommitBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $container = new CommitBlobBlocksOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $container->setMetadata($expected);
 
         // Test

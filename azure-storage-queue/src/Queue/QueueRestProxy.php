@@ -215,9 +215,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
     public function listQueuesAsync(ListQueuesOptions $options = null)
     {
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = Resources::EMPTY_STRING;
 
         if (is_null($options)) {
@@ -303,9 +303,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::notNullOrEmpty($queueName, 'queueName');
 
         $method      = Resources::HTTP_DELETE;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = $queueName . '/messages';
         $body        = Resources::EMPTY_STRING;
 
@@ -365,9 +365,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::canCastAsString($messageText, 'messageText');
 
         $method      = Resources::HTTP_POST;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = $queueName . '/messages';
         $body        = Resources::EMPTY_STRING;
         $message     = new QueueMessage();
@@ -449,9 +449,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::notNullOrEmpty($queueName, 'queueName');
 
         $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = $queueName;
 
         if (is_null($options)) {
@@ -469,7 +469,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
             $queryParams,
             $postParams,
             $path,
-            array(Resources::STATUS_CREATED, Resources::STATUS_NO_CONTENT),
+            [Resources::STATUS_CREATED, Resources::STATUS_NO_CONTENT],
             Resources::EMPTY_STRING,
             $options
         );
@@ -525,9 +525,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::notNullOrEmpty($popReceipt, 'popReceipt');
 
         $method      = Resources::HTTP_DELETE;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = $queueName . '/messages/' . $messageId;
         $body        = Resources::EMPTY_STRING;
 
@@ -584,9 +584,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::notNullOrEmpty($queueName, 'queueName');
 
         $method      = Resources::HTTP_DELETE;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = $queueName;
 
         if (is_null($options)) {
@@ -636,9 +636,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::notNullOrEmpty($queueName, 'queueName');
 
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = $queueName;
         $body        = Resources::EMPTY_STRING;
 
@@ -700,9 +700,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::notNullOrEmpty($queueName, 'queueName');
 
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
+        $headers     = [];
+        $queryParams = [];
+        $postParams  = [];
         $path        = $queueName . '/messages';
 
         if (is_null($options)) {
@@ -773,9 +773,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::notNullOrEmpty($queueName, 'queueName');
 
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
+        $headers     = [];
+        $queryParams = [];
+        $postParams  = [];
         $path        = $queueName . '/messages';
 
         if (is_null($options)) {
@@ -846,9 +846,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Utilities::validateMetadata($metadata);
 
         $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
+        $headers     = [];
+        $queryParams = [];
+        $postParams  = [];
         $path        = $queueName;
         $body        = Resources::EMPTY_STRING;
 
@@ -959,9 +959,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         );
 
         $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $path        = $queueName . '/messages' . '/' . $messageId;
         $body        = Resources::EMPTY_STRING;
 
@@ -1043,9 +1043,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::canCastAsString($queue, 'queue');
 
         $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $statusCode  = Resources::STATUS_OK;
         $path        = $queue;
 
@@ -1117,9 +1117,9 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         Validate::notNullOrEmpty($acl, 'acl');
 
         $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
+        $headers     = [];
+        $postParams  = [];
+        $queryParams = [];
         $body        = $acl->toXml($this->dataSerializer);
         $path        = $queue;
 

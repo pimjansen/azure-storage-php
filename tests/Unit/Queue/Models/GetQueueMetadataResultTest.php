@@ -42,7 +42,7 @@ class GetQueueMetadataResultTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $count = 10;
-        $metadata = array('key1' => 'value1', 'key2' => 'value2');
+        $metadata = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $actual = new GetQueueMetadataResult($count, $metadata);

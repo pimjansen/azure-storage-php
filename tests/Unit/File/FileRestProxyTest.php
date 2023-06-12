@@ -117,7 +117,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         //Assert
         $shares = $result->getShares();
-        $shareNames = array();
+        $shareNames = [];
         foreach ($shares as $share) {
             $shareNames[] = $share->getName();
         }
@@ -140,7 +140,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $this->createShare($share2);
         $this->createShare($share3);
 
-        $expected1 = array('name1' => 'MyName1', 'mymetaname' => '12345');
+        $expected1 = ['name1' => 'MyName1', 'mymetaname' => '12345'];
         $expected2 = 5120;
         $expected3 = 5121;
 

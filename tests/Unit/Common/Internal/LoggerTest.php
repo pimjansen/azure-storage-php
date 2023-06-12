@@ -49,7 +49,7 @@ class LoggerTest extends \PHPUnit\Framework\TestCase
         Logger::setLogFile($virtualPath);
 
         // Test
-        Logger::log(array(), $tip);
+        Logger::log([], $tip);
 
         // Assert
         $actual = file_get_contents($virtualPath);

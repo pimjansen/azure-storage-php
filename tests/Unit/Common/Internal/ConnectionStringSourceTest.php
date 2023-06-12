@@ -65,7 +65,7 @@ class ConnectionStringSourceTest extends \PHPUnit\Framework\TestCase
     public function testGetDefaultSources()
     {
         // Setup
-        $expectedKeys = array(ConnectionStringSource::ENVIRONMENT_SOURCE);
+        $expectedKeys = [ConnectionStringSource::ENVIRONMENT_SOURCE];
 
         // Test
         $actual = ConnectionStringSource::getDefaultSources();

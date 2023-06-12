@@ -41,7 +41,7 @@ class QueryEntitiesResultTest extends \PHPUnit\Framework\TestCase
     public function testCreate()
     {
         // Test
-        $result = QueryEntitiesResult::create(array(), array());
+        $result = QueryEntitiesResult::create([], []);
 
         // Assert
         $this->assertCount(0, $result->getEntities());

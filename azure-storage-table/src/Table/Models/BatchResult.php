@@ -56,7 +56,7 @@ class BatchResult
      */
     private static function _constructResponses($body, IMimeReaderWriter $mimeSerializer)
     {
-        $responses = array();
+        $responses = [];
         $parts     = $mimeSerializer->decodeMimeMultipart($body);
         // Decrease the count of parts to remove the batch response body and just
         // include change sets response body. We may need to undo this action in
@@ -74,7 +74,7 @@ class BatchResult
             $response->statusCode = $statusTokens[1];
             $response->reason = $statusTokens[2];
 
-            $headers = array();
+            $headers = [];
             $j       = 1;
             while (Resources::EMPTY_STRING != $lines[$j]) {
                 $headerLine = $lines[$j++];
@@ -132,7 +132,7 @@ class BatchResult
         $responses    = self::_constructResponses($body, $mimeSerializer);
         $callbackName = __CLASS__ . '::_compareUsingContentId';
         $count        = count($responses);
-        $entries      = array();
+        $entries      = [];
         // Sort $responses based on Content-ID so they match order of $operations.
         uasort($responses, $callbackName);
 

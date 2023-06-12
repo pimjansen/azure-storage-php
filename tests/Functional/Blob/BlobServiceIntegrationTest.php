@@ -77,12 +77,12 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         // Setup container names array (list of container names used by
         // integration tests)
         $rint = mt_rand(0, 1000000);
-        self::$_testContainers = array();
+        self::$_testContainers = [];
         for ($i = 0; $i < 10; $i++) {
             self::$_testContainers[$i] = self::$_testContainersPrefix . ($rint + $i);
         }
 
-        self::$_creatableContainers = array();
+        self::$_creatableContainers = [];
         for ($i = 0; $i < 10; $i++) {
             self::$_creatableContainers[$i] = self::$_createableContainersPrefix . ($rint + $i);
         }
@@ -332,9 +332,9 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         // Act
         $this->restProxy->createContainer(self::$_creatable_container_3);
 
-        $metadata = array(
+        $metadata = [
             'test' => 'bar',
-            'blah' => 'bleah');
+            'blah' => 'bleah'];
         $this->restProxy->setContainerMetadata(self::$_creatable_container_3, $metadata);
         $prop = $this->restProxy->getContainerMetadata(self::$_creatable_container_3);
 
@@ -558,7 +558,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
     public function testListBlobsWorks()
     {
         // Arrange
-        $blobNames = array( 'myblob1', 'myblob2', 'other-blob1', 'other-blob2' );
+        $blobNames = [ 'myblob1', 'myblob2', 'other-blob1', 'other-blob2' ];
         foreach ($blobNames as $blob) {
             $this->restProxy->createPageBlob(self::$_test_container_for_listing, $blob, 512);
         }
@@ -578,7 +578,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
     public function testListBlobsWithPrefixWorks()
     {
         // Arrange
-        $blobNames = array( 'myblob1', 'myblob2', 'otherblob1', 'otherblob2' );
+        $blobNames = [ 'myblob1', 'myblob2', 'otherblob1', 'otherblob2' ];
         foreach ($blobNames as $blob) {
             $this->restProxy->createPageBlob(self::$_test_container_for_listing, $blob, 512);
         }
@@ -612,7 +612,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
     public function testListBlobsWithOptionsWorks()
     {
         // Arrange
-        $blobNames = array( 'myblob1', 'myblob2', 'otherblob1', 'otherblob2' );
+        $blobNames = [ 'myblob1', 'myblob2', 'otherblob1', 'otherblob2' ];
         foreach ($blobNames as $blob) {
             $this->restProxy->createPageBlob(self::$_test_container_for_listing, $blob, 512);
         }
@@ -635,7 +635,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
     public function testListBlobsWithDelimiterWorks()
     {
         // Arrange
-        $blobNames = array( 'myblob1', 'myblob2', 'dir1-blob1', 'dir1-blob2', 'dir2-dir21-blob3', 'dir2-dir22-blob3' );
+        $blobNames = [ 'myblob1', 'myblob2', 'dir1-blob1', 'dir1-blob2', 'dir2-dir21-blob3', 'dir2-dir22-blob3' ];
         foreach ($blobNames as $blob) {
             $this->restProxy->createPageBlob(self::$_test_container_for_listing, $blob, 512);
         }
@@ -948,7 +948,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         $block3 = new Block();
         $block3->setBlockId($blockId3);
         $block3->setType(BlobBlockType::LATEST_TYPE);
-        $blockList = array($block1, $block3);
+        $blockList = [$block1, $block3];
 
         $this->restProxy->commitBlobBlocks($container, $blob, $blockList);
 
@@ -1061,9 +1061,9 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         $blob = 'test3';
         $this->restProxy->createBlockBlob($container, $blob, 'some content');
         $opts = new CreateBlobSnapshotOptions();
-        $metadata = array(
+        $metadata = [
             'test' => 'bar',
-            'blah' => 'bleah');
+            'blah' => 'bleah'];
         $opts->setMetadata($metadata);
         $snapshot = $this->restProxy->createBlobSnapshot($container, $blob, $opts);
 
@@ -1263,7 +1263,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         $lastModifiedNext = $lastModifiedNext->modify("+1 sec");
 
         while (true) {
-            $metadata = array('test' => 'test1');
+            $metadata = ['test' => 'test1'];
             $result = $this->restProxy->setBlobMetadata($container, $blob, $metadata);
             if ($result->getLastModified() >= $lastModifiedNext) {
                 break;
@@ -1399,9 +1399,9 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         // Act
         $container = self::$_test_container_for_blobs;
         $blob = 'test11';
-        $metadata = array(
+        $metadata = [
             'test' => 'bar',
-            'blah' => 'bleah');
+            'blah' => 'bleah'];
 
         $this->restProxy->createPageBlob($container, $blob, 4096);
         $result = $this->restProxy->setBlobMetadata($container, $blob, $metadata);

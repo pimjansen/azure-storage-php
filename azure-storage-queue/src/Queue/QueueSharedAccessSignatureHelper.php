@@ -118,7 +118,7 @@ class QueueSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         );
 
         // construct an array with the parameters to generate the shared access signature at the account level
-        $parameters = array();
+        $parameters = [];
         $parameters[] = $signedPermissions;
         $parameters[] = $signedStart;
         $parameters[] = $signedExpiry;

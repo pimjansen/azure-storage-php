@@ -54,8 +54,8 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
         $fileRestProxy = FileRestProxy::createFileService($this->connectionString);
         $fileRestProxy->pushMiddleware(RetryMiddlewareFactory::create());
         parent::setProxy($fileRestProxy);
-        $this->createdShares = array();
-        $this->createdDirectories = array();
+        $this->createdShares = [];
+        $this->createdDirectories = [];
     }
 
     public function createShare($shareName, $options = null)
@@ -154,7 +154,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function listShares($sharePrefix = null)
     {
-        $result = array();
+        $result = [];
         $opts = new ListSharesOptions();
         if (!is_null($sharePrefix)) {
             $opts->setPrefix($sharePrefix);

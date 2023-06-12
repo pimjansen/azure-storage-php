@@ -102,8 +102,8 @@ class ListDirectoriesAndFilesResult
         );
 
         if (empty($entries)) {
-            $result->setDirectories(array());
-            $result->setFiles(array());
+            $result->setDirectories([]);
+            $result->setFiles([]);
         } else {
             $directoriesArray = Utilities::tryGetValue(
                 $entries,
@@ -114,8 +114,8 @@ class ListDirectoriesAndFilesResult
                 Resources::QP_FILE
             );
 
-            $directories = array();
-            $files = array();
+            $directories = [];
+            $files = [];
 
             if ($directoriesArray != null) {
                 if (array_key_exists(Resources::QP_NAME, $directoriesArray)) {
@@ -151,7 +151,7 @@ class ListDirectoriesAndFilesResult
      */
     protected function setDirectories(array $directories)
     {
-        $this->directories = array();
+        $this->directories = [];
         foreach ($directories as $directory) {
             $this->directories[] = clone $directory;
         }
@@ -176,7 +176,7 @@ class ListDirectoriesAndFilesResult
      */
     protected function setFiles(array $files)
     {
-        $this->files = array();
+        $this->files = [];
         foreach ($files as $file) {
             $this->files[] = clone $file;
         }

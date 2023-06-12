@@ -34,6 +34,6 @@ class OpType
     public const UPDATE_ENTITY            = 'updateEntity';
     public static function values()
     {
-        return array('deleteEntity', 'insertEntity', 'insertOrMergeEntity', 'insertOrReplaceEntity', 'mergeEntity', 'updateEntity');
+        return ['deleteEntity', 'insertEntity', 'insertOrMergeEntity', 'insertOrReplaceEntity', 'mergeEntity', 'updateEntity'];
     }
 }

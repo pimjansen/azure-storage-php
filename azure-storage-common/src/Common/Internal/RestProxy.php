@@ -56,7 +56,7 @@ class RestProxy
      */
     public function __construct(Serialization\ISerializer $dataSerializer = null)
     {
-        $this->middlewares    = array();
+        $this->middlewares    = [];
         $this->dataSerializer = $dataSerializer;
         //For logging the request and responses.
         // $this->middlewares[] = new HistoryMiddleware('.\\messages.log');

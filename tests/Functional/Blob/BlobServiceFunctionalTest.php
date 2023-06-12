@@ -2224,15 +2224,15 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
     public function testCopyBlobNoOptions()
     {
-        $sourceContainers = array(
+        $sourceContainers = [
             BlobServiceFunctionalTestData::$testContainerNames[0],
             '$root',
-            '');
+            ''];
 
-        $destContainers = array(
+        $destContainers = [
             BlobServiceFunctionalTestData::$testContainerNames[1],
             '$root',
-            '');
+            ''];
 
         foreach ($sourceContainers as $sourceContainer) {
             foreach ($destContainers as $destContainer) {
@@ -2533,7 +2533,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         //Construct response
         $bodyArray = TestResources::listContainersMultipleRandomEntriesBody(5, $marker);
         $bodyString = Utilities::serialize($bodyArray, 'EnumerationResults');
-        $mockResponse = new Response(200, array(), $bodyString);
+        $mockResponse = new Response(200, [], $bodyString);
         //setup the mock handler
         $mock = MockHandler::createWithMiddleware([
             new Response(500, ['test_header' => 'test_header_value']),
@@ -2664,7 +2664,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         //upload the blob
         $blobName = BlobServiceFunctionalTestData::getInterestingBlobName($container);
-        $metadata = array('m1' => 'v1', 'm2' => 'v2');
+        $metadata = ['m1' => 'v1', 'm2' => 'v2'];
         $contentType = 'text/plain; charset=UTF-8';
         $options = new CreateBlockBlobOptions();
         $options->setContentType($contentType);
@@ -2722,8 +2722,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createBlockBlob($container, $blob, '');
 
         //create blocks
-        $blockIds = array();
-        $contents = array();
+        $blockIds = [];
+        $contents = [];
         for ($i = 0; $i < 5; ++$i) {
             $blockId = BlobServiceFunctionalTestData::getInterestingBlockId();
             $content = openssl_random_pseudo_bytes(Resources::MB_IN_BYTES_4);

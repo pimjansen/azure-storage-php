@@ -37,7 +37,7 @@ namespace MicrosoftAzure\Storage\Common\Middlewares;
  */
 class MiddlewareStack
 {
-    private $middlewares = array();
+    private $middlewares = [];
 
     /**
      * Push the given middleware into the middleware stack.

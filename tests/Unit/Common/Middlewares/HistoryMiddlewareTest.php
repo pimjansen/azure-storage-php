@@ -47,14 +47,14 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $middleware = new HistoryMiddleware();
         $onFulfilled = self::getMethod('onFulfilled', $middleware);
         $request = new Request('GET', 'http://www.bing.com');
-        $callable = $onFulfilled->invokeArgs($middleware, array($request, array()));
+        $callable = $onFulfilled->invokeArgs($middleware, [$request, []]);
         $response = new Response();
         $newResponse = $callable($response);
         $entry = $middleware->getHistory()[0];
         $this->assertTrue(
             $response === $entry['response'] &&
             $request  === $entry['request'] &&
-            array()   === $entry['options'],
+            []   === $entry['options'],
             'History does not match the request, response and/or options'
         );
     }
@@ -64,7 +64,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $middleware = new HistoryMiddleware();
         $onRejected = self::getMethod('onRejected', $middleware);
         $request = new Request('GET', 'http://www.bing.com');
-        $callable = $onRejected->invokeArgs($middleware, array($request, array()));
+        $callable = $onRejected->invokeArgs($middleware, [$request, []]);
         $reason = new RequestException('test message', $request);
         $promise = $callable($reason);
         $entry = $middleware->getHistory()[0];
@@ -77,7 +77,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $this->assertTrue(
             $newReason === $entry['reason'] &&
             $request   === $entry['request'] &&
-            array()    === $entry['options'],
+            []    === $entry['options'],
             'History does not match the request, reason and/or options'
         );
     }
@@ -87,7 +87,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $middleware = new HistoryMiddleware();
         $request = new Request('GET', 'http://www.bing.com');
         $response = new Response();
-        $options = array();
+        $options = [];
         $reason = new RequestException('test message', $request);
 
         $middleware->addHistory([

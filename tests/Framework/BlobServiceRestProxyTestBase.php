@@ -52,7 +52,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
         $blobRestProxy = BlobRestProxy::createBlobService($this->connectionString);
         $blobRestProxy->pushMiddleware(RetryMiddlewareFactory::create());
         parent::setProxy($blobRestProxy);
-        $this->_createdContainers = array();
+        $this->_createdContainers = [];
     }
 
     public function createContainer($containerName, $options = null)
@@ -145,7 +145,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function listContainers($containerPrefix = null)
     {
-        $result = array();
+        $result = [];
         $opts = new ListContainersOptions();
         if (!is_null($containerPrefix)) {
             $opts->setPrefix($containerPrefix);

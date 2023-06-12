@@ -72,10 +72,10 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->createdContainer = array();
-        $this->createdTable     = array();
-        $this->createdQueue     = array();
-        $this->createdShare     = array();
+        $this->createdContainer = [];
+        $this->createdTable     = [];
+        $this->createdQueue     = [];
+        $this->createdShare     = [];
         $this->blobRestProxy    = null;
         $this->tableRestProxy   = null;
         $this->queueRestProxy   = null;

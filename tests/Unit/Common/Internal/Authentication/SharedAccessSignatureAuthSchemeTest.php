@@ -63,7 +63,7 @@ class SharedAccessSignatureAuthSchemeTest extends \PHPUnit\Framework\TestCase
         // Setup
         $mock = new SharedAccessSignatureAuthSchemeMock(TestResources::SAS_TOKEN);
         $uri = new Uri(TestResources::URI2);
-        $request = new Request('Get', $uri, array(), null);
+        $request = new Request('Get', $uri, [], null);
         $expected = new Uri(TestResources::URI2 . '&' . TestResources::SAS_TOKEN);
 
         // Test

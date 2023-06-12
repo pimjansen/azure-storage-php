@@ -52,8 +52,8 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
         //setup the proxies for creating shares
         $this->setUpWithConnectionString($this->connectionString);
 
-        $shareProxies = array();
-        $shares = array();
+        $shareProxies = [];
+        $shares = [];
         $shares[] = TestResources::getInterestingName('sha');
         $this->safeCreateShare($shares[0]);
         $shares[] = TestResources::getInterestingName('sha');

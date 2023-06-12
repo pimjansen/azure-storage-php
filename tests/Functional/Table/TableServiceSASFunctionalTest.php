@@ -50,8 +50,8 @@ class TableServiceSASFunctionalTest extends SASFunctionalTestBase
         //setup the proxies for creating tables
         $this->setUpWithConnectionString($this->connectionString);
 
-        $tableProxies = array();
-        $tables = array();
+        $tableProxies = [];
+        $tables = [];
         $tables[] = TestResources::getInterestingName('tbl');
         $this->safeCreateTable($tables[0]);
         $tables[] = TestResources::getInterestingName('tbl');

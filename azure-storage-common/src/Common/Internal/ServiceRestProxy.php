@@ -85,7 +85,7 @@ class ServiceRestProxy extends RestProxy
         $this->accountName     = $accountName;
         $this->psrPrimaryUri   = new Uri($primaryUri);
         $this->psrSecondaryUri = new Uri($secondaryUri);
-        $this->options         = array_merge(array('http' => array()), $options);
+        $this->options         = array_merge(['http' => []], $options);
         $this->client          = self::createClient($this->options['http']);
     }
 
@@ -115,8 +115,8 @@ class ServiceRestProxy extends RestProxy
         return (new \GuzzleHttp\Client(
             array_merge(
                 $options,
-                array(
-                    "defaults" => array(
+                [
+                    "defaults" => [
                         "allow_redirects" => true,
                         "exceptions" => true,
                         "decode_content" => true,
@@ -125,10 +125,10 @@ class ServiceRestProxy extends RestProxy
                                 CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2
                             ]
                         ]
-                    ),
+                    ],
                     'cookies' => true,
                     'verify' => $verify,
-                )
+                ]
             )
         ));
     }
@@ -165,7 +165,7 @@ class ServiceRestProxy extends RestProxy
 
         //Push all the middlewares specified in the $serviceOptions to the
         //handlerstack.
-        if ($serviceOptions->getMiddlewares() != array()) {
+        if ($serviceOptions->getMiddlewares() != []) {
             foreach ($serviceOptions->getMiddlewares() as $middleware) {
                 $stack->push($middleware);
             }
@@ -448,7 +448,7 @@ class ServiceRestProxy extends RestProxy
         ServiceOptions $serviceOptions,
         callable $handler
     ) {
-        $result = array();
+        $result = [];
         $result[Resources::ROS_LOCATION_MODE]  = $serviceOptions->getLocationMode();
         $result[Resources::ROS_STREAM]         = $serviceOptions->getIsStreaming();
         $result[Resources::ROS_DECODE_CONTENT] = $serviceOptions->getDecodeContent();
@@ -503,7 +503,7 @@ class ServiceRestProxy extends RestProxy
      */
     public static function throwIfError(ResponseInterface $response, $expected)
     {
-        $expectedStatusCodes = is_array($expected) ? $expected : array($expected);
+        $expectedStatusCodes = is_array($expected) ? $expected : [$expected];
 
         if (!in_array($response->getStatusCode(), $expectedStatusCodes)) {
             throw new ServiceException($response);
@@ -579,7 +579,7 @@ class ServiceRestProxy extends RestProxy
      */
     public function generateMetadataHeaders(array $metadata = null)
     {
-        $metadataHeaders = array();
+        $metadataHeaders = [];
 
         if (is_array($metadata) && !is_null($metadata)) {
             foreach ($metadata as $key => $value) {

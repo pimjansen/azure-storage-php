@@ -104,10 +104,10 @@ class ListBlobsResult
             $parsed,
             Resources::QP_DELIMITER
         ));
-        $blobs           = array();
-        $blobPrefixes    = array();
-        $rawBlobs        = array();
-        $rawBlobPrefixes = array();
+        $blobs           = [];
+        $blobPrefixes    = [];
+        $rawBlobs        = [];
+        $rawBlobPrefixes = [];
 
         if (is_array($parsed['Blobs'])
             && array_key_exists('Blob', $parsed['Blobs'])
@@ -126,7 +126,7 @@ class ListBlobsResult
                 )
             );
             $blob->setMetadata(
-                Utilities::tryGetValue($value, Resources::QP_METADATA, array())
+                Utilities::tryGetValue($value, Resources::QP_METADATA, [])
             );
 
             $blobs[] = $blob;
@@ -170,7 +170,7 @@ class ListBlobsResult
      */
     protected function setBlobs(array $blobs)
     {
-        $this->blobs = array();
+        $this->blobs = [];
         foreach ($blobs as $blob) {
             $this->blobs[] = clone $blob;
         }
@@ -195,7 +195,7 @@ class ListBlobsResult
      */
     protected function setBlobPrefixes(array $blobPrefixes)
     {
-        $this->blobPrefixes = array();
+        $this->blobPrefixes = [];
         foreach ($blobPrefixes as $blob) {
             $this->blobPrefixes[] = clone $blob;
         }

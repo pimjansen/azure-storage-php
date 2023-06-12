@@ -42,7 +42,7 @@ class CreateQueueOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $queue = new CreateQueueOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $queue->setMetadata($expected);
@@ -55,7 +55,7 @@ class CreateQueueOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $queue = new CreateQueueOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $queue->setMetadata($expected);
 
         // Test
@@ -71,7 +71,7 @@ class CreateQueueOptionsTest extends \PHPUnit\Framework\TestCase
         $queue = new CreateQueueOptions();
         $key = 'key1';
         $value = 'value1';
-        $expected = array($key => $value);
+        $expected = [$key => $value];
 
         // Test
         $queue->addMetadata($key, $value);

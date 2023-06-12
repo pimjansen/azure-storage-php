@@ -32,6 +32,6 @@ class ConcurType
     public const KEY_MATCH_ETAG_MATCH    = 'KeyMatchETagMatch';
     public static function values()
     {
-        return array('NoKeyMatch', 'KeyMatchNoETag', 'KeyMatchETagMismatch', 'KeyMatchETagMatch');
+        return ['NoKeyMatch', 'KeyMatchNoETag', 'KeyMatchETagMismatch', 'KeyMatchETagMatch'];
     }
 }

@@ -82,7 +82,7 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $container = new CreateContainerOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $container->setMetadata($expected);
@@ -95,7 +95,7 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $container = new CreateContainerOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $container->setMetadata($expected);
 
         // Test
@@ -111,7 +111,7 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
         $container = new CreateContainerOptions();
         $key = 'key1';
         $value = 'value1';
-        $expected = array($key => $value);
+        $expected = [$key => $value];
 
         // Test
         $container->addMetadata($key, $value);

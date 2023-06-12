@@ -41,8 +41,8 @@ class QueryTablesResultTest extends \PHPUnit\Framework\TestCase
     public function testCreate()
     {
         // Setup
-        $entries = array('querytablessimple1', 'querytablessimple2');
-        $headers = array('x-ms-continuation-nexttablename' => 'nextTable');
+        $entries = ['querytablessimple1', 'querytablessimple2'];
+        $headers = ['x-ms-continuation-nexttablename' => 'nextTable'];
 
         // Test
         $result = QueryTablesResult::create($headers, $entries);

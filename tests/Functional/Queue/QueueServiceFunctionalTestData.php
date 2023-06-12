@@ -51,11 +51,11 @@ class QueueServiceFunctionalTestData
         $rint = mt_rand(0, 1000000);
         self::$testUniqueId = 'qa-' . $rint . '-';
         self::$nonExistQueuePrefix = 'qa-' . ($rint + 1) . '-';
-        self::$testQueueNames = array(
+        self::$testQueueNames = [
             self::$testUniqueId . 'a1',
             self::$testUniqueId . 'a2',
             self::$testUniqueId . 'b1',
-        );
+        ];
         self::$tempQueueCounter = 0;
     }
 
@@ -71,7 +71,7 @@ class QueueServiceFunctionalTestData
 
     public static function getInterestingTimeoutValues()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, null);
         array_push($ret, -1);
         array_push($ret, 0);
@@ -107,7 +107,7 @@ class QueueServiceFunctionalTestData
 
     public static function getInterestingServiceProperties()
     {
-        $ret = array();
+        $ret = [];
 
         {
             // This is the default that comes from the server.
@@ -139,7 +139,7 @@ class QueueServiceFunctionalTestData
             $sp = new ServiceProperties();
             $sp->setLogging($l);
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c));
+            $sp->setCorses([$c]);
 
             array_push($ret, $sp);
         }
@@ -173,7 +173,7 @@ class QueueServiceFunctionalTestData
             $sp = new ServiceProperties();
             $sp->setLogging($l);
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+            $sp->setCorses([$c0, $c1]);
 
             array_push($ret, $sp);
         }
@@ -207,7 +207,7 @@ class QueueServiceFunctionalTestData
             $sp = new ServiceProperties();
             $sp->setLogging($l);
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+            $sp->setCorses([$c0, $c1]);
 
             array_push($ret, $sp);
         }
@@ -220,7 +220,7 @@ class QueueServiceFunctionalTestData
         $ret = self::getNiceMetadata();
 
         // Some metadata that HTTP will not like.
-        $metadata = array('<>000' => '::::value');
+        $metadata = ['<>000' => '::::value'];
         array_push($ret, $metadata);
 
         return $ret;
@@ -228,17 +228,17 @@ class QueueServiceFunctionalTestData
 
     public static function getNiceMetadata()
     {
-        $ret = array();
+        $ret = [];
 
         array_push($ret, null);
 
-        $metadata = array();
+        $metadata = [];
         array_push($ret, $metadata);
 
-        $metadata = array(
+        $metadata = [
             'key' => 'value',
             'foo' => 'bar',
-            'baz' => 'boo');
+            'baz' => 'boo'];
         array_push($ret, $metadata);
 
         return $ret;
@@ -246,7 +246,7 @@ class QueueServiceFunctionalTestData
 
     public static function getInterestingCreateQueueOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CreateQueueOptions();
         array_push($ret, $options);
@@ -260,7 +260,7 @@ class QueueServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateQueueOptions();
-        $metadata = array();
+        $metadata = [];
         $metadata['foo'] =  'bar';
         $metadata['foo2'] = 'bar2';
         $metadata['foo3'] = 'bar3';
@@ -269,7 +269,7 @@ class QueueServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateQueueOptions();
-        $metadata = array('foo' => 'bar');
+        $metadata = ['foo' => 'bar'];
         $options->setMetadata($metadata);
         $options->setTimeout(-10);
         array_push($ret, $options);
@@ -288,7 +288,7 @@ class QueueServiceFunctionalTestData
 
     public static function getInterestingListQueuesOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new ListQueuesOptions();
         array_push($ret, $options);

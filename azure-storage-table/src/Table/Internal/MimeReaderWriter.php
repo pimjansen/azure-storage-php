@@ -55,20 +55,20 @@ class MimeReaderWriter implements IMimeReaderWriter
         $mimeType      = Resources::MULTIPART_MIXED_TYPE;
         $batchGuid     = Utilities::getGuid();
         $batchId       = sprintf('batch_%s', $batchGuid);
-        $contentType1  = array('content_type' => "$mimeType");
+        $contentType1  = ['content_type' => "$mimeType"];
         $changeSetGuid = Utilities::getGuid();
         $changeSetId   = sprintf('changeset_%s', $changeSetGuid);
-        $contentType2  = array('content_type' => "$mimeType; boundary=$changeSetId");
-        $options       = array(
+        $contentType2  = ['content_type' => "$mimeType; boundary=$changeSetId"];
+        $options       = [
             'encoding'     => 'binary',
             'content_type' => Resources::HTTP_TYPE
-        );
+        ];
 
         $eof = "\r\n";
 
-        $result            = array();
+        $result            = [];
         $result['body']    = Resources::EMPTY_STRING;
-        $result['headers'] = array();
+        $result['headers'] = [];
 
         $batchBody         =& $result['body'];
         $batchHeaders      =& $result['headers'];
@@ -114,7 +114,7 @@ class MimeReaderWriter implements IMimeReaderWriter
         $requests = explode('--' . $boundary, $mimeBody);
 
         // Get the body of each request
-        $result = array();
+        $result = [];
 
         // The first and last element are not request
         for ($i = 1; $i < count($requests) - 1; $i++) {

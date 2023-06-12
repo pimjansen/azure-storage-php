@@ -153,7 +153,7 @@ class CORS
      */
     public function toArray()
     {
-        return array(
+        return [
             Resources::XTAG_ALLOWED_ORIGINS    =>
                 implode(',', $this->getAllowedOrigins()),
             Resources::XTAG_ALLOWED_METHODS    =>
@@ -164,7 +164,7 @@ class CORS
                 implode(',', $this->getExposedHeaders()),
             Resources::XTAG_MAX_AGE_IN_SECONDS =>
                 $this->getMaxedAgeInSeconds()
-        );
+        ];
     }
 
     /**

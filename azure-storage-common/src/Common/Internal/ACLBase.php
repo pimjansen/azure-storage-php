@@ -41,7 +41,7 @@ use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
  */
 abstract class ACLBase
 {
-    private $signedIdentifiers = array();
+    private $signedIdentifiers = [];
     private $resourceType = '';
 
     /**
@@ -73,7 +73,7 @@ abstract class ACLBase
      */
     public function toArray()
     {
-        $array = array();
+        $array = [];
 
         foreach ($this->getSignedIdentifiers() as $value) {
             $array[] = $value->toArray();
@@ -93,10 +93,10 @@ abstract class ACLBase
      */
     public function toXml(XmlSerializer $serializer)
     {
-        $properties = array(
+        $properties = [
             XmlSerializer::DEFAULT_TAG => Resources::XTAG_SIGNED_IDENTIFIER,
             XmlSerializer::ROOT_NAME   => Resources::XTAG_SIGNED_IDENTIFIERS
-        );
+        ];
 
         return $serializer->serialize($this->toArray(), $properties);
     }
@@ -113,7 +113,7 @@ abstract class ACLBase
      */
     public function fromXmlArray(array $parsed = null)
     {
-        $this->setSignedIdentifiers(array());
+        $this->setSignedIdentifiers([]);
 
         // Initialize signed identifiers.
         if (!empty($parsed) &&

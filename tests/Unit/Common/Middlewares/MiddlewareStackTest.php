@@ -66,7 +66,7 @@ class MiddlewareStackTest extends \PHPUnit\Framework\TestCase
 
     private function getInterestingMiddlewares($count)
     {
-        $middlewares = array();
+        $middlewares = [];
         for ($i = $count; $i > 0; --$i) {
             $callable = function (callable $handler) use ($i) {
                 ++$this->count;

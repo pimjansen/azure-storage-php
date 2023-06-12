@@ -45,7 +45,7 @@ class ListDirectoriesAndFilesResultTest extends \PHPUnit\Framework\TestCase
     public function testCreate()
     {
         // Setup
-        $samples = array();
+        $samples = [];
         $samples[] =
             TestResources::getInterestingListDirectoriesAndFilesResultArray();
         $samples[] =
@@ -58,7 +58,7 @@ class ListDirectoriesAndFilesResultTest extends \PHPUnit\Framework\TestCase
             TestResources::getInterestingListDirectoriesAndFilesResultArray(5, 5);
 
         // Test
-        $actuals = array();
+        $actuals = [];
         $actuals[] = ListDirectoriesAndFilesResult::create($samples[0]);
         $actuals[] = ListDirectoriesAndFilesResult::create($samples[1]);
         $actuals[] = ListDirectoriesAndFilesResult::create($samples[2]);

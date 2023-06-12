@@ -122,7 +122,7 @@ class TestResources
 
     public static function getSASInterestingUTCases()
     {
-        $testCases = array();
+        $testCases = [];
 
         // The SAS token is all generated with fake key.
         $testCases[] = [
@@ -180,7 +180,7 @@ class TestResources
     {
         //sr for signedResource, sp for signedPermissions, expected set to
         //empty string if signed permission is invalid.
-        $result = array();
+        $result = [];
         $result[] = [
             'sr' => '',//account sas
             'sp' => 'rwdlrwdlacupacup',
@@ -197,7 +197,7 @@ class TestResources
 
     public static function getInterestingSharePropertiesArray()
     {
-        $result = array();
+        $result = [];
         $result[Resources::QP_LAST_MODIFIED] = self::getRandomEarlierTimeInAzureFormatString();
         $result[Resources::QP_ETAG] = \uniqid();
         $result[Resources::QP_QUOTA] = \rand(1, 100);
@@ -208,7 +208,7 @@ class TestResources
     public static function getInterestingSharePropertiesWithMetadataArray()
     {
         $meta = self::getInterestingMetadataArray(5);
-        $result = array();
+        $result = [];
         foreach ($meta as $value) {
             foreach ($value as $key => $v) {
                 $result[$key] = $v;
@@ -224,7 +224,7 @@ class TestResources
     public static function getInterestingPropertiesArray()
     {
         $meta = self::getInterestingMetadataArray(5);
-        $result = array();
+        $result = [];
         foreach ($meta as $value) {
             foreach ($value as $key => $v) {
                 $result[$key] = $v;
@@ -238,7 +238,7 @@ class TestResources
 
     public static function getInterestingShareArray()
     {
-        $result = array();
+        $result = [];
         $result[Resources::QP_NAME] = self::getInterestingName('myshare-');
         $result[Resources::QP_PROPERTIES] = self::getInterestingSharePropertiesArray();
         $metadata = self::getInterestingMetadataArray(\rand(0, 5));
@@ -250,7 +250,7 @@ class TestResources
 
     public static function getInterestingMetadataArray($count)
     {
-        $result = array();
+        $result = [];
         for ($i = 0; $i < $count; ++$i) {
             $result[] = ['x-ms-meta-name' . $i => 'test-metadata-value' . $i];
         }
@@ -259,12 +259,12 @@ class TestResources
 
     public static function getInterestingListShareResultArray($count = 0)
     {
-        $result = array();
+        $result = [];
         $result['@attributes'][Resources::XTAG_SERVICE_ENDPOINT] = 'http://myaccount.file.core.windows.net/';
         $result[Resources::QP_MAX_RESULTS] = '3';
         $result['account'] = 'myaccount';
         $result[Resources::QP_PREFIX] = 'myprefix';
-        $shareArrays = array();
+        $shareArrays = [];
         for ($i = 0; $i < $count; ++$i) {
             $shareArrays[] = self::getInterestingShareArray();
         }
@@ -290,20 +290,20 @@ class TestResources
         $directoriesCount = 0,
         $filesCount = 0
     ) {
-        $result = array();
+        $result = [];
         $result['@attributes'][Resources::XTAG_SERVICE_ENDPOINT] = 'http://myaccount.file.core.windows.net/';
         $result['@attributes']['ShareName'] = 'testfileshare';
         $result['@attributes']['DirectoryPath'] = '';
-        $result[Resources::QP_ENTRIES] = array();
+        $result[Resources::QP_ENTRIES] = [];
         $result[Resources::QP_MAX_RESULTS] = 5;
-        $directoriesArray = array();
+        $directoriesArray = [];
         for ($i = 0; $i < $directoriesCount; ++$i) {
             $directoriesArray[] = [
                 Resources::QP_NAME => 'testdirectory' . $i,
-                Resources::QP_PROPERTIES => array()
+                Resources::QP_PROPERTIES => []
             ];
         }
-        $filesArray = array();
+        $filesArray = [];
         for ($i = 0; $i < $filesCount; ++$i) {
             $filesArray[] = [
                 Resources::QP_NAME => 'testfile' . $i,
@@ -324,7 +324,7 @@ class TestResources
 
     public static function getValidAccessPermission()
     {
-        $result = array();
+        $result = [];
         $result['b'][] = ['dwcar', 'racwd'];
         $result['b'][] = ['waradadawadaca', 'racwd'];
         $result['c'][] = ['ldwcar', 'racwdl'];
@@ -343,7 +343,7 @@ class TestResources
 
     public static function getInvalidAccessPermission()
     {
-        $result = array();
+        $result = [];
         $result['b'][] = 'dwcarl';
         $result['b'][] = 'waradadawadacap';
         $result['c'][] = 'ldwcarsdf';
@@ -404,10 +404,10 @@ class TestResources
     {
         return new Response(
             $statusCode,
-            array(
+            [
                 Resources::DATE => self::DATE1,
                 Resources::X_MS_REQUEST_ID => self::REQUEST_ID1
-            ),
+            ],
             self::RESPONSE_BODY,
             '1.1',
             $reason
@@ -418,7 +418,7 @@ class TestResources
     {
         return new Response(
             $statusCode,
-            array(),
+            [],
             self::RESPONSE_BODY_JSON,
             '1.1',
             $reason
@@ -493,12 +493,12 @@ class TestResources
 
     public static function getMediaServicesConnectionParameters()
     {
-        return array(
+        return [
             'accountName'       => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_ACCOUNT_NAME'),
             'accessKey'         => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_ACCESS_KEY'),
             'endpointUri'       => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_ENDPOINT_URI', false),
             'oauthEndopointUri' => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_OAUTH_ENDPOINT_URI', false),
-        );
+        ];
     }
 
     private static function getEnvironmentVariable($name, $required = true)
@@ -514,7 +514,7 @@ class TestResources
 
     public static function getCORSSingle()
     {
-        $sample = array();
+        $sample = [];
         $sample['AllowedOrigins'] =
             'http://www.microsoft.com,http://www.bing.com';
         $sample['AllowedMethods'] = 'GET,PUT';
@@ -529,7 +529,7 @@ class TestResources
 
     public static function getServicePropertiesSample()
     {
-        $sample = array();
+        $sample = [];
         $sample['Logging']['Version'] = '1.0';
         $sample['Logging']['Delete'] = 'true';
         $sample['Logging']['Read'] = 'false';
@@ -570,8 +570,8 @@ class TestResources
 
     public static function getServiceStatsSample()
     {
-        $sample = array();
-        $geo = array();
+        $sample = [];
+        $geo = [];
         $geo[Resources::XTAG_STATUS] = 'live';
         $geo[Resources::XTAG_LAST_SYNC_TIME] = 'Sun, 23 Apr 2017 02:14:35 GMT';
         $sample[Resources::XTAG_GEO_REPLICATION] = $geo;
@@ -676,7 +676,7 @@ class TestResources
 
     public static function setServicePropertiesSample()
     {
-        $sample = array();
+        $sample = [];
         $sample['Logging']['Version'] = '1.0';
         $sample['Logging']['Delete'] = 'true';
         $sample['Logging']['Read'] = 'false';
@@ -717,7 +717,7 @@ class TestResources
 
     public static function setFileServicePropertiesSample()
     {
-        $sample = array();
+        $sample = [];
         $sample['HourMetrics']['Version'] = '1.0';
         $sample['HourMetrics']['Enabled'] = 'true';
         $sample['HourMetrics']['IncludeAPIs'] = 'false';
@@ -752,7 +752,7 @@ class TestResources
 
     public static function setBlobServicePropertiesSample()
     {
-        $sample = array();
+        $sample = [];
         $sample['Logging']['Version'] = '1.0';
         $sample['Logging']['Delete'] = 'true';
         $sample['Logging']['Read'] = 'false';
@@ -794,7 +794,7 @@ class TestResources
 
     public static function listMessagesSample()
     {
-        $sample = array();
+        $sample = [];
         $sample['QueueMessage']['MessageId']       = '5974b586-0df3-4e2d-ad0c-18e3892bfca2';
         $sample['QueueMessage']['InsertionTime']   = 'Fri, 09 Oct 2009 21:04:30 GMT';
         $sample['QueueMessage']['ExpirationTime']  = 'Fri, 16 Oct 2009 21:04:30 GMT';
@@ -808,7 +808,7 @@ class TestResources
 
     public static function createMessageSample()
     {
-        $sample = array();
+        $sample = [];
         $sample['QueueMessage']['MessageId']       = '5974b586-0df3-4e2d-ad0c-18e3892bfca2';
         $sample['QueueMessage']['InsertionTime']   = 'Fri, 09 Oct 2009 21:04:30 GMT';
         $sample['QueueMessage']['ExpirationTime']  = 'Fri, 16 Oct 2009 21:04:30 GMT';
@@ -820,7 +820,7 @@ class TestResources
 
     public static function listMessagesMultipleMessagesSample()
     {
-        $sample = array();
+        $sample = [];
         $sample['QueueMessage'][0]['MessageId']       = '5974b586-0df3-4e2d-ad0c-18e3892bfca2';
         $sample['QueueMessage'][0]['InsertionTime']   = 'Fri, 09 Oct 2009 21:04:30 GMT';
         $sample['QueueMessage'][0]['ExpirationTime']  = 'Fri, 16 Oct 2009 21:04:30 GMT';
@@ -842,7 +842,7 @@ class TestResources
 
     public static function listQueuesEmpty()
     {
-        $sample = array();
+        $sample = [];
         $sample['Queues'] = '';
         $sample['NextMarker'] = '';
 
@@ -851,11 +851,11 @@ class TestResources
 
     public static function listQueuesOneEntry()
     {
-        $sample = array();
+        $sample = [];
         $sample['@attributes']['ServiceEndpoint'] = 'http://myaccount.blob.core.windows.net/';
         $sample['Marker'] = '/account/listqueueswithnextmarker3';
         $sample['MaxResults'] = '2';
-        $sample['Queues'] = array('Queue' => array('Name' => 'myqueue'));
+        $sample['Queues'] = ['Queue' => ['Name' => 'myqueue']];
         $sample['NextMarker'] = '';
 
         return $sample;
@@ -863,15 +863,15 @@ class TestResources
 
     public static function listQueuesMultipleEntries()
     {
-        $sample = array();
+        $sample = [];
         $sample['@attributes']['ServiceEndpoint'] = 'http://myaccount.blob.core.windows.net/';
         $sample['MaxResults'] = '2';
         $sample['Prefix'] = 'myprefix';
         $sample['Account'] = 'myaccount';
-        $sample['Queues'] = array('Queue' => array(
-            0 => array('Name' => 'myqueue1'),
-            1 => array('Name' => 'myqueue2')
-        ));
+        $sample['Queues'] = ['Queue' => [
+            0 => ['Name' => 'myqueue1'],
+            1 => ['Name' => 'myqueue2']
+        ]];
         $sample['NextMarker'] = '/account/myqueue3';
 
         return $sample;
@@ -879,7 +879,7 @@ class TestResources
 
     public static function listContainersEmpty()
     {
-        $sample = array();
+        $sample = [];
         $sample['Containers'] = '';
         $sample['NextMarker'] = '';
 
@@ -888,17 +888,17 @@ class TestResources
 
     public static function listContainersOneEntry()
     {
-        $sample = array();
+        $sample = [];
         $sample['@attributes']['ServiceEndpoint'] = 'http://myaccount.blob.core.windows.net/';
         $sample['Marker'] = '/account/listqueueswithnextmarker3';
         $sample['MaxResults'] = '2';
-        $sample['Containers'] = array('Container' => array(
+        $sample['Containers'] = ['Container' => [
             'Name' => 'audio',
-            'Properties' => array(
+            'Properties' => [
                 'Last-Modified' => 'Wed, 12 Aug 2009 20:39:39 GMT',
                 'Etag' => '0x8CACB9BD7C6B1B2'
-            )
-        ));
+            ]
+        ]];
         $sample['NextMarker'] = '';
 
         return $sample;
@@ -906,27 +906,27 @@ class TestResources
 
     public static function listContainersMultipleEntries()
     {
-        $sample = array();
+        $sample = [];
         $sample['@attributes']['ServiceEndpoint'] = 'http://myaccount.blob.core.windows.net/';
         $sample['MaxResults'] = '3';
         $sample['account'] = 'myaccount';
         $sample['Prefix'] = 'myprefix';
-        $sample['Containers'] = array('Container' => array(
-            0 => array(
+        $sample['Containers'] = ['Container' => [
+            0 => [
                 'Name' => 'audio',
-                'Properties' => array(
+                'Properties' => [
                     'Last-Modified' => 'Wed, 12 Aug 2009 20:39:39 GMT',
                     'Etag' => '0x8CACB9BD7C6B1B2'
-                )
-            ),
-            1 => array(
+                ]
+            ],
+            1 => [
                 'Name' => 'images',
-                'Properties' => array(
+                'Properties' => [
                     'Last-Modified' => 'Wed, 12 Aug 2009 20:39:39 GMT',
                     'Etag' => '0x8CACB9BD7C1EEEC'
-                )
-            )
-        ));
+                ]
+            ]
+        ]];
         $sample['NextMarker'] = 'video';
 
         return $sample;
@@ -934,12 +934,12 @@ class TestResources
 
     public static function listContainersMultipleRandomEntriesBody($count, $nextMarker)
     {
-        $sample = array();
+        $sample = [];
         $sample['@attributes']['ServiceEndpoint'] = 'http://myaccount.blob.core.windows.net/';
         $sample['MaxResults'] = $count;
         $sample['account'] = 'myaccount';
         $sample['Prefix'] = 'myprefix';
-        $containers = array();
+        $containers = [];
         for ($i = 0; $i < $count; ++$i) {
             $containers[] = ['Container' => self::randomContainerEntry()];
         }
@@ -951,7 +951,7 @@ class TestResources
 
     public static function randomContainerEntry()
     {
-        $entry = array();
+        $entry = [];
         $entry['Name'] = self::getInterestingName('myprefix');
         $entry['Properties']['Last-Modified'] = self::getRandomEarlierTimeInAzureFormatString();
         $entry['Properties']['Etag'] = \uniqid();
@@ -961,152 +961,152 @@ class TestResources
 
     public static function getContainerAclOneEntrySample()
     {
-        $sample = array();
-        $sample['SignedIdentifiers'] = array('SignedIdentifier' => array(
+        $sample = [];
+        $sample['SignedIdentifiers'] = ['SignedIdentifier' => [
             'Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
+            'AccessPolicy' => [
                 'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                 'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'rwd')
-        ));
+                'Permission' => 'rwd']
+        ]];
 
         return $sample;
     }
 
     public static function getContainerAclMultipleEntriesSample()
     {
-        $sample = array();
-        $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
-            0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+        $sample = [];
+        $sample['SignedIdentifiers'] = [ 'SignedIdentifier' => [
+            0 => ['Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'wd')),
-            1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+                    'Permission' => 'wd']],
+            1 => ['Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'rwd'))
-        ));
+                    'Permission' => 'rwd']]
+        ]];
 
         return $sample;
     }
 
     public static function getShareAclMultipleEntriesSample()
     {
-        $sample = array();
-        $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
-            0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+        $sample = [];
+        $sample['SignedIdentifiers'] = [ 'SignedIdentifier' => [
+            0 => ['Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'cwd')),
-            1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+                    'Permission' => 'cwd']],
+            1 => ['Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'rwd'))
-        ));
+                    'Permission' => 'rwd']]
+        ]];
 
         return $sample;
     }
 
     public static function getQueueACLOneEntrySample()
     {
-        $sample = array();
-        $sample['SignedIdentifiers'] = array('SignedIdentifier' => array(
+        $sample = [];
+        $sample['SignedIdentifiers'] = ['SignedIdentifier' => [
             'Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
+            'AccessPolicy' => [
                 'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                 'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'ap')
-        ));
+                'Permission' => 'ap']
+        ]];
 
         return $sample;
     }
 
     public static function getQueueACLMultipleEntriesSample()
     {
-        $sample = array();
-        $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
-            0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+        $sample = [];
+        $sample['SignedIdentifiers'] = [ 'SignedIdentifier' => [
+            0 => ['Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'raup')),
-            1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+                    'Permission' => 'raup']],
+            1 => ['Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'ru'))
-        ));
+                    'Permission' => 'ru']]
+        ]];
 
         return $sample;
     }
 
     public static function getQueueACLMultipleUnencodedEntriesSample()
     {
-        $sample = array();
-        $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
-            0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+        $sample = [];
+        $sample['SignedIdentifiers'] = [ 'SignedIdentifier' => [
+            0 => ['Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'raup')),
-            1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+                    'Permission' => 'raup']],
+            1 => ['Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'ru'))
-        ));
+                    'Permission' => 'ru']]
+        ]];
 
         return $sample;
     }
 
     public static function getQueueACLMultipleArraySample()
     {
-        $sample = array();
+        $sample = [];
         $sample[] = [
             'Id' => 'a',
-            'AccessPolicy' => array(
+            'AccessPolicy' => [
                 'Start' => self::getRandomEarlierTime(),
                 'Expiry' => self::getRandomLaterTime(),
-                'Permission' => 'raup')
+                'Permission' => 'raup']
         ];
         $sample[] = [
             'Id' => 'b',
-            'AccessPolicy' => array(
+            'AccessPolicy' => [
                 'Start' => self::getRandomEarlierTime(),
                 'Expiry' => self::getRandomLaterTime(),
-                'Permission' => 'raup')
+                'Permission' => 'raup']
         ];
         $sample[] = [
             'Id' => 'c',
-            'AccessPolicy' => array(
+            'AccessPolicy' => [
                 'Start' => self::getRandomEarlierTime(),
                 'Expiry' => self::getRandomLaterTime(),
-                'Permission' => 'raup')
+                'Permission' => 'raup']
         ];
         $sample[] = [
             'Id' => 'd',
-            'AccessPolicy' => array(
+            'AccessPolicy' => [
                 'Start' => self::getRandomEarlierTime(),
                 'Expiry' => self::getRandomLaterTime(),
-                'Permission' => 'raup')
+                'Permission' => 'raup']
         ];
         $sample[] = [
             'Id' => 'e',
-            'AccessPolicy' => array(
+            'AccessPolicy' => [
                 'Start' => self::getRandomEarlierTime(),
                 'Expiry' => self::getRandomLaterTime(),
-                'Permission' => 'raup')
+                'Permission' => 'raup']
         ];
         $sample[] = [
             'Id' => 'f',
-            'AccessPolicy' => array(
+            'AccessPolicy' => [
                 'Start' => self::getRandomEarlierTime(),
                 'Expiry' => self::getRandomLaterTime(),
-                'Permission' => 'raup')
+                'Permission' => 'raup']
         ];
 
         return $sample;
@@ -1114,33 +1114,33 @@ class TestResources
 
     public static function getTableACLOneEntrySample()
     {
-        $sample = array();
-        $sample['SignedIdentifiers'] = array('SignedIdentifier' => array(
+        $sample = [];
+        $sample['SignedIdentifiers'] = ['SignedIdentifier' => [
             'Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
+            'AccessPolicy' => [
                 'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                 'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'ad')
-        ));
+                'Permission' => 'ad']
+        ]];
 
         return $sample;
     }
 
     public static function getTableACLMultipleEntriesSample()
     {
-        $sample = array();
-        $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
-            0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+        $sample = [];
+        $sample['SignedIdentifiers'] = [ 'SignedIdentifier' => [
+            0 => ['Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'raud')),
-            1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-                'AccessPolicy' => array(
+                    'Permission' => 'raud']],
+            1 => ['Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+                'AccessPolicy' => [
                     'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                     'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                    'Permission' => 'ru'))
-        ));
+                    'Permission' => 'ru']]
+        ]];
 
         return $sample;
     }
@@ -1177,7 +1177,7 @@ class TestResources
 
     public static function listBlobsEmpty()
     {
-        $sample = array();
+        $sample = [];
         $sample['Blobs'] = '';
         $sample['NextMarker'] = '';
 
@@ -1186,20 +1186,20 @@ class TestResources
 
     public static function listBlobsOneEntry()
     {
-        $sample = array();
+        $sample = [];
         $sample['@attributes']['ServiceEndpoint'] = 'http://myaccount.blob.core.windows.net/';
         $sample['@attributes']['ContainerName'] = 'mycontainer';
         $sample['Marker'] = '/account/listblobswithnextmarker3';
         $sample['MaxResults'] = '2';
         $sample['Delimiter'] = 'mydelimiter';
         $sample['Prefix'] = 'myprefix';
-        $sample['Blobs'] = array(
-            'BlobPrefix' => array('Name' => 'myblobprefix'),
-            'Blob' => array(
+        $sample['Blobs'] = [
+            'BlobPrefix' => ['Name' => 'myblobprefix'],
+            'Blob' => [
                 'Name' => 'myblob',
                 'Snapshot' => '10-12-2011',
-                'Metadata' => array('Name1' => 'Value1', 'Name2' => 'Value2'),
-                'Properties' => array(
+                'Metadata' => ['Name1' => 'Value1', 'Name2' => 'Value2'],
+                'Properties' => [
                     'Last-Modified' => 'Sat, 04 Sep 2011 12:43:08 GMT',
                     'Etag' => '0x8CAFB82EFF70C46',
                     'Content-Length' => '10',
@@ -1215,9 +1215,9 @@ class TestResources
                     'x-ms-request-server-encrypted' => 'true',
                     'x-ms-incremental-copy' => 'true',
                     'x-ms-copy-destination-snapshot'=> '2017-09-07T06:57:06.0830478Z'
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $sample['NextMarker'] = 'abcdefg';
 
@@ -1226,20 +1226,20 @@ class TestResources
 
     public static function listBlobsMultipleEntries()
     {
-        $sample = array();
+        $sample = [];
         $sample['@attributes']['ServiceEndpoint'] = 'http://myaccount.blob.core.windows.net/';
         $sample['@attributes']['ContainerName'] = 'mycontainer';
         $sample['Marker'] = '/account/listblobswithnextmarker3';
         $sample['MaxResults'] = '2';
-        $sample['Blobs'] = array(
-            'BlobPrefix' => array(
-                0 => array('Name' => 'myblobprefix'),
-                1 => array('Name' => 'myblobprefix2')),
-            'Blob' => array( 0 => array(
+        $sample['Blobs'] = [
+            'BlobPrefix' => [
+                0 => ['Name' => 'myblobprefix'],
+                1 => ['Name' => 'myblobprefix2']],
+            'Blob' => [ 0 => [
                 'Name' => 'myblob',
                 'Snapshot' => '10-12-2011',
-                'Metadata' => array('Name1' => 'Value1', 'Name2' => 'Value2'),
-                'Properties' => array(
+                'Metadata' => ['Name1' => 'Value1', 'Name2' => 'Value2'],
+                'Properties' => [
                     'Last-Modified' => 'Sat, 04 Sep 2011 12:43:08 GMT',
                     'Etag' => '0x8CAFB82EFF70C46',
                     'Content-Length' => '10',
@@ -1251,14 +1251,14 @@ class TestResources
                     'x-ms-blob-sequence-number' => '0',
                     'BlobType' => 'BlockBlob',
                     'LeaseStatus' => 'locked'
-                )
-            ),
+                ]
+            ],
 
-                1 => array(
+                1 => [
                     'Name' => 'myblob2',
                     'Snapshot' => '10-12-2011',
-                    'Metadata' => array('Name1' => 'Value1', 'Name2' => 'Value2'),
-                    'Properties' => array(
+                    'Metadata' => ['Name1' => 'Value1', 'Name2' => 'Value2'],
+                    'Properties' => [
                         'Last-Modified' => 'Sun, 26 Feb 2010 12:43:08 GMT',
                         'Etag' => '0x7CQWER2EFF70C46',
                         'Content-Length' => '20',
@@ -1270,8 +1270,8 @@ class TestResources
                         'x-ms-blob-sequence-number' => '1',
                         'BlobType' => 'PageBlob',
                         'LeaseStatus' => 'unlocked'
-                    )
-                )));
+                    ]
+                ]]];
 
         $sample['NextMarker'] = 'value';
 
@@ -1280,7 +1280,7 @@ class TestResources
 
     public static function listBlocksMultipleEntriesHeaders()
     {
-        $sample = array(
+        $sample = [
             'Last-Modified' => 'Sat, 04 Sep 2011 12:43:08 GMT',
             'Etag' => '0x8CAFB82EFF70C46',
             'x-ms-blob-content-length' => '13606912',
@@ -1292,68 +1292,68 @@ class TestResources
             'x-ms-blob-sequence-number' => '0',
             'BlobType' => 'BlockBlob',
             'LeaseStatus' => 'locked'
-        );
+        ];
 
         return $sample;
     }
 
     public static function listBlocksMultipleEntriesBody()
     {
-        $sample = array();
-        $sample['CommittedBlocks'] = array('Block' => array(
-            0 => array('Name' => 'BlockId001', 'Size' => '4194304'),
-            1 => array('Name' => 'BlockId002', 'Size' => '4194304')
-        ));
+        $sample = [];
+        $sample['CommittedBlocks'] = ['Block' => [
+            0 => ['Name' => 'BlockId001', 'Size' => '4194304'],
+            1 => ['Name' => 'BlockId002', 'Size' => '4194304']
+        ]];
 
-        $sample['UncommittedBlocks'] = array('Block' => array(
-            0 => array('Name' => 'BlockId003', 'Size' => '4194304'),
-            1 => array('Name' => 'BlockId004', 'Size' => '1024000')
-        ));
+        $sample['UncommittedBlocks'] = ['Block' => [
+            0 => ['Name' => 'BlockId003', 'Size' => '4194304'],
+            1 => ['Name' => 'BlockId004', 'Size' => '1024000']
+        ]];
 
         return $sample;
     }
 
     public static function listPageRangeHeaders()
     {
-        $sample = array(
+        $sample = [
             'Last-Modified' => 'Sat, 04 Sep 2011 12:43:08 GMT',
             'Etag' => '0x8CAFB82EFF70C46',
             'x-ms-blob-content-length' => '13606912',
-        );
+        ];
 
         return $sample;
     }
 
     public static function listPageRangeBodyInArray()
     {
-        return array('PageRange' => array(
-            0 => array('Start' => '0',        'End' => '4194303'),
-            1 => array('Start' => '4194304',  'End' => '8388607'),
-            2 => array('Start' => '8388608',  'End' => '12582911'),
-            3 => array('Start' => '12582912', 'End' => '13606911'),
-        ));
+        return ['PageRange' => [
+            0 => ['Start' => '0',        'End' => '4194303'],
+            1 => ['Start' => '4194304',  'End' => '8388607'],
+            2 => ['Start' => '8388608',  'End' => '12582911'],
+            3 => ['Start' => '12582912', 'End' => '13606911'],
+        ]];
     }
 
     public static function listPageRangeDiffBodyInArray()
     {
-        return array('PageRange' => array(
-            0 => array('Start' => '0',        'End' => '4194303'),
-            1 => array('Start' => '4194304',  'End' => '8388607'),
-            2 => array('Start' => '8388608',  'End' => '12582911'),
-            3 => array('Start' => '12582912', 'End' => '13606911'),
-        ), 'PageClear' => array(
-            0 => array('Start' => '13606912', 'End' => '17801215')
-        ));
+        return ['PageRange' => [
+            0 => ['Start' => '0',        'End' => '4194303'],
+            1 => ['Start' => '4194304',  'End' => '8388607'],
+            2 => ['Start' => '8388608',  'End' => '12582911'],
+            3 => ['Start' => '12582912', 'End' => '13606911'],
+        ], 'PageClear' => [
+            0 => ['Start' => '13606912', 'End' => '17801215']
+        ]];
     }
 
     public static function getUpdateMessageResultSampleHeaders()
     {
-        return array(
+        return [
             QueueResources::X_MS_POPRECEIPT =>
                 'YzQ4Yzg1MDItYTc0Ny00OWNjLTkxYTUtZGM0MDFiZDAwYzEw',
             QueueResources::X_MS_TIME_NEXT_VISIBLE =>
                 'Fri, 09 Oct 2009 23:29:20 GMT'
-        );
+        ];
     }
 
     public static function getVariousTypesEntity()
@@ -1418,10 +1418,10 @@ class TestResources
 
     public static function getSimpleJson()
     {
-        $data['dataArray'] = array('test1','test2','test3');
+        $data['dataArray'] = ['test1','test2','test3'];
         $data['jsonArray'] = '["test1","test2","test3"]';
 
-        $data['dataObject'] = array('k1' => 'test1', 'k2' => 'test2', 'k3' => 'test3');
+        $data['dataObject'] = ['k1' => 'test1', 'k2' => 'test2', 'k3' => 'test3'];
         $data['jsonObject'] = '{"k1":"test1","k2":"test2","k3":"test3"}';
 
         return $data;
@@ -1429,21 +1429,21 @@ class TestResources
 
     public static function getBatchResponseHeaders()
     {
-        return array(
-            'Cache-Control'          => array('no-cache'),
-            'Transfer-Encoding'      => array('chunked'),
-            'Content_Type'           => array('multipart/mixed; boundary=batchresponse_e899556e-c637-4b2d-8cd1-63edb03dd6fe'),
-            'Server'                 => array('Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0'),
-            'x-ms-request-id'        => array('b3818f44-0002-001d-01fe-872339000000'),
-            'x-ms-version'           => array('2015-04-05'),
-            'X-Content-Type-Options' => array('nosniff'),
-            'Date'                   => array('Thu, 16 Feb 2017 02:46:47 GMT')
-        );
+        return [
+            'Cache-Control'          => ['no-cache'],
+            'Transfer-Encoding'      => ['chunked'],
+            'Content_Type'           => ['multipart/mixed; boundary=batchresponse_e899556e-c637-4b2d-8cd1-63edb03dd6fe'],
+            'Server'                 => ['Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0'],
+            'x-ms-request-id'        => ['b3818f44-0002-001d-01fe-872339000000'],
+            'x-ms-version'           => ['2015-04-05'],
+            'X-Content-Type-Options' => ['nosniff'],
+            'Date'                   => ['Thu, 16 Feb 2017 02:46:47 GMT']
+        ];
     }
 
     public static function getBatchContexts()
     {
-        $contexts = array();
+        $contexts = [];
         for ($i = 0; $i < 6; ++$i) {
             $context = new HttpCallContext();
             $context->setStatusCodes([204]);
@@ -1454,7 +1454,7 @@ class TestResources
 
     public static function getBatchOperations()
     {
-        $operations = array();
+        $operations = [];
         $operation1 = new BatchOperation();
         $operation2 = new BatchOperation();
         $operation3 = new BatchOperation();
@@ -1497,7 +1497,7 @@ class TestResources
             $signedIP = "0.0.0.0-255.255.255.255";
         }
 
-        $result = array();
+        $result = [];
         $result['signedVersion']      = '2016-05-31';
         $result['signedPermissions']  = $signedPermissions;
         $result['signedService']      = $signedService;
@@ -1535,7 +1535,7 @@ class TestResources
             $signedIP = "0.0.0.0-255.255.255.255";
         }
 
-        $result = array();
+        $result = [];
         $result['signedResource']     = $signedResource;
         $result['resourceName']       = $resourceName;
         $result['signedExpiry']       = $signedExpiry;
@@ -1576,7 +1576,7 @@ class TestResources
             $signedIP = "0.0.0.0-255.255.255.255";
         }
 
-        $result = array();
+        $result = [];
         $result['tableName']            = $tableName;
         $result['signedExpiry']         = $signedExpiry;
         $result['signedPermissions']    = $signedPermissions;
@@ -1611,7 +1611,7 @@ class TestResources
             $signedIP = "0.0.0.0-255.255.255.255";
         }
 
-        $result = array();
+        $result = [];
         $result['queueName']            = $queueName;
         $result['signedExpiry']         = $signedExpiry;
         $result['signedPermissions']    = $signedPermissions;
@@ -1626,13 +1626,13 @@ class TestResources
     public static function getExpectedBatchResultEntries()
     {
         $entityResult1 = UpdateEntityResult::create(
-            array(Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"')
+            [Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"']
         );
         $entityResult2 = UpdateEntityResult::create(
-            array(Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"')
+            [Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"']
         );
         $entityResult3 = UpdateEntityResult::create(
-            array(Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"')
+            [Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"']
         );
         return [
             'The entity was deleted successfully.',
@@ -1739,7 +1739,7 @@ DataServiceVersion: 1.0;
 
     public static function getInsertEntitySampleHeaders()
     {
-        return array(
+        return [
             'cache-control' => 'no-cache',
             'transfer-encoding' => 'chunked',
             'content-type' => 'application/atom+xml;type=entry;charset=utf-8',
@@ -1750,6 +1750,6 @@ DataServiceVersion: 1.0;
             'x-ms-version' => '2015-04-05',
             'x-content-type-options' => 'nosniff',
             'date' => 'Thu, 16 Feb 2017 06:47:04 GMT'
-        );
+        ];
     }
 }

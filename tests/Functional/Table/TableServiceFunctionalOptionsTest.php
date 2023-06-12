@@ -376,7 +376,7 @@ class TableServiceFunctionalOptionsTest extends \PHPUnit\Framework\TestCase
         $edmType = EdmType::STRING;
         $value = 'my value';
 
-        $properties = array();
+        $properties = [];
         $properties['goo'] = new Property();
         $properties['moo'] = new Property();
 

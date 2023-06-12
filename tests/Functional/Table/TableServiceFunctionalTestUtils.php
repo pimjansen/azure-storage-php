@@ -98,7 +98,7 @@ class TableServiceFunctionalTestUtils
 
     public static function filterList($filter, $input)
     {
-        $output = array();
+        $output = [];
         foreach ($input as $i) {
             if (self::filterInterperter($filter, $i)) {
                 array_push($output, $i);
@@ -109,7 +109,7 @@ class TableServiceFunctionalTestUtils
 
     public static function filterEntityList($filter, $input)
     {
-        $output = array();
+        $output = [];
         foreach ($input as $i) {
             $result = self::filterInterperter($filter, $i);
             if (!is_null($result) && $result) {
@@ -123,7 +123,7 @@ class TableServiceFunctionalTestUtils
     {
         $ret = new Entity();
         $initialProps = $initialEnt->getProperties();
-        $retProps = array();
+        $retProps = [];
         foreach ($initialProps as $propName => $initialProp) {
             // Don't mess with the timestamp.
             if ($propName == ('Timestamp')) {

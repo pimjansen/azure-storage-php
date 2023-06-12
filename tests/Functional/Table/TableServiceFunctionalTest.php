@@ -290,7 +290,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $expectedFilter = TableServiceFunctionalTestUtils::cloneRemoveEqNotInTopLevel($expectedFilter);
         }
 
-        $expectedData = array();
+        $expectedData = [];
         foreach (TableServiceFunctionalTestData::$testTableNames as $s) {
             if (substr($s, 0, strlen($effectivePrefix)) == $effectivePrefix) {
                 $fte = new FakeTableInfoEntry();
@@ -300,7 +300,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         }
 
         if (!is_null($options->getNextTableName())) {
-            $tmpExpectedData = array();
+            $tmpExpectedData = [];
             $foundNext = false;
             foreach ($expectedData as $s) {
                 if ($s == $options->getNextTableName()) {
@@ -545,7 +545,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
     private function verifygetEntityWorker($ent, $entReturned)
     {
-        $expectedProps = array();
+        $expectedProps = [];
         foreach ($ent->getProperties() as $pname => $actualProp) {
             if (is_null($actualProp) || !is_null($actualProp->getValue())) {
                 $cloneProp = null;
@@ -1259,7 +1259,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $opTypes = OpType::values();
 
         for ($j = 0; $j < 10; $j++) {
-            $configs = array();
+            $configs = [];
             foreach (TableServiceFunctionalTestData::getSimpleEntities(6) as $ent) {
                 $config = new BatchWorkerConfig();
                 $config->concurType = $concurTypes[mt_rand(0, count($concurTypes) -1)];
@@ -1288,7 +1288,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyinsertOrMergeEntityWorker($initialEnt, $ent, $entReturned)
     {
-        $expectedProps = array();
+        $expectedProps = [];
         if (!is_null($initialEnt) &&
             $initialEnt->getPartitionKey() == $ent->getPartitionKey() &&
             $initialEnt->getRowKey() == $ent->getRowKey()) {
@@ -1315,7 +1315,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             }
         }
 
-        $effectiveProps = array();
+        $effectiveProps = [];
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
             // This is to work with Dev Storage, which returns items for all
             // columns, null valued or not.
@@ -1396,7 +1396,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             }
 
             $simpleEntities = TableServiceFunctionalTestData::getSimpleEntities(6);
-            $configs = array();
+            $configs = [];
             $firstConfig = new BatchWorkerConfig();
             $firstConfig->concurType = $firstConcurType;
             $firstConfig->opType = $firstOpType;
@@ -1428,7 +1428,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 if ($this->isEmulated()) {
                     // The emulator has trouble with some batches.
                     for ($j = 0; $j < count($configs); $j++) {
-                        $tmpconfigs = array();
+                        $tmpconfigs = [];
                         $tmpconfigs[] = $configs[$j];
                         $this->batchWorker($tmpconfigs, $options);
                     }
@@ -1441,7 +1441,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
     private function batchWorker($configs, $options)
     {
-        $exptErrs = array();
+        $exptErrs = [];
         $expectedReturned = count($configs);
         $expectedError = false;
         $expectedErrorCount = 0;
@@ -1458,7 +1458,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         try {
             // Upload the initial entities and get the target entities.
-            $targetEnts = array();
+            $targetEnts = [];
             for ($i = 0; $i < count($configs); $i++) {
                 $initial = $this->restProxy->insertEntity($table, $configs[$i]->ent);
                 array_push(

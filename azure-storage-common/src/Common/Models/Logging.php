@@ -185,7 +185,7 @@ class Logging
      */
     public function toArray()
     {
-        return array(
+        return [
             'Version'         => $this->_version,
             'Delete'          => Utilities::booleanToString($this->_delete),
             'Read'            => Utilities::booleanToString($this->_read),
@@ -193,6 +193,6 @@ class Logging
             'RetentionPolicy' => !empty($this->_retentionPolicy)
                 ? $this->_retentionPolicy->toArray()
                 : null
-        );
+        ];
     }
 }

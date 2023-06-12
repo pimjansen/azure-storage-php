@@ -51,8 +51,8 @@ class QueueServiceSASFunctionalTest extends SASFunctionalTestBase
         //setup the proxies for creating queues
         $this->setUpWithConnectionString($this->connectionString);
 
-        $queueProxies = array();
-        $queues = array();
+        $queueProxies = [];
+        $queues = [];
         $queues[] = TestResources::getInterestingName('qu');
         $this->safeCreateQueue($queues[0]);
         $queues[] = TestResources::getInterestingName('qu');

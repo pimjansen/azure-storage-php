@@ -46,7 +46,7 @@ class ShareTest extends \PHPUnit\Framework\TestCase
     {
         $responseArray = TestResources::getInterestingShareArray();
         $share = Share::create($responseArray);
-        $expectedMeta = Utilities::tryGetValue($responseArray, Resources::QP_METADATA, array());
+        $expectedMeta = Utilities::tryGetValue($responseArray, Resources::QP_METADATA, []);
         $expectedName = $responseArray[Resources::QP_NAME];
         $expectedProperties = ShareProperties::create(
             $responseArray[Resources::QP_PROPERTIES]

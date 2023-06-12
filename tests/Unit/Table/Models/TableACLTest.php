@@ -45,7 +45,7 @@ class TableACLTest extends \PHPUnit\Framework\TestCase
     public function testCreateEmpty()
     {
         // Setup
-        $sample = array();
+        $sample = [];
 
         // Test
         $acl = TableACL::create($sample);

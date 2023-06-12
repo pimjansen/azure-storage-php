@@ -45,7 +45,7 @@ class HttpFormatter
      */
     public static function formatHeaders(array $headers)
     {
-        $result = array();
+        $result = [];
         foreach ($headers as $key => $value) {
             if (is_array($value) && count($value) == 1) {
                 $result[strtolower($key)] = $value[0];

@@ -221,7 +221,7 @@ class Utilities
     public static function getArray(array $var)
     {
         if (is_null($var) || empty($var)) {
-            return array();
+            return [];
         }
 
         foreach ($var as $value) {
@@ -230,7 +230,7 @@ class Utilities
             ) {
                 return (array) $var;
             } elseif (!is_array($value)) {
-                return array($var);
+                return [$var];
             }
         }
 
@@ -478,7 +478,7 @@ class Utilities
      */
     public static function orderArray(array $array, array $order)
     {
-        $ordered = array();
+        $ordered = [];
 
         foreach ($order as $key) {
             if (array_key_exists($key, $array)) {
@@ -582,7 +582,7 @@ class Utilities
      */
     public static function createInstanceList(array $parsed, $class)
     {
-        $list = array();
+        $list = [];
 
         foreach ($parsed as $value) {
             $list[] = $class::create($value);
@@ -723,7 +723,7 @@ class Utilities
      */
     public static function getMetadataArray(array $headers)
     {
-        $metadata = array();
+        $metadata = [];
         foreach ($headers as $key => $value) {
             $isMetadataHeader = Utilities::startsWith(
                 strtolower($key),
@@ -756,7 +756,7 @@ class Utilities
         if (!is_null($metadata)) {
             Validate::isArray($metadata, 'metadata');
         } else {
-            $metadata = array();
+            $metadata = [];
         }
 
         foreach ($metadata as $key => $value) {

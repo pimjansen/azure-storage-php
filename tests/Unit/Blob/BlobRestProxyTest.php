@@ -424,7 +424,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Setup
         $name     = 'getcontainermetadata' . $this->createSuffix();
         $options  = new CreateContainerOptions();
-        $expected = array('name1' => 'MyName1', 'mymetaname' => '12345', 'values' => 'Microsoft_');
+        $expected = ['name1' => 'MyName1', 'mymetaname' => '12345', 'values' => 'Microsoft_'];
         $options->setMetadata($expected);
         $this->createContainer($name, $options);
         $result = $this->restProxy->getContainerProperties($name);
@@ -478,7 +478,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
     {
         // Setup
         $name     = 'setcontainermetadata' . $this->createSuffix();
-        $expected = array('name1' => 'MyName1', 'mymetaname' => '12345', 'values' => 'Microsoft_');
+        $expected = ['name1' => 'MyName1', 'mymetaname' => '12345', 'values' => 'Microsoft_'];
         $this->createContainer($name);
 
         // Test
@@ -844,7 +844,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Setup
         $name = 'createpageblobwithextraoptions' . $this->createSuffix();
         $this->createContainer($name);
-        $metadata = array('Name1' => 'Value1', 'Name2' => 'Value2');
+        $metadata = ['Name1' => 'Value1', 'Name2' => 'Value2'];
         $contentType = Resources::BINARY_FILE_TYPE;
         $options = new CreatePageBlobOptions();
         $options->setMetadata($metadata);
@@ -979,7 +979,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
     {
         // Setup
         $name = 'getblobmetadata' . $this->createSuffix();
-        $metadata = array('m1' => 'v1', 'm2' => 'v2');
+        $metadata = ['m1' => 'v1', 'm2' => 'v2'];
         $blob = 'myblob';
         $this->createContainer($name);
         $options = new CreatePageBlobOptions();
@@ -997,7 +997,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
     {
         // Setup
         $name = 'setblobmetadata' . $this->createSuffix();
-        $metadata = array('m1' => 'v1', 'm2' => 'v2');
+        $metadata = ['m1' => 'v1', 'm2' => 'v2'];
         $blob = 'myblob';
         $this->createContainer($name);
         $this->restProxy->createPageBlob($name, $blob, 512);
@@ -1016,7 +1016,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Setup
         $name = 'getblob' . $this->createSuffix();
         $blob = 'myblob';
-        $metadata = array('m1' => 'v1', 'm2' => 'v2');
+        $metadata = ['m1' => 'v1', 'm2' => 'v2'];
         $contentType = 'text/plain; charset=UTF-8';
         $contentStream = 'Hello world';
         $this->createContainer($name);
@@ -1058,7 +1058,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
      */
     public function testCreateContainerAsyncWithInvalidParameters()
     {
-        $this->restProxy->createContainerAsync(array());
+        $this->restProxy->createContainerAsync([]);
     }
 
     public function testGetBlobWithRange()
@@ -1125,7 +1125,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Setup
         $name = 'getblobwithgarbage' . $this->createSuffix();
         $blob = 'myblob';
-        $metadata = array('m1' => 'v1', 'm2' => 'v2');
+        $metadata = ['m1' => 'v1', 'm2' => 'v2'];
         $contentType = 'text/plain; charset=UTF-8';
         $contentStream = chr(0);
         $this->createContainer($name);
@@ -1555,7 +1555,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $block2 = new Block();
         $block2->setBlockId($id2);
         $block2->setType(BlobBlockType::LATEST_TYPE);
-        $blockList = array($block1, $block2);
+        $blockList = [$block1, $block2];
         $this->createContainer($name);
         $this->restProxy->createBlobBlock($name, $blob, $id1, 'Hello world');
         $this->restProxy->createBlobBlock($name, $blob, $id2, 'Hello world');
@@ -2025,7 +2025,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Setup
         $name = 'getblob' . $this->createSuffix();
         $blob = 'myblob';
-        $metadata = array('m1' => 'v1', 'm2' => 'v2');
+        $metadata = ['m1' => 'v1', 'm2' => 'v2'];
         $contentType = 'text/plain; charset=UTF-8';
         $contentStream = 'Hello world';
         $this->createContainer($name);
@@ -2125,7 +2125,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         //upload the blob
         $name = 'getblob' . $this->createSuffix();
         $blob = 'myblob';
-        $metadata = array('m1' => 'v1', 'm2' => 'v2');
+        $metadata = ['m1' => 'v1', 'm2' => 'v2'];
         $contentType = 'text/plain; charset=UTF-8';
         $this->createContainer($name);
         $options = new CreateBlockBlobOptions();
@@ -2200,7 +2200,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $expectedHeader = Resources::IF_MATCH;
         $expectedValue = '0x8CAFB82EFF70C46';
         $accessCondition = AccessCondition::ifMatch($expectedValue);
-        $headers = array('Header1' => 'Value1', 'Header2' => 'Value2');
+        $headers = ['Header1' => 'Value1', 'Header2' => 'Value2'];
 
         // Test
         $actual = $this->restProxy->addOptionalAccessConditionHeader($headers, [$accessCondition]);
@@ -2216,7 +2216,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $expectedHeader = Resources::X_MS_SOURCE_IF_MATCH;
         $expectedValue = '0x8CAFB82EFF70C46';
         $accessCondition = AccessCondition::ifMatch($expectedValue);
-        $headers = array('Header1' => 'Value1', 'Header2' => 'Value2');
+        $headers = ['Header1' => 'Value1', 'Header2' => 'Value2'];
 
         // Test
         $actual = $this->restProxy->addOptionalSourceAccessConditionHeader($headers, [$accessCondition]);

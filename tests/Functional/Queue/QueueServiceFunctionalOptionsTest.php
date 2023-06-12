@@ -147,10 +147,10 @@ class QueueServiceFunctionalOptionsTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($options->getMetadata(), 'Default CreateQueueOptions->getMetadata');
         $this->assertEquals(0, count($options->getMetadata()), 'Default CreateQueueOptions->getMetadata->size');
         $this->assertNull($options->getTimeout(), 'Default CreateQueueOptions->getTimeout');
-        $metadata = array(
+        $metadata = [
             'foo' => 'bar',
             'baz' => 'bat',
-        );
+        ];
         $options->setMetadata($metadata);
         $options->setTimeout(-10);
         $this->assertEquals($options->getMetadata(), $metadata, 'Set CreateQueueOptions->getMetadata');

@@ -74,7 +74,7 @@ class ServiceProperties
         if (array_key_exists(Resources::XTAG_CORS, $parsedResponse) &&
             $parsedResponse[Resources::XTAG_CORS] != null) {
             //There could be multiple CORS rules, so need to extract them all.
-            $corses = array();
+            $corses = [];
             $corsArray =
                 $parsedResponse[Resources::XTAG_CORS][Resources::XTAG_CORS_RULE];
             if (count(array_filter(array_keys($corsArray), 'is_string')) > 0) {
@@ -89,7 +89,7 @@ class ServiceProperties
 
             $result->setCorses($corses);
         } else {
-            $result->setCorses(array());
+            $result->setCorses([]);
         }
 
         return $result;
@@ -213,7 +213,7 @@ class ServiceProperties
      */
     public function toArray()
     {
-        $result = array();
+        $result = [];
 
         if (!empty($this->getLogging())) {
             $result[Resources::XTAG_LOGGING] =
@@ -249,12 +249,12 @@ class ServiceProperties
      */
     private function getCorsesArray()
     {
-        $corsesArray = array();
+        $corsesArray = [];
         if (count($this->getCorses()) == 1) {
-            $corsesArray = array(
+            $corsesArray = [
                 Resources::XTAG_CORS_RULE => $this->getCorses()[0]->toArray()
-            );
-        } elseif ($this->getCorses() != array()) {
+            ];
+        } elseif ($this->getCorses() != []) {
             foreach ($this->getCorses() as $cors) {
                 $corsesArray[] = [Resources::XTAG_CORS_RULE => $cors->toArray()];
             }
@@ -273,7 +273,7 @@ class ServiceProperties
      */
     public function toXml(XmlSerializer $xmlSerializer)
     {
-        $properties = array(XmlSerializer::ROOT_NAME => self::$xmlRootName);
+        $properties = [XmlSerializer::ROOT_NAME => self::$xmlRootName];
         return $xmlSerializer->serialize($this->toArray(), $properties);
     }
 }

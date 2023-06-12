@@ -60,7 +60,7 @@ class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
         $this->accountKey  = $accountKey;
         $this->accountName = $accountName;
 
-        $this->includedHeaders   = array();
+        $this->includedHeaders   = [];
         $this->includedHeaders[] = Resources::DATE;
     }
 
@@ -88,7 +88,7 @@ class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
             $queryParams
         );
 
-        $stringToSign = array();
+        $stringToSign = [];
 
         foreach ($this->includedHeaders as $header) {
             $stringToSign[] = Utilities::tryGetValue($headers, $header);

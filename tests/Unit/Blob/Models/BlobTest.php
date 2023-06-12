@@ -125,7 +125,7 @@ class BlobTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $blob = new Blob();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $blob->setMetadata($expected);
@@ -138,7 +138,7 @@ class BlobTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $blob = new Blob();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $blob->setMetadata($expected);
 
         // Test

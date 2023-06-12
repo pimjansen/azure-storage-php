@@ -309,7 +309,7 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
         $name     = 'getqueuemetadata';
         $expectedCount = 0;
         $options  = new CreateQueueOptions();
-        $expected = array('name1' => 'MyName1', 'mymetaname' => '12345', 'values' => 'Microsoft_');
+        $expected = ['name1' => 'MyName1', 'mymetaname' => '12345', 'values' => 'Microsoft_'];
         $options->setMetadata($expected);
         $this->createQueue($name, $options);
 
@@ -325,7 +325,7 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
     {
         // Setup
         $name = 'setqueuemetadata';
-        $expected = array('name1' => 'MyName1', 'mymetaname' => '12345', 'values' => 'Microsoft_');
+        $expected = ['name1' => 'MyName1', 'mymetaname' => '12345', 'values' => 'Microsoft_'];
         $this->createQueue($name);
 
         // Test

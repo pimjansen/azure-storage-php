@@ -72,7 +72,7 @@ class SharedKeyAuthScheme implements IAuthScheme
         $this->accountKey  = $accountKey;
         $this->accountName = $accountName;
 
-        $this->includedHeaders   = array();
+        $this->includedHeaders   = [];
         $this->includedHeaders[] = Resources::CONTENT_ENCODING;
         $this->includedHeaders[] = Resources::CONTENT_LANGUAGE;
         $this->includedHeaders[] = Resources::CONTENT_LENGTH;
@@ -112,7 +112,7 @@ class SharedKeyAuthScheme implements IAuthScheme
             $queryParams
         );
 
-        $stringToSign   = array();
+        $stringToSign   = [];
         $stringToSign[] = strtoupper($httpMethod);
 
         foreach ($this->includedHeaders as $header) {
@@ -172,8 +172,8 @@ class SharedKeyAuthScheme implements IAuthScheme
      */
     protected function computeCanonicalizedHeaders($headers)
     {
-        $canonicalizedHeaders = array();
-        $normalizedHeaders    = array();
+        $canonicalizedHeaders = [];
+        $normalizedHeaders    = [];
         $validPrefix          =  Resources::X_MS_HEADER_PREFIX;
 
         if (is_null($normalizedHeaders)) {

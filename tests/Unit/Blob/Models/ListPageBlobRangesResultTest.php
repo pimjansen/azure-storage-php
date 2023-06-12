@@ -47,12 +47,12 @@ class ListPageBlobRangesResultTest extends \PHPUnit\Framework\TestCase
         $headers   = TestResources::listPageRangeHeaders();
         $bodyArray = TestResources::listPageRangeBodyInArray();
         // Prepare expected page range
-        $rawPageRanges = array();
+        $rawPageRanges = [];
         if (!empty($bodyArray['PageRange'])) {
             $rawPageRanges = Utilities::getArray($bodyArray['PageRange']);
         }
 
-        $pageRanges = array();
+        $pageRanges = [];
         foreach ($rawPageRanges as $value) {
             $pageRanges[] = new Range(
                 intval($value['Start']),

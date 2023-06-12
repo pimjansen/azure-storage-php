@@ -60,7 +60,7 @@ class FileServiceFunctionalTestData
         self::$testUniqueId = self::getRandomHexBytes(10);
         self::$nonExistSharePrefix = self::getRandomHexBytes(10) . 'nonshr';
         self::$nonExistFilePrefix = self::getRandomHexBytes(10) . 'nonfile';
-        self::$testShareNames = array();
+        self::$testShareNames = [];
         for ($i = 0; $i < 3; ++$i) {
             self::$testShareNames[] = self::getInterestingShareName();
         }
@@ -103,7 +103,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingTimeoutValues()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, null);
         array_push($ret, -1);
         array_push($ret, 0);
@@ -144,7 +144,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingServiceProperties()
     {
-        $ret = array();
+        $ret = [];
 
         {
             // This is the default that comes from the server.
@@ -166,7 +166,7 @@ class FileServiceFunctionalTestData
 
             $sp = new ServiceProperties();
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c));
+            $sp->setCorses([$c]);
 
             array_push($ret, $sp);
         }
@@ -190,7 +190,7 @@ class FileServiceFunctionalTestData
 
             $sp = new ServiceProperties();
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+            $sp->setCorses([$c0, $c1]);
 
             array_push($ret, $sp);
         }
@@ -214,7 +214,7 @@ class FileServiceFunctionalTestData
 
             $sp = new ServiceProperties();
             $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+            $sp->setCorses([$c0, $c1]);
 
             array_push($ret, $sp);
         }
@@ -224,7 +224,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingListSharesOptions()
     {
-        $ret = array();
+        $ret = [];
 
 
         $options = new ListSharesOptions();
@@ -280,15 +280,15 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingMetadata()
     {
-        $ret = array();
+        $ret = [];
 
-        $metadata = array();
+        $metadata = [];
         array_push($ret, $metadata);
 
         array_push($ret, self::getNiceMetadata());
 
         // Some metadata that HTTP will not like.
-        $metadata = array('<>000' => '::::value');
+        $metadata = ['<>000' => '::::value'];
         array_push($ret, $metadata);
 
         return $ret;
@@ -296,15 +296,15 @@ class FileServiceFunctionalTestData
 
     public static function getNiceMetadata()
     {
-        return array(
+        return [
             'key' => 'value',
             'foo' => 'bar',
-            'baz' => 'boo');
+            'baz' => 'boo'];
     }
 
     public static function getInterestingCreateFileOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CreateFileOptions();
         array_push($ret, $options);
@@ -318,16 +318,16 @@ class FileServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateFileOptions();
-        $metadata = array(
+        $metadata = [
             'foo' => 'bar',
             'foo2' => 'bar2',
-            'foo3' => 'bar3');
+            'foo3' => 'bar3'];
         $options->setMetadata($metadata);
         $options->setTimeout(10);
         array_push($ret, $options);
 
         $options = new CreateFileOptions();
-        $metadata = array('foo' => 'bar');
+        $metadata = ['foo' => 'bar'];
         $options->setMetadata($metadata);
         $options->setTimeout(-10);
         array_push($ret, $options);
@@ -337,7 +337,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingListDirectoriesAndFilesOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new ListDirectoriesAndFilesOptions();
         array_push($ret, $options);
@@ -375,7 +375,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingCreateShareOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CreateShareOptions();
         array_push($ret, $options);
@@ -389,10 +389,10 @@ class FileServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateShareOptions();
-        $metadata = array(
+        $metadata = [
             'foo' => 'bar',
             'boo' => 'baz',
-        );
+        ];
         $options->setMetadata($metadata);
         array_push($ret, $options);
 
@@ -401,7 +401,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingDeleteShareOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $past = new \DateTime("01/01/2010");
         $future = new \DateTime("01/01/2020");
@@ -422,7 +422,7 @@ class FileServiceFunctionalTestData
 
     public static function getFileServiceOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new FileServiceOptions();
         array_push($ret, $options);
@@ -440,7 +440,7 @@ class FileServiceFunctionalTestData
 
     public static function getSetFileProperties()
     {
-        $ret = array();
+        $ret = [];
 
         $properties = new FileProperties();
         array_push($ret, $properties);
@@ -479,7 +479,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingACL()
     {
-        $ret = array();
+        $ret = [];
 
         $past = new \DateTime("01/01/2010");
         $future = new \DateTime("01/01/2020");
@@ -496,7 +496,7 @@ class FileServiceFunctionalTestData
 
     public static function getGetFileOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new GetFileOptions();
         array_push($ret, $options);
@@ -531,7 +531,7 @@ class FileServiceFunctionalTestData
 
     public static function getCopyFileMetaOptionsPairs()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new FileServiceOptions();
         $meta = null;
@@ -548,10 +548,10 @@ class FileServiceFunctionalTestData
         array_push($ret, ['metadata' => $meta, 'options' => $options]);
 
         $options = new FileServiceOptions();
-        $meta = array(
+        $meta = [
             'Xkey' => 'Avalue',
             'Yfoo' => 'Bbar',
-            'Zbaz' => 'Cboo');
+            'Zbaz' => 'Cboo'];
         array_push($ret, ['metadata' => $meta, 'options' => $options]);
 
         return $ret;
@@ -559,7 +559,7 @@ class FileServiceFunctionalTestData
 
     public static function getRangesArray()
     {
-        $ret = array();
+        $ret = [];
 
         $ret[] = [
             'putRange' => new Range(0, 511),
@@ -607,7 +607,7 @@ class FileServiceFunctionalTestData
             'putRange' => null,
             'clearRange' => new Range(0, 2047),
             'listRange' => null,
-            'resultListRange' => array()
+            'resultListRange' => []
         ];
 
         return $ret;
@@ -615,7 +615,7 @@ class FileServiceFunctionalTestData
 
     public static function getDirectoriesAndFilesToCreateOrDelete()
     {
-        $ret = array();
+        $ret = [];
 
         $ret[] = [
             'operation' => 'create',

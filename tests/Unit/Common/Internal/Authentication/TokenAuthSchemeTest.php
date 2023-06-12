@@ -58,7 +58,7 @@ class TokenAuthSchemeTest extends ReflectionTestBase
         $bearerToken = '';
         $mock = new TokenAuthScheme($bearerToken, TestResources::TOKEN_CS);
         $uri = new Uri(TestResources::URI2);
-        $request = new Request('Get', $uri, array(), null);
+        $request = new Request('Get', $uri, [], null);
         $actual = $mock->signRequest($request);
         $this->assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
         $this->assertEquals(
@@ -67,7 +67,7 @@ class TokenAuthSchemeTest extends ReflectionTestBase
         );
 
         $bearerToken = 'changed';
-        $request = new Request('Get', $uri, array(), null);
+        $request = new Request('Get', $uri, [], null);
         $actual = $mock->signRequest($request);
         $this->assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
         $this->assertEquals(

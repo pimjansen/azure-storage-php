@@ -42,7 +42,7 @@ class LeaseResultTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $expected = '0x8CAFB82EFF70C46';
-        $headers = array('x-ms-lease-id' => $expected);
+        $headers = ['x-ms-lease-id' => $expected];
 
         // Test
         $result = LeaseResult::create($headers);

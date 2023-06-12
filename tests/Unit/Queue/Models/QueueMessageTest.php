@@ -46,10 +46,10 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         // Setup
         $queueMessage = new QueueMessage();
         $messageText = 'this is message text';
-        $array = array('MessageText' => $messageText);
+        $array = ['MessageText' => $messageText];
         $queueMessage->setMessageText($messageText);
         $xmlSerializer = new XmlSerializer();
-        $properties = array(XmlSerializer::ROOT_NAME => "QueueMessage");
+        $properties = [XmlSerializer::ROOT_NAME => "QueueMessage"];
         $expected = $xmlSerializer->serialize($array, $properties);
 
         // Test

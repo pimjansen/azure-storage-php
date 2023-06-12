@@ -157,7 +157,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $container = new CreateBlobOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $container->setMetadata($expected);
@@ -170,7 +170,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $container = new CreateBlobOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $container->setMetadata($expected);
 
         // Test

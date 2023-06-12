@@ -54,13 +54,13 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
         parent::setUp();
         // Setup container names array (list of container names used by
         // integration tests)
-        self::$testQueues = array();
+        self::$testQueues = [];
         $rint = mt_rand(0, 1000000);
         for ($i = 0; $i < 10; $i++) {
             self::$testQueues[$i] = self::$testQueuesPrefix . $rint . ($i + 1);
         }
 
-        self::$creatableQueues = array();
+        self::$creatableQueues = [];
         for ($i = 0; $i < 3; $i++) {
             self::$creatableQueues[$i] = self::$createableQueuesPrefix . $rint . ($i + 1);
         }
@@ -112,7 +112,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
 
     private function listQueues($prefix)
     {
-        $result = array();
+        $result = [];
         $opts = new ListQueuesOptions();
         $opts->setPrefix($prefix);
         $list = $this->restProxy->listQueues($opts);
@@ -304,10 +304,10 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
         // Act
         $this->restProxy->createQueue(self::$creatableQueue3);
 
-        $metadata = array(
+        $metadata = [
             'foo' => 'bar',
             'test' => 'blah',
-        );
+        ];
         $this->restProxy->setQueueMetadata(self::$creatableQueue3, $metadata);
 
         $result = $this->restProxy->getQueueMetadata(self::$creatableQueue3);

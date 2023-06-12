@@ -801,7 +801,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
     public function testCreateMessage()
     {
-        $interestingTimes = array( null, -2, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000 );
+        $interestingTimes = [ null, -2, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000 ];
         foreach ($interestingTimes as $timeToLiveInSeconds) {
             foreach ($interestingTimes as $visibilityTimeoutInSeconds) {
                 $timeout = null;
@@ -904,12 +904,12 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
     public function testUpdateMessageNoOptions()
     {
-        $interestingVisibilityTimes = array(
+        $interestingVisibilityTimes = [
             -1,
             0,
             QueueServiceFunctionalTestData::INTERESTING_TTL,
             QueueServiceFunctionalTestData::INTERESTING_TTL * 2
-        );
+        ];
 
         $startingMessage = new CreateMessageOptions();
         $startingMessage->setTimeout(QueueServiceFunctionalTestData::INTERESTING_TTL);
@@ -927,14 +927,14 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
     public function testUpdateMessage()
     {
-        $interestingTimes = array(null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000);
+        $interestingTimes = [null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000];
 
-        $interestingVisibilityTimes = array(
+        $interestingVisibilityTimes = [
             -1,
             0,
             QueueServiceFunctionalTestData::INTERESTING_TTL,
             QueueServiceFunctionalTestData::INTERESTING_TTL * 2
-        );
+        ];
 
         $startingMessage = new CreateMessageOptions();
         $startingMessage->setTimeout(QueueServiceFunctionalTestData::INTERESTING_TTL);
@@ -1052,7 +1052,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
     public function testDeleteMessage()
     {
-        $interestingTimes = array(null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000);
+        $interestingTimes = [null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000];
         foreach ($interestingTimes as $timeout) {
             $options = new QueueServiceOptions();
             $options->setTimeout($timeout);
@@ -1113,8 +1113,8 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
     public function testListMessages()
     {
-        $interestingTimes = array(null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000);
-        $interestingNums = array(null, -1, 0, 2, 10, 1000);
+        $interestingTimes = [null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000];
+        $interestingNums = [null, -1, 0, 2, 10, 1000];
         foreach ($interestingNums as $numberOfMessages) {
             foreach ($interestingTimes as $visibilityTimeoutInSeconds) {
                 $options = new ListMessagesOptions();
@@ -1235,8 +1235,8 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
     public function testPeekMessages()
     {
-        $interestingTimes = array(null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000);
-        $interestingNums = array(null, -1, 0, 2, 10, 1000);
+        $interestingTimes = [null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000];
+        $interestingNums = [null, -1, 0, 2, 10, 1000];
         foreach ($interestingNums as $numberOfMessages) {
             $options = new PeekMessagesOptions();
             $options->setNumberOfMessages($numberOfMessages);
@@ -1320,7 +1320,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
     public function testClearMessages()
     {
-        $interestingTimes = array(null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000);
+        $interestingTimes = [null, -1, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000];
         foreach ($interestingTimes as $timeout) {
             $options = new QueueServiceOptions();
             $options->setTimeout($timeout);

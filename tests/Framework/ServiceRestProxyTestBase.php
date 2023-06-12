@@ -75,7 +75,7 @@ class ServiceRestProxyTestBase extends RestProxyTestBase
     private function _createDefaultProperties()
     {
         $this->propertiesChanged = false;
-        $propertiesArray = array();
+        $propertiesArray = [];
         $propertiesArray['HourMetrics']['Version'] = '1.0';
         $propertiesArray['HourMetrics']['Enabled'] = 'false';
         $propertiesArray['HourMetrics']['IncludeAPIs'] = 'false';

@@ -203,7 +203,7 @@ abstract class AccessPolicy
      */
     public function toArray()
     {
-        $array = array();
+        $array = [];
 
         if ($this->getStart() != null) {
             $array[Resources::XTAG_SIGNED_START] =

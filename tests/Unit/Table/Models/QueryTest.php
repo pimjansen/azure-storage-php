@@ -44,7 +44,7 @@ class QueryTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $query = new Query();
-        $expected = array('customerId', 'customerName');
+        $expected = ['customerId', 'customerName'];
 
         // Test
         $query->setSelectFields($expected);
@@ -84,7 +84,7 @@ class QueryTest extends \PHPUnit\Framework\TestCase
         // Setup
         $query = new Query();
         $field = 'customerId';
-        $expected = array($field);
+        $expected = [$field];
 
         // Test
         $query->addSelectField($field);

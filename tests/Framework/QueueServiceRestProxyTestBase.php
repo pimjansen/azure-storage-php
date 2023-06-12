@@ -49,7 +49,7 @@ class QueueServiceRestProxyTestBase extends ServiceRestProxyTestBase
         $queueRestProxy = QueueRestProxy::createQueueService($this->connectionString);
         $queueRestProxy->pushMiddleware(RetryMiddlewareFactory::create());
         parent::setProxy($queueRestProxy);
-        $this->_createdQueues = array();
+        $this->_createdQueues = [];
     }
 
     public function createQueue($queueName, $options = null)

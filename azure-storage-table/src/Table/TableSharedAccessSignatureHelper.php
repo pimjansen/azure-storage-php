@@ -133,7 +133,7 @@ class TableSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         Validate::canCastAsString($endingRowKey, 'endingRowKey');
 
         // construct an array with the parameters to generate the shared access signature at the account level
-        $parameters = array();
+        $parameters = [];
         $parameters[] = $signedPermissions;
         $parameters[] = $signedStart;
         $parameters[] = $signedExpiry;
