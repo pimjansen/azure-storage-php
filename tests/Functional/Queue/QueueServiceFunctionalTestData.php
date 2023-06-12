@@ -261,7 +261,7 @@ class QueueServiceFunctionalTestData
 
         $options = new CreateQueueOptions();
         $metadata = [];
-        $metadata['foo'] =  'bar';
+        $metadata['foo'] = 'bar';
         $metadata['foo2'] = 'bar2';
         $metadata['foo3'] = 'bar3';
         $options->setMetadata($metadata);

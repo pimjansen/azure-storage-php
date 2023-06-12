@@ -36,11 +36,11 @@ namespace MicrosoftAzure\Storage\Table\Models;
  */
 class BatchOperationParameterName
 {
-    public const BP_TABLE         = 'table';
-    public const BP_ENTITY        = 'entity';
+    public const BP_TABLE = 'table';
+    public const BP_ENTITY = 'entity';
     public const BP_PARTITION_KEY = 'PartitionKey';
-    public const BP_ROW_KEY       = 'RowKey';
-    public const BP_ETAG          = 'etag';
+    public const BP_ROW_KEY = 'RowKey';
+    public const BP_ETAG = 'etag';
 
     /**
      * Validates if $paramName is already defined.

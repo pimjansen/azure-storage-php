@@ -43,13 +43,13 @@ class EdmType
     // @codingStandardsIgnoreStart
 
     public const DATETIME = 'Edm.DateTime';
-    public const BINARY   = 'Edm.Binary';
-    public const BOOLEAN  = 'Edm.Boolean';
-    public const DOUBLE   = 'Edm.Double';
-    public const GUID     = 'Edm.Guid';
-    public const INT32    = 'Edm.Int32';
-    public const INT64    = 'Edm.Int64';
-    public const STRING   = 'Edm.String';
+    public const BINARY = 'Edm.Binary';
+    public const BOOLEAN = 'Edm.Boolean';
+    public const DOUBLE = 'Edm.Double';
+    public const GUID = 'Edm.Guid';
+    public const INT32 = 'Edm.Int32';
+    public const INT64 = 'Edm.Int64';
+    public const STRING = 'Edm.String';
 
     public static function propertyType($value)
     {

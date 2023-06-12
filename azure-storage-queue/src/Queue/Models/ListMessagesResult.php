@@ -51,7 +51,7 @@ class ListMessagesResult
      */
     public static function create(array $parsedResponse = null)
     {
-        $result        = new ListMessagesResult();
+        $result = new ListMessagesResult();
         $queueMessages = [];
 
         if (!empty($parsedResponse)) {

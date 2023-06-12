@@ -94,8 +94,8 @@ class MessageSerializer
     {
         $headers = $request->getHeaders();
         $version = $request->getProtocolVersion();
-        $uri     = $request->getUri();
-        $method  = $request->getMethod();
+        $uri = $request->getUri();
+        $method = $request->getMethod();
 
         $resultString = "Request:\n";
         $resultString .= "URI: {$uri}\nHTTP Version: {$version}\nMethod: {$method}\n";
@@ -119,8 +119,8 @@ class MessageSerializer
     {
         $headers = $response->getHeaders();
         $version = $response->getProtocolVersion();
-        $status  = $response->getStatusCode();
-        $reason  = $response->getReasonPhrase();
+        $status = $response->getStatusCode();
+        $reason = $response->getReasonPhrase();
 
         $resultString = "Response:\n";
         $resultString .= "Status Code: {$status}\nReason: {$reason}\n";

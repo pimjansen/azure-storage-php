@@ -76,17 +76,17 @@ class ServiceRestProxy extends RestProxy
         $accountName,
         array $options = []
     ) {
-        $primaryUri   = Utilities::appendDelimiter($primaryUri, '/');
+        $primaryUri = Utilities::appendDelimiter($primaryUri, '/');
         $secondaryUri = Utilities::appendDelimiter($secondaryUri, '/');
 
         $dataSerializer = new XmlSerializer();
         parent::__construct($dataSerializer);
 
-        $this->accountName     = $accountName;
-        $this->psrPrimaryUri   = new Uri($primaryUri);
+        $this->accountName = $accountName;
+        $this->psrPrimaryUri = new Uri($primaryUri);
         $this->psrSecondaryUri = new Uri($secondaryUri);
-        $this->options         = array_merge(['http' => []], $options);
-        $this->client          = self::createClient($this->options['http']);
+        $this->options = array_merge(['http' => []], $options);
+        $this->client = self::createClient($this->options['http']);
     }
 
     /**
@@ -449,12 +449,12 @@ class ServiceRestProxy extends RestProxy
         callable $handler
     ) {
         $result = [];
-        $result[Resources::ROS_LOCATION_MODE]  = $serviceOptions->getLocationMode();
-        $result[Resources::ROS_STREAM]         = $serviceOptions->getIsStreaming();
+        $result[Resources::ROS_LOCATION_MODE] = $serviceOptions->getLocationMode();
+        $result[Resources::ROS_STREAM] = $serviceOptions->getIsStreaming();
         $result[Resources::ROS_DECODE_CONTENT] = $serviceOptions->getDecodeContent();
-        $result[Resources::ROS_HANDLER]        = $handler;
-        $result[Resources::ROS_SECONDARY_URI]  = $this->getPsrSecondaryUri();
-        $result[Resources::ROS_PRIMARY_URI]    = $this->getPsrPrimaryUri();
+        $result[Resources::ROS_HANDLER] = $handler;
+        $result[Resources::ROS_SECONDARY_URI] = $this->getPsrSecondaryUri();
+        $result[Resources::ROS_PRIMARY_URI] = $this->getPsrPrimaryUri();
 
         return $result;
     }
@@ -565,7 +565,7 @@ class ServiceRestProxy extends RestProxy
         Utilities::validateMetadata($metadata);
 
         $metadata = $this->generateMetadataHeaders($metadata);
-        $headers  = array_merge($headers, $metadata);
+        $headers = array_merge($headers, $metadata);
 
         return $headers;
     }
@@ -591,7 +591,7 @@ class ServiceRestProxy extends RestProxy
                 }
 
                 // Metadata name is case-presrved and case insensitive
-                $headerName                     .= $key;
+                $headerName .= $key;
                 $metadataHeaders[$headerName] = $value;
             }
         }
@@ -646,7 +646,7 @@ class ServiceRestProxy extends RestProxy
                 Resources::X_MS_CONTINUATION_LOCATION_MODE,
                 LocationMode::SECONDARY_ONLY
             );
-        } elseif ($locationMode == LocationMode::SECONDARY_ONLY  ||
+        } elseif ($locationMode == LocationMode::SECONDARY_ONLY ||
                   $locationMode == LocationMode::PRIMARY_ONLY) {
             $response = $response->withHeader(
                 Resources::X_MS_CONTINUATION_LOCATION_MODE,

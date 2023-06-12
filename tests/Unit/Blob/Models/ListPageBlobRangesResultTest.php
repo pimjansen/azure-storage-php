@@ -44,7 +44,7 @@ class ListPageBlobRangesResultTest extends \PHPUnit\Framework\TestCase
     public function testCreate()
     {
         // Setup
-        $headers   = TestResources::listPageRangeHeaders();
+        $headers = TestResources::listPageRangeHeaders();
         $bodyArray = TestResources::listPageRangeBodyInArray();
         // Prepare expected page range
         $rawPageRanges = [];

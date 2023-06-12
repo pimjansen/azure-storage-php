@@ -213,10 +213,10 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
         $sample = TestResources::getServicePropertiesSample();
         $logging = Logging::create($sample['Logging']);
         $expected = [
-            'Version'         => $sample['Logging']['Version'],
-            'Delete'          => $sample['Logging']['Delete'],
-            'Read'            => $sample['Logging']['Read'],
-            'Write'           => $sample['Logging']['Write'],
+            'Version' => $sample['Logging']['Version'],
+            'Delete' => $sample['Logging']['Delete'],
+            'Read' => $sample['Logging']['Read'],
+            'Write' => $sample['Logging']['Write'],
             'RetentionPolicy' => $logging->getRetentionPolicy()->toArray()
         ];
 

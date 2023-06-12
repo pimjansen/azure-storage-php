@@ -186,10 +186,10 @@ class Logging
     public function toArray()
     {
         return [
-            'Version'         => $this->_version,
-            'Delete'          => Utilities::booleanToString($this->_delete),
-            'Read'            => Utilities::booleanToString($this->_read),
-            'Write'           => Utilities::booleanToString($this->_write),
+            'Version' => $this->_version,
+            'Delete' => Utilities::booleanToString($this->_delete),
+            'Read' => Utilities::booleanToString($this->_read),
+            'Write' => Utilities::booleanToString($this->_write),
             'RetentionPolicy' => !empty($this->_retentionPolicy)
                 ? $this->_retentionPolicy->toArray()
                 : null

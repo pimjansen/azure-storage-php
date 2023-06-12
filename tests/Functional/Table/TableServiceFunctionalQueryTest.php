@@ -625,9 +625,9 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         if (!is_null($options->getNextPartitionKey()) && !is_null($options->getNextRowKey())) {
             $expectedDataTmp = [];
             foreach ($expectedData as $e) {
-                if (($e->getPartitionKey() >  $options->getNextPartitionKey()) ||
+                if (($e->getPartitionKey() > $options->getNextPartitionKey()) ||
                     (($e->getPartitionKey() == $options->getNextPartitionKey()) &&
-                     ($e->getRowKey()       >= $options->getNextRowKey()))) {
+                     ($e->getRowKey() >= $options->getNextRowKey()))) {
                     array_push($expectedDataTmp, $e);
                 }
             }

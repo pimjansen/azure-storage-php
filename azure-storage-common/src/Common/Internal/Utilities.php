@@ -173,7 +173,7 @@ class Utilities
      */
     public static function tryGetKeysChainValue(array $array)
     {
-        $arguments    = func_get_args();
+        $arguments = func_get_args();
         $numArguments = func_num_args();
 
         $currentArray = $array;
@@ -290,7 +290,7 @@ class Utilities
         $defaultTag = null,
         $standalone = null
     ) {
-        $xmlVersion  = '1.0';
+        $xmlVersion = '1.0';
         $xmlEncoding = 'UTF-8';
 
         if (!is_array($array)) {
@@ -391,7 +391,7 @@ class Utilities
     public static function rfc1123ToDateTime($date)
     {
         $timeZone = new \DateTimeZone('GMT');
-        $format   = Resources::AZURE_DATE_FORMAT;
+        $format = Resources::AZURE_DATE_FORMAT;
 
         return \DateTime::createFromFormat($format, $date, $timeZone);
     }
@@ -426,7 +426,7 @@ class Utilities
         }
 
         if (is_string($value)) {
-            $value =  self::convertToDateTime($value);
+            $value = self::convertToDateTime($value);
         }
 
         Validate::isDate($value);
@@ -605,7 +605,7 @@ class Utilities
     {
         if ($ignoreCase) {
             $haystack = strtolower($haystack);
-            $needle   = strtolower($needle);
+            $needle = strtolower($needle);
         }
         $length = strlen($needle);
         if ($length == 0) {
@@ -664,10 +664,10 @@ class Utilities
         Validate::canCastAsString($number, 'number');
 
         $result = 0;
-        $base   = 1;
+        $base = 1;
         for ($i = strlen($number) - 1; $i >= 0; $i--) {
             $result = bcadd($result, bcmul(ord($number[$i]), $base));
-            $base   = bcmul($base, 256);
+            $base = bcmul($base, 256);
         }
 
         return $result;

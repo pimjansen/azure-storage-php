@@ -196,7 +196,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $propertiesSample = TestResources::getServicePropertiesSample();
         $properties = ServiceProperties::create($propertiesSample);
 
-        $expected  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $expected = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
         $expected .= '<StorageServiceProperties><Logging><Version>1.0</Version><Delete>true</Delete>';
         $expected .= '<Read>false</Read><Write>true</Write><RetentionPolicy><Enabled>true</Enabled>';
         $expected .= '<Days>20</Days></RetentionPolicy></Logging><HourMetrics><Version>1.0</Version>';

@@ -157,7 +157,7 @@ class TableServiceFunctionalParametersTest extends FunctionalTestBase
             $k .= chr($b);
         }
         $k .= chr(0x0A);
-        for ($b= 0x40; $b < 0x50; $b++) {
+        for ($b = 0x40; $b < 0x50; $b++) {
             $k .= chr($b);
         }
         $k .= chr(0x0A);

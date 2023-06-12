@@ -1359,7 +1359,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
     {
         $this->assertNotNull($res, 'result');
 
-        $content =  stream_get_contents($res->getContentStream());
+        $content = stream_get_contents($res->getContentStream());
 
         $range = $options->getRange();
         if ($range == null) {

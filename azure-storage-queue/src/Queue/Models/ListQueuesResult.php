@@ -62,8 +62,8 @@ class ListQueuesResult
      */
     public static function create(array $parsedResponse, $location = '')
     {
-        $result               = new ListQueuesResult();
-        $serviceEndpoint      = Utilities::tryGetKeysChainValue(
+        $result = new ListQueuesResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsedResponse,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT
@@ -95,15 +95,15 @@ class ListQueuesResult
             $parsedResponse,
             Resources::QP_MAX_RESULTS
         ));
-        $queues      = [];
-        $rawQueues            = [];
+        $queues = [];
+        $rawQueues = [];
 
         if (!empty($parsedResponse['Queues'])) {
             $rawQueues = Utilities::getArray($parsedResponse['Queues']['Queue']);
         }
 
         foreach ($rawQueues as $value) {
-            $queue    = new Queue($value['Name'], $serviceEndpoint . $value['Name']);
+            $queue = new Queue($value['Name'], $serviceEndpoint . $value['Name']);
             $metadata = Utilities::tryGetValue($value, Resources::QP_METADATA);
             $queue->setMetadata(is_null($metadata) ? [] : $metadata);
             $queues[] = $queue;

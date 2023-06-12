@@ -63,7 +63,7 @@ class UpdateMessageResult
             Resources::X_MS_TIME_NEXT_VISIBLE,
             $headers
         );
-        $date   = Utilities::rfc1123ToDateTime($timeNextVisible);
+        $date = Utilities::rfc1123ToDateTime($timeNextVisible);
         $result->setTimeNextVisible($date);
 
         return $result;

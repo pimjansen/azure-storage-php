@@ -234,7 +234,7 @@ class TableServiceFunctionalTestUtils
             } elseif (is_bool($filter->getValue())) {
                 $ret .= ($filter->getValue() ? 'true' : 'false');
             } else {
-                $ret .=  '\'' . FunctionalTestBase::tmptostring($filter->getValue()) . '\'';
+                $ret .= '\'' . FunctionalTestBase::tmptostring($filter->getValue()) . '\'';
             }
             return $ret . "\n";
         } elseif ($filter instanceof UnaryFilter) {

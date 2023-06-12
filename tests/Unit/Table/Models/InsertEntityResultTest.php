@@ -45,9 +45,9 @@ class InsertEntityResultTest extends \PHPUnit\Framework\TestCase
     public function testCreate()
     {
         // Setup
-        $sampleBody     = TestResources::getInsertEntitySampleBody();
-        $sampleHeaders  = TestResources::getInsertEntitySampleHeaders();
-        $serializer     = new JsonODataReaderWriter();
+        $sampleBody = TestResources::getInsertEntitySampleBody();
+        $sampleHeaders = TestResources::getInsertEntitySampleHeaders();
+        $serializer = new JsonODataReaderWriter();
         $expectedEntity = $serializer->parseEntity($sampleBody);
         $expectedEntity->setETag(Utilities::tryGetValue(
             $sampleHeaders,

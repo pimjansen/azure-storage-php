@@ -51,27 +51,27 @@ class MimeReaderWriter implements IMimeReaderWriter
      */
     public function encodeMimeMultipart(array $bodyPartContents)
     {
-        $count         = count($bodyPartContents);
-        $mimeType      = Resources::MULTIPART_MIXED_TYPE;
-        $batchGuid     = Utilities::getGuid();
-        $batchId       = sprintf('batch_%s', $batchGuid);
-        $contentType1  = ['content_type' => "$mimeType"];
+        $count = count($bodyPartContents);
+        $mimeType = Resources::MULTIPART_MIXED_TYPE;
+        $batchGuid = Utilities::getGuid();
+        $batchId = sprintf('batch_%s', $batchGuid);
+        $contentType1 = ['content_type' => "$mimeType"];
         $changeSetGuid = Utilities::getGuid();
-        $changeSetId   = sprintf('changeset_%s', $changeSetGuid);
-        $contentType2  = ['content_type' => "$mimeType; boundary=$changeSetId"];
-        $options       = [
-            'encoding'     => 'binary',
+        $changeSetId = sprintf('changeset_%s', $changeSetGuid);
+        $contentType2 = ['content_type' => "$mimeType; boundary=$changeSetId"];
+        $options = [
+            'encoding' => 'binary',
             'content_type' => Resources::HTTP_TYPE
         ];
 
         $eof = "\r\n";
 
-        $result            = [];
-        $result['body']    = Resources::EMPTY_STRING;
+        $result = [];
+        $result['body'] = Resources::EMPTY_STRING;
         $result['headers'] = [];
 
-        $batchBody         =& $result['body'];
-        $batchHeaders      =& $result['headers'];
+        $batchBody = & $result['body'];
+        $batchHeaders = & $result['headers'];
 
         $batchHeaders['Content-Type'] = $mimeType . "; boundary=\"$batchId\"";
 

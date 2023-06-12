@@ -103,7 +103,7 @@ class QueueServiceSASFunctionalTest extends SASFunctionalTestBase
         }
         //Validate that a cross access with wrong proxy/queue pair
         //would not be successfull
-        for ($i= 0; $i < 2; ++$i) {
+        for ($i = 0; $i < 2; ++$i) {
             $proxy = $queueProxies[$i];
             $queue = $queues[1 - $i];
             //a

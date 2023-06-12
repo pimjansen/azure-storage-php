@@ -56,11 +56,11 @@ class CopyFileResult
      */
     public static function create(array $headers)
     {
-        $result  = new CopyFileResult();
+        $result = new CopyFileResult();
         $headers = array_change_key_case($headers);
 
-        $date          = $headers[Resources::LAST_MODIFIED];
-        $date          = Utilities::rfc1123ToDateTime($date);
+        $date = $headers[Resources::LAST_MODIFIED];
+        $date = Utilities::rfc1123ToDateTime($date);
 
         $result->setCopyStatus($headers[Resources::X_MS_COPY_STATUS]);
         $result->setCopyID($headers[Resources::X_MS_COPY_ID]);

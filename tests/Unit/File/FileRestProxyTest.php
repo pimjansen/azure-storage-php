@@ -200,14 +200,14 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $testdirectory0 = 'testdirectory0';
         $testdirectory1 = $testdirectory0 . '/' . 'testdirectory1';
         $testdirectory2 = $testdirectory0 . '/' . 'testdirectory2';
-        $testfile0      = 'testfile0';
-        $testfile1      = $testdirectory0 . '/' . 'testfile1';
-        $testfile2      = $testdirectory1 . '/' . 'testfile2';
-        $testfile3      = $testdirectory1 . '/' . 'testfile3';
-        $testfile4      = $testdirectory1 . '/' . 'testfile4';
-        $testfile5      = $testdirectory1 . '/' . 'testfile5';
-        $testfile6      = $testdirectory1 . '/' . 'testfile6';
-        $testfile7      = $testdirectory1 . '/' . 'testfile7';
+        $testfile0 = 'testfile0';
+        $testfile1 = $testdirectory0 . '/' . 'testfile1';
+        $testfile2 = $testdirectory1 . '/' . 'testfile2';
+        $testfile3 = $testdirectory1 . '/' . 'testfile3';
+        $testfile4 = $testdirectory1 . '/' . 'testfile4';
+        $testfile5 = $testdirectory1 . '/' . 'testfile5';
+        $testfile6 = $testdirectory1 . '/' . 'testfile6';
+        $testfile7 = $testdirectory1 . '/' . 'testfile7';
 
         $this->restProxy->createDirectory($share, $testdirectory0);
         $this->restProxy->createDirectory($share, $testdirectory1);
@@ -301,16 +301,16 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
          * share/file_1
          * share/doc_2
          */
-        $dir0    = 'dir_0';
-        $dir1    = 'dir_1';
-        $file10  = "$dir1/file_10";
-        $file11  = "$dir1/file_11";
-        $dir10   = "$dir1/dir_10";
-        $dir2    = 'dir_2';
+        $dir0 = 'dir_0';
+        $dir1 = 'dir_1';
+        $file10 = "$dir1/file_10";
+        $file11 = "$dir1/file_11";
+        $dir10 = "$dir1/dir_10";
+        $dir2 = 'dir_2';
         $folder3 = 'folder_3';
-        $file0   = 'file_0';
-        $file1   = 'file_1';
-        $doc2    = 'doc_2';
+        $file0 = 'file_0';
+        $file1 = 'file_1';
+        $doc2 = 'doc_2';
 
         $this->restProxy->createDirectory($share, $dir0);
         $this->restProxy->createDirectory($share, $dir1);

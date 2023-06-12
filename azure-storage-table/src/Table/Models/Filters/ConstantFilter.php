@@ -50,7 +50,7 @@ class ConstantFilter extends Filter
     public function __construct($edmType, $value)
     {
         $this->_edmType = EdmType::processType($edmType);
-        $this->_value   = $value;
+        $this->_value = $value;
     }
 
     /**

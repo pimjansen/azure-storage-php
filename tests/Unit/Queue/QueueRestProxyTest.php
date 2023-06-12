@@ -89,10 +89,10 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
     public function testListQueuesWithOptions()
     {
         // Setup
-        $queue1        = 'listqueuewithoptions1';
-        $queue2        = 'listqueuewithoptions2';
-        $queue3        = 'mlistqueuewithoptions3';
-        $metadataName  = 'Mymetadataname';
+        $queue1 = 'listqueuewithoptions1';
+        $queue2 = 'listqueuewithoptions2';
+        $queue3 = 'mlistqueuewithoptions3';
+        $metadataName = 'Mymetadataname';
         $metadataValue = 'MetadataValue';
         $options = new CreateQueueOptions();
         $options->addMetadata($metadataName, $metadataValue);
@@ -107,7 +107,7 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
         $result = $this->restProxy->listQueues($options);
 
         // Assert
-        $queues   = $result->getQueues();
+        $queues = $result->getQueues();
         $metadata = $queues[1]->getMetadata();
         $this->assertEquals(2, count($queues));
         $this->assertEquals($queue1, $queues[0]->getName());
@@ -227,8 +227,8 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
 
     public function testCreateQueueWithMetadata()
     {
-        $queueName     = 'createqueuewithmetadata';
-        $metadataName  = 'Name';
+        $queueName = 'createqueuewithmetadata';
+        $metadataName = 'Name';
         $metadataValue = 'MyName';
         $queueCreateOptions = new CreateQueueOptions();
         $queueCreateOptions->addMetadata($metadataName, $metadataValue);
@@ -239,8 +239,8 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
         // Assert
         $options = new ListQueuesOptions();
         $options->setIncludeMetadata(true);
-        $result   = $this->restProxy->listQueues($options);
-        $queues   = $result->getQueues();
+        $result = $this->restProxy->listQueues($options);
+        $queues = $result->getQueues();
         $metadata = $queues[0]->getMetadata();
         $this->assertEquals($metadataValue, $metadata[$metadataName]);
     }
@@ -306,9 +306,9 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
     public function testGetQueueMetadata()
     {
         // Setup
-        $name     = 'getqueuemetadata';
+        $name = 'getqueuemetadata';
         $expectedCount = 0;
-        $options  = new CreateQueueOptions();
+        $options = new CreateQueueOptions();
         $expected = ['name1' => 'MyName1', 'mymetaname' => '12345', 'values' => 'Microsoft_'];
         $options->setMetadata($expected);
         $this->createQueue($name, $options);
@@ -532,15 +532,15 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
         $this->createQueue($name);
         $this->restProxy->createMessage($name, $expected);
         $result = $this->restProxy->listMessages($name);
-        $messages   = $result->getQueueMessages();
-        $messageId  = $messages[0]->getMessageId();
+        $messages = $result->getQueueMessages();
+        $messageId = $messages[0]->getMessageId();
         $popReceipt = $messages[0]->getPopReceipt();
 
         // Test
         $this->restProxy->deleteMessage($name, $messageId, $popReceipt);
 
         // Assert
-        $result   = $this->restProxy->listMessages($name);
+        $result = $this->restProxy->listMessages($name);
         $messages = $result->getQueueMessages();
         $this->assertTrue(empty($messages));
     }
@@ -563,7 +563,7 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
         $this->restProxy->clearMessages($name, $options);
 
         // Assert
-        $result   = $this->restProxy->listMessages($name);
+        $result = $this->restProxy->listMessages($name);
         $messages = $result->getQueueMessages();
         $this->assertTrue(empty($messages));
     }
@@ -584,7 +584,7 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
         $this->restProxy->clearMessages($name);
 
         // Assert
-        $result   = $this->restProxy->listMessages($name);
+        $result = $this->restProxy->listMessages($name);
         $messages = $result->getQueueMessages();
         $this->assertTrue(empty($messages));
     }
@@ -598,7 +598,7 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
         $this->createQueue($name);
         $this->restProxy->createMessage($name, 'Text to change');
         $result = $this->restProxy->listMessages($name);
-        $messages   = $result->getQueueMessages();
+        $messages = $result->getQueueMessages();
         $popReceipt = $messages[0]->getPopReceipt();
         $messageId = $messages[0]->getMessageId();
 
@@ -612,15 +612,15 @@ class QueueRestProxyTest extends QueueServiceRestProxyTestBase
         );
 
         // Assert
-        $result   = $this->restProxy->listMessages($name);
+        $result = $this->restProxy->listMessages($name);
         $messages = $result->getQueueMessages();
         $this->assertTrue(empty($messages));
 
         sleep($expectedVisibility);
 
-        $result   = $this->restProxy->listMessages($name);
+        $result = $this->restProxy->listMessages($name);
         $messages = $result->getQueueMessages();
-        $actual   = $messages[0];
+        $actual = $messages[0];
         $this->assertEquals($expectedText, $actual->getMessageText());
     }
 

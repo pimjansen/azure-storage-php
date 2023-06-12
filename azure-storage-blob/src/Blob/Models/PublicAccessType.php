@@ -38,8 +38,8 @@ use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
  */
 class PublicAccessType
 {
-    public const NONE                = null;
-    public const BLOBS_ONLY          = 'blob';
+    public const NONE = null;
+    public const BLOBS_ONLY = 'blob';
     public const CONTAINER_AND_BLOBS = 'container';
 
     /**

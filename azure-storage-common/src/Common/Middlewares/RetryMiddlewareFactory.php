@@ -44,14 +44,14 @@ class RetryMiddlewareFactory
 {
     //The interval will be increased linearly, the nth retry will have a
     //wait time equal to n * interval.
-    public const LINEAR_INTERVAL_ACCUMULATION      = 'Linear';
+    public const LINEAR_INTERVAL_ACCUMULATION = 'Linear';
     //The interval will be increased exponentially, the nth retry will have a
     //wait time equal to pow(2, n) * interval.
     public const EXPONENTIAL_INTERVAL_ACCUMULATION = 'Exponential';
     //This is for the general type of logic that handles retry.
-    public const GENERAL_RETRY_TYPE                = 'General';
+    public const GENERAL_RETRY_TYPE = 'General';
     //This is for the append blob retry only.
-    public const APPEND_BLOB_RETRY_TYPE            = 'Append Blob Retry';
+    public const APPEND_BLOB_RETRY_TYPE = 'Append Blob Retry';
 
     /**
      * Create the retry handler for the Guzzle client, according to the given

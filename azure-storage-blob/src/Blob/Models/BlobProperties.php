@@ -81,7 +81,7 @@ class BlobProperties
     public static function createFromXml(array $parsed)
     {
         $result = new BlobProperties();
-        $clean  = array_change_key_case($parsed);
+        $clean = array_change_key_case($parsed);
 
         $result->setCommonBlobProperties($clean);
         $result->setLeaseStatus(Utilities::tryGetValue($clean, 'leasestatus'));
@@ -149,7 +149,7 @@ class BlobProperties
     public static function createFromHttpHeaders(array $parsed)
     {
         $result = new BlobProperties();
-        $clean  = array_change_key_case($parsed);
+        $clean = array_change_key_case($parsed);
 
         $result->setCommonBlobProperties($clean);
 

@@ -52,12 +52,12 @@ class ListPageBlobRangesDiffResult extends ListPageBlobRangesResult
      */
     public static function create(array $headers, array $parsed = null)
     {
-        $result  = new ListPageBlobRangesDiffResult();
+        $result = new ListPageBlobRangesDiffResult();
         $headers = array_change_key_case($headers);
 
-        $date          = $headers[Resources::LAST_MODIFIED];
-        $date          = Utilities::rfc1123ToDateTime($date);
-        $blobLength    = intval($headers[Resources::X_MS_BLOB_CONTENT_LENGTH]);
+        $date = $headers[Resources::LAST_MODIFIED];
+        $date = Utilities::rfc1123ToDateTime($date);
+        $blobLength = intval($headers[Resources::X_MS_BLOB_CONTENT_LENGTH]);
 
         $result->setContentLength($blobLength);
         $result->setLastModified($date);

@@ -49,13 +49,13 @@ class ListBlobBlocksOptions extends BlobServiceOptions
     public function __construct()
     {
         parent::__construct();
-        self::$_listType[true][true]   = 'all';
-        self::$_listType[true][false]  = 'uncommitted';
-        self::$_listType[false][true]  = 'committed';
+        self::$_listType[true][true] = 'all';
+        self::$_listType[true][false] = 'uncommitted';
+        self::$_listType[false][true] = 'committed';
         self::$_listType[false][false] = 'all';
 
         $this->_includeUncommittedBlobs = false;
-        $this->_includeCommittedBlobs   = false;
+        $this->_includeCommittedBlobs = false;
     }
 
     /**
@@ -134,7 +134,7 @@ class ListBlobBlocksOptions extends BlobServiceOptions
     public function getBlockListType()
     {
         $includeUncommitted = $this->_includeUncommittedBlobs;
-        $includeCommitted   = $this->_includeCommittedBlobs;
+        $includeCommitted = $this->_includeCommittedBlobs;
 
         return self::$_listType[$includeUncommitted][$includeCommitted];
     }

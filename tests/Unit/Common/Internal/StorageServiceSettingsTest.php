@@ -215,7 +215,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $protocol = 'https';
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
         $expectedTableEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::TABLE_BASE_DNS_NAME);
@@ -241,7 +241,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
         $expectedFileEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::FILE_BASE_DNS_NAME);
-        $connectionString  = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;TableEndpoint=$expectedTableEndpoint";
+        $connectionString = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;TableEndpoint=$expectedTableEndpoint";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
@@ -264,7 +264,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedTableEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::TABLE_BASE_DNS_NAME);
         $expectedBlobEndpoint = 'http://myprivatedns.com';
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
-        $connectionString  = "DefaultEndpointsProtocol=$protocol;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "DefaultEndpointsProtocol=$protocol;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedFileEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::FILE_BASE_DNS_NAME);
 
         // Test
@@ -289,7 +289,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedFileEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::FILE_BASE_DNS_NAME);
         $expectedQueueEndpoint = 'http://myprivatedns.com';
-        $connectionString  = "QueueEndpoint=$expectedQueueEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "QueueEndpoint=$expectedQueueEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
@@ -313,7 +313,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
         $expectedFileEndpoint = 'http://myprivatedns.com';
-        $connectionString  = "FileEndpoint=$expectedFileEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "FileEndpoint=$expectedFileEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
@@ -337,7 +337,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedFileEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::FILE_BASE_DNS_NAME);
         $expectedBlobEndpoint = 'http://myprivateblobdns.com';
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
-        $connectionString  = "QueueEndpoint=$expectedQueueEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;BlobEndpoint=$expectedBlobEndpoint";
+        $connectionString = "QueueEndpoint=$expectedQueueEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;BlobEndpoint=$expectedBlobEndpoint";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
@@ -356,7 +356,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
         $this->setExpectedException('\RuntimeException', $expectedMsg);
 
@@ -368,7 +368,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "DefaultEndpointsProtocol=http;AccountKey=$expectedKey";
+        $connectionString = "DefaultEndpointsProtocol=http;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
         $this->setExpectedException('\RuntimeException', $expectedMsg);
 
@@ -381,7 +381,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $expectedName = $this->_accountName;
         $invalidKey = '__A&*INVALID-@Key';
-        $connectionString  = "DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$invalidKey";
+        $connectionString = "DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$invalidKey";
         $expectedMsg = sprintf(Resources::INVALID_ACCOUNT_KEY_FORMAT, $invalidKey);
         $this->setExpectedException('\RuntimeException', $expectedMsg);
 
@@ -397,7 +397,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedTableEndpoint = null;
         $expectedBlobEndpoint = null;
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
-        $connectionString  = "QueueEndpoint=$expectedQueueEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "QueueEndpoint=$expectedQueueEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
@@ -419,7 +419,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedBlobEndpoint = 'http://myprivateblobdns.com';
         ;
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
-        $connectionString  = "QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
@@ -441,7 +441,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedBlobEndpoint = 'http://myprivateblobdns.com';
         ;
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
-        $connectionString  = "TableEndpoint=$expectedTableEndpoint;QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "TableEndpoint=$expectedTableEndpoint;QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
@@ -462,7 +462,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedKey = TestResources::KEY4;
         $expectedBlobEndpoint = "$protocol://$expectedName.blob.core.chinacloudapi.cn";
         $expectedFileSecondaryEndpoint = "$protocol://$expectedName-secondary.file.core.chinacloudapi.cn";
-        $connectionString  = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;EndpointSuffix=core.chinacloudapi.cn";
+        $connectionString = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;EndpointSuffix=core.chinacloudapi.cn";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
@@ -477,7 +477,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
         $this->setExpectedException('\RuntimeException', $expectedMsg);
 
@@ -494,7 +494,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
         $invalidUri = 'https://www.invalid_domain';
-        $connectionString  = "BlobEndpoint=$invalidUri;DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "BlobEndpoint=$invalidUri;DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::INVALID_CONFIG_URI, $invalidUri);
         $this->setExpectedException('\RuntimeException', $expectedMsg);
 
@@ -519,7 +519,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $validKeys[] = Resources::TABLE_ENDPOINT_NAME;
         $validKeys[] = Resources::FILE_ENDPOINT_NAME;
         $invalidKey = 'InvalidKey';
-        $connectionString  = "DefaultEndpointsProtocol=http;$invalidKey=MyValue;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "DefaultEndpointsProtocol=http;$invalidKey=MyValue;AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(
             Resources::INVALID_CONNECTION_STRING_SETTING_KEY,
             $invalidKey,
@@ -537,7 +537,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $protocol = 'https';
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "defaultendpointsprotocol=$protocol;accountname=$expectedName;accountkey=$expectedKey";
+        $connectionString = "defaultendpointsprotocol=$protocol;accountname=$expectedName;accountkey=$expectedKey";
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
         $expectedTableEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::TABLE_BASE_DNS_NAME);

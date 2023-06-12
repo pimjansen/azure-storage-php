@@ -62,7 +62,7 @@ class QueueMessage
     {
         $timeNextVisible = $parsedResponse['TimeNextVisible'];
 
-        $msg  = self::createFromPeekMessages($parsedResponse);
+        $msg = self::createFromPeekMessages($parsedResponse);
         $date = Utilities::rfc1123ToDateTime($timeNextVisible);
         $msg->setTimeNextVisible($date);
         $msg->setPopReceipt($parsedResponse['PopReceipt']);
@@ -82,9 +82,9 @@ class QueueMessage
      */
     public static function createFromPeekMessages(array $parsedResponse)
     {
-        $msg            = new QueueMessage();
+        $msg = new QueueMessage();
         $expirationDate = $parsedResponse['ExpirationTime'];
-        $insertionDate  = $parsedResponse['InsertionTime'];
+        $insertionDate = $parsedResponse['InsertionTime'];
 
         $msg->setDequeueCount(intval($parsedResponse['DequeueCount']));
 
@@ -114,8 +114,8 @@ class QueueMessage
     {
         $msg = new QueueMessage();
 
-        $expirationDate  = $parsedResponse['ExpirationTime'];
-        $insertionDate   = $parsedResponse['InsertionTime'];
+        $expirationDate = $parsedResponse['ExpirationTime'];
+        $insertionDate = $parsedResponse['InsertionTime'];
         $timeNextVisible = $parsedResponse['TimeNextVisible'];
 
         $date = Utilities::rfc1123ToDateTime($expirationDate);
@@ -302,7 +302,7 @@ class QueueMessage
      */
     public function toXml(XmlSerializer $xmlSerializer)
     {
-        $array      = ['MessageText' => $this->_messageText];
+        $array = ['MessageText' => $this->_messageText];
         $properties = [XmlSerializer::ROOT_NAME => self::$xmlRootName];
 
         return $xmlSerializer->serialize($array, $properties);

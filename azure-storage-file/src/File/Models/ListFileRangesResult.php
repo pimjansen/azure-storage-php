@@ -59,12 +59,12 @@ class ListFileRangesResult
      */
     public static function create(array $headers, array $parsed = null)
     {
-        $result  = new ListFileRangesResult();
+        $result = new ListFileRangesResult();
         $headers = array_change_key_case($headers);
 
-        $date          = $headers[Resources::LAST_MODIFIED];
-        $date          = Utilities::rfc1123ToDateTime($date);
-        $fileLength    = intval($headers[Resources::X_MS_CONTENT_LENGTH]);
+        $date = $headers[Resources::LAST_MODIFIED];
+        $date = Utilities::rfc1123ToDateTime($date);
+        $fileLength = intval($headers[Resources::X_MS_CONTENT_LENGTH]);
         $rawRanges = [];
         if (!empty($parsed['Range'])) {
             $rawRanges = Utilities::getArray($parsed['Range']);

@@ -1904,7 +1904,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
     {
         $this->assertNotNull($res, 'result');
 
-        $content =  stream_get_contents($res->getContentStream());
+        $content = stream_get_contents($res->getContentStream());
 
         $rangeSize = $dataSize;
         $range = $options->getRange();

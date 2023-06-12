@@ -47,7 +47,7 @@ class UnaryFilter extends Filter
      */
     public function __construct($operator, Filter $operand = null)
     {
-        $this->_operand  = $operand;
+        $this->_operand = $operand;
         $this->_operator = $operator;
     }
 

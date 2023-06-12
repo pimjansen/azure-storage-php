@@ -57,10 +57,10 @@ class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
      */
     public function __construct($accountName, $accountKey)
     {
-        $this->accountKey  = $accountKey;
+        $this->accountKey = $accountKey;
         $this->accountName = $accountName;
 
-        $this->includedHeaders   = [];
+        $this->includedHeaders = [];
         $this->includedHeaders[] = Resources::DATE;
     }
 
@@ -95,7 +95,7 @@ class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
         }
 
         $stringToSign[] = $canonicalizedResource;
-        $stringToSign   = implode("\n", $stringToSign);
+        $stringToSign = implode("\n", $stringToSign);
 
         return $stringToSign;
     }

@@ -58,16 +58,16 @@ class ListPageBlobRangesResult
      */
     public static function create(array $headers, array $parsed = null)
     {
-        $result  = new ListPageBlobRangesResult();
+        $result = new ListPageBlobRangesResult();
         $headers = array_change_key_case($headers);
 
-        $date          = $headers[Resources::LAST_MODIFIED];
-        $date          = Utilities::rfc1123ToDateTime($date);
-        $blobLength    = intval($headers[Resources::X_MS_BLOB_CONTENT_LENGTH]);
+        $date = $headers[Resources::LAST_MODIFIED];
+        $date = Utilities::rfc1123ToDateTime($date);
+        $blobLength = intval($headers[Resources::X_MS_BLOB_CONTENT_LENGTH]);
         $rawRanges = [];
 
         if (!empty($parsed[Resources::XTAG_PAGE_RANGE])) {
-            $parsed        = array_change_key_case($parsed);
+            $parsed = array_change_key_case($parsed);
             $rawRanges = Utilities::getArray($parsed[strtolower(RESOURCES::XTAG_PAGE_RANGE)]);
         }
 

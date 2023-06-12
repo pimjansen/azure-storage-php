@@ -64,9 +64,9 @@ class ServiceException extends \LogicException
                 $response->getBody()
             )
         );
-        $this->code         = $response->getStatusCode();
-        $this->response     = $response;
-        $this->errorText    = $response->getReasonPhrase();
+        $this->code = $response->getStatusCode();
+        $this->response = $response;
+        $this->errorText = $response->getReasonPhrase();
         $this->errorMessage = self::parseErrorMessage($response);
     }
 

@@ -99,7 +99,7 @@ class TableServiceSASFunctionalTest extends SASFunctionalTestBase
         }
         //Validate that a cross access with wrong proxy/table pair
         //would not be successfull
-        for ($i= 0; $i < 2; ++$i) {
+        for ($i = 0; $i < 2; ++$i) {
             $proxy = $tableProxies[$i];
             $table = $tables[1 - $i];
             $entity = TestResources::getTestEntity('123', '456');

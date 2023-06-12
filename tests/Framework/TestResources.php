@@ -47,71 +47,71 @@ use GuzzleHttp\Psr7\Response;
  */
 class TestResources
 {
-    public const QUEUE1_NAME   = 'Queue1';
-    public const QUEUE2_NAME   = 'Queue2';
-    public const QUEUE3_NAME   = 'Queue3';
-    public const KEY1          = 'key1';
-    public const KEY2          = 'key2';
-    public const KEY3          = 'key3';
-    public const KEY4          = 'AhlzsbLRkjfwObuqff3xrhB2yWJNh1EMptmcmxFJ6fvPTVX3PZXwrG2YtYWf5DPMVgNsteKStM5iBLlknYFVoA=='; //Faked although looks real.
-    public const VALUE1        = 'value1';
-    public const VALUE2        = 'value2';
-    public const VALUE3        = 'value3';
-    public const ACCOUNT_NAME  = 'myaccount';
-    public const TOKEN_CS      = 'DefaultEndpointsProtocol=https;AccountName=' . TestResources::ACCOUNT_NAME . ';';
-    public const SAS_TOKEN     = 'st=2016-12-01T19%3A43%3A00Z&se=2016-12-02T19%3A43%3A00Z&sp=rwdl&sv=2015-12-11&sr=c&sig=aGVsbG8gd29ybGQ%3D';
-    public const QUEUE_URI     = '.queue.core.windows.net';
-    public const URI1          = "http://myaccount.queue.core.windows.net/myqueue";
-    public const URI2          = "http://myaccount.queue.core.windows.net/?comp=list";
-    public const DATE1         = 'Sat, 18 Feb 2012 16:25:21 GMT';
-    public const DATE2         = 'Mon, 20 Feb 2012 17:12:31 GMT';
-    public const REQUEST_ID1   = 'f16b5298-0003-011e-0e70-83666b000000';
-    public const REQUEST_ID2   = 'c17dcd76-0003-0046-1c70-832445000000';
+    public const QUEUE1_NAME = 'Queue1';
+    public const QUEUE2_NAME = 'Queue2';
+    public const QUEUE3_NAME = 'Queue3';
+    public const KEY1 = 'key1';
+    public const KEY2 = 'key2';
+    public const KEY3 = 'key3';
+    public const KEY4 = 'AhlzsbLRkjfwObuqff3xrhB2yWJNh1EMptmcmxFJ6fvPTVX3PZXwrG2YtYWf5DPMVgNsteKStM5iBLlknYFVoA=='; //Faked although looks real.
+    public const VALUE1 = 'value1';
+    public const VALUE2 = 'value2';
+    public const VALUE3 = 'value3';
+    public const ACCOUNT_NAME = 'myaccount';
+    public const TOKEN_CS = 'DefaultEndpointsProtocol=https;AccountName=' . TestResources::ACCOUNT_NAME . ';';
+    public const SAS_TOKEN = 'st=2016-12-01T19%3A43%3A00Z&se=2016-12-02T19%3A43%3A00Z&sp=rwdl&sv=2015-12-11&sr=c&sig=aGVsbG8gd29ybGQ%3D';
+    public const QUEUE_URI = '.queue.core.windows.net';
+    public const URI1 = "http://myaccount.queue.core.windows.net/myqueue";
+    public const URI2 = "http://myaccount.queue.core.windows.net/?comp=list";
+    public const DATE1 = 'Sat, 18 Feb 2012 16:25:21 GMT';
+    public const DATE2 = 'Mon, 20 Feb 2012 17:12:31 GMT';
+    public const REQUEST_ID1 = 'f16b5298-0003-011e-0e70-83666b000000';
+    public const REQUEST_ID2 = 'c17dcd76-0003-0046-1c70-832445000000';
     public const RESPONSE_BODY = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>InvalidResourceName</Code><Message>The specifed resource name contains invalid characters.\nRequestId:f16b5298-0003-011e-0e70-83666b000000\nTime:2017-02-10T07:36:04.8329883Z</Message></Error>";
     public const RESPONSE_BODY_JSON = '{"odata.error":{"code":"ResourceNotFound","message":{"lang":"en-US","value":"Test"}}}';
     public const ERROR_MESSAGE = "The specifed resource name contains invalid characters.\nRequestId:f16b5298-0003-011e-0e70-83666b000000\nTime:2017-02-10T07:36:04.8329883Z";
-    public const VALID_URL     = 'http://www.example.com';
-    public const HEADER1       = 'testheader1';
-    public const HEADER2       = 'testheader2';
+    public const VALID_URL = 'http://www.example.com';
+    public const HEADER1 = 'testheader1';
+    public const HEADER2 = 'testheader2';
     public const HEADER1_VALUE = 'HeaderValue1';
     public const HEADER2_VALUE = 'HeaderValue2';
     public const ENTITY_JSON_STRING = '{"PartitionKey":"123","RowKey":"456","CustomerId":890,"CustomerName":"John","IsNew":true,"IsNew@odata.type":"Edm.Boolean","JoinDate":"2012-01-26T18:26:19.0000470Z","JoinDate@odata.type":"Edm.DateTime","Cost":"12.45","Cost@odata.type":"Edm.Double"}';
 
     // Media services
-    public const MEDIA_SERVICES_ASSET_NAME             = 'TestAsset';
-    public const MEDIA_SERVICES_OUTPUT_ASSET_NAME      = 'TestOutputAsset';
-    public const MEDIA_SERVICES_ACCESS_POLICY_NAME     = 'TestAccessPolicy';
-    public const MEDIA_SERVICES_LOCATOR_NAME           = 'TestLocator';
-    public const MEDIA_SERVICES_JOB_NAME               = 'TestJob';
-    public const MEDIA_SERVICES_JOB_ID_PREFIX          = 'nb:jid:UUID:';
-    public const MEDIA_SERVICES_JOB_TEMPLATE_NAME      = 'TestJobTemplate';
+    public const MEDIA_SERVICES_ASSET_NAME = 'TestAsset';
+    public const MEDIA_SERVICES_OUTPUT_ASSET_NAME = 'TestOutputAsset';
+    public const MEDIA_SERVICES_ACCESS_POLICY_NAME = 'TestAccessPolicy';
+    public const MEDIA_SERVICES_LOCATOR_NAME = 'TestLocator';
+    public const MEDIA_SERVICES_JOB_NAME = 'TestJob';
+    public const MEDIA_SERVICES_JOB_ID_PREFIX = 'nb:jid:UUID:';
+    public const MEDIA_SERVICES_JOB_TEMPLATE_NAME = 'TestJobTemplate';
     public const MEDIA_SERVICES_JOB_TEMPLATE_ID_PREFIX = 'nb:jtid:UUID:';
-    public const MEDIA_SERVICES_TASK_COFIGURATION      = 'H.264 HD 720p VBR';
-    public const MEDIA_SERVICES_PROCESSOR_NAME         = 'Windows Azure Media Encoder';
-    public const MEDIA_SERVICES_DECODE_PROCESSOR_NAME  = 'Storage Decryption';
-    public const MEDIA_SERVICES_PROCESSOR_ID_PREFIX    = 'nb:mpid:UUID:';
-    public const MEDIA_SERVICES_DUMMY_FILE_NAME        = 'simple.avi';
-    public const MEDIA_SERVICES_DUMMY_FILE_CONTENT     = 'test file content';
-    public const MEDIA_SERVICES_DUMMY_FILE_NAME_1      = 'other.avi';
-    public const MEDIA_SERVICES_DUMMY_FILE_CONTENT_1   = 'other file content';
-    public const MEDIA_SERVICES_ISM_FILE_NAME          = 'small.ism';
-    public const MEDIA_SERVICES_ISMC_FILE_NAME         = 'small.ismc';
-    public const MEDIA_SERVICES_STREAM_APPEND          = 'Manifest';
-    public const MEDIA_SERVICES_INGEST_MANIFEST        = 'TestIngestManifest';
-    public const MEDIA_SERVICES_INGEST_MANIFEST_ASSET  = 'TestIngestManifestAsset';
-    public const MEDIA_SERVICES_CONTENT_KEY_AUTHORIZATION_POLICY_NAME     = 'TestContentKeyAuthorizationPolicy';
-    public const MEDIA_SERVICES_CONTENT_KEY_AUTHORIZATION_OPTIONS_NAME    = 'TestContentKeyAuthorizationPolicyOption';
+    public const MEDIA_SERVICES_TASK_COFIGURATION = 'H.264 HD 720p VBR';
+    public const MEDIA_SERVICES_PROCESSOR_NAME = 'Windows Azure Media Encoder';
+    public const MEDIA_SERVICES_DECODE_PROCESSOR_NAME = 'Storage Decryption';
+    public const MEDIA_SERVICES_PROCESSOR_ID_PREFIX = 'nb:mpid:UUID:';
+    public const MEDIA_SERVICES_DUMMY_FILE_NAME = 'simple.avi';
+    public const MEDIA_SERVICES_DUMMY_FILE_CONTENT = 'test file content';
+    public const MEDIA_SERVICES_DUMMY_FILE_NAME_1 = 'other.avi';
+    public const MEDIA_SERVICES_DUMMY_FILE_CONTENT_1 = 'other file content';
+    public const MEDIA_SERVICES_ISM_FILE_NAME = 'small.ism';
+    public const MEDIA_SERVICES_ISMC_FILE_NAME = 'small.ismc';
+    public const MEDIA_SERVICES_STREAM_APPEND = 'Manifest';
+    public const MEDIA_SERVICES_INGEST_MANIFEST = 'TestIngestManifest';
+    public const MEDIA_SERVICES_INGEST_MANIFEST_ASSET = 'TestIngestManifestAsset';
+    public const MEDIA_SERVICES_CONTENT_KEY_AUTHORIZATION_POLICY_NAME = 'TestContentKeyAuthorizationPolicy';
+    public const MEDIA_SERVICES_CONTENT_KEY_AUTHORIZATION_OPTIONS_NAME = 'TestContentKeyAuthorizationPolicyOption';
     public const MEDIA_SERVICES_CONTENT_KEY_AUTHORIZATION_POLICY_RESTRICTION_NAME = 'TestContentKeyAuthorizationPolicyRestriction';
     public const MEDIA_SERVICES_ASSET_DELIVERY_POLICY_NAME = 'AssetDeliveryPolicyName';
 
     // See https://tools.ietf.org/html/rfc2616
-    public const STATUS_NOT_MODIFIED          = 304;
-    public const STATUS_BAD_REQUEST           = 400;
-    public const STATUS_UNAUTHORIZED          = 401;
-    public const STATUS_FORBIDDEN             = 403;
-    public const STATUS_NOT_FOUND             = 404;
-    public const STATUS_CONFLICT              = 409;
-    public const STATUS_PRECONDITION_FAILED   = 412;
+    public const STATUS_NOT_MODIFIED = 304;
+    public const STATUS_BAD_REQUEST = 400;
+    public const STATUS_UNAUTHORIZED = 401;
+    public const STATUS_FORBIDDEN = 403;
+    public const STATUS_NOT_FOUND = 404;
+    public const STATUS_CONFLICT = 409;
+    public const STATUS_PRECONDITION_FAILED = 412;
     public const STATUS_INTERNAL_SERVER_ERROR = 500;
 
     public static function getInterestingName($prefix)
@@ -494,9 +494,9 @@ class TestResources
     public static function getMediaServicesConnectionParameters()
     {
         return [
-            'accountName'       => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_ACCOUNT_NAME'),
-            'accessKey'         => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_ACCESS_KEY'),
-            'endpointUri'       => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_ENDPOINT_URI', false),
+            'accountName' => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_ACCOUNT_NAME'),
+            'accessKey' => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_ACCESS_KEY'),
+            'endpointUri' => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_ENDPOINT_URI', false),
             'oauthEndopointUri' => self::getEnvironmentVariable('AZURE_MEDIA_SERVICES_OAUTH_ENDPOINT_URI', false),
         ];
     }
@@ -795,13 +795,13 @@ class TestResources
     public static function listMessagesSample()
     {
         $sample = [];
-        $sample['QueueMessage']['MessageId']       = '5974b586-0df3-4e2d-ad0c-18e3892bfca2';
-        $sample['QueueMessage']['InsertionTime']   = 'Fri, 09 Oct 2009 21:04:30 GMT';
-        $sample['QueueMessage']['ExpirationTime']  = 'Fri, 16 Oct 2009 21:04:30 GMT';
-        $sample['QueueMessage']['PopReceipt']      = 'YzQ4Yzg1MDItYTc0Ny00OWNjLTkxYTUtZGM0MDFiZDAwYzEw';
+        $sample['QueueMessage']['MessageId'] = '5974b586-0df3-4e2d-ad0c-18e3892bfca2';
+        $sample['QueueMessage']['InsertionTime'] = 'Fri, 09 Oct 2009 21:04:30 GMT';
+        $sample['QueueMessage']['ExpirationTime'] = 'Fri, 16 Oct 2009 21:04:30 GMT';
+        $sample['QueueMessage']['PopReceipt'] = 'YzQ4Yzg1MDItYTc0Ny00OWNjLTkxYTUtZGM0MDFiZDAwYzEw';
         $sample['QueueMessage']['TimeNextVisible'] = 'Fri, 09 Oct 2009 23:29:20 GMT';
-        $sample['QueueMessage']['DequeueCount']    = '1';
-        $sample['QueueMessage']['MessageText']     = 'PHRlc3Q+dGhpcyBpcyBhIHRlc3QgbWVzc2FnZTwvdGVzdD4=';
+        $sample['QueueMessage']['DequeueCount'] = '1';
+        $sample['QueueMessage']['MessageText'] = 'PHRlc3Q+dGhpcyBpcyBhIHRlc3QgbWVzc2FnZTwvdGVzdD4=';
 
         return $sample;
     }
@@ -809,10 +809,10 @@ class TestResources
     public static function createMessageSample()
     {
         $sample = [];
-        $sample['QueueMessage']['MessageId']       = '5974b586-0df3-4e2d-ad0c-18e3892bfca2';
-        $sample['QueueMessage']['InsertionTime']   = 'Fri, 09 Oct 2009 21:04:30 GMT';
-        $sample['QueueMessage']['ExpirationTime']  = 'Fri, 16 Oct 2009 21:04:30 GMT';
-        $sample['QueueMessage']['PopReceipt']      = 'YzQ4Yzg1MDItYTc0Ny00OWNjLTkxYTUtZGM0MDFiZDAwYzEw';
+        $sample['QueueMessage']['MessageId'] = '5974b586-0df3-4e2d-ad0c-18e3892bfca2';
+        $sample['QueueMessage']['InsertionTime'] = 'Fri, 09 Oct 2009 21:04:30 GMT';
+        $sample['QueueMessage']['ExpirationTime'] = 'Fri, 16 Oct 2009 21:04:30 GMT';
+        $sample['QueueMessage']['PopReceipt'] = 'YzQ4Yzg1MDItYTc0Ny00OWNjLTkxYTUtZGM0MDFiZDAwYzEw';
         $sample['QueueMessage']['TimeNextVisible'] = 'Fri, 09 Oct 2009 23:29:20 GMT';
 
         return $sample;
@@ -821,21 +821,21 @@ class TestResources
     public static function listMessagesMultipleMessagesSample()
     {
         $sample = [];
-        $sample['QueueMessage'][0]['MessageId']       = '5974b586-0df3-4e2d-ad0c-18e3892bfca2';
-        $sample['QueueMessage'][0]['InsertionTime']   = 'Fri, 09 Oct 2009 21:04:30 GMT';
-        $sample['QueueMessage'][0]['ExpirationTime']  = 'Fri, 16 Oct 2009 21:04:30 GMT';
-        $sample['QueueMessage'][0]['PopReceipt']      = 'YzQ4Yzg1MDItYTc0Ny00OWNjLTkxYTUtZGM0MDFiZDAwYzEw';
+        $sample['QueueMessage'][0]['MessageId'] = '5974b586-0df3-4e2d-ad0c-18e3892bfca2';
+        $sample['QueueMessage'][0]['InsertionTime'] = 'Fri, 09 Oct 2009 21:04:30 GMT';
+        $sample['QueueMessage'][0]['ExpirationTime'] = 'Fri, 16 Oct 2009 21:04:30 GMT';
+        $sample['QueueMessage'][0]['PopReceipt'] = 'YzQ4Yzg1MDItYTc0Ny00OWNjLTkxYTUtZGM0MDFiZDAwYzEw';
         $sample['QueueMessage'][0]['TimeNextVisible'] = 'Fri, 09 Oct 2009 23:29:20 GMT';
-        $sample['QueueMessage'][0]['DequeueCount']    = '1';
-        $sample['QueueMessage'][0]['MessageText']     = 'PHRlc3Q+dGhpcyBpcyBhIHRlc3QgbWVzc2FnZTwvdGVzdD4=';
+        $sample['QueueMessage'][0]['DequeueCount'] = '1';
+        $sample['QueueMessage'][0]['MessageText'] = 'PHRlc3Q+dGhpcyBpcyBhIHRlc3QgbWVzc2FnZTwvdGVzdD4=';
 
-        $sample['QueueMessage'][1]['MessageId']       = '1234c20-0df3-4e2d-ad0c-18e3892bfca2';
-        $sample['QueueMessage'][1]['InsertionTime']   = 'Sat, 10 Feb 2010 21:04:30 GMT';
-        $sample['QueueMessage'][1]['ExpirationTime']  = 'Sat, 05 Jun 2010 21:04:30 GMT';
-        $sample['QueueMessage'][1]['PopReceipt']      = 'QzW4Szf1MDItYTc0Ny00OWNjLTkxYTUtZGM0MDFiZDAwYzEw';
+        $sample['QueueMessage'][1]['MessageId'] = '1234c20-0df3-4e2d-ad0c-18e3892bfca2';
+        $sample['QueueMessage'][1]['InsertionTime'] = 'Sat, 10 Feb 2010 21:04:30 GMT';
+        $sample['QueueMessage'][1]['ExpirationTime'] = 'Sat, 05 Jun 2010 21:04:30 GMT';
+        $sample['QueueMessage'][1]['PopReceipt'] = 'QzW4Szf1MDItYTc0Ny00OWNjLTkxYTUtZGM0MDFiZDAwYzEw';
         $sample['QueueMessage'][1]['TimeNextVisible'] = 'Sun, 09 Oct 2009 23:29:20 GMT';
-        $sample['QueueMessage'][1]['DequeueCount']    = '4';
-        $sample['QueueMessage'][1]['MessageText']     = 'QWEFGlsc3Q+dGhpcyBpcyBhIHRlc3QgbWVzc2FnZTwvdGVzdD4=';
+        $sample['QueueMessage'][1]['DequeueCount'] = '4';
+        $sample['QueueMessage'][1]['MessageText'] = 'QWEFGlsc3Q+dGhpcyBpcyBhIHRlc3QgbWVzc2FnZTwvdGVzdD4=';
 
         return $sample;
     }
@@ -1214,7 +1214,7 @@ class TestResources
                     'x-ms-server-encrypted' => 'false',
                     'x-ms-request-server-encrypted' => 'true',
                     'x-ms-incremental-copy' => 'true',
-                    'x-ms-copy-destination-snapshot'=> '2017-09-07T06:57:06.0830478Z'
+                    'x-ms-copy-destination-snapshot' => '2017-09-07T06:57:06.0830478Z'
                 ]
             ]
         ];
@@ -1358,18 +1358,18 @@ class TestResources
 
     public static function getVariousTypesEntity()
     {
-        $stringVal       = 'mystring';
-        $int64Val        = '4294967296';// larger than INT32_MAX.
-        $int64LargeVal   = "1234567890123456789"; //Number should not be truncated
-        $int32Val        = 123;
-        $doubleVal       = 123.45;
-        $doubleLargeVal  = '12345678901234567890123.0123456789012345678';//Number should not be truncated
-        $boolVal         = false;
-        $dateVal         = (new \DateTime());
-        $guidVal         = 'debc44d5-04a9-42ea-ab2f-4e2cb49ff833';
-        $binaryVals      = chr(0) . chr(1) . chr(2) . chr(3) . chr(4);//Should be binary buffer.
-        $timestamp       = '2016-01-07T02:59:28.6909350Z';//Should not lose precision
-        $doublePresVal   = '1.0';//Should not lose precision.
+        $stringVal = 'mystring';
+        $int64Val = '4294967296';// larger than INT32_MAX.
+        $int64LargeVal = "1234567890123456789"; //Number should not be truncated
+        $int32Val = 123;
+        $doubleVal = 123.45;
+        $doubleLargeVal = '12345678901234567890123.0123456789012345678';//Number should not be truncated
+        $boolVal = false;
+        $dateVal = (new \DateTime());
+        $guidVal = 'debc44d5-04a9-42ea-ab2f-4e2cb49ff833';
+        $binaryVals = chr(0) . chr(1) . chr(2) . chr(3) . chr(4);//Should be binary buffer.
+        $timestamp = '2016-01-07T02:59:28.6909350Z';//Should not lose precision
+        $doublePresVal = '1.0';//Should not lose precision.
 
         $e = new Entity();
         $e->addProperty('stringVal', EdmType::STRING, $stringVal, strval($stringVal));
@@ -1430,14 +1430,14 @@ class TestResources
     public static function getBatchResponseHeaders()
     {
         return [
-            'Cache-Control'          => ['no-cache'],
-            'Transfer-Encoding'      => ['chunked'],
-            'Content_Type'           => ['multipart/mixed; boundary=batchresponse_e899556e-c637-4b2d-8cd1-63edb03dd6fe'],
-            'Server'                 => ['Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0'],
-            'x-ms-request-id'        => ['b3818f44-0002-001d-01fe-872339000000'],
-            'x-ms-version'           => ['2015-04-05'],
+            'Cache-Control' => ['no-cache'],
+            'Transfer-Encoding' => ['chunked'],
+            'Content_Type' => ['multipart/mixed; boundary=batchresponse_e899556e-c637-4b2d-8cd1-63edb03dd6fe'],
+            'Server' => ['Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0'],
+            'x-ms-request-id' => ['b3818f44-0002-001d-01fe-872339000000'],
+            'x-ms-version' => ['2015-04-05'],
             'X-Content-Type-Options' => ['nosniff'],
-            'Date'                   => ['Thu, 16 Feb 2017 02:46:47 GMT']
+            'Date' => ['Thu, 16 Feb 2017 02:46:47 GMT']
         ];
     }
 
@@ -1498,14 +1498,14 @@ class TestResources
         }
 
         $result = [];
-        $result['signedVersion']      = '2016-05-31';
-        $result['signedPermissions']  = $signedPermissions;
-        $result['signedService']      = $signedService;
+        $result['signedVersion'] = '2016-05-31';
+        $result['signedPermissions'] = $signedPermissions;
+        $result['signedService'] = $signedService;
         $result['signedResourceType'] = $signedResourceType;
-        $result['signedExpiry']       = $signedExpiry;
-        $result['signedStart']        = $signedStart;
-        $result['signedIP']           = $signedIP;
-        $result['signedProtocol']     = 'https,http';
+        $result['signedExpiry'] = $signedExpiry;
+        $result['signedStart'] = $signedStart;
+        $result['signedIP'] = $signedIP;
+        $result['signedProtocol'] = 'https,http';
 
         return $result;
     }
@@ -1536,19 +1536,19 @@ class TestResources
         }
 
         $result = [];
-        $result['signedResource']     = $signedResource;
-        $result['resourceName']       = $resourceName;
-        $result['signedExpiry']       = $signedExpiry;
-        $result['signedPermissions']  = $signedPermissions;
-        $result['signedStart']        = $signedStart;
-        $result['signedIP']           = $signedIP;
-        $result['signedProtocol']     = 'https,http';
-        $result['signedIdentifier']   = '';
-        $result['cacheControl']       = $cacheControl;
+        $result['signedResource'] = $signedResource;
+        $result['resourceName'] = $resourceName;
+        $result['signedExpiry'] = $signedExpiry;
+        $result['signedPermissions'] = $signedPermissions;
+        $result['signedStart'] = $signedStart;
+        $result['signedIP'] = $signedIP;
+        $result['signedProtocol'] = 'https,http';
+        $result['signedIdentifier'] = '';
+        $result['cacheControl'] = $cacheControl;
         $result['contentDisposition'] = $contentDisposition;
-        $result['contentEncoding']    = $contentEncoding;
-        $result['contentLanguage']    = $contentLanguage;
-        $result['contentType']        = $contentType;
+        $result['contentEncoding'] = $contentEncoding;
+        $result['contentLanguage'] = $contentLanguage;
+        $result['contentType'] = $contentType;
 
         return $result;
     }
@@ -1577,17 +1577,17 @@ class TestResources
         }
 
         $result = [];
-        $result['tableName']            = $tableName;
-        $result['signedExpiry']         = $signedExpiry;
-        $result['signedPermissions']    = $signedPermissions;
-        $result['signedStart']          = $signedStart;
-        $result['signedIP']             = $signedIP;
-        $result['signedProtocol']       = 'https,http';
-        $result['signedIdentifier']     = '';
+        $result['tableName'] = $tableName;
+        $result['signedExpiry'] = $signedExpiry;
+        $result['signedPermissions'] = $signedPermissions;
+        $result['signedStart'] = $signedStart;
+        $result['signedIP'] = $signedIP;
+        $result['signedProtocol'] = 'https,http';
+        $result['signedIdentifier'] = '';
         $result['startingPartitionKey'] = $startingPartitionKey;
-        $result['startingRowKey']       = $startingRowKey;
-        $result['endingPartitionKey']   = $endingPartitionKey;
-        $result['endingRowKey']         = $endingRowKey;
+        $result['startingRowKey'] = $startingRowKey;
+        $result['endingPartitionKey'] = $endingPartitionKey;
+        $result['endingRowKey'] = $endingRowKey;
 
         return $result;
     }
@@ -1612,13 +1612,13 @@ class TestResources
         }
 
         $result = [];
-        $result['queueName']            = $queueName;
-        $result['signedExpiry']         = $signedExpiry;
-        $result['signedPermissions']    = $signedPermissions;
-        $result['signedStart']          = $signedStart;
-        $result['signedIP']             = $signedIP;
-        $result['signedProtocol']       = 'https,http';
-        $result['signedIdentifier']     = '';
+        $result['queueName'] = $queueName;
+        $result['signedExpiry'] = $signedExpiry;
+        $result['signedPermissions'] = $signedPermissions;
+        $result['signedStart'] = $signedStart;
+        $result['signedIP'] = $signedIP;
+        $result['signedProtocol'] = 'https,http';
+        $result['signedIdentifier'] = '';
 
         return $result;
     }

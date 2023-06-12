@@ -71,7 +71,7 @@ class FileProperties
     public static function createFromHttpHeaders(array $parsed)
     {
         $result = new FileProperties();
-        $clean  = array_change_key_case($parsed);
+        $clean = array_change_key_case($parsed);
 
         $lastModified = Utilities::tryGetValue($parsed, Resources::LAST_MODIFIED);
 

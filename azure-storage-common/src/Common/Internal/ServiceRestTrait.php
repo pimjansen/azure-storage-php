@@ -73,11 +73,11 @@ trait ServiceRestTrait
     public function getServicePropertiesAsync(
         ServiceOptions $options = null
     ) {
-        $method      = Resources::HTTP_GET;
-        $headers     = [];
+        $method = Resources::HTTP_GET;
+        $headers = [];
         $queryParams = [];
-        $postParams  = [];
-        $path        = Resources::EMPTY_STRING;
+        $postParams = [];
+        $path = Resources::EMPTY_STRING;
 
         if (is_null($options)) {
             $options = new ServiceOptions();
@@ -153,12 +153,12 @@ trait ServiceRestTrait
             Resources::INVALID_SVC_PROP_MSG
         );
 
-        $method      = Resources::HTTP_PUT;
-        $headers     = [];
+        $method = Resources::HTTP_PUT;
+        $headers = [];
         $queryParams = [];
-        $postParams  = [];
-        $path        = Resources::EMPTY_STRING;
-        $body        = $serviceProperties->toXml($this->dataSerializer);
+        $postParams = [];
+        $path = Resources::EMPTY_STRING;
+        $body = $serviceProperties->toXml($this->dataSerializer);
 
         if (is_null($options)) {
             $options = new ServiceOptions();
@@ -217,11 +217,11 @@ trait ServiceRestTrait
      */
     public function getServiceStatsAsync(ServiceOptions $options = null)
     {
-        $method      = Resources::HTTP_GET;
-        $headers     = [];
+        $method = Resources::HTTP_GET;
+        $headers = [];
         $queryParams = [];
-        $postParams  = [];
-        $path        = Resources::EMPTY_STRING;
+        $postParams = [];
+        $path = Resources::EMPTY_STRING;
 
         if (is_null($options)) {
             $options = new ServiceOptions();

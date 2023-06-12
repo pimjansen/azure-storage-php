@@ -52,9 +52,9 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testConstruct()
     {
         // Setup
-        $primaryUri       = 'http://www.microsoft.com';
-        $secondaryUri     = 'http://www.bing.com';
-        $accountName      = 'myaccount';
+        $primaryUri = 'http://www.microsoft.com';
+        $secondaryUri = 'http://www.bing.com';
+        $accountName = 'myaccount';
         $options['https'] = ['verify' => __DIR__ . "/TestFiles/cacert.pem"];
 
         // Test
@@ -80,9 +80,9 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testSettingVerifyOptions()
     {
         // Setup
-        $primaryUri       = 'http://www.microsoft.com';
-        $secondaryUri     = 'http://www.bing.com';
-        $accountName      = 'myaccount';
+        $primaryUri = 'http://www.microsoft.com';
+        $secondaryUri = 'http://www.bing.com';
+        $accountName = 'myaccount';
         $options['http'] = ['verify' => __DIR__ . "/TestFiles/cacert.pem"];
 
         // Test

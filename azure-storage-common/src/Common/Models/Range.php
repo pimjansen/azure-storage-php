@@ -50,7 +50,7 @@ class Range
     public function __construct($start, $end = null)
     {
         $this->start = $start;
-        $this->end   = $end;
+        $this->end = $end;
     }
 
     /**

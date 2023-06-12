@@ -41,8 +41,8 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  */
 class XmlSerializer implements ISerializer
 {
-    public const STANDALONE  = 'standalone';
-    public const ROOT_NAME   = 'rootName';
+    public const STANDALONE = 'standalone';
+    public const ROOT_NAME = 'rootName';
     public const DEFAULT_TAG = 'defaultTag';
 
     /**
@@ -140,8 +140,8 @@ class XmlSerializer implements ISerializer
         $xmlWriter->openMemory();
         $xmlWriter->setIndent(true);
         $reflectionClass = new \ReflectionClass($targetObject);
-        $methodArray     = $reflectionClass->getMethods();
-        $attributes      = self::getInstanceAttributes(
+        $methodArray = $reflectionClass->getMethods();
+        $attributes = self::getInstanceAttributes(
             $targetObject,
             $methodArray
         );
@@ -161,7 +161,7 @@ class XmlSerializer implements ISerializer
                 && $method->isPublic()
                 && ($method->name != 'getAttributes')
             ) {
-                $variableName  = substr($method->name, 3);
+                $variableName = substr($method->name, 3);
                 $variableValue = $method->invoke($targetObject);
                 if (!empty($variableValue)) {
                     if (gettype($variableValue) === 'object') {
@@ -192,11 +192,11 @@ class XmlSerializer implements ISerializer
      */
     public function serialize(array $array, array $properties = null)
     {
-        $xmlVersion   = '1.0';
-        $xmlEncoding  = 'UTF-8';
-        $standalone   = Utilities::tryGetValue($properties, self::STANDALONE);
-        $defaultTag   = Utilities::tryGetValue($properties, self::DEFAULT_TAG);
-        $rootName     = Utilities::tryGetValue($properties, self::ROOT_NAME);
+        $xmlVersion = '1.0';
+        $xmlEncoding = 'UTF-8';
+        $standalone = Utilities::tryGetValue($properties, self::STANDALONE);
+        $defaultTag = Utilities::tryGetValue($properties, self::DEFAULT_TAG);
+        $rootName = Utilities::tryGetValue($properties, self::ROOT_NAME);
         $docNamespace = Utilities::tryGetValue(
             $array,
             Resources::XTAG_NAMESPACE,

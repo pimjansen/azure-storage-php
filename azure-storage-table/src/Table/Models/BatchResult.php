@@ -57,7 +57,7 @@ class BatchResult
     private static function _constructResponses($body, IMimeReaderWriter $mimeSerializer)
     {
         $responses = [];
-        $parts     = $mimeSerializer->decodeMimeMultipart($body);
+        $parts = $mimeSerializer->decodeMimeMultipart($body);
         // Decrease the count of parts to remove the batch response body and just
         // include change sets response body. We may need to undo this action in
         // case that batch response body has useful info.
@@ -67,7 +67,7 @@ class BatchResult
             $response = new \stdClass();
 
             // Split lines
-            $lines    = preg_split("/\\r\\n|\\r|\\n/", $parts[$i]);
+            $lines = preg_split("/\\r\\n|\\r|\\n/", $parts[$i]);
             // Version Status Reason
             $statusTokens = explode(' ', $lines[0], 3);
             $response->version = $statusTokens[0];
@@ -75,7 +75,7 @@ class BatchResult
             $response->reason = $statusTokens[2];
 
             $headers = [];
-            $j       = 1;
+            $j = 1;
             while (Resources::EMPTY_STRING != $lines[$j]) {
                 $headerLine = $lines[$j++];
                 $headerTokens = explode(':', $headerLine);
@@ -128,21 +128,21 @@ class BatchResult
         IODataReaderWriter $odataSerializer,
         IMimeReaderWriter $mimeSerializer
     ) {
-        $result       = new BatchResult();
-        $responses    = self::_constructResponses($body, $mimeSerializer);
+        $result = new BatchResult();
+        $responses = self::_constructResponses($body, $mimeSerializer);
         $callbackName = __CLASS__ . '::_compareUsingContentId';
-        $count        = count($responses);
-        $entries      = [];
+        $count = count($responses);
+        $entries = [];
         // Sort $responses based on Content-ID so they match order of $operations.
         uasort($responses, $callbackName);
 
         for ($i = 0; $i < $count; $i++) {
-            $context   = $contexts[$i];
-            $response  = $responses[$i];
+            $context = $contexts[$i];
+            $response = $responses[$i];
             $operation = $operations[$i];
-            $type      = $operation->getType();
-            $body      = $response->body;
-            $headers   = HttpFormatter::formatHeaders($response->headers);
+            $type = $operation->getType();
+            $body = $response->body;
+            $headers = HttpFormatter::formatHeaders($response->headers);
 
             //Throw the error directly if error occurs in the batch operation.
             ServiceRestProxy::throwIfError(

@@ -59,7 +59,7 @@ class CopyState
     public static function createFromXml(array $parsed)
     {
         $result = new CopyState();
-        $clean  = array_change_key_case($parsed);
+        $clean = array_change_key_case($parsed);
 
         $copyCompletionTime = Utilities::tryGetValue($clean, 'copycompletiontime');
         if (!is_null($copyCompletionTime)) {
@@ -98,7 +98,7 @@ class CopyState
     public static function createFromHttpHeaders(array $parsed)
     {
         $result = new CopyState();
-        $clean  = array_change_key_case($parsed);
+        $clean = array_change_key_case($parsed);
 
         $copyCompletionTime = Utilities::tryGetValue($clean, Resources::X_MS_COPY_COMPLETION_TIME);
         if (!is_null($copyCompletionTime)) {

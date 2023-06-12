@@ -55,7 +55,7 @@ class QueryTablesResult
      */
     public static function create(array $headers, array $entries)
     {
-        $result  = new QueryTablesResult();
+        $result = new QueryTablesResult();
         $headers = array_change_key_case($headers);
 
         $result->setTables($entries);

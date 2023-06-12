@@ -55,7 +55,7 @@ class CreateBlobSnapshotResult
      */
     public static function create(array $headers)
     {
-        $result                 = new CreateBlobSnapshotResult();
+        $result = new CreateBlobSnapshotResult();
         $headerWithLowerCaseKey = array_change_key_case($headers);
 
         $result->setETag($headerWithLowerCaseKey[Resources::ETAG]);

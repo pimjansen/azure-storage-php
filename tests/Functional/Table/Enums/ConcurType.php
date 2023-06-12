@@ -26,10 +26,10 @@ namespace MicrosoftAzure\Storage\Tests\Functional\Table\Enums;
 
 class ConcurType
 {
-    public const NO_KEY_MATCH            = 'NoKeyMatch';
-    public const KEY_MATCH_NO_ETAG       = 'KeyMatchNoETag';
+    public const NO_KEY_MATCH = 'NoKeyMatch';
+    public const KEY_MATCH_NO_ETAG = 'KeyMatchNoETag';
     public const KEY_MATCH_ETAG_MISMATCH = 'KeyMatchETagMismatch';
-    public const KEY_MATCH_ETAG_MATCH    = 'KeyMatchETagMatch';
+    public const KEY_MATCH_ETAG_MATCH = 'KeyMatchETagMatch';
     public static function values()
     {
         return ['NoKeyMatch', 'KeyMatchNoETag', 'KeyMatchETagMismatch', 'KeyMatchETagMatch'];

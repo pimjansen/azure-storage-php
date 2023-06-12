@@ -232,7 +232,7 @@ class ServiceProperties
 
         $corsesArray = $this->getCorsesArray();
         if (!empty($corsesArray)) {
-            $result[Resources::XTAG_CORS] =$corsesArray;
+            $result[Resources::XTAG_CORS] = $corsesArray;
         }
 
         if ($this->defaultServiceVersion != null) {

@@ -63,8 +63,8 @@ class ListBlobBlocksResult
             $rawEntries = [];
 
             if (array_key_exists($type, $parsed)
-                &&     is_array($parsed[$type])
-                &&     !empty($parsed[$type])
+                && is_array($parsed[$type])
+                && !empty($parsed[$type])
             ) {
                 $rawEntries = Utilities::getArray($parsed[$type]['Block']);
             }
@@ -90,7 +90,7 @@ class ListBlobBlocksResult
     public static function create(array $headers, array $parsed)
     {
         $result = new ListBlobBlocksResult();
-        $clean  = array_change_key_case($headers);
+        $clean = array_change_key_case($headers);
 
         $result->setETag(Utilities::tryGetValue($clean, Resources::ETAG));
         $date = Utilities::tryGetValue($clean, Resources::LAST_MODIFIED);
@@ -111,7 +111,7 @@ class ListBlobBlocksResult
             $parsed,
             'UncommittedBlocks'
         );
-        $result->committedBlocks   = self::getEntries($parsed, 'CommittedBlocks');
+        $result->committedBlocks = self::getEntries($parsed, 'CommittedBlocks');
 
         return $result;
     }

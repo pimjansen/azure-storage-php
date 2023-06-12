@@ -62,8 +62,8 @@ class ListContainersResult
      */
     public static function create(array $parsedResponse, $location = '')
     {
-        $result               = new ListContainersResult();
-        $serviceEndpoint      = Utilities::tryGetKeysChainValue(
+        $result = new ListContainersResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsedResponse,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT
@@ -96,12 +96,12 @@ class ListContainersResult
             $parsedResponse,
             Resources::QP_MAX_RESULTS
         ));
-        $containers   = [];
+        $containers = [];
         $rawContainer = [];
 
         if (!empty($parsedResponse['Containers'])) {
             $containersArray = $parsedResponse['Containers']['Container'];
-            $rawContainer    = Utilities::getArray($containersArray);
+            $rawContainer = Utilities::getArray($containersArray);
         }
 
         foreach ($rawContainer as $value) {
@@ -112,8 +112,8 @@ class ListContainersResult
                 Utilities::tryGetValue($value, Resources::QP_METADATA, [])
             );
             $properties = new ContainerProperties();
-            $date       = $value['Properties']['Last-Modified'];
-            $date       = Utilities::rfc1123ToDateTime($date);
+            $date = $value['Properties']['Last-Modified'];
+            $date = Utilities::rfc1123ToDateTime($date);
             $properties->setLastModified($date);
             $properties->setETag(Utilities::tryGetValueInsensitive(Resources::ETAG, $value['Properties']));
 

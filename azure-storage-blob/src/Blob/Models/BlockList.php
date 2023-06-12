@@ -159,7 +159,7 @@ class BlockList
     public function toXml(XmlSerializer $xmlSerializer)
     {
         $properties = [XmlSerializer::ROOT_NAME => self::$xmlRootName];
-        $array      = [];
+        $array = [];
 
         foreach ($this->entries as $value) {
             $array[] = [

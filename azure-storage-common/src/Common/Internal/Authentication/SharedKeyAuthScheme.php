@@ -69,10 +69,10 @@ class SharedKeyAuthScheme implements IAuthScheme
      */
     public function __construct($accountName, $accountKey)
     {
-        $this->accountKey  = $accountKey;
+        $this->accountKey = $accountKey;
         $this->accountName = $accountName;
 
-        $this->includedHeaders   = [];
+        $this->includedHeaders = [];
         $this->includedHeaders[] = Resources::CONTENT_ENCODING;
         $this->includedHeaders[] = Resources::CONTENT_LANGUAGE;
         $this->includedHeaders[] = Resources::CONTENT_LENGTH;
@@ -112,7 +112,7 @@ class SharedKeyAuthScheme implements IAuthScheme
             $queryParams
         );
 
-        $stringToSign   = [];
+        $stringToSign = [];
         $stringToSign[] = strtoupper($httpMethod);
 
         foreach ($this->includedHeaders as $header) {
@@ -124,7 +124,7 @@ class SharedKeyAuthScheme implements IAuthScheme
         }
 
         $stringToSign[] = $canonicalizedResource;
-        $stringToSign   = implode("\n", $stringToSign);
+        $stringToSign = implode("\n", $stringToSign);
 
         return $stringToSign;
     }
@@ -173,8 +173,8 @@ class SharedKeyAuthScheme implements IAuthScheme
     protected function computeCanonicalizedHeaders($headers)
     {
         $canonicalizedHeaders = [];
-        $normalizedHeaders    = [];
-        $validPrefix          =  Resources::X_MS_HEADER_PREFIX;
+        $normalizedHeaders = [];
+        $validPrefix = Resources::X_MS_HEADER_PREFIX;
 
         if (is_null($normalizedHeaders)) {
             return $canonicalizedHeaders;
@@ -193,7 +193,7 @@ class SharedKeyAuthScheme implements IAuthScheme
                 $value = str_replace("\r\n", ' ', $value);
 
                 // Trim any white space around the colon in the header.
-                $value  = ltrim($value);
+                $value = ltrim($value);
                 $header = rtrim($header);
 
                 $normalizedHeaders[$header] = $value;

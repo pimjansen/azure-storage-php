@@ -61,11 +61,11 @@ abstract class AccessPolicy
     {
         Validate::canCastAsString($resourceType, 'resourceType');
         Validate::isTrue(
-            $resourceType == Resources::RESOURCE_TYPE_BLOB      ||
+            $resourceType == Resources::RESOURCE_TYPE_BLOB ||
             $resourceType == Resources::RESOURCE_TYPE_CONTAINER ||
-            $resourceType == Resources::RESOURCE_TYPE_QUEUE     ||
-            $resourceType == Resources::RESOURCE_TYPE_TABLE     ||
-            $resourceType == Resources::RESOURCE_TYPE_FILE      ||
+            $resourceType == Resources::RESOURCE_TYPE_QUEUE ||
+            $resourceType == Resources::RESOURCE_TYPE_TABLE ||
+            $resourceType == Resources::RESOURCE_TYPE_FILE ||
             $resourceType == Resources::RESOURCE_TYPE_SHARE,
             Resources::ERROR_RESOURCE_TYPE_NOT_SUPPORTED
         );
@@ -209,7 +209,7 @@ abstract class AccessPolicy
             $array[Resources::XTAG_SIGNED_START] =
                 Utilities::convertToEdmDateTime($this->getStart());
         }
-        $array[Resources::XTAG_SIGNED_EXPIRY]     =
+        $array[Resources::XTAG_SIGNED_EXPIRY] =
             Utilities::convertToEdmDateTime($this->getExpiry());
         $array[Resources::XTAG_SIGNED_PERMISSION] = $this->getPermission();
 

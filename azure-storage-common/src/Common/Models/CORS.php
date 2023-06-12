@@ -117,19 +117,19 @@ class CORS
         );
 
         // Get the values from the parsed response.
-        $allowedOrigins  = array_filter(explode(
+        $allowedOrigins = array_filter(explode(
             ',',
             $parsedResponse[Resources::XTAG_ALLOWED_ORIGINS]
         ));
-        $allowedMethods  = array_filter(explode(
+        $allowedMethods = array_filter(explode(
             ',',
             $parsedResponse[Resources::XTAG_ALLOWED_METHODS]
         ));
-        $allowedHeaders  = array_filter(explode(
+        $allowedHeaders = array_filter(explode(
             ',',
             $parsedResponse[Resources::XTAG_ALLOWED_HEADERS]
         ));
-        $exposedHeaders  = array_filter(explode(
+        $exposedHeaders = array_filter(explode(
             ',',
             $parsedResponse[Resources::XTAG_EXPOSED_HEADERS]
         ));
@@ -154,13 +154,13 @@ class CORS
     public function toArray()
     {
         return [
-            Resources::XTAG_ALLOWED_ORIGINS    =>
+            Resources::XTAG_ALLOWED_ORIGINS =>
                 implode(',', $this->getAllowedOrigins()),
-            Resources::XTAG_ALLOWED_METHODS    =>
+            Resources::XTAG_ALLOWED_METHODS =>
                 implode(',', $this->getAllowedMethods()),
-            Resources::XTAG_ALLOWED_HEADERS    =>
+            Resources::XTAG_ALLOWED_HEADERS =>
                 implode(',', $this->getAllowedHeaders()),
-            Resources::XTAG_EXPOSED_HEADERS    =>
+            Resources::XTAG_EXPOSED_HEADERS =>
                 implode(',', $this->getExposedHeaders()),
             Resources::XTAG_MAX_AGE_IN_SECONDS =>
                 $this->getMaxedAgeInSeconds()

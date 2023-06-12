@@ -28,4 +28,5 @@ return $config
         'array_syntax' => [
             'syntax' => 'short',
         ],
+        'binary_operator_spaces' => true,
     ]);

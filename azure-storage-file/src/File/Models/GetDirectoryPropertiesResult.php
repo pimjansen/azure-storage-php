@@ -124,13 +124,13 @@ class GetDirectoryPropertiesResult
      */
     public static function create(array $responseHeaders)
     {
-        $result   = new GetDirectoryPropertiesResult();
+        $result = new GetDirectoryPropertiesResult();
         $metadata = Utilities::getMetadataArray($responseHeaders);
-        $date     = Utilities::tryGetValueInsensitive(
+        $date = Utilities::tryGetValueInsensitive(
             Resources::LAST_MODIFIED,
             $responseHeaders
         );
-        $date     = Utilities::rfc1123ToDateTime($date);
+        $date = Utilities::rfc1123ToDateTime($date);
         $result->setETag(Utilities::tryGetValueInsensitive(
             Resources::ETAG,
             $responseHeaders

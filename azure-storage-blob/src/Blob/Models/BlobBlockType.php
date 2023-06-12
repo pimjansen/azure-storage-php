@@ -36,9 +36,9 @@ namespace MicrosoftAzure\Storage\Blob\Models;
  */
 class BlobBlockType
 {
-    public const COMMITTED_TYPE   = 'Committed';
+    public const COMMITTED_TYPE = 'Committed';
     public const UNCOMMITTED_TYPE = 'Uncommitted';
-    public const LATEST_TYPE      = 'Latest';
+    public const LATEST_TYPE = 'Latest';
 
     /**
      * Validates the provided type.

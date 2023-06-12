@@ -109,7 +109,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         }
         //Validate that a cross access with wrong proxy/container pair
         //would not be successful
-        for ($i= 0; $i < 2; ++$i) {
+        for ($i = 0; $i < 2; ++$i) {
             $proxy = $containerProxies[$i];
             $container = $containers[1 - $i];
             $blob0 = TestResources::getInterestingName('blob');
@@ -253,7 +253,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         }
         //Validate that a cross access with wrong proxy/container pair
         //would not be successful
-        for ($i= 0; $i < 2; ++$i) {
+        for ($i = 0; $i < 2; ++$i) {
             $proxy = $containerProxies[$i];
             $container = $containers[1 - $i];
             $blob0 = TestResources::getInterestingName($blobPrefix);

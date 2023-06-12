@@ -882,7 +882,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
                 Filter::applyPropertyName('RowKey'),
                 Filter::applyConstant('queryEntitiesWithFilterWorks-3', EdmType::STRING)
             );
-            $q =new Query();
+            $q = new Query();
             $q->setFilter($f);
             $qeo = new QueryEntitiesOptions();
             $qeo->setQuery($q);

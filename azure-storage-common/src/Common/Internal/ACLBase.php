@@ -95,7 +95,7 @@ abstract class ACLBase
     {
         $properties = [
             XmlSerializer::DEFAULT_TAG => Resources::XTAG_SIGNED_IDENTIFIER,
-            XmlSerializer::ROOT_NAME   => Resources::XTAG_SIGNED_IDENTIFIERS
+            XmlSerializer::ROOT_NAME => Resources::XTAG_SIGNED_IDENTIFIERS
         ];
 
         return $serializer->serialize($this->toArray(), $properties);
@@ -120,20 +120,20 @@ abstract class ACLBase
                 is_array($parsed[Resources::XTAG_SIGNED_IDENTIFIER])
         ) {
             $entries = $parsed[Resources::XTAG_SIGNED_IDENTIFIER];
-            $temp    = Utilities::getArray($entries);
+            $temp = Utilities::getArray($entries);
 
             foreach ($temp as $value) {
                 $accessPolicy = $value[Resources::XTAG_ACCESS_POLICY];
-                $startString  = urldecode(
+                $startString = urldecode(
                     $accessPolicy[Resources::XTAG_SIGNED_START]
                 );
                 $expiryString = urldecode(
                     $accessPolicy[Resources::XTAG_SIGNED_EXPIRY]
                 );
-                $start        = Utilities::convertToDateTime($startString);
-                $expiry       = Utilities::convertToDateTime($expiryString);
-                $permission   = $accessPolicy[Resources::XTAG_SIGNED_PERMISSION];
-                $id           = $value[Resources::XTAG_SIGNED_ID];
+                $start = Utilities::convertToDateTime($startString);
+                $expiry = Utilities::convertToDateTime($expiryString);
+                $permission = $accessPolicy[Resources::XTAG_SIGNED_PERMISSION];
+                $id = $value[Resources::XTAG_SIGNED_ID];
                 $this->addSignedIdentifier($id, $start, $expiry, $permission);
             }
         }

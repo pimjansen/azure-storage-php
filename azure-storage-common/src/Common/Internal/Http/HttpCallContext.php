@@ -57,14 +57,14 @@ class HttpCallContext
      */
     public function __construct()
     {
-        $this->_method         = null;
-        $this->_body           = null;
-        $this->_path           = null;
-        $this->_uri            = null;
-        $this->_queryParams    = [];
+        $this->_method = null;
+        $this->_body = null;
+        $this->_path = null;
+        $this->_uri = null;
+        $this->_queryParams = [];
         $this->_postParameters = [];
-        $this->_statusCodes    = [];
-        $this->_headers        = [];
+        $this->_statusCodes = [];
+        $this->_headers = [];
         $this->_serviceOptions = new ServiceOptions();
     }
 
@@ -412,11 +412,11 @@ class HttpCallContext
     public function __toString()
     {
         $headers = Resources::EMPTY_STRING;
-        $uri     = $this->_uri;
+        $uri = $this->_uri;
 
         if ($uri === null) {
             $uri = '/';
-        } elseif ($uri[strlen($uri)-1] != '/') {
+        } elseif ($uri[strlen($uri) - 1] != '/') {
             $uri = $uri.'/';
         }
 
@@ -424,7 +424,7 @@ class HttpCallContext
             $headers .= "$key: $value\n";
         }
 
-        $str  = "$this->_method $uri$this->_path HTTP/1.1\n$headers\n";
+        $str = "$this->_method $uri$this->_path HTTP/1.1\n$headers\n";
         $str .= "$this->_body";
 
         return $str;

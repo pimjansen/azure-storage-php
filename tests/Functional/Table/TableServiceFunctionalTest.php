@@ -1262,9 +1262,9 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $configs = [];
             foreach (TableServiceFunctionalTestData::getSimpleEntities(6) as $ent) {
                 $config = new BatchWorkerConfig();
-                $config->concurType = $concurTypes[mt_rand(0, count($concurTypes) -1)];
-                $config->opType = $opTypes[mt_rand(0, count($opTypes) -1)];
-                $config->mutatePivot = $mutatePivots[mt_rand(0, count($mutatePivots) -1)];
+                $config->concurType = $concurTypes[mt_rand(0, count($concurTypes) - 1)];
+                $config->opType = $opTypes[mt_rand(0, count($opTypes) - 1)];
+                $config->mutatePivot = $mutatePivots[mt_rand(0, count($mutatePivots) - 1)];
                 $config->ent = $ent;
                 array_push($configs, $config);
             }
@@ -1401,14 +1401,14 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $firstConfig->concurType = $firstConcurType;
             $firstConfig->opType = $firstOpType;
             $firstConfig->ent = $simpleEntities[0];
-            $firstConfig->mutatePivot = $mutatePivots[mt_rand(0, count($mutatePivots) -1)];
+            $firstConfig->mutatePivot = $mutatePivots[mt_rand(0, count($mutatePivots) - 1)];
             array_push($configs, $firstConfig);
 
             for ($i = 1; $i < count($simpleEntities); $i++) {
                 $config = new BatchWorkerConfig();
                 while (!is_null($this->expectConcurrencyFailure($config->opType, $config->concurType))) {
-                    $config->concurType = $concurTypes[mt_rand(0, count($concurTypes) -1)];
-                    $config->opType = $opTypes[mt_rand(0, count($opTypes) -1)];
+                    $config->concurType = $concurTypes[mt_rand(0, count($concurTypes) - 1)];
+                    $config->opType = $opTypes[mt_rand(0, count($opTypes) - 1)];
                     if ($this->isEmulated()) {
                         if ($config->opType == OpType::INSERT_OR_MERGE_ENTITY) {
                             $config->opType = OpType::MERGE_ENTITY;
@@ -1418,7 +1418,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                         }
                     }
                 }
-                $config->mutatePivot = $mutatePivots[mt_rand(0, count($mutatePivots) -1)];
+                $config->mutatePivot = $mutatePivots[mt_rand(0, count($mutatePivots) - 1)];
                 $config->ent = $simpleEntities[$i];
                 array_push($configs, $config);
             }
@@ -1735,7 +1735,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 $targetEnt->setETag(null);
                 break;
             case ConcurType::KEY_MATCH_ETAG_MISMATCH:
-                $newETag =  $this->restProxy->updateEntity($table, $initialEnt)->getETag();
+                $newETag = $this->restProxy->updateEntity($table, $initialEnt)->getETag();
                 $initialEnt->setETag($newETag);
                 // Now the $targetEnt ETag will not match.
                 $this->assertTrue(

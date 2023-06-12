@@ -101,7 +101,7 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
         }
         //Validate that a cross access with wrong proxy/share pair
         //would not be successful
-        for ($i= 0; $i < 2; ++$i) {
+        for ($i = 0; $i < 2; ++$i) {
             $proxy = $shareProxies[$i];
             $share = $shares[1 - $i];
             $file = TestResources::getInterestingName('file');

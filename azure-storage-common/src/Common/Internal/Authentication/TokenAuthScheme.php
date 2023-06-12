@@ -53,7 +53,7 @@ class TokenAuthScheme implements IAuthScheme
      */
     public function __construct(&$token)
     {
-        $this->tokenRef =& $token;
+        $this->tokenRef = & $token;
     }
 
     /**

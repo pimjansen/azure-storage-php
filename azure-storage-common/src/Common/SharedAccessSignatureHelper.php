@@ -161,7 +161,7 @@ class SharedAccessSignatureHelper
         $sig = urlencode(base64_encode($signature));
 
         //adding all the components for account SAS together.
-        $sas  = 'sv=' . $signedVersion;
+        $sas = 'sv=' . $signedVersion;
         $sas .= '&ss=' . $signedService;
         $sas .= '&srt=' . $signedResourceType;
         $sas .= '&sp=' . $signedPermissions;
@@ -317,8 +317,8 @@ class SharedAccessSignatureHelper
         $resource
     ) {
         static $serviceMap = [
-            Resources::RESOURCE_TYPE_BLOB  => 'blob',
-            Resources::RESOURCE_TYPE_FILE  => 'file',
+            Resources::RESOURCE_TYPE_BLOB => 'blob',
+            Resources::RESOURCE_TYPE_FILE => 'file',
             Resources::RESOURCE_TYPE_QUEUE => 'queue',
             Resources::RESOURCE_TYPE_TABLE => 'table',
         ];

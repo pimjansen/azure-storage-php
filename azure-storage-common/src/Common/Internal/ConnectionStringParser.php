@@ -39,10 +39,10 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  */
 class ConnectionStringParser
 {
-    public const EXPECT_KEY        = 'ExpectKey';
+    public const EXPECT_KEY = 'ExpectKey';
     public const EXPECT_ASSIGNMENT = 'ExpectAssignment';
-    public const EXPECT_VALUE      = 'ExpectValue';
-    public const EXPECT_SEPARATOR  = 'ExpectSeparator';
+    public const EXPECT_VALUE = 'ExpectValue';
+    public const EXPECT_SEPARATOR = 'ExpectSeparator';
 
     private $_argumentName;
     private $_value;
@@ -79,9 +79,9 @@ class ConnectionStringParser
     private function __construct($argumentName, $value)
     {
         $this->_argumentName = $argumentName;
-        $this->_value        = $value;
-        $this->_pos          = 0;
-        $this->_state        = ConnectionStringParser::EXPECT_KEY;
+        $this->_value = $value;
+        $this->_pos = 0;
+        $this->_state = ConnectionStringParser::EXPECT_KEY;
     }
 
     /**
@@ -93,8 +93,8 @@ class ConnectionStringParser
      */
     private function _parse()
     {
-        $key                    = null;
-        $value                  = null;
+        $key = null;
+        $value = null;
         $connectionStringValues = [];
 
         while (true) {
@@ -110,7 +110,7 @@ class ConnectionStringParser
 
             switch ($this->_state) {
                 case ConnectionStringParser::EXPECT_KEY:
-                    $key          = $this->_extractKey();
+                    $key = $this->_extractKey();
                     $this->_state = ConnectionStringParser::EXPECT_ASSIGNMENT;
                     break;
 
@@ -120,12 +120,12 @@ class ConnectionStringParser
                     break;
 
                 case ConnectionStringParser::EXPECT_VALUE:
-                    $value                        = $this->_extractValue();
-                    $this->_state                 =
+                    $value = $this->_extractValue();
+                    $this->_state =
                     ConnectionStringParser::EXPECT_SEPARATOR;
                     $connectionStringValues[$key] = $value;
-                    $key                          = null;
-                    $value                        = null;
+                    $key = null;
+                    $value = null;
                     break;
 
                 default:
@@ -191,7 +191,7 @@ class ConnectionStringParser
     private function _skipWhiteSpaces()
     {
         while ($this->_pos < strlen($this->_value)
-              &&  ctype_space($this->_value[$this->_pos])
+              && ctype_space($this->_value[$this->_pos])
         ) {
             $this->_pos++;
         }
@@ -215,7 +215,7 @@ class ConnectionStringParser
                 $value = $this->_extractString($ch);
             } else {
                 $firstPos = $this->_pos;
-                $isFound  = false;
+                $isFound = false;
 
                 while ($this->_pos < strlen($this->_value) && !$isFound) {
                     $ch = $this->_value[$this->_pos];
@@ -243,9 +243,9 @@ class ConnectionStringParser
      */
     private function _extractKey()
     {
-        $key      = null;
+        $key = null;
         $firstPos = $this->_pos;
-        $ch       = $this->_value[$this->_pos];
+        $ch = $this->_value[$this->_pos];
 
         if ($ch == '"' || $ch == '\'') {
             $this->_pos++;
@@ -293,7 +293,7 @@ class ConnectionStringParser
         $firstPos = $this->_pos;
 
         while ($this->_pos < strlen($this->_value)
-              &&  $this->_value[$this->_pos] != $quote
+              && $this->_value[$this->_pos] != $quote
         ) {
             $this->_pos++;
         }

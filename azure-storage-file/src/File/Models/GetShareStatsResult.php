@@ -81,7 +81,7 @@ class GetShareStatsResult
      */
     public static function create(array $parsed)
     {
-        $result   = new GetShareStatsResult();
+        $result = new GetShareStatsResult();
 
         $result->setShareUsage(\intval(Utilities::tryGetValueInsensitive(
             Resources::XTAG_SHARE_USAGE,

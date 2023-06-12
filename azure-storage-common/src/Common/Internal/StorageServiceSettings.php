@@ -192,17 +192,17 @@ class StorageServiceSettings extends ServiceSettings
         $fileSecondaryEndpointUri = null,
         $sas = null
     ) {
-        $this->name                      = $name;
-        $this->key                       = $key;
-        $this->sas                       = $sas;
-        $this->blobEndpointUri           = $blobEndpointUri;
-        $this->queueEndpointUri          = $queueEndpointUri;
-        $this->tableEndpointUri          = $tableEndpointUri;
-        $this->fileEndpointUri           = $fileEndpointUri;
-        $this->blobSecondaryEndpointUri  = $blobSecondaryEndpointUri;
+        $this->name = $name;
+        $this->key = $key;
+        $this->sas = $sas;
+        $this->blobEndpointUri = $blobEndpointUri;
+        $this->queueEndpointUri = $queueEndpointUri;
+        $this->tableEndpointUri = $tableEndpointUri;
+        $this->fileEndpointUri = $fileEndpointUri;
+        $this->blobSecondaryEndpointUri = $blobSecondaryEndpointUri;
         $this->queueSecondaryEndpointUri = $queueSecondaryEndpointUri;
         $this->tableSecondaryEndpointUri = $tableSecondaryEndpointUri;
-        $this->fileSecondaryEndpointUri  = $fileSecondaryEndpointUri;
+        $this->fileSecondaryEndpointUri = $fileSecondaryEndpointUri;
     }
 
     /**
@@ -220,7 +220,7 @@ class StorageServiceSettings extends ServiceSettings
         }
 
         $scheme = parse_url($proxyUri, PHP_URL_SCHEME);
-        $host   = parse_url($proxyUri, PHP_URL_HOST);
+        $host = parse_url($proxyUri, PHP_URL_HOST);
         $prefix = $scheme . "://" . $host;
 
         return new StorageServiceSettings(
@@ -309,7 +309,7 @@ class StorageServiceSettings extends ServiceSettings
         $tableSecondaryEndpointUri = null,
         $fileSecondaryEndpointUri = null
     ) {
-        $blobEndpointUri  = Utilities::tryGetValueInsensitive(
+        $blobEndpointUri = Utilities::tryGetValueInsensitive(
             Resources::BLOB_ENDPOINT_NAME,
             $settings,
             $blobEndpointUri
@@ -329,15 +329,15 @@ class StorageServiceSettings extends ServiceSettings
             $settings,
             $fileEndpointUri
         );
-        $accountName      = Utilities::tryGetValueInsensitive(
+        $accountName = Utilities::tryGetValueInsensitive(
             Resources::ACCOUNT_NAME_NAME,
             $settings
         );
-        $accountKey       = Utilities::tryGetValueInsensitive(
+        $accountKey = Utilities::tryGetValueInsensitive(
             Resources::ACCOUNT_KEY_NAME,
             $settings
         );
-        $sasToken         = Utilities::tryGetValueInsensitive(
+        $sasToken = Utilities::tryGetValueInsensitive(
             Resources::SAS_TOKEN_NAME,
             $settings
         );
@@ -400,11 +400,11 @@ class StorageServiceSettings extends ServiceSettings
             )
         );
         if ($matchedSpecs) {
-            $scheme         = Utilities::tryGetValueInsensitive(
+            $scheme = Utilities::tryGetValueInsensitive(
                 Resources::DEFAULT_ENDPOINTS_PROTOCOL_NAME,
                 $tokenizedSettings
             );
-            $accountName    = Utilities::tryGetValueInsensitive(
+            $accountName = Utilities::tryGetValueInsensitive(
                 Resources::ACCOUNT_NAME_NAME,
                 $tokenizedSettings
             );
@@ -522,11 +522,11 @@ class StorageServiceSettings extends ServiceSettings
         // name.
         $tokenizedSettings = self::parseAndValidateKeys($connectionString);
 
-        $scheme         = Utilities::tryGetValueInsensitive(
+        $scheme = Utilities::tryGetValueInsensitive(
             Resources::DEFAULT_ENDPOINTS_PROTOCOL_NAME,
             $tokenizedSettings
         );
-        $accountName    = Utilities::tryGetValueInsensitive(
+        $accountName = Utilities::tryGetValueInsensitive(
             Resources::ACCOUNT_NAME_NAME,
             $tokenizedSettings
         );

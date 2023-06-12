@@ -62,7 +62,7 @@ class SetBlobMetadataResult
             $headers
         ));
 
-        $date   = Utilities::tryGetValueInsensitive(
+        $date = Utilities::tryGetValueInsensitive(
             Resources::LAST_MODIFIED,
             $headers
         );

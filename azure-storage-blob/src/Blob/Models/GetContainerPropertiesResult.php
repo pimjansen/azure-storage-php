@@ -151,7 +151,7 @@ class GetContainerPropertiesResult
      */
     public static function create(array $responseHeaders)
     {
-        $result   = static::createMetadataResult($responseHeaders);
+        $result = static::createMetadataResult($responseHeaders);
 
         $result->setLeaseStatus(Utilities::tryGetValueInsensitive(
             Resources::X_MS_LEASE_STATUS,

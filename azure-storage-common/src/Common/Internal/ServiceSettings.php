@@ -122,7 +122,7 @@ abstract class ServiceSettings
 
         return function ($userSettings) use ($requirements, $isRequired, $atLeastOne) {
             $oneFound = false;
-            $result   = array_change_key_case($userSettings);
+            $result = array_change_key_case($userSettings);
             foreach ($requirements as $requirement) {
                 $settingName = strtolower($requirement[Resources::SETTING_NAME]);
 
@@ -130,7 +130,7 @@ abstract class ServiceSettings
                 if (array_key_exists($settingName, $result)) {
                     // Check if the provided user setting value is valid.
                     $validationFunc = $requirement[Resources::SETTING_CONSTRAINT];
-                    $isValid        = $validationFunc($result[$settingName]);
+                    $isValid = $validationFunc($result[$settingName]);
 
                     if ($isValid) {
                         // Remove the setting as indicator for successful validation.
@@ -199,8 +199,8 @@ abstract class ServiceSettings
      */
     protected static function settingWithFunc($name, $predicate)
     {
-        $requirement                                = [];
-        $requirement[Resources::SETTING_NAME]       = $name;
+        $requirement = [];
+        $requirement[Resources::SETTING_NAME] = $name;
         $requirement[Resources::SETTING_CONSTRAINT] = $predicate;
 
         return $requirement;

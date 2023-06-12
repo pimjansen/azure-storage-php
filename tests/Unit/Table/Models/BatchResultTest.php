@@ -45,12 +45,12 @@ class BatchResultTest extends \PHPUnit\Framework\TestCase
     public function testCreate()
     {
         // Setup
-        $contexts       = TestResources::getBatchContexts();
-        $body           = TestResources::getBatchResponseBody();
-        $operations     = TestResources::getBatchOperations();
+        $contexts = TestResources::getBatchContexts();
+        $body = TestResources::getBatchResponseBody();
+        $operations = TestResources::getBatchOperations();
         $odataSerializer = new JsonODataReaderWriter();
         $mimeSerializer = new MimeReaderWriter();
-        $entries        = TestResources::getExpectedBatchResultEntries();
+        $entries = TestResources::getExpectedBatchResultEntries();
 
         // Test
         $result = BatchResult::create(

@@ -44,7 +44,7 @@ class ListBlobBlocksResultTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $sampleHeaders = TestResources::listBlocksMultipleEntriesHeaders();
-        $sampleBody    = TestResources::listBlocksMultipleEntriesBody();
+        $sampleBody = TestResources::listBlocksMultipleEntriesBody();
         $expectedDate = Utilities::rfc1123ToDateTime($sampleHeaders['Last-Modified']);
         $getEntry = self::getMethod('getEntries');
         $uncommittedBlocks = $getEntry->invokeArgs(null, [$sampleBody, 'UncommittedBlocks']);

@@ -149,7 +149,7 @@ class BlobServiceFunctionalTestData
 
     public static function passTemporalAccessCondition($ac)
     {
-        if (is_null($ac) ||  empty($ac)) {
+        if (is_null($ac) || empty($ac)) {
             return true;
         }
 

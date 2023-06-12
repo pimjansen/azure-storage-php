@@ -143,7 +143,7 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $table = 'mytable';
         $partitionKey = '123';
-        $rowKey= '456';
+        $rowKey = '456';
         $etag = 'W/datetime:2009';
         $operations = new BatchOperations();
 

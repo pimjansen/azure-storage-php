@@ -59,7 +59,7 @@ class CreateBlobPagesResult
     public static function create(array $headers)
     {
         $result = new CreateBlobPagesResult();
-        $clean  = array_change_key_case($headers);
+        $clean = array_change_key_case($headers);
 
         $date = $clean[Resources::LAST_MODIFIED];
         $date = Utilities::rfc1123ToDateTime($date);

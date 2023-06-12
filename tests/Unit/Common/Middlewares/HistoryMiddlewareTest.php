@@ -53,8 +53,8 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $entry = $middleware->getHistory()[0];
         $this->assertTrue(
             $response === $entry['response'] &&
-            $request  === $entry['request'] &&
-            []   === $entry['options'],
+            $request === $entry['request'] &&
+            [] === $entry['options'],
             'History does not match the request, response and/or options'
         );
     }
@@ -76,8 +76,8 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         }
         $this->assertTrue(
             $newReason === $entry['reason'] &&
-            $request   === $entry['request'] &&
-            []    === $entry['options'],
+            $request === $entry['request'] &&
+            [] === $entry['options'],
             'History does not match the request, reason and/or options'
         );
     }
@@ -91,16 +91,16 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $reason = new RequestException('test message', $request);
 
         $middleware->addHistory([
-            'request'  => $request,
+            'request' => $request,
             'response' => $response,
-            'options'  => $options
+            'options' => $options
         ]);
 
         $this->assertTrue(count($middleware->getHistory()) == 1, 'Wrong array size');
 
         $middleware->addHistory([
             'request' => $request,
-            'reason'  => $reason,
+            'reason' => $reason,
             'options' => $options
         ]);
 

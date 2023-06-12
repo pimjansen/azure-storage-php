@@ -44,9 +44,9 @@ class ServiceRestProxyTestBase extends RestProxyTestBase
     protected $defaultProperties;
     protected $connectionString;
 
-    public const NOT_SUPPORTED                     = 'The storage emulator doesn\'t support this API';
-    public const TAKE_TOO_LONG                     = 'This test takes long time, skip.';
-    public const SKIPPED_AFTER_SEVERAL_ATTEMPTS    = 'Test skipped after several fails.';
+    public const NOT_SUPPORTED = 'The storage emulator doesn\'t support this API';
+    public const TAKE_TOO_LONG = 'This test takes long time, skip.';
+    public const SKIPPED_AFTER_SEVERAL_ATTEMPTS = 'Test skipped after several fails.';
 
     protected function skipIfEmulated()
     {

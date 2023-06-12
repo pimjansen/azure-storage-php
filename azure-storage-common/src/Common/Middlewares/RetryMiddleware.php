@@ -53,7 +53,7 @@ class RetryMiddleware extends MiddlewareBase
         callable $decider
     ) {
         $this->intervalCalculator = $intervalCalculator;
-        $this->decider            = $decider;
+        $this->decider = $decider;
     }
 
     /**

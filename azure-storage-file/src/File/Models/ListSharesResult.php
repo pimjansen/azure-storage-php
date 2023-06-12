@@ -62,8 +62,8 @@ class ListSharesResult
      */
     public static function create(array $parsedResponse, $location = '')
     {
-        $result               = new ListSharesResult();
-        $serviceEndpoint      = Utilities::tryGetKeysChainValue(
+        $result = new ListSharesResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsedResponse,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT
@@ -103,7 +103,7 @@ class ListSharesResult
 
         if (!empty($parsedResponse[Resources::QP_SHARES])) {
             $array = $parsedResponse[Resources::QP_SHARES][Resources::QP_SHARE];
-            $shareArrays    = Utilities::getArray($array);
+            $shareArrays = Utilities::getArray($array);
         }
 
         foreach ($shareArrays as $shareArray) {

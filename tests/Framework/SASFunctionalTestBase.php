@@ -73,18 +73,18 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
     {
         parent::setUp();
         $this->createdContainer = [];
-        $this->createdTable     = [];
-        $this->createdQueue     = [];
-        $this->createdShare     = [];
-        $this->blobRestProxy    = null;
-        $this->tableRestProxy   = null;
-        $this->queueRestProxy   = null;
-        $this->fileRestProxy    = null;
+        $this->createdTable = [];
+        $this->createdQueue = [];
+        $this->createdShare = [];
+        $this->blobRestProxy = null;
+        $this->tableRestProxy = null;
+        $this->queueRestProxy = null;
+        $this->fileRestProxy = null;
     }
 
     protected function setUpWithConnectionString($connectionString)
     {
-        $this->blobRestProxy  =
+        $this->blobRestProxy =
             BlobRestProxy::createBlobService($connectionString);
         $this->queueRestProxy =
             QueueRestProxy::createQueueService($connectionString);
@@ -96,7 +96,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
 
     protected function tearDown()
     {
-        $this->blobRestProxy  =
+        $this->blobRestProxy =
             BlobRestProxy::createBlobService($this->connectionString);
         $this->queueRestProxy =
             QueueRestProxy::createQueueService($this->connectionString);
@@ -118,10 +118,10 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
             $this->safeDeleteShare($share);
         }
 
-        $this->blobRestProxy    = null;
-        $this->tableRestProxy   = null;
-        $this->queueRestProxy   = null;
-        $this->fileRestProxy    = null;
+        $this->blobRestProxy = null;
+        $this->tableRestProxy = null;
+        $this->queueRestProxy = null;
+        $this->fileRestProxy = null;
     }
 
     protected function initializeProxiesWithSASandAccountName($sas, $accountName)

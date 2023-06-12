@@ -51,7 +51,7 @@ class Queue
     public function __construct($name, $url)
     {
         $this->_name = $name;
-        $this->_url  = $url;
+        $this->_url = $url;
     }
 
     /**

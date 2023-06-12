@@ -52,7 +52,7 @@ class ConnectionStringSource
             self::$_defaultSources = [
                 self::ENVIRONMENT_SOURCE => [__CLASS__, 'environmentSource']
             ];
-            self::$_isInitialized  = true;
+            self::$_isInitialized = true;
         }
     }
 

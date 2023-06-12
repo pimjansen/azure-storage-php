@@ -52,7 +52,7 @@ class PeekMessagesResult
      */
     public static function create($parsedResponse)
     {
-        $result        = new PeekMessagesResult();
+        $result = new PeekMessagesResult();
         $queueMessages = [];
 
         if (!empty($parsedResponse)) {

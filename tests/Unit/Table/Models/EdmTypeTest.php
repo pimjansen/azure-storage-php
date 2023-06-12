@@ -182,13 +182,13 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
     public function testValidateEdmValueWithDouble()
     {
         // Setup
-        $type      = EdmType::DOUBLE;
-        $values    = [];
-        $values[]  = 1;
-        $values[]  = PHP_INT_MAX;
-        $values[]  = pi();
-        $values[]  = 1.0;
-        $expected  = true;
+        $type = EdmType::DOUBLE;
+        $values = [];
+        $values[] = 1;
+        $values[] = PHP_INT_MAX;
+        $values[] = pi();
+        $values[] = 1.0;
+        $expected = true;
 
         // Test
         foreach ($values as $value) {

@@ -49,9 +49,9 @@ class BinaryFilter extends Filter
      */
     public function __construct($left, $operator, $right)
     {
-        $this->_left     = $left;
+        $this->_left = $left;
         $this->_operator = $operator;
-        $this->_right    = $right;
+        $this->_right = $right;
     }
 
     /**

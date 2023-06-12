@@ -66,9 +66,9 @@ class CommonRequestMiddleware extends MiddlewareBase
         array $headers = []
     ) {
         $this->authenticationScheme = $authenticationScheme;
-        $this->msVersion            = $storageAPIVersion;
-        $this->userAgent            = self::getUserAgent($serviceSDKVersion);
-        $this->headers              = $headers;
+        $this->msVersion = $storageAPIVersion;
+        $this->userAgent = self::getUserAgent($serviceSDKVersion);
+        $this->headers = $headers;
     }
 
     /**

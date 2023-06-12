@@ -131,9 +131,9 @@ class HistoryMiddleware extends MiddlewareBase
             $options
         ) {
             $reflection->addHistory([
-                'request'  => $request,
+                'request' => $request,
                 'response' => $response,
-                'options'  => $options
+                'options' => $options
             ]);
             return $response;
         };
@@ -158,7 +158,7 @@ class HistoryMiddleware extends MiddlewareBase
         ) {
             $reflection->addHistory([
                 'request' => $request,
-                'reason'  => $reason,
+                'reason' => $reason,
                 'options' => $options
             ]);
             return new RejectedPromise($reason);

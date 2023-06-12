@@ -62,8 +62,8 @@ class ListDirectoriesAndFilesResult
      */
     public static function create(array $parsedResponse, $location = '')
     {
-        $result               = new ListDirectoriesAndFilesResult();
-        $serviceEndpoint      = Utilities::tryGetKeysChainValue(
+        $result = new ListDirectoriesAndFilesResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsedResponse,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT

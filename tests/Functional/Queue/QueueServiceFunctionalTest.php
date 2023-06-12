@@ -652,7 +652,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
             $this->assertEquals(0, $ret->getApproximateMessageCount(), 'getApproximateMessageCount');
         } else {
             $this->assertEquals(count($metadata), count($ret->getMetadata()), 'Metadata');
-            $rm =$ret->getMetadata();
+            $rm = $ret->getMetadata();
             foreach (array_keys($metadata) as $key) {
                 $this->assertEquals($metadata[$key], $rm[$key], 'Metadata(' . $key . ')');
             }

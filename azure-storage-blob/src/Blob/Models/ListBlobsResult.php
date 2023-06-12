@@ -64,13 +64,13 @@ class ListBlobsResult
      */
     public static function create(array $parsed, $location = '')
     {
-        $result                 = new ListBlobsResult();
-        $serviceEndpoint        = Utilities::tryGetKeysChainValue(
+        $result = new ListBlobsResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsed,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT
         );
-        $containerName          = Utilities::tryGetKeysChainValue(
+        $containerName = Utilities::tryGetKeysChainValue(
             $parsed,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_CONTAINER_NAME
@@ -104,9 +104,9 @@ class ListBlobsResult
             $parsed,
             Resources::QP_DELIMITER
         ));
-        $blobs           = [];
-        $blobPrefixes    = [];
-        $rawBlobs        = [];
+        $blobs = [];
+        $blobPrefixes = [];
+        $rawBlobs = [];
         $rawBlobPrefixes = [];
 
         if (is_array($parsed['Blobs'])

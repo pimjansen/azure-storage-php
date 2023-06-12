@@ -105,7 +105,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::INSERT_ENTITY_OPERATION;
+        $type = BatchOperationType::INSERT_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -126,7 +126,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::UPDATE_ENTITY_OPERATION;
+        $type = BatchOperationType::UPDATE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -147,7 +147,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::MERGE_ENTITY_OPERATION;
+        $type = BatchOperationType::MERGE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -168,7 +168,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::INSERT_REPLACE_ENTITY_OPERATION;
+        $type = BatchOperationType::INSERT_REPLACE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -189,7 +189,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::INSERT_MERGE_ENTITY_OPERATION;
+        $type = BatchOperationType::INSERT_MERGE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -213,7 +213,7 @@ class BatchOperations
         Validate::isTrue(!is_null($rowKey), Resources::NULL_TABLE_KEY_MSG);
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::DELETE_ENTITY_OPERATION;
+        $type = BatchOperationType::DELETE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ROW_KEY, $rowKey);

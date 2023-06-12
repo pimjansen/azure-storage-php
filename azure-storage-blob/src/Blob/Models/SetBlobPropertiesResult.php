@@ -56,7 +56,7 @@ class SetBlobPropertiesResult
     public static function create(array $headers)
     {
         $result = new SetBlobPropertiesResult();
-        $date   = Utilities::tryGetValueInsensitive(
+        $date = Utilities::tryGetValueInsensitive(
             Resources::LAST_MODIFIED,
             $headers
         );

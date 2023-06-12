@@ -159,7 +159,7 @@ class Validate
             return false;
         }
 
-        return (!isset($var) || trim($var)==='');
+        return (!isset($var) || trim($var) === '');
     }
 
     /**
@@ -232,7 +232,7 @@ class Validate
         }
 
         $objectType = gettype($objectInstance);
-        $classType  = gettype($classInstance);
+        $classType = gettype($classInstance);
 
         if ($objectType === $classType) {
             return true;
