@@ -19,10 +19,10 @@
 
 namespace MicrosoftAzure\Storage\File\Internal;
 
-use MicrosoftAzure\Storage\File\Models as FileModels;
+use MicrosoftAzure\Storage\Common\Models\Range;
 use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
-use MicrosoftAzure\Storage\Common\Models\Range;
+use MicrosoftAzure\Storage\File\Models as FileModels;
 
 /**
  * This interface has all REST APIs provided by Windows Azure for File service.

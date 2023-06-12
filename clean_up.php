@@ -18,8 +18,8 @@ require_once "./vendor/autoload.php";
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\File\FileRestProxy;
-use MicrosoftAzure\Storage\Table\TableRestProxy;
 use MicrosoftAzure\Storage\Queue\QueueRestProxy;
+use MicrosoftAzure\Storage\Table\TableRestProxy;
 
 $connectionString = \getenv("AZURE_STORAGE_CONNECTION_STRING");
 $blobClient = BlobRestProxy::createBlobService($connectionString);

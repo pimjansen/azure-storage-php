@@ -19,13 +19,13 @@
 
 namespace MicrosoftAzure\Storage\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use GuzzleHttp\Psr7\Response;
 use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Table\Internal\IMimeReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\IODataReaderWriter;
-use GuzzleHttp\Psr7\Response;
+use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 
 /**
  * Holds results from batch API.

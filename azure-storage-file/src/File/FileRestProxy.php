@@ -19,43 +19,43 @@
 
 namespace MicrosoftAzure\Storage\File;
 
+use GuzzleHttp\Psr7;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedAccessSignatureAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedKeyAuthScheme;
+use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
 use MicrosoftAzure\Storage\Common\Internal\Middlewares\CommonRequestMiddleware;
-use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
-use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
-use MicrosoftAzure\Storage\File\Internal\IFile;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestTrait;
+use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\LocationMode;
 use MicrosoftAzure\Storage\Common\Models\Range;
-use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
-use MicrosoftAzure\Storage\File\Models\ShareACL;
-use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
-use MicrosoftAzure\Storage\File\Models\ListSharesResult;
-use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
+use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
+use MicrosoftAzure\Storage\File\Internal\IFile;
+use MicrosoftAzure\Storage\File\Models\CopyFileResult;
 use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
+use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
+use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
+use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
+use MicrosoftAzure\Storage\File\Models\FileProperties;
 use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
+use MicrosoftAzure\Storage\File\Models\GetDirectoryMetadataResult;
+use MicrosoftAzure\Storage\File\Models\GetDirectoryPropertiesResult;
+use MicrosoftAzure\Storage\File\Models\GetFileMetadataResult;
+use MicrosoftAzure\Storage\File\Models\GetFileOptions;
+use MicrosoftAzure\Storage\File\Models\GetFileResult;
 use MicrosoftAzure\Storage\File\Models\GetShareACLResult;
 use MicrosoftAzure\Storage\File\Models\GetSharePropertiesResult;
 use MicrosoftAzure\Storage\File\Models\GetShareStatsResult;
 use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
 use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesResult;
-use MicrosoftAzure\Storage\File\Models\GetDirectoryPropertiesResult;
-use MicrosoftAzure\Storage\File\Models\GetDirectoryMetadataResult;
-use MicrosoftAzure\Storage\File\Models\GetFileMetadataResult;
-use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
-use MicrosoftAzure\Storage\File\Models\FileProperties;
-use MicrosoftAzure\Storage\File\Models\PutFileRangeOptions;
-use MicrosoftAzure\Storage\File\Models\GetFileOptions;
-use MicrosoftAzure\Storage\File\Models\GetFileResult;
 use MicrosoftAzure\Storage\File\Models\ListFileRangesResult;
-use MicrosoftAzure\Storage\File\Models\CopyFileResult;
-use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
+use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
+use MicrosoftAzure\Storage\File\Models\ListSharesResult;
+use MicrosoftAzure\Storage\File\Models\PutFileRangeOptions;
+use MicrosoftAzure\Storage\File\Models\ShareACL;
 use Psr\Http\Message\StreamInterface;
-use GuzzleHttp\Psr7;
 
 /**
  * This class constructs HTTP requests and receive HTTP responses for File

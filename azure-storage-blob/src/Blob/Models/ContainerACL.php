@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\ACLBase;
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
+use MicrosoftAzure\Storage\Common\Internal\ACLBase;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**

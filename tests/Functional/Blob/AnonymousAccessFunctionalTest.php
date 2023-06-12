@@ -20,9 +20,9 @@
 namespace MicrosoftAzure\Storage\Tests\Functional\Blob;
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
 /**
  * Tests for account SAS proxy tests.

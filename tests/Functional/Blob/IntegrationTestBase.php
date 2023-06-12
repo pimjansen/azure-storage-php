@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Blob;
 
-use MicrosoftAzure\Storage\Tests\Framework\BlobServiceRestProxyTestBase;
 use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Tests\Framework\BlobServiceRestProxyTestBase;
 
 class IntegrationTestBase extends BlobServiceRestProxyTestBase
 {

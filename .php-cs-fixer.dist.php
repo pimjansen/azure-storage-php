@@ -88,4 +88,5 @@ return $config
             'only_booleans' => true,
             'position' => 'beginning',
         ],
+        'ordered_imports' => true,
     ]);

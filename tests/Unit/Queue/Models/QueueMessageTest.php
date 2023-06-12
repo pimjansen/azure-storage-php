@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
 
+use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Queue\Models\QueueMessage;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**

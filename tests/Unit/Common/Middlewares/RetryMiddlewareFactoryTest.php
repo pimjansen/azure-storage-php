@@ -19,13 +19,13 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Middlewares;
 
-use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Tests\Framework\ReflectionTestBase;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
+use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
+use MicrosoftAzure\Storage\Tests\Framework\ReflectionTestBase;
 
 class RetryMiddlewareFactoryTest extends ReflectionTestBase
 {

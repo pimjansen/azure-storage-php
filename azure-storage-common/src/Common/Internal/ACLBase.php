@@ -20,9 +20,9 @@
 
 namespace MicrosoftAzure\Storage\Common\Internal;
 
+use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Models\AccessPolicy;
 use MicrosoftAzure\Storage\Common\Models\SignedIdentifier;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 
 /**
  * Provide base class for service ACLs.

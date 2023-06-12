@@ -19,11 +19,11 @@
 
 namespace MicrosoftAzure\Storage\Common\Models;
 
-use MicrosoftAzure\Storage\Common\LocationMode;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareStack;
+use MicrosoftAzure\Storage\Common\LocationMode;
 use MicrosoftAzure\Storage\Common\Middlewares\IMiddleware;
+use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareStack;
 
 /**
  * This class provides the base structure of service options, granting user to

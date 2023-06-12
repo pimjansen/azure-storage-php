@@ -20,8 +20,8 @@
 namespace MicrosoftAzure\Storage\Table\Models;
 
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 use MicrosoftAzure\Storage\Table\Internal\IODataReaderWriter;
+use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 
 /**
  * Holds result of calling insertEntity wrapper

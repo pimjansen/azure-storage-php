@@ -19,8 +19,8 @@
 
 namespace MicrosoftAzure\Storage\Common\Exceptions;
 
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use Psr\Http\Message\ResponseInterface;
 
 /**

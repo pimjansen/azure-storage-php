@@ -19,10 +19,10 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
 
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Queue\Internal\QueueResources;
 use MicrosoftAzure\Storage\Queue\Models\UpdateMessageResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 
 /**
  * Unit tests for class UpdateMessageResult

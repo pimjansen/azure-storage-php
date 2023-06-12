@@ -19,8 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Blob;
 
-use MicrosoftAzure\Storage\Blob\Internal\IBlob;
+use GuzzleHttp\Psr7\Utils;
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
+use MicrosoftAzure\Storage\Blob\Internal\IBlob;
 use MicrosoftAzure\Storage\Blob\Models\AppendBlockOptions;
 use MicrosoftAzure\Storage\Blob\Models\AppendBlockResult;
 use MicrosoftAzure\Storage\Blob\Models\BlobServiceOptions;
@@ -40,7 +41,6 @@ use MicrosoftAzure\Storage\Blob\Models\CreateBlobSnapshotOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobSnapshotResult;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreatePageBlobOptions;
-use MicrosoftAzure\Storage\Blob\Models\UndeleteBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\DeleteBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataOptions;
 use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataResult;
@@ -68,6 +68,7 @@ use MicrosoftAzure\Storage\Blob\Models\SetBlobMetadataResult;
 use MicrosoftAzure\Storage\Blob\Models\SetBlobPropertiesOptions;
 use MicrosoftAzure\Storage\Blob\Models\SetBlobPropertiesResult;
 use MicrosoftAzure\Storage\Blob\Models\SetBlobTierOptions;
+use MicrosoftAzure\Storage\Blob\Models\UndeleteBlobOptions;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedAccessSignatureAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedKeyAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\TokenAuthScheme;
@@ -81,7 +82,6 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\LocationMode;
 use MicrosoftAzure\Storage\Common\Models\Range;
 use Psr\Http\Message\StreamInterface;
-use GuzzleHttp\Psr7\Utils;
 
 /**
  * This class constructs HTTP requests and receive HTTP responses for blob

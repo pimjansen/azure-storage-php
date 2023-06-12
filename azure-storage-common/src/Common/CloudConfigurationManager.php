@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Common;
 
+use MicrosoftAzure\Storage\Common\Internal\ConnectionStringSource;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\ConnectionStringSource;
 
 /**
  * Configuration manager for accessing Windows Azure settings.

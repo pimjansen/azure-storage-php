@@ -19,13 +19,13 @@
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
 
-use MicrosoftAzure\Storage\Common\LocationMode;
+use GuzzleHttp\Promise\RejectedPromise;
+use GuzzleHttp\Psr7\Uri;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\LocationMode;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Psr7\Uri;
-use GuzzleHttp\Promise\RejectedPromise;
 
 /**
  * This class provides the functionality of a middleware that handles all the

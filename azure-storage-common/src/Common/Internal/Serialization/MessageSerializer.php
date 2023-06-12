@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Common\Internal\Serialization;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 use GuzzleHttp\Exception\RequestException;
+use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Provides functionality to serialize a message to a string.

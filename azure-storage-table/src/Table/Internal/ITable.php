@@ -19,10 +19,10 @@
 
 namespace MicrosoftAzure\Storage\Table\Internal;
 
-use MicrosoftAzure\Storage\Table\Models as TableModels;
-use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
-use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
 use MicrosoftAzure\Storage\Common\Models\GetServiceStatsResult;
+use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
+use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
+use MicrosoftAzure\Storage\Table\Models as TableModels;
 
 /**
  * This interface has all REST APIs provided by Windows Azure for Table service.

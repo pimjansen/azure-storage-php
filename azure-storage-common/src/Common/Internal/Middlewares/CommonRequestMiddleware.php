@@ -19,9 +19,9 @@
 
 namespace MicrosoftAzure\Storage\Common\Internal\Middlewares;
 
-use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareBase;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\IAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareBase;
 use Psr\Http\Message\RequestInterface;
 
 /**

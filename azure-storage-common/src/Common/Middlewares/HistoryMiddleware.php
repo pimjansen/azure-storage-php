@@ -19,12 +19,12 @@
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use GuzzleHttp\Promise\RejectedPromise;
 use MicrosoftAzure\Storage\Common\Internal\Serialization\MessageSerializer;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Promise\RejectedPromise;
 
 /**
  * This class provides the functionality to log the requests/options/responses.

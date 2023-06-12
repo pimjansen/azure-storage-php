@@ -20,9 +20,9 @@
 namespace MicrosoftAzure\Storage\Blob\Internal;
 
 use MicrosoftAzure\Storage\Blob\Models as BlobModels;
+use MicrosoftAzure\Storage\Common\Models\Range;
 use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
-use MicrosoftAzure\Storage\Common\Models\Range;
 use Psr\Http\Message\StreamInterface;
 
 /**
