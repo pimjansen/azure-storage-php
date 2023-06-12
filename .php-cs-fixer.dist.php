@@ -29,4 +29,8 @@ return $config
             'syntax' => 'short',
         ],
         'binary_operator_spaces' => true,
+        'blank_line_after_opening_tag' => true,
+        'braces' => [
+            'allow_single_line_anonymous_class_with_empty_body' => true,
+        ],
     ]);

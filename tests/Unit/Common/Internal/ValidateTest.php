@@ -438,7 +438,6 @@ class ValidateTest extends \PHPUnit\Framework\TestCase
 
     public function testIsDateStringValid()
     {
-
         // Setup
         $value = '2013-11-25';
 
@@ -451,7 +450,6 @@ class ValidateTest extends \PHPUnit\Framework\TestCase
 
     public function testIsDateStringNotValid()
     {
-
         // Setup
         $this->setExpectedException('\InvalidArgumentException');
         $value = 'not a date';

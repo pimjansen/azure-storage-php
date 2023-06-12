@@ -316,7 +316,6 @@ class EdmType
 
             default:
                 return false;
-
         }
     }
 

@@ -156,6 +156,5 @@ class QueueSharedAccessSignatureHelper extends SharedAccessSignatureHelper
 
         // return the signature
         return $sas;
-
     }
 }

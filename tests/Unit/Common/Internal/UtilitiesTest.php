@@ -510,7 +510,6 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
 
     public function testGenerateCryptoKey()
     {
-
         // Setup
         $length = 32;
 
@@ -523,7 +522,6 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
 
     public function testBase256ToDecF()
     {
-
         // Setup
         $data = pack('C*', 255, 255, 255, 255);
         $expected = 4294967295;
@@ -537,7 +535,6 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
 
     public function testBase256ToDec0()
     {
-
         // Setup
         $data = pack('C*', 0, 0, 0, 0);
         $expected = 0;
@@ -552,7 +549,6 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
 
     public function testBase256ToDec()
     {
-
         // Setup
         $data = pack('C*', 34, 78, 27, 55);
         $expected = 575544119;
@@ -566,7 +562,6 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
 
     public function testBase256ToDecBig()
     {
-
         // Setup
         $data = pack('C*', 81, 35, 29, 39, 236, 104, 105, 144); //51 23 1D 27 EC 68 69 90
         $expected = '5846548798564231568';
