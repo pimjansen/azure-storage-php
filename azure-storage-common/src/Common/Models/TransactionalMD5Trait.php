@@ -29,7 +29,7 @@ namespace MicrosoftAzure\Storage\Common\Models;
 trait TransactionalMD5Trait
 {
     /**
-     * @var boolean
+     * @var bool
      */
     private $useTransactionalMD5;
 

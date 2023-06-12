@@ -135,7 +135,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         $creator = self::getMethod('createExponentialDelayCalculator', new RetryMiddlewareFactory());
         $exponentialDelayCalculator = $creator->invokeArgs(null, [1000]);
         for ($index = 0; $index < 3; ++$index) {
-            $pow = (int) \pow(2, $index);
+            $pow = (int) 2 ** $index;
             self::assertEquals($pow * 1000, $exponentialDelayCalculator($index));
         }
     }

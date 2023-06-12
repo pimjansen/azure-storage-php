@@ -256,7 +256,7 @@ class RetryMiddlewareFactory
     protected static function createExponentialDelayCalculator($interval)
     {
         return function ($retries) use ($interval) {
-            return $interval * ((int) \pow(2, $retries));
+            return $interval * ((int) 2 ** $retries);
         };
     }
 }

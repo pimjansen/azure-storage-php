@@ -139,4 +139,5 @@ return $config
             'sort_algorithm' => 'alpha',
         ],
         'phpdoc_var_without_name' => true,
+        'pow_to_exponentiation' => true,
     ]);
