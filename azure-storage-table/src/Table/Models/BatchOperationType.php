@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Supported batch operations.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperationType
 {
@@ -40,7 +40,7 @@ class BatchOperationType
      *
      * @internal
      *
-     * @return boolean
+     * @return bool
      */
     public static function isValid($type)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * The result of creating Blob snapshot.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobSnapshotResult
 {
@@ -75,8 +75,6 @@ class CreateBlobSnapshotResult
      * Sets snapshot.
      *
      * @param string $snapshot value.
-     *
-     * @return void
      */
     protected function setSnapshot($snapshot)
     {
@@ -97,8 +95,6 @@ class CreateBlobSnapshotResult
      * Sets ETag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -119,8 +115,6 @@ class CreateBlobSnapshotResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified($lastModified)
     {

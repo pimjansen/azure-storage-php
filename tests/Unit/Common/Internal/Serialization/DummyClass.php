@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Serialization;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Serialization;
 /**
  * Dummy class for Xml Serializer.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class DummyClass
 {

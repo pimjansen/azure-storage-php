@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Holds elements of queue properties retention policy field.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RetentionPolicy
 {
@@ -65,8 +65,6 @@ class RetentionPolicy
      * Sets enabled.
      *
      * @param bool $enabled value to use.
-     *
-     * @return void
      */
     public function setEnabled($enabled)
     {
@@ -87,8 +85,6 @@ class RetentionPolicy
      * Sets days field.
      *
      * @param int $days value to use.
-     *
-     * @return void
      */
     public function setDays($days)
     {

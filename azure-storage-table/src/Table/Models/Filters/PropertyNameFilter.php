@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models\Filters;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Table\Models\Filters;
 /**
  * Property name filter
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class PropertyNameFilter extends Filter
 {

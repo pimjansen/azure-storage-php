@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * QueryTablesResult
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueryTablesResult
 {
@@ -83,8 +83,6 @@ class QueryTablesResult
      * Sets tables
      *
      * @param array $tables value
-     *
-     * @return void
      */
     protected function setTables(array $tables)
     {

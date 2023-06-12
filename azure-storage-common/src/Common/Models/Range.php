@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Common\Models;
 /**
  * Holds info about resource+ range used in HTTP requests
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Range
 {
@@ -32,8 +32,8 @@ class Range
     /**
      * Constructor
      *
-     * @param integer $start the resource start value
-     * @param integer $end   the resource end value
+     * @param int $start the resource start value
+     * @param int $end   the resource end value
      *
      * @return Range
      */
@@ -46,9 +46,7 @@ class Range
     /**
      * Sets resource start range
      *
-     * @param integer $start the resource range start
-     *
-     * @return void
+     * @param int $start the resource range start
      */
     public function setStart($start)
     {
@@ -58,7 +56,7 @@ class Range
     /**
      * Gets resource start range
      *
-     * @return integer
+     * @return int
      */
     public function getStart()
     {
@@ -68,9 +66,7 @@ class Range
     /**
      * Sets resource end range
      *
-     * @param integer $end the resource range end
-     *
-     * @return void
+     * @param int $end the resource range end
      */
     public function setEnd($end)
     {
@@ -80,7 +76,7 @@ class Range
     /**
      * Gets resource end range
      *
-     * @return integer
+     * @return int
      */
     public function getEnd()
     {
@@ -90,7 +86,7 @@ class Range
     /**
      * Gets resource range length
      *
-     * @return integer
+     * @return int
      */
     public function getLength()
     {
@@ -104,9 +100,7 @@ class Range
     /**
      * Sets resource range length
      *
-     * @param integer $value new resource range
-     *
-     * @return void
+     * @param int $value new resource range
      */
     public function setLength($value)
     {

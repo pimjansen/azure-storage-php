@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * The optional parameters for createBlobSnapshot wrapper.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobSnapshotOptions extends BlobServiceOptions
 {
@@ -42,8 +42,6 @@ class CreateBlobSnapshotOptions extends BlobServiceOptions
      * Sets metadata.
      *
      * @param array $metadata The metadata array.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {

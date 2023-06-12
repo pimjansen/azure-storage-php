@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * The result of calling copyBlob API.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyBlobResult
 {
@@ -91,8 +91,6 @@ class CopyBlobResult
      * @param string $copyId the blob copy id.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setCopyId($copyId)
     {
@@ -112,10 +110,7 @@ class CopyBlobResult
     /**
      * Sets copy status
      *
-     *
      * @internal
-     *
-     * @return void
      */
     protected function setCopyStatus($copystatus)
     {
@@ -136,8 +131,6 @@ class CopyBlobResult
      * Sets ETag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -158,8 +151,6 @@ class CopyBlobResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {

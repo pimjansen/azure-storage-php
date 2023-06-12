@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Holds result of getDirectoryProperties.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetDirectoryPropertiesResult
 {
@@ -49,8 +49,6 @@ class GetDirectoryPropertiesResult
      * Sets share lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -72,8 +70,6 @@ class GetDirectoryPropertiesResult
      * Sets share etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -95,8 +91,6 @@ class GetDirectoryPropertiesResult
      * header prefix (x-ms-meta-*).
      *
      * @param array $metadata user defined metadata object in array form.
-     *
-     * @return void
      */
     protected function setMetadata(array $metadata)
     {
@@ -106,7 +100,7 @@ class GetDirectoryPropertiesResult
     /**
      * Create an instance using the response headers from the API call.
      *
-     * @param  array  $responseHeaders The array contains all the response headers
+     * @param array $responseHeaders The array contains all the response headers
      *
      * @internal
      *

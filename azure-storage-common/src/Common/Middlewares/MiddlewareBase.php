@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
@@ -28,7 +28,7 @@ use Psr\Http\Message\ResponseInterface;
  * doing customized behavior including modifying the request, response or
  * other behaviors like logging, retrying and debugging.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MiddlewareBase implements IMiddleware
 {
@@ -41,7 +41,7 @@ class MiddlewareBase implements IMiddleware
      *
      * @param  callable  The handler function.
      *
-     * @return callable  The function that accepts the next handler to invoke.
+     * @return callable The function that accepts the next handler to invoke.
      */
     public function __invoke(callable $handler)
     {
@@ -58,9 +58,9 @@ class MiddlewareBase implements IMiddleware
     /**
      * This function will be executed before the request is sent.
      *
-     * @param  RequestInterface $request the request before altered.
+     * @param RequestInterface $request the request before altered.
      *
-     * @return RequestInterface          the request after altered.
+     * @return RequestInterface the request after altered.
      */
     protected function onRequest(RequestInterface $request)
     {
@@ -72,8 +72,8 @@ class MiddlewareBase implements IMiddleware
      * This function will be invoked after the request is sent, if
      * the promise is fulfilled.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
@@ -89,8 +89,8 @@ class MiddlewareBase implements IMiddleware
      * This function will be executed after the request is sent, if
      * the promise is rejected.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */

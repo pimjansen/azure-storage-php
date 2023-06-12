@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\Common\Models\Range;
 /**
  * Holds result of calling listPageBlobRanges wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListPageBlobRangesResult
 {
@@ -90,8 +90,6 @@ class ListPageBlobRangesResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -113,8 +111,6 @@ class ListPageBlobRangesResult
      * Sets blob etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -125,7 +121,7 @@ class ListPageBlobRangesResult
     /**
      * Gets blob contentLength.
      *
-     * @return integer
+     * @return int
      */
     public function getContentLength()
     {
@@ -135,9 +131,7 @@ class ListPageBlobRangesResult
     /**
      * Sets blob contentLength.
      *
-     * @param integer $contentLength value.
-     *
-     * @return void
+     * @param int $contentLength value.
      */
     protected function setContentLength($contentLength)
     {
@@ -159,8 +153,6 @@ class ListPageBlobRangesResult
      * Sets page ranges
      *
      * @param array $pageRanges page ranges to set
-     *
-     * @return void
      */
     protected function setRanges(array $pageRanges)
     {

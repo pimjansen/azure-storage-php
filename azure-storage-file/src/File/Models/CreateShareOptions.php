@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Optional parameters for createShare API
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateShareOptions extends FileServiceOptions
 {
@@ -46,8 +46,6 @@ class CreateShareOptions extends FileServiceOptions
      * Must be greater than 0, and less than or equal to 5TB (5120)
      *
      * @param int $quota quota for the share
-     *
-     * @return void
      */
     public function setQuota($quota)
     {
@@ -70,8 +68,6 @@ class CreateShareOptions extends FileServiceOptions
      * prefix (x-ms-meta-*).
      *
      * @param array $metadata user defined metadata object in array form.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {
@@ -84,8 +80,6 @@ class CreateShareOptions extends FileServiceOptions
      *
      * @param string $key   metadata key element.
      * @param string $value metadata value element.
-     *
-     * @return void
      */
     public function addMetadata($key, $value)
     {

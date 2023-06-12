@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 /**
  * Encapsulates service properties
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ServiceProperties
 {
@@ -41,6 +41,7 @@ class ServiceProperties
      * Creates ServiceProperties object from parsed XML response.
      *
      * @internal
+     *
      * @param array $parsedResponse XML response parsed into array.
      *
      * @return ServiceProperties.
@@ -99,8 +100,6 @@ class ServiceProperties
      * Sets logging element.
      *
      * @param Logging $logging new element.
-     *
-     * @return void
      */
     public function setLogging(Logging $logging)
     {
@@ -119,9 +118,6 @@ class ServiceProperties
 
     /**
      * Sets hour metrics element.
-     *
-     *
-     * @return void
      */
     public function setHourMetrics(Metrics $hourMetrics)
     {
@@ -140,9 +136,6 @@ class ServiceProperties
 
     /**
      * Sets minute metrics element.
-     *
-     *
-     * @return void
      */
     public function setMinuteMetrics(Metrics $minuteMetrics)
     {
@@ -163,8 +156,6 @@ class ServiceProperties
      * Sets corses element.
      *
      * @param CORS[] $corses new elements.
-     *
-     * @return void
      */
     public function setCorses(array $corses)
     {
@@ -185,8 +176,6 @@ class ServiceProperties
      * Sets the default service version. This can obly be set for the blob service.
      *
      * @param string $defaultServiceVersion the default service version
-     *
-     * @return void
      */
     public function setDefaultServiceVersion($defaultServiceVersion)
     {
@@ -197,6 +186,7 @@ class ServiceProperties
      * Converts this object to array with XML tags
      *
      * @internal
+     *
      * @return array
      */
     public function toArray()
@@ -255,6 +245,7 @@ class ServiceProperties
      * Converts this current object to XML representation.
      *
      * @internal
+     *
      * @param XmlSerializer $xmlSerializer The XML serializer.
      *
      * @return string

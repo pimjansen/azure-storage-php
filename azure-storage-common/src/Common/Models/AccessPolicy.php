@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Holds access policy elements
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 abstract class AccessPolicy
 {
@@ -77,8 +77,6 @@ abstract class AccessPolicy
      * Sets start.
      *
      * @param \DateTime $start value.
-     *
-     * @return void
      */
     public function setStart(\DateTime $start = null)
     {
@@ -102,8 +100,6 @@ abstract class AccessPolicy
      * Sets expiry.
      *
      * @param \DateTime $expiry value.
-     *
-     * @return void
      */
     public function setExpiry($expiry)
     {
@@ -127,8 +123,6 @@ abstract class AccessPolicy
      * @param string $permission value.
      *
      * @throws \InvalidArgumentException
-     *
-     * @return void
      */
     public function setPermission($permission)
     {
@@ -148,7 +142,7 @@ abstract class AccessPolicy
     /**
      * Validate the permission against its corresponding allowed permissions
      *
-     * @param  string $permission The permission to be validated.
+     * @param string $permission The permission to be validated.
      *
      * @throws \InvalidArgumentException
      *

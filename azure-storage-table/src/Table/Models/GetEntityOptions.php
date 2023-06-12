@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Table\Internal\AcceptOptionTrait;
 /**
  * Holds optional parameters for getEntity.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetEntityOptions extends TableServiceOptions
 {

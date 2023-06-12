@@ -15,7 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -25,7 +26,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Utilities for the project
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Utilities
 {
@@ -36,7 +37,6 @@ class Utilities
      * @param array $array   The array to be used.
      * @param mixed $key     The array key.
      * @param mixed $default The value to return if $key is not found in $array.
-     *
      */
     public static function tryGetValue($array, $key, $default = null)
     {
@@ -90,7 +90,7 @@ class Utilities
      *
      * @param string $uri The primary endpoint url string.
      *
-     * @return null|string
+     * @return string|null
      */
     public static function tryGetSecondaryEndpointFromPrimaryEndpoint($uri)
     {
@@ -138,8 +138,6 @@ class Utilities
      * @param string $key    The key.
      * @param string $value  The value.
      * @param array  &$array The array. If NULL will be used as array.
-     *
-     * @return void
      */
     public static function addIfNotEmpty($key, $value, array &$array)
     {
@@ -157,7 +155,6 @@ class Utilities
      * that key chain doesn't exist, null is returned.
      *
      * @param array $array Array to be used.
-     *
      */
     public static function tryGetKeysChainValue(array $array)
     {
@@ -183,12 +180,12 @@ class Utilities
     /**
      * Checks if the passed $string starts with $prefix
      *
-     * @param string  $string     word to seaech in
-     * @param string  $prefix     prefix to be matched
-     * @param boolean $ignoreCase true to ignore case during the comparison;
-     * otherwise, false
+     * @param string $string     word to seaech in
+     * @param string $prefix     prefix to be matched
+     * @param bool   $ignoreCase true to ignore case during the comparison;
+     *                           otherwise, false
      *
-     * @return boolean
+     * @return bool
      */
     public static function startsWith($string, $prefix, $ignoreCase = false)
     {
@@ -303,11 +300,9 @@ class Utilities
      * Takes an array and produces XML based on it.
      *
      * @param XMLWriter $xmlw       XMLWriter object that was previously instanted
-     * and is used for creating the XML.
+     *                              and is used for creating the XML.
      * @param array     $data       Array to be converted to XML
      * @param string    $defaultTag Default XML tag to be used if none specified.
-     *
-     * @return void
      */
     private static function _arr2xml(
         \XMLWriter $xmlw,
@@ -343,9 +338,9 @@ class Utilities
     /**
      * Converts string into boolean value.
      *
-     * @param string $obj       boolean value in string format.
-     * @param bool   $skipNull  If $skipNull is set, will return NULL directly
-     *                          when $obj is NULL.
+     * @param string $obj      boolean value in string format.
+     * @param bool   $skipNull If $skipNull is set, will return NULL directly
+     *                         when $obj is NULL.
      *
      * @return bool
      */
@@ -485,7 +480,7 @@ class Utilities
      * @param string $needle   The searched value.
      * @param array  $haystack The array.
      *
-     * @return boolean
+     * @return bool
      */
     public static function inArrayInsensitive($needle, array $haystack)
     {
@@ -499,7 +494,7 @@ class Utilities
      * @param string $key    The value to check.
      * @param array  $search The array with keys to check.
      *
-     * @return boolean
+     * @return bool
      */
     public static function arrayKeyExistsInsensitive($key, array $search)
     {
@@ -514,7 +509,6 @@ class Utilities
      * @param string $key      The array key.
      * @param array  $haystack The array to be used.
      * @param mixed  $default  The value to return if $key is not found in $array.
-     *
      */
     public static function tryGetValueInsensitive($key, $haystack, $default = null)
     {
@@ -582,12 +576,12 @@ class Utilities
     /**
      * Takes a string and return if it ends with the specified character/string.
      *
-     * @param string  $haystack   The string to search in.
-     * @param string  $needle     postfix to match.
-     * @param boolean $ignoreCase Set true to ignore case during the comparison;
-     * otherwise, false
+     * @param string $haystack   The string to search in.
+     * @param string $needle     postfix to match.
+     * @param bool   $ignoreCase Set true to ignore case during the comparison;
+     *                           otherwise, false
      *
-     * @return boolean
+     * @return bool
      */
     public static function endsWith($haystack, $needle, $ignoreCase = false)
     {
@@ -632,8 +626,8 @@ class Utilities
      *
      * @param int $length Length of the string in bytes
      *
-     * @return string|boolean Generated string of bytes on success, or FALSE on
-     *                        failure.
+     * @return bool|string Generated string of bytes on success, or FALSE on
+     *                     failure.
      */
     public static function generateCryptoKey($length)
     {
@@ -665,10 +659,11 @@ class Utilities
      * To evaluate if the stream is larger than a certain size. To restore
      * the stream, it has to be seekable, so will return true if the stream
      * is not seekable.
-     * @param  StreamInterface $stream The stream to be evaluated.
-     * @param  int             $size   The size if the string is larger than.
      *
-     * @return boolean         true if the stream is larger than the given size.
+     * @param StreamInterface $stream The stream to be evaluated.
+     * @param int             $size   The size if the string is larger than.
+     *
+     * @return bool true if the stream is larger than the given size.
      */
     public static function isStreamLargerThanSizeOrNotSeekable(StreamInterface $stream, $size)
     {
@@ -736,8 +731,6 @@ class Utilities
      * Validates the provided metadata array.
      *
      * @param array $metadata The metadata array.
-     *
-     * @return void
      */
     public static function validateMetadata(array $metadata = null)
     {
@@ -755,10 +748,9 @@ class Utilities
 
     /**
      * Append the content to file.
-     * @param  string $path    The file to append to.
-     * @param  string $content The content to append.
      *
-     * @return void
+     * @param string $path    The file to append to.
+     * @param string $content The content to append.
      */
     public static function appendToFile($path, $content)
     {
@@ -773,6 +765,7 @@ class Utilities
      * Check if all the bytes are zero.
      *
      * @param string $content The content.
+     *
      * @return bool
      */
     public static function allZero($content)
@@ -811,12 +804,12 @@ class Utilities
      * Static function used to determine if the request is performed against
      * secondary endpoint.
      *
-     * @param  Psr\Http\Message\RequestInterface $request The request performed.
-     * @param  array                             $options The options of the
-     *                                                    request. Must contain
-     *                                                    Resources::ROS_SECONDARY_URI
+     * @param Psr\Http\Message\RequestInterface $request The request performed.
+     * @param array                             $options The options of the
+     *                                                   request. Must contain
+     *                                                   Resources::ROS_SECONDARY_URI
      *
-     * @return boolean
+     * @return bool
      */
     public static function requestSentToSecondary(
         \Psr\Http\Message\RequestInterface $request,
@@ -834,7 +827,7 @@ class Utilities
     /**
      * Gets the location value from the headers.
      *
-     * @param  array  $headers request/response headers.
+     * @param array $headers request/response headers.
      *
      * @return string
      */
@@ -858,9 +851,9 @@ class Utilities
      * Gets if the value is a double value or string representation of a double
      * value
      *
-     * @param  mixed  $value The value to be verified.
+     * @param mixed $value The value to be verified.
      *
-     * @return boolean
+     * @return bool
      */
     public static function isDouble($value)
     {
@@ -871,7 +864,7 @@ class Utilities
      * Calculates the content MD5 which is base64 encoded. This should be align
      * with the server calculated MD5.
      *
-     * @param  string $content the content to be calculated.
+     * @param string $content the content to be calculated.
      *
      * @return string
      */

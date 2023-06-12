@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Holds block list used for commitBlobBlocks
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlockList
 {
@@ -56,8 +56,6 @@ class BlockList
      *
      * @param string $blockId The block id.
      * @param string $type    The entry type, you can use BlobBlockType.
-     *
-     * @return void
      */
     public function addEntry($blockId, $type)
     {
@@ -77,8 +75,6 @@ class BlockList
      * Addds committed block entry.
      *
      * @param string $blockId The block id.
-     *
-     * @return void
      */
     public function addCommittedEntry($blockId)
     {
@@ -89,8 +85,6 @@ class BlockList
      * Addds uncommitted block entry.
      *
      * @param string $blockId The block id.
-     *
-     * @return void
      */
     public function addUncommittedEntry($blockId)
     {
@@ -101,8 +95,6 @@ class BlockList
      * Addds latest block entry.
      *
      * @param string $blockId The block id.
-     *
-     * @return void
      */
     public function addLatestEntry($blockId)
     {

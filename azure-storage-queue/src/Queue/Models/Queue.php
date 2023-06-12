@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Queue\Models;
 /**
  * WindowsAzure queue object.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Queue
 {
@@ -58,8 +58,6 @@ class Queue
      * Sets queue name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {
@@ -80,8 +78,6 @@ class Queue
      * Sets queue url.
      *
      * @param string $url value.
-     *
-     * @return void
      */
     public function setUrl($url)
     {
@@ -102,8 +98,6 @@ class Queue
      * Sets queue metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {

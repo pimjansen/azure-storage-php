@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Internal\Authentication;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Tests\Mock\Table\Internal\Authentication\TableSharedK
 /**
  * Unit tests for TableSharedKeyLiteAuthScheme class.
  *
- * @link       https://github.com/azure/azure-storage-php
+ * @see       https://github.com/azure/azure-storage-php
  */
 class TableSharedKeyLiteAuthSchemeTest extends \PHPUnit\Framework\TestCase
 {

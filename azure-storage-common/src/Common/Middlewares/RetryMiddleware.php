@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
@@ -31,7 +31,7 @@ use Psr\Http\Message\ResponseInterface;
  * This class provides the functionality of a middleware that handles all the
  * retry logic for the request.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RetryMiddleware extends MiddlewareBase
 {
@@ -50,8 +50,8 @@ class RetryMiddleware extends MiddlewareBase
      * This function will be invoked after the request is sent, if
      * the promise is fulfilled.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
@@ -93,8 +93,8 @@ class RetryMiddleware extends MiddlewareBase
      * This function will be executed after the request is sent, if
      * the promise is rejected.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
@@ -123,9 +123,9 @@ class RetryMiddleware extends MiddlewareBase
     /**
      * This function does the real retry job.
      *
-     * @param  RequestInterface  $request  the request sent.
-     * @param  array             $options  the options that the request sent with.
-     * @param  ResponseInterface $response the response of the request
+     * @param RequestInterface  $request  the request sent.
+     * @param array             $options  the options that the request sent with.
+     * @param ResponseInterface $response the response of the request
      *
      * @return callable
      */

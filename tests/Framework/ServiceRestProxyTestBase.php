@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 /**
  * TestBase class for Storage Services test classes.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ServiceRestProxyTestBase extends RestProxyTestBase
 {

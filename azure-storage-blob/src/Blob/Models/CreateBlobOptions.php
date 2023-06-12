@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * optional parameters for createXXXBlob wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobOptions extends BlobServiceOptions
 {
@@ -52,8 +52,6 @@ class CreateBlobOptions extends BlobServiceOptions
      * Sets blob contentType.
      *
      * @param string $contentType value.
-     *
-     * @return void
      */
     public function setContentType($contentType)
     {
@@ -74,8 +72,6 @@ class CreateBlobOptions extends BlobServiceOptions
      * Sets contentEncoding.
      *
      * @param string $contentEncoding value.
-     *
-     * @return void
      */
     public function setContentEncoding($contentEncoding)
     {
@@ -96,8 +92,6 @@ class CreateBlobOptions extends BlobServiceOptions
      * Sets contentLanguage.
      *
      * @param string $contentLanguage value.
-     *
-     * @return void
      */
     public function setContentLanguage($contentLanguage)
     {
@@ -118,8 +112,6 @@ class CreateBlobOptions extends BlobServiceOptions
      * Sets contentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     public function setContentMD5($contentMD5)
     {
@@ -140,8 +132,6 @@ class CreateBlobOptions extends BlobServiceOptions
      * Sets cacheControl.
      *
      * @param string $cacheControl value to use.
-     *
-     * @return void
      */
     public function setCacheControl($cacheControl)
     {
@@ -162,8 +152,6 @@ class CreateBlobOptions extends BlobServiceOptions
      * Sets content disposition.
      *
      * @param string $contentDisposition value to use.
-     *
-     * @return void
      */
     public function setContentDisposition($contentDisposition)
     {
@@ -184,8 +172,6 @@ class CreateBlobOptions extends BlobServiceOptions
      * Sets blob metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {
@@ -206,8 +192,6 @@ class CreateBlobOptions extends BlobServiceOptions
      * Sets blob sequenceNumber.
      *
      * @param int $sequenceNumber value.
-     *
-     * @return void
      */
     public function setSequenceNumber($sequenceNumber)
     {

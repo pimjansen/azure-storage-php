@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * Provides functionality and data structure for continuation token that
  * contains next marker.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MarkerContinuationToken extends ContinuationToken
 {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Http;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Http\HttpCallContext;
 /**
  * Unit tests for class HttpCallContext
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class HttpCallContextTest extends \PHPUnit\Framework\TestCase
 {

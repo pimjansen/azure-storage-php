@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Models\Range;
 /**
  * Optional parameters for getFile.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetFileOptions extends FileServiceOptions
 {
@@ -46,8 +46,6 @@ class GetFileOptions extends FileServiceOptions
      * Sets File range.
      *
      * @param Range $range value.
-     *
-     * @return void
      */
     public function setRange(Range $range)
     {
@@ -68,8 +66,6 @@ class GetFileOptions extends FileServiceOptions
      * Sets File rangeGetContentMD5.
      *
      * @param bool $rangeGetContentMD5 value.
-     *
-     * @return void
      */
     public function setRangeGetContentMD5($rangeGetContentMD5)
     {

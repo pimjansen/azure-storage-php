@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Holds information about blob block.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Block
 {
@@ -45,8 +45,6 @@ class Block
      * Sets the blockId.
      *
      * @param string $blockId The id of the block.
-     *
-     * @return void
      */
     public function setBlockId($blockId)
     {
@@ -67,8 +65,6 @@ class Block
      * Sets the type.
      *
      * @param string $type The type of the block.
-     *
-     * @return void
      */
     public function setType($type)
     {

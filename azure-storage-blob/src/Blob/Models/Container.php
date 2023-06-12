@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * WindowsAzure container object.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Container
 {
@@ -45,8 +45,6 @@ class Container
      * Sets container name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {
@@ -67,8 +65,6 @@ class Container
      * Sets container url.
      *
      * @param string $url value.
-     *
-     * @return void
      */
     public function setUrl($url)
     {
@@ -89,8 +85,6 @@ class Container
      * Sets container metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata = null)
     {
@@ -111,8 +105,6 @@ class Container
      * Sets container properties
      *
      * @param ContainerProperties $properties container properties
-     *
-     * @return void
      */
     public function setProperties(ContainerProperties $properties)
     {

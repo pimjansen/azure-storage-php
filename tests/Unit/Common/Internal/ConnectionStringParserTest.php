@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\ConnectionStringParser;
 /**
  * Unit tests for class ConnectionStringParser
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ConnectionStringParserTest extends \PHPUnit\Framework\TestCase
 {

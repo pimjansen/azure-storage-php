@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
 /**
  * Optional parameters for SetBlobTier.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SetBlobTierOptions extends ServiceOptions
 {

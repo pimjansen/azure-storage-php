@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Table\Internal\AcceptOptionTrait;
 /**
  * Optional parameters for queryTables wrapper.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueryTablesOptions extends TableServiceOptions
 {
@@ -57,8 +57,6 @@ class QueryTablesOptions extends TableServiceOptions
      * Sets prefix
      *
      * @param string $prefix value
-     *
-     * @return void
      */
     public function setPrefix($prefix)
     {
@@ -68,7 +66,7 @@ class QueryTablesOptions extends TableServiceOptions
     /**
      * Gets top.
      *
-     * @return integer
+     * @return int
      */
     public function getTop()
     {
@@ -78,9 +76,7 @@ class QueryTablesOptions extends TableServiceOptions
     /**
      * Sets top.
      *
-     * @param integer $top value.
-     *
-     * @return void
+     * @param int $top value.
      */
     public function setTop($top)
     {
@@ -111,8 +107,6 @@ class QueryTablesOptions extends TableServiceOptions
      * Sets filter.
      *
      * @param Filters\Filter $filter value.
-     *
-     * @return void
      */
     public function setFilter(Filters\Filter $filter)
     {
@@ -126,8 +120,6 @@ class QueryTablesOptions extends TableServiceOptions
      * whole query object.
      *
      * @param array $selectFields value.
-     *
-     * @return void
      */
     public function setSelectFields(array $selectFields = null)
     {

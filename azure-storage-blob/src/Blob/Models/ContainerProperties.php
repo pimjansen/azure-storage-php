@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Holds container properties fields
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ContainerProperties
 {
@@ -50,8 +50,6 @@ class ContainerProperties
      * Sets container lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     public function setLastModified(\DateTime $lastModified)
     {
@@ -72,8 +70,6 @@ class ContainerProperties
      * Sets container etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     public function setETag($etag)
     {
@@ -94,8 +90,6 @@ class ContainerProperties
      * Sets blob leaseStatus.
      *
      * @param string $leaseStatus value.
-     *
-     * @return void
      */
     public function setLeaseStatus($leaseStatus)
     {
@@ -116,8 +110,6 @@ class ContainerProperties
      * Sets blob lease state.
      *
      * @param string $leaseState value.
-     *
-     * @return void
      */
     public function setLeaseState($leaseState)
     {
@@ -138,8 +130,6 @@ class ContainerProperties
      * Sets blob leaseStatus.
      *
      * @param string $leaseDuration value.
-     *
-     * @return void
      */
     public function setLeaseDuration($leaseDuration)
     {
@@ -160,8 +150,6 @@ class ContainerProperties
      * Sets container publicAccess.
      *
      * @param string $publicAccess value.
-     *
-     * @return void
      */
     public function setPublicAccess($publicAccess)
     {

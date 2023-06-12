@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
 /**
  * Options for listQueues API.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListQueuesOptions extends QueueServiceOptions
 {
@@ -49,8 +49,6 @@ class ListQueuesOptions extends QueueServiceOptions
      * Sets prefix.
      *
      * @param string $prefix value.
-     *
-     * @return void
      */
     public function setPrefix($prefix)
     {
@@ -72,8 +70,6 @@ class ListQueuesOptions extends QueueServiceOptions
      * Sets max results.
      *
      * @param string $maxResults value.
-     *
-     * @return void
      */
     public function setMaxResults($maxResults)
     {
@@ -84,7 +80,7 @@ class ListQueuesOptions extends QueueServiceOptions
     /**
      * Indicates if metadata is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeMetadata()
     {
@@ -95,8 +91,6 @@ class ListQueuesOptions extends QueueServiceOptions
      * Sets the include metadata flag.
      *
      * @param bool $includeMetadata value.
-     *
-     * @return void
      */
     public function setIncludeMetadata($includeMetadata)
     {

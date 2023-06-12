@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob;
@@ -54,7 +54,7 @@ use MicrosoftAzure\Storage\Tests\Framework\VirtualFileSystem;
 /**
  * Unit tests for class BlobRestProxy
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobRestProxyTest extends BlobServiceRestProxyTestBase
 {

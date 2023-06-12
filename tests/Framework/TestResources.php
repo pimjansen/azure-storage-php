@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
@@ -34,7 +34,7 @@ use MicrosoftAzure\Storage\Table\Models\UpdateEntityResult;
 /**
  * Resources for testing framework.
  *
- * @link       https://github.com/azure/azure-storage-php
+ * @see       https://github.com/azure/azure-storage-php
  */
 class TestResources
 {
@@ -275,6 +275,7 @@ class TestResources
     /**
      * @param int $directoriesCount
      * @param int $filesCount
+     *
      * @return array
      */
     public static function getInterestingListDirectoriesAndFilesResultArray(

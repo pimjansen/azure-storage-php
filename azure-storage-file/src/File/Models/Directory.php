@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Represents windows azure directory object
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Directory
 {
@@ -45,8 +45,6 @@ class Directory
      * Sets directory name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {
@@ -56,7 +54,7 @@ class Directory
     /**
      * Creates a Directory object using the parsed array.
      *
-     * @param  array $parsed The parsed array that contains the object information.
+     * @param array $parsed The parsed array that contains the object information.
      *
      * @return Directory
      */

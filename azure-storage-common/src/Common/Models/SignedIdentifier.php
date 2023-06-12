@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
 /**
  * Holds signed identifiers.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SignedIdentifier
 {
@@ -57,8 +57,6 @@ class SignedIdentifier
      * Sets id.
      *
      * @param string $id value.
-     *
-     * @return void
      */
     public function setId($id)
     {
@@ -79,8 +77,6 @@ class SignedIdentifier
      * Sets accessPolicy.
      *
      * @param AccessPolicy|null $accessPolicy value.
-     *
-     * @return void
      */
     public function setAccessPolicy(AccessPolicy $accessPolicy = null)
     {

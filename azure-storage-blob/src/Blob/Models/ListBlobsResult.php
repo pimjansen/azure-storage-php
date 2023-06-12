@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 /**
  * Hold result of calliing listBlobs wrapper.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListBlobsResult
 {
@@ -44,9 +44,9 @@ class ListBlobsResult
     /**
      * Creates ListBlobsResult object from parsed XML response.
      *
-     * @param array  $parsed      XML response parsed into array.
-     * @param string $location       Contains the location for the previous
-     *                               request.
+     * @param array  $parsed   XML response parsed into array.
+     * @param string $location Contains the location for the previous
+     *                         request.
      *
      * @internal
      *
@@ -155,8 +155,6 @@ class ListBlobsResult
      * Sets blobs.
      *
      * @param Blob[] $blobs list of blobs
-     *
-     * @return void
      */
     protected function setBlobs(array $blobs)
     {
@@ -180,8 +178,6 @@ class ListBlobsResult
      * Sets blobPrefixes.
      *
      * @param array $blobPrefixes list of blobPrefixes
-     *
-     * @return void
      */
     protected function setBlobPrefixes(array $blobPrefixes)
     {
@@ -205,8 +201,6 @@ class ListBlobsResult
      * Sets prefix.
      *
      * @param string $prefix value.
-     *
-     * @return void
      */
     protected function setPrefix($prefix)
     {
@@ -227,8 +221,6 @@ class ListBlobsResult
      * Sets prefix.
      *
      * @param string $delimiter value.
-     *
-     * @return void
      */
     protected function setDelimiter($delimiter)
     {
@@ -249,8 +241,6 @@ class ListBlobsResult
      * Sets marker.
      *
      * @param string $marker value.
-     *
-     * @return void
      */
     protected function setMarker($marker)
     {
@@ -260,7 +250,7 @@ class ListBlobsResult
     /**
      * Gets max results.
      *
-     * @return integer
+     * @return int
      */
     public function getMaxResults()
     {
@@ -270,9 +260,7 @@ class ListBlobsResult
     /**
      * Sets max results.
      *
-     * @param integer $maxResults value.
-     *
-     * @return void
+     * @param int $maxResults value.
      */
     protected function setMaxResults($maxResults)
     {
@@ -293,8 +281,6 @@ class ListBlobsResult
      * Sets container name.
      *
      * @param string $containerName value.
-     *
-     * @return void
      */
     protected function setContainerName($containerName)
     {

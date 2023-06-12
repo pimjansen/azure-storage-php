@@ -13,7 +13,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Http;
@@ -22,7 +22,8 @@ namespace MicrosoftAzure\Storage\Common\Internal\Http;
  * Helper class to format the http headers
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class HttpFormatter
 {

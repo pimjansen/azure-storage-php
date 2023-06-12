@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Blob;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Tests for service SAS proxy tests.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
 {

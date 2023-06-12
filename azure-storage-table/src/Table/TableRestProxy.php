@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table;
@@ -67,7 +67,7 @@ use MicrosoftAzure\Storage\Table\Models\UpdateEntityResult;
  * This class constructs HTTP requests and receive HTTP responses for table
  * service layer.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class TableRestProxy extends ServiceRestProxy implements ITable
 {
@@ -170,9 +170,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      *
      * @param array $operations The batch operations array.
      *
-     * @return array
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return array
      */
     private function createOperationsContexts(array $operations)
     {
@@ -237,9 +237,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      * @param Entity $entity The entity object.
      * @param string $type   The API type.
      *
-     * @return \MicrosoftAzure\Storage\Common\Internal\Http\HttpCallContext
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return \MicrosoftAzure\Storage\Common\Internal\Http\HttpCallContext
      */
     private function getOperationContext($table, Entity $entity, $type)
     {
@@ -294,9 +294,9 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      * @param array $operations The batch operations.
      * @param array $contexts   The contexts objects.
      *
-     * @return array
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return array
      */
     private function createBatchRequestBody(array $operations, array $contexts)
     {
@@ -414,7 +414,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      * @param string              $table   The table name.
      * @param Entity              $entity  The entity instance to use.
      * @param string              $verb    The HTTP method.
-     * @param boolean             $useETag The flag to include etag or not.
+     * @param bool                $useETag The flag to include etag or not.
      * @param TableServiceOptions $options The optional parameters.
      *
      * @return HttpCallContext
@@ -558,7 +558,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      * @param string              $table   The table name.
      * @param Entity              $entity  The entity instance to use.
      * @param string              $verb    The HTTP method.
-     * @param boolean             $useETag The flag to include etag or not.
+     * @param bool                $useETag The flag to include etag or not.
      * @param TableServiceOptions $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -757,7 +757,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
     /**
      * Quries tables in the given storage account.
      *
-     * @param QueryTablesOptions|string|Filter $options Could be optional
+     * @param Filter|QueryTablesOptions|string $options Could be optional
      *                                                  parameters, table prefix
      *                                                  or filter to apply.
      *
@@ -773,7 +773,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
     /**
      * Creates promise to query the tables in the given storage account.
      *
-     * @param QueryTablesOptions|string|Filter $options Could be optional
+     * @param Filter|QueryTablesOptions|string $options Could be optional
      *                                                  parameters, table prefix
      *                                                  or filter to apply.
      *
@@ -1024,8 +1024,6 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      * @param string              $table   The name of the table.
      * @param TableServiceOptions $options optional parameters
      *
-     * @return void
-     *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179387.aspx
      */
     public function deleteTable($table, TableServiceOptions $options = null)
@@ -1077,7 +1075,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      *
      * @param string                             $table   The name of
      *                                                    the table.
-     * @param QueryEntitiesOptions|string|Filter $options Coule be optional
+     * @param Filter|QueryEntitiesOptions|string $options Coule be optional
      *                                                    parameters, query
      *                                                    string or filter to
      *                                                    apply.
@@ -1095,7 +1093,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      * Quries entities for the given table name
      *
      * @param string                             $table   The name of the table.
-     * @param QueryEntitiesOptions|string|Filter $options Coule be optional
+     * @param Filter|QueryEntitiesOptions|string $options Coule be optional
      *                                                    parameters, query
      *                                                    string or filter to
      *                                                    apply.
@@ -1436,8 +1434,6 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      * @param string              $rowKey       The entity row key.
      * @param DeleteEntityOptions $options      The optional parameters.
      *
-     * @return void
-     *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd135727.aspx
      */
     public function deleteEntity(
@@ -1728,8 +1724,6 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      * @param string              $table   name
      * @param TableACL            $acl     access control list for Table
      * @param TableServiceOptions $options optional parameters
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/set-table-acl
      */

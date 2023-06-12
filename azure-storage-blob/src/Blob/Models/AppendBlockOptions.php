@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Optional parameters for appendBlock wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class AppendBlockOptions extends BlobServiceOptions
 {
@@ -44,8 +44,6 @@ class AppendBlockOptions extends BlobServiceOptions
      * Sets block contentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     public function setContentMD5($contentMD5)
     {
@@ -66,8 +64,6 @@ class AppendBlockOptions extends BlobServiceOptions
      * Sets the max length in bytes allowed for the append blob to grow to.
      *
      * @param int $maxBlobSize value.
-     *
-     * @return void
      */
     public function setMaxBlobSize($maxBlobSize)
     {
@@ -88,8 +84,6 @@ class AppendBlockOptions extends BlobServiceOptions
      * Sets append blob appendPosition.
      *
      * @param int $appendPosition value.
-     *
-     * @return void
      */
     public function setAppendPosition($appendPosition)
     {

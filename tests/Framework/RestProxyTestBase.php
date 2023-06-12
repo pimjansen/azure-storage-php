@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Logger;
 /**
  * Testbase for all REST proxy tests.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RestProxyTestBase extends \PHPUnit\Framework\TestCase
 {

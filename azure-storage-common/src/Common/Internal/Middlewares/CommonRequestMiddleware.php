@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Middlewares;
@@ -30,7 +30,8 @@ use Psr\Http\Message\RequestInterface;
  * is by default applied to each of the request.
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CommonRequestMiddleware extends MiddlewareBase
 {
@@ -65,7 +66,7 @@ class CommonRequestMiddleware extends MiddlewareBase
      * Add the provided headers, the date, then sign the request using the
      * authentication scheme, and return it.
      *
-     * @param  RequestInterface $request un-signed request.
+     * @param RequestInterface $request un-signed request.
      *
      * @return RequestInterface
      */
@@ -107,7 +108,6 @@ class CommonRequestMiddleware extends MiddlewareBase
 
     /**
      * Gets the user agent string used in request header.
-     *
      *
      * @return string
      */

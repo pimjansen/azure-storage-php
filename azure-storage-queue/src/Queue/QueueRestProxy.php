@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue;
@@ -51,7 +51,7 @@ use MicrosoftAzure\Storage\Queue\Models\UpdateMessageResult;
  * This class constructs HTTP requests and receive HTTP responses for queue
  * service layer.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueueRestProxy extends ServiceRestProxy implements IQueue
 {
@@ -261,8 +261,6 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
      *
      * @param string              $queueName The name of the queue.
      * @param QueueServiceOptions $options   The optional parameters.
-     *
-     * @return void
      */
     public function clearMessages($queueName, QueueServiceOptions $options = null)
     {
@@ -410,9 +408,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
      * Creates a new queue under the storage account.
      *
      * @param string                    $queueName The queue name.
-     * @param Models\CreateQueueOptions  $options   The Optional parameters.
-     *
-     * @return void
+     * @param Models\CreateQueueOptions $options   The Optional parameters.
      */
     public function createQueue(
         $queueName,
@@ -424,8 +420,8 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
     /**
      * Creates promise to create a new queue under the storage account.
      *
-     * @param string                     $queueName The queue name.
-     * @param Models\CreateQueueOptions  $options   The Optional parameters.
+     * @param string                    $queueName The queue name.
+     * @param Models\CreateQueueOptions $options   The Optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -469,10 +465,8 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
      * @param string              $queueName  The name of the queue.
      * @param string              $messageId  The id of the message.
      * @param string              $popReceipt The valid pop receipt value returned
-     * from an earlier call to the Get Messages or Update Message operation.
+     *                                        from an earlier call to the Get Messages or Update Message operation.
      * @param QueueServiceOptions $options    The optional parameters.
-     *
-     * @return void
      */
     public function deleteMessage(
         $queueName,
@@ -494,7 +488,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
      * @param string              $queueName  The name of the queue.
      * @param string              $messageId  The id of the message.
      * @param string              $popReceipt The valid pop receipt value returned
-     * from an earlier call to the Get Messages or Update Message operation.
+     *                                        from an earlier call to the Get Messages or Update Message operation.
      * @param QueueServiceOptions $options    The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -548,8 +542,6 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
      *
      * @param string              $queueName The queue name.
      * @param QueueServiceOptions $options   The optional parameters.
-     *
-     * @return void
      */
     public function deleteQueue($queueName, QueueServiceOptions $options = null)
     {
@@ -803,8 +795,6 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
      * @param string              $queueName The queue name.
      * @param array               $metadata  The metadata array.
      * @param QueueServiceOptions $options   The optional parameters.
-     *
-     * @return void
      */
     public function setQueueMetadata(
         $queueName,
@@ -869,17 +859,17 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
      * @param string              $queueName                  The queue name.
      * @param string              $messageId                  The id of the message.
      * @param string              $popReceipt                 The valid pop receipt
-     * value returned from an earlier call to the Get Messages or Update Message
-     * operation.
+     *                                                        value returned from an earlier call to the Get Messages or Update Message
+     *                                                        operation.
      * @param string              $messageText                The message contents.
      * @param int                 $visibilityTimeoutInSeconds Specifies the new
-     * visibility timeout value, in seconds, relative to server time.
-     * The new value must be larger than or equal to 0, and cannot be larger
-     * than 7 days. The visibility timeout of a message cannot be set to a value
-     * later than the expiry time. A message can be updated until it has been
-     * deleted or has expired.
+     *                                                        visibility timeout value, in seconds, relative to server time.
+     *                                                        The new value must be larger than or equal to 0, and cannot be larger
+     *                                                        than 7 days. The visibility timeout of a message cannot be set to a value
+     *                                                        later than the expiry time. A message can be updated until it has been
+     *                                                        deleted or has expired.
      * @param QueueServiceOptions $options                    The optional
-     * parameters.
+     *                                                        parameters.
      *
      * @return Models\UpdateMessageResult
      */
@@ -908,17 +898,17 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
      * @param string              $queueName                  The queue name.
      * @param string              $messageId                  The id of the message.
      * @param string              $popReceipt                 The valid pop receipt
-     * value returned from an earlier call to the Get Messages or Update Message
-     * operation.
+     *                                                        value returned from an earlier call to the Get Messages or Update Message
+     *                                                        operation.
      * @param string              $messageText                The message contents.
      * @param int                 $visibilityTimeoutInSeconds Specifies the new
-     * visibility timeout value, in seconds, relative to server time.
-     * The new value must be larger than or equal to 0, and cannot be larger
-     * than 7 days. The visibility timeout of a message cannot be set to a value
-     * later than the expiry time. A message can be updated until it has been
-     * deleted or has expired.
+     *                                                        visibility timeout value, in seconds, relative to server time.
+     *                                                        The new value must be larger than or equal to 0, and cannot be larger
+     *                                                        than 7 days. The visibility timeout of a message cannot be set to a value
+     *                                                        later than the expiry time. A message can be updated until it has been
+     *                                                        deleted or has expired.
      * @param QueueServiceOptions $options                    The optional
-     * parameters.
+     *                                                        parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -1072,8 +1062,6 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
      * @param string                     $queue   name
      * @param Models\QueueACL            $acl     access control list for Queue
      * @param Models\QueueServiceOptions $options optional parameters
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/set-queue-acl
      */

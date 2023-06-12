@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Holds result of listBlobBlocks
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListBlobBlocksResult
 {
@@ -120,8 +120,6 @@ class ListBlobBlocksResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -143,8 +141,6 @@ class ListBlobBlocksResult
      * Sets blob etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -165,8 +161,6 @@ class ListBlobBlocksResult
      * Sets blob contentType.
      *
      * @param string $contentType value.
-     *
-     * @return void
      */
     protected function setContentType($contentType)
     {
@@ -176,7 +170,7 @@ class ListBlobBlocksResult
     /**
      * Gets blob contentLength.
      *
-     * @return integer
+     * @return int
      */
     public function getContentLength()
     {
@@ -186,9 +180,7 @@ class ListBlobBlocksResult
     /**
      * Sets blob contentLength.
      *
-     * @param integer $contentLength value.
-     *
-     * @return void
+     * @param int $contentLength value.
      */
     protected function setContentLength($contentLength)
     {
@@ -210,8 +202,6 @@ class ListBlobBlocksResult
      * Sets uncommitted blocks
      *
      * @param array $uncommittedBlocks The uncommitted blocks entries
-     *
-     * @return void
      */
     protected function setUncommittedBlocks(array $uncommittedBlocks)
     {
@@ -232,8 +222,6 @@ class ListBlobBlocksResult
      * Sets committed blocks
      *
      * @param array $committedBlocks The committed blocks entries
-     *
-     * @return void
      */
     protected function setCommittedBlocks(array $committedBlocks)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Optional parameters for createFile.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateFileOptions extends FileServiceOptions
 {
@@ -51,8 +51,6 @@ class CreateFileOptions extends FileServiceOptions
      * Sets File contentType.
      *
      * @param string $contentType value.
-     *
-     * @return void
      */
     public function setContentType($contentType)
     {
@@ -73,8 +71,6 @@ class CreateFileOptions extends FileServiceOptions
      * Sets contentEncoding.
      *
      * @param string $contentEncoding value.
-     *
-     * @return void
      */
     public function setContentEncoding($contentEncoding)
     {
@@ -95,8 +91,6 @@ class CreateFileOptions extends FileServiceOptions
      * Sets contentLanguage.
      *
      * @param string $contentLanguage value.
-     *
-     * @return void
      */
     public function setContentLanguage($contentLanguage)
     {
@@ -117,8 +111,6 @@ class CreateFileOptions extends FileServiceOptions
      * Sets contentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     public function setContentMD5($contentMD5)
     {
@@ -139,8 +131,6 @@ class CreateFileOptions extends FileServiceOptions
      * Sets cacheControl.
      *
      * @param string $cacheControl value to use.
-     *
-     * @return void
      */
     public function setCacheControl($cacheControl)
     {
@@ -161,8 +151,6 @@ class CreateFileOptions extends FileServiceOptions
      * Sets content disposition.
      *
      * @param string $contentDisposition value to use.
-     *
-     * @return void
      */
     public function setContentDisposition($contentDisposition)
     {
@@ -183,8 +171,6 @@ class CreateFileOptions extends FileServiceOptions
      * Sets File metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {
@@ -205,8 +191,6 @@ class CreateFileOptions extends FileServiceOptions
      * Sets File contentLength.
      *
      * @param int $contentLength value.
-     *
-     * @return void
      */
     public function setContentLength($contentLength)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Queue\Internal\QueueResources as Resources;
 /**
  * Holds results of CreateMessage wrapper.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateMessageResult
 {
@@ -72,8 +72,6 @@ class CreateMessageResult
      * @param QueueMessage $queueMessage value to use.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setQueueMessage($queueMessage)
     {

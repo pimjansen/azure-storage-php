@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\ConnectionStringSource;
 /**
  * Unit tests for class CloudConfigurationManager
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
 {

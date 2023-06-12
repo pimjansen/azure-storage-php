@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace Tests\Unit\MicrosoftAzure\Storage\Table\Models\internal;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Unit tests for class JsonODataReaderWriter
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
 {

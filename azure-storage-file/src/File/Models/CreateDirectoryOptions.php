@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\File\Models;
 /**
  * Optional parameters for createDirectory API
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateDirectoryOptions extends FileServiceOptions
 {
@@ -43,8 +43,6 @@ class CreateDirectoryOptions extends FileServiceOptions
      * prefix (x-ms-meta-*).
      *
      * @param array $metadata user defined metadata object in array form.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {
@@ -57,8 +55,6 @@ class CreateDirectoryOptions extends FileServiceOptions
      *
      * @param string $key   metadata key element.
      * @param string $value metadata value element.
-     *
-     * @return void
      */
     public function addMetadata($key, $value)
     {

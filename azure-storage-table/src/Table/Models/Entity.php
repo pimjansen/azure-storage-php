@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Represents entity object used in tables
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Entity
 {
@@ -37,8 +37,6 @@ class Entity
      * Validates if properties is valid or not.
      *
      * @param mixed $properties The properties array.
-     *
-     * @return void
      */
     private function _validateProperties($properties)
     {
@@ -65,7 +63,6 @@ class Entity
      * Gets property value and if the property name is not found return null.
      *
      * @param string $name The property name.
-     *
      */
     public function getPropertyValue($name)
     {
@@ -81,7 +78,6 @@ class Entity
      *
      * @param string $name  The property name.
      * @param mixed  $value The property value.
-     *
      */
     public function setPropertyValue($name, $value)
     {
@@ -105,8 +101,6 @@ class Entity
      * Sets entity etag.
      *
      * @param string $etag The entity ETag value.
-     *
-     * @return void
      */
     public function setETag($etag)
     {
@@ -127,8 +121,6 @@ class Entity
      * Sets entity PartitionKey.
      *
      * @param string $partitionKey The entity PartitionKey value.
-     *
-     * @return void
      */
     public function setPartitionKey($partitionKey)
     {
@@ -149,8 +141,6 @@ class Entity
      * Sets entity RowKey.
      *
      * @param string $rowKey The entity RowKey value.
-     *
-     * @return void
      */
     public function setRowKey($rowKey)
     {
@@ -171,8 +161,6 @@ class Entity
      * Sets entity Timestamp.
      *
      * @param \DateTime $timestamp The entity Timestamp value.
-     *
-     * @return void
      */
     public function setTimestamp(\DateTime $timestamp)
     {
@@ -193,8 +181,6 @@ class Entity
      * Sets the entity properties array.
      *
      * @param array $properties The entity properties.
-     *
-     * @return void
      */
     public function setProperties(array $properties)
     {
@@ -219,8 +205,6 @@ class Entity
      *
      * @param string   $name     The property name.
      * @param Property $property The property object.
-     *
-     * @return void
      */
     public function setProperty($name, $property)
     {
@@ -254,7 +238,7 @@ class Entity
      *
      * @internal
      *
-     * @return boolean
+     * @return bool
      */
     public function isValid(&$msg = null)
     {

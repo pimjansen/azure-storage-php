@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Exceptions\InvalidArgumentTypeException;
 /**
  * Unit tests for class CreateContainerOptions
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
 {

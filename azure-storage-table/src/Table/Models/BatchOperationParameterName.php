@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Batch parameter names.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperationParameterName
 {
@@ -39,7 +39,7 @@ class BatchOperationParameterName
      *
      * @internal
      *
-     * @return boolean
+     * @return bool
      */
     public static function isValid($paramName)
     {

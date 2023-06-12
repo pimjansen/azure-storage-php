@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Represents windows azure blob object
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Blob
 {
@@ -46,8 +46,6 @@ class Blob
      * Sets blob name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {
@@ -68,8 +66,6 @@ class Blob
      * Sets blob snapshot.
      *
      * @param string $snapshot value.
-     *
-     * @return void
      */
     public function setSnapshot($snapshot)
     {
@@ -90,8 +86,6 @@ class Blob
      * Sets blob url.
      *
      * @param string $url value.
-     *
-     * @return void
      */
     public function setUrl($url)
     {
@@ -112,8 +106,6 @@ class Blob
      * Sets blob metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata = null)
     {
@@ -134,8 +126,6 @@ class Blob
      * Sets blob properties.
      *
      * @param BlobProperties $properties value.
-     *
-     * @return void
      */
     public function setProperties($properties)
     {

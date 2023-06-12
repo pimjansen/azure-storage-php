@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Table\Models\AcceptJSONContentType;
 /**
  * Holds code logic for optional option: Accept
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 trait AcceptOptionTrait
 {

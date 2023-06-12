@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Table;
@@ -1552,12 +1552,14 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             switch ($opType) {
                 case OpType::INSERT_ENTITY:
                     self::assertInstanceOf(
-                        InsertEntityResult::class, $opResult,
+                        InsertEntityResult::class,
+                        $opResult,
                         'When opType=' . $opType . ' expect opResult instanceof InsertEntityResult'
                     );
                     break;
                 case OpType::DELETE_ENTITY:
-                    self::assertIsString($opResult,
+                    self::assertIsString(
+                        $opResult,
                         'When opType=' . $opType . ' expect opResult is a string'
                     );
                     break;
@@ -1566,7 +1568,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 case OpType::MERGE_ENTITY:
                 case OpType::INSERT_OR_MERGE_ENTITY:
                     self::assertInstanceOf(
-                        UpdateEntityResult::class, $opResult,
+                        UpdateEntityResult::class,
+                        $opResult,
                         'When opType=' . $opType . ' expect opResult instanceof UpdateEntityResult'
                     );
                     break;

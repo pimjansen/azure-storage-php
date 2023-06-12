@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * The result of calling breakLease API.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BreakLeaseResult
 {
@@ -63,8 +63,6 @@ class BreakLeaseResult
      * Sets lease time.
      *
      * @param string $leaseTime the blob lease time.
-     *
-     * @return void
      */
     protected function setLeaseTime($leaseTime)
     {

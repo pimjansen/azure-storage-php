@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Exceptions;
@@ -26,7 +26,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Fires when the response code is incorrect.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ServiceException extends \LogicException
 {
@@ -63,7 +63,7 @@ class ServiceException extends \LogicException
     /**
      * Error message to be parsed.
      *
-     * @param  ResponseInterface $response The response with a response body.
+     * @param ResponseInterface $response The response with a response body.
      *
      * @internal
      *

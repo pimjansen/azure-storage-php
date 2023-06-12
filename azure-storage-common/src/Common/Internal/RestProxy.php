@@ -15,7 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -23,7 +24,7 @@ namespace MicrosoftAzure\Storage\Common\Internal;
 /**
  * Base class for all REST proxies.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RestProxy
 {
@@ -64,9 +65,7 @@ class RestProxy
      * Push a new middleware into the middlewares array. The newly added
      * middleware will be the most inner middleware when executed.
      *
-     * @param  callable|IMiddleware $middleware the middleware to be added.
-     *
-     * @return void
+     * @param callable|IMiddleware $middleware the middleware to be added.
      */
     public function pushMiddleware($middleware)
     {
@@ -81,8 +80,6 @@ class RestProxy
      * @param array  &$queryParameters The query parameters.
      * @param string $key              The query variable name.
      * @param string $value            The query variable value.
-     *
-     * @return void
      */
     protected function addOptionalQueryParam(array &$queryParameters, $key, $value)
     {
@@ -103,8 +100,6 @@ class RestProxy
      * @param array  &$headers The HTTP header parameters.
      * @param string $key      The HTTP header name.
      * @param string $value    The HTTP header value.
-     *
-     * @return void
      */
     protected function addOptionalHeader(array &$headers, $key, $value)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal;
@@ -27,7 +27,8 @@ use MicrosoftAzure\Storage\Table\Models\Entity;
  * Serializes and unserializes results from table wrapper calls
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class JsonODataReaderWriter implements IODataReaderWriter
 {

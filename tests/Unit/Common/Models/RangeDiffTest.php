@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Models\RangeDiff;
 /**
  * Unit tests for class RangeDiff
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RangeDiffTest extends \PHPUnit\Framework\TestCase
 {

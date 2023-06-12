@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Holds result of calling create or clear blob pages
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobPagesResult
 {
@@ -96,8 +96,6 @@ class CreateBlobPagesResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified($lastModified)
     {
@@ -119,8 +117,6 @@ class CreateBlobPagesResult
      * Sets blob etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -142,8 +138,6 @@ class CreateBlobPagesResult
      * Sets blob contentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     protected function setContentMD5($contentMD5)
     {
@@ -153,7 +147,7 @@ class CreateBlobPagesResult
     /**
      * Gets the whether the contents of the request are successfully encrypted.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRequestServerEncrypted()
     {
@@ -163,9 +157,7 @@ class CreateBlobPagesResult
     /**
      * Sets the request server encryption value.
      *
-     * @param boolean $requestServerEncrypted
-     *
-     * @return void
+     * @param bool $requestServerEncrypted
      */
     public function setRequestServerEncrypted($requestServerEncrypted)
     {
@@ -186,8 +178,6 @@ class CreateBlobPagesResult
      * Sets blob sequenceNumber.
      *
      * @param int $sequenceNumber value.
-     *
-     * @return void
      */
     protected function setSequenceNumber($sequenceNumber)
     {

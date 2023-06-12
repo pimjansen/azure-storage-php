@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Authentication;
@@ -26,7 +26,8 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
  * Azure authentication scheme for token credential.
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class TokenAuthScheme implements IAuthScheme
 {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Holds results of calling getBlobMetadata wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SetBlobMetadataResult
 {
@@ -85,8 +85,6 @@ class SetBlobMetadataResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -108,8 +106,6 @@ class SetBlobMetadataResult
      * Sets blob etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -120,7 +116,7 @@ class SetBlobMetadataResult
     /**
      * Gets the whether the contents of the request are successfully encrypted.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRequestServerEncrypted()
     {
@@ -130,9 +126,7 @@ class SetBlobMetadataResult
     /**
      * Sets the request server encryption value.
      *
-     * @param boolean $requestServerEncrypted
-     *
-     * @return void
+     * @param bool $requestServerEncrypted
      */
     public function setRequestServerEncrypted($requestServerEncrypted)
     {

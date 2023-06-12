@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
@@ -29,7 +29,7 @@ use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
 /**
  * TestBase class for each unit test class.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
 {

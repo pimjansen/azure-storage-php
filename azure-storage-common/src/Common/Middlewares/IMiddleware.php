@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
@@ -23,7 +23,7 @@ namespace MicrosoftAzure\Storage\Common\Middlewares;
  * IMiddleware is called before sending the request and after receiving the
  * response.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 interface IMiddleware
 {
@@ -53,7 +53,8 @@ interface IMiddleware
      * };
      * ```
      *
-     * @param  callable $handler The next handler.
+     * @param callable $handler The next handler.
+     *
      * @return callable
      */
     public function __invoke(callable $handler);

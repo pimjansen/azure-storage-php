@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Queue\Models;
 /**
  * Short description
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class PeekMessagesOptions extends QueueServiceOptions
 {
@@ -31,7 +31,7 @@ class PeekMessagesOptions extends QueueServiceOptions
     /**
      * Gets numberOfMessages field.
      *
-     * @return integer
+     * @return int
      */
     public function getNumberOfMessages()
     {
@@ -41,9 +41,7 @@ class PeekMessagesOptions extends QueueServiceOptions
     /**
      * Sets numberOfMessages field.
      *
-     * @param integer $numberOfMessages value to use.
-     *
-     * @return void
+     * @param int $numberOfMessages value to use.
      */
     public function setNumberOfMessages($numberOfMessages)
     {

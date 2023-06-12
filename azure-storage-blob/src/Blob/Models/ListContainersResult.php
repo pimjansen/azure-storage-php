@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 /**
  * Container to hold list container response object.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListContainersResult
 {
@@ -130,8 +130,6 @@ class ListContainersResult
      * Sets containers.
      *
      * @param array $containers list of containers.
-     *
-     * @return void
      */
     protected function setContainers(array $containers)
     {
@@ -165,8 +163,6 @@ class ListContainersResult
      * Sets prefix.
      *
      * @param string $prefix value.
-     *
-     * @return void
      */
     protected function setPrefix($prefix)
     {
@@ -187,8 +183,6 @@ class ListContainersResult
      * Sets marker.
      *
      * @param string $marker value.
-     *
-     * @return void
      */
     protected function setMarker($marker)
     {
@@ -209,8 +203,6 @@ class ListContainersResult
      * Sets max results.
      *
      * @param string $maxResults value.
-     *
-     * @return void
      */
     protected function setMaxResults($maxResults)
     {
@@ -231,8 +223,6 @@ class ListContainersResult
      * Sets account name.
      *
      * @param string $accountName value.
-     *
-     * @return void
      */
     protected function setAccountName($accountName)
     {

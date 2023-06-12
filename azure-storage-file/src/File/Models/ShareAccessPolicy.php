@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources;
 /**
  * Holds access policy elements
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ShareAccessPolicy extends AccessPolicy
 {

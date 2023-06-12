@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Holds share properties fields
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ShareProperties
 {
@@ -36,7 +36,7 @@ class ShareProperties
     /**
      * Creates an instance with given response array.
      *
-     * @param  array  $parsedResponse The response array.
+     * @param array $parsedResponse The response array.
      *
      * @return ShareProperties
      */
@@ -65,8 +65,6 @@ class ShareProperties
      * Sets share lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     public function setLastModified(\DateTime $lastModified)
     {
@@ -87,8 +85,6 @@ class ShareProperties
      * Sets share etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     public function setETag($etag)
     {
@@ -109,8 +105,6 @@ class ShareProperties
      * Sets share quota.
      *
      * @param string $quota value.
-     *
-     * @return void
      */
     public function setQuota($quota)
     {

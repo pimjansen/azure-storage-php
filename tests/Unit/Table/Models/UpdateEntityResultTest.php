@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Table\Models\UpdateEntityResult;
 /**
  * Unit tests for class UpdateEntityResult
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class UpdateEntityResultTest extends \PHPUnit\Framework\TestCase
 {

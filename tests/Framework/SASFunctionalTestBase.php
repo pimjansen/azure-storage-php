@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
@@ -31,7 +31,7 @@ use MicrosoftAzure\Storage\Table\TableRestProxy;
 /**
  * Test base for SAS functional tests.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
 {

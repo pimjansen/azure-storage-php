@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Result from calling get service stats REST wrapper.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetServiceStatsResult
 {
@@ -36,6 +36,7 @@ class GetServiceStatsResult
      * Creates object from $parsedResponse.
      *
      * @internal
+     *
      * @param array $parsedResponse XML response parsed into array.
      *
      * @return \MicrosoftAzure\Storage\Common\Models\GetServiceStatsResult
@@ -79,6 +80,7 @@ class GetServiceStatsResult
 
     /**
      * Gets the last sync time.
+     *
      * @return \DateTime
      */
     public function getLastSyncTime()
@@ -88,8 +90,6 @@ class GetServiceStatsResult
 
     /**
      * Sets status of the result.
-     *
-     * @return void
      */
     protected function setStatus($status)
     {
@@ -98,8 +98,6 @@ class GetServiceStatsResult
 
     /**
      * Sets the last sync time.
-     *
-     * @return void
      */
     protected function setLastSyncTime(\DateTime $lastSyncTime)
     {

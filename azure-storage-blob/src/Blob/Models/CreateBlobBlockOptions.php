@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Optional parameters for createBlobBlock wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobBlockOptions extends BlobServiceOptions
 {
@@ -43,8 +43,6 @@ class CreateBlobBlockOptions extends BlobServiceOptions
      * Sets blob contentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     public function setContentMD5($contentMD5)
     {
@@ -73,7 +71,6 @@ class CreateBlobBlockOptions extends BlobServiceOptions
 
     /**
      * Construct a CreateBlobBlockOptions object from a createBlobOptions.
-     *
      *
      * @return CreateBlobBlockOptions
      */

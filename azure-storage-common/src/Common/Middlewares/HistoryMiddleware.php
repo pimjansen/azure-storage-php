@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
@@ -34,7 +34,7 @@ use Psr\Http\Message\ResponseInterface;
  * The middleware should be pushed into client options if the logging is
  * intended to persist between different API calls.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class HistoryMiddleware extends MiddlewareBase
 {
@@ -61,7 +61,6 @@ class HistoryMiddleware extends MiddlewareBase
      *                     no data is going to be saved to memory and the
      *                     entries are going to be serialized and saved to given
      *                     path.
-     *
      */
     public function __construct($path = '')
     {
@@ -94,8 +93,6 @@ class HistoryMiddleware extends MiddlewareBase
 
     /**
      * Clear the history
-     *
-     * @return void
      */
     public function clearHistory()
     {
@@ -107,8 +104,8 @@ class HistoryMiddleware extends MiddlewareBase
      * This function will be invoked after the request is sent, if
      * the promise is fulfilled.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
@@ -133,8 +130,8 @@ class HistoryMiddleware extends MiddlewareBase
      * This function will be executed after the request is sent, if
      * the promise is rejected.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
@@ -159,8 +156,6 @@ class HistoryMiddleware extends MiddlewareBase
      * Append the new entry to saved file path.
      *
      * @param array $entry the entry to be added.
-     *
-     * @return void
      */
     private function appendNewEntryToPath(array $entry)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Queue\Internal\QueueResources;
 /**
  * Holds access policy elements
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueueAccessPolicy extends AccessPolicy
 {

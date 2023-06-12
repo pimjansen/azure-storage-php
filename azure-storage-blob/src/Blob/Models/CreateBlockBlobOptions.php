@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Models\TransactionalMD5Trait;
 /**
  * Optional parameters for CreateBlockBlob.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlockBlobOptions extends CreateBlobOptions
 {

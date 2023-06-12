@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Holds result of getTable API.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetTableResult
 {
@@ -61,8 +61,6 @@ class GetTableResult
      * Sets the name.
      *
      * @param string $name The table name.
-     *
-     * @return void
      */
     protected function setName($name)
     {

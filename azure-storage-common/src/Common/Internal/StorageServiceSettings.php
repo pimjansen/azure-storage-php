@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -25,7 +25,8 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * page: http://msdn.microsoft.com/en-us/library/ee758697
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class StorageServiceSettings extends ServiceSettings
 {
@@ -56,20 +57,20 @@ class StorageServiceSettings extends ServiceSettings
 
     /**
      * If initialized or not
+     *
      * @internal
      */
     protected static $isInitialized = false;
 
     /**
      * Valid setting keys
+     *
      * @internal
      */
     protected static $validSettingKeys = [];
 
     /**
      * Initializes static members of the class.
-     *
-     * @return void
      */
     protected static function init()
     {
@@ -604,7 +605,7 @@ class StorageServiceSettings extends ServiceSettings
     /**
      * Checks if there is a SAS token.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasSasToken()
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Table\Models\Entity;
 /**
  * Unit tests for class BatchOperations
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperationsTest extends \PHPUnit\Framework\TestCase
 {
@@ -42,7 +42,7 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-                    * @depends testConstruct
+     * @depends testConstruct
      */
     public function testSetOperations($operations)
     {

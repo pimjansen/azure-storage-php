@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * Represents a set of access conditions to be used for operations against the
  * storage services.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class AccessCondition
 {
@@ -93,7 +93,7 @@ class AccessCondition
      * Specifying Conditional Headers for Blob Service Operations</a>.
      *
      * @param \DateTime $lastModified date that represents the last-modified
-     * time to check for the resource.
+     *                                time to check for the resource.
      *
      * @return \MicrosoftAzure\Storage\Blob\Models\AccessCondition
      */
@@ -142,7 +142,7 @@ class AccessCondition
      * Specifying Conditional Headers for Blob Service Operations</a>.
      *
      * @param \DateTime $lastModified date that represents the last-modified
-     * time to check for the resource.
+     *                                time to check for the resource.
      *
      * @return \MicrosoftAzure\Storage\Blob\Models\AccessCondition
      */
@@ -271,8 +271,6 @@ class AccessCondition
      * Sets header type
      *
      * @param string $headerType can be one of Resources
-     *
-     * @return void
      */
     public function setHeader($headerType)
     {
@@ -296,8 +294,6 @@ class AccessCondition
      * Sets the header value
      *
      * @param string $value the value to use
-     *
-     * @return void
      */
     public function setValue($value)
     {
@@ -321,7 +317,7 @@ class AccessCondition
      *
      * @internal
      *
-     * @return boolean
+     * @return bool
      */
     public static function isValid($headerType)
     {

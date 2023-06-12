@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -23,7 +23,8 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * Holder for default connection string sources used in CloudConfigurationManager.
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ConnectionStringSource
 {
@@ -33,8 +34,6 @@ class ConnectionStringSource
 
     /**
      * Initializes the default sources.
-     *
-     * @return void
      */
     private static function _init()
     {

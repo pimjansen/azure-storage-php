@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Represents blob copy state
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyState
 {
@@ -130,8 +130,6 @@ class CopyState
      * @param string $copyId the blob copy id.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setCopyId($copyId)
     {
@@ -154,8 +152,6 @@ class CopyState
      * @param \DateTime $completionTime the copy completion time.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setCompletionTime($completionTime)
     {
@@ -178,8 +174,6 @@ class CopyState
      * @param string $status the copy status.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setStatus($status)
     {
@@ -202,8 +196,6 @@ class CopyState
      * @param string $statusDescription the copy status description.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setStatusDescription($statusDescription)
     {
@@ -226,8 +218,6 @@ class CopyState
      * @param string $source the copy source.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setSource($source)
     {
@@ -250,8 +240,6 @@ class CopyState
      * @param int $bytesCopied the bytes copied.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setBytesCopied($bytesCopied)
     {
@@ -274,8 +262,6 @@ class CopyState
      * @param int $totalBytes the bytes copied.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setTotalBytes($totalBytes)
     {

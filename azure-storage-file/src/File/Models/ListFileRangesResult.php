@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Holds result of calling ListFileRangesResult wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListFileRangesResult
 {
@@ -89,8 +89,6 @@ class ListFileRangesResult
      * Sets file lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -112,8 +110,6 @@ class ListFileRangesResult
      * Sets file etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -124,7 +120,7 @@ class ListFileRangesResult
     /**
      * Gets file contentLength.
      *
-     * @return integer
+     * @return int
      */
     public function getContentLength()
     {
@@ -134,9 +130,7 @@ class ListFileRangesResult
     /**
      * Sets file contentLength.
      *
-     * @param integer $contentLength value.
-     *
-     * @return void
+     * @param int $contentLength value.
      */
     protected function setContentLength($contentLength)
     {
@@ -158,8 +152,6 @@ class ListFileRangesResult
      * Sets ranges
      *
      * @param array $ranges ranges to set
-     *
-     * @return void
      */
     protected function setRanges(array $ranges)
     {

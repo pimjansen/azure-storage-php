@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Table\Models\Filters\UnaryFilter;
 /**
  * Unit tests for class UnaryFilter
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class UnaryFilterTest extends \PHPUnit\Framework\TestCase
 {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Blob\Models\CreateBlobPagesOptions;
 /**
  * Unit tests for class CreateBlobPagesOptions
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
 {

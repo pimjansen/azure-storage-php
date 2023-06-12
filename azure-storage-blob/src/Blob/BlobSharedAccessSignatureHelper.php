@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\Common\SharedAccessSignatureHelper;
 /**
  * Provides methods to generate Azure Storage Shared Access Signature
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
 {
@@ -35,8 +35,7 @@ class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
      * Constructor.
      *
      * @param string $accountName the name of the storage account.
-     * @param string $accountKey the shared key of the storage account
-     *
+     * @param string $accountKey  the shared key of the storage account
      */
     public function __construct($accountName, $accountKey)
     {
@@ -48,30 +47,31 @@ class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
      *
      * This only supports version 2015-04-05 and later.
      *
-     * @param  string            $signedResource      Resource name to generate the
-     *                                                canonicalized resource.
-     *                                                It can be Resources::RESOURCE_TYPE_BLOB
-     *                                                or Resources::RESOURCE_TYPE_CONTAINER.
-     * @param  string            $resourceName        The name of the resource, including
-     *                                                the path of the resource. It should be
-     *                                                - {container}/{blob}: for blobs,
-     *                                                - {container}: for containers, e.g.:
-     *                                                mymusic/music.mp3 or
-     *                                                music.mp3
-     * @param  string            $signedPermissions   Signed permissions.
-     * @param  \Datetime|string  $signedExpiry        Signed expiry date.
-     * @param  \Datetime|string  $signedStart         Signed start date.
-     * @param  string            $signedIP            Signed IP address.
-     * @param  string            $signedProtocol      Signed protocol.
-     * @param  string            $signedIdentifier    Signed identifier.
-     * @param  string            $cacheControl        Cache-Control header (rscc).
-     * @param  string            $contentDisposition  Content-Disposition header (rscd).
-     * @param  string            $contentEncoding     Content-Encoding header (rsce).
-     * @param  string            $contentLanguage     Content-Language header (rscl).
-     * @param  string            $contentType         Content-Type header (rsct).
+     * @param string           $signedResource     Resource name to generate the
+     *                                             canonicalized resource.
+     *                                             It can be Resources::RESOURCE_TYPE_BLOB
+     *                                             or Resources::RESOURCE_TYPE_CONTAINER.
+     * @param string           $resourceName       The name of the resource, including
+     *                                             the path of the resource. It should be
+     *                                             - {container}/{blob}: for blobs,
+     *                                             - {container}: for containers, e.g.:
+     *                                             mymusic/music.mp3 or
+     *                                             music.mp3
+     * @param string           $signedPermissions  Signed permissions.
+     * @param \Datetime|string $signedExpiry       Signed expiry date.
+     * @param \Datetime|string $signedStart        Signed start date.
+     * @param string           $signedIP           Signed IP address.
+     * @param string           $signedProtocol     Signed protocol.
+     * @param string           $signedIdentifier   Signed identifier.
+     * @param string           $cacheControl       Cache-Control header (rscc).
+     * @param string           $contentDisposition Content-Disposition header (rscd).
+     * @param string           $contentEncoding    Content-Encoding header (rsce).
+     * @param string           $contentLanguage    Content-Language header (rscl).
+     * @param string           $contentType        Content-Type header (rsct).
      *
      * @see Constructing an service SAS at
      * https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-a-service-sas
+     *
      * @return string
      */
     public function generateBlobServiceSharedAccessSignatureToken(

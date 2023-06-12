@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Exceptions;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
 /**
  * Exception thrown if an argument type does not match with the expected type.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class InvalidArgumentTypeException extends \InvalidArgumentException
 {

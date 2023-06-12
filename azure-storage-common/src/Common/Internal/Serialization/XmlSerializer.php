@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Serialization;
@@ -27,7 +27,8 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * Short description
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class XmlSerializer implements ISerializer
 {
@@ -61,11 +62,9 @@ class XmlSerializer implements ISerializer
      * Takes an array and produces XML based on it.
      *
      * @param XMLWriter $xmlw       XMLWriter object that was previously instanted
-     * and is used for creating the XML.
+     *                              and is used for creating the XML.
      * @param array     $data       Array to be converted to XML.
      * @param string    $defaultTag Default XML tag to be used if none specified.
-     *
-     * @return void
      */
     private function arr2xml(\XMLWriter $xmlw, array $data, $defaultTag = null)
     {
@@ -100,7 +99,6 @@ class XmlSerializer implements ISerializer
      *
      * @param object $targetObject The target object.
      * @param array  $methodArray  The array of method of the target object.
-     *
      */
     private static function getInstanceAttributes($targetObject, array $methodArray)
     {

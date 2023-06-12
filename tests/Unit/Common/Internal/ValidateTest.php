@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Unit tests for class ValidateTest
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ValidateTest extends \PHPUnit\Framework\TestCase
 {

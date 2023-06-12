@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Authentication;
@@ -30,7 +30,8 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
  * check: http://msdn.microsoft.com/en-us/library/windowsazure/dd179428.aspx
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SharedKeyAuthScheme implements IAuthScheme
 {
@@ -283,7 +284,7 @@ class SharedKeyAuthScheme implements IAuthScheme
     /**
      * Adds authentication header to the request headers.
      *
-     * @param  \GuzzleHttp\Psr7\Request $request HTTP request object.
+     * @param \GuzzleHttp\Psr7\Request $request HTTP request object.
      *
      * @abstract
      *

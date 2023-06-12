@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Holds share ACL members.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ShareACL extends ACLBase
 {
@@ -43,7 +43,7 @@ class ShareACL extends ACLBase
      * Parses the given array into signed identifiers and create an instance of
      * ShareACL
      *
-     * @param array  $parsed       The parsed response into array representation.
+     * @param array $parsed The parsed response into array representation.
      *
      * @internal
      *
@@ -60,13 +60,11 @@ class ShareACL extends ACLBase
     /**
      * Validate if the resource type is for the class.
      *
-     * @param  string $resourceType the resource type to be validated.
+     * @param string $resourceType the resource type to be validated.
      *
      * @throws \InvalidArgumentException
      *
      * @internal
-     *
-     * @return void
      */
     protected static function validateResourceType($resourceType)
     {

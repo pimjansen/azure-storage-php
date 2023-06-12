@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Holds container ACL members.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ContainerACL extends ACLBase
 {
@@ -79,8 +79,6 @@ class ContainerACL extends ACLBase
      * Sets container publicAccess.
      *
      * @param string $publicAccess value.
-     *
-     * @return void
      */
     public function setPublicAccess($publicAccess)
     {
@@ -98,8 +96,8 @@ class ContainerACL extends ACLBase
      * Gets the resource type according to the given public access. Default
      * value is Resources::RESOURCE_TYPE_CONTAINER.
      *
-     * @param  string $publicAccess The public access that determines the
-     *                              resource type.
+     * @param string $publicAccess The public access that determines the
+     *                             resource type.
      *
      * @return string
      */
@@ -125,13 +123,11 @@ class ContainerACL extends ACLBase
     /**
      * Validate if the resource type is for the class.
      *
-     * @param  string $resourceType the resource type to be validated.
+     * @param string $resourceType the resource type to be validated.
      *
      * @throws \InvalidArgumentException
      *
      * @internal
-     *
-     * @return void
      */
     protected static function validateResourceType($resourceType)
     {

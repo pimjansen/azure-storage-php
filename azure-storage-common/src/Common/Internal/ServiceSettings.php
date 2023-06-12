@@ -15,7 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -32,7 +33,7 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * 4- createFromConnectionString($connectionString): A public static function that
  *    takes a connection string and returns the created settings object.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 abstract class ServiceSettings
 {
@@ -41,8 +42,6 @@ abstract class ServiceSettings
      * available formats.
      *
      * @param string $connectionString The invalid formatted connection string.
-     *
-     * @return void
      *
      * @throws \RuntimeException
      */
@@ -59,9 +58,9 @@ abstract class ServiceSettings
      *
      * @param string $connectionString The user provided connection string.
      *
-     * @return array The tokenized connection string keys.
-     *
      * @throws \RuntimeException
+     *
+     * @return array The tokenized connection string keys.
      */
     protected static function parseAndValidateKeys($connectionString)
     {
@@ -95,11 +94,11 @@ abstract class ServiceSettings
     /**
      * Creates an anonymous function that acts as predicate.
      *
-     * @param array   $requirements The array of conditions to satisfy.
-     * @param boolean $isRequired   Either these conditions are all required or all
-     * optional.
-     * @param boolean $atLeastOne   Indicates that at least one requirement must
-     * succeed.
+     * @param array $requirements The array of conditions to satisfy.
+     * @param bool  $isRequired   Either these conditions are all required or all
+     *                            optional.
+     * @param bool  $atLeastOne   Indicates that at least one requirement must
+     *                            succeed.
      *
      * @return callable
      */
@@ -249,8 +248,8 @@ abstract class ServiceSettings
      *
      * @param array $settings The settings to check.
      *
-     * @return boolean If any filter returns null, false. If there are any settings
-     * left over after all filters are processed, false. Otherwise true.
+     * @return bool If any filter returns null, false. If there are any settings
+     *              left over after all filters are processed, false. Otherwise true.
      */
     protected static function matchedSpecification(array $settings)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Optional parameters for deleteBlob wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class DeleteBlobOptions extends BlobServiceOptions
 {
@@ -45,8 +45,6 @@ class DeleteBlobOptions extends BlobServiceOptions
      * Sets blob snapshot.
      *
      * @param string $snapshot value.
-     *
-     * @return void
      */
     public function setSnapshot($snapshot)
     {
@@ -56,7 +54,7 @@ class DeleteBlobOptions extends BlobServiceOptions
     /**
      * Gets blob deleteSnaphotsOnly.
      *
-     * @return boolean
+     * @return bool
      */
     public function getDeleteSnaphotsOnly()
     {
@@ -68,7 +66,7 @@ class DeleteBlobOptions extends BlobServiceOptions
      *
      * @param string $deleteSnaphotsOnly value.
      *
-     * @return boolean
+     * @return bool
      */
     public function setDeleteSnaphotsOnly($deleteSnaphotsOnly)
     {

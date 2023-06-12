@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Serialization;
@@ -25,7 +25,8 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * Perform JSON serialization / deserialization
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class JsonSerializer implements ISerializer
 {

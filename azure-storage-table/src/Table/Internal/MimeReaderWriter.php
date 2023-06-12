@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal;
@@ -26,7 +26,8 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
  * Reads and writes MIME for batch API.
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MimeReaderWriter implements IMimeReaderWriter
 {
@@ -37,7 +38,7 @@ class MimeReaderWriter implements IMimeReaderWriter
      * @param array $bodyPartContents The MIME body parts.
      *
      * @return array Returns array with two elements 'headers' and 'body' which
-     * represents the MIME message.
+     *               represents the MIME message.
      */
     public function encodeMimeMultipart(array $bodyPartContents)
     {

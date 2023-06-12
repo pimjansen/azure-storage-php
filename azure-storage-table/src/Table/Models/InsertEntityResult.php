@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Holds result of calling insertEntity wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class InsertEntityResult
 {
@@ -35,9 +35,9 @@ class InsertEntityResult
     /**
      * Create InsertEntityResult object from HTTP response parts.
      *
-     * @param string              $body            The HTTP response body.
-     * @param array               $headers         The HTTP response headers.
-     * @param IODataReaderWriter  $odataSerializer The OData reader and writer.
+     * @param string             $body            The HTTP response body.
+     * @param array              $headers         The HTTP response headers.
+     * @param IODataReaderWriter $odataSerializer The OData reader and writer.
      *
      * @internal
      *
@@ -67,8 +67,6 @@ class InsertEntityResult
      * Sets table entity.
      *
      * @param Entity $entity The table entity instance.
-     *
-     * @return void
      */
     protected function setEntity($entity)
     {

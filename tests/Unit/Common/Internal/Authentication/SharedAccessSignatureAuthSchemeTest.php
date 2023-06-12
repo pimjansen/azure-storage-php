@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Authentication;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\Tests\Mock\Common\Internal\Authentication\SharedAcces
 /**
  * Unit tests for SharedAccessSignatureAuthScheme class.
  *
- * @link       https://github.com/azure/azure-storage-php
+ * @see       https://github.com/azure/azure-storage-php
  */
 class SharedAccessSignatureAuthSchemeTest extends \PHPUnit\Framework\TestCase
 {

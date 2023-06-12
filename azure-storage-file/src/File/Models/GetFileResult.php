@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -24,7 +24,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Holds result of GetFile API.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetFileResult
 {
@@ -70,8 +70,6 @@ class GetFileResult
      * Sets file metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     protected function setMetadata(array $metadata)
     {
@@ -92,8 +90,6 @@ class GetFileResult
      * Sets file properties.
      *
      * @param FileProperties $properties value.
-     *
-     * @return void
      */
     protected function setProperties(FileProperties $properties)
     {
@@ -114,8 +110,6 @@ class GetFileResult
      * Sets file contentStream.
      *
      * @param resource $contentStream The stream handle.
-     *
-     * @return void
      */
     protected function setContentStream($contentStream)
     {

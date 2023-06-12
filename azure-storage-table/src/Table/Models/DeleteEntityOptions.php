@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Holds optional parameters for deleteEntity API.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class DeleteEntityOptions extends TableServiceOptions
 {
@@ -42,8 +42,6 @@ class DeleteEntityOptions extends TableServiceOptions
      * Sets entity etag.
      *
      * @param string $etag The entity ETag.
-     *
-     * @return void
      */
     public function setETag($etag)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Blob;
@@ -26,11 +26,13 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Tests for a blob storage account, such as block blob tier.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobStorageAccountFunctionalTest extends \PHPUnit\Framework\TestCase
 {
-    /** @var BlobRestProxy $blobRestProxy */
+    /**
+     * @var BlobRestProxy
+     */
     private static $blobRestProxy;
     private static $accountName;
     private $containerName;

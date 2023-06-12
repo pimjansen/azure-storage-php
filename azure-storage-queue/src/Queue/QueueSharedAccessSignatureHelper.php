@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\Queue\Internal\QueueResources as Resources;
 /**
  * Provides methods to generate Azure Storage Shared Access Signature
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueueSharedAccessSignatureHelper extends SharedAccessSignatureHelper
 {
@@ -35,8 +35,7 @@ class QueueSharedAccessSignatureHelper extends SharedAccessSignatureHelper
      * Constructor.
      *
      * @param string $accountName the name of the storage account.
-     * @param string $accountKey the shared key of the storage account
-     *
+     * @param string $accountKey  the shared key of the storage account
      */
     public function __construct($accountName, $accountKey)
     {
@@ -48,16 +47,17 @@ class QueueSharedAccessSignatureHelper extends SharedAccessSignatureHelper
      *
      * This only supports version 2015-04-05 and later.
      *
-     * @param  string           $queueName          The name of the queue.
-     * @param  string           $signedPermissions  Signed permissions.
-     * @param  \Datetime|string $signedExpiry       Signed expiry date.
-     * @param  \Datetime|string $signedStart        Signed start date.
-     * @param  string           $signedIdentifier   Signed identifier.
-     * @param  string           $signedIP           Signed IP address.
-     * @param  string           $signedProtocol     Signed protocol.
+     * @param string           $queueName         The name of the queue.
+     * @param string           $signedPermissions Signed permissions.
+     * @param \Datetime|string $signedExpiry      Signed expiry date.
+     * @param \Datetime|string $signedStart       Signed start date.
+     * @param string           $signedIdentifier  Signed identifier.
+     * @param string           $signedIP          Signed IP address.
+     * @param string           $signedProtocol    Signed protocol.
      *
      * @see Constructing an service SAS at
      * https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-a-service-sas
+     *
      * @return string
      */
     public function generateQueueServiceSharedAccessSignatureToken(

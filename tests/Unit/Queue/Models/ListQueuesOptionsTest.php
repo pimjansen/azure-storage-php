@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Queue\Models\ListQueuesOptions;
 /**
  * Unit tests for class ListQueuesOptions
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListQueuesOptionsTest extends \PHPUnit\Framework\TestCase
 {

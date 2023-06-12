@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\MetadataTrait;
 /**
  * Holds result of getFileMetadata.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetFileMetadataResult
 {
@@ -33,7 +33,7 @@ class GetFileMetadataResult
     /**
      * Creates the instance from the parsed headers.
      *
-     * @param  array $parsed Parsed headers
+     * @param array $parsed Parsed headers
      *
      * @return GetFileMetadataResult
      */

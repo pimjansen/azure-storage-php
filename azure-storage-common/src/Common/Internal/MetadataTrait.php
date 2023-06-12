@@ -15,7 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -24,7 +25,7 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * Trait implementing common logic for metadata, last-modified and etag. The
  * code is shared for multiple REST APIs.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 trait MetadataTrait
 {
@@ -48,8 +49,6 @@ trait MetadataTrait
      * Sets share lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -71,8 +70,6 @@ trait MetadataTrait
      * Sets share etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -94,8 +91,6 @@ trait MetadataTrait
      * header prefix (x-ms-meta-*).
      *
      * @param array $metadata user defined metadata object in array form.
-     *
-     * @return void
      */
     protected function setMetadata(array $metadata)
     {
@@ -105,7 +100,7 @@ trait MetadataTrait
     /**
      * Create an instance using the response headers from the API call.
      *
-     * @param  array  $responseHeaders The array contains all the response headers
+     * @param array $responseHeaders The array contains all the response headers
      *
      * @internal
      *

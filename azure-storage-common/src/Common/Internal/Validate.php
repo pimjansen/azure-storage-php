@@ -15,7 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -25,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Exceptions\InvalidArgumentTypeException;
 /**
  * Validates against a condition and throws an exception in case of failure.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Validate
 {
@@ -36,8 +37,6 @@ class Validate
      * @param string $name The parameter name.
      *
      * @throws InvalidArgumentTypeException.
-     *
-     * @return void
      */
     public static function isArray($var, $name)
     {
@@ -53,8 +52,6 @@ class Validate
      * @param string $name The parameter name.
      *
      * @throws InvalidArgumentTypeException
-     *
-     * @return void
      */
     public static function canCastAsString($var, $name)
     {
@@ -71,8 +68,6 @@ class Validate
      * @param mixed $var variable to check against.
      *
      * @throws InvalidArgumentTypeException
-     *
-     * @return void
      */
     public static function isBoolean($var)
     {
@@ -86,8 +81,6 @@ class Validate
      * @param string $name The parameter name.
      *
      * @throws \InvalidArgumentException
-     *
-     * @return void
      */
     public static function notNullOrEmpty($var, $name)
     {
@@ -105,8 +98,6 @@ class Validate
      * @param string $name The parameter name.
      *
      * @throws \InvalidArgumentException
-     *
-     * @return void
      */
     public static function isDouble($var, $name)
     {
@@ -122,8 +113,6 @@ class Validate
      * @param string $name The parameter name.
      *
      * @throws InvalidArgumentTypeException
-     *
-     * @return void
      */
     public static function isInteger($var, $name)
     {
@@ -139,7 +128,7 @@ class Validate
      *
      * @param string $var value.
      *
-     * @return boolean
+     * @return bool
      */
     public static function isNullOrEmptyString($var)
     {
@@ -159,8 +148,6 @@ class Validate
      * @param string $failureMessage the exception message
      *
      * @throws \Exception
-     *
-     * @return void
      */
     public static function isTrue($isSatisfied, $failureMessage)
     {
@@ -175,8 +162,6 @@ class Validate
      * @param mixed $date variable to check against.
      *
      * @throws InvalidArgumentTypeException
-     *
-     * @return void
      */
     public static function isDate($date)
     {
@@ -192,8 +177,6 @@ class Validate
      * @param string $name The parameter name.
      *
      * @throws \InvalidArgumentException
-     *
-     * @return void
      */
     public static function notNull($var, $name)
     {
@@ -207,12 +190,10 @@ class Validate
      *
      * @param mixed  $objectInstance An object that requires class type validation.
      * @param mixed  $classInstance  The instance of the class the the
-     * object instance should be.
+     *                               object instance should be.
      * @param string $name           The name of the object.
      *
      * @throws \InvalidArgumentException
-     *
-     * @return void
      */
     public static function isInstanceOf($objectInstance, $classInstance, $name)
     {
@@ -257,7 +238,7 @@ class Validate
      *
      * @throws \InvalidArgumentException
      *
-     * @return boolean
+     * @return bool
      */
     public static function isValidHostname($hostname)
     {
@@ -296,7 +277,7 @@ class Validate
      *
      * @throws \InvalidArgumentException
      *
-     * @return boolean
+     * @return bool
      */
     public static function isValidUri($uri)
     {
@@ -319,7 +300,7 @@ class Validate
      *
      * @throws InvalidArgumentTypeException.
      *
-     * @return boolean
+     * @return bool
      */
     public static function isObject($var, $name)
     {
@@ -339,7 +320,7 @@ class Validate
      *
      * @throws \InvalidArgumentException
      *
-     * @return boolean
+     * @return bool
      */
     public static function isA($objectInstance, $class, $name)
     {
@@ -371,7 +352,7 @@ class Validate
      * @param string $method         Method name
      * @param string $name           The parameter name
      *
-     * @return boolean
+     * @return bool
      */
     public static function methodExists($objectInstance, $method, $name)
     {
@@ -400,7 +381,7 @@ class Validate
      *
      * @throws \InvalidArgumentException
      *
-     * @return boolean
+     * @return bool
      */
     public static function isDateString($value, $name)
     {
@@ -423,14 +404,14 @@ class Validate
     /**
      * Validate if the provided array has key, throw exception otherwise.
      *
-     * @param  string  $key   The key to be searched.
-     * @param  string  $name  The name of the array.
-     * @param  array   $array The array to be validated.
+     * @param string $key   The key to be searched.
+     * @param string $name  The name of the array.
+     * @param array  $array The array to be validated.
      *
-     * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
      *
-     * @return  boolean
+     * @return bool
      */
     public static function hasKey($key, $name, array $array)
     {

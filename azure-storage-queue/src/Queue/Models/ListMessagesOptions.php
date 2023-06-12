@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Queue\Models;
 /**
  * Optional parameters for list messages wrapper.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListMessagesOptions extends QueueServiceOptions
 {
@@ -32,7 +32,7 @@ class ListMessagesOptions extends QueueServiceOptions
     /**
      * Gets visibilityTimeoutInSeconds field.
      *
-     * @return integer
+     * @return int
      */
     public function getVisibilityTimeoutInSeconds()
     {
@@ -42,9 +42,7 @@ class ListMessagesOptions extends QueueServiceOptions
     /**
      * Sets visibilityTimeoutInSeconds field.
      *
-     * @param integer $visibilityTimeoutInSeconds value to use.
-     *
-     * @return void
+     * @param int $visibilityTimeoutInSeconds value to use.
      */
     public function setVisibilityTimeoutInSeconds($visibilityTimeoutInSeconds)
     {
@@ -54,7 +52,7 @@ class ListMessagesOptions extends QueueServiceOptions
     /**
      * Gets numberOfMessages field.
      *
-     * @return integer
+     * @return int
      */
     public function getNumberOfMessages()
     {
@@ -64,9 +62,7 @@ class ListMessagesOptions extends QueueServiceOptions
     /**
      * Sets numberOfMessages field.
      *
-     * @param integer $numberOfMessages value to use.
-     *
-     * @return void
+     * @param int $numberOfMessages value to use.
      */
     public function setNumberOfMessages($numberOfMessages)
     {

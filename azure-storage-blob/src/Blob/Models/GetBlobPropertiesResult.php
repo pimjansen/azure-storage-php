@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\MetadataTrait;
 /**
  * Holds result of calling getBlobProperties
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetBlobPropertiesResult
 {
@@ -46,8 +46,6 @@ class GetBlobPropertiesResult
      * Sets blob properties.
      *
      * @param BlobProperties $properties value.
-     *
-     * @return void
      */
     protected function setProperties($properties)
     {
@@ -57,7 +55,7 @@ class GetBlobPropertiesResult
     /**
      * Create a instance using the given headers.
      *
-     * @param  array  $headers response headers parsed in an array
+     * @param array $headers response headers parsed in an array
      *
      * @internal
      *

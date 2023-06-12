@@ -15,7 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -27,7 +28,7 @@ use MicrosoftAzure\Storage\Common\Models\SignedIdentifier;
 /**
  * Provide base class for service ACLs.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 abstract class ACLBase
 {
@@ -44,13 +45,11 @@ abstract class ACLBase
     /**
      * Validate if the resource type for the class.
      *
-     * @param  string $resourceType the resource type to be validated.
+     * @param string $resourceType the resource type to be validated.
      *
      * @throws \InvalidArgumentException
      *
      * @internal
-     *
-     * @return void
      */
     abstract protected static function validateResourceType($resourceType);
 
@@ -75,7 +74,6 @@ abstract class ACLBase
     /**
      * Converts this signed identifiers to XML representation.
      *
-     *
      * @internal
      *
      * @return string
@@ -94,11 +92,9 @@ abstract class ACLBase
      * Construct the signed identifiers from a given parsed XML in array
      * representation.
      *
-     * @param array|null  $parsed The parsed XML into array representation.
+     * @param array|null $parsed The parsed XML into array representation.
      *
      * @internal
-     *
-     * @return void
      */
     public function fromXmlArray(array $parsed = null)
     {
@@ -144,8 +140,6 @@ abstract class ACLBase
      * Set the type of resource this ACL relate to.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setResourceType($resourceType)
     {
@@ -167,8 +161,6 @@ abstract class ACLBase
      * @param string    $permissions The permissions associated with the Shared
      *                               Access Signature. The user is restricted to
      *                               operations allowed by the permissions.
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/establishing-a-stored-access-policy
      */
@@ -209,9 +201,9 @@ abstract class ACLBase
     /**
      * Remove the signed identifier with given ID.
      *
-     * @param  string $id The ID of the signed identifier to be removed.
+     * @param string $id The ID of the signed identifier to be removed.
      *
-     * @return boolean
+     * @return bool
      */
     public function removeSignedIdentifier($id)
     {

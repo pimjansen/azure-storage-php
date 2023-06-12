@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
@@ -28,7 +28,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * This class provides static functions that creates retry handlers for Guzzle
  * HTTP clients to handle retry policy.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RetryMiddlewareFactory
 {
@@ -47,22 +47,23 @@ class RetryMiddlewareFactory
      * Create the retry handler for the Guzzle client, according to the given
      * attributes.
      *
-     * @param  string $type                The type that controls the logic of
-     *                                     the decider of the retry handler.
-     *                                     Possible value can be
-     *                                     self::GENERAL_RETRY_TYPE or
-     *                                     self::APPEND_BLOB_RETRY_TYPE
-     * @param  int    $numberOfRetries     The maximum number of retries.
-     * @param  int    $interval            The minimum interval between each retry
-     * @param  string $accumulationMethod  If the interval increases linearly or
-     *                                     exponentially.
-     *                                     Possible value can be
-     *                                     self::LINEAR_INTERVAL_ACCUMULATION or
-     *                                     self::EXPONENTIAL_INTERVAL_ACCUMULATION
-     * @param  bool   $retryConnect        Whether to retry on connection failures.
-     * @return RetryMiddleware             A RetryMiddleware object that contains
-     *                                     the logic of how the request should be
-     *                                     handled after a response.
+     * @param string $type               The type that controls the logic of
+     *                                   the decider of the retry handler.
+     *                                   Possible value can be
+     *                                   self::GENERAL_RETRY_TYPE or
+     *                                   self::APPEND_BLOB_RETRY_TYPE
+     * @param int    $numberOfRetries    The maximum number of retries.
+     * @param int    $interval           The minimum interval between each retry
+     * @param string $accumulationMethod If the interval increases linearly or
+     *                                   exponentially.
+     *                                   Possible value can be
+     *                                   self::LINEAR_INTERVAL_ACCUMULATION or
+     *                                   self::EXPONENTIAL_INTERVAL_ACCUMULATION
+     * @param bool   $retryConnect       Whether to retry on connection failures.
+     *
+     * @return RetryMiddleware A RetryMiddleware object that contains
+     *                         the logic of how the request should be
+     *                         handled after a response.
      */
     public static function create(
         $type = self::GENERAL_RETRY_TYPE,
@@ -129,12 +130,12 @@ class RetryMiddlewareFactory
      * that accepts the number of retries, the request, the response and the
      * exception, and return the decision for a retry.
      *
-     * @param  string $type         The type of the retry handler.
-     * @param  int    $maxRetries   The maximum number of retries to be done.
-     * @param  bool   $retryConnect Whether to retry on connection failures.
+     * @param string $type         The type of the retry handler.
+     * @param int    $maxRetries   The maximum number of retries to be done.
+     * @param bool   $retryConnect Whether to retry on connection failures.
      *
-     * @return callable     The callable that will return if the request should
-     *                      be retried.
+     * @return callable The callable that will return if the request should
+     *                  be retried.
      */
     protected static function createRetryDecider($type, $maxRetries, $retryConnect)
     {
@@ -186,10 +187,10 @@ class RetryMiddlewareFactory
     /**
      * Decide if the given status code indicate the request should be retried.
      *
-     * @param  int  $statusCode  Status code of the previous request.
-     * @param  bool $isSecondary Whether the request is sent to secondary endpoint.
+     * @param int  $statusCode  Status code of the previous request.
+     * @param bool $isSecondary Whether the request is sent to secondary endpoint.
      *
-     * @return bool            true if the request should be retried.
+     * @return bool true if the request should be retried.
      */
     protected static function generalRetryDecider($statusCode, $isSecondary)
     {
@@ -210,10 +211,10 @@ class RetryMiddlewareFactory
      * Decide if the given status code indicate the request should be retried.
      * This is for append blob.
      *
-     * @param  int  $statusCode  Status code of the previous request.
-     * @param  bool $isSecondary Whether the request is sent to secondary endpoint.
+     * @param int  $statusCode  Status code of the previous request.
+     * @param bool $isSecondary Whether the request is sent to secondary endpoint.
      *
-     * @return bool            true if the request should be retried.
+     * @return bool true if the request should be retried.
      */
     protected static function appendBlobRetryDecider($statusCode, $isSecondary)
     {
@@ -231,10 +232,10 @@ class RetryMiddlewareFactory
      * Create the delay calculator that increases the interval linearly
      * according to the number of retries.
      *
-     * @param  int $interval the minimum interval of the retry.
+     * @param int $interval the minimum interval of the retry.
      *
-     * @return callable      a calculator that will return the interval
-     *                       according to the number of retries.
+     * @return callable a calculator that will return the interval
+     *                  according to the number of retries.
      */
     protected static function createLinearDelayCalculator($interval)
     {
@@ -247,10 +248,10 @@ class RetryMiddlewareFactory
      * Create the delay calculator that increases the interval exponentially
      * according to the number of retries.
      *
-     * @param  int $interval the minimum interval of the retry.
+     * @param int $interval the minimum interval of the retry.
      *
-     * @return callable      a calculator that will return the interval
-     *                       according to the number of retries.
+     * @return callable a calculator that will return the interval
+     *                  according to the number of retries.
      */
     protected static function createExponentialDelayCalculator($interval)
     {

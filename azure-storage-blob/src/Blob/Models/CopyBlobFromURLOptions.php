@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * optional parameters for CopyBlobOptions wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyBlobFromURLOptions extends BlobServiceOptions
 {
@@ -47,8 +47,6 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
      * Sets source access condition
      *
      * @param array $sourceAccessConditions value to use.
-     *
-     * @return void
      */
     public function setSourceAccessConditions($sourceAccessConditions)
     {
@@ -74,8 +72,6 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
      * Sets metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {
@@ -96,8 +92,6 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
      * Sets source lease ID.
      *
      * @param string $sourceLeaseId value.
-     *
-     * @return void
      */
     public function setSourceLeaseId($sourceLeaseId)
     {
@@ -107,7 +101,7 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
     /**
      * Gets isIncrementalCopy.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsIncrementalCopy()
     {
@@ -117,9 +111,7 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
     /**
      * Sets isIncrementalCopy.
      *
-     * @param boolean $isIncrementalCopy
-     *
-     * @return void
+     * @param bool $isIncrementalCopy
      */
     public function setIsIncrementalCopy($isIncrementalCopy)
     {

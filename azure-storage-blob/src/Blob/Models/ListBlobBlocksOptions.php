@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Optional parameters for listBlobBlock wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListBlobBlocksOptions extends BlobServiceOptions
 {
@@ -62,8 +62,6 @@ class ListBlobBlocksOptions extends BlobServiceOptions
      * Sets blob snapshot.
      *
      * @param string $snapshot value.
-     *
-     * @return void
      */
     public function setSnapshot($snapshot)
     {
@@ -74,8 +72,6 @@ class ListBlobBlocksOptions extends BlobServiceOptions
      * Sets the include uncommittedBlobs flag.
      *
      * @param bool $includeUncommittedBlobs value.
-     *
-     * @return void
      */
     public function setIncludeUncommittedBlobs($includeUncommittedBlobs)
     {
@@ -86,7 +82,7 @@ class ListBlobBlocksOptions extends BlobServiceOptions
     /**
      * Indicates if uncommittedBlobs is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeUncommittedBlobs()
     {
@@ -97,8 +93,6 @@ class ListBlobBlocksOptions extends BlobServiceOptions
      * Sets the include committedBlobs flag.
      *
      * @param bool $includeCommittedBlobs value.
-     *
-     * @return void
      */
     public function setIncludeCommittedBlobs($includeCommittedBlobs)
     {
@@ -109,7 +103,7 @@ class ListBlobBlocksOptions extends BlobServiceOptions
     /**
      * Indicates if committedBlobs is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeCommittedBlobs()
     {

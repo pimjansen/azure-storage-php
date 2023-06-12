@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -25,7 +25,8 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * www.connectionstrings.com/articles/show/important-rules-for-connection-strings
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ConnectionStringParser
 {
@@ -43,7 +44,7 @@ class ConnectionStringParser
      * Parses the connection string into a collection of key/value pairs.
      *
      * @param string $argumentName     Name of the argument to be used in error
-     * messages.
+     *                                 messages.
      * @param string $connectionString Connection string.
      *
      * @return array
@@ -63,7 +64,7 @@ class ConnectionStringParser
      * Initializes the object.
      *
      * @param string $argumentName Name of the argument to be used in error
-     * messages.
+     *                             messages.
      * @param string $value        Connection string.
      */
     private function __construct($argumentName, $value)
@@ -77,9 +78,9 @@ class ConnectionStringParser
     /**
      * Parses the connection string.
      *
-     * @return array
-     *
      * @throws \RuntimeException
+     *
+     * @return array
      */
     private function _parse()
     {
@@ -141,8 +142,8 @@ class ConnectionStringParser
      *Generates an invalid connection string exception with the detailed error
      * message.
      *
-     * @param integer $position    The position of the error.
-     * @param string  $errorString The short error formatting string.
+     * @param int    $position    The position of the error.
+     * @param string $errorString The short error formatting string.
      *
      * @return \RuntimeException
      */
@@ -175,8 +176,6 @@ class ConnectionStringParser
 
     /**
      * Skips whitespaces at the current position.
-     *
-     * @return void
      */
     private function _skipWhiteSpaces()
     {
@@ -304,8 +303,6 @@ class ConnectionStringParser
      * Skips specified operator.
      *
      * @param string $operatorChar The operator character.
-     *
-     * @return void
      *
      * @throws \RuntimeException
      */

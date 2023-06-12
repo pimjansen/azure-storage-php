@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal;
@@ -28,20 +28,21 @@ use MicrosoftAzure\Storage\Table\Models as TableModels;
  * This interface has all REST APIs provided by Windows Azure for Table service.
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  * @see       http://msdn.microsoft.com/en-us/library/windowsazure/dd179423.aspx
  */
 interface ITable
 {
     /**
-    * Gets the properties of the service.
-    *
-    * @param ServiceOptions $options optional table service options.
-    *
-    * @return \MicrosoftAzure\Storage\Common\Models\GetServicePropertiesResult
-    *
-    * @see http://msdn.microsoft.com/en-us/library/windowsazure/hh452238.aspx
-    */
+     * Gets the properties of the service.
+     *
+     * @param ServiceOptions $options optional table service options.
+     *
+     * @return \MicrosoftAzure\Storage\Common\Models\GetServicePropertiesResult
+     *
+     * @see http://msdn.microsoft.com/en-us/library/windowsazure/hh452238.aspx
+     */
     public function getServiceProperties(
         ServiceOptions $options = null
     );
@@ -60,15 +61,13 @@ interface ITable
     );
 
     /**
-    * Sets the properties of the service.
-    *
-    * @param ServiceProperties $serviceProperties new service properties
-    * @param ServiceOptions    $options           optional parameters
-    *
-    * @return void
-    *
-    * @see http://msdn.microsoft.com/en-us/library/windowsazure/hh452240.aspx
-    */
+     * Sets the properties of the service.
+     *
+     * @param ServiceProperties $serviceProperties new service properties
+     * @param ServiceOptions    $options           optional parameters
+     *
+     * @see http://msdn.microsoft.com/en-us/library/windowsazure/hh452240.aspx
+     */
     public function setServiceProperties(
         ServiceProperties $serviceProperties,
         ServiceOptions $options = null
@@ -96,7 +95,7 @@ interface ITable
      * Retieves statistics related to replication for the service. The operation
      * will only be sent to secondary location endpoint.
      *
-     * @param  ServiceOptions|null $options The options this operation sends with.
+     * @param ServiceOptions|null $options The options this operation sends with.
      *
      * @return GetServiceStatsResult
      *
@@ -108,7 +107,7 @@ interface ITable
      * Creates promise that retrieves statistics related to replication for the
      * service. The operation will only be sent to secondary location endpoint.
      *
-     * @param  ServiceOptions|null $options The options this operation sends with.
+     * @param ServiceOptions|null $options The options this operation sends with.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -119,8 +118,8 @@ interface ITable
     /**
      * Quries tables in the given storage account.
      *
-     * @param TableModels\QueryTablesOptions|string|TableModels\Filters\Filter $options
-     * Could be optional parameters, table prefix or filter to apply.
+     * @param string|TableModels\Filters\Filter|TableModels\QueryTablesOptions $options
+     *                                                                                  Could be optional parameters, table prefix or filter to apply.
      *
      * @return TableModels\QueryTablesResult
      *
@@ -131,8 +130,8 @@ interface ITable
     /**
      * Creates promise to query the tables in the given storage account.
      *
-     * @param TableModels\QueryTablesOptions|string|TableModels\Filters\Filter $options
-     * Could be optional parameters, table prefix or filter to apply.
+     * @param string|TableModels\Filters\Filter|TableModels\QueryTablesOptions $options
+     *                                                                                  Could be optional parameters, table prefix or filter to apply.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -145,8 +144,6 @@ interface ITable
      *
      * @param string                                $table   The name of the table.
      * @param TableModels\TableServiceCreateOptions $options optional parameters
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/create-table
      */
@@ -202,8 +199,6 @@ interface ITable
      * @param string                          $table   The name of the table.
      * @param TableModels\TableServiceOptions $options optional parameters
      *
-     * @return void
-     *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179387.aspx
      */
     public function deleteTable(
@@ -229,10 +224,10 @@ interface ITable
     /**
      * Quries entities for the given table name
      *
-     * @param string                                             $table   The name
-     * of the table.
-     * @param TableModels\QueryEntitiesOptions|string|TableModels\Filters\Filter $options
-     * Could be optional parameters, query string or filter to apply.
+     * @param string                                                             $table   The name
+     *                                                                                    of the table.
+     * @param string|TableModels\Filters\Filter|TableModels\QueryEntitiesOptions $options
+     *                                                                                    Could be optional parameters, query string or filter to apply.
      *
      * @return TableModels\QueryEntitiesResult
      *
@@ -243,10 +238,10 @@ interface ITable
     /**
      * Quries entities for the given table name
      *
-     * @param string                                                   $table   The name of
-     * the table.
-     * @param TableModels\QueryEntitiesOptions|string|TableModels\Filters\Filter $options Coule be
-     * optional parameters, query string or filter to apply.
+     * @param string                                                             $table   The name of
+     *                                                                                    the table.
+     * @param string|TableModels\Filters\Filter|TableModels\QueryEntitiesOptions $options Coule be
+     *                                                                                    optional parameters, query string or filter to apply.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -440,8 +435,6 @@ interface ITable
      * @param string                          $rowKey       The entity row key.
      * @param TableModels\DeleteEntityOptions $options      The optional parameters.
      *
-     * @return void
-     *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd135727.aspx
      */
     public function deleteEntity(
@@ -578,8 +571,6 @@ interface ITable
      * @param string                          $table   name
      * @param TableModels\TableACL            $acl     access control list
      * @param TableModels\TableServiceOptions $options optional parameters
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/set-table-acl
      */

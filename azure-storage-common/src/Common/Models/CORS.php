@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * Provides functionality and data structure for Cross-Origin Resource Sharing
  * rules.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CORS
 {
@@ -72,7 +72,7 @@ class CORS
     /**
      * Create an instance with parsed XML response with 'CORS' root.
      *
-     * @param  array  $parsedResponse The response used to create an instance.
+     * @param array $parsedResponse The response used to create an instance.
      *
      * @internal
      *

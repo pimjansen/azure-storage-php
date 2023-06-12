@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 /**
  * Unit tests for class ListBlobsOptions
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListBlobsOptionsTest extends \PHPUnit\Framework\TestCase
 {

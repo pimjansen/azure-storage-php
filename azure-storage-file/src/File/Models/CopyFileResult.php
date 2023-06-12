@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Holds result of calling CopyFileResult wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyFileResult
 {
@@ -74,8 +74,6 @@ class CopyFileResult
      * Sets file lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -97,8 +95,6 @@ class CopyFileResult
      * Sets file etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -120,8 +116,6 @@ class CopyFileResult
      * Sets file copyID.
      *
      * @param string $copyID value.
-     *
-     * @return void
      */
     protected function setCopyID($copyID)
     {
@@ -143,8 +137,6 @@ class CopyFileResult
      * Sets copyStatus
      *
      * @param string $copyStatus copyStatus to set
-     *
-     * @return void
      */
     protected function setCopyStatus($copyStatus)
     {

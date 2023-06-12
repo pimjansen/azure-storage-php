@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Models\ContinuationToken;
 /**
  * Provides functionality and data structure for table continuation token.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class TableContinuationToken extends ContinuationToken
 {
@@ -59,8 +59,6 @@ class TableContinuationToken extends ContinuationToken
      * Sets entity next partition key.
      *
      * @param string $nextPartitionKey The entity next partition key value.
-     *
-     * @return void
      */
     public function setNextPartitionKey($nextPartitionKey)
     {
@@ -82,8 +80,6 @@ class TableContinuationToken extends ContinuationToken
      * Sets entity next row key.
      *
      * @param string $nextRowKey The entity next row key value.
-     *
-     * @return void
      */
     public function setNextRowKey($nextRowKey)
     {
@@ -105,8 +101,6 @@ class TableContinuationToken extends ContinuationToken
      * Sets nextTableName
      *
      * @param string $nextTableName value
-     *
-     * @return void
      */
     public function setNextTableName($nextTableName)
     {

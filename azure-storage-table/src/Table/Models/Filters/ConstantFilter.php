@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models\Filters;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Table\Models\EdmType;
 /**
  * Constant filter
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ConstantFilter extends Filter
 {
@@ -45,7 +45,6 @@ class ConstantFilter extends Filter
 
     /**
      * Gets value
-     *
      */
     public function getValue()
     {

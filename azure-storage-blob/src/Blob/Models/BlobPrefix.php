@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Represents BlobPrefix object
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobPrefix
 {
@@ -42,8 +42,6 @@ class BlobPrefix
      * Sets blob name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {

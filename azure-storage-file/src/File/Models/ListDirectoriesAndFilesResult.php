@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Share to hold list directories and files response object.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListDirectoriesAndFilesResult
 {
@@ -136,8 +136,6 @@ class ListDirectoriesAndFilesResult
      * Sets Directories.
      *
      * @param array $directories list of directories.
-     *
-     * @return void
      */
     protected function setDirectories(array $directories)
     {
@@ -161,8 +159,6 @@ class ListDirectoriesAndFilesResult
      * Sets files.
      *
      * @param array $files list of files.
-     *
-     * @return void
      */
     protected function setFiles(array $files)
     {
@@ -196,8 +192,6 @@ class ListDirectoriesAndFilesResult
      * Sets max results.
      *
      * @param string $maxResults value.
-     *
-     * @return void
      */
     protected function setMaxResults($maxResults)
     {
@@ -218,8 +212,6 @@ class ListDirectoriesAndFilesResult
      * Sets marker.
      *
      * @param string $marker value.
-     *
-     * @return void
      */
     protected function setMarker($marker)
     {
@@ -240,8 +232,6 @@ class ListDirectoriesAndFilesResult
      * Sets account name.
      *
      * @param string $accountName value.
-     *
-     * @return void
      */
     protected function setAccountName($accountName)
     {

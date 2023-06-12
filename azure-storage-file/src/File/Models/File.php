@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Represents windows azure file object
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class File
 {
@@ -46,8 +46,6 @@ class File
      * Sets file name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {
@@ -68,8 +66,6 @@ class File
      * Sets file length.
      *
      * @param int $length value.
-     *
-     * @return void
      */
     public function setLength($length)
     {
@@ -79,7 +75,7 @@ class File
     /**
      * Creates a File object using the parsed array.
      *
-     * @param  array $parsed The parsed array that contains the object information.
+     * @param array $parsed The parsed array that contains the object information.
      *
      * @return File
      */

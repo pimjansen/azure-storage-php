@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Mock\Table\Internal\Authentication;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Table\Internal\Authentication\TableSharedKeyLiteAuthS
 /**
  * Mock class to wrap SharedKeyAuthScheme class.
  *
- * @link       https://github.com/azure/azure-storage-php
+ * @see       https://github.com/azure/azure-storage-php
  */
 class TableSharedKeyLiteAuthSchemeMock extends TableSharedKeyLiteAuthScheme
 {

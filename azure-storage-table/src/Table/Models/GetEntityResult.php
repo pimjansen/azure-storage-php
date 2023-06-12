@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Table\Internal\IODataReaderWriter;
 /**
  * Holds result of calling getEntity wrapper.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetEntityResult
 {
@@ -44,8 +44,6 @@ class GetEntityResult
      * Sets table entity.
      *
      * @param Entity $entity The table entity instance.
-     *
-     * @return void
      */
     protected function setEntity($entity)
     {
@@ -55,7 +53,7 @@ class GetEntityResult
     /**
      * Create GetEntityResult object from HTTP response parts.
      *
-     * @param string             $body            The HTTP response body.
+     * @param string $body The HTTP response body.
      *
      * @internal
      *

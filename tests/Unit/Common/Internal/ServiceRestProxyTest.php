@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal;
@@ -30,7 +30,7 @@ use MicrosoftAzure\Storage\Tests\Framework\ReflectionTestBase;
 /**
  * Unit tests for class ServiceRestProxy
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ServiceRestProxyTest extends ReflectionTestBase
 {
@@ -145,8 +145,8 @@ class ServiceRestProxyTest extends ReflectionTestBase
     }
 
     /**
-    * @depends testConstruct
-    */
+     * @depends testConstruct
+     */
     public function testPostParameter($restRestProxy)
     {
         // Setup

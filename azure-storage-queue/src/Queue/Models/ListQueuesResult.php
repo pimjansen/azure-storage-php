@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -27,7 +27,7 @@ use MicrosoftAzure\Storage\Queue\Internal\QueueResources as Resources;
 /**
  * Container to hold list queue response object.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListQueuesResult
 {
@@ -118,8 +118,6 @@ class ListQueuesResult
      * @param array $queues list of queues
      *
      * @internal
-     *
-     * @return void
      */
     protected function setQueues(array $queues)
     {
@@ -145,8 +143,6 @@ class ListQueuesResult
      * @param string $prefix value.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setPrefix($prefix)
     {
@@ -169,8 +165,6 @@ class ListQueuesResult
      * @param string $marker value.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setMarker($marker)
     {
@@ -193,8 +187,6 @@ class ListQueuesResult
      * @param string $maxResults value.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setMaxResults($maxResults)
     {
@@ -217,8 +209,6 @@ class ListQueuesResult
      * @param string $accountName value.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setAccountName($accountName)
     {

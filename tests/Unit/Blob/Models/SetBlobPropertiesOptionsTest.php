@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Blob\Models\SetBlobPropertiesOptions;
 /**
  * Unit tests for class SetBlobPropertiesOptions
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SetBlobPropertiesOptionsTest extends \PHPUnit\Framework\TestCase
 {

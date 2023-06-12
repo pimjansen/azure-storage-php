@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Basic Windows Azure EDM Types used for table entity properties.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class EdmType
 {
@@ -105,9 +105,9 @@ class EdmType
      *
      * @internal
      *
-     * @return boolean
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return bool
      */
     public static function validateEdmValue($type, $value, &$condition = null)
     {
@@ -156,9 +156,9 @@ class EdmType
      *
      * @internal
      *
-     * @return string
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return string
      */
     public static function serializeValue($type, $value)
     {
@@ -199,9 +199,9 @@ class EdmType
      *
      * @internal
      *
-     * @return string
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return string
      */
     public static function serializeQueryValue($type, $value)
     {
@@ -243,7 +243,6 @@ class EdmType
      * @param string $value The edm value.
      *
      * @internal
-     *
      *
      * @throws \InvalidArgumentException
      */
@@ -289,7 +288,7 @@ class EdmType
      *
      * @internal
      *
-     * @return boolean
+     * @return bool
      */
     public static function isValid($type)
     {

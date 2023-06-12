@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -24,7 +24,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Holds result of GetBlob API.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetBlobResult
 {
@@ -70,8 +70,6 @@ class GetBlobResult
      * Sets blob metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     protected function setMetadata(array $metadata)
     {
@@ -92,8 +90,6 @@ class GetBlobResult
      * Sets blob properties.
      *
      * @param BlobProperties $properties value.
-     *
-     * @return void
      */
     protected function setProperties(BlobProperties $properties)
     {
@@ -114,8 +110,6 @@ class GetBlobResult
      * Sets blob contentStream.
      *
      * @param resource $contentStream The stream handle.
-     *
-     * @return void
      */
     protected function setContentStream($contentStream)
     {

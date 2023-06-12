@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      http://github.com/windowsazure/azure-sdk-for-php
+ * @see      http://github.com/windowsazure/azure-sdk-for-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal\Authentication;
@@ -28,7 +28,8 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
  * check: http://msdn.microsoft.com/en-us/library/windowsazure/dd179428.aspx
  *
  * @ignore
- * @link      http://github.com/windowsazure/azure-sdk-for-php
+ *
+ * @see      http://github.com/windowsazure/azure-sdk-for-php
  */
 class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
 {

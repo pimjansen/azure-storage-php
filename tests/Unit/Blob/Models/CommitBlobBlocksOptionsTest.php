@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Blob\Models\CommitBlobBlocksOptions;
 /**
  * Unit tests for class CommitBlobBlocksOptions
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CommitBlobBlocksOptionsTest extends \PHPUnit\Framework\TestCase
 {

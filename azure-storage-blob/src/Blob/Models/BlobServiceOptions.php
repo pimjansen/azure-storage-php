@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
 /**
  * Blob service options.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobServiceOptions extends ServiceOptions
 {
@@ -45,8 +45,6 @@ class BlobServiceOptions extends ServiceOptions
      * Sets lease Id for the blob
      *
      * @param string $leaseId the blob lease id.
-     *
-     * @return void
      */
     public function setLeaseId($leaseId)
     {
@@ -67,8 +65,6 @@ class BlobServiceOptions extends ServiceOptions
      * Sets access condition
      *
      * @param mixed $accessConditions value to use.
-     *
-     * @return void
      */
     public function setAccessConditions($accessConditions)
     {

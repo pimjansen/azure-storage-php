@@ -15,7 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common;
@@ -25,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 /**
  * Trait implementing logic for continuation tokens that has nextMarker.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 trait MarkerContinuationTokenTrait
 {

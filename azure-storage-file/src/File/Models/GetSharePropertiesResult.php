@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Holds result of getShareProperties and getShareMetadata
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetSharePropertiesResult
 {
@@ -48,8 +48,6 @@ class GetSharePropertiesResult
      * Sets file quota.
      *
      * @param int $quota value.
-     *
-     * @return void
      */
     protected function setQuota($quota)
     {
@@ -59,7 +57,7 @@ class GetSharePropertiesResult
     /**
      * Create an instance using the response headers from the API call.
      *
-     * @param  array  $responseHeaders The array contains all the response headers
+     * @param array $responseHeaders The array contains all the response headers
      *
      * @internal
      *

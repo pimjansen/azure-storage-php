@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Queue\Models;
 /**
  * Holds result from calling GetQueueMetadata wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetQueueMetadataResult
 {
@@ -32,8 +32,8 @@ class GetQueueMetadataResult
     /**
      * Constructor
      *
-     * @param integer $approximateMessageCount Approximate number of queue messages.
-     * @param array   $metadata                user defined metadata.
+     * @param int   $approximateMessageCount Approximate number of queue messages.
+     * @param array $metadata                user defined metadata.
      *
      * @internal
      */
@@ -46,7 +46,7 @@ class GetQueueMetadataResult
     /**
      * Gets approximate message count.
      *
-     * @return integer
+     * @return int
      */
     public function getApproximateMessageCount()
     {
@@ -56,11 +56,9 @@ class GetQueueMetadataResult
     /**
      * Sets approximate message count.
      *
-     * @param integer $approximateMessageCount value to use.
+     * @param int $approximateMessageCount value to use.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setApproximateMessageCount($approximateMessageCount)
     {
@@ -83,8 +81,6 @@ class GetQueueMetadataResult
      * @param array $metadata value to use.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setMetadata(array $metadata)
     {

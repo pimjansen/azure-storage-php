@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Holds elements of queue properties metrics field.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Metrics
 {
@@ -37,6 +37,7 @@ class Metrics
      * Creates object from $parsedResponse.
      *
      * @internal
+     *
      * @param array $parsedResponse XML response parsed into array.
      *
      * @return Metrics
@@ -62,7 +63,6 @@ class Metrics
      * Gets retention policy
      *
      * @return RetentionPolicy
-     *
      */
     public function getRetentionPolicy()
     {
@@ -73,8 +73,6 @@ class Metrics
      * Sets retention policy
      *
      * @param RetentionPolicy $policy object to use
-     *
-     * @return void
      */
     public function setRetentionPolicy(RetentionPolicy $policy)
     {
@@ -95,8 +93,6 @@ class Metrics
      * Sets include APIs.
      *
      * @param bool $includeAPIs value to use.
-     *
-     * @return void
      */
     public function setIncludeAPIs($includeAPIs)
     {
@@ -117,8 +113,6 @@ class Metrics
      * Sets enabled.
      *
      * @param bool $enabled value to use.
-     *
-     * @return void
      */
     public function setEnabled($enabled)
     {
@@ -139,8 +133,6 @@ class Metrics
      * Sets version
      *
      * @param string $version new value.
-     *
-     * @return void
      */
     public function setVersion($version)
     {
@@ -151,6 +143,7 @@ class Metrics
      * Converts this object to array with XML tags
      *
      * @internal
+     *
      * @return array
      */
     public function toArray()

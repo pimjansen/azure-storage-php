@@ -15,7 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -32,7 +33,7 @@ use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
  * Get/Set Service Properties
  * Get service stats
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 trait ServiceRestTrait
 {
@@ -110,8 +111,6 @@ trait ServiceRestTrait
      * @param ServiceProperties $serviceProperties The service properties.
      * @param ServiceOptions    $options           The optional parameters.
      *
-     * @return void
-     *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/hh452235.aspx
      */
     public function setServiceProperties(
@@ -188,7 +187,7 @@ trait ServiceRestTrait
      * Retrieves statistics related to replication for the service. The operation
      * will only be sent to secondary location endpoint.
      *
-     * @param  ServiceOptions|null $options The options this operation sends with.
+     * @param ServiceOptions|null $options The options this operation sends with.
      *
      * @return GetServiceStatsResult
      */
@@ -201,7 +200,7 @@ trait ServiceRestTrait
      * Creates promise that retrieves statistics related to replication for the
      * service. The operation will only be sent to secondary location endpoint.
      *
-     * @param  ServiceOptions|null $options The options this operation sends with.
+     * @param ServiceOptions|null $options The options this operation sends with.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */

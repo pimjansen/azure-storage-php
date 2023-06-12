@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\File\Models;
 /**
  * Optional parameters for putFileRange.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class PutFileRangeOptions extends FileServiceOptions
 {
@@ -42,8 +42,6 @@ class PutFileRangeOptions extends FileServiceOptions
      * Sets contentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     public function setContentMD5($contentMD5)
     {

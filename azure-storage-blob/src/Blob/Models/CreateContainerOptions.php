@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Optional parameters for createContainer API
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateContainerOptions extends BlobServiceOptions
 {
@@ -55,8 +55,6 @@ class CreateContainerOptions extends BlobServiceOptions
      * the account owner.
      *
      * @param string $publicAccess access modifier for the container
-     *
-     * @return void
      */
     public function setPublicAccess($publicAccess)
     {
@@ -79,8 +77,6 @@ class CreateContainerOptions extends BlobServiceOptions
      * prefix (x-ms-meta-*).
      *
      * @param array $metadata user defined metadata object in array form.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {
@@ -93,8 +89,6 @@ class CreateContainerOptions extends BlobServiceOptions
      *
      * @param string $key   metadata key element.
      * @param string $value metadata value element.
-     *
-     * @return void
      */
     public function addMetadata($key, $value)
     {

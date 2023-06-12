@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * optional parameters for CopyBlobOptions wrapper
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyBlobOptions extends CopyBlobFromURLOptions
 {
@@ -42,8 +42,6 @@ class CopyBlobOptions extends CopyBlobFromURLOptions
      * Sets source snapshot.
      *
      * @param string $sourceSnapshot value.
-     *
-     * @return void
      */
     public function setSourceSnapshot($sourceSnapshot)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Authentication;
@@ -25,14 +25,15 @@ use GuzzleHttp\Psr7\Request;
  * Interface for azure authentication schemes.
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 interface IAuthScheme
 {
     /**
      * Signs a request.
      *
-     * @param  \GuzzleHttp\Psr7\Request $request HTTP request object.
+     * @param \GuzzleHttp\Psr7\Request $request HTTP request object.
      *
      * @abstract
      *

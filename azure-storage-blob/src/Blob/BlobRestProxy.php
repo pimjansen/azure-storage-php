@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob;
@@ -87,7 +87,7 @@ use Psr\Http\Message\StreamInterface;
  * This class constructs HTTP requests and receive HTTP responses for blob
  * service layer.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobRestProxy extends ServiceRestProxy implements IBlob
 {
@@ -113,6 +113,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @param string $connectionString The configuration connection string.
      * @param array  $options          Array of options to pass to the service
+     *
      * @return BlobRestProxy
      */
     public static function createBlobService(
@@ -227,8 +228,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * host, e.g.:
      *     http://mystorageaccount.blob.core.windows.net
      *
-     * @param  string $primaryServiceEndpoint   Primary service endpoint.
-     * @param  array  $options                  Optional request options.
+     * @param string $primaryServiceEndpoint Primary service endpoint.
+     * @param array  $options                Optional request options.
      *
      * @return BlobRestProxy
      */
@@ -282,8 +283,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Set the value for SingleBlobUploadThresholdInBytes, Max 256MB
      *
      * @param int $val The max size to send as a single blob block
-     *
-     * @return void
      */
     public function setSingleBlobUploadThresholdInBytes($val)
     {
@@ -304,8 +303,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Set the value for block size, Max 100MB
      *
      * @param int $val The max size for each block to be sent.
-     *
-     * @return void
      */
     public function setBlockSize($val)
     {
@@ -327,7 +324,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Get the block size of multiple upload block size using the provided
      * content
      *
-     * @param  StreamInterface $content The content of the blocks.
+     * @param StreamInterface $content The content of the blocks.
      *
      * @return int
      */
@@ -442,7 +439,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                    $container The container name.
      * @param Models\BlobServiceOptions $options   The optional parameters.
      * @param string                    $operation The operation string. Should be
-     * 'metadata' to get metadata.
+     *                                             'metadata' to get metadata.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -574,9 +571,9 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Adds Range header to the headers array.
      *
-     * @param array   $headers The HTTP request headers.
-     * @param integer $start   The start byte.
-     * @param integer $end     The end byte.
+     * @param array $headers The HTTP request headers.
+     * @param int   $start   The start byte.
+     * @param int   $end     The end byte.
      *
      * @return array
      */
@@ -594,9 +591,11 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Get the expected status code of a given lease action.
      *
-     * @param  string $leaseAction The given lease action
-     * @return string
+     * @param string $leaseAction The given lease action
+     *
      * @throws \Exception
+     *
+     * @return string
      */
     private static function getStatusCodeOfLeaseAction($leaseAction)
     {
@@ -828,7 +827,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Create a promise for lists all of the containers in the given
      * storage account.
      *
-     * @param  ListContainersOptions $options The optional parameters.
+     * @param ListContainersOptions $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -899,8 +898,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                        $container The container name.
      * @param Models\CreateContainerOptions $options   The optional parameters.
      *
-     * @return void
-     *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179468.aspx
      */
     public function createContainer(
@@ -961,10 +958,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Deletes a container in the given storage account.
      *
-     * @param string                        $container The container name.
-     * @param Models\BlobServiceOptions     $options   The optional parameters.
-     *
-     * @return void
+     * @param string                    $container The container name.
+     * @param Models\BlobServiceOptions $options   The optional parameters.
      *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179408.aspx
      */
@@ -978,8 +973,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Create a promise for deleting a container.
      *
-     * @param  string                             $container name of the container
-     * @param  Models\BlobServiceOptions|null     $options   optional parameters
+     * @param string                         $container name of the container
+     * @param Models\BlobServiceOptions|null $options   optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -1209,8 +1204,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param Models\ContainerACL       $acl       access control list for container
      * @param Models\BlobServiceOptions $options   optional parameters
      *
-     * @return void
-     *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179391.aspx
      */
     public function setContainerAcl(
@@ -1303,8 +1296,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param array                     $metadata  metadata key/value pair.
      * @param Models\BlobServiceOptions $options   optional parameters
      *
-     * @return void
-     *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179362.aspx
      */
     public function setContainerMetadata(
@@ -1318,8 +1309,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Sets metadata headers on the container.
      *
-     * @param string                   $container name
-     * @param array                    $metadata  metadata key/value pair.
+     * @param string                    $container name
+     * @param array                     $metadata  metadata key/value pair.
      * @param Models\BlobServiceOptions $options   optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1386,8 +1377,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                    $container name
      * @param string                    $blob      name of the blob
      * @param Models\SetBlobTierOptions $options   optional parameters
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-tier
      */
@@ -1575,13 +1564,13 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * blob only initializes the blob.
      * To add content to a page blob, call createBlobPages method.
      *
-     * @param string                   $container The container name.
-     * @param string                   $blob      The blob name.
-     * @param integer                  $length    Specifies the maximum size
-     *                                            for the page blob, up to 1 TB.
-     *                                            The page blob size must be
-     *                                            aligned to a 512-byte
-     *                                            boundary.
+     * @param string                       $container The container name.
+     * @param string                       $blob      The blob name.
+     * @param int                          $length    Specifies the maximum size
+     *                                                for the page blob, up to 1 TB.
+     *                                                The page blob size must be
+     *                                                aligned to a 512-byte
+     *                                                boundary.
      * @param Models\CreatePageBlobOptions $options   The optional parameters.
      *
      * @return Models\PutBlobResult
@@ -1607,13 +1596,13 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * createPageBlob to create a page blob only initializes the blob.
      * To add content to a page blob, call createBlobPages method.
      *
-     * @param string                   $container The container name.
-     * @param string                   $blob      The blob name.
-     * @param integer                  $length    Specifies the maximum size
-     *                                            for the page blob, up to 1 TB.
-     *                                            The page blob size must be
-     *                                            aligned to a 512-byte
-     *                                            boundary.
+     * @param string                       $container The container name.
+     * @param string                       $blob      The blob name.
+     * @param int                          $length    Specifies the maximum size
+     *                                                for the page blob, up to 1 TB.
+     *                                                The page blob size must be
+     *                                                aligned to a 512-byte
+     *                                                boundary.
      * @param Models\CreatePageBlobOptions $options   The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1775,7 +1764,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @param string                          $container The name of the container.
      * @param string                          $blob      The name of the blob.
-     * @param string|resource|StreamInterface $content   The content of the blob.
+     * @param resource|StreamInterface|string $content   The content of the blob.
      * @param Models\CreateBlockBlobOptions   $options   The optional parameters.
      *
      * @return Models\PutBlobResult
@@ -1808,7 +1797,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @param string                          $container The name of the container.
      * @param string                          $blob      The name of the blob.
-     * @param string|resource|StreamInterface $content   The content of the blob.
+     * @param resource|StreamInterface|string $content   The content of the blob.
      * @param Models\CreateBlockBlobOptions   $options   The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1856,7 +1845,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                          $container The name of the container.
      * @param string                          $blob      The name of the blob.
      * @param int                             $length    The length of the blob.
-     * @param string|resource|StreamInterface $content   The content of the blob.
+     * @param resource|StreamInterface|string $content   The content of the blob.
      * @param Models\CreatePageBlobFromContentOptions
      *                                        $options   The optional parameters.
      *
@@ -1887,7 +1876,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                          $container The name of the container.
      * @param string                          $blob      The name of the blob.
      * @param int                             $length    The length of the blob.
-     * @param string|resource|StreamInterface $content   The content of the blob.
+     * @param resource|StreamInterface|string $content   The content of the blob.
      * @param Models\CreatePageBlobFromContentOptions
      *                                        $options   The optional parameters.
      *
@@ -2034,11 +2023,11 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * This method creates the blob blocks. This method will send the request
      * concurrently for better performance.
      *
-     * @param  string                        $container  Name of the container
-     * @param  string                        $blob       Name of the blob
-     * @param  StreamInterface               $content    Content's stream
-     * @param  Models\CreateBlockBlobOptions $options    Array that contains
-     *                                                   all the option
+     * @param string                        $container Name of the container
+     * @param string                        $blob      Name of the blob
+     * @param StreamInterface               $content   Content's stream
+     * @param Models\CreateBlockBlobOptions $options   Array that contains
+     *                                                 all the option
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -2164,9 +2153,9 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * This method upload the page blob pages. This method will send the request
      * concurrently for better performance.
      *
-     * @param  string                   $container  Name of the container
-     * @param  string                   $blob       Name of the blob
-     * @param  StreamInterface          $content    Content's stream
+     * @param string          $container Name of the container
+     * @param string          $blob      Name of the blob
+     * @param StreamInterface $content   Content's stream
      * @param  Models\CreatePageBlobFromContentOptions
      *                                  $options    Array that contains
      *                                              all the option
@@ -2357,7 +2346,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *                                                   size. Note that ranges
      *                                                   must be aligned to 512
      *                                                   (0-511, 512-1023)
-     * @param string|resource|StreamInterface $content   the blob contents.
+     * @param resource|StreamInterface|string $content   the blob contents.
      * @param Models\CreateBlobPagesOptions   $options   optional parameters
      *
      * @return Models\CreateBlobPagesResult
@@ -2389,7 +2378,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *                                                   size. Note that ranges
      *                                                   must be aligned to 512
      *                                                   (0-511, 512-1023)
-     * @param string|resource|StreamInterface $content   the blob contents.
+     * @param resource|StreamInterface|string $content   the blob contents.
      * @param Models\CreateBlobPagesOptions   $options   optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2437,7 +2426,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *                                                   blockid parameter must
      *                                                   be the same size for
      *                                                   each block.
-     * @param resource|string|StreamInterface $content   the blob block contents
+     * @param resource|StreamInterface|string $content   the blob block contents
      * @param Models\CreateBlobBlockOptions   $options   optional parameters
      *
      * @return Models\PutBlockResult
@@ -2473,7 +2462,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *                                                   blockid parameter must
      *                                                   be the same size for
      *                                                   each block.
-     * @param resource|string|StreamInterface $content   the blob block contents
+     * @param resource|StreamInterface|string $content   the blob block contents
      * @param Models\CreateBlobBlockOptions   $options   optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2528,7 +2517,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @param string                          $container name of the container
      * @param string                          $blob      name of the blob
-     * @param resource|string|StreamInterface $content   the blob block contents
+     * @param resource|StreamInterface|string $content   the blob block contents
      * @param Models\AppendBlockOptions       $options   optional parameters
      *
      * @return Models\AppendBlockResult
@@ -2554,7 +2543,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @param string                          $container name of the container
      * @param string                          $blob      name of the blob
-     * @param resource|string|StreamInterface $content   the blob block contents
+     * @param resource|StreamInterface|string $content   the blob block contents
      * @param Models\AppendBlockOptions       $options   optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2643,7 +2632,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
 
     /**
      * create the header for createBlobBlock(s)
-     * @param  Models\CreateBlobBlockOptions $options the option of the request
+     *
+     * @param Models\CreateBlobBlockOptions $options the option of the request
      *
      * @return array
      */
@@ -2671,15 +2661,16 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
 
     /**
      * create the query params for createBlobBlock(s)
-     * @param  Models\CreateBlobBlockOptions $options      the option of the
-     *                                                     request
-     * @param  string                        $blockId      the block id of the
-     *                                                     block.
-     * @param  bool                          $isConcurrent if the query
-     *                                                     parameter is for
-     *                                                     concurrent upload.
      *
-     * @return array  the constructed query parameters.
+     * @param Models\CreateBlobBlockOptions $options      the option of the
+     *                                                    request
+     * @param string                        $blockId      the block id of the
+     *                                                    block.
+     * @param bool                          $isConcurrent if the query
+     *                                                    parameter is for
+     *                                                    concurrent upload.
+     *
+     * @return array the constructed query parameters.
      */
     protected function createBlobBlockQueryParams(
         Models\CreateBlobBlockOptions $options,
@@ -2721,7 +2712,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @param string                         $container The container name.
      * @param string                         $blob      The blob name.
-     * @param Models\BlockList|Block[]       $blockList The block entries.
+     * @param Block[]|Models\BlockList       $blockList The block entries.
      * @param Models\CommitBlobBlocksOptions $options   The optional parameters.
      *
      * @return Models\PutBlobResult
@@ -2755,7 +2746,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @param string                         $container The container name.
      * @param string                         $blob      The blob name.
-     * @param Models\BlockList|Block[]       $blockList The block entries.
+     * @param Block[]|Models\BlockList       $blockList The block entries.
      * @param Models\CommitBlobBlocksOptions $options   The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3202,14 +3193,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * ranges by default, or only the page ranges over a specific range of
      * bytes if `rangeStart` and `rangeEnd` in the `options` are specified.
      *
-     * @param string                           $container             name of the container
-     * @param string                           $blob                  name of the blob
-     * @param string                           $previousSnapshotTime  previous snapshot time
-     *                                                                for comparison which
-     *                                                                should be prior to the
-     *                                                                snapshot time defined
-     *                                                                in `options`
-     * @param Models\ListPageBlobRangesOptions $options               optional parameters
+     * @param string                           $container            name of the container
+     * @param string                           $blob                 name of the blob
+     * @param string                           $previousSnapshotTime previous snapshot time
+     *                                                               for comparison which
+     *                                                               should be prior to the
+     *                                                               snapshot time defined
+     *                                                               in `options`
+     * @param Models\ListPageBlobRangesOptions $options              optional parameters
      *
      * @return Models\ListPageBlobRangesDiffResult
      *
@@ -3238,14 +3229,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * all of the page ranges by default, or only the page ranges over a specific
      * range of bytes if `rangeStart` and `rangeEnd` in the `options` are specified.
      *
-     * @param string                           $container             name of the container
-     * @param string                           $blob                  name of the blob
-     * @param string                           $previousSnapshotTime  previous snapshot time
-     *                                                                for comparison which
-     *                                                                should be prior to the
-     *                                                                snapshot time defined
-     *                                                                in `options`
-     * @param Models\ListPageBlobRangesOptions $options               optional parameters
+     * @param string                           $container            name of the container
+     * @param string                           $blob                 name of the blob
+     * @param string                           $previousSnapshotTime previous snapshot time
+     *                                                               for comparison which
+     *                                                               should be prior to the
+     *                                                               snapshot time defined
+     *                                                               in `options`
+     * @param Models\ListPageBlobRangesOptions $options              optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -3272,14 +3263,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * only the pages that differ between the target snapshot or blob and
      * the previous snapshot.
      *
-     * @param string                           $container             name of the container
-     * @param string                           $blob                  name of the blob
-     * @param string                           $previousSnapshotTime  previous snapshot time
-     *                                                                for comparison which
-     *                                                                should be prior to the
-     *                                                                snapshot time defined
-     *                                                                in `options`
-     * @param Models\ListPageBlobRangesOptions $options               optional parameters
+     * @param string                           $container            name of the container
+     * @param string                           $blob                 name of the blob
+     * @param string                           $previousSnapshotTime previous snapshot time
+     *                                                               for comparison which
+     *                                                               should be prior to the
+     *                                                               snapshot time defined
+     *                                                               in `options`
+     * @param Models\ListPageBlobRangesOptions $options              optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -3510,10 +3501,10 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Sets metadata headers on the blob.
      *
-     * @param string                        $container name of the container
-     * @param string                        $blob      name of the blob
-     * @param array                         $metadata  key/value pair representation
-     * @param Models\BlobServiceOptions     $options   optional parameters
+     * @param string                    $container name of the container
+     * @param string                    $blob      name of the blob
+     * @param array                     $metadata  key/value pair representation
+     * @param Models\BlobServiceOptions $options   optional parameters
      *
      * @return Models\SetBlobMetadataResult
      *
@@ -3536,10 +3527,10 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Creates promise to set metadata headers on the blob.
      *
-     * @param string                        $container name of the container
-     * @param string                        $blob      name of the blob
-     * @param array                         $metadata  key/value pair representation
-     * @param Models\BlobServiceOptions     $options   optional parameters
+     * @param string                    $container name of the container
+     * @param string                    $blob      name of the blob
+     * @param array                     $metadata  key/value pair representation
+     * @param Models\BlobServiceOptions $options   optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -3639,8 +3630,10 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                $blob      name of the blob
      * @param Models\GetBlobOptions $options   optional parameters
      *
-     * @return \GuzzleHttp\Promise\PromiseInterface
      * @throws \Exception
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179440.aspx
      */
     public function saveBlobToFileAsync(
@@ -3780,11 +3773,9 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Undeletes a blob.
      *
-     * @param string                      $container name of the container
-     * @param string                      $blob      name of the blob
-     * @param Models\UndeleteBlobOptions  $options   optional parameters
-     *
-     * @return void
+     * @param string                     $container name of the container
+     * @param string                     $blob      name of the blob
+     * @param Models\UndeleteBlobOptions $options   optional parameters
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/undelete-blob
      */
@@ -3799,9 +3790,9 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Undeletes a blob.
      *
-     * @param string                      $container name of the container
-     * @param string                      $blob      name of the blob
-     * @param Models\UndeleteBlobOptions  $options   optional parameters
+     * @param string                     $container name of the container
+     * @param string                     $blob      name of the blob
+     * @param Models\UndeleteBlobOptions $options   optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -3865,8 +3856,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                   $container name of the container
      * @param string                   $blob      name of the blob
      * @param Models\DeleteBlobOptions $options   optional parameters
-     *
-     * @return void
      *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179413.aspx
      */
@@ -4040,13 +4029,13 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Copies a source blob to a destination blob within the same storage account.
      *
      * @param string                 $destinationContainer name of the destination
-     * container
+     *                                                     container
      * @param string                 $destinationBlob      name of the destination
-     * blob
+     *                                                     blob
      * @param string                 $sourceContainer      name of the source
-     * container
+     *                                                     container
      * @param string                 $sourceBlob           name of the source
-     * blob
+     *                                                     blob
      * @param Models\CopyBlobOptions $options              optional parameters
      *
      * @return Models\CopyBlobResult
@@ -4074,13 +4063,13 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * same storage account.
      *
      * @param string                 $destinationContainer name of the destination
-     * container
+     *                                                     container
      * @param string                 $destinationBlob      name of the destination
-     * blob
+     *                                                     blob
      * @param string                 $sourceContainer      name of the source
-     * container
+     *                                                     container
      * @param string                 $sourceBlob           name of the source
-     * blob
+     *                                                     blob
      * @param Models\CopyBlobOptions $options              optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -4248,12 +4237,10 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Abort a blob copy operation
      *
-     * @param string                        $container            name of the container
-     * @param string                        $blob                 name of the blob
-     * @param string                        $copyId               copy operation identifier.
-     * @param Models\BlobServiceOptions     $options              optional parameters
-     *
-     * @return void
+     * @param string                    $container name of the container
+     * @param string                    $blob      name of the blob
+     * @param string                    $copyId    copy operation identifier.
+     * @param Models\BlobServiceOptions $options   optional parameters
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/abort-copy-blob
      */
@@ -4274,10 +4261,10 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Creates promise to abort a blob copy operation
      *
-     * @param string                        $container            name of the container
-     * @param string                        $blob                 name of the blob
-     * @param string                        $copyId               copy operation identifier.
-     * @param Models\BlobServiceOptions     $options              optional parameters
+     * @param string                    $container name of the container
+     * @param string                    $blob      name of the blob
+     * @param string                    $copyId    copy operation identifier.
+     * @param Models\BlobServiceOptions $options   optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -4355,16 +4342,16 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Establishes an exclusive write lock on a blob. To write to a locked
      * blob, a client must provide a lease ID.
      *
-     * @param string                     $container         name of the container
-     * @param string                     $blob              name of the blob
-     * @param string                     $proposedLeaseId   lease id when acquiring
-     * @param int                        $leaseDuration     the lease duration.
-     *                                                      A non-infinite
-     *                                                      lease can be between
-     *                                                      15 and 60 seconds.
-     *                                                      Default is never
-     *                                                      to expire.
-     * @param Models\BlobServiceOptions  $options           optional parameters
+     * @param string                    $container       name of the container
+     * @param string                    $blob            name of the blob
+     * @param string                    $proposedLeaseId lease id when acquiring
+     * @param int                       $leaseDuration   the lease duration.
+     *                                                   A non-infinite
+     *                                                   lease can be between
+     *                                                   15 and 60 seconds.
+     *                                                   Default is never
+     *                                                   to expire.
+     * @param Models\BlobServiceOptions $options         optional parameters
      *
      * @return Models\LeaseResult
      *
@@ -4390,16 +4377,16 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Creates promise to establish an exclusive one-minute write lock on a blob.
      * To write to a locked blob, a client must provide a lease ID.
      *
-     * @param string                     $container         name of the container
-     * @param string                     $blob              name of the blob
-     * @param string                     $proposedLeaseId   lease id when acquiring
-     * @param int                        $leaseDuration     the lease duration.
-     *                                                      A non-infinite
-     *                                                      lease can be between
-     *                                                      15 and 60 seconds.
-     *                                                      Default is never to
-     *                                                      expire.
-     * @param Models\BlobServiceOptions  $options           optional parameters
+     * @param string                    $container       name of the container
+     * @param string                    $blob            name of the blob
+     * @param string                    $proposedLeaseId lease id when acquiring
+     * @param int                       $leaseDuration   the lease duration.
+     *                                                   A non-infinite
+     *                                                   lease can be between
+     *                                                   15 and 60 seconds.
+     *                                                   Default is never to
+     *                                                   expire.
+     * @param Models\BlobServiceOptions $options         optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -4441,11 +4428,11 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * change an existing lease
      *
-     * @param string                    $container         name of the container
-     * @param string                    $blob              name of the blob
-     * @param string                    $leaseId           lease id when acquiring
-     * @param string                    $proposedLeaseId   lease id when acquiring
-     * @param Models\BlobServiceOptions $options           optional parameters
+     * @param string                    $container       name of the container
+     * @param string                    $blob            name of the blob
+     * @param string                    $leaseId         lease id when acquiring
+     * @param string                    $proposedLeaseId lease id when acquiring
+     * @param Models\BlobServiceOptions $options         optional parameters
      *
      * @return Models\LeaseResult
      *
@@ -4470,11 +4457,11 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Creates promise to change an existing lease
      *
-     * @param string                    $container         name of the container
-     * @param string                    $blob              name of the blob
-     * @param string                    $leaseId           lease id when acquiring
-     * @param string                    $proposedLeaseId   the proposed lease id
-     * @param Models\BlobServiceOptions $options           optional parameters
+     * @param string                    $container       name of the container
+     * @param string                    $blob            name of the blob
+     * @param string                    $leaseId         lease id when acquiring
+     * @param string                    $proposedLeaseId the proposed lease id
+     * @param Models\BlobServiceOptions $options         optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -4574,8 +4561,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                    $leaseId   lease id when acquiring
      * @param Models\BlobServiceOptions $options   optional parameters
      *
-     * @return void
-     *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/lease-blob
      */
     public function releaseLease(
@@ -4623,12 +4608,12 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Ends the lease but ensure that another client cannot acquire a new lease until
      * the current lease period has expired.
      *
-     * @param string                    $container     name of the container
-     * @param string                    $blob          name of the blob
-     * @param int                       $breakPeriod   the proposed duration of seconds that
-     *                                                 lease should continue before it it broken,
-     *                                                 between 0 and 60 seconds.
-     * @param Models\BlobServiceOptions $options   optional parameters
+     * @param string                    $container   name of the container
+     * @param string                    $blob        name of the blob
+     * @param int                       $breakPeriod the proposed duration of seconds that
+     *                                               lease should continue before it it broken,
+     *                                               between 0 and 60 seconds.
+     * @param Models\BlobServiceOptions $options     optional parameters
      *
      * @return BreakLeaseResult
      *
@@ -4687,7 +4672,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Adds optional header to headers if set
      *
-     * @param array                  $headers         The array of request headers.
+     * @param array $headers The array of request headers.
      *
      * @return array
      */
@@ -4720,7 +4705,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Adds optional header to headers if set
      *
-     * @param array $headers         The array of request headers.
+     * @param array $headers The array of request headers.
      *
      * @return array
      */

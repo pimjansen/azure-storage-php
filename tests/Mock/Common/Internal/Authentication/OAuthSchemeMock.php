@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Mock\Common\Internal\Authentication;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Authentication\OAuthScheme;
 /**
  * Mock class to wrap OAuthScheme class.
  *
- * @link       https://github.com/azure/azure-storage-php
+ * @see       https://github.com/azure/azure-storage-php
  */
 class OAuthSchemeMock extends OAuthScheme
 {

@@ -15,7 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -23,11 +24,13 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Trait implementing logic for Table continuation tokens.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 trait TableContinuationTokenTrait
 {
-    /** @var TableContinuationToken $continuationToken */
+    /**
+     * @var TableContinuationToken
+     */
     private $continuationToken;
 
     /**
@@ -118,8 +121,6 @@ trait TableContinuationTokenTrait
      * Sets entity next row key.
      *
      * @param string $nextRowKey The entity next row key value.
-     *
-     * @return void
      */
     public function setNextRowKey($nextRowKey)
     {
@@ -133,8 +134,6 @@ trait TableContinuationTokenTrait
      * Sets entity next partition key.
      *
      * @param string $nextPartitionKey The entity next partition key value.
-     *
-     * @return void
      */
     public function setNextPartitionKey($nextPartitionKey)
     {
@@ -148,8 +147,6 @@ trait TableContinuationTokenTrait
      * Sets nextTableName
      *
      * @param string $nextTableName value
-     *
-     * @return void
      */
     public function setNextTableName($nextTableName)
     {

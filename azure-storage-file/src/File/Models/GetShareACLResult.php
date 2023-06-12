@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\File\Models;
 /**
  * Holds share ACL
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetShareACLResult
 {
@@ -36,7 +36,7 @@ class GetShareACLResult
      * @param string    $etag         share etag
      * @param \DateTime $lastModified last modification date
      * @param array     $parsed       parsed response into array
-     * representation
+     *                                representation
      *
      * @internal
      *
@@ -70,8 +70,6 @@ class GetShareACLResult
      * Sets share ACL
      *
      * @param ShareACL $shareACL value.
-     *
-     * @return void
      */
     protected function setShareAcl(ShareACL $shareACL)
     {
@@ -92,8 +90,6 @@ class GetShareACLResult
      * Sets share lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -114,8 +110,6 @@ class GetShareACLResult
      * Sets share etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {

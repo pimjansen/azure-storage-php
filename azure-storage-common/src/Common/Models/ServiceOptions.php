@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -29,48 +29,55 @@ use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareStack;
  * This class provides the base structure of service options, granting user to
  * send with different options for each individual API call.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ServiceOptions
 {
     /**
      * The middlewares to be applied using the operation.
+     *
      * @internal
      */
     protected $middlewares;
 
     /**
      * The middleware stack used for the operation.
+     *
      * @internal
      */
     protected $middlewareStack;
 
     /**
      * The number of concurrency when performing concurrent requests.
+     *
      * @internal
      */
     protected $numberOfConcurrency;
 
     /**
      * If streamming is used for the operation.
+     *
      * @internal
      */
     protected $isStreaming;
 
     /**
      * The location mode of the operation.
+     *
      * @internal
      */
     protected $locationMode;
 
     /**
      * If to decode the content of the response body.
+     *
      * @internal
      */
     protected $decodeContent;
 
     /**
      * The timeout of the operation
+     *
      * @internal
      */
     protected $timeout;
@@ -99,9 +106,8 @@ class ServiceOptions
 
     /**
      * Push a middleware into the middlewares.
-     * @param  callable|IMiddleware $middleware middleware to be pushed.
      *
-     * @return void
+     * @param callable|IMiddleware $middleware middleware to be pushed.
      */
     public function pushMiddleware($middleware)
     {
@@ -123,8 +129,6 @@ class ServiceOptions
      * Sets middlewares.
      *
      * @param array $middlewares value.
-     *
-     * @return void
      */
     public function setMiddlewares(array $middlewares)
     {
@@ -148,8 +152,6 @@ class ServiceOptions
      * Sets the middleware stack.
      *
      * @param MiddlewareStack $middlewareStack value.
-     *
-     * @return void
      */
     public function setMiddlewareStack(MiddlewareStack $middlewareStack)
     {
@@ -170,8 +172,6 @@ class ServiceOptions
      * Sets number of concurrency.
      *
      * @param int $numberOfConcurrency value.
-     *
-     * @return void
      */
     public function setNumberOfConcurrency($numberOfConcurrency)
     {
@@ -192,8 +192,6 @@ class ServiceOptions
      * Sets isStreaming.
      *
      * @param bool $isStreaming value.
-     *
-     * @return void
      */
     public function setIsStreaming($isStreaming)
     {
@@ -214,8 +212,6 @@ class ServiceOptions
      * Sets locationMode.
      *
      * @param string $locationMode value.
-     *
-     * @return void
      */
     public function setLocationMode($locationMode)
     {
@@ -236,8 +232,6 @@ class ServiceOptions
      * Sets decodeContent.
      *
      * @param bool $decodeContent value.
-     *
-     * @return void
      */
     public function setDecodeContent($decodeContent)
     {
@@ -258,8 +252,6 @@ class ServiceOptions
      * Sets timeout.
      *
      * @param string $timeout value.
-     *
-     * @return void
      */
     public function setTimeout($timeout)
     {
@@ -269,7 +261,7 @@ class ServiceOptions
     /**
      * Generate request options using the input options and saved properties.
      *
-     * @param  array  $options The options to be merged for the request options.
+     * @param array $options The options to be merged for the request options.
      *
      * @return array
      */
@@ -283,9 +275,7 @@ class ServiceOptions
     /**
      * Validate if the given middleware is of callable or IMiddleware.
      *
-     * @param  void $middleware the middleware to be validated.
-     *
-     * @return void
+     * @param void $middleware the middleware to be validated.
      */
     private static function validateIsMiddleware($middleware)
     {

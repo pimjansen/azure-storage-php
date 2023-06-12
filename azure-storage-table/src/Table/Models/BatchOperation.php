@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Represents one batch operation
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperation
 {
@@ -37,8 +37,6 @@ class BatchOperation
      * Sets operation type.
      *
      * @param string $type The operation type. Must be valid type.
-     *
-     * @return void
      */
     public function setType($type)
     {
@@ -65,8 +63,6 @@ class BatchOperation
      *
      * @param string $name  The param name. Must be valid name.
      * @param mixed  $value The param value.
-     *
-     * @return void
      */
     public function addParameter($name, $value)
     {
@@ -81,7 +77,6 @@ class BatchOperation
      * Gets parameter value and if the name doesn't exist, return null.
      *
      * @param string $name The parameter name.
-     *
      */
     public function getParameter($name)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal;
@@ -23,7 +23,8 @@ namespace MicrosoftAzure\Storage\Table\Internal;
  * Interface for MIME reading and writing.
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 interface IMimeReaderWriter
 {
@@ -34,7 +35,7 @@ interface IMimeReaderWriter
      * @param array $bodyPartContents The MIME body parts.
      *
      * @return array Returns array with two elements 'headers' and 'body' which
-     * represents the MIME message.
+     *               represents the MIME message.
      */
     public function encodeMimeMultipart(array $bodyPartContents);
 

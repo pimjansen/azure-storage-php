@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Internal;
@@ -28,7 +28,8 @@ use MicrosoftAzure\Storage\Queue\Models as QueueModels;
  * This interface has all REST APIs provided by Windows Azure for queue service
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  * @see       http://msdn.microsoft.com/en-us/library/windowsazure/dd179363.aspx
  */
 interface IQueue
@@ -63,8 +64,6 @@ interface IQueue
      *
      * @param ServiceProperties $serviceProperties The new service properties.
      * @param ServiceOptions    $options           The optional parameters.
-     *
-     * @return void
      */
     public function setServiceProperties(
         ServiceProperties $serviceProperties,
@@ -91,7 +90,7 @@ interface IQueue
      * Retieves statistics related to replication for the service. The operation
      * will only be sent to secondary location endpoint.
      *
-     * @param  ServiceOptions|null $options The options this operation sends with.
+     * @param ServiceOptions|null $options The options this operation sends with.
      *
      * @return GetServiceStatsResult
      *
@@ -103,7 +102,7 @@ interface IQueue
      * Creates promise that retrieves statistics related to replication for the
      * service. The operation will only be sent to secondary location endpoint.
      *
-     * @param  ServiceOptions|null $options The options this operation sends with.
+     * @param ServiceOptions|null $options The options this operation sends with.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -116,8 +115,6 @@ interface IQueue
      *
      * @param string                         $queueName The queue name.
      * @param QueueModels\CreateQueueOptions $options   The optional queue create options.
-     *
-     * @return void
      */
     public function createQueue(
         $queueName,
@@ -127,8 +124,8 @@ interface IQueue
     /**
      * Creates promise to create a new queue under the storage account.
      *
-     * @param string                     $queueName The queue name.
-     * @param QueueModels\CreateQueueOptions  $options   The Optional parameters.
+     * @param string                         $queueName The queue name.
+     * @param QueueModels\CreateQueueOptions $options   The Optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -142,8 +139,6 @@ interface IQueue
      *
      * @param string                          $queueName The queue name.
      * @param QueueModels\QueueServiceOptions $options   The optional parameters.
-     *
-     * @return void
      */
     public function deleteQueue(
         $queueName,
@@ -214,8 +209,6 @@ interface IQueue
      * @param string                          $queueName The queue name.
      * @param array                           $metadata  The metadata array.
      * @param QueueModels\QueueServiceOptions $options   The optional parameters.
-     *
-     * @return void
      */
     public function setQueueMetadata(
         $queueName,
@@ -275,19 +268,19 @@ interface IQueue
     /**
      * Updates the visibility timeout of a message and/or the message contents.
      *
-     * @param string              $queueName                  The queue name.
-     * @param string              $messageId                  The id of the message.
-     * @param string              $popReceipt                 The valid pop receipt
-     * value returned from an earlier call to the Get Messages or Update Message
-     * operation.
-     * @param string              $messageText                The message contents.
-     * @param int                 $visibilityTimeoutInSeconds Specifies the new
-     * visibility timeout value, in seconds, relative to server time.
-     * The new value must be larger than or equal to 0, and cannot be larger
-     * than 7 days. The visibility timeout of a message cannot be set to a value
-     * later than the expiry time. A message can be updated until it has been
-     * deleted or has expired.
-     * @param QueueModels\QueueServiceOptions $options The optional parameters.
+     * @param string                          $queueName                  The queue name.
+     * @param string                          $messageId                  The id of the message.
+     * @param string                          $popReceipt                 The valid pop receipt
+     *                                                                    value returned from an earlier call to the Get Messages or Update Message
+     *                                                                    operation.
+     * @param string                          $messageText                The message contents.
+     * @param int                             $visibilityTimeoutInSeconds Specifies the new
+     *                                                                    visibility timeout value, in seconds, relative to server time.
+     *                                                                    The new value must be larger than or equal to 0, and cannot be larger
+     *                                                                    than 7 days. The visibility timeout of a message cannot be set to a value
+     *                                                                    later than the expiry time. A message can be updated until it has been
+     *                                                                    deleted or has expired.
+     * @param QueueModels\QueueServiceOptions $options                    The optional parameters.
      *
      * @return QueueModels\UpdateMessageResult
      */
@@ -304,20 +297,20 @@ interface IQueue
      * Creates promise to update the visibility timeout of a message and/or the
      * message contents.
      *
-     * @param string              $queueName                  The queue name.
-     * @param string              $messageId                  The id of the message.
-     * @param string              $popReceipt                 The valid pop receipt
-     * value returned from an earlier call to the Get Messages or Update Message
-     * operation.
-     * @param string              $messageText                The message contents.
-     * @param int                 $visibilityTimeoutInSeconds Specifies the new
-     * visibility timeout value, in seconds, relative to server time.
-     * The new value must be larger than or equal to 0, and cannot be larger
-     * than 7 days. The visibility timeout of a message cannot be set to a value
-     * later than the expiry time. A message can be updated until it has been
-     * deleted or has expired.
-     * @param QueueModels\QueueServiceOptions $options        The optional
-     * parameters.
+     * @param string                          $queueName                  The queue name.
+     * @param string                          $messageId                  The id of the message.
+     * @param string                          $popReceipt                 The valid pop receipt
+     *                                                                    value returned from an earlier call to the Get Messages or Update Message
+     *                                                                    operation.
+     * @param string                          $messageText                The message contents.
+     * @param int                             $visibilityTimeoutInSeconds Specifies the new
+     *                                                                    visibility timeout value, in seconds, relative to server time.
+     *                                                                    The new value must be larger than or equal to 0, and cannot be larger
+     *                                                                    than 7 days. The visibility timeout of a message cannot be set to a value
+     *                                                                    later than the expiry time. A message can be updated until it has been
+     *                                                                    deleted or has expired.
+     * @param QueueModels\QueueServiceOptions $options                    The optional
+     *                                                                    parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -341,8 +334,6 @@ interface IQueue
      *                                                    the Get Messages or
      *                                                    update Message operation.
      * @param QueueModels\QueueServiceOptions $options    The optional parameters.
-     *
-     * @return void
      */
     public function deleteMessage(
         $queueName,
@@ -388,7 +379,7 @@ interface IQueue
     /**
      * Creates promise to list all messages in the queue.
      *
-     * @param string              $queueName The queue name.
+     * @param string                          $queueName The queue name.
      * @param QueueModels\ListMessagesOptions $options   The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -496,8 +487,6 @@ interface IQueue
      * @param QueueModels\QueueACL            $acl     access control list
      * @param QueueModels\QueueServiceOptions $options optional parameters
      *
-     * @return void
-     *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/set-queue-acl
      */
     public function setQueueAcl(
@@ -509,7 +498,7 @@ interface IQueue
     /**
      * Creates promise to set the ACL
      *
-     * @param string                     $queue   name
+     * @param string                          $queue   name
      * @param QueueModels\QueueACL            $acl     access control list
      * @param QueueModels\QueueServiceOptions $options optional parameters
      *

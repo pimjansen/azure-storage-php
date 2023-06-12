@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Holds data for single queue message.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueueMessage
 {
@@ -137,8 +137,6 @@ class QueueMessage
      * Sets message text field.
      *
      * @param string $messageText message contents.
-     *
-     * @return void
      */
     public function setMessageText($messageText)
     {
@@ -159,8 +157,6 @@ class QueueMessage
      * Sets messageId field.
      *
      * @param string $messageId message contents.
-     *
-     * @return void
      */
     public function setMessageId($messageId)
     {
@@ -183,8 +179,6 @@ class QueueMessage
      * @param \DateTime $insertionDate message contents.
      *
      * @internal
-     *
-     * @return void
      */
     public function setInsertionDate(\DateTime $insertionDate)
     {
@@ -205,8 +199,6 @@ class QueueMessage
      * Sets expirationDate field.
      *
      * @param \DateTime $expirationDate the expiration date of the message.
-     *
-     * @return void
      */
     public function setExpirationDate(\DateTime $expirationDate)
     {
@@ -227,8 +219,6 @@ class QueueMessage
      * Sets timeNextVisible field.
      *
      * @param \DateTime $timeNextVisible next visibile time for the message.
-     *
-     * @return void
      */
     public function setTimeNextVisible($timeNextVisible)
     {
@@ -249,8 +239,6 @@ class QueueMessage
      * Sets popReceipt field.
      *
      * @param string $popReceipt used when deleting the message.
-     *
-     * @return void
      */
     public function setPopReceipt($popReceipt)
     {
@@ -260,7 +248,7 @@ class QueueMessage
     /**
      * Gets dequeueCount field.
      *
-     * @return integer
+     * @return int
      */
     public function getDequeueCount()
     {
@@ -270,11 +258,9 @@ class QueueMessage
     /**
      * Sets dequeueCount field.
      *
-     * @param integer $dequeueCount number of dequeues for that message.
+     * @param int $dequeueCount number of dequeues for that message.
      *
      * @internal
-     *
-     * @return void
      */
     public function setDequeueCount($dequeueCount)
     {

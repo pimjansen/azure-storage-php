@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -22,7 +22,7 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Represents entity property.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Property
 {
@@ -44,8 +44,6 @@ class Property
      * Sets the value of the property.
      *
      * @param string $edmType The property type.
-     *
-     * @return void
      */
     public function setEdmType($edmType)
     {
@@ -55,7 +53,6 @@ class Property
 
     /**
      * Gets the value of the property.
-     *
      */
     public function getValue()
     {
@@ -66,8 +63,6 @@ class Property
      * Sets the property value.
      *
      * @param mixed $value The value of property.
-     *
-     * @return void
      */
     public function setValue($value)
     {
@@ -88,8 +83,6 @@ class Property
      * Sets the raw property value.
      *
      * @param mixed $rawValue The raw value of property.
-     *
-     * @return void
      */
     public function setRawValue($rawValue)
     {

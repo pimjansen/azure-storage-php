@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common;
@@ -26,7 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Configuration manager for accessing Windows Azure settings.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CloudConfigurationManager
 {
@@ -42,8 +42,6 @@ class CloudConfigurationManager
 
     /**
      * Initializes the connection string source providers.
-     *
-     * @return void
      */
     private static function _init()
     {
@@ -91,11 +89,9 @@ class CloudConfigurationManager
      *
      * @param string   $name     The source name.
      * @param callable $provider The source callback.
-     * @param boolean  $prepend  When true, the $provider is processed first when
-     * calling getConnectionString. When false (the default) the $provider is
-     * processed after the existing callbacks.
-     *
-     * @return void
+     * @param bool     $prepend  When true, the $provider is processed first when
+     *                           calling getConnectionString. When false (the default) the $provider is
+     *                           processed after the existing callbacks.
      */
     public static function registerSource($name, $provider = null, $prepend = false)
     {

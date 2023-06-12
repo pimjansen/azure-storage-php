@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Holds results of calling queryEntities API
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueryEntitiesResult
 {
@@ -88,8 +88,6 @@ class QueryEntitiesResult
      * Sets entities.
      *
      * @param array $entities The entities array.
-     *
-     * @return void
      */
     protected function setEntities(array $entities)
     {

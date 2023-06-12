@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Serialization;
@@ -27,7 +27,8 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * Provides functionality to serialize a message to a string.
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MessageSerializer
 {
@@ -37,7 +38,6 @@ class MessageSerializer
      * getHeaders()
      * getProtocolVersion()
      * (getUri() && getMethod()) || (getStatusCode() && getReasonPhrase())
-     *
      *
      * @return string
      */
@@ -77,7 +77,7 @@ class MessageSerializer
      * getUri()
      * getMethod()
      *
-     * @param  object $request The request to be serialized.
+     * @param object $request The request to be serialized.
      *
      * @return string
      */
@@ -102,7 +102,7 @@ class MessageSerializer
      * getStatusCode()
      * getReasonPhrase()
      *
-     * @param  object $response The response to be serialized
+     * @param object $response The response to be serialized
      *
      * @return string
      */
@@ -124,7 +124,7 @@ class MessageSerializer
     /**
      * Serialize the message headers.
      *
-     * @param  array  $headers The headers to be serialized.
+     * @param array $headers The headers to be serialized.
      *
      * @return string
      */
@@ -141,7 +141,7 @@ class MessageSerializer
     /**
      * Serialize the request exception.
      *
-     * @param  RequestException $e the request exception to be serialized.
+     * @param RequestException $e the request exception to be serialized.
      *
      * @return string
      */
@@ -158,7 +158,7 @@ class MessageSerializer
     /**
      * Serialize the general exception
      *
-     * @param  \Exception $e general exception to be serialized.
+     * @param \Exception $e general exception to be serialized.
      *
      * @return string
      */

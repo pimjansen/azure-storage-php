@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * WindowsAzure share object.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Share
 {
@@ -36,7 +36,7 @@ class Share
     /**
      * Creates an instance with given response array.
      *
-     * @param  array  $parsedResponse The response array.
+     * @param array $parsedResponse The response array.
      *
      * @return Share
      */
@@ -67,8 +67,6 @@ class Share
      * Sets share name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {
@@ -89,8 +87,6 @@ class Share
      * Sets share metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata = null)
     {
@@ -111,8 +107,6 @@ class Share
      * Sets share properties
      *
      * @param ShareProperties $properties share properties
-     *
-     * @return void
      */
     public function setProperties(ShareProperties $properties)
     {

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Http;
@@ -28,7 +28,8 @@ use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
  * Holds basic elements for making HTTP call.
  *
  * @ignore
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class HttpCallContext
 {
@@ -72,8 +73,6 @@ class HttpCallContext
      * Sets method.
      *
      * @param string $method The method value.
-     *
-     * @return void
      */
     public function setMethod($method)
     {
@@ -98,8 +97,6 @@ class HttpCallContext
      * Ignores the header if its value is empty.
      *
      * @param array $headers The headers value.
-     *
-     * @return void
      */
     public function setHeaders(array $headers)
     {
@@ -125,8 +122,6 @@ class HttpCallContext
      * Ignores the query variable if its value is empty.
      *
      * @param array $queryParams The queryParams value.
-     *
-     * @return void
      */
     public function setQueryParameters(array $queryParams)
     {
@@ -150,8 +145,6 @@ class HttpCallContext
      * Sets uri.
      *
      * @param string $uri The uri value.
-     *
-     * @return void
      */
     public function setUri($uri)
     {
@@ -174,8 +167,6 @@ class HttpCallContext
      * Sets path.
      *
      * @param string $path The path value.
-     *
-     * @return void
      */
     public function setPath($path)
     {
@@ -198,8 +189,6 @@ class HttpCallContext
      * Sets statusCodes.
      *
      * @param array $statusCodes The statusCodes value.
-     *
-     * @return void
      */
     public function setStatusCodes(array $statusCodes)
     {
@@ -223,8 +212,6 @@ class HttpCallContext
      * Sets body.
      *
      * @param string $body The body value.
-     *
-     * @return void
      */
     public function setBody($body)
     {
@@ -238,8 +225,6 @@ class HttpCallContext
      *
      * @param string $name  The HTTP header name.
      * @param string $value The HTTP header value.
-     *
-     * @return void
      */
     public function addHeader($name, $value)
     {
@@ -256,8 +241,6 @@ class HttpCallContext
      *
      * @param string $name  The HTTP header name.
      * @param string $value The HTTP header value.
-     *
-     * @return void
      */
     public function addOptionalHeader($name, $value)
     {
@@ -273,8 +256,6 @@ class HttpCallContext
      * Removes header from the HTTP request headers.
      *
      * @param string $name The HTTP header name.
-     *
-     * @return void
      */
     public function removeHeader($name)
     {
@@ -289,8 +270,6 @@ class HttpCallContext
      *
      * @param string $name  The URI query parameter name.
      * @param string $value The URI query parameter value.
-     *
-     * @return void
      */
     public function addQueryParameter($name, $value)
     {
@@ -314,8 +293,6 @@ class HttpCallContext
      * Sets HTTP POST parameters.
      *
      * @param array $postParameters The HTTP POST parameters.
-     *
-     * @return void
      */
     public function setPostParameters(array $postParameters)
     {
@@ -330,8 +307,6 @@ class HttpCallContext
      *
      * @param string $name  The URI query parameter name.
      * @param string $value The URI query parameter value.
-     *
-     * @return void
      */
     public function addOptionalQueryParameter($name, $value)
     {
@@ -346,9 +321,7 @@ class HttpCallContext
     /**
      * Adds status code to the expected status codes.
      *
-     * @param integer $statusCode The expected status code.
-     *
-     * @return void
+     * @param int $statusCode The expected status code.
      */
     public function addStatusCode($statusCode)
     {
@@ -361,7 +334,6 @@ class HttpCallContext
      * Gets header value.
      *
      * @param string $name The header name.
-     *
      */
     public function getHeader($name)
     {
@@ -385,8 +357,6 @@ class HttpCallContext
      * Sets the service options
      *
      * @param ServiceOptions $serviceOptions the service options to be set.
-     *
-     * @return void
      */
     public function setServiceOptions(ServiceOptions $serviceOptions)
     {

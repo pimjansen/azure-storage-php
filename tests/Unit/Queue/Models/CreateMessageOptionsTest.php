@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Queue\Models\CreateMessageOptions;
 /**
  * Unit tests for class CreateMessageOptions
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
 {

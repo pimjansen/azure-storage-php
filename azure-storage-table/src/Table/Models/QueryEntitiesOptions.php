@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Table\Internal\AcceptOptionTrait;
 /**
  * Holds optional parameters for queryEntities API
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueryEntitiesOptions extends TableServiceOptions
 {
@@ -59,8 +59,6 @@ class QueryEntitiesOptions extends TableServiceOptions
      * like (setTop).
      *
      * @param Query $query The query instance.
-     *
-     * @return void
      */
     public function setQuery(Query $query)
     {
@@ -84,8 +82,6 @@ class QueryEntitiesOptions extends TableServiceOptions
      * query object.
      *
      * @param Filters\Filter $filter value.
-     *
-     * @return void
      */
     public function setFilter(Filters\Filter $filter)
     {
@@ -95,7 +91,7 @@ class QueryEntitiesOptions extends TableServiceOptions
     /**
      * Gets top.
      *
-     * @return integer
+     * @return int
      */
     public function getTop()
     {
@@ -108,9 +104,7 @@ class QueryEntitiesOptions extends TableServiceOptions
      * You can either use this individual function or use setQuery to set the whole
      * query object.
      *
-     * @param integer $top value.
-     *
-     * @return void
+     * @param int $top value.
      */
     public function setTop($top)
     {
@@ -124,8 +118,6 @@ class QueryEntitiesOptions extends TableServiceOptions
      * query object.
      *
      * @param string $field The value of the field.
-     *
-     * @return void
      */
     public function addSelectField($field)
     {
@@ -149,8 +141,6 @@ class QueryEntitiesOptions extends TableServiceOptions
      * query object.
      *
      * @param array $selectFields value.
-     *
-     * @return void
      */
     public function setSelectFields(array $selectFields = null)
     {

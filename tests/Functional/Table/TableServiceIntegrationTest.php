@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Table;
@@ -372,7 +372,8 @@ class TableServiceIntegrationTest extends IntegrationTestBase
             $result->getEntity()->getProperty('test7'),
             '$result->getEntity()->getProperty(\'test7\')'
         );
-        self::assertIsString($result->getEntity()->getProperty('test7')->getValue(),
+        self::assertIsString(
+            $result->getEntity()->getProperty('test7')->getValue(),
             'is_string($result->getEntity()->getProperty(\'test7\')->getValue())'
         );
         self::assertEquals($uuid, $result->getEntity()->getPropertyValue('test7'), 'GUIDs are the same');
@@ -736,7 +737,8 @@ class TableServiceIntegrationTest extends IntegrationTestBase
             $result->getEntity()->getProperty('test7'),
             '$result->getEntity()->getProperty(\'test7\')'
         );
-        self::assertIsString($result->getEntity()->getProperty('test7')->getValue(),
+        self::assertIsString(
+            $result->getEntity()->getProperty('test7')->getValue(),
             'is_string($result->getEntity()->getProperty(\'test7\')->getValue())'
         );
         self::assertEquals($uuid, $result->getEntity()->getPropertyValue('test7'), 'GUIDs are the same');

@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common;
@@ -25,10 +25,10 @@ use MicrosoftAzure\Storage\Tests\Framework\ReflectionTestBase;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
-* Unit tests for class SharedAccessSignatureHelper
-*
-* @link      https://github.com/azure/azure-storage-php
-*/
+ * Unit tests for class SharedAccessSignatureHelper
+ *
+ * @see      https://github.com/azure/azure-storage-php
+ */
 class SharedAccessSignatureHelperTest extends ReflectionTestBase
 {
     public function testConstruct()

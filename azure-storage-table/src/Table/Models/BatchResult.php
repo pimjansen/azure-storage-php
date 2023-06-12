@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -30,7 +30,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Holds results from batch API.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchResult
 {
@@ -86,7 +86,7 @@ class BatchResult
      * @param mixed $r1 The first response object.
      * @param mixed $r2 The second response object.
      *
-     * @return integer
+     * @return int
      */
     private static function _compareUsingContentId($r1, $r2)
     {
@@ -107,9 +107,9 @@ class BatchResult
      * @param IODataReaderWriter $odataSerializer The OData reader and writer.
      * @param IMimeReaderWriter  $mimeSerializer  The MIME reader and writer.
      *
-     * @return \MicrosoftAzure\Storage\Table\Models\BatchResult
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return \MicrosoftAzure\Storage\Table\Models\BatchResult
      */
     public static function create(
         $body,
@@ -187,8 +187,6 @@ class BatchResult
      * Sets batch call result entries.
      *
      * @param array $entries The batch call result entries.
-     *
-     * @return void
      */
     protected function setEntries(array $entries)
     {

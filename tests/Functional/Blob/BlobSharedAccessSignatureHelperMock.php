@@ -14,7 +14,7 @@
  *
  * PHP version 5
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Blob;
@@ -25,7 +25,7 @@ use MicrosoftAzure\Storage\Blob\BlobSharedAccessSignatureHelper;
  * Provides methods to access the account name and key for the
  * SharedAccessSignatureHelper.
  *
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobSharedAccessSignatureHelperMock extends BlobSharedAccessSignatureHelper
 {
