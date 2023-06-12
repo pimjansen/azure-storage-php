@@ -279,7 +279,7 @@ class StorageServiceSettings extends ServiceSettings
             Resources::SERVICE_URI_FORMAT,
             $scheme,
             $accountName,
-            $dnsPrefix.$dnsSuffix
+            $dnsPrefix . $dnsSuffix
         );
     }
 

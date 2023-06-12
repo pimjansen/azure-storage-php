@@ -127,35 +127,35 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
     protected function initializeProxiesWithSASandAccountName($sas, $accountName)
     {
         $connectionString = Resources::BLOB_ENDPOINT_NAME .
-                             '='.
+                             '=' .
                              'https://' .
                              $accountName .
                              '.' .
                              Resources::BLOB_BASE_DNS_NAME .
                              ';';
         $connectionString .= Resources::QUEUE_ENDPOINT_NAME .
-                             '='.
+                             '=' .
                              'https://' .
                              $accountName .
                              '.' .
                              Resources::QUEUE_BASE_DNS_NAME .
                              ';';
         $connectionString .= Resources::TABLE_ENDPOINT_NAME .
-                             '='.
+                             '=' .
                              'https://' .
                              $accountName .
                              '.' .
                              Resources::TABLE_BASE_DNS_NAME .
                              ';';
         $connectionString .= Resources::FILE_ENDPOINT_NAME .
-                             '='.
+                             '=' .
                              'https://' .
                              $accountName .
                              '.' .
                              Resources::FILE_BASE_DNS_NAME .
                              ';';
         $connectionString .= Resources::SAS_TOKEN_NAME .
-                             '='.
+                             '=' .
                              $sas;
 
         $this->setUpWithConnectionString($connectionString);
@@ -164,13 +164,13 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
     protected function createProxyWithSAS($sas, $accountName, $signedResource)
     {
         $connectionString = Resources::SAS_TOKEN_NAME .
-                             '='.
+                             '=' .
                              $sas;
         switch ($signedResource) {
             case Resources::RESOURCE_TYPE_BLOB:
             case Resources::RESOURCE_TYPE_CONTAINER:
                 $connectionString = Resources::BLOB_ENDPOINT_NAME .
-                                    '='.
+                                    '=' .
                                     'https://' .
                                     $accountName .
                                     '.' .
@@ -181,7 +181,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
                 break;
             case Resources::RESOURCE_TYPE_QUEUE:
                 $connectionString = Resources::QUEUE_ENDPOINT_NAME .
-                                    '='.
+                                    '=' .
                                     'https://' .
                                     $accountName .
                                     '.' .
@@ -192,7 +192,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
                 break;
             case Resources::RESOURCE_TYPE_TABLE:
                 $connectionString = Resources::TABLE_ENDPOINT_NAME .
-                                    '='.
+                                    '=' .
                                     'https://' .
                                     $accountName .
                                     '.' .
@@ -204,7 +204,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
             case Resources::RESOURCE_TYPE_FILE:
             case Resources::RESOURCE_TYPE_SHARE:
                 $connectionString = Resources::FILE_ENDPOINT_NAME .
-                                    '='.
+                                    '=' .
                                     'https://' .
                                     $accountName .
                                     '.' .

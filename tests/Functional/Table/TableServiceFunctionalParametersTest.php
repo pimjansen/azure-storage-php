@@ -436,7 +436,7 @@ class TableServiceFunctionalParametersTest extends FunctionalTestBase
         $this->assertEquals(0, count($queryres->getEntities()), 'entities returned');
 
         $e = new Entity();
-        $e->setPartitionKey('partition '. TableServiceFunctionalTestData::getUnicodeString());
+        $e->setPartitionKey('partition ' . TableServiceFunctionalTestData::getUnicodeString());
         $e->setRowKey('niceKey');
         $this->restProxy->insertEntity($table, $e);
         $this->restProxy->deleteEntity($table, $e->getPartitionKey(), $e->getRowKey());

@@ -601,7 +601,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             ) < 10,
             'Last modified date (' .
             $ret->getLastModified()->format(\DateTime::RFC1123) .
-                ')'. ' should be within 10 seconds of $now (' .
+                ')' . ' should be within 10 seconds of $now (' .
                 $now->format(\DateTime::RFC1123) . ')'
         );
     }
@@ -888,18 +888,18 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         for ($i = 0; $i < count($expIds); $i++) {
             $expId = $expIds[$i];
             $actId = $actIds[$i];
-            $this->assertEquals($expId->getId(), $actId->getId(), 'SignedIdentifiers[' . $i .']->getId');
+            $this->assertEquals($expId->getId(), $actId->getId(), 'SignedIdentifiers[' . $i . ']->getId');
             $this->assertEquals(
                 $expId->getAccessPolicy()->getPermission(),
                 $actId->getAccessPolicy()->getPermission(),
-                'SignedIdentifiers['. $i .']->getAccessPolicy->getPermission'
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getPermission'
             );
             $this->assertTrue(
                 FileServiceFunctionalTestData::diffInTotalSeconds(
                     $expId->getAccessPolicy()->getStart(),
                     $actId->getAccessPolicy()->getStart()
                 ) < 1,
-                'SignedIdentifiers[' . $i .']->getAccessPolicy->getStart should match within 1 second, ' .
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getStart should match within 1 second, ' .
                     'exp=' . $expId->getAccessPolicy()->getStart()->format(\DateTime::RFC1123) . ', ' .
                     'act=' . $actId->getAccessPolicy()->getStart()->format(\DateTime::RFC1123)
             );
@@ -908,7 +908,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                     $expId->getAccessPolicy()->getExpiry(),
                     $actId->getAccessPolicy()->getExpiry()
                 ) < 1,
-                'SignedIdentifiers['. $i .']->getAccessPolicy->getExpiry should match within 1 second, ' .
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getExpiry should match within 1 second, ' .
                     'exp=' . $expId->getAccessPolicy()->getExpiry()->format(\DateTime::RFC1123) . ', ' .
                     'act=' . $actId->getAccessPolicy()->getExpiry()->format(\DateTime::RFC1123)
             );
@@ -1017,7 +1017,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                     ')!=\'\', Files length (' .
                     count($ret->getFiles()) + count($ret->getDirectories()) .
                     ') should be == MaxResults (' .
-                    $options->getMaxResults() .')'
+                    $options->getMaxResults() . ')'
             );
         }
     }
@@ -1621,7 +1621,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             'Last modified date (' .
                 $getFileResult->getProperties()->getLastModified()->format(
                     \DateTime::RFC1123
-                ) . ')'. ' should be within 10 seconds of $now (' .
+                ) . ')' . ' should be within 10 seconds of $now (' .
                 $now->format(\DateTime::RFC1123) . ')'
         );
     }

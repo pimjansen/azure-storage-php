@@ -419,7 +419,7 @@ class TableServiceFunctionalTestUtils
                     }
                 }
                 if (!$in) {
-                    $ret .= 'returned ' . FunctionalTestBase::tmptostring($ei). "\n";
+                    $ret .= 'returned ' . FunctionalTestBase::tmptostring($ei) . "\n";
                 }
             }
 
@@ -433,7 +433,7 @@ class TableServiceFunctionalTestUtils
                     }
                 }
                 if (!$in) {
-                    $ret .= 'expected ' . FunctionalTestBase::tmptostring($ej). "\n";
+                    $ret .= 'expected ' . FunctionalTestBase::tmptostring($ej) . "\n";
                 }
             }
         }

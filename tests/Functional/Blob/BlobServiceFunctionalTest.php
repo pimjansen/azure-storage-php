@@ -688,7 +688,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             ) < 10,
             'Last modified date (' .
             $ret->getLastModified()->format(\DateTime::RFC1123) .
-                ')'. ' should be within 10 seconds of $now (' .
+                ')' . ' should be within 10 seconds of $now (' .
                 $now->format(\DateTime::RFC1123) . ')'
         );
     }
@@ -987,18 +987,18 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         for ($i = 0; $i < count($expIds); $i++) {
             $expId = $expIds[$i];
             $actId = $actIds[$i];
-            $this->assertEquals($expId->getId(), $actId->getId(), 'SignedIdentifiers[' . $i .']->getId');
+            $this->assertEquals($expId->getId(), $actId->getId(), 'SignedIdentifiers[' . $i . ']->getId');
             $this->assertEquals(
                 $expId->getAccessPolicy()->getPermission(),
                 $actId->getAccessPolicy()->getPermission(),
-                'SignedIdentifiers['. $i .']->getAccessPolicy->getPermission'
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getPermission'
             );
             $this->assertTrue(
                 BlobServiceFunctionalTestData::diffInTotalSeconds(
                     $expId->getAccessPolicy()->getStart(),
                     $actId->getAccessPolicy()->getStart()
                 ) < 1,
-                'SignedIdentifiers[' . $i .']->getAccessPolicy->getStart should match within 1 second, ' .
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getStart should match within 1 second, ' .
                     'exp=' . $expId->getAccessPolicy()->getStart()->format(\DateTime::RFC1123) . ', ' .
                     'act=' . $actId->getAccessPolicy()->getStart()->format(\DateTime::RFC1123)
             );
@@ -1007,7 +1007,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     $expId->getAccessPolicy()->getExpiry(),
                     $actId->getAccessPolicy()->getExpiry()
                 ) < 1,
-                'SignedIdentifiers['. $i .']->getAccessPolicy->getExpiry should match within 1 second, ' .
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getExpiry should match within 1 second, ' .
                     'exp=' . $expId->getAccessPolicy()->getExpiry()->format(\DateTime::RFC1123) . ', ' .
                     'act=' . $actId->getAccessPolicy()->getExpiry()->format(\DateTime::RFC1123)
             );
@@ -1185,7 +1185,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 'when NextMarker (' . $ret->getNextMarker() .
                     ')!=\'\', Blobs length (' . count($ret->getBlobs()) .
                     ') should be == MaxResults (' .
-                    $options->getMaxResults() .')'
+                    $options->getMaxResults() . ')'
             );
 
             if (!is_null($options->getPrefix()) &&
@@ -2192,7 +2192,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $now
             ) < 10,
             'Last modified date (' . $snapshotDate->format(\DateTime::RFC1123) .
-                ')'. ' should be within 10 seconds of $now (' .
+                ')' . ' should be within 10 seconds of $now (' .
                 $now->format(\DateTime::RFC1123) . ')'
         );
 
@@ -2203,7 +2203,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $now
             ) < 10,
             'Last modified date (' .
-                $res->getLastModified()->format(\DateTime::RFC1123) . ')'.
+                $res->getLastModified()->format(\DateTime::RFC1123) . ')' .
                 ' should be within 10 seconds of $now (' .
                 $now->format(\DateTime::RFC1123) . ')'
         );
@@ -2401,7 +2401,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             'Last modified date (' .
                 $getBlobResult->getProperties()->getLastModified()->format(
                     \DateTime::RFC1123
-                ) . ')'. ' should be within 10 seconds of $now (' .
+                ) . ')' . ' should be within 10 seconds of $now (' .
                 $now->format(\DateTime::RFC1123) . ')'
         );
     }
@@ -2614,7 +2614,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         // create a temp file of size $size.
         $cwd = getcwd();
         $uuid = uniqid('test-file-', true);
-        $path = $cwd.DIRECTORY_SEPARATOR.$uuid.'.txt';
+        $path = $cwd . DIRECTORY_SEPARATOR . $uuid . '.txt';
         $resource = fopen($path, 'w+');
 
         for ($i = 0; $i < 2; ++$i) {
@@ -2649,7 +2649,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         //create a temp file of size $size.
         $cwd = getcwd();
         $uuid = uniqid('test-file-', true);
-        $path = $cwd.DIRECTORY_SEPARATOR.$uuid.'.txt';
+        $path = $cwd . DIRECTORY_SEPARATOR . $uuid . '.txt';
         $resource = fopen($path, 'w+');
 
         $count = $size / Resources::MB_IN_BYTES_32;
@@ -2681,7 +2681,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         //get the path for the file to be downloaded into.
         $uuid = uniqid('test-file-', true);
-        $downloadPath = $cwd.DIRECTORY_SEPARATOR.$uuid.'.txt';
+        $downloadPath = $cwd . DIRECTORY_SEPARATOR . $uuid . '.txt';
         $downloadResource = fopen($downloadPath, 'w');
         //download the file
         $content = $result->getContentStream();

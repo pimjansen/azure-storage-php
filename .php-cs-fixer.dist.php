@@ -39,4 +39,7 @@ return $config
                 'method' => 'one',
             ],
         ],
+        'concat_space' => [
+            'spacing' => 'one',
+        ],
     ]);

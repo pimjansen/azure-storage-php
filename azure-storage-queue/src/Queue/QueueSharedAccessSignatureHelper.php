@@ -145,14 +145,14 @@ class QueueSharedAccessSignatureHelper extends SharedAccessSignatureHelper
             return $string === '' ? '' : $abrv . $string;
         };
         //adding all the components for account SAS together.
-        $sas = 'sv='    . Resources::STORAGE_API_LATEST_VERSION;
+        $sas = 'sv=' . Resources::STORAGE_API_LATEST_VERSION;
         $sas .= $buildOptQueryStr($signedStart, '&st=');
-        $sas .= '&se='   . $signedExpiry;
-        $sas .= '&sp='   . $signedPermissions;
+        $sas .= '&se=' . $signedExpiry;
+        $sas .= '&sp=' . $signedPermissions;
         $sas .= $buildOptQueryStr($signedIP, '&sip=');
         $sas .= $buildOptQueryStr($signedProtocol, '&spr=');
         $sas .= $buildOptQueryStr($signedIdentifier, '&si=');
-        $sas .= '&sig='  . $sig;
+        $sas .= '&sig=' . $sig;
 
         // return the signature
         return $sas;

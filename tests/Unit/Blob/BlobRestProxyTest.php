@@ -2042,7 +2042,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         //get current working directory for the path to download
         $cwd = getcwd();
         $uuid = uniqid('test-file-', true);
-        $path = $cwd.DIRECTORY_SEPARATOR.$uuid.'.txt';
+        $path = $cwd . DIRECTORY_SEPARATOR . $uuid . '.txt';
 
         // Test
         $result = $this->restProxy->saveBlobToFile($path, $name, $blob);
@@ -2076,7 +2076,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         //get current working directory for the path to download
         $cwd = getcwd();
         $uuid = uniqid('test-file-', true);
-        $path = $cwd.DIRECTORY_SEPARATOR.$uuid.'.txt';
+        $path = $cwd . DIRECTORY_SEPARATOR . $uuid . '.txt';
 
         // Test
         $result = $this->restProxy->saveBlobToFile($path, $name, $blob);
@@ -2140,7 +2140,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Test
         //get the path for the file to be downloaded into.
         $uuid = uniqid('test-file-', true);
-        $downloadPath = '\0/0@$%@!Zasdf:\\\\\\\\Invalid.PATH'.$uuid.'.txt';
+        $downloadPath = '\0/0@$%@!Zasdf:\\\\\\\\Invalid.PATH' . $uuid . '.txt';
         error_reporting(E_ALL ^ E_WARNING);
         try {
             $result = $this->restProxy->saveBlobToFile($downloadPath, $name, $blob);
@@ -2160,7 +2160,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->createContainer($name);
         //get the path for the file to be downloaded into.
         $uuid = uniqid('test-file-', true);
-        $downloadPath = getcwd().DIRECTORY_SEPARATOR.$uuid.'.txt';
+        $downloadPath = getcwd() . DIRECTORY_SEPARATOR . $uuid . '.txt';
         try {
             $result = $this->restProxy->saveBlobToFile($downloadPath, $name, $blob);
         } catch (\Exception $e) {
@@ -2181,7 +2181,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $blob = 'non_existing_blob';
         //get the path for the file to be downloaded into.
         $uuid = uniqid('test-file-', true);
-        $downloadPath = getcwd().DIRECTORY_SEPARATOR.$uuid.'.txt';
+        $downloadPath = getcwd() . DIRECTORY_SEPARATOR . $uuid . '.txt';
         try {
             $result = $this->restProxy->saveBlobToFile($downloadPath, $name, $blob);
         } catch (\Exception $e) {

@@ -67,7 +67,7 @@ class TokenAuthScheme implements IAuthScheme
      */
     public function signRequest(Request $request)
     {
-        $bearerToken = "Bearer ". $this->tokenRef;
+        $bearerToken = "Bearer " . $this->tokenRef;
         return $request->withHeader(Resources::AUTHENTICATION, $bearerToken);
     }
 }

@@ -577,7 +577,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         //prepare a file
         $cwd = getcwd();
         $uuid = uniqid('test-file-', true);
-        $path = $cwd.DIRECTORY_SEPARATOR.$uuid.'.txt';
+        $path = $cwd . DIRECTORY_SEPARATOR . $uuid . '.txt';
         $resource = fopen($path, 'w+');
         $count = 64 / 4;
         for ($index = 0; $index < $count; ++$index) {
