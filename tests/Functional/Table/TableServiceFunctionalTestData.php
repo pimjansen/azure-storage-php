@@ -443,7 +443,7 @@ class TableServiceFunctionalTestData
         // The random here is not to generate random values, but to
         // get a good mix of values in the table entities.
         mt_srand(123);
-        for ($i = 0; $i < $count - 1; $i++) {
+        for ($i = 0; $i < $count - 1; ++$i) {
             $e = new Entity();
             $e->setPartitionKey('singlePartition');
             $e->setRowKey(self::getNewKey());

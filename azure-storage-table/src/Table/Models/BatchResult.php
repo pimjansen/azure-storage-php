@@ -53,7 +53,7 @@ class BatchResult
         // case that batch response body has useful info.
         $count = count($parts);
 
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; ++$i) {
             $response = new \stdClass();
 
             // Split lines
@@ -126,7 +126,7 @@ class BatchResult
         // Sort $responses based on Content-ID so they match order of $operations.
         uasort($responses, $callbackName);
 
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; ++$i) {
             $context = $contexts[$i];
             $response = $responses[$i];
             $operation = $operations[$i];

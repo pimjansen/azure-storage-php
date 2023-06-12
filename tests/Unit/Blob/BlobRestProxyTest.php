@@ -1062,7 +1062,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $range = new Range(0, 511);
         $contentStream = Resources::EMPTY_STRING;
         $this->restProxy->createPageBlob('', $blob, $length);
-        for ($i = 0; $i < 512; $i++) {
+        for ($i = 0; $i < 512; ++$i) {
             $contentStream .= 'A';
         }
         $this->restProxy->createBlobPages('', $blob, $range, $contentStream);
@@ -1091,7 +1091,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $range = new Range(0, 511);
         $contentStream = Resources::EMPTY_STRING;
         $this->restProxy->createPageBlob($name, $blob, $length);
-        for ($i = 0; $i < 512; $i++) {
+        for ($i = 0; $i < 512; ++$i) {
             $contentStream .= 'A';
         }
         $this->restProxy->createBlobPages($name, $blob, $range, $contentStream);
@@ -1367,7 +1367,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $content = Resources::EMPTY_STRING;
         $this->createContainer($name);
         $this->restProxy->createPageBlob($name, $blob, $length);
-        for ($i = 0; $i < 512; $i++) {
+        for ($i = 0; $i < 512; ++$i) {
             $content .= 'A';
         }
 
@@ -1389,7 +1389,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $content = Resources::EMPTY_STRING;
         $this->createContainer($name);
         $this->restProxy->createPageBlob($name, $blob, $length);
-        for ($i = 0; $i < 512; $i++) {
+        for ($i = 0; $i < 512; ++$i) {
             $content .= 'A';
         }
         $this->restProxy->createBlobPages($name, $blob, $range, $content);
@@ -1412,7 +1412,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $content = Resources::EMPTY_STRING;
         $this->createContainer($name);
         $this->restProxy->createPageBlob($name, $blob, $length);
-        for ($i = 0; $i < 512; $i++) {
+        for ($i = 0; $i < 512; ++$i) {
             $content .= 'A';
         }
         $this->restProxy->createBlobPages($name, $blob, $range, $content);
@@ -1437,7 +1437,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->restProxy->createPageBlob($name, $blob, $length);
 
         // Create snapshot for original page blob
-        for ($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; ++$i) {
             $content .= 'A';
         }
         $this->restProxy->createBlobPages($name, $blob, $range, $content);
@@ -1450,7 +1450,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Update range 512->1023
         $updateRange = new Range(512, 1023);
         $updateContent = Resources::EMPTY_STRING;
-        for ($i = 0; $i < 512; $i++) {
+        for ($i = 0; $i < 512; ++$i) {
             $updateContent .= 'B';
         }
         $this->restProxy->createBlobPages($name, $blob, $updateRange, $updateContent);
@@ -1979,7 +1979,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $content = "This is a really long section of text needed for this test.";
         // Note this grows fast, each loop doubles the last run. Do not make too big
         // This results in a 1888 byte string, divided by 50 results in 38 blocks
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; ++$i) {
             $content .= $content;
         }
         $options = new CreateBlockBlobOptions();
@@ -2058,7 +2058,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $content = Resources::EMPTY_STRING;
         $this->createContainer($name);
         $this->restProxy->createPageBlob($name, $blob, $length);
-        for ($i = 0; $i < 512; $i++) {
+        for ($i = 0; $i < 512; ++$i) {
             $content .= 'A';
         }
 

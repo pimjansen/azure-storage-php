@@ -80,7 +80,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
             self::$curPartition = 0;
             self::$curRowKey = TableServiceFunctionalTestData::getNewKey();
         } else {
-            self::$curPartition++;
+            ++self::$curPartition;
         }
 
         $entity = new Entity();
@@ -174,7 +174,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         // get a good mix of values in the table entities.
         mt_srand(123);
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 20; ++$i) {
             $e = self::getNewEntity();
             TableServiceFunctionalTestData::addProperty($e, 'BINARY', EdmType::BINARY, $binaries);
             TableServiceFunctionalTestData::addProperty($e, 'BOOLEAN', EdmType::BOOLEAN, $booleans);
@@ -282,7 +282,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         // The random here is not to generate random values, but to
         // get a good mix of values in the table entities.
         mt_srand(456 + $depth);
-        for ($i = 1; $i < 20; $i++) {
+        for ($i = 1; $i < 20; ++$i) {
             $filter = self::generateFilterWithBooleanParameters($depth, 0);
             $options = new QueryEntitiesOptions();
             $query = new Query();
@@ -637,7 +637,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
         if (!is_null($q->getTop()) && $q->getTop() < count($expectedData)) {
             $expectedDataTmp = [];
-            for ($i = 0; $i < $q->getTop(); $i++) {
+            for ($i = 0; $i < $q->getTop(); ++$i) {
                 array_push($expectedDataTmp, $expectedData[$i]);
             }
             $expectedData = $expectedDataTmp;
@@ -652,7 +652,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         $actualData = self::sortEntitiesByCompositeKey($actualData);
         $expectedData = self::sortEntitiesByCompositeKey($expectedData);
         $this->assertEquals(count($expectedData), count($actualData), 'count(getEntities)');
-        for ($i = 0; $i < count($expectedData); $i++) {
+        for ($i = 0; $i < count($expectedData); ++$i) {
             $e1 = $expectedData[$i];
             $e2 = $actualData[$i];
             if (!$projected) {

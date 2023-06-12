@@ -69,7 +69,7 @@ class MimeReaderWriter implements IMimeReaderWriter
         $batchBody .= "Content-Type: $mimeType; boundary=\"$changeSetId\"" . $eof;
 
         $batchBody .= $eof;
-        for ($i = 0; $i < count($bodyPartContents); $i++) {
+        for ($i = 0; $i < count($bodyPartContents); ++$i) {
             $batchBody .= "--" . $changeSetId . $eof;
 
             $batchBody .= "Content-Transfer-Encoding: binary" . $eof;
@@ -107,7 +107,7 @@ class MimeReaderWriter implements IMimeReaderWriter
         $result = [];
 
         // The first and last element are not request
-        for ($i = 1; $i < count($requests) - 1; $i++) {
+        for ($i = 1; $i < count($requests) - 1; ++$i) {
             // Split the request header and body
             preg_match("/^.*?\r?\n\r?\n(.*)/s", $requests[$i], $matches);
             $result[] = $matches[1];

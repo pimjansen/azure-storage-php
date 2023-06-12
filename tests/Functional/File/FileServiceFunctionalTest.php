@@ -880,7 +880,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $actIds = $ret->getShareACL()->getSignedIdentifiers();
         $this->assertEquals(count($expIds), count($actIds), '$ret->getShareACL->getSignedIdentifiers');
 
-        for ($i = 0; $i < count($expIds); $i++) {
+        for ($i = 0; $i < count($expIds); ++$i) {
             $expId = $expIds[$i];
             $actId = $actIds[$i];
             $this->assertEquals($expId->getId(), $actId->getId(), 'SignedIdentifiers[' . $i . ']->getId');

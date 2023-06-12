@@ -67,7 +67,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         $expected[] = "qf";
         $expected[] = "b";
 
-        for ($i = 0; $i < count($authorizedSignedService); $i++) {
+        for ($i = 0; $i < count($authorizedSignedService); ++$i) {
             // Test
             $actual = $validateAndSanitizeSignedService->invokeArgs($sasHelper, [$authorizedSignedService[$i]]);
 
@@ -109,7 +109,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         $expected[] = "sco";
         $expected[] = "o";
 
-        for ($i = 0; $i < count($authorizedSignedResourceType); $i++) {
+        for ($i = 0; $i < count($authorizedSignedResourceType); ++$i) {
             // Test
             $actual = $validateAndSanitizeSignedResourceType->invokeArgs(
                 $sasHelper,
@@ -151,7 +151,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         $expected[] = "https";
         $expected[] = "https,http";
 
-        for ($i = 0; $i < count($authorizedSignedProtocol); $i++) {
+        for ($i = 0; $i < count($authorizedSignedProtocol); ++$i) {
             // Test
             $actual = $validateAndSanitizeSignedProtocol->invokeArgs($sasHelper, [$authorizedSignedProtocol[$i]]);
 
@@ -275,7 +275,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         $expected[] = "/blob/test/folder/filename/";
         $expected[] = "/blob/test/folder/eñe20!.pdf/";
 
-        for ($i = 0; $i < count($resourceNames); $i++) {
+        for ($i = 0; $i < count($resourceNames); ++$i) {
             // Test
             $actual = $validateAndSanitizeSignedService->invokeArgs($sasHelper, ['test', Resources::RESOURCE_TYPE_BLOB, $resourceNames[$i]]);
 

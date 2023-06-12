@@ -603,7 +603,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
         // Put some messages to verify getApproximateMessageCount
         if (!is_null($metadata)) {
-            for ($i = 0; $i < count($metadata); $i++) {
+            for ($i = 0; $i < count($metadata); ++$i) {
                 $this->restProxy->createMessage($queue, 'message ' . $i);
             }
 

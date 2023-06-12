@@ -979,7 +979,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $actIds = $ret->getContainerACL()->getSignedIdentifiers();
         $this->assertEquals(count($expIds), count($actIds), '$ret->getContainerACL->getSignedIdentifiers');
 
-        for ($i = 0; $i < count($expIds); $i++) {
+        for ($i = 0; $i < count($expIds); ++$i) {
             $expId = $expIds[$i];
             $actId = $actIds[$i];
             $this->assertEquals($expId->getId(), $actId->getId(), 'SignedIdentifiers[' . $i . ']->getId');

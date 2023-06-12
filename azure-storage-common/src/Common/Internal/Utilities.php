@@ -167,7 +167,7 @@ class Utilities
         $numArguments = func_num_args();
 
         $currentArray = $array;
-        for ($i = 1; $i < $numArguments; $i++) {
+        for ($i = 1; $i < $numArguments; ++$i) {
             if (is_array($currentArray)) {
                 if (array_key_exists($arguments[$i], $currentArray)) {
                     $currentArray = $currentArray[$arguments[$i]];
@@ -655,7 +655,7 @@ class Utilities
 
         $result = 0;
         $base = 1;
-        for ($i = strlen($number) - 1; $i >= 0; $i--) {
+        for ($i = strlen($number) - 1; $i >= 0; --$i) {
             $result = bcadd($result, bcmul(ord($number[$i]), $base));
             $base = bcmul($base, 256);
         }
@@ -782,7 +782,7 @@ class Utilities
         $size = strlen($content);
 
         // If all Zero, skip this range
-        for ($i = 0; $i < $size; $i++) {
+        for ($i = 0; $i < $size; ++$i) {
             if (ord($content[$i]) != 0) {
                 return false;
             }

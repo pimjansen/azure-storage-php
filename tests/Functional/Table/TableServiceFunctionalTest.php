@@ -322,7 +322,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $expectedCount = min($effectiveTop, count($expectedData));
 
         $tables = $ret->getTables();
-        for ($i = 0; $i < $expectedCount; $i++) {
+        for ($i = 0; $i < $expectedCount; ++$i) {
             $expected = $expectedData[$i]->TableName;
             // Assume there are other tables. Make sure the expected ones are there.
             $foundNext = false;
@@ -572,7 +572,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $nullCount = 0;
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
             if (is_null($actualProp->getValue())) {
-                $nullCount++;
+                ++$nullCount;
             }
         }
 
@@ -611,7 +611,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     public function testDeleteEntity()
     {
         $ents = TableServiceFunctionalTestData::getSimpleEntities(3);
-        for ($useETag = 0; $useETag <= 2; $useETag++) {
+        for ($useETag = 0; $useETag <= 2; ++$useETag) {
             foreach ($ents as $ent) {
                 $options = new DeleteEntityOptions();
                 $this->deleteEntityWorker($ent, $useETag, $options);
@@ -1105,7 +1105,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     {
         foreach (ConcurType::values() as $concurType) {
             foreach (MutatePivot::values() as $mutatePivot) {
-                for ($i = 0; $i <= 1; $i++) {
+                for ($i = 0; $i <= 1; ++$i) {
                     foreach (TableServiceFunctionalTestData::getSimpleEntities(2) as $ent) {
                         $options = ($i == 0 ? null : new TableServiceOptions());
                         $this->crudWorker(OpType::DELETE_ENTITY, $concurType, $mutatePivot, $ent, $options);
@@ -1119,7 +1119,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     {
         foreach (ConcurType::values() as $concurType) {
             foreach (MutatePivot::values() as $mutatePivot) {
-                for ($i = 0; $i <= 1; $i++) {
+                for ($i = 0; $i <= 1; ++$i) {
                     foreach (TableServiceFunctionalTestData::getSimpleEntities(2) as $ent) {
                         $options = ($i == 0 ? null : new TableServiceCreateOptions());
                         $this->crudWorker(OpType::INSERT_ENTITY, $concurType, $mutatePivot, $ent, $options);
@@ -1135,7 +1135,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         foreach (ConcurType::values() as $concurType) {
             foreach (MutatePivot::values() as $mutatePivot) {
-                for ($i = 0; $i <= 1; $i++) {
+                for ($i = 0; $i <= 1; ++$i) {
                     foreach (TableServiceFunctionalTestData::getSimpleEntities(2) as $ent) {
                         $options = ($i == 0 ? null : new TableServiceOptions());
                         $this->crudWorker(OpType::INSERT_OR_MERGE_ENTITY, $concurType, $mutatePivot, $ent, $options);
@@ -1151,7 +1151,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         foreach (ConcurType::values() as $concurType) {
             foreach (MutatePivot::values() as $mutatePivot) {
-                for ($i = 0; $i <= 1; $i++) {
+                for ($i = 0; $i <= 1; ++$i) {
                     foreach (TableServiceFunctionalTestData::getSimpleEntities(2) as $ent) {
                         $options = ($i == 0 ? null : new TableServiceOptions());
                         $this->crudWorker(OpType::INSERT_OR_REPLACE_ENTITY, $concurType, $mutatePivot, $ent, $options);
@@ -1165,7 +1165,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     {
         foreach (ConcurType::values() as $concurType) {
             foreach (MutatePivot::values() as $mutatePivot) {
-                for ($i = 0; $i <= 1; $i++) {
+                for ($i = 0; $i <= 1; ++$i) {
                     foreach (TableServiceFunctionalTestData::getSimpleEntities(2) as $ent) {
                         $options = ($i == 0 ? null : new TableServiceOptions());
                         $this->crudWorker(OpType::MERGE_ENTITY, $concurType, $mutatePivot, $ent, $options);
@@ -1179,7 +1179,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     {
         foreach (ConcurType::values() as $concurType) {
             foreach (MutatePivot::values() as $mutatePivot) {
-                for ($i = 0; $i <= 1; $i++) {
+                for ($i = 0; $i <= 1; ++$i) {
                     foreach (TableServiceFunctionalTestData::getSimpleEntities(2) as $ent) {
                         $options = ($i == 0 ? null : new TableServiceOptions());
                         $this->crudWorker(OpType::UPDATE_ENTITY, $concurType, $mutatePivot, $ent, $options);
@@ -1253,7 +1253,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $mutatePivots = MutatePivot::values();
         $opTypes = OpType::values();
 
-        for ($j = 0; $j < 10; $j++) {
+        for ($j = 0; $j < 10; ++$j) {
             $configs = [];
             foreach (TableServiceFunctionalTestData::getSimpleEntities(6) as $ent) {
                 $config = new BatchWorkerConfig();
@@ -1264,7 +1264,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 array_push($configs, $config);
             }
 
-            for ($i = 0; $i <= 1; $i++) {
+            for ($i = 0; $i <= 1; ++$i) {
                 $options = ($i == 0 ? null : new TableServiceOptions());
                 $this->batchWorker($configs, $options);
             }
@@ -1399,7 +1399,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $firstConfig->mutatePivot = $mutatePivots[mt_rand(0, count($mutatePivots) - 1)];
             array_push($configs, $firstConfig);
 
-            for ($i = 1; $i < count($simpleEntities); $i++) {
+            for ($i = 1; $i < count($simpleEntities); ++$i) {
                 $config = new BatchWorkerConfig();
                 while (!is_null($this->expectConcurrencyFailure($config->opType, $config->concurType))) {
                     $config->concurType = $concurTypes[mt_rand(0, count($concurTypes) - 1)];
@@ -1418,11 +1418,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 array_push($configs, $config);
             }
 
-            for ($i = 0; $i <= 1; $i++) {
+            for ($i = 0; $i <= 1; ++$i) {
                 $options = ($i == 0 ? null : new TableServiceOptions());
                 if ($this->isEmulated()) {
                     // The emulator has trouble with some batches.
-                    for ($j = 0; $j < count($configs); $j++) {
+                    for ($j = 0; $j < count($configs); ++$j) {
                         $tmpconfigs = [];
                         $tmpconfigs[] = $configs[$j];
                         $this->batchWorker($tmpconfigs, $options);
@@ -1440,10 +1440,10 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $expectedReturned = count($configs);
         $expectedError = false;
         $expectedErrorCount = 0;
-        for ($i = 0; $i < count($configs); $i++) {
+        for ($i = 0; $i < count($configs); ++$i) {
             $err = $this->expectConcurrencyFailure($configs[$i]->opType, $configs[$i]->concurType);
             if (!is_null($err)) {
-                $expectedErrorCount++;
+                ++$expectedErrorCount;
                 $expectedError = true;
             }
             array_push($exptErrs, $err);
@@ -1454,7 +1454,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         try {
             // Upload the initial entities and get the target entities.
             $targetEnts = [];
-            for ($i = 0; $i < count($configs); $i++) {
+            for ($i = 0; $i < count($configs); ++$i) {
                 $initial = $this->restProxy->insertEntity($table, $configs[$i]->ent);
                 array_push(
                     $targetEnts,
@@ -1469,7 +1469,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
             // Build up the batch.
             $operations = new BatchOperations();
-            for ($i = 0; $i < count($configs); $i++) {
+            for ($i = 0; $i < count($configs); ++$i) {
                 $this->buildBatchOperations(
                     $table,
                     $operations,
@@ -1500,7 +1500,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 $this->assertNotNull($exception, 'Caught exception should not be null');
 
                 // No changes should have gone through.
-                for ($i = 0; $i < count($configs); $i++) {
+                for ($i = 0; $i < count($configs); ++$i) {
                     $this->verifyCrudWorker($configs[$i]->opType, $table, $configs[$i]->ent, $configs[$i]->ent, false);
                 }
             } else {
@@ -1515,7 +1515,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 );
 
                 $this->assertEquals($expectedReturned, count($ret->getEntries()), 'count $ret->getEntries()');
-                for ($i = 0; $i < count($ret->getEntries()); $i++) {
+                for ($i = 0; $i < count($ret->getEntries()); ++$i) {
                     $opResult = $ret->getEntries()[$i];
                     $this->verifyBatchEntryType($configs[$i]->opType, $exptErrs[$i], $opResult);
                     $this->verifyEntryData($table, $exptErrs[$i], $targetEnts[$i], $opResult);

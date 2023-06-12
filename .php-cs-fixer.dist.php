@@ -54,4 +54,5 @@ return $config
             'import_constants' => false,
             'import_functions' => false,
         ],
+        'increment_style' => true,
     ]);

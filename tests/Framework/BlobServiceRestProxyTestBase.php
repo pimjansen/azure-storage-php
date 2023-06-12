@@ -74,7 +74,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
                     throw $e;
                 }
                 sleep(10);
-                $counter++;
+                ++$counter;
             }
         } while (!$ok);
     }

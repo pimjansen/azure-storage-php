@@ -311,7 +311,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             Resources::INVALID_OC_COUNT_MSG
         );
 
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; ++$i) {
             $operation = $operations[$i];
             $context = $contexts[$i];
             $type = $operation->getType();
@@ -344,7 +344,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             $context->addOptionalHeader(Resources::CONTENT_ID, $contentId);
             $mimeBodyPart = $context->__toString();
             $mimeBodyParts[] = $mimeBodyPart;
-            $contentId++;
+            ++$contentId;
         }
 
         return $this->mimeSerializer->encodeMimeMultipart($mimeBodyParts);

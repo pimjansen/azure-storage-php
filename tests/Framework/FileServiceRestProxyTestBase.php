@@ -90,7 +90,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
                     throw $e;
                 }
                 sleep(10);
-                $counter++;
+                ++$counter;
             }
         } while (!$ok);
     }

@@ -183,7 +183,7 @@ class ConnectionStringParser
         while ($this->_pos < strlen($this->_value)
               && ctype_space($this->_value[$this->_pos])
         ) {
-            $this->_pos++;
+            ++$this->_pos;
         }
     }
 
@@ -201,7 +201,7 @@ class ConnectionStringParser
 
             if ($ch == '"' || $ch == '\'') {
                 // Value is contained between double quotes or skipped single quotes.
-                $this->_pos++;
+                ++$this->_pos;
                 $value = $this->_extractString($ch);
             } else {
                 $firstPos = $this->_pos;
@@ -213,7 +213,7 @@ class ConnectionStringParser
                     if ($ch == ';') {
                         $isFound = true;
                     } else {
-                        $this->_pos++;
+                        ++$this->_pos;
                     }
                 }
 
@@ -238,7 +238,7 @@ class ConnectionStringParser
         $ch = $this->_value[$this->_pos];
 
         if ($ch == '"' || $ch == '\'') {
-            $this->_pos++;
+            ++$this->_pos;
             $key = $this->_extractString($ch);
         } elseif ($ch == ';' || $ch == '=') {
             // Key name was expected.
@@ -255,7 +255,7 @@ class ConnectionStringParser
                     break;
                 }
 
-                $this->_pos++;
+                ++$this->_pos;
             }
             $key = rtrim(substr($this->_value, $firstPos, $this->_pos - $firstPos));
         }
@@ -285,7 +285,7 @@ class ConnectionStringParser
         while ($this->_pos < strlen($this->_value)
               && $this->_value[$this->_pos] != $quote
         ) {
-            $this->_pos++;
+            ++$this->_pos;
         }
 
         if ($this->_pos == strlen($this->_value)) {
@@ -320,6 +320,6 @@ class ConnectionStringParser
             );
         }
 
-        $this->_pos++;
+        ++$this->_pos;
     }
 }

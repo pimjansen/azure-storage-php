@@ -238,7 +238,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertFalse(Utilities::allZero('hello'));
 
-        for ($i = 1; $i < 256; $i++) {
+        for ($i = 1; $i < 256; ++$i) {
             $this->assertFalse(Utilities::allZero(pack('c', $i)));
         }
 

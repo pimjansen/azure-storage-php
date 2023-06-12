@@ -63,7 +63,7 @@ class ConnectionStringSourceTest extends \PHPUnit\Framework\TestCase
         // Assert
         $keys = array_keys($actual);
         $this->assertEquals(count($expectedKeys), count($keys));
-        for ($index = 0; $index < count($expectedKeys); $index++) {
+        for ($index = 0; $index < count($expectedKeys); ++$index) {
             $this->assertEquals($expectedKeys[$index], $keys[$index]);
         }
     }

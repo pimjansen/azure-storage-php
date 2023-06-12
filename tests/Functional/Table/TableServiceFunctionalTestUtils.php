@@ -392,22 +392,22 @@ class TableServiceFunctionalTestUtils
         $ret = '';
         if (count($expectedData) != count($actualData)) {
             $ret .= 'VVV actual VVV' . "\n";
-            for ($i = 0; $i < count($actualData); $i++) {
+            for ($i = 0; $i < count($actualData); ++$i) {
                 $e = $actualData[$i];
                 $ret .= $e->getPartitionKey() . '/' . $e->getRowKey() . "\n";
             }
             $ret .= '-----------------' . "\n";
 
-            for ($i = 0; $i < count($expectedData); $i++) {
+            for ($i = 0; $i < count($expectedData); ++$i) {
                 $e = $expectedData[$i];
                 $ret .= $e->getPartitionKey() . '/' . $e->getRowKey() . "\n";
             }
             $ret .= '^^^ expected ^^^' . "\n";
 
-            for ($i = 0; $i < count($actualData); $i++) {
+            for ($i = 0; $i < count($actualData); ++$i) {
                 $in = false;
                 $ei = $actualData[$i];
-                for ($j = 0; $j < count($expectedData); $j++) {
+                for ($j = 0; $j < count($expectedData); ++$j) {
                     $ej = $expectedData[$j];
                     if ($ei->getPartitionKey() == $ej->getPartitionKey() && $ei->getRowKey() == $ej->getRowKey()) {
                         $in = true;
@@ -418,10 +418,10 @@ class TableServiceFunctionalTestUtils
                 }
             }
 
-            for ($j = 0; $j < count($expectedData); $j++) {
+            for ($j = 0; $j < count($expectedData); ++$j) {
                 $in = false;
                 $ej = $expectedData[$j];
-                for ($i = 0; $i < count($actualData); $i++) {
+                for ($i = 0; $i < count($actualData); ++$i) {
                     $ei = $actualData[$i];
                     if ($ei->getPartitionKey() == $ej->getPartitionKey() && $ei->getRowKey() == $ej->getRowKey()) {
                         $in = true;

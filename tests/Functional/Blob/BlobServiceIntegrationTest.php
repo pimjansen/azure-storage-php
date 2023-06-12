@@ -73,12 +73,12 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         // integration tests)
         $rint = mt_rand(0, 1000000);
         self::$_testContainers = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             self::$_testContainers[$i] = self::$_testContainersPrefix . ($rint + $i);
         }
 
         self::$_creatableContainers = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             self::$_creatableContainers[$i] = self::$_createableContainersPrefix . ($rint + $i);
         }
 

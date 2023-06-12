@@ -67,12 +67,12 @@ class TableServiceIntegrationTest extends IntegrationTestBase
         // Setup container names array (list of container names used by
         // integration tests)
         self::$testTables = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             self::$testTables[$i] = self::$testTablesPrefix . ($i + 1);
         }
 
         self::$creatableTables = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             self::$creatableTables[$i] = self::$createableTablesPrefix . ($i + 1);
         }
 
@@ -814,7 +814,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
         // Arrange
         $table = self::$testTable4;
         $numberOfEntries = 20;
-        for ($i = 0; $i < $numberOfEntries; $i++) {
+        for ($i = 0; $i < $numberOfEntries; ++$i) {
             $entity = new Entity();
             $entity->setPartitionKey('001');
             $entity->setRowKey('queryEntitiesWithPaginationWorks-' . $i);
@@ -857,7 +857,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
         $table = self::$testTable5;
         $numberOfEntries = 5;
         $entities = [];
-        for ($i = 0; $i < $numberOfEntries; $i++) {
+        for ($i = 0; $i < $numberOfEntries; ++$i) {
             $entity = new Entity();
             $entity->setPartitionKey('001');
             $entity->setRowKey('queryEntitiesWithFilterWorks-' . $i);
@@ -1201,7 +1201,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
 
         // Act
         $batchOperations = new BatchOperations();
-        for ($i = 0; $i < $insertCount; $i++) {
+        for ($i = 0; $i < $insertCount; ++$i) {
             $entity = new Entity();
             $entity->setPartitionKey($partitionKey);
             $entity->setRowKey('batchWorks-' . $i);
@@ -1218,7 +1218,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
         // Assert
         $this->assertNotNull($result, '$result');
         $this->assertEquals($insertCount, count($result->getEntries()), 'count($result->getEntries())');
-        for ($i = 0; $i < $insertCount; $i++) {
+        for ($i = 0; $i < $insertCount; ++$i) {
             $entity = $result->getEntries();
             $entity = $entity[$i]->getEntity();
 

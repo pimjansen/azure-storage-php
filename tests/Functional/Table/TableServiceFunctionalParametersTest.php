@@ -144,19 +144,19 @@ class TableServiceFunctionalParametersTest extends FunctionalTestBase
         // Note: 0x0D gets mapped to 0x0A by the server.
 
         $k = '';
-        for ($b = 0x20; $b < 0x30; $b++) {
+        for ($b = 0x20; $b < 0x30; ++$b) {
             $k .= chr($b);
         }
         $k .= chr(0x09);
-        for ($b = 0x30; $b < 0x40; $b++) {
+        for ($b = 0x30; $b < 0x40; ++$b) {
             $k .= chr($b);
         }
         $k .= chr(0x0A);
-        for ($b = 0x40; $b < 0x50; $b++) {
+        for ($b = 0x40; $b < 0x50; ++$b) {
             $k .= chr($b);
         }
         $k .= chr(0x0A);
-        for ($b = 0x50; $b < 0x80; $b++) {
+        for ($b = 0x50; $b < 0x80; ++$b) {
             $k .= chr($b);
         }
 

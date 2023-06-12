@@ -51,12 +51,12 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
         // integration tests)
         self::$testQueues = [];
         $rint = mt_rand(0, 1000000);
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             self::$testQueues[$i] = self::$testQueuesPrefix . $rint . ($i + 1);
         }
 
         self::$creatableQueues = [];
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 3; ++$i) {
             self::$creatableQueues[$i] = self::$createableQueuesPrefix . $rint . ($i + 1);
         }
 
@@ -387,7 +387,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
         // Assert
         $this->assertNotNull($result, '$result');
         $this->assertEquals(4, count($result->getQueueMessages()), 'count($result->getQueueMessages())');
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 4; ++$i) {
             $entry = $result->getQueueMessages();
             $entry = $entry[$i];
 
@@ -457,7 +457,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
         // Assert
         $this->assertNotNull($result, '$result');
         $this->assertEquals(4, count($result->getQueueMessages()), 'count($result->getQueueMessages())');
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 4; ++$i) {
             $entry = $result ->getQueueMessages();
             $entry = $entry[$i];
 
