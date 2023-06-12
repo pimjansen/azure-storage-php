@@ -1966,7 +1966,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
     }
 
     /**
-               **/
+               */
     public function testCreateBlobLargerThanSingleBlock()
     {
         // First step, lets set the value for automatic splitting to something very small

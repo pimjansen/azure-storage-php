@@ -60,4 +60,5 @@ return $config
             'syntax' => 'short',
         ],
         'modernize_types_casting' => true,
+        'multiline_comment_opening_closing' => true,
     ]);
