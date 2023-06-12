@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -31,11 +26,6 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Provides methods to generate Azure Storage Shared Access Signature
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class SharedAccessSignatureHelper

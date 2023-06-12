@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -30,11 +25,6 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * www.connectionstrings.com/articles/show/important-rules-for-connection-strings
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class ConnectionStringParser

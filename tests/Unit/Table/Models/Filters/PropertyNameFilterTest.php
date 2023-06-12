@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -29,11 +24,6 @@ use MicrosoftAzure\Storage\Table\Models\Filters\PropertyNameFilter;
 /**
  * Unit tests for class PropertyNameFilter
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class PropertyNameFilterTest extends \PHPUnit\Framework\TestCase

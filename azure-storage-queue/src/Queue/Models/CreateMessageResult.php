@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -30,11 +25,6 @@ use MicrosoftAzure\Storage\Queue\Internal\QueueResources as Resources;
 /**
  * Holds results of CreateMessage wrapper.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class CreateMessageResult

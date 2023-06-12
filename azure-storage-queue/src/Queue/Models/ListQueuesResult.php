@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -32,11 +27,6 @@ use MicrosoftAzure\Storage\Queue\Internal\QueueResources as Resources;
 /**
  * Container to hold list queue response object.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class ListQueuesResult

@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -31,11 +26,6 @@ use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 /**
  * Holds block list used for commitBlobBlocks
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class BlockList

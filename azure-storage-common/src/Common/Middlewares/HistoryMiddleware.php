@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -39,11 +34,6 @@ use GuzzleHttp\Promise\RejectedPromise;
  * The middleware should be pushed into client options if the logging is
  * intended to persist between different API calls.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class HistoryMiddleware extends MiddlewareBase

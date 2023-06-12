@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -30,11 +25,6 @@ use MicrosoftAzure\Storage\Table\Internal\AcceptOptionTrait;
 /**
  * Holds optional parameters for createTable and insertEntity.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class TableServiceCreateOptions extends TableServiceOptions

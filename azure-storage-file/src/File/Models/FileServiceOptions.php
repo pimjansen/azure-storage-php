@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -32,11 +27,6 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * File service options.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class FileServiceOptions extends ServiceOptions

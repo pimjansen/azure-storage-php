@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -33,11 +28,6 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
 /**
  * Unit tests for class XmlSerializer
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class JsonSerializerTest extends \PHPUnit\Framework\TestCase

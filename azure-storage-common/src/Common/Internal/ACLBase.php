@@ -15,11 +15,6 @@
  * PHP version 5
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -32,11 +27,6 @@ use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 /**
  * Provide base class for service ACLs.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 abstract class ACLBase

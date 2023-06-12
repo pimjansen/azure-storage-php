@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -33,11 +28,6 @@ use GuzzleHttp\Promise\RejectedPromise;
  * doing customized behavior including modifying the request, response or
  * other behaviors like logging, retrying and debugging.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class MiddlewareBase implements IMiddleware

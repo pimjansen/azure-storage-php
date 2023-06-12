@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -36,11 +31,6 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Tests for a blob storage account, such as block blob tier.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2018 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class BlobStorageAccountFunctionalTest extends \PHPUnit\Framework\TestCase

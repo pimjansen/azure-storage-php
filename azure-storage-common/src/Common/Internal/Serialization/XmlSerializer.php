@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -32,11 +27,6 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * Short description
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class XmlSerializer implements ISerializer

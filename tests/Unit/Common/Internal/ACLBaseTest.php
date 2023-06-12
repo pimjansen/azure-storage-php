@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -35,11 +30,6 @@ use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 /**
  * Unit tests for class ACLBase
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class ACLBaseTest extends \PHPUnit\Framework\TestCase

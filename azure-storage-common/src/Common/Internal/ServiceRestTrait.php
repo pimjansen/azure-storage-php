@@ -15,11 +15,6 @@
  * PHP version 5
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -37,11 +32,6 @@ use MicrosoftAzure\Storage\Common\Models\GetServiceStatsResult;
  * Get/Set Service Properties
  * Get service stats
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 trait ServiceRestTrait

@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -31,11 +26,6 @@ use MicrosoftAzure\Storage\Common\ServicesBuilder;
 /**
  * Testbase for all REST proxy tests.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class RestProxyTestBase extends \PHPUnit\Framework\TestCase

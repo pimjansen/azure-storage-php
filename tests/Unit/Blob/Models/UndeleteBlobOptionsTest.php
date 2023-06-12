@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -30,11 +25,6 @@ use MicrosoftAzure\Storage\Blob\Models\UndeleteBlobOptions;
 /**
  * Unit tests for class UndeleteBlobOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class UndeleteBlobOptionsTest extends \PHPUnit\Framework\TestCase

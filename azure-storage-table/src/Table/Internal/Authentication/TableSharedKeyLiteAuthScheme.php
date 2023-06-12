@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      http://github.com/windowsazure/azure-sdk-for-php
  */
 
@@ -33,11 +28,6 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
  * check: http://msdn.microsoft.com/en-us/library/windowsazure/dd179428.aspx
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      http://github.com/windowsazure/azure-sdk-for-php
  */
 class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme

@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -30,11 +25,6 @@ use GuzzleHttp\Psr7\Request;
  * Interface for azure authentication schemes.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 interface IAuthScheme

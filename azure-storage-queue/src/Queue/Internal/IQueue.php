@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -33,11 +28,6 @@ use MicrosoftAzure\Storage\Common\Models\GetServiceStatsResult;
  * This interface has all REST APIs provided by Windows Azure for queue service
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  * @see       http://msdn.microsoft.com/en-us/library/windowsazure/dd179363.aspx
  */

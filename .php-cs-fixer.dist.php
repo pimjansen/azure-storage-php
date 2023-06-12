@@ -40,4 +40,13 @@ return $config
             'spacing' => 'one',
         ],
         'function_typehint_space' => true,
+        'general_phpdoc_annotation_remove' => [
+            'annotations' => [
+                'author',
+                'license',
+                'package',
+                'category',
+                'copyright',
+            ],
+        ],
     ]);

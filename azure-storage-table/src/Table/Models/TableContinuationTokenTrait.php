@@ -15,11 +15,6 @@
  * PHP version 5
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -28,11 +23,6 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Trait implementing logic for Table continuation tokens.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 trait TableContinuationTokenTrait

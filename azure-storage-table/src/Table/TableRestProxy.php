@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -74,11 +69,6 @@ use MicrosoftAzure\Storage\Common\Internal\Serialization\ISerializer;
  * This class constructs HTTP requests and receive HTTP responses for table
  * service layer.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class TableRestProxy extends ServiceRestProxy implements ITable

@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -34,11 +29,6 @@ use Psr\Http\Message\StreamInterface;
  * This interface has all REST APIs provided by Windows Azure for Blob service.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  * @see       http://msdn.microsoft.com/en-us/library/windowsazure/dd135733.aspx
  */

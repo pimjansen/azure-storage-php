@@ -12,11 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Samples
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2019 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 

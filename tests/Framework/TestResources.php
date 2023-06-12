@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -39,10 +34,6 @@ use GuzzleHttp\Psr7\Response;
 /**
  * Resources for testing framework.
  *
- * @package    MicrosoftAzure\Storage\Tests\Framework
- * @author     Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright  2016 Microsoft Corporation
- * @license    https://github.com/azure/azure-storage-php/LICENSE
  * @link       https://github.com/azure/azure-storage-php
  */
 class TestResources

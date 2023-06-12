@@ -14,11 +14,6 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 
@@ -36,11 +31,6 @@ use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
 /**
  * TestBase class for each unit test class.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
 class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
