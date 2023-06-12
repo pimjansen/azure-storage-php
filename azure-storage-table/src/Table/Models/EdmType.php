@@ -49,11 +49,14 @@ class EdmType
             }
             return EdmType::INT64;
 
-        } elseif (Utilities::isDouble($value)) {
+        }
+        if (Utilities::isDouble($value)) {
             return EdmType::DOUBLE;
-        } elseif (is_bool($value)) {
+        }
+        if (is_bool($value)) {
             return EdmType::BOOLEAN;
-        } elseif ($value instanceof \DateTime) {
+        }
+        if ($value instanceof \DateTime) {
             return EdmType::DATETIME;
         }
         return EdmType::STRING;
