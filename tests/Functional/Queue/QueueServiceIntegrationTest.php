@@ -307,7 +307,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
         $metadata = array(
             'foo' => 'bar',
             'test' => 'blah',
-            );
+        );
         $this->restProxy->setQueueMetadata(self::$creatableQueue3, $metadata);
 
         $result = $this->restProxy->getQueueMetadata(self::$creatableQueue3);

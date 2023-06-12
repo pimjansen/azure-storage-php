@@ -24,4 +24,5 @@ return $config
     ->setRiskyAllowed(true)
     ->setRules([
         '@PSR12' => true,
+        'array_indentation' => true,
     ]);

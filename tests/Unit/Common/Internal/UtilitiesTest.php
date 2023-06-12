@@ -646,7 +646,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $validMetadataKey = Resources::X_MS_META_HEADER_PREFIX . $key;
         $value = 'correct';
         $metadataHeaders = array('x-ms-key1' => 'value1', 'myname' => 'x-ms-date',
-                          $validMetadataKey => $value, 'mycompany' => 'microsoft_');
+            $validMetadataKey => $value, 'mycompany' => 'microsoft_');
 
         // Test
         $actual = Utilities::getMetadataArray($metadataHeaders);

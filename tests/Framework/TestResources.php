@@ -869,8 +869,8 @@ class TestResources
         $sample['Prefix'] = 'myprefix';
         $sample['Account'] = 'myaccount';
         $sample['Queues'] = array('Queue' => array(
-          0 => array('Name' => 'myqueue1'),
-          1 => array('Name' => 'myqueue2')
+            0 => array('Name' => 'myqueue1'),
+            1 => array('Name' => 'myqueue2')
         ));
         $sample['NextMarker'] = '/account/myqueue3';
 
@@ -898,7 +898,7 @@ class TestResources
                 'Last-Modified' => 'Wed, 12 Aug 2009 20:39:39 GMT',
                 'Etag' => '0x8CACB9BD7C6B1B2'
             )
-            ));
+        ));
         $sample['NextMarker'] = '';
 
         return $sample;
@@ -912,19 +912,19 @@ class TestResources
         $sample['account'] = 'myaccount';
         $sample['Prefix'] = 'myprefix';
         $sample['Containers'] = array('Container' => array(
-          0 => array(
-            'Name' => 'audio',
-            'Properties' => array(
-                'Last-Modified' => 'Wed, 12 Aug 2009 20:39:39 GMT',
-                'Etag' => '0x8CACB9BD7C6B1B2'
-            )
+            0 => array(
+                'Name' => 'audio',
+                'Properties' => array(
+                    'Last-Modified' => 'Wed, 12 Aug 2009 20:39:39 GMT',
+                    'Etag' => '0x8CACB9BD7C6B1B2'
+                )
             ),
-          1 => array(
-            'Name' => 'images',
-            'Properties' => array(
-                'Last-Modified' => 'Wed, 12 Aug 2009 20:39:39 GMT',
-                'Etag' => '0x8CACB9BD7C1EEEC'
-            )
+            1 => array(
+                'Name' => 'images',
+                'Properties' => array(
+                    'Last-Modified' => 'Wed, 12 Aug 2009 20:39:39 GMT',
+                    'Etag' => '0x8CACB9BD7C1EEEC'
+                )
             )
         ));
         $sample['NextMarker'] = 'video';
@@ -968,7 +968,7 @@ class TestResources
                 'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                 'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
                 'Permission' => 'rwd')
-            ));
+        ));
 
         return $sample;
     }
@@ -978,16 +978,16 @@ class TestResources
         $sample = array();
         $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
             0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'wd')),
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'wd')),
             1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'rwd'))
-            ));
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'rwd'))
+        ));
 
         return $sample;
     }
@@ -997,16 +997,16 @@ class TestResources
         $sample = array();
         $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
             0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'cwd')),
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'cwd')),
             1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'rwd'))
-            ));
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'rwd'))
+        ));
 
         return $sample;
     }
@@ -1020,7 +1020,7 @@ class TestResources
                 'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                 'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
                 'Permission' => 'ap')
-            ));
+        ));
 
         return $sample;
     }
@@ -1030,16 +1030,16 @@ class TestResources
         $sample = array();
         $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
             0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'raup')),
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'raup')),
             1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'ru'))
-            ));
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'ru'))
+        ));
 
         return $sample;
     }
@@ -1049,16 +1049,16 @@ class TestResources
         $sample = array();
         $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
             0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'raup')),
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'raup')),
             1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'ru'))
-            ));
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'ru'))
+        ));
 
         return $sample;
     }
@@ -1121,7 +1121,7 @@ class TestResources
                 'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
                 'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
                 'Permission' => 'ad')
-            ));
+        ));
 
         return $sample;
     }
@@ -1131,16 +1131,16 @@ class TestResources
         $sample = array();
         $sample['SignedIdentifiers'] = array( 'SignedIdentifier' => array(
             0 => array('Id' => 'HYQzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'raud')),
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'raud')),
             1 => array('Id' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
-            'AccessPolicy' => array(
-                'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
-                'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
-                'Permission' => 'ru'))
-            ));
+                'AccessPolicy' => array(
+                    'Start' => Utilities::convertToEdmDateTime(self::getRandomEarlierTime()),
+                    'Expiry' => Utilities::convertToEdmDateTime(self::getRandomLaterTime()),
+                    'Permission' => 'ru'))
+        ));
 
         return $sample;
     }
@@ -1254,24 +1254,24 @@ class TestResources
                 )
             ),
 
-            1 => array(
-                'Name' => 'myblob2',
-                'Snapshot' => '10-12-2011',
-                'Metadata' => array('Name1' => 'Value1', 'Name2' => 'Value2'),
-                'Properties' => array(
-                    'Last-Modified' => 'Sun, 26 Feb 2010 12:43:08 GMT',
-                    'Etag' => '0x7CQWER2EFF70C46',
-                    'Content-Length' => '20',
-                    'Content-Type' => 'type2',
-                    'Content-Encoding' => 'encoding2',
-                    'Content-Language' => 'language2',
-                    'Content-MD5' => 'md52',
-                    'Cache-Control' => 'cachecontrol2',
-                    'x-ms-blob-sequence-number' => '1',
-                    'BlobType' => 'PageBlob',
-                    'LeaseStatus' => 'unlocked'
-                )
-            )));
+                1 => array(
+                    'Name' => 'myblob2',
+                    'Snapshot' => '10-12-2011',
+                    'Metadata' => array('Name1' => 'Value1', 'Name2' => 'Value2'),
+                    'Properties' => array(
+                        'Last-Modified' => 'Sun, 26 Feb 2010 12:43:08 GMT',
+                        'Etag' => '0x7CQWER2EFF70C46',
+                        'Content-Length' => '20',
+                        'Content-Type' => 'type2',
+                        'Content-Encoding' => 'encoding2',
+                        'Content-Language' => 'language2',
+                        'Content-MD5' => 'md52',
+                        'Cache-Control' => 'cachecontrol2',
+                        'x-ms-blob-sequence-number' => '1',
+                        'BlobType' => 'PageBlob',
+                        'LeaseStatus' => 'unlocked'
+                    )
+                )));
 
         $sample['NextMarker'] = 'value';
 
