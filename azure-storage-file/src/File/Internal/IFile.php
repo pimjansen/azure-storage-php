@@ -77,7 +77,7 @@ interface IFile
     */
     public function setServiceProperties(
         ServiceProperties $serviceProperties,
-        ServiceOptions    $options = null
+        ServiceOptions $options = null
     );
 
     /**
@@ -95,7 +95,7 @@ interface IFile
      */
     public function setServicePropertiesAsync(
         ServiceProperties $serviceProperties,
-        ServiceOptions    $options = null
+        ServiceOptions $options = null
     );
 
     /**

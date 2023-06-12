@@ -233,7 +233,7 @@ interface ITable
      */
     public function deleteTableAsync(
         $table,
-        TableModels\TableServiceOptions$options = null
+        TableModels\TableServiceOptions $options = null
     );
 
     /**

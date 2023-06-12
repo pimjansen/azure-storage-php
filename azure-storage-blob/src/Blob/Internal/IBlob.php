@@ -78,7 +78,7 @@ interface IBlob
     */
     public function setServiceProperties(
         ServiceProperties $serviceProperties,
-        ServiceOptions    $options = null
+        ServiceOptions $options = null
     );
 
     /**
@@ -120,7 +120,7 @@ interface IBlob
      */
     public function setServicePropertiesAsync(
         ServiceProperties $serviceProperties,
-        ServiceOptions    $options = null
+        ServiceOptions $options = null
     );
 
     /**

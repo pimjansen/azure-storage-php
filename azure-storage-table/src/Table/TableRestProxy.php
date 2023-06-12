@@ -1057,7 +1057,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      */
     public function deleteTableAsync(
         $table,
-        TableServiceOptions$options = null
+        TableServiceOptions $options = null
     ) {
         Validate::canCastAsString($table, 'table');
         Validate::notNullOrEmpty($table, 'table');
