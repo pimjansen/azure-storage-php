@@ -144,7 +144,7 @@ class BlobServiceFunctionalTestData
 
     public static function passTemporalAccessCondition($ac)
     {
-        if (is_null($ac) || empty($ac)) {
+        if (null === $ac || empty($ac)) {
             return true;
         }
 
@@ -161,7 +161,7 @@ class BlobServiceFunctionalTestData
 
     public static function passETagAccessCondition($ac)
     {
-        if (is_null($ac) || empty($ac)) {
+        if (null === $ac || empty($ac)) {
             return true;
         } elseif ($ac[0]->getHeader() == Resources::IF_MATCH) {
             return self::$badETag != $ac[0]->getValue();
@@ -174,9 +174,9 @@ class BlobServiceFunctionalTestData
 
     public static function fixETagAccessCondition($ac, $etag)
     {
-        if (!is_null($ac) && !empty($ac)) {
+        if (null !== $ac && !empty($ac)) {
             if ($ac[0]->getHeader() == Resources::IF_MATCH || $ac[0]->getHeader() == Resources::IF_NONE_MATCH) {
-                if (is_null($ac[0]->getValue()) || self::$badETag != $ac[0]->getValue()) {
+                if (null === $ac[0]->getValue() || self::$badETag != $ac[0]->getValue()) {
                     $ac[0]->setValue($etag);
                 }
             }

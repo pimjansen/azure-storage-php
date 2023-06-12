@@ -166,7 +166,7 @@ class SharedKeyAuthScheme implements IAuthScheme
         $normalizedHeaders = [];
         $validPrefix = Resources::X_MS_HEADER_PREFIX;
 
-        if (is_null($normalizedHeaders)) {
+        if (null === $normalizedHeaders) {
             return $canonicalizedHeaders;
         }
 

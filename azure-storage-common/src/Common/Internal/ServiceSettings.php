@@ -262,7 +262,7 @@ abstract class ServiceSettings
         foreach ($constraints as $constraint) {
             $remainingSettings = $constraint($settings);
 
-            if (is_null($remainingSettings)) {
+            if (null === $remainingSettings) {
                 return false;
             } else {
                 $settings = $remainingSettings;

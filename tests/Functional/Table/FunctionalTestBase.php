@@ -84,7 +84,7 @@ class FunctionalTestBase extends IntegrationTestBase
 
     public static function tmptostring($value)
     {
-        if (is_null($value)) {
+        if (null === $value) {
             return 'null';
         } elseif (is_bool($value)) {
             return ($value == true ? 'true' : 'false');
@@ -106,7 +106,7 @@ class FunctionalTestBase extends IntegrationTestBase
         $ret = '';
         foreach ($props as $k => $value) {
             $ret .= $k . ':';
-            if (is_null($value)) {
+            if (null === $value) {
                 $ret .= 'NULL PROP!';
             } else {
                 $ret .= $value->getEdmType() . ':' . self::tmptostring($value->getValue());

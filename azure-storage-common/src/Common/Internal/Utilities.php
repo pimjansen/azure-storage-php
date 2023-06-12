@@ -41,7 +41,7 @@ class Utilities
      */
     public static function tryGetValue($array, $key, $default = null)
     {
-        return (!is_null($array)) && is_array($array) && array_key_exists($key, $array)
+        return (null !== $array) && is_array($array) && array_key_exists($key, $array)
             ? $array[$key]
             : $default;
     }
@@ -144,7 +144,7 @@ class Utilities
      */
     public static function addIfNotEmpty($key, $value, array &$array)
     {
-        if (!is_null($array)) {
+        if (null !== $array) {
             Validate::isArray($array, 'array');
         }
 
@@ -210,7 +210,7 @@ class Utilities
      */
     public static function getArray(array $var)
     {
-        if (is_null($var) || empty($var)) {
+        if (null === $var || empty($var)) {
             return [];
         }
 
@@ -352,7 +352,7 @@ class Utilities
      */
     public static function toBoolean($obj, $skipNull = false)
     {
-        if ($skipNull && is_null($obj)) {
+        if ($skipNull && null === $obj) {
             return null;
         }
 
@@ -743,7 +743,7 @@ class Utilities
      */
     public static function validateMetadata(array $metadata = null)
     {
-        if (!is_null($metadata)) {
+        if (null !== $metadata) {
             Validate::isArray($metadata, 'metadata');
         } else {
             $metadata = [];

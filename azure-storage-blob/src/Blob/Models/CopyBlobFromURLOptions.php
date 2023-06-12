@@ -52,7 +52,7 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
      */
     public function setSourceAccessConditions($sourceAccessConditions)
     {
-        if (!is_null($sourceAccessConditions) &&
+        if (null !== $sourceAccessConditions &&
             is_array($sourceAccessConditions)) {
             $this->sourceAccessConditions = $sourceAccessConditions;
         } else {

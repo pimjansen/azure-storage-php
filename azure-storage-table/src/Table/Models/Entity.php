@@ -71,7 +71,7 @@ class Entity
     public function getPropertyValue($name)
     {
         $p = Utilities::tryGetValue($this->_properties, $name);
-        return is_null($p) ? null : $p->getValue();
+        return null === $p ? null : $p->getValue();
     }
 
     /**
@@ -88,7 +88,7 @@ class Entity
     public function setPropertyValue($name, $value)
     {
         $p = Utilities::tryGetValue($this->_properties, $name);
-        if (!is_null($p)) {
+        if (null !== $p) {
             $p->setValue($value);
         }
     }
@@ -267,8 +267,8 @@ class Entity
             return false;
         }
 
-        if (is_null($this->getPartitionKey())
-            || is_null($this->getRowKey())
+        if (null === $this->getPartitionKey()
+            || null === $this->getRowKey()
         ) {
             $msg = Resources::NULL_TABLE_KEY_MSG;
             return false;

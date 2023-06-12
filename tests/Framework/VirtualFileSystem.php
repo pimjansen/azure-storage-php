@@ -32,8 +32,8 @@ class VirtualFileSystem
 {
     public static function newFile($contents, $fileName = null, $root = null)
     {
-        $root = is_null($root) ? 'root' : $root;
-        $fileName = is_null($fileName) ? 'test.txt' : $fileName;
+        $root = null === $root ? 'root' : $root;
+        $fileName = null === $fileName ? 'test.txt' : $fileName;
 
         vfsStreamWrapper::register();
         vfsStreamWrapper::setRoot(new vfsStreamDirectory($root));

@@ -91,7 +91,7 @@ class Validate
      */
     public static function notNullOrEmpty($var, $name)
     {
-        if (is_null($var) || (empty($var) && $var != '0')) {
+        if (null === $var || (empty($var) && $var != '0')) {
             throw new \InvalidArgumentException(
                 sprintf(Resources::NULL_OR_EMPTY_MSG, $name)
             );
@@ -197,7 +197,7 @@ class Validate
      */
     public static function notNull($var, $name)
     {
-        if (is_null($var)) {
+        if (null === $var) {
             throw new \InvalidArgumentException(sprintf(Resources::NULL_MSG, $name));
         }
     }
@@ -217,7 +217,7 @@ class Validate
     public static function isInstanceOf($objectInstance, $classInstance, $name)
     {
         Validate::notNull($classInstance, 'classInstance');
-        if (is_null($objectInstance)) {
+        if (null === $objectInstance) {
             return true;
         }
 

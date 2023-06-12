@@ -110,7 +110,7 @@ class EdmType
     {
         // Having null value means that the user wants to remove the property name
         // associated with this value. Leave the value as null so this hold.
-        if (is_null($value)) {
+        if (null === $value) {
             return true;
         } else {
             switch ($type) {
@@ -181,7 +181,7 @@ class EdmType
                 return Utilities::convertToEdmDateTime($value);
 
             case EdmType::BOOLEAN:
-                return (is_null($value) ? '' : ($value == true ? true : false));
+                return (null === $value ? '' : ($value == true ? true : false));
 
             default:
                 throw new \InvalidArgumentException();
@@ -249,7 +249,7 @@ class EdmType
     {
         // Having null value means that the user wants to remove the property name
         // associated with this value. Leave the value as null so this hold.
-        if (is_null($value)) {
+        if (null === $value) {
             return null;
         } else {
             switch ($type) {

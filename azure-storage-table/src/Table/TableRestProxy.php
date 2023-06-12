@@ -368,8 +368,8 @@ class TableRestProxy extends ServiceRestProxy implements ITable
     ) {
         Validate::canCastAsString($table, 'table');
         Validate::notNullOrEmpty($table, 'table');
-        Validate::isTrue(!is_null($partitionKey), Resources::NULL_TABLE_KEY_MSG);
-        Validate::isTrue(!is_null($rowKey), Resources::NULL_TABLE_KEY_MSG);
+        Validate::isTrue(null !== $partitionKey, Resources::NULL_TABLE_KEY_MSG);
+        Validate::isTrue(null !== $rowKey, Resources::NULL_TABLE_KEY_MSG);
 
         $method = Resources::HTTP_DELETE;
         $headers = [];
@@ -377,12 +377,12 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $statusCode = Resources::STATUS_NO_CONTENT;
         $path = $this->getEntityPath($table, $partitionKey, $rowKey);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new DeleteEntityOptions();
         }
 
         $etagObj = $options->getETag();
-        $ETag = !is_null($etagObj);
+        $ETag = null !== $etagObj;
         $this->addOptionalHeader(
             $headers,
             Resources::IF_MATCH,
@@ -442,13 +442,13 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $path = $this->getEntityPath($table, $partitionKey, $rowKey);
         $body = $this->odataSerializer->getEntity($entity);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
         if ($useETag) {
             $etag = $entity->getETag();
-            $ifMatchValue = is_null($etag) ? Resources::ASTERISK : $etag;
+            $ifMatchValue = null === $etag ? Resources::ASTERISK : $etag;
 
             $this->addOptionalHeader($headers, Resources::IF_MATCH, $ifMatchValue);
         }
@@ -504,7 +504,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $path = $table;
         $body = $this->odataSerializer->getEntity($entity);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceCreateOptions();
         }
 
@@ -612,7 +612,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      */
     private function buildFilterExpressionRec(Filter $filter, &$e)
     {
-        if (is_null($filter)) {
+        if (null === $filter) {
             return;
         }
 
@@ -621,7 +621,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         } elseif ($filter instanceof ConstantFilter) {
             $value = $filter->getValue();
             // If the value is null we just append null regardless of the edmType.
-            if (is_null($value)) {
+            if (null === $value) {
                 $e .= 'null';
             } else {
                 $type = $filter->getEdmType();
@@ -657,7 +657,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
      */
     private function addOptionalQuery(array $queryParam, Query $query)
     {
-        if (!is_null($query)) {
+        if (null !== $query) {
             $selectedFields = $query->getSelectFields();
             if (!empty($selectedFields)) {
                 $final = $this->encodeODataUriValues($selectedFields);
@@ -669,7 +669,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
                 );
             }
 
-            if (!is_null($query->getTop())) {
+            if (null !== $query->getTop()) {
                 $final = strval($this->encodeODataUriValue($query->getTop()));
 
                 $this->addOptionalQueryParam(
@@ -679,7 +679,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
                 );
             }
 
-            if (!is_null($query->getFilter())) {
+            if (null !== $query->getFilter()) {
                 $final = $this->buildFilterExpression($query->getFilter());
                 $this->addOptionalQueryParam(
                     $queryParam,
@@ -791,7 +791,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $queryParams = [];
         $path = 'Tables';
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueryTablesOptions();
         } elseif (is_string($options)) {
             $prefix = $options;
@@ -821,11 +821,11 @@ class TableRestProxy extends ServiceRestProxy implements ITable
                 )
             );
 
-            if (is_null($query)) {
+            if (null === $query) {
                 $query = new Query();
             }
 
-            if (is_null($query->getFilter())) {
+            if (null === $query->getFilter()) {
                 // use the prefix filter if the query filter is null
                 $query->setFilter($prefixFilter);
             } else {
@@ -921,7 +921,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $path = 'Tables';
         $body = $this->odataSerializer->getTable($table);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceCreateOptions();
         }
 
@@ -989,7 +989,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $queryParams = [];
         $path = "Tables('$table')";
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new GetTableOptions();
         }
 
@@ -1058,7 +1058,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $queryParams = [];
         $path = "Tables('$table')";
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
@@ -1117,7 +1117,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $queryParams = [];
         $path = $table;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueryEntitiesOptions();
         } elseif (is_string($options)) {
             $queryString = $options;
@@ -1154,7 +1154,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             $options->getAccept()
         );
 
-        if (!is_null($options->getQuery())) {
+        if (null !== $options->getQuery()) {
             $dsHeader = Resources::DATA_SERVICE_VERSION;
             $maxdsValue = Resources::MAX_DATA_SERVICE_VERSION_VALUE;
             $fields = $options->getQuery()->getSelectFields();
@@ -1525,15 +1525,15 @@ class TableRestProxy extends ServiceRestProxy implements ITable
     ) {
         Validate::canCastAsString($table, 'table');
         Validate::notNullOrEmpty($table, 'table');
-        Validate::isTrue(!is_null($partitionKey), Resources::NULL_TABLE_KEY_MSG);
-        Validate::isTrue(!is_null($rowKey), Resources::NULL_TABLE_KEY_MSG);
+        Validate::isTrue(null !== $partitionKey, Resources::NULL_TABLE_KEY_MSG);
+        Validate::isTrue(null !== $rowKey, Resources::NULL_TABLE_KEY_MSG);
 
         $method = Resources::HTTP_GET;
         $headers = [];
         $queryParams = [];
         $path = $this->getEntityPath($table, $partitionKey, $rowKey);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new GetEntityOptions();
         }
 
@@ -1609,7 +1609,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $queryParams = [];
         $path = '$batch';
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
@@ -1689,7 +1689,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $statusCode = Resources::STATUS_OK;
         $path = $table;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
@@ -1769,7 +1769,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $body = $acl->toXml($this->dataSerializer);
         $path = $table;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 

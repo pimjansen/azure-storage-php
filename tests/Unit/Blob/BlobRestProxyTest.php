@@ -962,7 +962,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
 
         // Assert
         $this->assertInstanceOf('\DateTime', $result->getLastModified());
-        $this->assertTrue(!is_null($result->getETag()));
+        $this->assertTrue(null !== $result->getETag());
     }
 
     public function testGetBlobMetadata()

@@ -93,11 +93,11 @@ class JsonODataReaderWriter implements IODataReaderWriter
             $edmType = $property->getEdmType();
             $edmValue = $property->getValue();
 
-            if (is_null($edmValue)) {
+            if (null === $edmValue) {
                 // No @odata.type JSON property needed for null value
                 $properties[$name] = null;
             } else {
-                if (is_null($edmType)) {
+                if (null === $edmType) {
                     $edmType = EdmType::propertyType($edmValue);
                 }
 

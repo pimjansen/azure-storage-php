@@ -69,7 +69,7 @@ trait ServiceRestTrait
         $postParams = [];
         $path = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ServiceOptions();
         }
 
@@ -150,7 +150,7 @@ trait ServiceRestTrait
         $path = Resources::EMPTY_STRING;
         $body = $serviceProperties->toXml($this->dataSerializer);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ServiceOptions();
         }
 
@@ -213,7 +213,7 @@ trait ServiceRestTrait
         $postParams = [];
         $path = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ServiceOptions();
         }
 

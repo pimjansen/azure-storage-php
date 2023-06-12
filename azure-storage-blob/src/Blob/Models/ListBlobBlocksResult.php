@@ -84,7 +84,7 @@ class ListBlobBlocksResult
 
         $result->setETag(Utilities::tryGetValue($clean, Resources::ETAG));
         $date = Utilities::tryGetValue($clean, Resources::LAST_MODIFIED);
-        if (!is_null($date)) {
+        if (null !== $date) {
             $date = Utilities::rfc1123ToDateTime($date);
             $result->setLastModified($date);
         }

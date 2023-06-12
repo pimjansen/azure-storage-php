@@ -114,13 +114,13 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
     private function getServicePropertiesWorker($options)
     {
-        $effOptions = (is_null($options) ? new BlobServiceOptions() : $options);
+        $effOptions = (null === $options ? new BlobServiceOptions() : $options);
         try {
-            $ret = (is_null($options) ?
+            $ret = (null === $options ?
                 $this->restProxy->getServiceProperties() :
                 $this->restProxy->getServiceProperties($effOptions));
 
-            if (!is_null($effOptions->getTimeout()) && $effOptions->getTimeout() < 1) {
+            if (null !== $effOptions->getTimeout() && $effOptions->getTimeout() < 1) {
                 $this->true('Expect negative timeouts in $options to throw', false);
             } else {
                 $this->assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
@@ -128,14 +128,14 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             $this->verifyServicePropertiesWorker($ret, null);
         } catch (ServiceException $e) {
             if ($this->isEmulated()) {
-                if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+                if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                     $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 } else {
                     // Expect failure in emulator, as v1.6 doesn't support this method
                     $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
                 }
             } else {
-                if (is_null($effOptions->getTimeout()) || $effOptions->getTimeout() >= 1) {
+                if (null === $effOptions->getTimeout() || $effOptions->getTimeout() >= 1) {
                     throw $e;
                 } else {
                     $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
@@ -146,7 +146,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyServicePropertiesWorker($ret, $serviceProperties)
     {
-        if (is_null($serviceProperties)) {
+        if (null === $serviceProperties) {
             $serviceProperties = BlobServiceFunctionalTestData::getDefaultServiceProperties();
         }
 
@@ -246,17 +246,17 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
     private function setServicePropertiesWorker($serviceProperties, $options)
     {
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->setServiceProperties($serviceProperties);
             } else {
                 $this->restProxy->setServiceProperties($serviceProperties, $options);
             }
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             } else {
                 $this->assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
@@ -265,24 +265,24 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             \sleep(10);
 
             $ret = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->getServiceProperties() :
                 $this->restProxy->getServiceProperties($options)
             );
             $this->verifyServicePropertiesWorker($ret, $serviceProperties);
         } catch (ServiceException $e) {
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
             if ($this->isEmulated()) {
-                if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+                if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                     $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 } else {
                     $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
                 }
             } else {
-                if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+                if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                     $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 } else {
                     throw $e;
@@ -310,16 +310,16 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         while (!$finished) {
             try {
                 $ret = (
-                    is_null($options) ?
+                    null === $options ?
                     $this->restProxy->listContainers() :
                     $this->restProxy->listContainers($options)
                 );
 
-                if (is_null($options)) {
+                if (null === $options) {
                     $options = new ListContainersOptions();
                 }
 
-                if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+                if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                     $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
                 }
                 $this->verifyListContainersWorker($ret, $options);
@@ -331,7 +331,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 }
             } catch (ServiceException $e) {
                 $finished = true;
-                if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+                if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                     throw $e;
                 } else {
                     $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
@@ -356,7 +356,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     strlen($ret->getNextMarker()) . ')to be  '
             );
 
-            if (!is_null($options->getPrefix()) &&
+            if (null !== $options->getPrefix() &&
                 $options->getPrefix() ==
                     (BlobServiceFunctionalTestData::$nonExistBlobPrefix)) {
                 $this->assertEquals(
@@ -365,7 +365,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     'when MaxResults=0 and Prefix=(\'' .
                         $options->getPrefix() . '\'), then Blobs length'
                 );
-            } elseif (!is_null($options->getPrefix()) &&
+            } elseif (null !== $options->getPrefix() &&
                 $options->getPrefix() ==
                     (BlobServiceFunctionalTestData::$testUniqueId)) {
                 $this->assertEquals(
@@ -422,7 +422,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 ') should be == MaxResults (' . $options->getMaxResults() .
                 ')'
             );
-            if (!is_null($options->getPrefix()) &&
+            if (null !== $options->getPrefix() &&
                 $options->getPrefix() ==
                     BlobServiceFunctionalTestData::$nonExistBlobPrefix) {
                 $this->assertTrue(
@@ -453,18 +453,18 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $created = false;
 
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->createContainer($container);
             } else {
                 $this->restProxy->createContainer($container, $options);
             }
             $created = true;
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new CreateContainerOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
@@ -486,11 +486,11 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             $this->verifyCreateContainerWorker($ret, $options);
             $this->restProxy->deleteContainer($container);
         } catch (ServiceException $e) {
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new CreateContainerOptions();
             }
 
-            if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+            if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
             } else {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
@@ -508,7 +508,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyCreateContainerWorker($ret, $options)
     {
-        if (is_null($options->getMetadata())) {
+        if (null === $options->getMetadata()) {
             $this->assertNotNull($ret->getMetadata(), 'container Metadata');
             $this->assertEquals(0, count($ret->getMetadata()), 'count container Metadata');
         } else {
@@ -555,7 +555,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         $deleted = false;
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->deleteContainer($container);
             } else {
                 $this->restProxy->deleteContainer($container, $options);
@@ -563,11 +563,11 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             $deleted = true;
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (!$this->isEmulated() &&
@@ -589,11 +589,11 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             // Nothing else interesting to check for the $options.
         } catch (ServiceException $e) {
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             } elseif (!$this->isEmulated() &&
                     !BlobServiceFunctionalTestData::passTemporalAccessCondition(
@@ -638,21 +638,21 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->setContainerMetadata($container, $metadata);
 
         try {
-            $res = (is_null($options) ?
+            $res = (null === $options ?
                 $this->restProxy->getContainerMetadata($container) :
                 $this->restProxy->getContainerMetadata($container, $options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() <= 0) {
+            if (null !== $options->getTimeout() && $options->getTimeout() <= 0) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $this->verifyGetContainerMetadataWorker($res, $metadata);
         } catch (ServiceException $e) {
-            if (is_null($options->getTimeout()) || $options->getTimeout() > 0) {
+            if (null === $options->getTimeout() || $options->getTimeout() > 0) {
                 throw $e;
             } else {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
@@ -704,20 +704,20 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createContainer($container);
 
         $firstkey = '';
-        if (!is_null($metadata) && count($metadata) > 0) {
+        if (null !== $metadata && count($metadata) > 0) {
             $firstkey = array_keys($metadata);
             $firstkey = $firstkey[0];
         }
 
         try {
             // And put in some metadata
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->setContainerMetadata($container, $metadata);
             } else {
                 $this->restProxy->setContainerMetadata($container, $metadata, $options);
             }
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
@@ -726,7 +726,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 'Should get HTTP request error if the metadata is invalid'
             );
 
-            if (! is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
@@ -734,7 +734,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             if (! $this->isEmulated() &&
                 !BlobServiceFunctionalTestData::passTemporalAccessCondition(
                     $options->getAccessConditions()
-                ) && (!is_null($options->getAccessConditions()) &&
+                ) && (null !== $options->getAccessConditions() &&
                 empty($options->getAccessConditions()) &&
                 $options->getAccessConditions()[0]->getHeader() !=
                     Resources::IF_UNMODIFIED_SINCE)) {
@@ -748,12 +748,12 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } elseif (!$this->isEmulated() &&
                     !BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions()) &&
-                    (!is_null($options->getAccessConditions()) &&
+                    (null !== $options->getAccessConditions() &&
                     !empty($options->getAccessConditions()) &&
                     $options->getAccessConditions()[0]->getHeader() != Resources::IF_UNMODIFIED_SINCE)) {
                 // setMetadata only honors If-Modified-Since
                 $this->assertEquals(TestResources::STATUS_PRECONDITION_FAILED, $e->getCode(), 'getCode');
-            } elseif (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            } elseif (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             } else {
                 throw $e;
@@ -790,21 +790,21 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->setContainerMetadata($container, $metadata);
 
         try {
-            $res = (is_null($options) ?
+            $res = (null === $options ?
                 $this->restProxy->getContainerProperties($container) :
                 $this->restProxy->getContainerProperties($container, $options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $this->verifyGetContainerMetadataWorker($res, $metadata);
         } catch (ServiceException $e) {
-            if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+            if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
             } else {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
@@ -838,21 +838,21 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createContainer($container);
 
         try {
-            $res = (is_null($options) ?
+            $res = (null === $options ?
                 $this->restProxy->getContainerACL($container) :
                 $this->restProxy->getContainerACL($container, $options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $this->verifyGetContainerACLWorker($res);
         } catch (ServiceException $e) {
-            if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+            if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
             } else {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
@@ -919,7 +919,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createBlockBlob($container, 'test', $blobContent);
 
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->setContainerACL($container, $acl);
                 $this->restProxy->setContainerACL($container, $acl);
             } else {
@@ -927,18 +927,18 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $this->restProxy->setContainerACL($container, $acl, $options);
             }
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $res = $this->restProxy->getContainerACL($container);
             $this->verifySetContainerACLWorker($res, $container, $acl, $blobContent);
         } catch (ServiceException $e) {
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             } else {
                 throw $e;
@@ -971,7 +971,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         );
 
         $this->assertEquals(
-            (is_null($acl->getPublicAccess()) ? '' : $acl->getPublicAccess()),
+            (null === $acl->getPublicAccess() ? '' : $acl->getPublicAccess()),
             $ret->getContainerACL()->getPublicAccess(),
             '$ret->getContainerACL->getPublicAccess'
         );
@@ -1021,13 +1021,13 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             );
             $canDownloadBlob = $this->canDownloadFromUrl($blobAddress, $blobContent);
 
-            if (!is_null($acl->getPublicAccess()) && $acl->getPublicAccess() == PublicAccessType::CONTAINER_AND_BLOBS) {
+            if (null !== $acl->getPublicAccess() && $acl->getPublicAccess() == PublicAccessType::CONTAINER_AND_BLOBS) {
                 // Full public read access: Container and blob data can be read via anonymous request.
                 // Clients can enumerate blobs within the $container via anonymous request,
                 // but cannot enumerate containers within the storage account.
                 $this->assertTrue($canDownloadBlobList, '$canDownloadBlobList when ' . $acl->getPublicAccess());
                 $this->assertTrue($canDownloadBlob, '$canDownloadBlob when ' . $acl->getPublicAccess());
-            } elseif (!is_null($acl->getPublicAccess()) && $acl->getPublicAccess() == PublicAccessType::BLOBS_ONLY) {
+            } elseif (null !== $acl->getPublicAccess() && $acl->getPublicAccess() == PublicAccessType::BLOBS_ONLY) {
                 // Public read access for blobs only: Blob data within this container
                 // can be read via anonymous request, but $container data is not available.
                 // Clients cannot enumerate blobs within the $container via anonymous request.
@@ -1082,15 +1082,15 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $finished = false;
         while (!$finished) {
             try {
-                $ret = (is_null($options) ?
+                $ret = (null === $options ?
                     $this->restProxy->listBlobs($container) :
                     $this->restProxy->listBlobs($container, $options));
 
-                if (is_null($options)) {
+                if (null === $options) {
                     $options = new ListBlobsOptions();
                 }
 
-                if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+                if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                     $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
                 }
                 $this->verifyListBlobsWorker($ret, $options);
@@ -1102,7 +1102,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 }
             } catch (ServiceException $e) {
                 $finished = true;
-                if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+                if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                     throw $e;
                 } else {
                     $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
@@ -1126,7 +1126,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     strlen($ret->getNextMarker()) . ')to be  '
             );
 
-            if (!is_null($options->getPrefix()) &&
+            if (null !== $options->getPrefix() &&
                     $options->getPrefix() ==
                         (BlobServiceFunctionalTestData::$nonExistBlobPrefix)) {
                 $this->assertEquals(
@@ -1135,7 +1135,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     'when MaxResults=0 and Prefix=(\'' .
                         $options->getPrefix() . '\'), then Blobs length'
                 );
-            } elseif (!is_null($options->getPrefix()) &&
+            } elseif (null !== $options->getPrefix() &&
                 $options->getPrefix() ==
                     (BlobServiceFunctionalTestData::$testUniqueId)) {
                 $this->assertEquals(
@@ -1183,7 +1183,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     $options->getMaxResults() . ')'
             );
 
-            if (!is_null($options->getPrefix()) &&
+            if (null !== $options->getPrefix() &&
                     $options->getPrefix() ==
                         (BlobServiceFunctionalTestData::$nonExistBlobPrefix)) {
                 $this->assertTrue(
@@ -1235,7 +1235,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $properties = BlobServiceFunctionalTestData::getNiceMetadata();
         $this->restProxy->setBlobMetadata($container, $blob, $properties);
 
-        if (!is_null($options)) {
+        if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
                 $createBlockBlobResult->getETag()
@@ -1244,16 +1244,16 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         try {
             $res = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->getBlobMetadata($container, $blob) :
                 $this->restProxy->getBlobMetadata($container, $blob, $options)
             );
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new GetBlobMetadataOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
@@ -1265,7 +1265,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             $this->verifyGetBlobMetadataWorker($res, $properties);
         } catch (ServiceException $e) {
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
                 $this->assertEquals(
@@ -1360,7 +1360,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         // Make sure there is something to test
         $createBlockBlobResult = $this->restProxy->createBlockBlob($container, $blob, "");
-        if (!is_null($options)) {
+        if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
                 $createBlockBlobResult->getETag()
@@ -1368,14 +1368,14 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         }
 
         $firstkey = '';
-        if (!is_null($metadata) && count($metadata) > 0) {
+        if (null !== $metadata && count($metadata) > 0) {
             $firstkey = array_keys($metadata);
             $firstkey = $firstkey[0];
         }
 
         try {
             // And put in some properties
-            $res = (is_null($options) ?
+            $res = (null === $options ?
             $this->restProxy->setBlobMetadata($container, $blob, $metadata) :
             $this->restProxy->setBlobMetadata(
                 $container,
@@ -1383,11 +1383,11 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $metadata,
                 $options
             ));
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new BlobServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
@@ -1407,7 +1407,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (Utilities::startsWith($firstkey, '<')) {
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
-            } elseif (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            } elseif (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
                 $this->assertEquals(
@@ -1488,7 +1488,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->setBlobMetadata($container, $blob, $metadata);
         // Do not set the properties, there should be default properties.
 
-        if (!is_null($options)) {
+        if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
                 $createPageBlobResult->getETag()
@@ -1497,16 +1497,16 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         try {
             $res = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->getBlobProperties($container, $blob) :
                 $this->restProxy->getBlobProperties($container, $blob, $options)
             );
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new GetBlobPropertiesOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
@@ -1515,7 +1515,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             $this->verifyGetBlobPropertiesWorker($res, $metadata, null);
         } catch (ServiceException $e) {
-            if (!is_null($options->getAccessConditions()) &&
+            if (null !== $options->getAccessConditions() &&
                     !empty($options->getAccessConditions()) &&
                     !$this->hasSecureEndpoint() &&
                     $e->getCode() == TestResources::STATUS_FORBIDDEN) {
@@ -1523,7 +1523,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 // unsecured (http) requests, which causes the authentication
                 // to fail, with a 403:Forbidden. There is nothing much that
                 // can be done about this, other than ignore it.
-            } elseif (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            } elseif (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
                 if ($options->getAccessConditions()[0]->getHeader() == Resources::IF_MODIFIED_SINCE) {
@@ -1580,7 +1580,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
          */
 
         $this->assertNotNull($res->getMetadata(), 'blob Metadata');
-        if (is_null($metadata)) {
+        if (null === $metadata) {
             $this->assertEquals(0, count($res->getMetadata()), 'Metadata');
         } else {
             $this->assertEquals(count($metadata), count($res->getMetadata()), 'Metadata');
@@ -1596,9 +1596,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->assertEquals('PageBlob', $res->getProperties()->getBlobType(), 'blob getProperties->getBlobType');
         $this->assertEquals('unlocked', $res->getProperties()->getLeaseStatus(), 'blob getProperties->getLeaseStatus');
 
-        if (is_null($properties) ||
-                !is_null($properties->getContentLength()) ||
-                !is_null($properties->getSequenceNumber())) {
+        if (null === $properties ||
+                null !== $properties->getContentLength() ||
+                null !== $properties->getSequenceNumber()) {
             $this->assertNull($res->getProperties()->getCacheControl(), 'blob getProperties->getCacheControl');
             $this->assertEquals(
                 'application/octet-stream',
@@ -1636,7 +1636,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             );
         }
 
-        if (is_null($properties) || is_null($properties->getContentLength())) {
+        if (null === $properties || null === $properties->getContentLength()) {
             $this->assertEquals(512, $res->getProperties()->getContentLength(), 'blob getProperties->getContentLength');
         } else {
             $this->assertEquals(
@@ -1646,7 +1646,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             );
         }
 
-        if (is_null($properties) || is_null($properties->getSequenceNumber())) {
+        if (null === $properties || null === $properties->getSequenceNumber()) {
             $this->assertEquals(0, $res->getProperties()->getSequenceNumber(), 'blob getProperties->getSequenceNumber');
         } else {
             $this->assertEquals(
@@ -1711,7 +1711,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             // And put in some properties
             $res = $this->restProxy->setBlobProperties($container, $blob, $properties);
 
-            if (!is_null($properties->getTimeout()) && $properties->getTimeout() < 1) {
+            if (null !== $properties->getTimeout() && $properties->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in options to throw');
             }
             if (!BlobServiceFunctionalTestData::passTemporalAccessCondition($properties->getAccessConditions())) {
@@ -1726,7 +1726,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             $res2 = $this->restProxy->getBlobProperties($container, $blob);
             $this->verifyGetBlobPropertiesWorker($res2, null, $properties);
         } catch (ServiceException $e) {
-            if (!is_null($properties->getTimeout()) && $properties->getTimeout() < 1) {
+            if (null !== $properties->getTimeout() && $properties->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition($properties->getAccessConditions())) {
                 $this->assertEquals(
@@ -1812,23 +1812,23 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $snapshot = $this->restProxy->createBlobSnapshot($container, $blob);
         $this->restProxy->createBlobSnapshot($container, $blob);
 
-        if (!is_null($options)) {
+        if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition($options->getAccessConditions(), $sbmd->getETag());
-            $options->setSnapshot(is_null($options->getSnapshot()) ? null : $snapshot->getSnapshot());
+            $options->setSnapshot(null === $options->getSnapshot() ? null : $snapshot->getSnapshot());
         }
 
         try {
             $res = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->getBlob($container, $blob) :
                 $this->restProxy->getBlob($container, $blob, $options)
             );
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new GetBlobOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
@@ -1838,14 +1838,14 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $this->assertTrue(false, 'Expect failing etag access condition to throw');
             }
             if ($options->getRangeGetContentMD5() && (
-                is_null($options->getRange()) || is_null($options->getRange()->getStart())
+                null === $options->getRange() || null === $options->getRange()->getStart()
             )) {
                 $this->assertTrue(false, 'Expect compute range MD5 to fail if range not set');
             }
 
             $this->verifyGetBlobWorker($res, $options, $dataSize, $metadata);
         } catch (ServiceException $e) {
-            if (!is_null($options->getAccessConditions()) &&
+            if (null !== $options->getAccessConditions() &&
                     !empty($options->getAccessConditions()) &&
                     !$this->hasSecureEndpoint() &&
                     $e->getCode() == TestResources::STATUS_FORBIDDEN) {
@@ -1853,7 +1853,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 // unsecured (http) requests, which causes the authentication
                 // to fail, with a 403:Forbidden. There is nothing much that
                 // can be done about this, other than ignore it.
-            } elseif (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            } elseif (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
                 if ($options->getAccessConditions()[0]->getHeader() == Resources::IF_MODIFIED_SINCE) {
@@ -1878,7 +1878,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     'bad etag access condition: getCode'
                 );
             } elseif ($options->getRangeGetContentMD5() && (
-                is_null($options->getRange()) || is_null($options->getRange()->getStart())
+                null === $options->getRange() || null === $options->getRange()->getStart()
             )) {
                 $this->assertEquals(
                     TestResources::STATUS_BAD_REQUEST,
@@ -1903,14 +1903,14 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         $rangeSize = $dataSize;
         $range = $options->getRange();
-        if (is_null($range)) {
+        if (null === $range) {
             $range = new Range(null);
         }
 
-        if (!is_null($range->getEnd())) {
+        if (null !== $range->getEnd()) {
             $rangeSize = (int) $range->getEnd() + 1;
         }
-        if (!is_null($range->getStart())) {
+        if (null !== $range->getStart()) {
             $rangeSize -= $range->getStart();
         } else {
             // One might expect that not specifying the start would just take the
@@ -1981,28 +1981,28 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createBlobSnapshot($container, $blob);
 
         $blobinfo = $this->restProxy->getBlob($container, $blob);
-        if (!is_null($options)) {
+        if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
                 $blobinfo->getProperties()->getETag()
             );
-            $options->setSnapshot(is_null($options->getSnapshot()) ? null : $snapshot->getSnapshot());
+            $options->setSnapshot(null === $options->getSnapshot() ? null : $snapshot->getSnapshot());
         }
 
         $deleted = false;
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->deleteBlob($container, $blob);
             } else {
                 $this->restProxy->deleteBlob($container, $blob, $options);
             }
             $deleted = true;
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new DeleteBlobOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
@@ -2020,7 +2020,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             $this->verifyDeleteBlobWorker($options, $blobs);
         } catch (ServiceException $e) {
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(
                     TestResources::STATUS_INTERNAL_SERVER_ERROR,
                     $e->getCode(),
@@ -2052,7 +2052,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyDeleteBlobWorker($options, $blobs)
     {
-        if (!is_null($options->getSnapshot())) {
+        if (null !== $options->getSnapshot()) {
             $this->assertEquals(
                 2,
                 count($blobs),
@@ -2103,7 +2103,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $dataSize = 512;
         $this->restProxy->createPageBlob($container, $blob, $dataSize);
         $snapshot1 = $this->restProxy->createBlobSnapshot($container, $blob);
-        if (!is_null($options)) {
+        if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
                 $snapshot1->getETag()
@@ -2112,16 +2112,16 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         try {
             $res = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->createBlobSnapshot($container, $blob) :
                 $this->restProxy->createBlobSnapshot($container, $blob, $options)
             );
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new CreateBlobSnapshotOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
@@ -2143,7 +2143,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             $this->verifyCreateBlobSnapshotWorker($res, $options, $blobs, $getBlobResult);
         } catch (ServiceException $e) {
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(
                     TestResources::STATUS_INTERNAL_SERVER_ERROR,
                     $e->getCode(),
@@ -2208,7 +2208,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->assertNotNull($getBlobResult->getMetadata(), 'blob Metadata');
         $this->assertEquals(count($options->getMetadata()), count($getBlobResult->getMetadata()), 'Metadata');
         $retMetadata = $getBlobResult->getMetadata();
-        if (!is_null($options->getMetadata())) {
+        if (null !== $options->getMetadata()) {
             foreach ($options->getMetadata() as $key => $value) {
                 $this->assertEquals($value, $retMetadata[$key], 'Metadata(' . $key . ')');
             }
@@ -2261,7 +2261,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $metadata = BlobServiceFunctionalTestData::getNiceMetadata();
         $this->restProxy->setBlobMetadata($sourceContainer, $sourceBlob, $metadata);
         $snapshot = $this->restProxy->createBlobSnapshot($sourceContainer, $sourceBlob);
-        if (!is_null($options)) {
+        if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getSourceAccessConditions(),
                 $snapshot->getETag()
@@ -2270,21 +2270,21 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $options->getAccessConditions(),
                 $destBlobInfo->getETag()
             );
-            $options->setSourceSnapshot(is_null($options->getSourceSnapshot()) ? null : $snapshot->getSnapshot());
+            $options->setSourceSnapshot(null === $options->getSourceSnapshot() ? null : $snapshot->getSnapshot());
         }
 
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->copyBlob($destContainer, $destBlob, $sourceContainer, $sourceBlob);
             } else {
                 $this->restProxy->copyBlob($destContainer, $destBlob, $sourceContainer, $sourceBlob, $options);
             }
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new CopyBlobOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getSourceAccessConditions())) {
@@ -2314,11 +2314,11 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             $this->verifyCopyBlobWorker($options, $blobs, $getBlobResult, $sourceDataSize, $metadata);
         } catch (ServiceException $e) {
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new CopyBlobOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(500, $e->getCode(), 'bad timeout: deleteHttpStatusCode');
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition(
                 $options->getSourceAccessConditions()
@@ -2900,7 +2900,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         }
         //Validate result
         $listRangeOptions = new ListPageBlobRangesOptions();
-        $listRange = is_null($listRange) ? new Range(null) : $listRange;
+        $listRange = null === $listRange ? new Range(null) : $listRange;
         $listRangeOptions->setRange($listRange);
         $listResult =
             $this->restProxy->listPageBlobRanges($container, $blob, $listRangeOptions);
@@ -2974,7 +2974,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         //Validate result
         $listRangeOptions = new ListPageBlobRangesOptions();
-        $listRange = is_null($listRange) ? new Range(null) : $listRange;
+        $listRange = null === $listRange ? new Range(null) : $listRange;
         $listRangeOptions->setRange($listRange);
         $listResult =
             $this->restProxy->listPageBlobRangesDiff($container, $blob, $snapshot, $listRangeOptions);

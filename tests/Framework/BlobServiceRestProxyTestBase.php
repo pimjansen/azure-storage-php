@@ -47,7 +47,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function createContainer($containerName, $options = null)
     {
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateContainerOptions();
             $options->setPublicAccess('container');
         }
@@ -137,7 +137,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
     {
         $result = [];
         $opts = new ListContainersOptions();
-        if (!is_null($containerPrefix)) {
+        if (null !== $containerPrefix) {
             $opts->setPrefix($containerPrefix);
         }
 

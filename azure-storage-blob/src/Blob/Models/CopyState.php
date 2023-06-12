@@ -52,7 +52,7 @@ class CopyState
         $clean = array_change_key_case($parsed);
 
         $copyCompletionTime = Utilities::tryGetValue($clean, 'copycompletiontime');
-        if (!is_null($copyCompletionTime)) {
+        if (null !== $copyCompletionTime) {
             $copyCompletionTime = Utilities::rfc1123ToDateTime($copyCompletionTime);
             $result->setCompletionTime($copyCompletionTime);
         }
@@ -64,7 +64,7 @@ class CopyState
 
         $copyProgress = Utilities::tryGetValue($clean, 'copyprogress');
 
-        if (!is_null($copyProgress) && strpos($copyProgress, '/') !== false) {
+        if (null !== $copyProgress && strpos($copyProgress, '/') !== false) {
             $parts = explode('/', $copyProgress);
             $bytesCopied = intval($parts[0]);
             $totalBytes = intval($parts[1]);
@@ -91,7 +91,7 @@ class CopyState
         $clean = array_change_key_case($parsed);
 
         $copyCompletionTime = Utilities::tryGetValue($clean, Resources::X_MS_COPY_COMPLETION_TIME);
-        if (!is_null($copyCompletionTime)) {
+        if (null !== $copyCompletionTime) {
             $copyCompletionTime = Utilities::rfc1123ToDateTime($copyCompletionTime);
             $result->setCompletionTime($copyCompletionTime);
         }
@@ -102,7 +102,7 @@ class CopyState
         $result->setSource(Utilities::tryGetValue($clean, Resources::X_MS_COPY_SOURCE));
 
         $copyProgress = Utilities::tryGetValue($clean, Resources::X_MS_COPY_PROGRESS);
-        if (!is_null($copyProgress) && strpos($copyProgress, '/') !== false) {
+        if (null !== $copyProgress && strpos($copyProgress, '/') !== false) {
             $parts = explode('/', $copyProgress);
             $bytesCopied = intval($parts[0]);
             $totalBytes = intval($parts[1]);

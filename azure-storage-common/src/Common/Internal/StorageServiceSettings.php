@@ -205,7 +205,7 @@ class StorageServiceSettings extends ServiceSettings
      */
     private static function getDevelopmentStorageAccount($proxyUri)
     {
-        if (is_null($proxyUri)) {
+        if (null === $proxyUri) {
             return self::developmentStorageAccount();
         }
 
@@ -231,7 +231,7 @@ class StorageServiceSettings extends ServiceSettings
      */
     public static function developmentStorageAccount()
     {
-        if (is_null(self::$devStoreAccount)) {
+        if (null === self::$devStoreAccount) {
             self::$devStoreAccount = self::getDevelopmentStorageAccount(
                 Resources::DEV_STORE_URI
             );

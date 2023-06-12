@@ -95,7 +95,7 @@ class ListQueuesResult
         foreach ($rawQueues as $value) {
             $queue = new Queue($value['Name'], $serviceEndpoint . $value['Name']);
             $metadata = Utilities::tryGetValue($value, Resources::QP_METADATA);
-            $queue->setMetadata(is_null($metadata) ? [] : $metadata);
+            $queue->setMetadata(null === $metadata ? [] : $metadata);
             $queues[] = $queue;
         }
         $result->setQueues($queues);

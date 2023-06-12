@@ -50,7 +50,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function createShare($shareName, $options = null)
     {
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateShareOptions();
         }
 
@@ -60,7 +60,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function createDirectory($shareName, $path, $options = null)
     {
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateDirectoryOptions();
         }
 
@@ -146,7 +146,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
     {
         $result = [];
         $opts = new ListSharesOptions();
-        if (!is_null($sharePrefix)) {
+        if (null !== $sharePrefix) {
             $opts->setPrefix($sharePrefix);
         }
 

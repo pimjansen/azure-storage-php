@@ -40,7 +40,7 @@ class GetQueueMetadataResult
     public function __construct($approximateMessageCount, array $metadata)
     {
         $this->setApproximateMessageCount($approximateMessageCount);
-        $this->setMetadata(is_null($metadata) ? [] : $metadata);
+        $this->setMetadata(null === $metadata ? [] : $metadata);
     }
 
     /**

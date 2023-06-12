@@ -92,7 +92,7 @@ class RestProxy
         Validate::canCastAsString($key, 'key');
         Validate::canCastAsString($value, 'value');
 
-        if (!is_null($value) && Resources::EMPTY_STRING !== $value) {
+        if (null !== $value && Resources::EMPTY_STRING !== $value) {
             $queryParameters[$key] = $value;
         }
     }
@@ -114,7 +114,7 @@ class RestProxy
         Validate::canCastAsString($key, 'key');
         Validate::canCastAsString($value, 'value');
 
-        if (!is_null($value) && Resources::EMPTY_STRING !== $value) {
+        if (null !== $value && Resources::EMPTY_STRING !== $value) {
             $headers[$key] = $value;
         }
     }

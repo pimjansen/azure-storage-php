@@ -189,7 +189,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $postParams = [];
         $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -270,7 +270,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [];
         $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -458,7 +458,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $postParams = [];
         $path = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListSharesOptions();
         }
 
@@ -554,7 +554,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [Resources::QP_REST_TYPE => 'share'];
         $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateShareOptions();
         }
 
@@ -624,7 +624,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [];
         $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -846,7 +846,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [];
         $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -944,7 +944,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $path = $this->createPath($share);
         $body = $acl->toXml($this->dataSerializer);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1016,7 +1016,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $postParams = [];
         $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1104,7 +1104,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListDirectoriesAndFilesOptions();
         }
 
@@ -1204,7 +1204,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [Resources::QP_REST_TYPE => 'directory'];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateDirectoryOptions();
         }
 
@@ -1273,7 +1273,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [Resources::QP_REST_TYPE => 'directory'];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1340,7 +1340,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [Resources::QP_REST_TYPE => 'directory'];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1410,7 +1410,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [Resources::QP_REST_TYPE => 'directory'];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1496,7 +1496,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
 
         Utilities::validateMetadata($metadata);
         $headers = $this->generateMetadataHeaders($metadata);
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1579,7 +1579,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateFileOptions();
         }
 
@@ -1702,7 +1702,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1770,7 +1770,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new GetFileOptions();
         }
 
@@ -1860,7 +1860,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $postParams = [];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1934,7 +1934,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [Resources::QP_COMP => 'properties'];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2043,7 +2043,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2129,7 +2129,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
 
         Utilities::validateMetadata($metadata);
         $headers = $this->generateMetadataHeaders($metadata);
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2424,7 +2424,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $postParams = [];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2517,7 +2517,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $postParams = [];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2649,7 +2649,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Utilities::validateMetadata($metadata);
         $headers = $this->generateMetadataHeaders($metadata);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2737,7 +2737,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $queryParams = [];
         $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 

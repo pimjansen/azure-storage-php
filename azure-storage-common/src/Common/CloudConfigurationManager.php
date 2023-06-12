@@ -136,7 +136,7 @@ class CloudConfigurationManager
 
         $sourceCallback = Utilities::tryGetValue(self::$_sources, $name);
 
-        if (!is_null($sourceCallback)) {
+        if (null !== $sourceCallback) {
             unset(self::$_sources[$name]);
         }
 

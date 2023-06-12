@@ -55,4 +55,5 @@ return $config
             'import_functions' => false,
         ],
         'increment_style' => true,
+        'is_null' => true,
     ]);

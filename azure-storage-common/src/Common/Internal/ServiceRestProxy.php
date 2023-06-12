@@ -533,7 +533,7 @@ class ServiceRestProxy extends RestProxy
         sort($values);
 
         foreach ($values as $value) {
-            if (!is_null($value) && !empty($value)) {
+            if (null !== $value && !empty($value)) {
                 $joined .= $value . Resources::SEPARATOR;
             }
         }
@@ -570,7 +570,7 @@ class ServiceRestProxy extends RestProxy
     {
         $metadataHeaders = [];
 
-        if (is_array($metadata) && !is_null($metadata)) {
+        if (is_array($metadata) && null !== $metadata) {
             foreach ($metadata as $key => $value) {
                 $headerName = Resources::X_MS_META_HEADER_PREFIX;
                 if (strpos($value, "\r") !== false

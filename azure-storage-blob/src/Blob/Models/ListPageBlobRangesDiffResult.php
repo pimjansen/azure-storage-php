@@ -53,7 +53,7 @@ class ListPageBlobRangesDiffResult extends ListPageBlobRangesResult
         $result->setLastModified($date);
         $result->setETag($headers[Resources::ETAG]);
 
-        if (is_null($parsed)) {
+        if (null === $parsed) {
             return $result;
         }
 

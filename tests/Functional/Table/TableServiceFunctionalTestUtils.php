@@ -40,7 +40,7 @@ class TableServiceFunctionalTestUtils
 
     private static function isEqNotInTopLevelWorker($filter, $depth)
     {
-        if (is_null($filter)) {
+        if (null === $filter) {
             return false;
         } elseif ($filter instanceof UnaryFilter) {
             return self::isEqNotInTopLevelWorker($filter->getOperand(), $depth + 1);
@@ -107,7 +107,7 @@ class TableServiceFunctionalTestUtils
         $output = [];
         foreach ($input as $i) {
             $result = self::filterInterperter($filter, $i);
-            if (!is_null($result) && $result) {
+            if (null !== $result && $result) {
                 array_push($output, $i);
             }
         }
@@ -180,12 +180,12 @@ class TableServiceFunctionalTestUtils
             }
 
             $ptype = $initialProp->getEdmType();
-            if (is_null($ptype)) {
+            if (null === $ptype) {
                 $eff = $initialProp->getValue();
                 $initialProp->setValue($eff . 'AndMore');
             } elseif ($ptype == (EdmType::DATETIME)) {
                 $value = $initialProp->getValue();
-                if (is_null($value)) {
+                if (null === $value) {
                     $value = new \DateTime("1/26/1692");
                 }
                 $value->modify('+1 day');
@@ -218,13 +218,13 @@ class TableServiceFunctionalTestUtils
 
     public static function filterToString($filter, $pad = '  ')
     {
-        if (is_null($filter)) {
+        if (null === $filter) {
             return $pad . 'filter <null>' . "\n";
         } elseif ($filter instanceof PropertyNameFilter) {
             return $pad . 'entity.' . $filter->getPropertyName() . "\n";
         } elseif ($filter instanceof ConstantFilter) {
             $ret = $pad;
-            if (is_null($filter->getValue())) {
+            if (null === $filter->getValue()) {
                 $ret .= 'constant <null>';
             } elseif (is_bool($filter->getValue())) {
                 $ret .= ($filter->getValue() ? 'true' : 'false');
@@ -246,9 +246,9 @@ class TableServiceFunctionalTestUtils
 
     private static function filterInterperter($filter, $obj)
     {
-        if (is_null($filter)) {
+        if (null === $filter) {
             return true;
-        } elseif (is_null($obj)) {
+        } elseif (null === $obj) {
             return false;
         } elseif ($filter instanceof PropertyNameFilter) {
             $name = $filter->getPropertyName();
@@ -261,7 +261,7 @@ class TableServiceFunctionalTestUtils
             $ret = null;
             if ($filter->getOperator() == ('not')) {
                 $op = self::filterInterperter($filter->getOperand(), $obj);
-                if (is_null($op)) {
+                if (null === $op) {
                     //confirmed with FE that not(NULL) = true;
                     $ret = true;
                 } else {
@@ -302,11 +302,11 @@ class TableServiceFunctionalTestUtils
     private static function nullPropAnd($left, $right)
     {
         // http://msdn.microsoft.com/en-us/library/ms191504.aspx
-        if (is_null($left) && is_null($right)) {
+        if (null === $left && null === $right) {
             return null;
-        } elseif (is_null($left)) {
+        } elseif (null === $left) {
             return ($right ? null : false);
-        } elseif (is_null($right)) {
+        } elseif (null === $right) {
             return ($left ? null : false);
         } else {
             return $left && $right;
@@ -316,11 +316,11 @@ class TableServiceFunctionalTestUtils
     private static function nullPropOr($left, $right)
     {
         // http://msdn.microsoft.com/en-us/library/ms191504.aspx
-        if (is_null($left) && is_null($right)) {
+        if (null === $left && null === $right) {
             return null;
-        } elseif (is_null($left)) {
+        } elseif (null === $left) {
             return ($right ? true : null);
-        } elseif (is_null($right)) {
+        } elseif (null === $right) {
             return ($left ? true : null);
         } else {
             return $left || $right;
@@ -329,7 +329,7 @@ class TableServiceFunctionalTestUtils
 
     private static function nullPropEq($left, $right)
     {
-        if (is_null($left) || is_null($right)) {
+        if (null === $left || null === $right) {
             return null;
         } elseif (is_string($left) || is_string($right)) {
             return ('' . $left) == ('' . $right);
@@ -339,7 +339,7 @@ class TableServiceFunctionalTestUtils
 
     private static function nullPropNe($left, $right)
     {
-        if (is_null($left) || is_null($right)) {
+        if (null === $left || null === $right) {
             return null;
         } elseif (is_string($left) || is_string($right)) {
             return ('' . $left) != ('' . $right);
@@ -349,7 +349,7 @@ class TableServiceFunctionalTestUtils
 
     private static function nullPropGt($left, $right)
     {
-        if (is_null($left) || is_null($right)) {
+        if (null === $left || null === $right) {
             return null;
         } elseif (is_string($left) || is_string($right)) {
             return ('' . $left) > ('' . $right);
@@ -359,7 +359,7 @@ class TableServiceFunctionalTestUtils
 
     private static function nullPropGe($left, $right)
     {
-        if (is_null($left) || is_null($right)) {
+        if (null === $left || null === $right) {
             return null;
         } elseif (is_string($left) || is_string($right)) {
             return ('' . $left) >= ('' . $right);
@@ -369,7 +369,7 @@ class TableServiceFunctionalTestUtils
 
     private static function nullPropLt($left, $right)
     {
-        if (is_null($left) || is_null($right)) {
+        if (null === $left || null === $right) {
             return null;
         } elseif (is_string($left) || is_string($right)) {
             return ('' . $left) < ('' . $right);
@@ -379,7 +379,7 @@ class TableServiceFunctionalTestUtils
 
     private static function nullPropLe($left, $right)
     {
-        if (is_null($left) || is_null($right)) {
+        if (null === $left || null === $right) {
             return null;
         } elseif (is_string($left) || is_string($right)) {
             return ('' . $left) <= ('' . $right);

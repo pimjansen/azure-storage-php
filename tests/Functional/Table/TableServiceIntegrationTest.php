@@ -839,7 +839,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
 
             $entryCount += count($result->getEntities());
 
-            if (is_null($nextPartitionKey)) {
+            if (null === $nextPartitionKey) {
                 break;
             }
 

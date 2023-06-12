@@ -137,7 +137,7 @@ class XmlSerializer implements ISerializer
         );
 
         $xmlWriter->startElement($rootName);
-        if (!is_null($attributes)) {
+        if (null !== $attributes) {
             foreach (array_keys($attributes) as $attributeKey) {
                 $xmlWriter->writeAttribute(
                     $attributeKey,
@@ -202,7 +202,7 @@ class XmlSerializer implements ISerializer
         $xmlw->setIndent(true);
         $xmlw->startDocument($xmlVersion, $xmlEncoding, $standalone);
 
-        if (is_null($docNamespace)) {
+        if (null === $docNamespace) {
             $xmlw->startElement($rootName);
         } else {
             foreach ($docNamespace as $uri => $prefix) {

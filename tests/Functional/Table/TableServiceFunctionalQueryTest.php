@@ -76,7 +76,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
     private static function getNewEntity()
     {
-        if (is_null(self::$curPartition) || self::$curPartition == count(self::$Partitions) - 1) {
+        if (null === self::$curPartition || self::$curPartition == count(self::$Partitions) - 1) {
             self::$curPartition = 0;
             self::$curRowKey = TableServiceFunctionalTestData::getNewKey();
         } else {
@@ -573,16 +573,16 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         $table = TableServiceFunctionalTestData::$testTableNames[0];
 
         try {
-            $ret = (is_null($options) ?
+            $ret = (null === $options ?
                 $this->restProxy->queryEntities($table) :
                 $this->restProxy->queryEntities($table, $options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new QueryEntitiesOptions();
             }
 
-            if (!is_null($options->getQuery()) &&
-                !is_null($options->getQuery()->getTop()) &&
+            if (null !== $options->getQuery() &&
+                null !== $options->getQuery()->getTop() &&
                 $options->getQuery()->getTop() <= 0) {
                 $this->assertTrue(false, 'Expect non-positive Top in $options->query to throw');
             }
@@ -594,8 +594,8 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
             // not sure how useful it is.
             // To test that scenario, set NextTable in the $options.
         } catch (ServiceException $e) {
-            if (!is_null($options->getQuery()) &&
-                !is_null($options->getQuery()->getTop()) &&
+            if (null !== $options->getQuery() &&
+                null !== $options->getQuery()->getTop() &&
                 $options->getQuery()->getTop() <= 0) {
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
@@ -617,7 +617,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
         $projected = false;
 
-        if (!is_null($options->getNextPartitionKey()) && !is_null($options->getNextRowKey())) {
+        if (null !== $options->getNextPartitionKey() && null !== $options->getNextRowKey()) {
             $expectedDataTmp = [];
             foreach ($expectedData as $e) {
                 if (($e->getPartitionKey() > $options->getNextPartitionKey()) ||
@@ -635,7 +635,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
         $expectedData = TableServiceFunctionalTestUtils::filterEntityList($expectedFilter, $expectedData);
 
-        if (!is_null($q->getTop()) && $q->getTop() < count($expectedData)) {
+        if (null !== $q->getTop() && $q->getTop() < count($expectedData)) {
             $expectedDataTmp = [];
             for ($i = 0; $i < $q->getTop(); ++$i) {
                 array_push($expectedDataTmp, $expectedData[$i]);

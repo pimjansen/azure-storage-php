@@ -94,10 +94,10 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     private function getServicePropertiesWorker($options)
     {
         self::println('Trying $options: ' . self::tmptostring($options));
-        $effOptions = (is_null($options) ? new TableServiceOptions() : $options);
+        $effOptions = (null === $options ? new TableServiceOptions() : $options);
         try {
             $ret = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->getServiceProperties() :
                 $this->restProxy->getServiceProperties($effOptions)
             );
@@ -115,7 +115,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyServicePropertiesWorker($ret, $serviceProperties)
     {
-        if (is_null($serviceProperties)) {
+        if (null === $serviceProperties) {
             $serviceProperties = TableServiceFunctionalTestData::getDefaultServiceProperties();
         }
 
@@ -203,7 +203,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     private function setServicePropertiesWorker($serviceProperties, $options)
     {
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->setServiceProperties($serviceProperties);
             } else {
                 $this->restProxy->setServiceProperties($serviceProperties, $options);
@@ -214,7 +214,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             \sleep(30);
 
             $ret = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->getServiceProperties() :
                 $this->restProxy->getServiceProperties($options)
             );
@@ -245,13 +245,13 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     private function queryTablesWorker($options)
     {
         try {
-            $ret = (is_null($options) ? $this->restProxy->queryTables() : $this->restProxy->queryTables($options));
+            $ret = (null === $options ? $this->restProxy->queryTables() : $this->restProxy->queryTables($options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new QueryTablesOptions();
             }
 
-            if ((!is_null($options->getTop()) && $options->getTop() <= 0)) {
+            if ((null !== $options->getTop() && $options->getTop() <= 0)) {
                 if ($this->isEmulated()) {
                     $this->assertEquals(0, count($ret->getTables()), "should be no tables");
                 } else {
@@ -261,7 +261,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
             $this->verifyqueryTablesWorker($ret, $options);
         } catch (ServiceException $e) {
-            if ((!is_null($options->getTop()) && $options->getTop() <= 0) && !$this->isEmulated()) {
+            if ((null !== $options->getTop() && $options->getTop() <= 0) && !$this->isEmulated()) {
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 throw $e;
@@ -274,7 +274,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $this->assertNotNull($ret->getTables(), 'getTables');
 
         $effectivePrefix = $options->getPrefix();
-        if (is_null($effectivePrefix)) {
+        if (null === $effectivePrefix) {
             $effectivePrefix = '';
         }
 
@@ -294,7 +294,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             }
         }
 
-        if (!is_null($options->getNextTableName())) {
+        if (null !== $options->getNextTableName()) {
             $tmpExpectedData = [];
             $foundNext = false;
             foreach ($expectedData as $s) {
@@ -318,7 +318,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
 
         $expectedData = TableServiceFunctionalTestUtils::filterList($expectedFilter, $expectedData);
-        $effectiveTop = (is_null($options->getTop()) ? 100000 : $options->getTop());
+        $effectiveTop = (null === $options->getTop() ? 100000 : $options->getTop());
         $expectedCount = min($effectiveTop, count($expectedData));
 
         $tables = $ret->getTables();
@@ -361,14 +361,14 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         }
         $qsStart = $this->restProxy->queryTables($qto);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $this->restProxy->createTable($table);
         } else {
             $this->restProxy->createTable($table, $options);
         }
         $created = true;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
@@ -423,7 +423,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         );
 
         $deleted = false;
-        if (is_null($options)) {
+        if (null === $options) {
             $this->restProxy->deleteTable($Table);
         } else {
             $this->restProxy->deleteTable($Table, $options);
@@ -431,7 +431,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         $deleted = true;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
@@ -471,9 +471,9 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createTable($table);
         $created = true;
 
-        $ret = (is_null($options) ? $this->restProxy->getTable($table) : $this->restProxy->getTable($table, $options));
+        $ret = (null === $options ? $this->restProxy->getTable($table) : $this->restProxy->getTable($table, $options));
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new GetTableOptions();
         }
 
@@ -506,7 +506,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             // Upload the entity.
             $this->restProxy->insertEntity($table, $ent);
             $qer = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->getEntity(
                     $table,
                     $ent->getPartitionKey(),
@@ -520,7 +520,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 )
             );
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new GetEntityOptions();
             }
 
@@ -529,7 +529,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (!$isGood) {
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
-            } elseif (is_null($ent->getPartitionKey()) || is_null($ent->getRowKey())) {
+            } elseif (null === $ent->getPartitionKey() || null === $ent->getRowKey()) {
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 throw $e;
@@ -542,9 +542,9 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     {
         $expectedProps = [];
         foreach ($ent->getProperties() as $pname => $actualProp) {
-            if (is_null($actualProp) || !is_null($actualProp->getValue())) {
+            if (null === $actualProp || null !== $actualProp->getValue()) {
                 $cloneProp = null;
-                if (!is_null($actualProp)) {
+                if (null !== $actualProp) {
                     $cloneProp = new Property();
                     $cloneProp->setEdmType($actualProp->getEdmType());
                     $cloneProp->setValue($actualProp->getValue());
@@ -557,11 +557,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $this->assertEquals($ent->getPartitionKey(), $entReturned->getPartitionKey(), 'getPartitionKey');
         $this->assertEquals($ent->getRowKey(), $entReturned->getRowKey(), 'getRowKey');
         $this->assertNotNull($entReturned->getETag(), 'getETag');
-        if (!is_null($ent->getETag())) {
+        if (null !== $ent->getETag()) {
             $this->assertEquals($ent->getETag(), $entReturned->getETag(), 'getETag');
         }
         $this->assertNotNull($entReturned->getTimestamp(), 'getTimestamp');
-        if (is_null($ent->getTimestamp())) {
+        if (null === $ent->getTimestamp()) {
             // This property will come back, so need to account for it.
             $expectedProps['Timestamp'] = null;
         } else {
@@ -571,7 +571,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         $nullCount = 0;
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
-            if (is_null($actualProp->getValue())) {
+            if (null === $actualProp->getValue()) {
                 ++$nullCount;
             }
         }
@@ -584,14 +584,14 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         );
 
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
-            $this->println($actualProp->getEdmType() . ':' . (is_null($actualProp->getValue()) ? 'NULL' :
+            $this->println($actualProp->getEdmType() . ':' . (null === $actualProp->getValue() ? 'NULL' :
                 ($actualProp->getValue() instanceof \DateTime ? "date" : $actualProp->getValue())));
         }
 
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
             $expectedProp = Utilities::tryGetValue($expectedProps, $pname, null);
             $this->assertNotNull($actualProp, 'getProperties[\'' . $pname . '\']');
-            if (!is_null($expectedProp)) {
+            if (null !== $expectedProp) {
                 $this->compareProperties($pname, $actualProp, $expectedProp);
             }
 
@@ -874,11 +874,11 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     {
         $table = $this->getCleanTable();
         try {
-            $ret = (is_null($options) ?
+            $ret = (null === $options ?
                 $this->restProxy->insertEntity($table, $ent) :
                 $this->restProxy->insertEntity($table, $ent, $options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new TableServiceCreateOptions();
             }
 
@@ -886,7 +886,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $this->assertNotNull($ret->getEntity(), 'getEntity()');
             $this->verifyinsertEntityWorker($ent, $ret->getEntity());
 
-            if (is_null($ent->getPartitionKey()) || is_null($ent->getRowKey())) {
+            if (null === $ent->getPartitionKey() || null === $ent->getRowKey()) {
                 $this->fail('Expect missing keys throw');
             }
 
@@ -906,7 +906,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (!$isGood) {
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
-            } elseif (is_null($ent->getPartitionKey()) || is_null($ent->getRowKey())) {
+            } elseif (null === $ent->getPartitionKey() || null === $ent->getRowKey()) {
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 throw $e;
@@ -935,13 +935,13 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         // Upload the entity.
         $this->restProxy->insertEntity($table, $initialEnt);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $this->restProxy->updateEntity($table, $ent);
         } else {
             $this->restProxy->updateEntity($table, $ent, $options);
         }
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
@@ -976,13 +976,13 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         // Upload the entity.
         $this->restProxy->insertEntity($table, $initialEnt);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $this->restProxy->mergeEntity($table, $ent);
         } else {
             $this->restProxy->mergeEntity($table, $ent, $options);
         }
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
@@ -1027,13 +1027,13 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         // Upload the entity.
         $this->restProxy->insertEntity($table, $initialEnt);
-        if (is_null($options)) {
+        if (null === $options) {
             $this->restProxy->insertOrReplaceEntity($table, $ent);
         } else {
             $this->restProxy->insertOrReplaceEntity($table, $ent, $options);
         }
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
@@ -1079,13 +1079,13 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         // Upload the entity.
         $this->restProxy->insertEntity($table, $initialEnt);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $this->restProxy->insertOrMergeEntity($table, $ent);
         } else {
             $this->restProxy->insertOrMergeEntity($table, $ent, $options);
         }
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new TableServiceOptions();
         }
 
@@ -1201,7 +1201,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
             $this->executeCrudMethod($table, $targetEnt, $opType, $concurType, $options);
 
-            if (!is_null($exptErr)) {
+            if (null !== $exptErr) {
                 $this->fail(
                     'Expected a failure when opType=' . $opType .
                         ' and concurType=' . $concurType . ' :' .
@@ -1211,7 +1211,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
             $this->verifyCrudWorker($opType, $table, $ent, $targetEnt, true);
         } catch (ServiceException $e) {
-            if (!is_null($exptErr)) {
+            if (null !== $exptErr) {
                 $this->assertEquals($exptErr, $e->getCode(), 'getCode');
             } else {
                 throw $e;
@@ -1284,13 +1284,13 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     private function verifyinsertOrMergeEntityWorker($initialEnt, $ent, $entReturned)
     {
         $expectedProps = [];
-        if (!is_null($initialEnt) &&
+        if (null !== $initialEnt &&
             $initialEnt->getPartitionKey() == $ent->getPartitionKey() &&
             $initialEnt->getRowKey() == $ent->getRowKey()) {
             foreach ($initialEnt->getProperties() as $pname => $actualProp) {
-                if (!is_null($actualProp) && !is_null($actualProp->getValue())) {
+                if (null !== $actualProp && null !== $actualProp->getValue()) {
                     $cloneProp = null;
-                    if (!is_null($actualProp)) {
+                    if (null !== $actualProp) {
                         $cloneProp = new Property();
                         $cloneProp->setEdmType($actualProp->getEdmType());
                         $cloneProp->setValue($actualProp->getValue());
@@ -1302,7 +1302,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         foreach ($ent->getProperties() as $pname => $actualProp) {
             // Any properties with null values are ignored by the Merge Entity operation.
             // All other properties will be updated.
-            if (!is_null($actualProp) && !is_null($actualProp->getValue())) {
+            if (null !== $actualProp && null !== $actualProp->getValue()) {
                 $cloneProp = new Property();
                 $cloneProp->setEdmType($actualProp->getEdmType());
                 $cloneProp->setValue($actualProp->getValue());
@@ -1314,7 +1314,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
             // This is to work with Dev Storage, which returns items for all
             // columns, null valued or not.
-            if (!is_null($actualProp) && !is_null($actualProp->getValue())) {
+            if (null !== $actualProp && null !== $actualProp->getValue()) {
                 $cloneProp = new Property();
                 $cloneProp->setEdmType($actualProp->getEdmType());
                 $cloneProp->setValue($actualProp->getValue());
@@ -1325,7 +1325,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         // Compare the entities to make sure they match.
         $this->assertEquals($ent->getPartitionKey(), $entReturned->getPartitionKey(), 'getPartitionKey');
         $this->assertEquals($ent->getRowKey(), $entReturned->getRowKey(), 'getRowKey');
-        if (!is_null($ent->getETag())) {
+        if (null !== $ent->getETag()) {
             $this->assertTrue(
                 $ent->getETag() != $entReturned->getETag(),
                 'getETag should change after submit: initial \'' .
@@ -1333,7 +1333,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             );
         }
         $this->assertNotNull($entReturned->getTimestamp(), 'getTimestamp');
-        if (is_null($ent->getTimestamp())) {
+        if (null === $ent->getTimestamp()) {
             // This property will come back, so need to account for it.
             $expectedProps['Timestamp'] = null;
         } else {
@@ -1349,7 +1349,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $actualProp = $actualProp[$pname];
 
             $this->assertNotNull($actualProp, 'getProperties()[\'' . $pname . '\')');
-            if (!is_null($expectedProp)) {
+            if (null !== $expectedProp) {
                 $this->compareProperties($pname, $actualProp, $expectedProp);
             }
 
@@ -1378,7 +1378,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         // Main loop.
         foreach ($opTypes as $firstOpType) {
-            if (!is_null($this->expectConcurrencyFailure($firstOpType, $firstConcurType))) {
+            if (null !== $this->expectConcurrencyFailure($firstOpType, $firstConcurType)) {
                 // Want to know there is at least one part that does not fail.
                 continue;
             }
@@ -1401,7 +1401,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
             for ($i = 1; $i < count($simpleEntities); ++$i) {
                 $config = new BatchWorkerConfig();
-                while (!is_null($this->expectConcurrencyFailure($config->opType, $config->concurType))) {
+                while (null !== $this->expectConcurrencyFailure($config->opType, $config->concurType)) {
                     $config->concurType = $concurTypes[mt_rand(0, count($concurTypes) - 1)];
                     $config->opType = $opTypes[mt_rand(0, count($opTypes) - 1)];
                     if ($this->isEmulated()) {
@@ -1442,7 +1442,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         $expectedErrorCount = 0;
         for ($i = 0; $i < count($configs); ++$i) {
             $err = $this->expectConcurrencyFailure($configs[$i]->opType, $configs[$i]->concurType);
-            if (!is_null($err)) {
+            if (null !== $err) {
                 ++$expectedErrorCount;
                 $expectedError = true;
             }
@@ -1486,7 +1486,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 try {
                     // Execute the batch.
                     $ret = (
-                        is_null($options) ?
+                        null === $options ?
                         $this->restProxy->batch($operations) :
                         $this->restProxy->batch(
                             $operations,
@@ -1506,7 +1506,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             } else {
                 // Execute the batch.
                 $ret = (
-                    is_null($options) ?
+                    null === $options ?
                     $this->restProxy->batch($operations) :
                     $this->restProxy->batch(
                         $operations,
@@ -1550,7 +1550,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyBatchEntryType($opType, $exptErr, $opResult)
     {
-        if (is_null($exptErr)) {
+        if (null === $exptErr) {
             switch ($opType) {
                 case OpType::INSERT_ENTITY:
                     $this->assertTrue(
@@ -1581,7 +1581,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     {
         switch ($opType) {
             case OpType::DELETE_ENTITY:
-                if (is_null($options) && $concurType != ConcurType::KEY_MATCH_ETAG_MISMATCH) {
+                if (null === $options && $concurType != ConcurType::KEY_MATCH_ETAG_MISMATCH) {
                     $operations->addDeleteEntity($table, $targetEnt->getPartitionKey(), $targetEnt->getRowKey(), null);
                 } else {
                     $operations->addDeleteEntity(
@@ -1614,7 +1614,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     {
         switch ($opType) {
             case OpType::DELETE_ENTITY:
-                if (is_null($options) && $concurType != ConcurType::KEY_MATCH_ETAG_MISMATCH) {
+                if (null === $options && $concurType != ConcurType::KEY_MATCH_ETAG_MISMATCH) {
                     $this->restProxy->deleteEntity($table, $targetEnt->getPartitionKey(), $targetEnt->getRowKey());
                 } else {
                     $delOptions = new DeleteEntityOptions();
@@ -1628,35 +1628,35 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 }
                 break;
             case OpType::INSERT_ENTITY:
-                if (is_null($options)) {
+                if (null === $options) {
                     $this->restProxy->insertEntity($table, $targetEnt);
                 } else {
                     $this->restProxy->insertEntity($table, $targetEnt, $options);
                 }
                 break;
             case OpType::INSERT_OR_MERGE_ENTITY:
-                if (is_null($options)) {
+                if (null === $options) {
                     $this->restProxy->insertOrMergeEntity($table, $targetEnt);
                 } else {
                     $this->restProxy->insertOrMergeEntity($table, $targetEnt, $options);
                 }
                 break;
             case OpType::INSERT_OR_REPLACE_ENTITY:
-                if (is_null($options)) {
+                if (null === $options) {
                     $this->restProxy->insertOrReplaceEntity($table, $targetEnt);
                 } else {
                     $this->restProxy->insertOrReplaceEntity($table, $targetEnt, $options);
                 }
                 break;
             case OpType::MERGE_ENTITY:
-                if (is_null($options)) {
+                if (null === $options) {
                     $this->restProxy->mergeEntity($table, $targetEnt);
                 } else {
                     $this->restProxy->mergeEntity($table, $targetEnt, $options);
                 }
                 break;
             case OpType::UPDATE_ENTITY:
-                if (is_null($options)) {
+                if (null === $options) {
                     $this->restProxy->updateEntity($table, $targetEnt);
                 } else {
                     $this->restProxy->updateEntity($table, $targetEnt, $options);
@@ -1752,7 +1752,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
     private static function expectConcurrencyFailure($opType, $concurType)
     {
-        if (is_null($concurType) || is_null($opType)) {
+        if (null === $concurType || null === $opType) {
             return -1;
         }
 
@@ -1788,8 +1788,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
     public function compareProperties($pname, $actualProp, $expectedProp)
     {
-        $effectiveExpectedProp = (is_null($expectedProp->getEdmType()) ? EdmType::STRING : $expectedProp->getEdmType());
-        $effectiveActualProp = (is_null($expectedProp->getEdmType()) ? EdmType::STRING : $expectedProp->getEdmType());
+        $effectiveExpectedProp = (null === $expectedProp->getEdmType() ? EdmType::STRING : $expectedProp->getEdmType());
+        $effectiveActualProp = (null === $expectedProp->getEdmType() ? EdmType::STRING : $expectedProp->getEdmType());
 
         $this->assertEquals(
             $effectiveExpectedProp,

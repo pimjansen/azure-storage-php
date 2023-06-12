@@ -210,7 +210,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $queryParams = [];
         $path = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListQueuesOptions();
         }
 
@@ -299,7 +299,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $path = $queueName . '/messages';
         $body = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueueServiceOptions();
         }
 
@@ -365,7 +365,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $body = $message->toXml($this->dataSerializer);
 
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateMessageOptions();
         }
 
@@ -444,7 +444,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $queryParams = [];
         $path = $queueName;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateQueueOptions();
         }
 
@@ -521,7 +521,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $path = $queueName . '/messages/' . $messageId;
         $body = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueueServiceOptions();
         }
 
@@ -579,7 +579,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $queryParams = [];
         $path = $queueName;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueueServiceOptions();
         }
 
@@ -632,7 +632,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $path = $queueName;
         $body = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueueServiceOptions();
         }
 
@@ -695,7 +695,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $postParams = [];
         $path = $queueName . '/messages';
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListMessagesOptions();
         }
 
@@ -768,7 +768,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $postParams = [];
         $path = $queueName . '/messages';
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new PeekMessagesOptions();
         }
 
@@ -842,7 +842,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $path = $queueName;
         $body = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueueServiceOptions();
         }
 
@@ -955,7 +955,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $path = $queueName . '/messages' . '/' . $messageId;
         $body = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueueServiceOptions();
         }
 
@@ -1039,7 +1039,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $statusCode = Resources::STATUS_OK;
         $path = $queue;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueueServiceOptions();
         }
 
@@ -1113,7 +1113,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $body = $acl->toXml($this->dataSerializer);
         $path = $queue;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new QueueServiceOptions();
         }
 

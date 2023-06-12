@@ -51,7 +51,7 @@ class GetFileResult
         $result = new GetFileResult();
         $result->setContentStream($body->detach());
         $result->setProperties(FileProperties::createFromHttpHeaders($headers));
-        $result->setMetadata(is_null($metadata) ? [] : $metadata);
+        $result->setMetadata(null === $metadata ? [] : $metadata);
 
         return $result;
     }

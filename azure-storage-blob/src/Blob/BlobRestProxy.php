@@ -383,7 +383,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     ) {
         $sourceName = $this->getBlobUrl($containerName, $blobName);
 
-        if (!is_null($options->getSourceSnapshot())) {
+        if (null !== $options->getSourceSnapshot()) {
             $sourceName .= '?snapshot=' . $options->getSourceSnapshot();
         }
 
@@ -462,7 +462,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $postParams = [];
         $path = $this->createPath($container);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new BlobServiceOptions();
         }
 
@@ -531,7 +531,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         );
 
         $contentType = $options->getContentType();
-        if (is_null($contentType)) {
+        if (null === $contentType) {
             $contentType = Resources::BINARY_FILE_TYPE;
         }
 
@@ -585,7 +585,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      */
     private function addOptionalRangeHeader(array $headers, $start, $end)
     {
-        if (!is_null($start) || !is_null($end)) {
+        if (null !== $start || null !== $end) {
             $range = $start . '-' . $end;
             $rangeValue = 'bytes=' . $range;
             $this->addOptionalHeader($headers, Resources::RANGE, $rangeValue);
@@ -700,7 +700,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         );
         $this->addOptionalAccessConditionHeader($headers, $accessCondition);
 
-        if (!is_null($options)) {
+        if (null !== $options) {
             $options = new BlobServiceOptions();
         }
 
@@ -758,7 +758,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $postParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateBlobPagesOptions();
         }
 
@@ -844,7 +844,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $postParams = [];
         $path = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListContainersOptions();
         }
 
@@ -935,7 +935,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [Resources::QP_REST_TYPE => 'container'];
         $path = $this->createPath($container);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateContainerOptions();
         }
 
@@ -999,7 +999,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new BlobServiceOptions();
         }
 
@@ -1143,7 +1143,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new BlobServiceOptions();
         }
 
@@ -1251,7 +1251,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $path = $this->createPath($container);
         $body = $acl->toXml($this->dataSerializer);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new BlobServiceOptions();
         }
 
@@ -1343,7 +1343,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new BlobServiceOptions();
         }
 
@@ -1428,7 +1428,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new SetBlobTierOptions();
         }
 
@@ -1496,7 +1496,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListBlobsOptions();
         }
 
@@ -1641,7 +1641,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreatePageBlobOptions();
         }
 
@@ -1737,7 +1737,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateBlobOptions();
         }
 
@@ -1908,7 +1908,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $body = Utils::streamFor($content);
         $self = $this;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new Models\CreatePageBlobFromContentOptions();
         }
 
@@ -2000,7 +2000,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateBlobOptions();
         }
 
@@ -2061,7 +2061,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             );
         }
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new Models\CreateBlockBlobOptions();
         }
 
@@ -2188,7 +2188,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new Models\CreatePageBlobFromContentOptions();
         }
 
@@ -2496,7 +2496,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         Validate::canCastAsString($blockId, 'blockId');
         Validate::notNullOrEmpty($blockId, 'blockId');
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateBlobBlockOptions();
         }
 
@@ -2575,7 +2575,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new AppendBlockOptions();
         }
 
@@ -2791,7 +2791,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blockList = $isArray ? BlockList::create($blockList) : $blockList;
         $body = $blockList->toXml($this->dataSerializer);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CommitBlobBlocksOptions();
         }
 
@@ -2938,7 +2938,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListBlobBlocksOptions();
         }
 
@@ -3032,7 +3032,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new GetBlobPropertiesOptions();
         }
 
@@ -3112,7 +3112,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new GetBlobMetadataOptions();
         }
 
@@ -3304,7 +3304,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $postParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListPageBlobRangesOptions();
         }
 
@@ -3356,7 +3356,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $options
         )->then(function ($response) use ($dataSerializer, $previousSnapshotTime) {
             $parsed = $dataSerializer->unserialize($response->getBody());
-            if (is_null($previousSnapshotTime)) {
+            if (null === $previousSnapshotTime) {
                 return ListPageBlobRangesResult::create(
                     HttpFormatter::formatHeaders($response->getHeaders()),
                     $parsed
@@ -3419,7 +3419,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new SetBlobPropertiesOptions();
         }
 
@@ -3565,7 +3565,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new BlobServiceOptions();
         }
 
@@ -3721,7 +3721,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new GetBlobOptions();
         }
 
@@ -3825,7 +3825,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new UndeleteBlobOptions();
         }
 
@@ -3911,11 +3911,11 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new DeleteBlobOptions();
         }
 
-        if (is_null($options->getSnapshot())) {
+        if (null === $options->getSnapshot()) {
             $delSnapshots = $options->getDeleteSnaphotsOnly() ? 'only' : 'include';
             $this->addOptionalHeader(
                 $headers,
@@ -4004,7 +4004,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $queryParams = [];
         $path = $this->createPath($container, $blob);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateBlobSnapshotOptions();
         }
 
@@ -4097,7 +4097,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $sourceBlob,
         Models\CopyBlobOptions $options = null
     ) {
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CopyBlobOptions();
         }
 
@@ -4182,7 +4182,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $destinationBlob
         );
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CopyBlobFromURLOptions();
         }
 
@@ -4308,7 +4308,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $blob
         );
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new BlobServiceOptions();
         }
 
@@ -4499,7 +4499,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $leaseId,
             null /* breakPeriod */,
             self::getStatusCodeOfLeaseAction(LeaseMode::RENEW_ACTION),
-            is_null($options) ? new BlobServiceOptions() : $options
+            null === $options ? new BlobServiceOptions() : $options
         )->then(function ($response) {
             return LeaseResult::create(
                 HttpFormatter::formatHeaders($response->getHeaders())
@@ -4560,7 +4560,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $leaseId,
             null /* breakPeriod */,
             self::getStatusCodeOfLeaseAction(LeaseMode::RENEW_ACTION),
-            is_null($options) ? new BlobServiceOptions() : $options
+            null === $options ? new BlobServiceOptions() : $options
         )->then(function ($response) {
             return LeaseResult::create(
                 HttpFormatter::formatHeaders($response->getHeaders())
@@ -4618,7 +4618,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $leaseId,
             null /* breakPeriod */,
             self::getStatusCodeOfLeaseAction(LeaseMode::RELEASE_ACTION),
-            is_null($options) ? new BlobServiceOptions() : $options
+            null === $options ? new BlobServiceOptions() : $options
         );
     }
 
@@ -4679,7 +4679,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             null /* leaseId */,
             $breakPeriod,
             self::getStatusCodeOfLeaseAction(LeaseMode::BREAK_ACTION),
-            is_null($options) ? new BlobServiceOptions() : $options
+            null === $options ? new BlobServiceOptions() : $options
         )->then(function ($response) {
             return BreakLeaseResult::create(
                 HttpFormatter::formatHeaders($response->getHeaders())
@@ -4701,7 +4701,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     ) {
         if (!empty($accessConditions)) {
             foreach ($accessConditions as $accessCondition) {
-                if (!is_null($accessCondition)) {
+                if (null !== $accessCondition) {
                     $header = $accessCondition->getHeader();
 
                     if ($header != Resources::EMPTY_STRING) {
@@ -4735,7 +4735,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     ) {
         if (!empty($accessConditions)) {
             foreach ($accessConditions as $accessCondition) {
-                if (!is_null($accessCondition)) {
+                if (null !== $accessCondition) {
                     $header = $accessCondition->getHeader();
                     $headerName = null;
                     if (!empty($header)) {

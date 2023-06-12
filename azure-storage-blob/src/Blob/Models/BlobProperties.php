@@ -98,7 +98,7 @@ class BlobProperties
         );
 
         $accesstierchangetime = Utilities::tryGetValue($clean, 'accesstierchangetime');
-        if (!is_null($accesstierchangetime)) {
+        if (null !== $accesstierchangetime) {
             $accesstierchangetime = Utilities::rfc1123ToDateTime($accesstierchangetime);
             $result->setAccessTierChangeTime($accesstierchangetime);
         }
@@ -108,18 +108,18 @@ class BlobProperties
         );
 
         $deletedtime = Utilities::tryGetValue($clean, 'deletedtime');
-        if (!is_null($deletedtime)) {
+        if (null !== $deletedtime) {
             $deletedtime = Utilities::rfc1123ToDateTime($deletedtime);
             $result->setDeletedTime($deletedtime);
         }
 
         $remainingretentiondays = Utilities::tryGetValue($clean, 'remainingretentiondays');
-        if (!is_null($remainingretentiondays)) {
+        if (null !== $remainingretentiondays) {
             $result->setRemainingRetentionDays((int) $remainingretentiondays);
         }
 
         $creationtime = Utilities::tryGetValue($clean, 'creation-time');
-        if (!is_null($creationtime)) {
+        if (null !== $creationtime) {
             $creationtime = Utilities::rfc1123ToDateTime($creationtime);
             $result->setCreationTime($creationtime);
         }
@@ -192,7 +192,7 @@ class BlobProperties
         );
 
         $date = Utilities::tryGetValue($clean, Resources::X_MS_ACCESS_TIER_CHANGE_TIME);
-        if (!is_null($date)) {
+        if (null !== $date) {
             $date = Utilities::rfc1123ToDateTime($date);
             $result->setAccessTierChangeTime($date);
         }
@@ -825,7 +825,7 @@ class BlobProperties
     private function setCommonBlobProperties(array $clean)
     {
         $date = Utilities::tryGetValue($clean, Resources::LAST_MODIFIED);
-        if (!is_null($date)) {
+        if (null !== $date) {
             $date = Utilities::rfc1123ToDateTime($date);
             $this->setLastModified($date);
         }
