@@ -21,7 +21,6 @@ namespace MicrosoftAzure\Storage\Common\Internal\Authentication;
 
 use GuzzleHttp\Psr7\Request;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Azure authentication scheme for token credential.

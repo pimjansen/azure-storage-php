@@ -28,17 +28,14 @@ use MicrosoftAzure\Storage\Blob\Models\CopyBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\BlobType;
 use MicrosoftAzure\Storage\Blob\Models\BlobBlockType;
 use MicrosoftAzure\Storage\Blob\Models\Block;
-use MicrosoftAzure\Storage\Blob\Models\BlockList;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobSnapshotOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
-use MicrosoftAzure\Storage\Blob\Models\CreateBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\DeleteBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataOptions;
 use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesOptions;
 use MicrosoftAzure\Storage\Blob\Models\GetBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
 use MicrosoftAzure\Storage\Blob\Models\GetBlobPropertiesOptions;
-use MicrosoftAzure\Storage\Blob\Models\AppendBlockOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobPagesOptions;
 use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\ListContainersOptions;
@@ -137,9 +134,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             } else {
                 if (null === $effOptions->getTimeout() || $effOptions->getTimeout() >= 1) {
                     throw $e;
-                } else {
-                    $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 }
+                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
             }
         }
     }
@@ -333,9 +330,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $finished = true;
                 if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                     throw $e;
-                } else {
-                    $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 }
+                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
             }
         }
     }
@@ -377,9 +374,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                         $options->getPrefix() .
                         '\'), then Blobs length'
                 );
-            } else {
-                // Do not know how many there should be
             }
+            // Do not know how many there should be
+
         } elseif (strlen($ret->getNextMarker()) == 0) {
             $this->assertTrue(
                 count($ret->getContainers()) <= $options->getMaxResults(),
@@ -410,9 +407,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     'when no next marker and Prefix=(\'' .
                     $options->getPrefix() . '\'), then Blobs length'
                 );
-            } else {
-                // Do not know how many there should be
             }
+            // Do not know how many there should be
+
         } else {
             $this->assertEquals(
                 count($ret->getContainers()),
@@ -492,9 +489,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
 
         if ($created) {
@@ -654,9 +651,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (null === $options->getTimeout() || $options->getTimeout() > 0) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
         // Clean up.
         $this->restProxy->deleteContainer($container);
@@ -806,9 +803,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
 
         // Clean up.
@@ -854,9 +851,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
 
         // Clean up.
@@ -1104,9 +1101,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $finished = true;
                 if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                     throw $e;
-                } else {
-                    $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 }
+                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
             }
         }
     }
@@ -1144,9 +1141,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     'when MaxResults=0 and Prefix=(\'' .
                         $options->getPrefix() . '\'), then Blobs length'
                 );
-            } else {
-                // Do not know how many there should be
             }
+            // Do not know how many there should be
+
         } elseif (strlen($ret->getNextMarker()) == 0) {
             $this->assertTrue(
                 count($ret->getBlobs()) <= $options->getMaxResults(),
@@ -1170,9 +1167,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     'when no next marker and Prefix=(\'' .
                         $options->getPrefix() . '\'), then Blobs length'
                 );
-            } else {
-                // Do not know how many there should be
             }
+            // Do not know how many there should be
+
         } else {
             $this->assertEquals(
                 count($ret->getBlobs()),
@@ -1740,8 +1737,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     $e->getCode(),
                     'bad etag access condition: getCode'
                 );
-            } else {
             }
+
         }
 
         // Clean up.
@@ -2499,7 +2496,6 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             'Mock handler does not gave the first 404 exception correctly'
         );
 
-
         $uri2 = (string) ($historyMiddleware->getHistory()[2]['request']->getUri());
         $uri3 = (string) ($historyMiddleware->getHistory()[3]['request']->getUri());
 
@@ -2565,7 +2561,6 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = BlobRestProxy::createBlobService($this->connectionString, $restOptions);
         $newResult = $mockProxy->listContainers($options);
-
 
         $this->assertNotNull($newResult->getContinuationToken());
         $this->assertEquals(LocationMode::SECONDARY_ONLY, $newResult->getLocation());

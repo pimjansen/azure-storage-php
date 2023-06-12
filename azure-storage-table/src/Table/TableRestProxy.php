@@ -21,7 +21,6 @@ namespace MicrosoftAzure\Storage\Table;
 
 use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedAccessSignatureAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Middlewares\CommonRequestMiddleware;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestTrait;
 use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
@@ -63,7 +62,6 @@ use MicrosoftAzure\Storage\Table\Models\TableACL;
 use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
 use MicrosoftAzure\Storage\Table\Internal\IODataReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\IMimeReaderWriter;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\ISerializer;
 
 /**
  * This class constructs HTTP requests and receive HTTP responses for table

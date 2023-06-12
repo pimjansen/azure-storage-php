@@ -66,7 +66,6 @@ class Entity
      *
      * @param string $name The property name.
      *
-     * @return mixed
      */
     public function getPropertyValue($name)
     {
@@ -83,7 +82,6 @@ class Entity
      * @param string $name  The property name.
      * @param mixed  $value The property value.
      *
-     * @return mixed
      */
     public function setPropertyValue($name, $value)
     {
@@ -272,8 +270,8 @@ class Entity
         ) {
             $msg = Resources::NULL_TABLE_KEY_MSG;
             return false;
-        } else {
-            return true;
         }
+            return true;
+
     }
 }

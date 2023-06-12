@@ -79,8 +79,8 @@ class JsonSerializer implements ISerializer
         $json = json_decode($serialized);
         if ($json && !is_array($json)) {
             return get_object_vars($json);
-        } else {
-            return $json;
         }
+        return $json;
+
     }
 }

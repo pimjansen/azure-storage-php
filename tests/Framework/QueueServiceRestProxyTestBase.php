@@ -20,8 +20,6 @@
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
 use MicrosoftAzure\Storage\Queue\QueueRestProxy;
-use MicrosoftAzure\Storage\Tests\Framework\ServiceRestProxyTestBase;
-use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
 
 /**
@@ -62,7 +60,7 @@ class QueueServiceRestProxyTestBase extends ServiceRestProxyTestBase
             // queue does not exist.
             if (strpos($e->getMessage(), 'specified queue does not exist') == false) {
                 throw $e;
-            };
+            }
         }
     }
 

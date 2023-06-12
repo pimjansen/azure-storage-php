@@ -22,38 +22,14 @@ namespace MicrosoftAzure\Storage\Tests\Unit\File;
 use MicrosoftAzure\Storage\File\FileRestProxy;
 use MicrosoftAzure\Storage\File\Internal\IFile;
 use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
-use MicrosoftAzure\Storage\Tests\Framework\VirtualFileSystem;
 use MicrosoftAzure\Storage\Tests\Framework\FileServiceRestProxyTestBase;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 use MicrosoftAzure\Storage\Common\Models\Range;
-use MicrosoftAzure\Storage\File\Models\AppendBlockOptions;
-use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
-use MicrosoftAzure\Storage\File\Models\ListSharesResult;
-use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
-use MicrosoftAzure\Storage\File\Models\GetSharePropertiesResult;
 use MicrosoftAzure\Storage\File\Models\ShareACL;
-use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesResult;
 use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
-use MicrosoftAzure\Storage\File\Models\ListFileBlocksOptions;
-use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
 use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
-use MicrosoftAzure\Storage\File\Models\SetFilePropertiesOptions;
-use MicrosoftAzure\Storage\File\Models\GetFileMetadataResult;
-use MicrosoftAzure\Storage\File\Models\SetFileMetadataResult;
-use MicrosoftAzure\Storage\File\Models\GetFileResult;
-use MicrosoftAzure\Storage\File\Models\FileType;
-use MicrosoftAzure\Storage\File\Models\PageRange;
-use MicrosoftAzure\Storage\File\Models\CreateFilePagesResult;
-use MicrosoftAzure\Storage\File\Models\BlockList;
-use MicrosoftAzure\Storage\File\Models\FileBlockType;
-use MicrosoftAzure\Storage\File\Models\GetFileOptions;
-use MicrosoftAzure\Storage\File\Models\Block;
-use MicrosoftAzure\Storage\File\Models\CopyFileOptions;
-use MicrosoftAzure\Storage\File\Models\FileProperties;
 
 /**
  * Unit tests for class FileRestProxy
@@ -560,7 +536,6 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $properties->setContentLength(Resources::MB_IN_BYTES_1);
 
         $this->restProxy->setFileProperties($share, $fileName, $properties);
-
 
         $newProperties = $this->restProxy->getFileProperties($share, $fileName);
 

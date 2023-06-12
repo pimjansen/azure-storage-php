@@ -21,7 +21,6 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\WindowsAzureUtilities;
 
 /**
  * Represents a set of access conditions to be used for operations against the
@@ -338,8 +337,8 @@ class AccessCondition
             || $headerType == Resources::SEQUENCE_NUMBER_EQUAL
         ) {
             return true;
-        } else {
-            return false;
         }
+        return false;
+
     }
 }

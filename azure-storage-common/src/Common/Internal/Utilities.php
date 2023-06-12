@@ -37,7 +37,6 @@ class Utilities
      * @param mixed $key     The array key.
      * @param mixed $default The value to return if $key is not found in $array.
      *
-     * @return mixed
      */
     public static function tryGetValue($array, $key, $default = null)
     {
@@ -159,7 +158,6 @@ class Utilities
      *
      * @param array $array Array to be used.
      *
-     * @return mixed
      */
     public static function tryGetKeysChainValue(array $array)
     {
@@ -198,7 +196,7 @@ class Utilities
             $string = strtolower($string);
             $prefix = strtolower($prefix);
         }
-        return ($prefix == substr($string, 0, strlen($prefix)));
+        return $prefix == substr($string, 0, strlen($prefix));
     }
 
     /**
@@ -219,7 +217,8 @@ class Utilities
                 && (get_class($value) == 'SimpleXMLElement')
             ) {
                 return (array) $var;
-            } elseif (!is_array($value)) {
+            }
+            if (!is_array($value)) {
                 return [$var];
             }
         }
@@ -516,7 +515,6 @@ class Utilities
      * @param array  $haystack The array to be used.
      * @param mixed  $default  The value to return if $key is not found in $array.
      *
-     * @return mixed
      */
     public static function tryGetValueInsensitive($key, $haystack, $default = null)
     {
@@ -602,7 +600,7 @@ class Utilities
             return true;
         }
 
-        return (substr($haystack, -$length) === $needle);
+        return substr($haystack, -$length) === $needle;
     }
 
     /**
@@ -620,12 +618,12 @@ class Utilities
     {
         if (is_string($entity)) {
             return $entity;
-        } else {
-            Validate::isA($entity, $type, 'entity');
-            Validate::methodExists($entity, $method, $type);
-
-            return $entity->$method();
         }
+        Validate::isA($entity, $type, 'entity');
+        Validate::methodExists($entity, $method, $type);
+
+        return $entity->$method();
+
     }
 
     /**
@@ -866,7 +864,7 @@ class Utilities
      */
     public static function isDouble($value)
     {
-        return is_numeric($value) && is_double($value + 0);
+        return is_numeric($value) && is_float($value + 0);
     }
 
     /**

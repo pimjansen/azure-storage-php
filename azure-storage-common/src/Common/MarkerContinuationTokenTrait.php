@@ -46,7 +46,7 @@ trait MarkerContinuationTokenTrait
     {
         if ($this->continuationToken == null) {
             $this->continuationToken = new MarkerContinuationToken();
-        };
+        }
         $this->continuationToken->setNextMarker($marker);
     }
 
@@ -90,10 +90,11 @@ trait MarkerContinuationTokenTrait
     {
         if ($this->continuationToken == null) {
             return parent::getLocationMode();
-        } elseif ($this->continuationToken->getLocation() == '') {
-            return parent::getLocationMode();
-        } else {
-            return $this->getLocation();
         }
+        if ($this->continuationToken->getLocation() == '') {
+            return parent::getLocationMode();
+        }
+        return $this->getLocation();
+
     }
 }

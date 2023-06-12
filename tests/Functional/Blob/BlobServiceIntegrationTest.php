@@ -27,7 +27,6 @@ use MicrosoftAzure\Storage\Blob\Models\BlobBlockType;
 use MicrosoftAzure\Storage\Blob\Models\Block;
 use MicrosoftAzure\Storage\Blob\Models\BlockList;
 use MicrosoftAzure\Storage\Blob\Models\ContainerACL;
-use MicrosoftAzure\Storage\Blob\Models\CreateBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobSnapshotOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\GetBlobOptions;
@@ -510,41 +509,39 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         $this->createContainerWithRetry('$root', new CreateContainerOptions());
 
         // Work with root container explicitly ('$root')
-        {
-            // Act
-            $this->restProxy->createPageBlob('$root', self::$_blob_for_root_container, 512);
-            $list = $this->restProxy->listBlobs('$root');
-            $properties = $this->restProxy->getBlobProperties('$root', self::$_blob_for_root_container);
-            $metadata = $this->restProxy->getBlobMetadata('$root', self::$_blob_for_root_container);
 
-            // Assert
-            $this->assertNotNull($list, '$list');
-            $this->assertTrue(1 <= count($list->getBlobs()), '1 <= count($list->getBlobs())');
-            $this->assertNotNull($properties, '$properties');
-            $this->assertNotNull($metadata, '$metadata');
+        // Act
+        $this->restProxy->createPageBlob('$root', self::$_blob_for_root_container, 512);
+        $list = $this->restProxy->listBlobs('$root');
+        $properties = $this->restProxy->getBlobProperties('$root', self::$_blob_for_root_container);
+        $metadata = $this->restProxy->getBlobMetadata('$root', self::$_blob_for_root_container);
 
-            // Act
-            $this->restProxy->deleteBlob('$root', self::$_blob_for_root_container);
-        }
+        // Assert
+        $this->assertNotNull($list, '$list');
+        $this->assertTrue(1 <= count($list->getBlobs()), '1 <= count($list->getBlobs())');
+        $this->assertNotNull($properties, '$properties');
+        $this->assertNotNull($metadata, '$metadata');
+
+        // Act
+        $this->restProxy->deleteBlob('$root', self::$_blob_for_root_container);
 
         // Work with root container implicitly ('')
-        {
-            // Act
-            $this->restProxy->createPageBlob('', self::$_blob_for_root_container, 512);
-            // '$root' must be explicit when listing blobs in the root container
-            $list = $this->restProxy->listBlobs('$root');
-            $properties = $this->restProxy->getBlobProperties('', self::$_blob_for_root_container);
-            $metadata = $this->restProxy->getBlobMetadata('', self::$_blob_for_root_container);
 
-            // Assert
-            $this->assertNotNull($list, '$list');
-            $this->assertTrue(1 <= count($list->getBlobs()), '1 <= count($list->getBlobs())');
-            $this->assertNotNull($properties, '$properties');
-            $this->assertNotNull($metadata, '$metadata');
+        // Act
+        $this->restProxy->createPageBlob('', self::$_blob_for_root_container, 512);
+        // '$root' must be explicit when listing blobs in the root container
+        $list = $this->restProxy->listBlobs('$root');
+        $properties = $this->restProxy->getBlobProperties('', self::$_blob_for_root_container);
+        $metadata = $this->restProxy->getBlobMetadata('', self::$_blob_for_root_container);
 
-            // Act
-            $this->restProxy->deleteBlob('', self::$_blob_for_root_container);
-        }
+        // Assert
+        $this->assertNotNull($list, '$list');
+        $this->assertTrue(1 <= count($list->getBlobs()), '1 <= count($list->getBlobs())');
+        $this->assertNotNull($properties, '$properties');
+        $this->assertNotNull($metadata, '$metadata');
+
+        // Act
+        $this->restProxy->deleteBlob('', self::$_blob_for_root_container);
 
         // Cleanup.
         $this->restProxy->deleteContainer('$root');

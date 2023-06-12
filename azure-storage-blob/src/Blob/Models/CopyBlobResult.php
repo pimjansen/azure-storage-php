@@ -112,7 +112,6 @@ class CopyBlobResult
     /**
      * Sets copy status
      *
-     * @param string $status the copy status.
      *
      * @internal
      *

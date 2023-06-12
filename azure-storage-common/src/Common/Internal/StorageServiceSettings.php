@@ -98,11 +98,11 @@ class StorageServiceSettings extends ServiceSettings
                 $isValidBase64String = base64_decode($key, true);
                 if ($isValidBase64String) {
                     return true;
-                } else {
-                    throw new \RuntimeException(
-                        sprintf(Resources::INVALID_ACCOUNT_KEY_FORMAT, $key)
-                    );
                 }
+                throw new \RuntimeException(
+                    sprintf(Resources::INVALID_ACCOUNT_KEY_FORMAT, $key)
+                );
+
             }
         );
 

@@ -407,7 +407,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedKey = TestResources::KEY4;
         $expectedTableEndpoint = null;
         $expectedBlobEndpoint = 'http://myprivateblobdns.com';
-        ;
+
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
         $connectionString = "QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
 
@@ -429,7 +429,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedKey = TestResources::KEY4;
         $expectedTableEndpoint = 'http://myprivatetabledns.com';
         $expectedBlobEndpoint = 'http://myprivateblobdns.com';
-        ;
+
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
         $connectionString = "TableEndpoint=$expectedTableEndpoint;QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
 

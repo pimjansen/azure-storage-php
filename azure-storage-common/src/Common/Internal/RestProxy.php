@@ -20,8 +20,6 @@
 
 namespace MicrosoftAzure\Storage\Common\Internal;
 
-use MicrosoftAzure\Storage\Common\Internal\IMiddleware;
-
 /**
  * Base class for all REST proxies.
  *

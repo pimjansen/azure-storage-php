@@ -82,7 +82,6 @@ class BatchOperation
      *
      * @param string $name The parameter name.
      *
-     * @return mixed
      */
     public function getParameter($name)
     {

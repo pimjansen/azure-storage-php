@@ -14,7 +14,6 @@
  *
  * @link      https://github.com/azure/azure-storage-php
  */
-
 require_once "./vendor/autoload.php";
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
@@ -66,7 +65,6 @@ if (!empty($connectionString)) {
         $blobClient->deleteContainer($container->getName());
     }
 }
-
 
 //clean up blob storage blobs
 $connectionString = \getenv("AZURE_STORAGE_CONNECTION_STRING_BLOB_ACCOUNT");

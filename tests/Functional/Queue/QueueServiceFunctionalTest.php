@@ -344,9 +344,9 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
                     'when MaxResults=0 and Prefix=(\'' .
                     $options->getPrefix() . '\'), then count Queues'
                 );
-            } else {
-                // Don't know how many there should be
             }
+            // Don't know how many there should be
+
         } elseif (strlen($ret->getNextMarker()) == 0) {
             $this->assertTrue(
                 count($ret ->getQueues()) <= $options->getMaxResults(),
@@ -375,9 +375,9 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
                     'when no next marker and Prefix=(\'' . $options->getPrefix() .
                     '\'), then Queues->length'
                 );
-            } else {
-                // Don't know how many there should be
             }
+            // Don't know how many there should be
+
         } else {
             $this->assertEquals(
                 count($ret ->getQueues()),

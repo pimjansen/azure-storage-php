@@ -56,7 +56,6 @@ class GetEntityResult
      * Create GetEntityResult object from HTTP response parts.
      *
      * @param string             $body            The HTTP response body.
-     * @param IODataReaderWriter $odataSerializer The OData reader and writer.
      *
      * @internal
      *

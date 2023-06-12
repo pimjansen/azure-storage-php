@@ -21,7 +21,6 @@ namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Serialization;
 
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
-use MicrosoftAzure\Storage\Common\Exceptions\InvalidArgumentTypeException;
 use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 
 /**

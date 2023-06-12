@@ -120,7 +120,6 @@ class ServiceProperties
     /**
      * Sets hour metrics element.
      *
-     * @param Metrics $metrics new element.
      *
      * @return void
      */
@@ -142,7 +141,6 @@ class ServiceProperties
     /**
      * Sets minute metrics element.
      *
-     * @param Metrics $metrics new element.
      *
      * @return void
      */

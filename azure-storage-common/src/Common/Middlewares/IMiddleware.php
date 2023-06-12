@@ -25,7 +25,6 @@ namespace MicrosoftAzure\Storage\Common\Middlewares;
  *
  * @link      https://github.com/azure/azure-storage-php
  */
-
 interface IMiddleware
 {
     /**

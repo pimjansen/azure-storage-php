@@ -19,7 +19,6 @@
 
 namespace MicrosoftAzure\Storage\Blob;
 
-use GuzzleHttp\Psr7;
 use MicrosoftAzure\Storage\Blob\Internal\IBlob;
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
 use MicrosoftAzure\Storage\Blob\Models\AppendBlockOptions;
@@ -74,7 +73,6 @@ use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedKeyAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\TokenAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
 use MicrosoftAzure\Storage\Common\Internal\Middlewares\CommonRequestMiddleware;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestTrait;
 use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
@@ -82,7 +80,6 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\LocationMode;
 use MicrosoftAzure\Storage\Common\Models\Range;
-use MicrosoftAzure\Storage\Common\SharedAccessSignatureHelper;
 use Psr\Http\Message\StreamInterface;
 use GuzzleHttp\Psr7\Utils;
 
@@ -3361,12 +3358,12 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
                     HttpFormatter::formatHeaders($response->getHeaders()),
                     $parsed
                 );
-            } else {
-                return ListPageBlobRangesDiffResult::create(
-                    HttpFormatter::formatHeaders($response->getHeaders()),
-                    $parsed
-                );
             }
+            return ListPageBlobRangesDiffResult::create(
+                HttpFormatter::formatHeaders($response->getHeaders()),
+                $parsed
+            );
+
         }, null);
     }
 
@@ -4691,7 +4688,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Adds optional header to headers if set
      *
      * @param array                  $headers         The array of request headers.
-     * @param Models\AccessCondition $accessCondition The access condition object.
      *
      * @return array
      */
@@ -4725,7 +4721,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * Adds optional header to headers if set
      *
      * @param array $headers         The array of request headers.
-     * @param array $accessCondition The access condition object.
      *
      * @return array
      */

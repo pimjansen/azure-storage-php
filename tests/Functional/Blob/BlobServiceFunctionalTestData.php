@@ -152,24 +152,27 @@ class BlobServiceFunctionalTestData
 
         if ($ac[0]->getHeader() == Resources::IF_UNMODIFIED_SINCE) {
             return $ac[0]->getValue() > $now;
-        } elseif ($ac[0]->getHeader() == Resources::IF_MODIFIED_SINCE) {
-            return $ac[0]->getValue() < $now;
-        } else {
-            return true;
         }
+        if ($ac[0]->getHeader() == Resources::IF_MODIFIED_SINCE) {
+            return $ac[0]->getValue() < $now;
+        }
+        return true;
+
     }
 
     public static function passETagAccessCondition($ac)
     {
         if (null === $ac || empty($ac)) {
             return true;
-        } elseif ($ac[0]->getHeader() == Resources::IF_MATCH) {
-            return self::$badETag != $ac[0]->getValue();
-        } elseif ($ac[0]->getHeader() == Resources::IF_NONE_MATCH) {
-            return self::$badETag == $ac[0]->getValue();
-        } else {
-            return true;
         }
+        if ($ac[0]->getHeader() == Resources::IF_MATCH) {
+            return self::$badETag != $ac[0]->getValue();
+        }
+        if ($ac[0]->getHeader() == Resources::IF_NONE_MATCH) {
+            return self::$badETag == $ac[0]->getValue();
+        }
+        return true;
+
     }
 
     public static function fixETagAccessCondition($ac, $etag)
@@ -243,108 +246,100 @@ class BlobServiceFunctionalTestData
     {
         $ret = [];
 
-        {
-            // This is the default that comes from the server.
-            array_push($ret, self::getDefaultServiceProperties());
-        }
+        // This is the default that comes from the server.
+        array_push($ret, self::getDefaultServiceProperties());
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            $rp->setDays(10);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        $rp->setDays(10);
 
-            $l = new Logging();
-            $l->setRetentionPolicy($rp);
-            // Note: looks like only v1.0 is available now.
-            // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
-            $l->setVersion('1.0');
-            $l->setDelete(true);
-            $l->setRead(true);
-            $l->setWrite(true);
+        $l = new Logging();
+        $l->setRetentionPolicy($rp);
+        // Note: looks like only v1.0 is available now.
+        // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
+        $l->setVersion('1.0');
+        $l->setDelete(true);
+        $l->setRead(true);
+        $l->setWrite(true);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $c = CORS::create(TestResources::getCORSSingle());
+        $c = CORS::create(TestResources::getCORSSingle());
 
-            $sp = new ServiceProperties();
-            $sp->setLogging($l);
-            $sp->setHourMetrics($m);
-            $sp->setCorses([$c]);
+        $sp = new ServiceProperties();
+        $sp->setLogging($l);
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            // The service does not accept setting days when enabled is false.
-            $rp->setEnabled(false);
-            $rp->setDays(null);
+        $rp = new RetentionPolicy();
+        // The service does not accept setting days when enabled is false.
+        $rp->setEnabled(false);
+        $rp->setDays(null);
 
-            $l = new Logging();
-            $l->setRetentionPolicy($rp);
-            // Note: looks like only v1.0 is available now.
-            // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
-            $l->setVersion('1.0');
-            $l->setDelete(false);
-            $l->setRead(false);
-            $l->setWrite(false);
+        $l = new Logging();
+        $l->setRetentionPolicy($rp);
+        // Note: looks like only v1.0 is available now.
+        // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
+        $l->setVersion('1.0');
+        $l->setDelete(false);
+        $l->setRead(false);
+        $l->setWrite(false);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setLogging($l);
-            $sp->setHourMetrics($m);
-            $sp->setCorses([$c0, $c1]);
+        $sp = new ServiceProperties();
+        $sp->setLogging($l);
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            // Days has to be 0 < days <= 365
-            $rp->setDays(364);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        // Days has to be 0 < days <= 365
+        $rp->setDays(364);
 
-            $l = new Logging();
-            $l->setRetentionPolicy($rp);
-            // Note: looks like only v1.0 is available now.
-            // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
-            $l->setVersion('1.0');
-            $l->setDelete(false);
-            $l->setRead(false);
-            $l->setWrite(false);
+        $l = new Logging();
+        $l->setRetentionPolicy($rp);
+        // Note: looks like only v1.0 is available now.
+        // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
+        $l->setVersion('1.0');
+        $l->setDelete(false);
+        $l->setRead(false);
+        $l->setWrite(false);
 
-            $m = new Metrics();
-            $m->setVersion('1.0');
-            $m->setEnabled(false);
-            $m->setIncludeAPIs(null);
-            $m->setRetentionPolicy($rp);
+        $m = new Metrics();
+        $m->setVersion('1.0');
+        $m->setEnabled(false);
+        $m->setIncludeAPIs(null);
+        $m->setRetentionPolicy($rp);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setLogging($l);
-            $sp->setHourMetrics($m);
-            $sp->setCorses([$c0, $c1]);
+        $sp = new ServiceProperties();
+        $sp->setLogging($l);
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
         return $ret;
     }
@@ -352,7 +347,6 @@ class BlobServiceFunctionalTestData
     public static function getInterestingListContainersOptions()
     {
         $ret = [];
-
 
         $options = new ListContainersOptions();
         array_push($ret, $options);

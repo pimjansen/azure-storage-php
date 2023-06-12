@@ -22,7 +22,6 @@ namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 use MicrosoftAzure\Storage\Table\Models\BatchResult;
 use MicrosoftAzure\Storage\Table\Internal\MimeReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**

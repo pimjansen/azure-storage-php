@@ -46,7 +46,6 @@ class ConstantFilter extends Filter
     /**
      * Gets value
      *
-     * @return mixed
      */
     public function getValue()
     {

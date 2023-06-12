@@ -872,159 +872,144 @@ class TableServiceIntegrationTest extends IntegrationTestBase
             $this->restProxy->insertEntity($table, $entity);
         }
 
-        {
-            // Act
-            $f = Filter::applyEq(
-                Filter::applyPropertyName('RowKey'),
-                Filter::applyConstant('queryEntitiesWithFilterWorks-3', EdmType::STRING)
-            );
-            $q = new Query();
-            $q->setFilter($f);
-            $qeo = new QueryEntitiesOptions();
-            $qeo->setQuery($q);
-            $result = $this->restProxy->queryEntities($table, $qeo);
+        // Act
+        $f = Filter::applyEq(
+            Filter::applyPropertyName('RowKey'),
+            Filter::applyConstant('queryEntitiesWithFilterWorks-3', EdmType::STRING)
+        );
+        $q = new Query();
+        $q->setFilter($f);
+        $qeo = new QueryEntitiesOptions();
+        $qeo->setQuery($q);
+        $result = $this->restProxy->queryEntities($table, $qeo);
 
-            // Assert
-            $this->assertNotNull($result, '$result');
-            $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
-            $resEnts = $result->getEntities();
-            $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
-        }
+        // Assert
+        $this->assertNotNull($result, '$result');
+        $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
+        $resEnts = $result->getEntities();
+        $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
 
-        {
-            // Act
-            $q = new Query();
-            $q->setFilter(Filter::applyQueryString('RowKey eq \'queryEntitiesWithFilterWorks-3\''));
-            $qeo = new QueryEntitiesOptions();
-            $qeo->setQuery($q);
-            $result = $this->restProxy->queryEntities($table, $qeo);
+        // Act
+        $q = new Query();
+        $q->setFilter(Filter::applyQueryString('RowKey eq \'queryEntitiesWithFilterWorks-3\''));
+        $qeo = new QueryEntitiesOptions();
+        $qeo->setQuery($q);
+        $result = $this->restProxy->queryEntities($table, $qeo);
 
-            // Assert
-            $this->assertNotNull($result, '$result');
-            $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
-            $resEnts = $result->getEntities();
-            $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
-        }
+        // Assert
+        $this->assertNotNull($result, '$result');
+        $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
+        $resEnts = $result->getEntities();
+        $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
 
-        {
-            // Act
-            $q = new Query();
-            $q->setFilter(
-                Filter::applyEq(
-                    Filter::applyPropertyName('test'),
-                    Filter::applyConstant(true, EdmType::BOOLEAN)
-                )
-            );
-            $qeo = new QueryEntitiesOptions();
-            $qeo->setQuery($q);
-            $result = $this->restProxy->queryEntities($table, $qeo);
+        // Act
+        $q = new Query();
+        $q->setFilter(
+            Filter::applyEq(
+                Filter::applyPropertyName('test'),
+                Filter::applyConstant(true, EdmType::BOOLEAN)
+            )
+        );
+        $qeo = new QueryEntitiesOptions();
+        $qeo->setQuery($q);
+        $result = $this->restProxy->queryEntities($table, $qeo);
 
-            // Assert
-            $this->assertNotNull($result, '$result');
-            $this->assertEquals(3, count($result->getEntities()), 'count($result->getEntities())');
-        }
+        // Assert
+        $this->assertNotNull($result, '$result');
+        $this->assertEquals(3, count($result->getEntities()), 'count($result->getEntities())');
 
-        {
-            // Act
-            $q = new Query();
-            $q->setFilter(
-                Filter::applyEq(
-                    Filter::applyPropertyName('test2'),
-                    Filter::applyConstant('\'value" 3', EdmType::STRING)
-                )
-            );
-            $qeo = new QueryEntitiesOptions();
-            $qeo->setQuery($q);
-            $result = $this->restProxy->queryEntities($table, $qeo);
+        // Act
+        $q = new Query();
+        $q->setFilter(
+            Filter::applyEq(
+                Filter::applyPropertyName('test2'),
+                Filter::applyConstant('\'value" 3', EdmType::STRING)
+            )
+        );
+        $qeo = new QueryEntitiesOptions();
+        $qeo->setQuery($q);
+        $result = $this->restProxy->queryEntities($table, $qeo);
 
-            // Assert
-            $this->assertNotNull($result, '$result');
-            $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
-            $resEnts = $result->getEntities();
-            $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
-        }
+        // Assert
+        $this->assertNotNull($result, '$result');
+        $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
+        $resEnts = $result->getEntities();
+        $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
 
-        {
-            // Act
-            $q = new Query();
-            $q->setFilter(
-                Filter::applyEq(
-                    Filter::applyPropertyName('test4'),
-                    Filter::applyConstant(12345678903, EdmType::INT64)
-                )
-            );
-            $qeo = new QueryEntitiesOptions();
-            $qeo->setQuery($q);
-            $result = $this->restProxy->queryEntities($table, $qeo);
+        // Act
+        $q = new Query();
+        $q->setFilter(
+            Filter::applyEq(
+                Filter::applyPropertyName('test4'),
+                Filter::applyConstant(12345678903, EdmType::INT64)
+            )
+        );
+        $qeo = new QueryEntitiesOptions();
+        $qeo->setQuery($q);
+        $result = $this->restProxy->queryEntities($table, $qeo);
 
-            // Assert
-            $this->assertNotNull($result, '$result');
-            $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
-            $resEnts = $result->getEntities();
-            $this->assertEquals('queryEntitiesWithFilterWorks-2', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
-        }
+        // Assert
+        $this->assertNotNull($result, '$result');
+        $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
+        $resEnts = $result->getEntities();
+        $this->assertEquals('queryEntitiesWithFilterWorks-2', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
 
-        {
-            // Act
-            $q = new Query();
-            $q->setFilter(
-                Filter::applyEq(
-                    Filter::applyPropertyName('test5'),
-                    Filter::applyConstant(new \DateTime('2012-01-03'), EdmType::DATETIME)
-                )
-            );
-            $qeo = new QueryEntitiesOptions();
-            $qeo->setQuery($q);
-            $result = $this->restProxy->queryEntities($table, $qeo);
+        // Act
+        $q = new Query();
+        $q->setFilter(
+            Filter::applyEq(
+                Filter::applyPropertyName('test5'),
+                Filter::applyConstant(new \DateTime('2012-01-03'), EdmType::DATETIME)
+            )
+        );
+        $qeo = new QueryEntitiesOptions();
+        $qeo->setQuery($q);
+        $result = $this->restProxy->queryEntities($table, $qeo);
 
-            // Assert
-            $this->assertNotNull($result, '$result');
-            $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
-            $resEnts = $result->getEntities();
-            $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
-        }
+        // Assert
+        $this->assertNotNull($result, '$result');
+        $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
+        $resEnts = $result->getEntities();
+        $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
 
-        {
-            // Act
-            $q = new Query();
-            $ent3 = $entities[3];
-            $q->setFilter(
-                Filter::applyEq(
-                    Filter::applyPropertyName('test6'),
-                    Filter::applyConstant(chr(3), EdmType::BINARY)
-                )
-            );
-            $qeo = new QueryEntitiesOptions();
-            $qeo->setQuery($q);
-            $result = $this->restProxy->queryEntities($table, $qeo);
+        // Act
+        $q = new Query();
+        $ent3 = $entities[3];
+        $q->setFilter(
+            Filter::applyEq(
+                Filter::applyPropertyName('test6'),
+                Filter::applyConstant(chr(3), EdmType::BINARY)
+            )
+        );
+        $qeo = new QueryEntitiesOptions();
+        $qeo->setQuery($q);
+        $result = $this->restProxy->queryEntities($table, $qeo);
 
-            // Assert
-            $this->assertNotNull($result, '$result');
-            $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
-            $resEnts = $result->getEntities();
-            $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
-        }
+        // Assert
+        $this->assertNotNull($result, '$result');
+        $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
+        $resEnts = $result->getEntities();
+        $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
 
-        {
-            // Act
-            $q = new Query();
-            $ent3 = $entities[3];
-            $q->setFilter(
-                Filter::applyEq(
-                    Filter::applyPropertyName('test7'),
-                    Filter::applyConstant($ent3->getPropertyValue('test7'), EdmType::GUID)
-                )
-            );
-            $qeo = new QueryEntitiesOptions();
-            $qeo->setQuery($q);
-            $result = $this->restProxy->queryEntities($table, $qeo);
+        // Act
+        $q = new Query();
+        $ent3 = $entities[3];
+        $q->setFilter(
+            Filter::applyEq(
+                Filter::applyPropertyName('test7'),
+                Filter::applyConstant($ent3->getPropertyValue('test7'), EdmType::GUID)
+            )
+        );
+        $qeo = new QueryEntitiesOptions();
+        $qeo->setQuery($q);
+        $result = $this->restProxy->queryEntities($table, $qeo);
 
-            // Assert
-            $this->assertNotNull($result, '$result');
-            $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
-            $resEnts = $result->getEntities();
-            $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
-        }
+        // Assert
+        $this->assertNotNull($result, '$result');
+        $this->assertEquals(1, count($result->getEntities()), 'count($result->getEntities())');
+        $resEnts = $result->getEntities();
+        $this->assertEquals('queryEntitiesWithFilterWorks-3', $resEnts[0]->getRowKey(), '$resEnts[0]->getRowKey()');
+
     }
 
     public function testBatchInsertWorks()

@@ -23,7 +23,6 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
 use MicrosoftAzure\Storage\Tests\Framework\SASFunctionalTestBase;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Tests\Functional\File\FileSharedAccessSignatureHelperMock;
 
 /**
  * Tests for service SAS proxy tests.

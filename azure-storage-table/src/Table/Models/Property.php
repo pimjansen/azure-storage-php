@@ -56,7 +56,6 @@ class Property
     /**
      * Gets the value of the property.
      *
-     * @return mixed
      */
     public function getValue()
     {

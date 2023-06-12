@@ -157,14 +157,15 @@ class RetryMiddlewareFactory
             if (!$response) {
                 if (!$exception || !($exception instanceof RequestException)) {
                     return false;
-                } elseif ($exception instanceof ConnectException) {
-                    return $retryConnect;
-                } else {
-                    $response = $exception->getResponse();
-                    if (!$response) {
-                        return true;
-                    }
                 }
+                if ($exception instanceof ConnectException) {
+                    return $retryConnect;
+                }
+                $response = $exception->getResponse();
+                if (!$response) {
+                    return true;
+                }
+
             }
 
             if ($type == self::GENERAL_RETRY_TYPE) {
@@ -172,12 +173,11 @@ class RetryMiddlewareFactory
                     $response->getStatusCode(),
                     $isSecondary
                 );
-            } else {
-                return static::appendBlobRetryDecider(
-                    $response->getStatusCode(),
-                    $isSecondary
-                );
             }
+            return static::appendBlobRetryDecider(
+                $response->getStatusCode(),
+                $isSecondary
+            );
 
             return true;
         };

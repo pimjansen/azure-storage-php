@@ -38,7 +38,6 @@ class MessageSerializer
      * getProtocolVersion()
      * (getUri() && getMethod()) || (getStatusCode() && getReasonPhrase())
      *
-     * @param object $message The message to be serialized.
      *
      * @return string
      */
@@ -48,7 +47,8 @@ class MessageSerializer
         //without checking the methods.
         if ($targetObject instanceof RequestException) {
             return self::serializeRequestException($targetObject);
-        } elseif ($targetObject instanceof \Exception) {
+        }
+        if ($targetObject instanceof \Exception) {
             return self::serializeException($targetObject);
         }
 
@@ -59,14 +59,15 @@ class MessageSerializer
         if (method_exists($targetObject, 'getUri') &&
             method_exists($targetObject, 'getMethod')) {
             return self::serializeRequest($targetObject);
-        } elseif (method_exists($targetObject, 'getStatusCode') &&
+        }
+        if (method_exists($targetObject, 'getStatusCode') &&
                    method_exists($targetObject, 'getReasonPhrase')) {
             return self::serializeResponse($targetObject);
-        } else {
-            throw new \InvalidArgumentException(
-                Resources::INVALID_MESSAGE_OBJECT_TO_SERIALIZE
-            );
         }
+        throw new \InvalidArgumentException(
+            Resources::INVALID_MESSAGE_OBJECT_TO_SERIALIZE
+        );
+
     }
 
     /**

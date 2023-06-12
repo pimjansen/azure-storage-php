@@ -19,8 +19,6 @@
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
-use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
-
 /**
  * Holds public access types for a container.
  *

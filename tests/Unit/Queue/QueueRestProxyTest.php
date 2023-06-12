@@ -19,25 +19,17 @@
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Queue\Internal\IQueue;
 use MicrosoftAzure\Storage\Queue\QueueRestProxy;
 use MicrosoftAzure\Storage\Tests\Framework\QueueServiceRestProxyTestBase;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 use MicrosoftAzure\Storage\Queue\Models\ListQueuesOptions;
-use MicrosoftAzure\Storage\Queue\Models\ListQueuesResult;
 use MicrosoftAzure\Storage\Queue\Models\CreateQueueOptions;
-use MicrosoftAzure\Storage\Queue\Models\GetQueueMetadataResult;
-use MicrosoftAzure\Storage\Queue\Models\ListMessagesResult;
 use MicrosoftAzure\Storage\Queue\Models\ListMessagesOptions;
-use MicrosoftAzure\Storage\Queue\Models\PeekMessagesResult;
 use MicrosoftAzure\Storage\Queue\Models\PeekMessagesOptions;
-use MicrosoftAzure\Storage\Queue\Models\UpdateMessageResult;
 use MicrosoftAzure\Storage\Queue\Models\QueueServiceOptions;
 use MicrosoftAzure\Storage\Queue\Models\QueueACL;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 
 /**
  * Unit tests for QueueRestProxy class

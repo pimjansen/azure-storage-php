@@ -362,7 +362,6 @@ class HttpCallContext
      *
      * @param string $name The header name.
      *
-     * @return mixed
      */
     public function getHeader($name)
     {

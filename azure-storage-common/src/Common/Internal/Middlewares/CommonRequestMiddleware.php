@@ -108,7 +108,6 @@ class CommonRequestMiddleware extends MiddlewareBase
     /**
      * Gets the user agent string used in request header.
      *
-     * @param $serviceSDKVersion
      *
      * @return string
      */

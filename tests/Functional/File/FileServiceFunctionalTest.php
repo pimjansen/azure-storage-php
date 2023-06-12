@@ -24,25 +24,18 @@ use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\File\Models\GetFileOptions;
 use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
-use MicrosoftAzure\Storage\File\Models\FileProperties;
-use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
 use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
 use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
 use MicrosoftAzure\Storage\File\Models\PutFileRangeOptions;
-use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
 use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
 use MicrosoftAzure\Storage\Common\Models\Range;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
 use MicrosoftAzure\Storage\Common\Middlewares\HistoryMiddleware;
-use MicrosoftAzure\Storage\Common\LocationMode;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Client;
 
 class FileServiceFunctionalTest extends FunctionalTestBase
 {
@@ -96,13 +89,13 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(
-                    TestResources::STATUS_INTERNAL_SERVER_ERROR,
-                    $e->getCode(),
-                    'getCode'
-                );
             }
+            $this->assertEquals(
+                TestResources::STATUS_INTERNAL_SERVER_ERROR,
+                $e->getCode(),
+                'getCode'
+            );
+
         }
     }
 
@@ -252,9 +245,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 $finished = true;
                 if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                     throw $e;
-                } else {
-                    $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 }
+                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
             }
         }
     }
@@ -296,9 +289,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                         $options->getPrefix() .
                         '\'), then Files length'
                 );
-            } else {
-                // Do not know how many there should be
             }
+            // Do not know how many there should be
+
         } elseif (strlen($ret->getNextMarker()) == 0) {
             $this->assertTrue(
                 count($ret->getShares()) <= $options->getMaxResults(),
@@ -327,9 +320,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                     'when no next marker and Prefix=(\'' .
                     $options->getPrefix() . '\'), then Files length'
                 );
-            } else {
-                // Do not know how many there should be
             }
+            // Do not know how many there should be
+
         } else {
             $this->assertEquals(
                 count($ret->getShares()),
@@ -409,9 +402,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
             if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
 
         if ($created) {
@@ -567,9 +560,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (null === $options->getTimeout() || $options->getTimeout() > 0) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
         // Clean up.
         $this->restProxy->deleteShare($share);
@@ -713,9 +706,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
 
         // Clean up.
@@ -761,9 +754,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
 
         // Clean up.
@@ -976,9 +969,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 $finished = true;
                 if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                     throw $e;
-                } else {
-                    $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 }
+                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
             }
         }
     }

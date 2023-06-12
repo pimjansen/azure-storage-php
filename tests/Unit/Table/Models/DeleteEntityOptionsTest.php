@@ -20,7 +20,6 @@
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
 use MicrosoftAzure\Storage\Table\Models\DeleteEntityOptions;
-use MicrosoftAzure\Storage\Table\Models\ETag;
 
 /**
  * Unit tests for class DeleteEntityOptions

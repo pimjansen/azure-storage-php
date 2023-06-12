@@ -138,9 +138,9 @@ abstract class ServiceSettings
             if ($atLeastOne) {
                 // At least one requirement must succeed, otherwise fail.
                 return $oneFound ? $result : null;
-            } else {
-                return $result;
             }
+            return $result;
+
         };
 
         // @codingStandardsIgnoreEnd
@@ -264,9 +264,9 @@ abstract class ServiceSettings
 
             if (null === $remainingSettings) {
                 return false;
-            } else {
-                $settings = $remainingSettings;
             }
+            $settings = $remainingSettings;
+
         }
 
         if (empty($settings)) {

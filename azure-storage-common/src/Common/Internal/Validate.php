@@ -149,7 +149,7 @@ class Validate
             return false;
         }
 
-        return (!isset($var) || trim($var) === '');
+        return !isset($var) || trim($var) === '';
     }
 
     /**
@@ -226,16 +226,16 @@ class Validate
 
         if ($objectType === $classType) {
             return true;
-        } else {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    Resources::INSTANCE_TYPE_VALIDATION_MSG,
-                    $name,
-                    $objectType,
-                    $classType
-                )
-            );
         }
+        throw new \InvalidArgumentException(
+            sprintf(
+                Resources::INSTANCE_TYPE_VALIDATION_MSG,
+                $name,
+                $objectType,
+                $classType
+            )
+        );
+
     }
 
     /**
@@ -270,11 +270,11 @@ class Validate
 
         if ($isValid) {
             return true;
-        } else {
-            throw new \RuntimeException(
-                sprintf(Resources::INVALID_CONFIG_HOSTNAME, $hostname)
-            );
         }
+        throw new \RuntimeException(
+            sprintf(Resources::INVALID_CONFIG_HOSTNAME, $hostname)
+        );
+
     }
 
     /**
@@ -304,11 +304,11 @@ class Validate
 
         if ($isValid) {
             return true;
-        } else {
-            throw new \RuntimeException(
-                sprintf(Resources::INVALID_CONFIG_URI, $uri)
-            );
         }
+        throw new \RuntimeException(
+            sprintf(Resources::INVALID_CONFIG_URI, $uri)
+        );
+
     }
 
     /**
@@ -351,16 +351,16 @@ class Validate
 
         if (is_a($objectInstance, $class)) {
             return true;
-        } else {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    Resources::INSTANCE_TYPE_VALIDATION_MSG,
-                    $name,
-                    $objectType,
-                    $class
-                )
-            );
         }
+        throw new \InvalidArgumentException(
+            sprintf(
+                Resources::INSTANCE_TYPE_VALIDATION_MSG,
+                $name,
+                $objectType,
+                $class
+            )
+        );
+
     }
 
     /**
@@ -381,15 +381,15 @@ class Validate
 
         if (method_exists($objectInstance, $method)) {
             return true;
-        } else {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    Resources::ERROR_METHOD_NOT_FOUND,
-                    $method,
-                    $name
-                )
-            );
         }
+        throw new \InvalidArgumentException(
+            sprintf(
+                Resources::ERROR_METHOD_NOT_FOUND,
+                $method,
+                $name
+            )
+        );
+
     }
 
     /**

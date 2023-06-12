@@ -31,9 +31,6 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
  */
 class FileTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     *
-     */
     public function testCreate()
     {
         // Setup

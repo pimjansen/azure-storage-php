@@ -86,19 +86,24 @@ class FunctionalTestBase extends IntegrationTestBase
     {
         if (null === $value) {
             return 'null';
-        } elseif (is_bool($value)) {
-            return ($value == true ? 'true' : 'false');
-        } elseif ($value instanceof \DateTime) {
-            return Utilities::convertToEdmDateTime($value);
-        } elseif ($value instanceof Entity) {
-            return self::entityToString($value);
-        } elseif (is_array($value)) {
-            return self::entityPropsToString($value);
-        } elseif ($value instanceof Filter) {
-            return TableServiceFunctionalTestUtils::filtertoString($value);
-        } else {
-            return $value;
         }
+        if (is_bool($value)) {
+            return $value == true ? 'true' : 'false';
+        }
+        if ($value instanceof \DateTime) {
+            return Utilities::convertToEdmDateTime($value);
+        }
+        if ($value instanceof Entity) {
+            return self::entityToString($value);
+        }
+        if (is_array($value)) {
+            return self::entityPropsToString($value);
+        }
+        if ($value instanceof Filter) {
+            return TableServiceFunctionalTestUtils::filtertoString($value);
+        }
+        return $value;
+
     }
 
     public static function entityPropsToString($props)

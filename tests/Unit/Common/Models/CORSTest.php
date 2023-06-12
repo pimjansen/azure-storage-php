@@ -21,8 +21,6 @@ namespace MicrosoftAzure\Storage\Tests\Unit\Common\Models;
 
 use MicrosoftAzure\Storage\Common\Models\CORS;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 
 /**
  * Unit tests for class CORS

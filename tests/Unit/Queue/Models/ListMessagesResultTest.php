@@ -35,7 +35,6 @@ class ListMessagesResultTest extends \PHPUnit\Framework\TestCase
         // Setup
         $sample = TestResources::listMessagesSample();
 
-
         // Test
         $result = ListMessagesResult::create($sample);
 

@@ -22,7 +22,6 @@ namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 use MicrosoftAzure\Storage\Table\Models\Entity;
 use MicrosoftAzure\Storage\Table\Models\Property;
 use MicrosoftAzure\Storage\Table\Models\EdmType;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 
 /**
  * Unit tests for class Entity

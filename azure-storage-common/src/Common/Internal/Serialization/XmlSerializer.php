@@ -101,7 +101,6 @@ class XmlSerializer implements ISerializer
      * @param object $targetObject The target object.
      * @param array  $methodArray  The array of method of the target object.
      *
-     * @return mixed
      */
     private static function getInstanceAttributes($targetObject, array $methodArray)
     {

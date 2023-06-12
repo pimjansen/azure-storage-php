@@ -317,12 +317,11 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
                     }
                     if (count($boolPropNames) == 0) {
                         return Filter::applyConstant(mt_rand(0, 1) == 1, EdmType::BOOLEAN);
-                    } else {
-                        $key = $boolPropNames[mt_rand(0, count($boolPropNames) - 1)];
-                        return Filter::applyPropertyName($key);
                     }
+                    $key = $boolPropNames[mt_rand(0, count($boolPropNames) - 1)];
+                    return Filter::applyPropertyName($key);
+
                     //will return either way so not fall through
-                    // no break
                 default:
                     return null;
             }

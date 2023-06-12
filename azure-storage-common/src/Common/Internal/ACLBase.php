@@ -75,7 +75,6 @@ abstract class ACLBase
     /**
      * Converts this signed identifiers to XML representation.
      *
-     * @param  XmlSerializer $xmlSerializer The XML serializer.
      *
      * @internal
      *

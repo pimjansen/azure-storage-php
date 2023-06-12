@@ -23,7 +23,6 @@ use MicrosoftAzure\Storage\Queue\Internal\QueueResources;
 use MicrosoftAzure\Storage\Queue\Models\UpdateMessageResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 
 /**
  * Unit tests for class UpdateMessageResult
@@ -32,9 +31,6 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
  */
 class UpdateMessageResultTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     *
-     */
     public function testCreate()
     {
         // Setup

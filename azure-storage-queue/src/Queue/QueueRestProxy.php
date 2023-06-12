@@ -24,7 +24,6 @@ use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedKeyAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\TokenAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
 use MicrosoftAzure\Storage\Common\Internal\Middlewares\CommonRequestMiddleware;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestTrait;
 use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
@@ -363,7 +362,6 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
         $message = new QueueMessage();
         $message->setMessageText($messageText);
         $body = $message->toXml($this->dataSerializer);
-
 
         if (null === $options) {
             $options = new CreateMessageOptions();

@@ -20,7 +20,6 @@
 namespace MicrosoftAzure\Storage\Tests\Unit\Common;
 
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\ServiceException;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Tests\Framework\ReflectionTestBase;
 use MicrosoftAzure\Storage\Common\SharedAccessSignatureHelper;

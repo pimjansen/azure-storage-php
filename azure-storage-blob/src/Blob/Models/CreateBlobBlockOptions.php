@@ -74,7 +74,6 @@ class CreateBlobBlockOptions extends BlobServiceOptions
     /**
      * Construct a CreateBlobBlockOptions object from a createBlobOptions.
      *
-     * @param  CreateBlobOptions $createBlobOptions
      *
      * @return CreateBlobBlockOptions
      */

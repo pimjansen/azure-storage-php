@@ -34,7 +34,6 @@ use MicrosoftAzure\Storage\Table\Models\EdmType;
 use MicrosoftAzure\Storage\Table\Models\Entity;
 use MicrosoftAzure\Storage\Table\Models\InsertEntityResult;
 use MicrosoftAzure\Storage\Table\Models\Property;
-use MicrosoftAzure\Storage\Table\Models\QueryEntitiesOptions;
 use MicrosoftAzure\Storage\Table\Models\GetTableOptions;
 use MicrosoftAzure\Storage\Table\Models\GetEntityOptions;
 use MicrosoftAzure\Storage\Table\Models\QueryTablesOptions;
@@ -315,7 +314,6 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
             $expectedData = $tmpExpectedData;
         }
-
 
         $expectedData = TableServiceFunctionalTestUtils::filterList($expectedFilter, $expectedData);
         $effectiveTop = (null === $options->getTop() ? 100000 : $options->getTop());
@@ -1777,7 +1775,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             case ConcurType::KEY_MATCH_ETAG_MISMATCH:
                 if ($opType == OpType::INSERT_ENTITY) {
                     return TestResources::STATUS_CONFLICT;
-                } elseif ($opType == OpType::INSERT_OR_REPLACE_ENTITY || $opType == OpType::INSERT_OR_MERGE_ENTITY) {
+                }
+                if ($opType == OpType::INSERT_OR_REPLACE_ENTITY || $opType == OpType::INSERT_OR_MERGE_ENTITY) {
                     // If exists, just clobber.
                     return null;
                 }

@@ -20,11 +20,9 @@
 namespace MicrosoftAzure\Storage\Common\Internal;
 
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-use MicrosoftAzure\Storage\Common\Internal\RetryMiddlewareFactory;
 use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
 use MicrosoftAzure\Storage\Common\Internal\Http\HttpCallContext;
-use MicrosoftAzure\Storage\Common\Internal\Middlewares\MiddlewareBase;
 use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareStack;
 use MicrosoftAzure\Storage\Common\LocationMode;
 use GuzzleHttp\Promise\EachPromise;
@@ -102,7 +100,7 @@ class ServiceRestProxy extends RestProxy
             $verify = $options['verify'];
         }
 
-        return (new \GuzzleHttp\Client(
+        return new \GuzzleHttp\Client(
             array_merge(
                 $options,
                 [
@@ -120,7 +118,7 @@ class ServiceRestProxy extends RestProxy
                     'verify' => $verify,
                 ]
             )
-        ));
+        );
     }
 
     /**

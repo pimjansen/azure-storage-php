@@ -20,12 +20,10 @@
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
 use MicrosoftAzure\Storage\File\FileRestProxy;
-use MicrosoftAzure\Storage\Tests\Framework\ServiceRestProxyTestBase;
 use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
 use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
 use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
 
 /**

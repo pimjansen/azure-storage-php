@@ -20,7 +20,6 @@
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
 
 use MicrosoftAzure\Storage\Queue\Models\ListQueuesOptions;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class ListQueuesOptions

@@ -96,9 +96,9 @@ class Range
     {
         if ($this->end != null) {
             return $this->end - $this->start + 1;
-        } else {
-            return null;
         }
+        return null;
+
     }
 
     /**

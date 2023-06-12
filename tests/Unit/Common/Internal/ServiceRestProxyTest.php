@@ -21,16 +21,11 @@ namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Tests\Framework\ReflectionTestBase;
-use MicrosoftAzure\Storage\Tests\Mock\Common\Internal\Filters\SimpleFilterMock;
-use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 
 /**
  * Unit tests for class ServiceRestProxy
@@ -62,7 +57,6 @@ class ServiceRestProxyTest extends ReflectionTestBase
         // Auto append an '/' at the end of uri.
         $this->assertEquals($primaryUri . '/', (string) ($proxy->getPsrPrimaryUri()));
         $this->assertEquals($secondaryUri . '/', (string) ($proxy->getPsrSecondaryUri()));
-
 
         return $proxy;
     }

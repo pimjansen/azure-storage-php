@@ -46,18 +46,18 @@ class EdmType
         if (is_int($value)) {
             if ($value <= Resources::INT32_MAX && $value >= Resources::INT32_MIN) {
                 return EdmType::INT32;
-            } else {
-                return EdmType::INT64;
             }
+            return EdmType::INT64;
+
         } elseif (Utilities::isDouble($value)) {
             return EdmType::DOUBLE;
         } elseif (is_bool($value)) {
             return EdmType::BOOLEAN;
         } elseif ($value instanceof \DateTime) {
             return EdmType::DATETIME;
-        } else {
-            return EdmType::STRING;
         }
+        return EdmType::STRING;
+
     }
 
     public static function typeRequired($type)
@@ -112,37 +112,37 @@ class EdmType
         // associated with this value. Leave the value as null so this hold.
         if (null === $value) {
             return true;
-        } else {
-            switch ($type) {
-                case EdmType::GUID:
-                case EdmType::BINARY:
-                case EdmType::STRING:
-                case EdmType::INT64:
-                case null:
-                    // NULL also is treated as EdmType::STRING
-                    $condition = 'is_string';
-                    return is_string($value);
-
-                case EdmType::DOUBLE:
-                    $condition = 'is_double or is_string';
-                    return is_double($value) || is_int($value) || is_string($value);
-
-                case EdmType::INT32:
-                    $condition = 'is_int or is_string';
-                    return is_int($value) || is_string($value);
-
-                case EdmType::DATETIME:
-                    $condition = 'instanceof \DateTimeInterface';
-                    return $value instanceof \DateTimeInterface;
-
-                case EdmType::BOOLEAN:
-                    $condition = 'is_bool';
-                    return is_bool($value);
-
-                default:
-                    throw new \InvalidArgumentException();
-            }
         }
+        switch ($type) {
+            case EdmType::GUID:
+            case EdmType::BINARY:
+            case EdmType::STRING:
+            case EdmType::INT64:
+            case null:
+                // NULL also is treated as EdmType::STRING
+                $condition = 'is_string';
+                return is_string($value);
+
+            case EdmType::DOUBLE:
+                $condition = 'is_double or is_string';
+                return is_float($value) || is_int($value) || is_string($value);
+
+            case EdmType::INT32:
+                $condition = 'is_int or is_string';
+                return is_int($value) || is_string($value);
+
+            case EdmType::DATETIME:
+                $condition = 'instanceof \DateTimeInterface';
+                return $value instanceof \DateTimeInterface;
+
+            case EdmType::BOOLEAN:
+                $condition = 'is_bool';
+                return is_bool($value);
+
+            default:
+                throw new \InvalidArgumentException();
+        }
+
     }
 
     /**
@@ -181,7 +181,7 @@ class EdmType
                 return Utilities::convertToEdmDateTime($value);
 
             case EdmType::BOOLEAN:
-                return (null === $value ? '' : ($value == true ? true : false));
+                return null === $value ? '' : ($value == true ? true : false);
 
             default:
                 throw new \InvalidArgumentException();
@@ -211,7 +211,7 @@ class EdmType
                 return 'X\'' . implode('', unpack("H*", $value)) . '\'';
 
             case EdmType::BOOLEAN:
-                return ($value ? 'true' : 'false');
+                return $value ? 'true' : 'false';
 
             case EdmType::DOUBLE:
             case EdmType::INT32:
@@ -241,7 +241,6 @@ class EdmType
      *
      * @internal
      *
-     * @return mixed
      *
      * @throws \InvalidArgumentException
      */
@@ -251,33 +250,33 @@ class EdmType
         // associated with this value. Leave the value as null so this hold.
         if (null === $value) {
             return null;
-        } else {
-            switch ($type) {
-                case self::GUID:
-                case self::STRING:
-                case self::INT64:
-                case null:
-                    return (string) $value;
-
-                case self::BINARY:
-                    return base64_decode($value);
-
-                case self::DATETIME:
-                    return Utilities::convertToDateTime($value);
-
-                case self::BOOLEAN:
-                    return Utilities::toBoolean($value);
-
-                case self::DOUBLE:
-                    return (float) $value;
-
-                case self::INT32:
-                    return (int) $value;
-
-                default:
-                    throw new \InvalidArgumentException();
-            }
         }
+        switch ($type) {
+            case self::GUID:
+            case self::STRING:
+            case self::INT64:
+            case null:
+                return (string) $value;
+
+            case self::BINARY:
+                return base64_decode($value);
+
+            case self::DATETIME:
+                return Utilities::convertToDateTime($value);
+
+            case self::BOOLEAN:
+                return Utilities::toBoolean($value);
+
+            case self::DOUBLE:
+                return (float) $value;
+
+            case self::INT32:
+                return (int) $value;
+
+            default:
+                throw new \InvalidArgumentException();
+        }
+
     }
 
     /**

@@ -20,7 +20,6 @@
 namespace MicrosoftAzure\Storage\Tests\Functional\File;
 
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\File\Models\AccessCondition;
 use MicrosoftAzure\Storage\File\Models\ShareACL;
 use MicrosoftAzure\Storage\File\Models\GetFileOptions;
 use MicrosoftAzure\Storage\File\Models\FileProperties;
@@ -28,12 +27,9 @@ use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
 use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
 use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
 use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
-use MicrosoftAzure\Storage\File\Models\PutFileRangeOptions;
-use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
 use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Models\Range;
-use MicrosoftAzure\Storage\Common\Models\Logging;
 use MicrosoftAzure\Storage\Common\Models\Metrics;
 use MicrosoftAzure\Storage\Common\Models\CORS;
 use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
@@ -86,9 +82,9 @@ class FileServiceFunctionalTestData
     {
         if ($length & 1 == 0) {
             return \bin2hex(self::getRandomBytes($length / 2));
-        } else {
-            return substr(\bin2hex(self::getRandomBytes(($length / 2) + 1)), 1);
         }
+        return substr(\bin2hex(self::getRandomBytes(($length / 2) + 1)), 1);
+
     }
 
     public static function getRandomBytes($length)
@@ -141,78 +137,70 @@ class FileServiceFunctionalTestData
     {
         $ret = [];
 
-        {
-            // This is the default that comes from the server.
-            array_push($ret, self::getDefaultServiceProperties());
-        }
+        // This is the default that comes from the server.
+        array_push($ret, self::getDefaultServiceProperties());
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            $rp->setDays(10);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        $rp->setDays(10);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $c = CORS::create(TestResources::getCORSSingle());
+        $c = CORS::create(TestResources::getCORSSingle());
 
-            $sp = new ServiceProperties();
-            $sp->setHourMetrics($m);
-            $sp->setCorses([$c]);
+        $sp = new ServiceProperties();
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            // The service does not accept setting days when enabled is false.
-            $rp->setEnabled(false);
-            $rp->setDays(null);
+        $rp = new RetentionPolicy();
+        // The service does not accept setting days when enabled is false.
+        $rp->setEnabled(false);
+        $rp->setDays(null);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setHourMetrics($m);
-            $sp->setCorses([$c0, $c1]);
+        $sp = new ServiceProperties();
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            // Days has to be 0 < days <= 365
-            $rp->setDays(364);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        // Days has to be 0 < days <= 365
+        $rp->setDays(364);
 
-            $m = new Metrics();
-            $m->setVersion('1.0');
-            $m->setEnabled(false);
-            $m->setIncludeAPIs(null);
-            $m->setRetentionPolicy($rp);
+        $m = new Metrics();
+        $m->setVersion('1.0');
+        $m->setEnabled(false);
+        $m->setIncludeAPIs(null);
+        $m->setRetentionPolicy($rp);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setHourMetrics($m);
-            $sp->setCorses([$c0, $c1]);
+        $sp = new ServiceProperties();
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
         return $ret;
     }
@@ -220,7 +208,6 @@ class FileServiceFunctionalTestData
     public static function getInterestingListSharesOptions()
     {
         $ret = [];
-
 
         $options = new ListSharesOptions();
         array_push($ret, $options);
@@ -348,7 +335,6 @@ class FileServiceFunctionalTestData
         $options = new ListDirectoriesAndFilesOptions();
         $options->setTimeout(-10);
         array_push($ret, $options);
-
 
         $options = new ListDirectoriesAndFilesOptions();
         $options->setMaxResults(2);

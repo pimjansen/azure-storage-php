@@ -148,8 +148,6 @@ class JsonODataReaderWriter implements IODataReaderWriter
     private function parseOneEntity($rawEntity)
     {
         $entity = new Entity();
-        $timestamp;
-        $etag;
 
         if (array_key_exists(Resources::JSON_TIMESTAMP, $rawEntity)) {
             $rawTimestamp = $rawEntity[Resources::JSON_TIMESTAMP];
@@ -189,7 +187,6 @@ class JsonODataReaderWriter implements IODataReaderWriter
                 continue;
             }
 
-            $edmType;
             if (array_key_exists($key . Resources::JSON_ODATA_TYPE_SUFFIX, $rawEntity)) {
                 $edmType = $rawEntity[$key . Resources::JSON_ODATA_TYPE_SUFFIX];
             } elseif (in_array($key, [Resources::JSON_PARTITION_KEY, Resources::JSON_ROW_KEY], true)) {
