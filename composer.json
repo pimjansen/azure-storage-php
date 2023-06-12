@@ -1,38 +1,39 @@
 {
-    "name": "azure-oss/storage",
-    "description": "This project provides a set of PHP client libraries that make it easy to access Microsoft Azure storage APIs.",
-    "keywords": [ "php", "azure", "storage", "sdk" ],
-    "license": "MIT",
-    "require": {
-        "php": "^8.0.0",
-		"guzzlehttp/guzzle": "~6.0|^7.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.8.35",
-        "mikey179/vfsstream": "~1.6",
-        "pdepend/pdepend" : "~2.2",
-        "sebastian/phpcpd": "~2.0",
-        "squizlabs/php_codesniffer": "@stable",
-        "friendsofphp/php-cs-fixer": "@stable",
-        "phploc/phploc": "~2.1",
-        "phpmd/phpmd": "@stable",
-        "phpdocumentor/phpdocumentor": "@stable"
-    },
-    "autoload": {
-        "psr-4": {
-            "MicrosoftAzure\\Storage\\Blob\\": "azure-storage-blob/src/Blob",
-            "MicrosoftAzure\\Storage\\Table\\": "azure-storage-table/src/Table",
-            "MicrosoftAzure\\Storage\\Queue\\": "azure-storage-queue/src/Queue",
-            "MicrosoftAzure\\Storage\\File\\": "azure-storage-file/src/File",
-            "MicrosoftAzure\\Storage\\Common\\": "azure-storage-common/src/Common"
-        }
-    },
-    "autoload-dev": {
-    	"psr-4": {
-    	    "MicrosoftAzure\\Storage\\Tests\\": "tests/"
-    	}
-    },
-    "archive": {
-        "exclude": ["/tests"]
+  "name": "azure-oss/storage",
+  "description": "This project provides a set of PHP client libraries that make it easy to access Microsoft Azure storage APIs.",
+  "keywords": [
+    "php",
+    "azure",
+    "storage",
+    "sdk"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^8.0.0",
+    "guzzlehttp/guzzle": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.6",
+    "mikey179/vfsstream": "^1.6",
+    "friendsofphp/php-cs-fixer": "^3.17"
+  },
+  "autoload": {
+    "psr-4": {
+      "MicrosoftAzure\\Storage\\Blob\\": "azure-storage-blob/src/Blob",
+      "MicrosoftAzure\\Storage\\Table\\": "azure-storage-table/src/Table",
+      "MicrosoftAzure\\Storage\\Queue\\": "azure-storage-queue/src/Queue",
+      "MicrosoftAzure\\Storage\\File\\": "azure-storage-file/src/File",
+      "MicrosoftAzure\\Storage\\Common\\": "azure-storage-common/src/Common"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MicrosoftAzure\\Storage\\Tests\\": "tests/"
+    }
+  },
+  "archive": {
+    "exclude": [
+      "/tests"
+    ]
+  }
 }

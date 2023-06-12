@@ -10,5 +10,5 @@ cache.properties
 output.txt
 /vendor/*
 /output/*
-/build/*
 /doc/*
+/.build
