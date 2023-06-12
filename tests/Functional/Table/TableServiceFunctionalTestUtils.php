@@ -208,7 +208,7 @@ class TableServiceFunctionalTestUtils
             } elseif ($ptype == (EdmType::INT64)) {
                 $eff = $initialProp->getValue();
                 $eff = ($eff > 10 ? 0 : $eff + 1);
-                $initialProp->setValue(strval($eff));
+                $initialProp->setValue((string) $eff);
             } elseif ($ptype == (EdmType::STRING)) {
                 $eff = $initialProp->getValue();
                 $initialProp->setValue($eff . 'AndMore');

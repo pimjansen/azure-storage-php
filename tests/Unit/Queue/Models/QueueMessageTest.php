@@ -64,7 +64,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(Utilities::rfc1123ToDateTime($sample['ExpirationTime']), $actual->getExpirationDate());
         $this->assertEquals($sample['PopReceipt'], $actual->getPopReceipt());
         $this->assertEquals(Utilities::rfc1123ToDateTime($sample['TimeNextVisible']), $actual->getTimeNextVisible());
-        $this->assertEquals(intval($sample['DequeueCount']), $actual->getDequeueCount());
+        $this->assertEquals((int) ($sample['DequeueCount']), $actual->getDequeueCount());
         $this->assertEquals($sample['MessageText'], $actual->getMessageText());
     }
 
@@ -81,7 +81,7 @@ class QueueMessageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($sample['MessageId'], $actual->getMessageId());
         $this->assertEquals(Utilities::rfc1123ToDateTime($sample['InsertionTime']), $actual->getInsertionDate());
         $this->assertEquals(Utilities::rfc1123ToDateTime($sample['ExpirationTime']), $actual->getExpirationDate());
-        $this->assertEquals(intval($sample['DequeueCount']), $actual->getDequeueCount());
+        $this->assertEquals((int) ($sample['DequeueCount']), $actual->getDequeueCount());
         $this->assertEquals($sample['MessageText'], $actual->getMessageText());
     }
 

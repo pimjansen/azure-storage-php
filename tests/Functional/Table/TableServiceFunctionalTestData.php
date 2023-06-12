@@ -521,8 +521,8 @@ class TableServiceFunctionalTestData
         $ret = [];
         array_push($ret, pi());
         array_push($ret, 0.0);
-        array_push($ret, floatval(self::INT_MAX_VALUE));
-        array_push($ret, floatval(self::LONG_BIG_VALUE));
+        array_push($ret, (float) (self::INT_MAX_VALUE));
+        array_push($ret, (float) (self::LONG_BIG_VALUE));
         array_push($ret, 2.3456);
         array_push($ret, 1.0e-10);
         return $ret;
@@ -573,8 +573,8 @@ class TableServiceFunctionalTestData
     {
         $ret = [];
         array_push($ret, '0');
-        array_push($ret, strval(self::LONG_BIG_VALUE));
-        array_push($ret, strval(self::LONG_BIG_VALUE_NEGATIVE));
+        array_push($ret, (string) (self::LONG_BIG_VALUE));
+        array_push($ret, (string) (self::LONG_BIG_VALUE_NEGATIVE));
         array_push($ret, '35536');
         return $ret;
     }
@@ -613,7 +613,7 @@ class TableServiceFunctionalTestData
         array_push($ret, '\\' . '\\' . '\'' . '(?++\\.&==/&?\'\'$@://   .ne');
         array_push($ret, '12345');
         array_push($ret, 'Some unicode: ' . self::getUnicodeString());
-        array_push($ret, strval(self::INT_MAX_VALUE));
+        array_push($ret, (string) (self::INT_MAX_VALUE));
         array_push($ret, '<some><XML></stuff>');
         array_push($ret, "\t\tSomething you entered\n\n\ttranscended parameters\r\n\r\n\t\tSo much is unknown\r\r");
         return $ret;

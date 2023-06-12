@@ -123,7 +123,7 @@ class CORS
             ',',
             $parsedResponse[Resources::XTAG_EXPOSED_HEADERS]
         ));
-        $maxAgeInSeconds = intval(
+        $maxAgeInSeconds = (int) (
             $parsedResponse[Resources::XTAG_MAX_AGE_IN_SECONDS]
         );
 

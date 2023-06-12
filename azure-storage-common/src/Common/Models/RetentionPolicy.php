@@ -45,7 +45,7 @@ class RetentionPolicy
         $result = new RetentionPolicy();
         $result->setEnabled(Utilities::toBoolean($parsedResponse['Enabled']));
         if ($result->getEnabled()) {
-            $result->setDays(intval($parsedResponse['Days']));
+            $result->setDays((int) ($parsedResponse['Days']));
         }
 
         return $result;
@@ -106,7 +106,7 @@ class RetentionPolicy
     {
         $array = ['Enabled' => Utilities::booleanToString($this->_enabled)];
         if (isset($this->_days)) {
-            $array['Days'] = strval($this->_days);
+            $array['Days'] = (string) ($this->_days);
         }
 
         return $array;

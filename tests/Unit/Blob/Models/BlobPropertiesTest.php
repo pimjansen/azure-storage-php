@@ -43,13 +43,13 @@ class BlobPropertiesTest extends \PHPUnit\Framework\TestCase
         // Assert
         $this->assertEquals($expectedDate, $actual->getLastModified());
         $this->assertEquals($expected['Etag'], $actual->getETag());
-        $this->assertEquals(intval($expected['Content-Length']), $actual->getContentLength());
+        $this->assertEquals((int) ($expected['Content-Length']), $actual->getContentLength());
         $this->assertEquals($expected['Content-Type'], $actual->getContentType());
         $this->assertEquals($expected['Content-Encoding'], $actual->getContentEncoding());
         $this->assertEquals($expected['Content-Language'], $actual->getContentLanguage());
         $this->assertEquals($expected['Content-MD5'], $actual->getContentMD5());
         $this->assertEquals($expected['Cache-Control'], $actual->getCacheControl());
-        $this->assertEquals(intval($expected['x-ms-blob-sequence-number']), $actual->getSequenceNumber());
+        $this->assertEquals((int) ($expected['x-ms-blob-sequence-number']), $actual->getSequenceNumber());
         $this->assertEquals($expected['x-ms-blob-type'], $actual->getBlobType());
         $this->assertEquals($expected['x-ms-lease-status'], $actual->getLeaseStatus());
         $this->assertEquals(Utilities::toBoolean($expected['x-ms-server-encrypted']), $actual->getServerEncrypted());

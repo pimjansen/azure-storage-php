@@ -47,7 +47,7 @@ class ListPageBlobRangesDiffResult extends ListPageBlobRangesResult
 
         $date = $headers[Resources::LAST_MODIFIED];
         $date = Utilities::rfc1123ToDateTime($date);
-        $blobLength = intval($headers[Resources::X_MS_BLOB_CONTENT_LENGTH]);
+        $blobLength = (int) ($headers[Resources::X_MS_BLOB_CONTENT_LENGTH]);
 
         $result->setContentLength($blobLength);
         $result->setLastModified($date);
@@ -67,8 +67,8 @@ class ListPageBlobRangesDiffResult extends ListPageBlobRangesResult
         $pageRanges = [];
         foreach ($rawRanges as $value) {
             $pageRanges[] = new RangeDiff(
-                intval($value[Resources::XTAG_RANGE_START]),
-                intval($value[Resources::XTAG_RANGE_END])
+                (int) ($value[Resources::XTAG_RANGE_START]),
+                (int) ($value[Resources::XTAG_RANGE_END])
             );
         }
 
@@ -79,8 +79,8 @@ class ListPageBlobRangesDiffResult extends ListPageBlobRangesResult
 
         foreach ($rawRanges as $value) {
             $pageRanges[] = new RangeDiff(
-                intval($value[Resources::XTAG_RANGE_START]),
-                intval($value[Resources::XTAG_RANGE_END]),
+                (int) ($value[Resources::XTAG_RANGE_START]),
+                (int) ($value[Resources::XTAG_RANGE_END]),
                 true
             );
         }

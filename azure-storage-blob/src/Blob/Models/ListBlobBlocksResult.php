@@ -89,7 +89,7 @@ class ListBlobBlocksResult
             $result->setLastModified($date);
         }
         $result->setContentLength(
-            intval(
+            (int) (
                 Utilities::tryGetValue($clean, Resources::X_MS_BLOB_CONTENT_LENGTH)
             )
         );

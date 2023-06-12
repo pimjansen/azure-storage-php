@@ -89,7 +89,7 @@ class File
         $name = Utilities::tryGetValue($parsed, Resources::QP_NAME);
         $result->setName($name);
         $properties = Utilities::tryGetValue($parsed, Resources::QP_PROPERTIES);
-        $length = \intval(Utilities::tryGetValue($properties, Resources::QP_CONTENT_LENGTH));
+        $length = (int) (Utilities::tryGetValue($properties, Resources::QP_CONTENT_LENGTH));
         $result->setLength($length);
         return $result;
     }

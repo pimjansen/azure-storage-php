@@ -73,7 +73,7 @@ class GetShareStatsResult
     {
         $result = new GetShareStatsResult();
 
-        $result->setShareUsage(\intval(Utilities::tryGetValueInsensitive(
+        $result->setShareUsage((int) (Utilities::tryGetValueInsensitive(
             Resources::XTAG_SHARE_USAGE,
             $parsed
         )));

@@ -51,16 +51,16 @@ class ListPageBlobRangesDiffResultTest extends \PHPUnit\Framework\TestCase
 
         foreach ($rawPageRanges as $value) {
             $pageRanges[] = new RangeDiff(
-                intval($value['Start']),
-                intval($value['End']),
+                (int) ($value['Start']),
+                (int) ($value['End']),
                 false
             );
         }
 
         foreach ($rawClearRanges as $value) {
             $rawClearRanges[] = new RangeDiff(
-                intval($value['Start']),
-                intval($value['End']),
+                (int) ($value['Start']),
+                (int) ($value['End']),
                 true
             );
         }

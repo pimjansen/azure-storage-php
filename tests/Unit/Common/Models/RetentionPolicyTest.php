@@ -35,7 +35,7 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
         // Setup
         $sample = TestResources::getServicePropertiesSample();
         $expectedEnabled = Utilities::toBoolean($sample['Logging']['RetentionPolicy']['Enabled']);
-        $expectedDays = intval($sample['Logging']['RetentionPolicy']['Days']);
+        $expectedDays = (int) ($sample['Logging']['RetentionPolicy']['Days']);
 
         // Test
         $actual = RetentionPolicy::create($sample['Logging']['RetentionPolicy']);
@@ -80,7 +80,7 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
         // Setup
         $sample = TestResources::getServicePropertiesSample();
         $retentionPolicy = new RetentionPolicy();
-        $expected = intval($sample['Logging']['RetentionPolicy']['Days']);
+        $expected = (int) ($sample['Logging']['RetentionPolicy']['Days']);
         $retentionPolicy->setDays($expected);
 
         // Test
@@ -95,7 +95,7 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
         // Setup
         $sample = TestResources::getServicePropertiesSample();
         $retentionPolicy = new RetentionPolicy();
-        $expected = intval($sample['Logging']['RetentionPolicy']['Days']);
+        $expected = (int) ($sample['Logging']['RetentionPolicy']['Days']);
 
         // Test
         $retentionPolicy->setDays($expected);

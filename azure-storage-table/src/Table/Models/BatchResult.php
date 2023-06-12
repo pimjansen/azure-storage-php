@@ -92,8 +92,8 @@ class BatchResult
     {
         $h1 = array_change_key_case($r1->headers);
         $h2 = array_change_key_case($r2->headers);
-        $c1 = intval(Utilities::tryGetValue($h1, Resources::CONTENT_ID, 0));
-        $c2 = intval(Utilities::tryGetValue($h2, Resources::CONTENT_ID, 0));
+        $c1 = (int) (Utilities::tryGetValue($h1, Resources::CONTENT_ID, 0));
+        $c2 = (int) (Utilities::tryGetValue($h2, Resources::CONTENT_ID, 0));
 
         return $c1 < $c2 ? -1 : ($c1 === $c2 ? 0 : 1);
     }

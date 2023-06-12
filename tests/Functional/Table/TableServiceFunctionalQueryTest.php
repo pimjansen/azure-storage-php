@@ -140,7 +140,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         array_push($ret, $entity);
 
         $entity = self::getNewEntity();
-        $entity->addProperty('INT64', EdmType::INT64, strval(TableServiceFunctionalTestData::LONG_BIG_VALUE));
+        $entity->addProperty('INT64', EdmType::INT64, (string) (TableServiceFunctionalTestData::LONG_BIG_VALUE));
         array_push($ret, $entity);
 
         $entity = self::getNewEntity();

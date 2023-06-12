@@ -87,7 +87,7 @@ class ListBlobsResult
             );
         }
 
-        $result->setMaxResults(intval(
+        $result->setMaxResults((int) (
             Utilities::tryGetValue($parsed, Resources::QP_MAX_RESULTS, 0)
         ));
         $result->setDelimiter(Utilities::tryGetValue(

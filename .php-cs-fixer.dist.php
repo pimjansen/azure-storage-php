@@ -59,4 +59,5 @@ return $config
         'list_syntax' => [
             'syntax' => 'short',
         ],
+        'modernize_types_casting' => true,
     ]);

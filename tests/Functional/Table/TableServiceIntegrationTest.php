@@ -864,7 +864,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
             $entity->addProperty('test', EdmType::BOOLEAN, $i % 2 == 0);
             $entity->addProperty('test2', EdmType::STRING, '\'value" ' . $i);
             $entity->addProperty('test3', EdmType::INT32, $i);
-            $entity->addProperty('test4', EdmType::INT64, strval('12345678901' + $i));
+            $entity->addProperty('test4', EdmType::INT64, (string) ('12345678901' + $i));
             $entity->addProperty('test5', EdmType::DATETIME, new \DateTime('2012-01-0' . $i));
             $entity->addProperty('test6', EdmType::BINARY, chr($i));
             $entity->addProperty('test7', EdmType::GUID, Utilities::getGuid());
@@ -1428,7 +1428,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
             $result = $this->restProxy->batch($batchOperations);
         } catch (ServiceException $e) {
             $batchErrored = true;
-            $code = intval($e->getCode());
+            $code = (int) ($e->getCode());
         }
 
         // Assert

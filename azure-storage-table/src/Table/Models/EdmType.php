@@ -164,15 +164,15 @@ class EdmType
                 return $value;
 
             case EdmType::INT32:
-                return intval($value);
+                return (int) $value;
 
             case EdmType::INT64:
             case EdmType::GUID:
             case EdmType::STRING:
-                return strval($value);
+                return (string) $value;
 
             case EdmType::DOUBLE:
-                return strval($value);
+                return (string) $value;
 
             case EdmType::BINARY:
                 return base64_encode($value);
@@ -257,7 +257,7 @@ class EdmType
                 case self::STRING:
                 case self::INT64:
                 case null:
-                    return strval($value);
+                    return (string) $value;
 
                 case self::BINARY:
                     return base64_decode($value);
@@ -269,10 +269,10 @@ class EdmType
                     return Utilities::toBoolean($value);
 
                 case self::DOUBLE:
-                    return doubleval($value);
+                    return (float) $value;
 
                 case self::INT32:
-                    return intval($value);
+                    return (int) $value;
 
                 default:
                     throw new \InvalidArgumentException();

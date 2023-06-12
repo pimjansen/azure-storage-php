@@ -56,7 +56,7 @@ class ListBlobsResultTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($sample['@attributes']['ContainerName'], $actual->getContainerName());
         $this->assertCount(1, $actual->getBlobPrefixes());
         $this->assertEquals($sample['Marker'], $actual->getMarker());
-        $this->assertEquals(intval($sample['MaxResults']), $actual->getMaxResults());
+        $this->assertEquals((int) ($sample['MaxResults']), $actual->getMaxResults());
         $this->assertEquals($sample['NextMarker'], $actual->getNextMarker());
         $this->assertEquals($sample['Delimiter'], $actual->getDelimiter());
         $this->assertEquals($sample['Prefix'], $actual->getPrefix());
@@ -75,7 +75,7 @@ class ListBlobsResultTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(2, $actual->getBlobPrefixes());
         $this->assertEquals($sample['@attributes']['ContainerName'], $actual->getContainerName());
         $this->assertEquals($sample['Marker'], $actual->getMarker());
-        $this->assertEquals(intval($sample['MaxResults']), $actual->getMaxResults());
+        $this->assertEquals((int) ($sample['MaxResults']), $actual->getMaxResults());
         $this->assertEquals($sample['NextMarker'], $actual->getNextMarker());
 
         return $actual;
@@ -94,7 +94,7 @@ class ListBlobsResultTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($sample['@attributes']['ContainerName'], $actual->getContainerName());
         $this->assertCount(1, $actual->getBlobPrefixes());
         $this->assertEquals($sample['Marker'], $actual->getMarker());
-        $this->assertEquals(intval($sample['MaxResults']), $actual->getMaxResults());
+        $this->assertEquals((int) ($sample['MaxResults']), $actual->getMaxResults());
         $this->assertEquals($sample['NextMarker'], $actual->getNextMarker());
         $this->assertEquals($sample['Delimiter'], $actual->getDelimiter());
         $this->assertEquals($sample['Prefix'], $actual->getPrefix());

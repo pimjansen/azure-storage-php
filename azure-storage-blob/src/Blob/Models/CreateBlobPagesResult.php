@@ -71,7 +71,7 @@ class CreateBlobPagesResult
         );
 
         $result->setSequenceNumber(
-            intval(
+            (int) (
                 Utilities::tryGetValue(
                     $clean,
                     Resources::X_MS_BLOB_SEQUENCE_NUMBER

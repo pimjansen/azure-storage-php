@@ -1363,18 +1363,18 @@ class TestResources
         $doublePresVal = '1.0';//Should not lose precision.
 
         $e = new Entity();
-        $e->addProperty('stringVal', EdmType::STRING, $stringVal, strval($stringVal));
-        $e->addProperty('int64Val', EdmType::INT64, $int64Val, strval($int64Val));
-        $e->addProperty('int64LargeVal', EdmType::INT64, $int64LargeVal, strval($int64LargeVal));
+        $e->addProperty('stringVal', EdmType::STRING, $stringVal, (string) $stringVal);
+        $e->addProperty('int64Val', EdmType::INT64, $int64Val, (string) $int64Val);
+        $e->addProperty('int64LargeVal', EdmType::INT64, $int64LargeVal, (string) $int64LargeVal);
         $e->addProperty('int32Val', EdmType::INT32, $int32Val, '');
-        $e->addProperty('doubleVal', EdmType::DOUBLE, $doubleVal, strval($doubleVal));
-        $e->addProperty('doubleLargeVal', EdmType::DOUBLE, $doubleLargeVal, strval($doubleLargeVal));
-        $e->addProperty('boolVal', EdmType::BOOLEAN, $boolVal, strval($boolVal));
+        $e->addProperty('doubleVal', EdmType::DOUBLE, $doubleVal, (string) $doubleVal);
+        $e->addProperty('doubleLargeVal', EdmType::DOUBLE, $doubleLargeVal, (string) $doubleLargeVal);
+        $e->addProperty('boolVal', EdmType::BOOLEAN, $boolVal, (string) $boolVal);
         $e->addProperty('dateVal', EdmType::DATETIME, $dateVal, Utilities::convertToEdmDateTime($dateVal));
-        $e->addProperty('guidVal', EdmType::GUID, $guidVal, strval($guidVal));
+        $e->addProperty('guidVal', EdmType::GUID, $guidVal, (string) $guidVal);
         $e->addProperty('binaryVals', EdmType::BINARY, $binaryVals, base64_encode($binaryVals));
         $e->addProperty('timestamp', EdmType::DATETIME, Utilities::convertToDateTime($timestamp), $timestamp);
-        $e->addProperty('doublePresVal', EdmType::DOUBLE, $doublePresVal, strval($doublePresVal));
+        $e->addProperty('doublePresVal', EdmType::DOUBLE, $doublePresVal, (string) $doublePresVal);
 
         return $e;
     }

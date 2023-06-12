@@ -44,7 +44,7 @@ class CreateBlobPagesResultTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedDate, $actual->getLastModified());
         $this->assertEquals($expected['Etag'], $actual->getETag());
         $this->assertEquals($expected['Content-MD5'], $actual->getContentMD5());
-        $this->assertEquals(intval($expected['x-ms-blob-sequence-number']), $actual->getSequenceNumber());
+        $this->assertEquals((int) ($expected['x-ms-blob-sequence-number']), $actual->getSequenceNumber());
         $this->assertEquals(Utilities::toBoolean($expected['x-ms-request-server-encrypted']), $actual->getRequestServerEncrypted());
     }
 }

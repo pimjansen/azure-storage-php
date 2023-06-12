@@ -76,7 +76,7 @@ class QueueMessage
         $expirationDate = $parsedResponse['ExpirationTime'];
         $insertionDate = $parsedResponse['InsertionTime'];
 
-        $msg->setDequeueCount(intval($parsedResponse['DequeueCount']));
+        $msg->setDequeueCount((int) ($parsedResponse['DequeueCount']));
 
         $date = Utilities::rfc1123ToDateTime($expirationDate);
         $msg->setExpirationDate($date);

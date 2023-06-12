@@ -670,7 +670,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             }
 
             if (null !== $query->getTop()) {
-                $final = strval($this->encodeODataUriValue($query->getTop()));
+                $final = (string) ($this->encodeODataUriValue($query->getTop()));
 
                 $this->addOptionalQueryParam(
                     $queryParam,

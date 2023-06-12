@@ -168,7 +168,7 @@ class BlobProperties
             )
         );
         $result->setCommittedBlockCount(
-            intval(Utilities::tryGetValue(
+            (int) (Utilities::tryGetValue(
                 $clean,
                 Resources::X_MS_BLOB_COMMITTED_BLOCK_COUNT
             ))
@@ -832,10 +832,10 @@ class BlobProperties
 
         $this->setBlobType(Utilities::tryGetValue($clean, 'blobtype'));
 
-        $this->setContentLength(intval($clean[Resources::CONTENT_LENGTH]));
+        $this->setContentLength((int) ($clean[Resources::CONTENT_LENGTH]));
         $this->setETag(Utilities::tryGetValue($clean, Resources::ETAG));
         $this->setSequenceNumber(
-            intval(
+            (int) (
                 Utilities::tryGetValue($clean, Resources::X_MS_BLOB_SEQUENCE_NUMBER)
             )
         );

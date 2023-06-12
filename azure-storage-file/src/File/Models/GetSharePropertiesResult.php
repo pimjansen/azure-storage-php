@@ -69,7 +69,7 @@ class GetSharePropertiesResult
     {
         $result = static::createMetadataResult($responseHeaders);
 
-        $result->setQuota(\intval(Utilities::tryGetValueInsensitive(
+        $result->setQuota((int) (Utilities::tryGetValueInsensitive(
             Resources::X_MS_SHARE_QUOTA,
             $responseHeaders
         )));

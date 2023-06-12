@@ -66,8 +66,8 @@ class CopyState
 
         if (null !== $copyProgress && strpos($copyProgress, '/') !== false) {
             $parts = explode('/', $copyProgress);
-            $bytesCopied = intval($parts[0]);
-            $totalBytes = intval($parts[1]);
+            $bytesCopied = (int) ($parts[0]);
+            $totalBytes = (int) ($parts[1]);
 
             $result->setBytesCopied($bytesCopied);
             $result->setTotalBytes($totalBytes);
@@ -104,8 +104,8 @@ class CopyState
         $copyProgress = Utilities::tryGetValue($clean, Resources::X_MS_COPY_PROGRESS);
         if (null !== $copyProgress && strpos($copyProgress, '/') !== false) {
             $parts = explode('/', $copyProgress);
-            $bytesCopied = intval($parts[0]);
-            $totalBytes = intval($parts[1]);
+            $bytesCopied = (int) ($parts[0]);
+            $totalBytes = (int) ($parts[1]);
 
             $result->setBytesCopied($bytesCopied);
             $result->setTotalBytes($totalBytes);

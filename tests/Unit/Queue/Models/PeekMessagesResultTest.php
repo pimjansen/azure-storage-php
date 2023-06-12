@@ -58,7 +58,7 @@ class PeekMessagesResultTest extends \PHPUnit\Framework\TestCase
             $actual[0]->getExpirationDate()
         );
         $this->assertEquals(
-            intval($sample['QueueMessage']['DequeueCount']),
+            (int) ($sample['QueueMessage']['DequeueCount']),
             $actual[0]->getDequeueCount()
         );
         $this->assertEquals(
@@ -81,13 +81,13 @@ class PeekMessagesResultTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($sample['QueueMessage'][0]['MessageId'], $actual[0]->getMessageId());
         $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][0]['InsertionTime']), $actual[0]->getInsertionDate());
         $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][0]['ExpirationTime']), $actual[0]->getExpirationDate());
-        $this->assertEquals(intval($sample['QueueMessage'][0]['DequeueCount']), $actual[0]->getDequeueCount());
+        $this->assertEquals((int) ($sample['QueueMessage'][0]['DequeueCount']), $actual[0]->getDequeueCount());
         $this->assertEquals($sample['QueueMessage'][0]['MessageText'], $actual[0]->getMessageText());
 
         $this->assertEquals($sample['QueueMessage'][1]['MessageId'], $actual[1]->getMessageId());
         $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][1]['InsertionTime']), $actual[1]->getInsertionDate());
         $this->assertEquals(Utilities::rfc1123ToDateTime($sample['QueueMessage'][1]['ExpirationTime']), $actual[1]->getExpirationDate());
-        $this->assertEquals(intval($sample['QueueMessage'][1]['DequeueCount']), $actual[1]->getDequeueCount());
+        $this->assertEquals((int) ($sample['QueueMessage'][1]['DequeueCount']), $actual[1]->getDequeueCount());
         $this->assertEquals($sample['QueueMessage'][1]['MessageText'], $actual[1]->getMessageText());
     }
 }
