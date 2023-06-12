@@ -174,7 +174,7 @@ class JsonODataReaderWriter implements IODataReaderWriter
 
         // Make sure etag is set
         if (array_key_exists(Resources::JSON_ODATA_ETAG, $rawEntity)) {
-            $etag = (string)$rawEntity[Resources::JSON_ODATA_ETAG];
+            $etag = (string) $rawEntity[Resources::JSON_ODATA_ETAG];
         } else {
             $etag = null;
         }
@@ -210,10 +210,10 @@ class JsonODataReaderWriter implements IODataReaderWriter
             }
             //Store the raw value of the string representation.
             $rawValue = \is_string($value) ? $value : '';
-            $value = EdmType::unserializeQueryValue((string)$edmType, $value);
+            $value = EdmType::unserializeQueryValue((string) $edmType, $value);
             $entity->addProperty(
-                (string)$key,
-                (string)$edmType,
+                (string) $key,
+                (string) $edmType,
                 $value,
                 $rawValue
             );

@@ -167,9 +167,9 @@ class RetryMiddleware extends MiddlewareBase
                 }
 
                 //substitute the uri.
-                if ((string)$request->getUri() == (string)$primaryUri) {
+                if ((string) $request->getUri() == (string) $primaryUri) {
                     $request = $request->withUri($secondaryUri);
-                } elseif ((string)$request->getUri() == (string)$secondaryUri) {
+                } elseif ((string) $request->getUri() == (string) $secondaryUri) {
                     $request = $request->withUri($primaryUri);
                 }
             }

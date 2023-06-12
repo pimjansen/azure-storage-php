@@ -262,7 +262,7 @@ class FileProperties
     public function setContentLength($contentLength)
     {
         Validate::isInteger($contentLength, 'contentLength');
-        $this->contentLength = (int)$contentLength;
+        $this->contentLength = (int) $contentLength;
     }
 
     /**

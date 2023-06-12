@@ -1915,8 +1915,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             'Mock handler does not gave the second 500 response correctly'
         );
 
-        $uri2 = (string)($historyMiddleware->getHistory()[2]['request']->getUri());
-        $uri3 = (string)($historyMiddleware->getHistory()[3]['request']->getUri());
+        $uri2 = (string) ($historyMiddleware->getHistory()[2]['request']->getUri());
+        $uri3 = (string) ($historyMiddleware->getHistory()[3]['request']->getUri());
 
         $this->assertTrue(
             strpos($uri2, '-secondary') !== false,

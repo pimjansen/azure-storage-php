@@ -360,8 +360,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
                 //be hornored, otherwise the blocks count will exceed maximum
                 //value allowed.
                 if ($this->blockSize < $result) {
-                    $assumedSize = ceil((float)$size /
-                        (float)(Resources::MAX_BLOB_BLOCKS));
+                    $assumedSize = ceil((float) $size /
+                        (float) (Resources::MAX_BLOB_BLOCKS));
                     if ($this->blockSize <= $assumedSize) {
                         $result = $assumedSize;
                     } else {
@@ -2423,7 +2423,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $body = $contentStream->getContents();
 
         //if the range is not align to 512, throw exception.
-        $chunks = (int)($range->getLength() / 512);
+        $chunks = (int) ($range->getLength() / 512);
         if ($chunks * 512 != $range->getLength()) {
             throw new \RuntimeException(Resources::ERROR_RANGE_NOT_ALIGN_TO_512);
         }

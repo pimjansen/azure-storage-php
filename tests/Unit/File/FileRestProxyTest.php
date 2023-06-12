@@ -718,7 +718,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $source = sprintf(
             '%s%s/%s',
-            (string)$this->restProxy->getPsrPrimaryUri(),
+            (string) $this->restProxy->getPsrPrimaryUri(),
             $share,
             $fileName
         );

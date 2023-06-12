@@ -69,7 +69,7 @@ class Validate
     public static function canCastAsString($var, $name)
     {
         try {
-            (string)$var;
+            (string) $var;
         } catch (\Exception $e) {
             throw new InvalidArgumentTypeException(gettype(''), $name);
         }
@@ -86,7 +86,7 @@ class Validate
      */
     public static function isBoolean($var)
     {
-        (bool)$var;
+        (bool) $var;
     }
 
     /**
@@ -138,7 +138,7 @@ class Validate
     public static function isInteger($var, $name)
     {
         try {
-            (int)$var;
+            (int) $var;
         } catch (\Exception $e) {
             throw new InvalidArgumentTypeException(gettype(123), $name);
         }
@@ -154,7 +154,7 @@ class Validate
     public static function isNullOrEmptyString($var)
     {
         try {
-            (string)$var;
+            (string) $var;
         } catch (\Exception $e) {
             return false;
         }

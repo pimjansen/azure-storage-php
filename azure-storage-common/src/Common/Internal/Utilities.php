@@ -837,7 +837,7 @@ class Utilities
         $uri = $request->getUri();
         $secondaryUri = $options[Resources::ROS_SECONDARY_URI];
         $isSecondary = false;
-        if (strpos((string)$uri, (string)$secondaryUri) !== false) {
+        if (strpos((string) $uri, (string) $secondaryUri) !== false) {
             $isSecondary = true;
         }
         return $isSecondary;

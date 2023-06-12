@@ -84,7 +84,7 @@ class GetFileOptions extends FileServiceOptions
     public function setRangeGetContentMD5($rangeGetContentMD5)
     {
         Validate::isBoolean($rangeGetContentMD5);
-        $this->rangeGetContentMD5 = (bool)$rangeGetContentMD5;
+        $this->rangeGetContentMD5 = (bool) $rangeGetContentMD5;
     }
 
     public function getRangeString()

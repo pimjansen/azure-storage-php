@@ -2507,8 +2507,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         );
 
 
-        $uri2 = (string)($historyMiddleware->getHistory()[2]['request']->getUri());
-        $uri3 = (string)($historyMiddleware->getHistory()[3]['request']->getUri());
+        $uri2 = (string) ($historyMiddleware->getHistory()[2]['request']->getUri());
+        $uri3 = (string) ($historyMiddleware->getHistory()[3]['request']->getUri());
 
         $this->assertTrue(
             strpos($uri2, '-secondary') !== false,
@@ -2553,8 +2553,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $options = $historyMiddleware->getHistory()[1]['options'];
         $this->assertNotNull(
             strpos(
-                (string)$request->getUri(),
-                (string)$options[Resources::ROS_SECONDARY_URI]
+                (string) $request->getUri(),
+                (string) $options[Resources::ROS_SECONDARY_URI]
             )
         );
 
@@ -2580,15 +2580,15 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $options = $historyMiddleware->getHistory()[2]['options'];
         $this->assertNotNull(
             strpos(
-                (string)$request->getUri(),
-                (string)$options[Resources::ROS_SECONDARY_URI]
+                (string) $request->getUri(),
+                (string) $options[Resources::ROS_SECONDARY_URI]
             )
         );
 
         //Make sure queried with next marker.
         $this->assertNotNull(
             strpos(
-                (string)$request->getUri(),
+                (string) $request->getUri(),
                 'marker=' . $marker
             )
         );

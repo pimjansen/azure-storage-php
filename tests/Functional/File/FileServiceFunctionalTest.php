@@ -1507,7 +1507,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
         $sourcePath = sprintf(
             '%s%s/%s',
-            (string)$this->restProxy->getPsrPrimaryUri(),
+            (string) $this->restProxy->getPsrPrimaryUri(),
             $sourceShare,
             $sourceFile
         );

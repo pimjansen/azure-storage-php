@@ -70,8 +70,8 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $this->assertEquals($accountName, $proxy->getAccountName());
 
         // Auto append an '/' at the end of uri.
-        $this->assertEquals($primaryUri . '/', (string)($proxy->getPsrPrimaryUri()));
-        $this->assertEquals($secondaryUri . '/', (string)($proxy->getPsrSecondaryUri()));
+        $this->assertEquals($primaryUri . '/', (string) ($proxy->getPsrPrimaryUri()));
+        $this->assertEquals($secondaryUri . '/', (string) ($proxy->getPsrSecondaryUri()));
 
 
         return $proxy;
