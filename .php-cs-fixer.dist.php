@@ -56,4 +56,7 @@ return $config
         ],
         'increment_style' => true,
         'is_null' => true,
+        'list_syntax' => [
+            'syntax' => 'short',
+        ],
     ]);

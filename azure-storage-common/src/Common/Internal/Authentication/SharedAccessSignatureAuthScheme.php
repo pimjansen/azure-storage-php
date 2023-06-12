@@ -75,7 +75,7 @@ class SharedAccessSignatureAuthScheme implements IAuthScheme
 
         // append SAS token query values to existing URI
         foreach ($queryValues as $queryField) {
-            list($key, $value) = explode('=', $queryField);
+            [$key, $value] = explode('=', $queryField);
 
             $uri = \GuzzleHttp\Psr7\Uri::withQueryValue($uri, $key, $value);
         }
