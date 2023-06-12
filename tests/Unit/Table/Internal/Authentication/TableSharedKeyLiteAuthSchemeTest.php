@@ -49,7 +49,7 @@ class TableSharedKeyLiteAuthSchemeTest extends \PHPUnit\Framework\TestCase
         $apiVersion = Resources::STORAGE_API_LATEST_VERSION;
         $accountName = TestResources::ACCOUNT_NAME;
         $headers = [Resources::X_MS_DATE => $date, Resources::X_MS_VERSION => $apiVersion];
-        $expected = "\n/$accountName" . parse_url($url, PHP_URL_PATH) . "?comp=list";
+        $expected = "\n/$accountName" . parse_url($url, PHP_URL_PATH) . '?comp=list';
         $mock = new TableSharedKeyLiteAuthSchemeMock($accountName, TestResources::KEY4);
 
         $actual = $mock->computeSignatureMock($headers, $url, $queryParams, $httpMethod);

@@ -267,9 +267,7 @@ class ServiceOptions
      */
     public function generateRequestOptions(array $options)
     {
-        $result = [];
-
-        return $result;
+        return [];
     }
 
     /**

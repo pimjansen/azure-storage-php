@@ -43,7 +43,7 @@ class CreateBlobSnapshotOptionsTest extends \PHPUnit\Framework\TestCase
     public function testSetLeaseId()
     {
         $createBlobSnapshotOptions = new CreateBlobSnapshotOptions();
-        $expected = "123456789";
+        $expected = '123456789';
         $createBlobSnapshotOptions->setLeaseId($expected);
 
         self::assertEquals(

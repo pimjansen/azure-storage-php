@@ -7,7 +7,7 @@ $finder = PhpCsFixer\Finder::create()
         '.build/',
         '.github/',
         '.docker/',
-        'samples'
+        'samples',
     ])
     ->ignoreDotFiles(false)
     ->in(__DIR__);
@@ -140,4 +140,35 @@ return $config
         ],
         'phpdoc_var_without_name' => true,
         'pow_to_exponentiation' => true,
+        'psr_autoloading' => true,
+        'random_api_migration' => true,
+        'return_assignment' => true,
+        'return_type_declaration' => true,
+        'semicolon_after_instruction' => true,
+        'short_scalar_cast' => true,
+        'single_blank_line_before_namespace' => true,
+        'single_line_comment_style' => true,
+        'single_quote' => true,
+        'single_trait_insert_per_statement' => true,
+        'standardize_not_equals' => true,
+        'static_lambda' => true,
+        'strict_param' => true,
+        'switch_case_space' => true,
+        'ternary_operator_spaces' => true,
+        'ternary_to_null_coalescing' => true,
+        'trailing_comma_in_multiline' => [
+            'elements' => [
+                'arrays',
+            ],
+        ],
+        'trim_array_spaces' => true,
+        'unary_operator_spaces' => true,
+        'visibility_required' => [
+            'elements' => [
+                'const',
+                'method',
+                'property',
+            ],
+        ],
+        'whitespace_after_comma_in_array' => true,
     ]);

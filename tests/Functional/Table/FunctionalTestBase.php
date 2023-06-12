@@ -61,7 +61,7 @@ class FunctionalTestBase extends IntegrationTestBase
 
     protected function clearTable($table)
     {
-        $index = array_search($table, TableServiceFunctionalTestData::$testTableNames);
+        $index = array_search($table, TableServiceFunctionalTestData::$testTableNames, true);
         if ($index !== false) {
             // This is a well-known table, so need to create a new one to replace it.
             TableServiceFunctionalTestData::$testTableNames[$index] = TableServiceFunctionalTestData::getInterestingTableName();

@@ -95,7 +95,7 @@ class StorageServiceSettings extends ServiceSettings
         self::$accountKeySetting = self::settingWithFunc(
             Resources::ACCOUNT_KEY_NAME,
             // base64_decode will return false if the $key is not in base64 format.
-            function ($key) {
+            static function ($key) {
                 $isValidBase64String = base64_decode($key, true);
                 if ($isValidBase64String) {
                     return true;
@@ -212,7 +212,7 @@ class StorageServiceSettings extends ServiceSettings
 
         $scheme = parse_url($proxyUri, PHP_URL_SCHEME);
         $host = parse_url($proxyUri, PHP_URL_HOST);
-        $prefix = $scheme . "://" . $host;
+        $prefix = $scheme . '://' . $host;
 
         return new StorageServiceSettings(
             Resources::DEV_STORE_NAME,

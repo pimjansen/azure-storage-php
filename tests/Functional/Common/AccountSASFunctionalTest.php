@@ -54,7 +54,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0 + 1,
             $count1,
-            sprintf("Expected %d container(s), listed %d container(s).", $count0 + 1, $count1)
+            sprintf('Expected %d container(s), listed %d container(s).', $count0 + 1, $count1)
         );
         $blob = TestResources::getInterestingName('blob');
         $content = 'test content';
@@ -66,7 +66,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0,
             $count1,
-            sprintf("Expected %d container(s), listed %d container(s).", $count0, $count1)
+            sprintf('Expected %d container(s), listed %d container(s).', $count0, $count1)
         );
 
         $share = TestResources::getInterestingName('share');
@@ -76,7 +76,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0 + 1,
             $count1,
-            sprintf("Expected %d share(s), listed %d share(s).", $count0 + 1, $count1)
+            sprintf('Expected %d share(s), listed %d share(s).', $count0 + 1, $count1)
         );
         $file = TestResources::getInterestingName('file');
         $content = 'test content';
@@ -88,7 +88,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0,
             $count1,
-            sprintf("Expected %d share(s), listed %d share(s).", $count0, $count1)
+            sprintf('Expected %d share(s), listed %d share(s).', $count0, $count1)
         );
 
         //Validate 'aup'
@@ -99,7 +99,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0 + 1,
             $count1,
-            sprintf("Expected %d queue(s), listed %d queue(s).", $count0 + 1, $count1)
+            sprintf('Expected %d queue(s), listed %d queue(s).', $count0 + 1, $count1)
         );
         $message = TestResources::getInterestingName('message');
         $content = 'test content';
@@ -114,7 +114,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
                 break;
             }
         }
-        self::assertTrue($found, "Created message not found in the specified queue");
+        self::assertTrue($found, 'Created message not found in the specified queue');
         $count3 = count($messages);
         $this->queueRestProxy->deleteMessage(
             $queue,
@@ -125,14 +125,14 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count3 - 1,
             $count1,
-            sprintf("Expected %d messages(s), listed %d messages(s).", $count3 - 1, $count1)
+            sprintf('Expected %d messages(s), listed %d messages(s).', $count3 - 1, $count1)
         );
         $this->safeDeleteQueue($queue);
         $count1 = count($this->queueRestProxy->listQueues()->getQueues());
         self::assertEquals(
             $count0,
             $count1,
-            sprintf("Expected %d queue(s), listed %d queue(s).", $count0, $count1)
+            sprintf('Expected %d queue(s), listed %d queue(s).', $count0, $count1)
         );
     }
 
@@ -157,7 +157,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         //Validate cannot access blob service
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->blobRestProxy->listContainers();
             },
             'Error: access not blocked for blob service.'
@@ -180,7 +180,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         //Validate cannot access queue service
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->queueRestProxy->listQueues();
             },
             'Error: access not blocked for queue service.'
@@ -203,7 +203,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         //Validate cannot access table service
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->tableRestProxy->queryTables();
             },
             'Error: access not blocked for table service.'
@@ -226,7 +226,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         //Validate cannot access file service
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->fileRestProxy->listShares();
             },
             'Error: access not blocked for file service.'
@@ -256,14 +256,14 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         );
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->queueRestProxy->listQueues();
             },
             'Error: access not blocked for list queue operation.'
         );
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->queueRestProxy->createQueue('exceptionqueue');
             },
             'Error: access not blocked for create queue operation.'
@@ -284,14 +284,14 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $this->blobRestProxy->createBlockBlob($container, $blob, 'test message');
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection, $container, $blob) {
+            static function () use ($reflection, $container, $blob) {
                 $reflection->blobRestProxy->getBlob($container, $blob);
             },
             'Error: access not blocked for get blob operation.'
         );
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection, $container, $blob) {
+            static function () use ($reflection, $container, $blob) {
                 $reflection->blobRestProxy->deleteBlob($container, $blob);
             },
             'Error: access not blocked for delete blob operation.'

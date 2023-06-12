@@ -297,7 +297,7 @@ class TableRestProxyTest extends TableServiceRestProxyTestBase
 
         $actualEntity = $entities[0];
         self::assertEquals($pk1, $actualEntity->getPartitionKey());
-        self::assertEquals(EdmType::STRING, $entities[0]->getProperty("CustomerName")->getEdmType());
+        self::assertEquals(EdmType::STRING, $entities[0]->getProperty('CustomerName')->getEdmType());
     }
 
     public function testQueryEntitiesQueryStringOption()

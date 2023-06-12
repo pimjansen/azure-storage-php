@@ -57,7 +57,7 @@ class BatchResult
             $response = new \stdClass();
 
             // Split lines
-            $lines = preg_split("/\\r\\n|\\r|\\n/", $parts[$i]);
+            $lines = preg_split('/\\r\\n|\\r|\\n/', $parts[$i]);
             // Version Status Reason
             $statusTokens = explode(' ', $lines[0], 3);
             $response->version = $statusTokens[0];

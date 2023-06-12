@@ -230,7 +230,7 @@ class ServiceProperties
         $corsesArray = [];
         if (count($this->getCorses()) == 1) {
             $corsesArray = [
-                Resources::XTAG_CORS_RULE => $this->getCorses()[0]->toArray()
+                Resources::XTAG_CORS_RULE => $this->getCorses()[0]->toArray(),
             ];
         } elseif ($this->getCorses() != []) {
             foreach ($this->getCorses() as $cors) {

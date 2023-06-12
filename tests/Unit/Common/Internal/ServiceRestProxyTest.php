@@ -40,7 +40,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $primaryUri = 'http://www.microsoft.com';
         $secondaryUri = 'http://www.bing.com';
         $accountName = 'myaccount';
-        $options['https'] = ['verify' => __DIR__ . "/TestFiles/cacert.pem"];
+        $options['https'] = ['verify' => __DIR__ . '/TestFiles/cacert.pem'];
 
         // Test
         $proxy = new ServiceRestProxy(
@@ -67,7 +67,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         $primaryUri = 'http://www.microsoft.com';
         $secondaryUri = 'http://www.bing.com';
         $accountName = 'myaccount';
-        $options['http'] = ['verify' => __DIR__ . "/TestFiles/cacert.pem"];
+        $options['http'] = ['verify' => __DIR__ . '/TestFiles/cacert.pem'];
 
         // Test
         $proxy = new ServiceRestProxy(
@@ -77,7 +77,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
             $options
         );
 
-        $ref = new \ReflectionProperty(ServiceRestProxy::class, "client");
+        $ref = new \ReflectionProperty(ServiceRestProxy::class, 'client');
         $ref->setAccessible(true);
         /** @var Client $client */
         $client = $ref->getValue($proxy);

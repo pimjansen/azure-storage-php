@@ -100,14 +100,14 @@ class QueueServiceSASFunctionalTest extends SASFunctionalTestBase
             $messageText = \uniqid();
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $queue, $messageText) {
+                static function () use ($proxy, $queue, $messageText) {
                     $proxy->createMessage($queue, $messageText);
                 }
             );
             //r
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $queue) {
+                static function () use ($proxy, $queue) {
                     $proxy->peekMessages($queue);
                 }
             );

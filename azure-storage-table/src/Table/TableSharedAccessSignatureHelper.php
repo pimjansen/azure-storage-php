@@ -68,14 +68,14 @@ class TableSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         $tableName,
         $signedPermissions,
         $signedExpiry,
-        $signedStart = "",
-        $signedIP = "",
-        $signedProtocol = "",
-        $signedIdentifier = "",
-        $startingPartitionKey = "",
-        $startingRowKey = "",
-        $endingPartitionKey = "",
-        $endingRowKey = ""
+        $signedStart = '',
+        $signedIP = '',
+        $signedProtocol = '',
+        $signedIdentifier = '',
+        $startingPartitionKey = '',
+        $startingRowKey = '',
+        $endingPartitionKey = '',
+        $endingRowKey = ''
     ) {
         // check that table name is valid
         Validate::notNullOrEmpty($tableName, 'tableName');
@@ -144,13 +144,13 @@ class TableSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         // implode the parameters into a string
         $stringToSign = implode("\n", $parameters);
         // decode the account key from base64
-        $decodedAccountKey = base64_decode($this->accountKey);
+        $decodedAccountKey = base64_decode($this->accountKey, true);
         // create the signature with hmac sha256
-        $signature = hash_hmac("sha256", $stringToSign, $decodedAccountKey, true);
+        $signature = hash_hmac('sha256', $stringToSign, $decodedAccountKey, true);
         // encode the signature as base64
         $sig = urlencode(base64_encode($signature));
 
-        $buildOptQueryStr = function ($string, $abrv) {
+        $buildOptQueryStr = static function ($string, $abrv) {
             return $string === '' ? '' : $abrv . $string;
         };
         //adding all the components for account SAS together.

@@ -171,7 +171,7 @@ class Logging
             'Write' => Utilities::booleanToString($this->_write),
             'RetentionPolicy' => !empty($this->_retentionPolicy)
                 ? $this->_retentionPolicy->toArray()
-                : null
+                : null,
         ];
     }
 }

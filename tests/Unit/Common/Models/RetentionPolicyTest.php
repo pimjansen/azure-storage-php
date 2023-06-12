@@ -112,7 +112,7 @@ class RetentionPolicyTest extends \PHPUnit\Framework\TestCase
         $retentionPolicy = RetentionPolicy::create($sample['Logging']['RetentionPolicy']);
         $expected = [
             'Enabled' => $sample['Logging']['RetentionPolicy']['Enabled'],
-            'Days' => $sample['Logging']['RetentionPolicy']['Days']
+            'Days' => $sample['Logging']['RetentionPolicy']['Days'],
         ];
 
         // Test

@@ -63,7 +63,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
 
     private function doOneTimeSetup()
     {
-        self::$testTablesPrefix .= rand(0, 1000);
+        self::$testTablesPrefix .= mt_rand(0, 1000);
         // Setup container names array (list of container names used by
         // integration tests)
         self::$testTables = [];
@@ -116,7 +116,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
     {
         $containers = $this->listTables($prefix);
         foreach ($list as $item) {
-            if (!in_array($item, $containers)) {
+            if (!in_array($item, $containers, true)) {
                 $this->createTable($item);
             }
         }
@@ -126,7 +126,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
     {
         $containers = $this->listTables($prefix);
         foreach ($list as $item) {
-            if (in_array($item, $containers)) {
+            if (in_array($item, $containers, true)) {
                 $this->safeDeleteTable($item);
             }
         }

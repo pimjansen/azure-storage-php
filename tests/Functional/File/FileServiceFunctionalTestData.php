@@ -384,8 +384,8 @@ class FileServiceFunctionalTestData
     {
         $ret = [];
 
-        $past = new \DateTime("01/01/2010");
-        $future = new \DateTime("01/01/2020");
+        $past = new \DateTime('01/01/2010');
+        $future = new \DateTime('01/01/2020');
 
         $options = new FileServiceOptions();
         array_push($ret, $options);
@@ -462,8 +462,8 @@ class FileServiceFunctionalTestData
     {
         $ret = [];
 
-        $past = new \DateTime("01/01/2010");
-        $future = new \DateTime("01/01/2020");
+        $past = new \DateTime('01/01/2010');
+        $future = new \DateTime('01/01/2020');
 
         $acl = new ShareACL();
         array_push($ret, $acl);
@@ -546,49 +546,49 @@ class FileServiceFunctionalTestData
             'putRange' => new Range(0, 511),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new Range(0, 511)]
+            'resultListRange' => [new Range(0, 511)],
         ];
 
         $ret[] = [
             'putRange' => new Range(1024, 1535),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new Range(0, 511), new Range(1024, 1535)]
+            'resultListRange' => [new Range(0, 511), new Range(1024, 1535)],
         ];
 
         $ret[] = [
             'putRange' => new Range(512, 1023),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new Range(0, 1535)]
+            'resultListRange' => [new Range(0, 1535)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => new Range(1024, 1535),
             'listRange' => null,
-            'resultListRange' => [new Range(0, 1023)]
+            'resultListRange' => [new Range(0, 1023)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => null,
             'listRange' => new Range(0, 511),
-            'resultListRange' => [new Range(0, 511)]
+            'resultListRange' => [new Range(0, 511)],
         ];
 
         $ret[] = [
             'putRange' => new Range(1024, 2047),
             'clearRange' => new Range(378, 1025),
             'listRange' => null,
-            'resultListRange' => [new Range(0, 511), new Range(1024, 2047)]
+            'resultListRange' => [new Range(0, 511), new Range(1024, 2047)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => new Range(0, 2047),
             'listRange' => null,
-            'resultListRange' => []
+            'resultListRange' => [],
         ];
 
         return $ret;
@@ -602,84 +602,84 @@ class FileServiceFunctionalTestData
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'file',
             'path' => 'dir0/file0',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0/dir00',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0/dir01',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0/dir02/dir020',
-            'error' => 'The specified parent path does not exist'
+            'error' => 'The specified parent path does not exist',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'file',
             'path' => 'dir0/dir02/file020',
-            'error' => 'The specified parent path does not exist'
+            'error' => 'The specified parent path does not exist',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0/dir00/dir000',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'file',
             'path' => 'dir0/dir00/file000',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'delete',
             'type' => 'dir',
             'path' => 'dir0/dir00',
-            'error' => 'The specified directory is not empty.'
+            'error' => 'The specified directory is not empty.',
         ];
 
         $ret[] = [
             'operation' => 'delete',
             'type' => 'dir',
             'path' => 'dir0/dir00/dir000',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'delete',
             'type' => 'file',
             'path' => 'dir0/dir00/file000',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'delete',
             'type' => 'dir',
             'path' => 'dir0/dir00',
-            'error' => ''
+            'error' => '',
         ];
 
         return $ret;

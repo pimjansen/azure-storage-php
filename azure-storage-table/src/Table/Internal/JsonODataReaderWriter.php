@@ -184,7 +184,7 @@ class JsonODataReaderWriter implements IODataReaderWriter
                 continue;
             }
 
-            if (strpos($key, "odata.") === 0) {
+            if (strpos($key, 'odata.') === 0) {
                 continue;
             }
 

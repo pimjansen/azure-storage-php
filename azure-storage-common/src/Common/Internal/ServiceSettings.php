@@ -109,7 +109,7 @@ abstract class ServiceSettings
     ) {
         // @codingStandardsIgnoreStart
 
-        return function ($userSettings) use ($requirements, $isRequired, $atLeastOne) {
+        return static function ($userSettings) use ($requirements, $isRequired, $atLeastOne) {
             $oneFound = false;
             $result = array_change_key_case($userSettings);
             foreach ($requirements as $requirement) {
@@ -212,7 +212,7 @@ abstract class ServiceSettings
 
         $validValuesCount = func_num_args();
 
-        $predicate = function ($settingValue) use ($validValuesCount, $validValues) {
+        $predicate = static function ($settingValue) use ($validValuesCount, $validValues) {
             if (empty($validValues)) {
                 // No restrictions, succeed,
                 return true;

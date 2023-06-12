@@ -240,7 +240,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return ListQueuesResult::create(
                 $parsed,
@@ -398,7 +398,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
             Resources::STATUS_CREATED,
             $body,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return CreateMessageResult::create($parsed);
         }, null);
@@ -637,7 +637,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
             Resources::STATUS_OK,
             $body,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $responseHeaders = HttpFormatter::formatHeaders($response->getHeaders());
             $metadata = Utilities::getMetadataArray($responseHeaders);
             $maxCount = (int) (
@@ -716,7 +716,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return ListMessagesResult::create($parsed);
         }, null);
@@ -782,7 +782,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return PeekMessagesResult::create($parsed);
         }, null);
@@ -981,7 +981,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
             Resources::STATUS_NO_CONTENT,
             $body,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $responseHeaders = HttpFormatter::formatHeaders($response->getHeaders());
             return UpdateMessageResult::create($responseHeaders);
         }, null);
@@ -1050,7 +1050,7 @@ class QueueRestProxy extends ServiceRestProxy implements IQueue
             $options
         );
 
-        return $promise->then(function ($response) use ($dataSerializer) {
+        return $promise->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return QueueACL::create($parsed);
         }, null);

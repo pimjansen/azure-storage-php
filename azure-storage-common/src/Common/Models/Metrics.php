@@ -150,7 +150,7 @@ class Metrics
     {
         $array = [
             'Version' => $this->_version,
-            'Enabled' => Utilities::booleanToString($this->_enabled)
+            'Enabled' => Utilities::booleanToString($this->_enabled),
         ];
         if ($this->_enabled) {
             $array['IncludeAPIs'] = Utilities::booleanToString($this->_includeAPIs);

@@ -28,7 +28,7 @@ use MicrosoftAzure\Storage\Tests\Unit\Common\Models\AccessPolicyTest;
  *
  * @see      https://github.com/azure/azure-storage-php
  */
-class TableAccessPolicyTest extends AccessPolicyTest
+class TablePolicyTest extends AccessPolicyTest
 {
     protected function createAccessPolicy()
     {

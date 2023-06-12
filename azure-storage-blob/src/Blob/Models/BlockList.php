@@ -145,7 +145,7 @@ class BlockList
 
         foreach ($this->entries as $value) {
             $array[] = [
-                $value->getType() => $value->getBlockId()
+                $value->getType() => $value->getBlockId(),
             ];
         }
 

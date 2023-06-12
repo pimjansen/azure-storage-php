@@ -54,13 +54,13 @@ class TableServiceFunctionalTestData
     public static function setupData()
     {
         self::$INT_MIN_VALUE = -1 - self::INT_MAX_VALUE;
-        $rint = rand(0, 1000000);
+        $rint = mt_rand(0, 1000000);
         self::$testUniqueId = 'qaX' . $rint . 'X';
         self::$nonExistTablePrefix = 'qaX' . ($rint + 1) . 'X';
         self::$testTableNames = [
             self::$testUniqueId . 'a1',
             self::$testUniqueId . 'a2',
-            self::$testUniqueId . 'b1'
+            self::$testUniqueId . 'b1',
         ];
     }
 
@@ -613,8 +613,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadStrings()
     {
-        $ret = [];
+        return [];
         // Are there any?
-        return $ret;
     }
 }

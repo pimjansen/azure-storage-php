@@ -65,7 +65,7 @@ class BlobStorageAccountFunctionalTest extends \PHPUnit\Framework\TestCase
     public function testSetBlobTier()
     {
         $blob = TestResources::getInterestingName('b');
-        self::$blobRestProxy->createblockblob($this->containerName, $blob, "");
+        self::$blobRestProxy->createblockblob($this->containerName, $blob, '');
 
         $properties = self::$blobRestProxy->getBlobProperties($this->containerName, $blob);
         self::assertNotNull($properties->getProperties()->getAccessTier());

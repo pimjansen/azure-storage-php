@@ -89,12 +89,12 @@ class Resources
     public const INVALID_CERTIFICATE_PATH = "The provided certificate path '%s' is invalid.";
     public const INSTANCE_TYPE_VALIDATION_MSG = 'The type of %s is %s but is expected to be %s.';
     public const INVALID_MESSAGE_OBJECT_TO_SERIALIZE = 'The given object does not have required methods, so it could not be serialized.';
-    public const MISSING_CONNECTION_STRING_CHAR = "Missing %s character";
+    public const MISSING_CONNECTION_STRING_CHAR = 'Missing %s character';
     public const ERROR_PARSING_STRING = "'%s' at position %d.";
     public const INVALID_CONNECTION_STRING = "Argument '%s' is not a valid connection string: '%s'";
     public const ERROR_CONNECTION_STRING_MISSING_KEY = 'Missing key name';
     public const ERROR_CONNECTION_STRING_EMPTY_KEY = 'Empty key name';
-    public const ERROR_CONNECTION_STRING_MISSING_CHARACTER = "Missing %s character";
+    public const ERROR_CONNECTION_STRING_MISSING_CHARACTER = 'Missing %s character';
     public const ERROR_EMPTY_SETTINGS = 'No keys were found in the connection string';
     public const MISSING_LOCK_LOCATION_MSG = 'The lock location of the brokered message is missing.';
     public const INVALID_SAS_TOKEN = 'The shared access signatures (SAS) provided is not valid \'%s\'';
@@ -118,9 +118,9 @@ class Resources
     public const INVALID_PERMISSION_PROVIDED = 'Invalid permission provided, the permission of resource type \'%s\' can only be of \'%s\'';
     public const INVALID_RESOURCE_TYPE = 'Provided resource type is invalid.';
     public const ERROR_KEY_NOT_EXIST = "The key '%s' does not exist in the given array.";
-    public const RESOURCE_RANGE_LENGTH_MUST_SET = "The start and end/length of the range must be set.";
-    public const INVALID_ACCEPT_CONTENT_TYPE = "The given accept content type is not valid.";
-    public const ERROR_CANNOT_PARSE_XML = "Cannot parse XML, reasons: %s";
+    public const RESOURCE_RANGE_LENGTH_MUST_SET = 'The start and end/length of the range must be set.';
+    public const INVALID_ACCEPT_CONTENT_TYPE = 'The given accept content type is not valid.';
+    public const ERROR_CANNOT_PARSE_XML = 'Cannot parse XML, reasons: %s';
     public const INVALID_SCHEME = 'HTTP scheme can only be string \'http\' or \'https\'.';
     public const AAD_TOKEN_MUST_START_WITH_BEARER = 'AAD token is invalid, please make sure that it has format \'Bearer ################\'';
 
@@ -212,8 +212,8 @@ class Resources
     public const SETTING_NAME = 'SettingName';
     public const SETTING_CONSTRAINT = 'SettingConstraint';
     public const DEV_STORE_URI = 'http://127.0.0.1';
-    public const SERVICE_URI_FORMAT = "%s://%s.%s";
-    public const WRAP_ENDPOINT_URI_FORMAT = "https://%s-sb.accesscontrol.windows.net/WRAPv0.9";
+    public const SERVICE_URI_FORMAT = '%s://%s.%s';
+    public const WRAP_ENDPOINT_URI_FORMAT = 'https://%s-sb.accesscontrol.windows.net/WRAPv0.9';
     public const MB_IN_BYTES_1 = 1048576;
     public const MB_IN_BYTES_4 = 4194304;
     public const MB_IN_BYTES_32 = 33554432;

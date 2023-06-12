@@ -139,7 +139,7 @@ class RetryMiddlewareFactory
      */
     protected static function createRetryDecider($type, $maxRetries, $retryConnect)
     {
-        return function (
+        return static function (
             $retries,
             $request,
             $response = null,
@@ -239,7 +239,7 @@ class RetryMiddlewareFactory
      */
     protected static function createLinearDelayCalculator($interval)
     {
-        return function ($retries) use ($interval) {
+        return static function ($retries) use ($interval) {
             return $retries * $interval;
         };
     }
@@ -255,7 +255,7 @@ class RetryMiddlewareFactory
      */
     protected static function createExponentialDelayCalculator($interval)
     {
-        return function ($retries) use ($interval) {
+        return static function ($retries) use ($interval) {
             return $interval * ((int) 2 ** $retries);
         };
     }

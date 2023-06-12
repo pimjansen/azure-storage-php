@@ -795,7 +795,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
     public function testCreateMessage()
     {
-        $interestingTimes = [ null, -2, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000 ];
+        $interestingTimes = [null, -2, 0, QueueServiceFunctionalTestData::INTERESTING_TTL, 1000];
         foreach ($interestingTimes as $timeToLiveInSeconds) {
             foreach ($interestingTimes as $visibilityTimeoutInSeconds) {
                 $timeout = null;
@@ -902,7 +902,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
             -1,
             0,
             QueueServiceFunctionalTestData::INTERESTING_TTL,
-            QueueServiceFunctionalTestData::INTERESTING_TTL * 2
+            QueueServiceFunctionalTestData::INTERESTING_TTL * 2,
         ];
 
         $startingMessage = new CreateMessageOptions();
@@ -927,7 +927,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
             -1,
             0,
             QueueServiceFunctionalTestData::INTERESTING_TTL,
-            QueueServiceFunctionalTestData::INTERESTING_TTL * 2
+            QueueServiceFunctionalTestData::INTERESTING_TTL * 2,
         ];
 
         $startingMessage = new CreateMessageOptions();
@@ -1403,7 +1403,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
                 new Response(408, ['test_header' => 'test_header_value'])
             ),
             new Response(500, ['test_header' => 'test_header_value']),
-            $response
+            $response,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = QueueRestProxy::createQueueService($this->connectionString, $restOptions);
@@ -1451,7 +1451,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
                 $request,
                 new Response(404, ['test_header' => 'test_header_value'])
             ),
-            $response
+            $response,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = QueueRestProxy::createQueueService($this->connectionString, $restOptions);

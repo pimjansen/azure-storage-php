@@ -578,7 +578,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             $options
         );
 
-        return $this->sendContextAsync($context)->then(function ($response) {
+        return $this->sendContextAsync($context)->then(static function ($response) {
             return UpdateEntityResult::create(
                 HttpFormatter::formatHeaders($response->getHeaders())
             );
@@ -722,9 +722,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $value = str_replace('\'', '\'\'', $value);
 
         // Encode the special URL characters
-        $value = rawurlencode($value);
-
-        return $value;
+        return rawurlencode($value);
     }
 
     /**
@@ -871,7 +869,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($odataSerializer) {
+        )->then(static function ($response) use ($odataSerializer) {
             $tables = $odataSerializer->parseTableEntries($response->getBody());
             return QueryTablesResult::create(
                 HttpFormatter::formatHeaders($response->getHeaders()),
@@ -1013,7 +1011,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($odataSerializer) {
+        )->then(static function ($response) use ($odataSerializer) {
             return GetTableResult::create($response->getBody(), $odataSerializer);
         }, null);
     }
@@ -1171,7 +1169,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($odataSerializer) {
+        )->then(static function ($response) use ($odataSerializer) {
             $entities = $odataSerializer->parseEntities($response->getBody());
 
             return QueryEntitiesResult::create(
@@ -1225,7 +1223,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $odataSerializer = $this->odataSerializer;
 
         return $this->sendContextAsync($context)->then(
-            function ($response) use ($odataSerializer) {
+            static function ($response) use ($odataSerializer) {
                 $body = $response->getBody();
                 $headers = HttpFormatter::formatHeaders($response->getHeaders());
                 return InsertEntityResult::create(
@@ -1554,7 +1552,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         $odataSerializer = $this->odataSerializer;
 
         return $this->sendContextAsync($context)->then(
-            function ($response) use ($odataSerializer) {
+            static function ($response) use ($odataSerializer) {
                 return GetEntityResult::create(
                     $response->getBody(),
                     $odataSerializer
@@ -1627,7 +1625,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             Resources::STATUS_ACCEPTED,
             $body,
             $options
-        )->then(function ($response) use (
+        )->then(static function ($response) use (
             $operations,
             $contexts,
             $odataSerializer,
@@ -1712,7 +1710,7 @@ class TableRestProxy extends ServiceRestProxy implements ITable
             $options
         );
 
-        return $promise->then(function ($response) use ($dataSerializer) {
+        return $promise->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return TableACL::create($parsed);
         }, null);

@@ -105,15 +105,15 @@ class ServiceRestProxy extends RestProxy
             array_merge(
                 $options,
                 [
-                    "defaults" => [
-                        "allow_redirects" => true,
-                        "exceptions" => true,
-                        "decode_content" => true,
-                        "config" => [
-                            "curl" => [
-                                CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2
-                            ]
-                        ]
+                    'defaults' => [
+                        'allow_redirects' => true,
+                        'exceptions' => true,
+                        'decode_content' => true,
+                        'config' => [
+                            'curl' => [
+                                CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2,
+                            ],
+                        ],
                     ],
                     'cookies' => true,
                     'verify' => $verify,
@@ -199,7 +199,7 @@ class ServiceRestProxy extends RestProxy
         $client = $this->client;
         $middlewareStack = $this->createMiddlewareStack($options);
 
-        $sendAsync = function ($request, $options) use ($client) {
+        $sendAsync = static function ($request, $options) use ($client) {
             if ($request->getMethod() == 'HEAD') {
                 $options['decode_content'] = false;
             }
@@ -211,7 +211,7 @@ class ServiceRestProxy extends RestProxy
         $requestOptions = $this->generateRequestOptions($options, $handler);
 
         $promises = \call_user_func(
-            function () use (
+            static function () use (
                 $generator,
                 $handler,
                 $requestOptions
@@ -224,18 +224,18 @@ class ServiceRestProxy extends RestProxy
 
         $eachPromise = new EachPromise($promises, [
             'concurrency' => $options->getNumberOfConcurrency(),
-            'fulfilled' => function ($response, $index) use ($statusCode) {
+            'fulfilled' => static function ($response, $index) use ($statusCode) {
                 //the promise is fulfilled, evaluate the response
                 self::throwIfError(
                     $response,
                     $statusCode
                 );
             },
-            'rejected' => function ($reason, $index) {
+            'rejected' => static function ($reason, $index) {
                 //Still rejected even if the retry logic has been applied.
                 //Throwing exception.
                 throw $reason;
-            }
+            },
         ]);
 
         return $eachPromise->promise();
@@ -362,7 +362,7 @@ class ServiceRestProxy extends RestProxy
 
         $middlewareStack = $this->createMiddlewareStack($serviceOptions);
 
-        $sendAsync = function ($request, $options) use ($client) {
+        $sendAsync = static function ($request, $options) use ($client) {
             return $client->sendAsync($request, $options);
         };
 
@@ -378,7 +378,7 @@ class ServiceRestProxy extends RestProxy
         $promise = \call_user_func($handler, $request, $requestOptions);
 
         return $promise->then(
-            function ($response) use ($expected, $requestOptions) {
+            static function ($response) use ($expected, $requestOptions) {
                 self::throwIfError(
                     $response,
                     $expected
@@ -493,7 +493,7 @@ class ServiceRestProxy extends RestProxy
     {
         $expectedStatusCodes = is_array($expected) ? $expected : [$expected];
 
-        if (!in_array($response->getStatusCode(), $expectedStatusCodes)) {
+        if (!in_array($response->getStatusCode(), $expectedStatusCodes, true)) {
             throw new ServiceException($response);
         }
     }
@@ -553,9 +553,7 @@ class ServiceRestProxy extends RestProxy
         Utilities::validateMetadata($metadata);
 
         $metadata = $this->generateMetadataHeaders($metadata);
-        $headers = array_merge($headers, $metadata);
-
-        return $headers;
+        return array_merge($headers, $metadata);
     }
 
     /**

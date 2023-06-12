@@ -52,7 +52,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
         $properties = ServiceProperties::create($propertiesSample);
         $expected = $properties->toXml($xmlSerializer);
         $array = $properties->toArray();
-        $serializerProperties = [XmlSerializer::ROOT_NAME => "StorageServiceProperties"];
+        $serializerProperties = [XmlSerializer::ROOT_NAME => 'StorageServiceProperties'];
 
         // Test
         $actual = $xmlSerializer->serialize($array, $serializerProperties);
@@ -70,8 +70,8 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
         $object = [
             '@attributes' => [
                 'field1' => 'value1',
-                'field2' => 'value2'
-            ]
+                'field2' => 'value2',
+            ],
         ];
         $serializerProperties = [XmlSerializer::ROOT_NAME => 'Object'];
 

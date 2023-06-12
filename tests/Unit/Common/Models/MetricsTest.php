@@ -175,7 +175,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
             'Version' => $sample['HourMetrics']['Version'],
             'Enabled' => $sample['HourMetrics']['Enabled'],
             'IncludeAPIs' => $sample['HourMetrics']['IncludeAPIs'],
-            'RetentionPolicy' => $metrics->getRetentionPolicy()->toArray()
+            'RetentionPolicy' => $metrics->getRetentionPolicy()->toArray(),
         ];
 
         // Test
@@ -194,7 +194,7 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
         $expected = [
             'Version' => $sample['HourMetrics']['Version'],
             'Enabled' => $sample['HourMetrics']['Enabled'],
-            'RetentionPolicy' => $metrics->getRetentionPolicy()->toArray()
+            'RetentionPolicy' => $metrics->getRetentionPolicy()->toArray(),
         ];
 
         // Test

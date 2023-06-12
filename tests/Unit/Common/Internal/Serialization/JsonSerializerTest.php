@@ -76,7 +76,7 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $jsonSerializer = new JsonSerializer();
-        $testData = "";
+        $testData = '';
         $expected = null;
 
         // Test
@@ -90,7 +90,7 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $jsonSerializer = new JsonSerializer();
-        $testData = "{]{{test]";
+        $testData = '{]{{test]';
         $expected = null;
 
         // Test
@@ -119,7 +119,7 @@ class JsonSerializerTest extends \PHPUnit\Framework\TestCase
         // Setup
         $jsonSerializer = new JsonSerializer();
         $testData = null;
-        $expected = "";
+        $expected = '';
         $this->expectException('MicrosoftAzure\Storage\Common\Exceptions\InvalidArgumentTypeException');
         $this->expectExceptionMessage(sprintf(Resources::INVALID_PARAM_MSG, 'array', 'array'));
 

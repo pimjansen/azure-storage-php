@@ -52,7 +52,7 @@ class MimeReaderWriter implements IMimeReaderWriter
         $contentType2 = ['content_type' => "$mimeType; boundary=$changeSetId"];
         $options = [
             'encoding' => 'binary',
-            'content_type' => Resources::HTTP_TYPE
+            'content_type' => Resources::HTTP_TYPE,
         ];
 
         $eof = "\r\n";
@@ -61,26 +61,26 @@ class MimeReaderWriter implements IMimeReaderWriter
         $result['body'] = Resources::EMPTY_STRING;
         $result['headers'] = [];
 
-        $batchBody = & $result['body'];
-        $batchHeaders = & $result['headers'];
+        $batchBody = &$result['body'];
+        $batchHeaders = &$result['headers'];
 
         $batchHeaders['Content-Type'] = $mimeType . "; boundary=\"$batchId\"";
 
-        $batchBody .= "--" . $batchId . $eof;
+        $batchBody .= '--' . $batchId . $eof;
         $batchBody .= "Content-Type: $mimeType; boundary=\"$changeSetId\"" . $eof;
 
         $batchBody .= $eof;
         for ($i = 0; $i < count($bodyPartContents); ++$i) {
-            $batchBody .= "--" . $changeSetId . $eof;
+            $batchBody .= '--' . $changeSetId . $eof;
 
-            $batchBody .= "Content-Transfer-Encoding: binary" . $eof;
-            $batchBody .= "Content-Type: " . Resources::HTTP_TYPE . $eof;
+            $batchBody .= 'Content-Transfer-Encoding: binary' . $eof;
+            $batchBody .= 'Content-Type: ' . Resources::HTTP_TYPE . $eof;
 
             $batchBody .= $eof . $bodyPartContents[$i] . $eof;
         }
-        $batchBody .= "--" . $changeSetId . "--" . $eof;
+        $batchBody .= '--' . $changeSetId . '--' . $eof;
         $batchBody .= $eof;
-        $batchBody .= "--" . $batchId . "--" . $eof;
+        $batchBody .= '--' . $batchId . '--' . $eof;
 
         return $result;
     }

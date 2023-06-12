@@ -1441,7 +1441,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $exceptedRangesDiff = [
             new RangeDiff(512, 1023, false),
             new RangeDiff(0, 511, true),
-            new RangeDiff(1024, 1535, true)
+            new RangeDiff(1024, 1535, true),
         ];
 
         // Test
@@ -1906,7 +1906,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $blob = 'EmptyFile';
         $this->createContainer($name);
         $contentType = 'text/plain; charset=UTF-8';
-        $content = "";
+        $content = '';
         $options = new CreateBlockBlobOptions();
         $options->setContentType($contentType);
         $this->restProxy->createBlockBlob($name, $blob, $content, $options);
@@ -1952,7 +1952,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $name = 'createbloblargerthansingleblock' . $this->createSuffix();
         $this->createContainer($name);
         $contentType = 'text/plain; charset=UTF-8';
-        $content = "This is a really long section of text needed for this test.";
+        $content = 'This is a really long section of text needed for this test.';
         // Note this grows fast, each loop doubles the last run. Do not make too big
         // This results in a 1888 byte string, divided by 50 results in 38 blocks
         for ($i = 0; $i < 5; ++$i) {

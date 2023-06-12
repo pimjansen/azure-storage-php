@@ -87,9 +87,9 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         foreach ($shares as $share) {
             $shareNames[] = $share->getName();
         }
-        self::assertTrue(\in_array($share1, $shareNames));
-        self::assertTrue(\in_array($share2, $shareNames));
-        self::assertTrue(\in_array($share3, $shareNames));
+        self::assertTrue(\in_array($share1, $shareNames, true));
+        self::assertTrue(\in_array($share2, $shareNames, true));
+        self::assertTrue(\in_array($share3, $shareNames, true));
     }
 
     public function testGetSetShareMetadataAndProperties()
@@ -223,7 +223,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $result1 = $this->restProxy->listDirectoriesAndFiles($share, $testdirectory1);
         $result2 = $this->restProxy->listDirectoriesAndFiles($share, $testdirectory2);
 
-        $validator = function ($resources, $target) {
+        $validator = static function ($resources, $target) {
             $result = false;
             foreach ($resources as $resource) {
                 if ($resource->getName() == $target) {
@@ -319,7 +319,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $resultDir = $this->restProxy->listDirectoriesAndFiles($share, $dir1, $optionsDirPrefix);
         $resultFile = $this->restProxy->listDirectoriesAndFiles($share, $dir1, $optionsFilePrefix);
 
-        $validator = function ($resources, $target) {
+        $validator = static function ($resources, $target) {
             $result = false;
             foreach ($resources as $resource) {
                 if ($resource->getName() == $target) {
@@ -360,7 +360,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $result = $this->restProxy->listDirectoriesAndFiles($share);
 
-        $validator = function ($directories, $target) {
+        $validator = static function ($directories, $target) {
             $result = false;
             foreach ($directories as $directory) {
                 if ($directory->getName() == $target) {
@@ -402,7 +402,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta3' => 'testmetacontent3',
             'testmeta4' => 'testmetacontent4',
             'testmeta5' => 'testmetacontent5',
-            'testmeta6' => 'testmetacontent6'
+            'testmeta6' => 'testmetacontent6',
         ];
 
         $options = new CreateDirectoryOptions();
@@ -431,7 +431,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta3' => 'testmetacontent3',
             'testmeta4' => 'testmetacontent4',
             'testmeta5' => 'testmetacontent5',
-            'testmeta6' => 'testmetacontent6'
+            'testmeta6' => 'testmetacontent6',
         ];
 
         $options = new CreateDirectoryOptions();
@@ -454,7 +454,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta33' => 'testmetacontent33',
             'testmeta44' => 'testmetacontent44',
             'testmeta55' => 'testmetacontent55',
-            'testmeta66' => 'testmetacontent66'
+            'testmeta66' => 'testmetacontent66',
         ];
 
         $result = $this->restProxy->setDirectoryMetadata(
@@ -580,7 +580,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta33' => 'testmetacontent33',
             'testmeta44' => 'testmetacontent44',
             'testmeta55' => 'testmetacontent55',
-            'testmeta66' => 'testmetacontent66'
+            'testmeta66' => 'testmetacontent66',
         ];
 
         $this->restProxy->setFileMetadata($share, $fileName, $metadata);
@@ -694,7 +694,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta33' => 'testmetacontent33',
             'testmeta44' => 'testmetacontent44',
             'testmeta55' => 'testmetacontent55',
-            'testmeta66' => 'testmetacontent66'
+            'testmeta66' => 'testmetacontent66',
         ];
 
         $this->restProxy->copyFile($share, $destFileName, $source, $metadata);
@@ -738,7 +738,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $content1 .= openssl_random_pseudo_bytes(Resources::MB_IN_BYTES_4);
         $content1 = str_pad($content1, Resources::MB_IN_BYTES_4 * 4, "\0", STR_PAD_RIGHT);
         $content2 = openssl_random_pseudo_bytes(Resources::MB_IN_BYTES_4 * 4);
-        $content3 = "";
+        $content3 = '';
 
         $testfile0 = 'testfile0';
         $testfile1 = 'testfile1';

@@ -728,7 +728,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             }
 
             // setMetadata only honors If-Modified-Since
-            if (! $this->isEmulated()
+            if (!$this->isEmulated()
                 && !BlobServiceFunctionalTestData::passTemporalAccessCondition(
                     $options->getAccessConditions()
                 ) && (null !== $options->getAccessConditions()
@@ -1013,8 +1013,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             $canDownloadBlobList = $this->canDownloadFromUrl(
                 $blobListAddress,
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?" .
-                    "><EnumerationResults"
+                '<?xml version="1.0" encoding="utf-8"?' .
+                    '><EnumerationResults'
             );
             $canDownloadBlob = $this->canDownloadFromUrl($blobAddress, $blobContent);
 
@@ -1227,7 +1227,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $blob = BlobServiceFunctionalTestData::getInterestingBlobName($container);
 
         // Make sure there is something to test
-        $createBlockBlobResult = $this->restProxy->createBlockBlob($container, $blob, "");
+        $createBlockBlobResult = $this->restProxy->createBlockBlob($container, $blob, '');
 
         $properties = BlobServiceFunctionalTestData::getNiceMetadata();
         $this->restProxy->setBlobMetadata($container, $blob, $properties);
@@ -1356,7 +1356,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $blob = BlobServiceFunctionalTestData::getInterestingBlobName($container);
 
         // Make sure there is something to test
-        $createBlockBlobResult = $this->restProxy->createBlockBlob($container, $blob, "");
+        $createBlockBlobResult = $this->restProxy->createBlockBlob($container, $blob, '');
         if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
@@ -2424,7 +2424,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 new Response(408, ['test_header' => 'test_header_value'])
             ),
             new Response(500, ['test_header' => 'test_header_value']),
-            $response
+            $response,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = BlobRestProxy::createBlobService($this->connectionString, $restOptions);
@@ -2473,7 +2473,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $request,
                 new Response(404, ['test_header' => 'test_header_value'])
             ),
-            $response
+            $response,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = BlobRestProxy::createBlobService($this->connectionString, $restOptions);
@@ -2526,7 +2526,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         //setup the mock handler
         $mock = MockHandler::createWithMiddleware([
             new Response(500, ['test_header' => 'test_header_value']),
-            $mockResponse
+            $mockResponse,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = BlobRestProxy::createBlobService($this->connectionString, $restOptions);
@@ -2556,7 +2556,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertEquals(LocationMode::SECONDARY_ONLY, $options->getLocationMode());
 
         $mock = MockHandler::createWithMiddleware([
-            $mockResponse
+            $mockResponse,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = BlobRestProxy::createBlobService($this->connectionString, $restOptions);
@@ -2600,7 +2600,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         // create a block blob.
         $container = BlobServiceFunctionalTestData::getContainerName();
         $blobName = BlobServiceFunctionalTestData::getInterestingBlobName($container);
-        $this->restProxy->createBlockBlob($container, $blobName, "TEST_CONTENT");
+        $this->restProxy->createBlockBlob($container, $blobName, 'TEST_CONTENT');
         // create a temp file of size $size.
         $cwd = getcwd();
         $uuid = uniqid('test-file-', true);
@@ -2630,7 +2630,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             $message = $e->getMessage();
         }
         self::assertEquals(TestResources::STATUS_CONFLICT, $code);
-        self::assertContains("The specified blob already exists", $message);
+        self::assertContains('The specified blob already exists', $message);
         unlink($path);
     }
 
@@ -2725,7 +2725,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $committed = BlobBlockType::COMMITTED_TYPE;
         $blockList = [
             new Block($blockIds[1], $latest),
-            new Block($blockIds[3], $latest)
+            new Block($blockIds[3], $latest),
         ];
         $this->restProxy->commitBlobBlocks($container, $blob, $blockList);
         //verify MD5 and uncommitted.

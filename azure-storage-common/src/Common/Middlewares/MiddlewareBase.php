@@ -46,7 +46,7 @@ class MiddlewareBase implements IMiddleware
     public function __invoke(callable $handler)
     {
         $reflection = $this;
-        return function ($request, $options) use ($handler, $reflection) {
+        return static function ($request, $options) use ($handler, $reflection) {
             $request = $reflection->onRequest($request);
             return $handler($request, $options)->then(
                 $reflection->onFulfilled($request, $options),
@@ -79,7 +79,7 @@ class MiddlewareBase implements IMiddleware
      */
     protected function onFulfilled(RequestInterface $request, array $options)
     {
-        return function (ResponseInterface $response) {
+        return static function (ResponseInterface $response) {
             //do nothing
             return $response;
         };
@@ -96,7 +96,7 @@ class MiddlewareBase implements IMiddleware
      */
     protected function onRejected(RequestInterface $request, array $options)
     {
-        return function ($reason) {
+        return static function ($reason) {
             //do nothing
             return new RejectedPromise($reason);
         };

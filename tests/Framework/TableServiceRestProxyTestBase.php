@@ -48,7 +48,7 @@ class TableServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function deleteTable($tableName)
     {
-        if (($key = array_search($tableName, $this->_createdTables)) !== false) {
+        if (($key = array_search($tableName, $this->_createdTables, true)) !== false) {
             unset($this->_createdTables[$key]);
         }
         $this->restProxy->deleteTable($tableName);

@@ -915,7 +915,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             $this->restProxy->createFile(
                 $shareName,
                 FileServiceFunctionalTestData::getInterestingFileName(),
-                \rand(1, 100)
+                \mt_rand(1, 100)
             );
         }
     }
@@ -1727,21 +1727,21 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $proxy = $this->restProxy;
         if ($type == 'dir') {
             if ($operation == 'create') {
-                $worker = function () use ($share, $path, $proxy) {
+                $worker = static function () use ($share, $path, $proxy) {
                     $proxy->createDirectory($share, $path);
                 };
             } elseif ($operation == 'delete') {
-                $worker = function () use ($share, $path, $proxy) {
+                $worker = static function () use ($share, $path, $proxy) {
                     $proxy->deleteDirectory($share, $path);
                 };
             }
         } elseif ($type == 'file') {
             if ($operation == 'create') {
-                $worker = function () use ($share, $path, $proxy) {
+                $worker = static function () use ($share, $path, $proxy) {
                     $proxy->createFile($share, $path, 2048);
                 };
             } elseif ($operation == 'delete') {
-                $worker = function () use ($share, $path, $proxy) {
+                $worker = static function () use ($share, $path, $proxy) {
                     $proxy->deleteFile($share, $path);
                 };
             }
@@ -1878,7 +1878,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 new Response(408, ['test_header' => 'test_header_value'])
             ),
             new Response(500, ['test_header' => 'test_header_value']),
-            $response
+            $response,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = FileRestProxy::createFileService($this->connectionString, $restOptions);

@@ -222,7 +222,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $responseHeaders = HttpFormatter::formatHeaders($response->getHeaders());
             return GetSharePropertiesResult::create($responseHeaders);
         }, null);
@@ -505,7 +505,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return ListSharesResult::create(
                 $parsed,
@@ -870,7 +870,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             $options
         );
 
-        return $promise->then(function ($response) use ($dataSerializer) {
+        return $promise->then(static function ($response) use ($dataSerializer) {
             $responseHeaders = HttpFormatter::formatHeaders($response->getHeaders());
 
             $etag = Utilities::tryGetValue($responseHeaders, Resources::ETAG);
@@ -1038,7 +1038,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return GetShareStatsResult::create($parsed);
         }, null);
@@ -1140,7 +1140,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return ListDirectoriesAndFilesResult::create(
                 $parsed,
@@ -1344,7 +1344,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $parsed = HttpFormatter::formatHeaders($response->getHeaders());
             return GetDirectoryPropertiesResult::create($parsed);
         }, null);
@@ -1420,7 +1420,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $parsed = HttpFormatter::formatHeaders($response->getHeaders());
             return GetDirectoryMetadataResult::create($parsed);
         }, null);
@@ -1781,7 +1781,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             [Resources::STATUS_OK, Resources::STATUS_PARTIAL_CONTENT],
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $metadata = Utilities::getMetadataArray(
                 HttpFormatter::formatHeaders($response->getHeaders())
             );
@@ -1858,7 +1858,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $parsed = HttpFormatter::formatHeaders($response->getHeaders());
             return FileProperties::createFromHttpHeaders($parsed);
         }, null);
@@ -2045,7 +2045,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $parsed = HttpFormatter::formatHeaders($response->getHeaders());
             return GetFileMetadataResult::create($parsed);
         }, null);
@@ -2518,7 +2518,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $responseHeaders = HttpFormatter::formatHeaders($response->getHeaders());
             $parsed = $dataSerializer->unserialize($response->getBody());
             return ListFileRangesResult::create($responseHeaders, $parsed);
@@ -2639,7 +2639,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_ACCEPTED,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $headers = HttpFormatter::formatHeaders($response->getHeaders());
             return CopyFileResult::create($headers);
         }, null);

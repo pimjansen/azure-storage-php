@@ -96,14 +96,14 @@ class TableServiceSASFunctionalTest extends SASFunctionalTestBase
             //a
             $this->validateServiceExceptionErrorMessage(
                 'This request is not authorized to perform this operation.',
-                function () use ($proxy, $table, $entity) {
+                static function () use ($proxy, $table, $entity) {
                     $proxy->insertEntity($table, $entity);
                 }
             );
             //r
             $this->validateServiceExceptionErrorMessage(
                 'This request is not authorized to perform this operation.',
-                function () use ($proxy, $table) {
+                static function () use ($proxy, $table) {
                     $proxy->queryEntities($table);
                 }
             );
@@ -147,7 +147,7 @@ class TableServiceSASFunctionalTest extends SASFunctionalTestBase
         $entity = TestResources::getTestEntity('124', '456');
         $this->validateServiceExceptionErrorMessage(
             'This request is not authorized to perform this operation.',
-            function () use ($tableProxy, $table, $entity) {
+            static function () use ($tableProxy, $table, $entity) {
                 $tableProxy->insertEntity($table, $entity);
             }
         );
@@ -155,7 +155,7 @@ class TableServiceSASFunctionalTest extends SASFunctionalTestBase
         $entity = TestResources::getTestEntity('123', '457');
         $this->validateServiceExceptionErrorMessage(
             'This request is not authorized to perform this operation.',
-            function () use ($tableProxy, $table, $entity) {
+            static function () use ($tableProxy, $table, $entity) {
                 $tableProxy->insertEntity($table, $entity);
             }
         );

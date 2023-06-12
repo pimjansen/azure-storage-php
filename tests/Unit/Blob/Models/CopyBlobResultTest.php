@@ -32,11 +32,11 @@ class CopyBlobResultTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreate()
     {
-        $expectedEtag = "12345678";
+        $expectedEtag = '12345678';
         $expectedLastModified = 'Fri, 16 Oct 2009 21:04:30 GMT';
         $headers = [
             Resources::ETAG => $expectedEtag,
-            Resources::LAST_MODIFIED => $expectedLastModified
+            Resources::LAST_MODIFIED => $expectedLastModified,
         ];
 
         $result = CopyBlobResult::create($headers);

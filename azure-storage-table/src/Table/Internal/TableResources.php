@@ -83,7 +83,7 @@ class TableResources extends Resources
 
     // Resource permissions
     public const ACCESS_PERMISSIONS = [
-        Resources::RESOURCE_TYPE_TABLE => ['r', 'a', 'u', 'd']
+        Resources::RESOURCE_TYPE_TABLE => ['r', 'a', 'u', 'd'],
     ];
 
     // @codingStandardsIgnoreEnd

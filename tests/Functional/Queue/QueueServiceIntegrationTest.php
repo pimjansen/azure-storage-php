@@ -89,7 +89,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
     {
         $containers = self::listQueues($prefix);
         foreach ($list as $item) {
-            if (!in_array($item, $containers)) {
+            if (!in_array($item, $containers, true)) {
                 $this->restProxy->createQueue($item);
             }
         }
@@ -99,7 +99,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
     {
         $containers = self::listQueues($prefix);
         foreach ($list as $item) {
-            if (in_array($item, $containers)) {
+            if (in_array($item, $containers, true)) {
                 $this->restProxy->deleteQueue($item);
             }
         }

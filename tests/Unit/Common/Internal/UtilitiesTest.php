@@ -209,7 +209,7 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $array = $properties->toArray();
 
         // Test
-        $actual = Utilities::serialize($array, "StorageServiceProperties");
+        $actual = Utilities::serialize($array, 'StorageServiceProperties');
 
         self::assertEquals($expected, $actual);
     }
@@ -223,8 +223,8 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $object = [
             '@attributes' => [
                 'field1' => 'value1',
-                'field2' => 'value2'
-            ]
+                'field2' => 'value2',
+            ],
         ];
 
         // Test

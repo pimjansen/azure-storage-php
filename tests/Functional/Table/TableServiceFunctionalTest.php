@@ -252,7 +252,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
             if ((null !== $options->getTop() && $options->getTop() <= 0)) {
                 if ($this->isEmulated()) {
-                    self::assertCount(0, $ret->getTables(), "should be no tables");
+                    self::assertCount(0, $ret->getTables(), 'should be no tables');
                 } else {
                     self::fail('Expect non-positive Top in $options to throw');
                 }
@@ -583,7 +583,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
             $this->println($actualProp->getEdmType() . ':' . (null === $actualProp->getValue() ? 'NULL' :
-                ($actualProp->getValue() instanceof \DateTime ? "date" : $actualProp->getValue())));
+                ($actualProp->getValue() instanceof \DateTime ? 'date' : $actualProp->getValue())));
         }
 
         foreach ($entReturned->getProperties() as $pname => $actualProp) {
@@ -1841,7 +1841,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 new Response(408, ['test_header' => 'test_header_value'])
             ),
             new Response(500, ['test_header' => 'test_header_value']),
-            $response
+            $response,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = TableRestProxy::createTableService($this->connectionString, $restOptions);
@@ -1889,7 +1889,7 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 $request,
                 new Response(404, ['test_header' => 'test_header_value'])
             ),
-            $response
+            $response,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = TableRestProxy::createTableService($this->connectionString, $restOptions);

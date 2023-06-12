@@ -97,7 +97,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
     {
         $shares = $this->listShares($sharePrefix);
         foreach ($shareList as $share) {
-            if (array_search($share, $shares) === false) {
+            if (array_search($share, $shares, true) === false) {
                 $this->createShare($share);
             } else {
                 $listResults = $this->restProxy->listFiles($share);
@@ -116,7 +116,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function deleteShare($shareName)
     {
-        if (($key = array_search($shareName, $this->createdShares)) !== false) {
+        if (($key = array_search($shareName, $this->createdShares, true)) !== false) {
             unset($this->createdShares[$key]);
         }
         $this->restProxy->deleteShare($shareName);
@@ -124,7 +124,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function deleteDirectory($shareName, $path)
     {
-        if (($key = array_search([$shareName, $path], $this->createdDirectories)) !== false) {
+        if (($key = array_search([$shareName, $path], $this->createdDirectories, true)) !== false) {
             unset($this->createdDirectories[$key]);
         }
         $this->restProxy->deleteDirectory($shareName, $path);
@@ -134,7 +134,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
     {
         $shares = $this->listShares($sharePrefix);
         foreach ($shareList as $share) {
-            if ((array_search($share, $shares) === true)) {
+            if ((array_search($share, $shares, true) === true)) {
                 $this->deleteShare($share);
             }
         }

@@ -28,7 +28,7 @@ use MicrosoftAzure\Storage\Tests\Unit\Common\Models\AccessPolicyTest;
  *
  * @see      https://github.com/azure/azure-storage-php
  */
-class ShareAccessPolicyTest extends AccessPolicyTest
+class SharePolicyTest extends AccessPolicyTest
 {
     protected function createAccessPolicy()
     {

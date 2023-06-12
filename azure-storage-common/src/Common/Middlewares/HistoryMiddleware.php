@@ -112,7 +112,7 @@ class HistoryMiddleware extends MiddlewareBase
     protected function onFulfilled(RequestInterface $request, array $options)
     {
         $reflection = $this;
-        return function (ResponseInterface $response) use (
+        return static function (ResponseInterface $response) use (
             $reflection,
             $request,
             $options
@@ -120,7 +120,7 @@ class HistoryMiddleware extends MiddlewareBase
             $reflection->addHistory([
                 'request' => $request,
                 'response' => $response,
-                'options' => $options
+                'options' => $options,
             ]);
             return $response;
         };
@@ -138,7 +138,7 @@ class HistoryMiddleware extends MiddlewareBase
     protected function onRejected(RequestInterface $request, array $options)
     {
         $reflection = $this;
-        return function ($reason) use (
+        return static function ($reason) use (
             $reflection,
             $request,
             $options
@@ -146,7 +146,7 @@ class HistoryMiddleware extends MiddlewareBase
             $reflection->addHistory([
                 'request' => $request,
                 'reason' => $reason,
-                'options' => $options
+                'options' => $options,
             ]);
             return new RejectedPromise($reason);
         };
@@ -159,7 +159,7 @@ class HistoryMiddleware extends MiddlewareBase
      */
     private function appendNewEntryToPath(array $entry)
     {
-        $entryNoString = "Entry " . $this->count;
+        $entryNoString = 'Entry ' . $this->count;
         $delimiter = str_pad(
             $entryNoString,
             self::TITLE_LENGTH,
@@ -169,7 +169,7 @@ class HistoryMiddleware extends MiddlewareBase
         $entryString = $delimiter;
         $entryString .= sprintf(
             "Time: %s\n",
-            (new \DateTime("now", new \DateTimeZone('UTC')))->format('Y-m-d H:i:s')
+            (new \DateTime('now', new \DateTimeZone('UTC')))->format('Y-m-d H:i:s')
         );
         $entryString .= MessageSerializer::objectSerialize($entry['request']);
         if (array_key_exists('reason', $entry)) {

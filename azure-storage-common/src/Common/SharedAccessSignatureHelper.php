@@ -84,9 +84,9 @@ class SharedAccessSignatureHelper
         $signedService,
         $signedResourceType,
         $signedExpiry,
-        $signedStart = "",
-        $signedIP = "",
-        $signedProtocol = ""
+        $signedStart = '',
+        $signedIP = '',
+        $signedProtocol = ''
     ) {
         // check that version is valid
         Validate::canCastAsString($signedVersion, 'signedVersion');
@@ -141,10 +141,10 @@ class SharedAccessSignatureHelper
         $stringToSign = utf8_encode(implode("\n", $parameters) . "\n");
 
         // decode the account key from base64
-        $decodedAccountKey = base64_decode($this->accountKey);
+        $decodedAccountKey = base64_decode($this->accountKey, true);
 
         // create the signature with hmac sha256
-        $signature = hash_hmac("sha256", $stringToSign, $decodedAccountKey, true);
+        $signature = hash_hmac('sha256', $stringToSign, $decodedAccountKey, true);
 
         // encode the signature as base64 and url encode.
         $sig = urlencode(base64_encode($signature));
@@ -249,7 +249,7 @@ class SharedAccessSignatureHelper
         // sanitize string
         $sanitizedSignedProtocol = strtolower($signedProtocol);
         if (strlen($sanitizedSignedProtocol) > 0) {
-            if (strcmp($sanitizedSignedProtocol, "https") != 0 && strcmp($sanitizedSignedProtocol, "https,http") != 0) {
+            if (strcmp($sanitizedSignedProtocol, 'https') != 0 && strcmp($sanitizedSignedProtocol, 'https,http') != 0) {
                 throw new \InvalidArgumentException(Resources::SIGNED_PROTOCOL_INVALID_VALIDATION_MSG);
             }
         }

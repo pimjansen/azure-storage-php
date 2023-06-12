@@ -390,8 +390,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
     private static function getEntityFromTable()
     {
         $entId = mt_rand(0, count(self::$entitiesInTable) - 1);
-        $e = self::$entitiesInTable[$entId];
-        return $e;
+        return self::$entitiesInTable[$entId];
     }
 
     private static function getBinaryFilterFromIndex($index, $f1, $f2)

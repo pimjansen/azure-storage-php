@@ -82,7 +82,7 @@ abstract class ACLBase
     {
         $properties = [
             XmlSerializer::DEFAULT_TAG => Resources::XTAG_SIGNED_IDENTIFIER,
-            XmlSerializer::ROOT_NAME => Resources::XTAG_SIGNED_IDENTIFIERS
+            XmlSerializer::ROOT_NAME => Resources::XTAG_SIGNED_IDENTIFIERS,
         ];
 
         return $serializer->serialize($this->toArray(), $properties);

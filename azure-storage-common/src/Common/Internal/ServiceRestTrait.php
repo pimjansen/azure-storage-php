@@ -96,7 +96,7 @@ trait ServiceRestTrait
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return GetServicePropertiesResult::create($parsed);
         }, null);
@@ -240,7 +240,7 @@ trait ServiceRestTrait
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return GetServiceStatsResult::create($parsed);
         }, null);

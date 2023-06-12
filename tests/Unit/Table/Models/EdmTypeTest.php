@@ -72,7 +72,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         // Setup
         $type = EdmType::BINARY;
         $value = 'MTIzNDU=';
-        $expected = base64_decode($value);
+        $expected = base64_decode($value, true);
 
         // Test
         $actual = EdmType::unserializeQueryValue($type, $value);

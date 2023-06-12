@@ -101,9 +101,8 @@ class CommonRequestMiddleware extends MiddlewareBase
             $result = $result->withHeader(Resources::X_MS_CLIENT_REQUEST_ID, \uniqid());
         }
         //Sign the request if authentication scheme is not null.
-        $request = $this->authenticationScheme == null ?
+        return $this->authenticationScheme == null ?
             $request : $this->authenticationScheme->signRequest($result);
-        return $request;
     }
 
     /**
@@ -116,6 +115,6 @@ class CommonRequestMiddleware extends MiddlewareBase
         // e.g. User-Agent: Azure-Storage/1.0.1-1.1.1 (PHP 5.5.32)/WINNT
         return 'Azure-Storage/' . $serviceSDKVersion . '-' .
             Resources::COMMON_SDK_VERSION .
-            ' (PHP ' . PHP_VERSION . ')' . '/' . php_uname("s");
+            ' (PHP ' . PHP_VERSION . ')' . '/' . php_uname('s');
     }
 }

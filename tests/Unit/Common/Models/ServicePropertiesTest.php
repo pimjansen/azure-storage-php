@@ -124,7 +124,7 @@ class ServicePropertiesTest extends \PHPUnit\Framework\TestCase
             'Logging' => $properties->getLogging()->toArray(),
             'HourMetrics' => $properties->getHourMetrics()->toArray(),
             'MinuteMetrics' => $properties->getMinuteMetrics()->toArray(),
-            'Cors' => !empty($corsesArray) ? $corsesArray : null
+            'Cors' => !empty($corsesArray) ? $corsesArray : null,
         ];
 
         // Test

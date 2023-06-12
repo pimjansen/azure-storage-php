@@ -53,7 +53,7 @@ class QueueResources extends Resources
 
     // Resource permissions
     public const ACCESS_PERMISSIONS = [
-        Resources::RESOURCE_TYPE_QUEUE => ['r', 'a', 'u', 'p']
+        Resources::RESOURCE_TYPE_QUEUE => ['r', 'a', 'u', 'p'],
     ];
 
     // @codingStandardsIgnoreEnd

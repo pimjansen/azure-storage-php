@@ -39,7 +39,7 @@ class MiddlewareStackTest extends \PHPUnit\Framework\TestCase
             $stack->push($middleware);
         }
 
-        $handler = function ($number, $callable) {
+        $handler = static function ($number, $callable) {
             if ($number != 4) {
                 return $callable;
             }

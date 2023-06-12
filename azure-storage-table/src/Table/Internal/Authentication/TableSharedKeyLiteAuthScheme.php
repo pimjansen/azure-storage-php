@@ -86,9 +86,7 @@ class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
         }
 
         $stringToSign[] = $canonicalizedResource;
-        $stringToSign = implode("\n", $stringToSign);
-
-        return $stringToSign;
+        return implode("\n", $stringToSign);
     }
 
     /**
@@ -118,7 +116,7 @@ class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
         );
 
         return 'SharedKeyLite ' . $this->accountName . ':' . base64_encode(
-            hash_hmac('sha256', $signature, base64_decode($this->accountKey), true)
+            hash_hmac('sha256', $signature, base64_decode($this->accountKey, true), true)
         );
     }
 }

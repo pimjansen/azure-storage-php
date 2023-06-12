@@ -14,14 +14,14 @@
  *
  * @see      https://github.com/azure/azure-storage-php
  */
-require_once "./vendor/autoload.php";
+require_once './vendor/autoload.php';
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\File\FileRestProxy;
 use MicrosoftAzure\Storage\Queue\QueueRestProxy;
 use MicrosoftAzure\Storage\Table\TableRestProxy;
 
-$connectionString = \getenv("AZURE_STORAGE_CONNECTION_STRING");
+$connectionString = \getenv('AZURE_STORAGE_CONNECTION_STRING');
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 $queueClient = QueueRestProxy::createQueueService($connectionString);
 $fileClient = FileRestProxy::createFileService($connectionString);
@@ -53,7 +53,7 @@ foreach ($result->getTables() as $table) {
 }
 
 //clean up premium blobs
-$connectionString = \getenv("AZURE_STORAGE_CONNECTION_STRING_PREMIUM_ACCOUNT");
+$connectionString = \getenv('AZURE_STORAGE_CONNECTION_STRING_PREMIUM_ACCOUNT');
 
 if (!empty($connectionString)) {
     $blobClient = BlobRestProxy::createBlobService($connectionString);
@@ -67,7 +67,7 @@ if (!empty($connectionString)) {
 }
 
 //clean up blob storage blobs
-$connectionString = \getenv("AZURE_STORAGE_CONNECTION_STRING_BLOB_ACCOUNT");
+$connectionString = \getenv('AZURE_STORAGE_CONNECTION_STRING_BLOB_ACCOUNT');
 
 if (!empty($connectionString)) {
     $blobClient = BlobRestProxy::createBlobService($connectionString);

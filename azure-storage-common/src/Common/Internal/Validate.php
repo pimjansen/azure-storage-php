@@ -226,7 +226,7 @@ class Validate
      */
     public static function getIsValidHostname()
     {
-        return function ($hostname) {
+        return static function ($hostname) {
             return Validate::isValidHostname($hostname);
         };
     }
@@ -265,7 +265,7 @@ class Validate
      */
     public static function getIsValidUri()
     {
-        return function ($uri) {
+        return static function ($uri) {
             return Validate::isValidUri($uri);
         };
     }

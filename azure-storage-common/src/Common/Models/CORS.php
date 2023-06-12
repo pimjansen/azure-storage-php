@@ -153,7 +153,7 @@ class CORS
             Resources::XTAG_EXPOSED_HEADERS =>
                 implode(',', $this->getExposedHeaders()),
             Resources::XTAG_MAX_AGE_IN_SECONDS =>
-                $this->getMaxedAgeInSeconds()
+                $this->getMaxedAgeInSeconds(),
         ];
     }
 

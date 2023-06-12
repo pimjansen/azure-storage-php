@@ -83,7 +83,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $middleware->addHistory([
             'request' => $request,
             'response' => $response,
-            'options' => $options
+            'options' => $options,
         ]);
 
         self::assertTrue(count($middleware->getHistory()) == 1, 'Wrong array size');
@@ -91,7 +91,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $middleware->addHistory([
             'request' => $request,
             'reason' => $reason,
-            'options' => $options
+            'options' => $options,
         ]);
 
         self::assertTrue(count($middleware->getHistory()) == 2, 'Wrong array size');

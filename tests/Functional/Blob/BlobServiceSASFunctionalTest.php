@@ -106,21 +106,21 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
             //c
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $container, $blob0) {
+                static function () use ($proxy, $container, $blob0) {
                     $proxy->createAppendBlob($container, $blob0);
                 }
             );
             //l
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $container) {
+                static function () use ($proxy, $container) {
                     $proxy->listBlobs($container);
                 }
             );
             //w
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $container) {
+                static function () use ($proxy, $container) {
                     $proxy->createBlockBlob($container, 'myblob', 'testcontent');
                 }
             );
@@ -139,7 +139,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         //l
         $this->validateServiceExceptionErrorMessage(
             'Server failed to authenticate the request.',
-            function () use ($proxy, $container) {
+            static function () use ($proxy, $container) {
                 $proxy->listBlobs($container);
             }
         );
@@ -161,7 +161,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         //l cannot be performed
         $this->validateServiceExceptionErrorMessage(
             'The specified signed resource is not allowed for the this resource level',
-            function () use ($blobProxy, $container) {
+            static function () use ($blobProxy, $container) {
                 $blobProxy->listBlobs($container);
             }
         );
@@ -214,7 +214,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
             $proxy = $containerProxies[$i];
             $container = $containers[$i];
             //c
-            $blobPrefix = "eñe20!";
+            $blobPrefix = 'eñe20!';
             $blob0 = TestResources::getInterestingName($blobPrefix);
             $proxy->createAppendBlob($container, $blob0);
             //l
@@ -250,21 +250,21 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
             //c
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $container, $blob0) {
+                static function () use ($proxy, $container, $blob0) {
                     $proxy->createAppendBlob($container, $blob0);
                 }
             );
             //l
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $container) {
+                static function () use ($proxy, $container) {
                     $proxy->listBlobs($container);
                 }
             );
             //w
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $container) {
+                static function () use ($proxy, $container) {
                     $proxy->createBlockBlob($container, 'myblob', 'testcontent');
                 }
             );
@@ -283,7 +283,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         //l
         $this->validateServiceExceptionErrorMessage(
             'Server failed to authenticate the request.',
-            function () use ($proxy, $container) {
+            static function () use ($proxy, $container) {
                 $proxy->listBlobs($container);
             }
         );
@@ -305,7 +305,7 @@ class BlobServiceSASFunctionalTest extends SASFunctionalTestBase
         //l cannot be performed
         $this->validateServiceExceptionErrorMessage(
             'The specified signed resource is not allowed for the this resource level',
-            function () use ($blobProxy, $container) {
+            static function () use ($blobProxy, $container) {
                 $blobProxy->listBlobs($container);
             }
         );

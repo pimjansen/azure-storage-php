@@ -37,7 +37,7 @@ class MiddlewareBaseTest extends ReflectionTestBase
     {
         $middlewareBase = new MiddlewareBase();
         $client = new Client();
-        $handler = function ($request, $options) use ($client) {
+        $handler = static function ($request, $options) use ($client) {
             return $client->sendAsync($request, $options);
         };
         $callable = $middlewareBase($handler);

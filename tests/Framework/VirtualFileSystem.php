@@ -42,8 +42,6 @@ class VirtualFileSystem
         $file->setContent($contents);
 
         vfsStreamWrapper::getRoot()->addChild($file);
-        $virtualPath = vfsStream::url($root . '/' . $fileName);
-
-        return $virtualPath;
+        return vfsStream::url($root . '/' . $fileName);
     }
 }

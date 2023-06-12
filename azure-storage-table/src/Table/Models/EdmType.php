@@ -211,7 +211,7 @@ class EdmType
                 return 'datetime\'' . $edmDate . '\'';
 
             case EdmType::BINARY:
-                return 'X\'' . implode('', unpack("H*", $value)) . '\'';
+                return 'X\'' . implode('', unpack('H*', $value)) . '\'';
 
             case EdmType::BOOLEAN:
                 return $value ? 'true' : 'false';
@@ -261,7 +261,7 @@ class EdmType
                 return (string) $value;
 
             case self::BINARY:
-                return base64_decode($value);
+                return base64_decode($value, true);
 
             case self::DATETIME:
                 return Utilities::convertToDateTime($value);

@@ -68,17 +68,14 @@ class TableServiceFunctionalTestUtils
     private static function cloneRemoveEqNotInTopLevelWorker($filter, $depth)
     {
         if ($filter instanceof PropertyNameFilter) {
-            $ret = new PropertyNameFilter($filter->getPropertyName());
-            return $ret;
+            return new PropertyNameFilter($filter->getPropertyName());
         }
         if ($filter instanceof ConstantFilter) {
-            $ret = new ConstantFilter($filter->getEdmType(), $filter->getValue());
-            return $ret;
+            return new ConstantFilter($filter->getEdmType(), $filter->getValue());
         }
         if ($filter instanceof UnaryFilter) {
             $operand = self::cloneRemoveEqNotInTopLevelWorker($filter->getOperand(), $depth + 1);
-            $ret = new UnaryFilter($filter->getOperator(), $operand);
-            return $ret;
+            return new UnaryFilter($filter->getOperator(), $operand);
         }
         if ($filter instanceof BinaryFilter) {
             if ($filter->getOperator() == ('eq') && $depth != 0) {
@@ -86,12 +83,10 @@ class TableServiceFunctionalTestUtils
             }
             $left = self::cloneRemoveEqNotInTopLevelWorker($filter->getLeft(), $depth + 1);
             $right = self::cloneRemoveEqNotInTopLevelWorker($filter->getRight(), $depth + 1);
-            $ret = new BinaryFilter($left, $filter->getOperator(), $right);
-            return $ret;
+            return new BinaryFilter($left, $filter->getOperator(), $right);
         }
         if ($filter instanceof QueryStringFilter) {
-            $ret = new QueryStringFilter($filter->getQueryString());
-            return $ret;
+            return new QueryStringFilter($filter->getQueryString());
         }
         throw new \Exception();
 
@@ -192,7 +187,7 @@ class TableServiceFunctionalTestUtils
             } elseif ($ptype == (EdmType::DATETIME)) {
                 $value = $initialProp->getValue();
                 if (null === $value) {
-                    $value = new \DateTime("1/26/1692");
+                    $value = new \DateTime('1/26/1692');
                 }
                 $value->modify('+1 day');
                 $initialProp->setValue($value);
@@ -264,12 +259,10 @@ class TableServiceFunctionalTestUtils
         }
         if ($filter instanceof PropertyNameFilter) {
             $name = $filter->getPropertyName();
-            $value = ($obj instanceof Entity ? $obj->getPropertyValue($name) : $obj->{$name});
-            return $value;
+            return ($obj instanceof Entity ? $obj->getPropertyValue($name) : $obj->{$name});
         }
         if ($filter instanceof ConstantFilter) {
-            $value = $filter->getValue();
-            return $value;
+            return $filter->getValue();
         }
         if ($filter instanceof UnaryFilter) {
             $ret = null;

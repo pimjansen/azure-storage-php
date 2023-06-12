@@ -36,7 +36,7 @@ class BlobResources extends Resources
     public const STORAGE_API_LATEST_VERSION = '2017-11-09';
 
     // Error messages
-    public const INVALID_BTE_MSG = "The blob block type must exist in %s";
+    public const INVALID_BTE_MSG = 'The blob block type must exist in %s';
     public const INVALID_BLOB_PAT_MSG = 'The provided access type is invalid.';
     public const INVALID_ACH_MSG = 'The provided access condition header is invalid';
     public const ERROR_TOO_LARGE_FOR_BLOCK_BLOB = 'Error: Exceeds the upper limit of the blob.';
@@ -94,7 +94,7 @@ class BlobResources extends Resources
     // Resource permissions
     public const ACCESS_PERMISSIONS = [
         Resources::RESOURCE_TYPE_BLOB => ['r', 'a', 'c', 'w', 'd'],
-        Resources::RESOURCE_TYPE_CONTAINER => ['r', 'a', 'c', 'w', 'd', 'l']
+        Resources::RESOURCE_TYPE_CONTAINER => ['r', 'a', 'c', 'w', 'd', 'l'],
     ];
 
     // @codingStandardsIgnoreEnd

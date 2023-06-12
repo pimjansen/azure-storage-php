@@ -207,7 +207,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
             'Delete' => $sample['Logging']['Delete'],
             'Read' => $sample['Logging']['Read'],
             'Write' => $sample['Logging']['Write'],
-            'RetentionPolicy' => $logging->getRetentionPolicy()->toArray()
+            'RetentionPolicy' => $logging->getRetentionPolicy()->toArray(),
         ];
 
         // Test

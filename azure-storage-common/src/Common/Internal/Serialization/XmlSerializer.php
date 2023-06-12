@@ -104,8 +104,7 @@ class XmlSerializer implements ISerializer
     {
         foreach ($methodArray as $method) {
             if ($method->name == 'getAttributes') {
-                $classProperty = $method->invoke($targetObject);
-                return $classProperty;
+                return $method->invoke($targetObject);
             }
         }
         return null;

@@ -61,7 +61,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
         $queryParams = [Resources::QP_COMP => 'list'];
         $url = TestResources::URI1;
         $date = TestResources::DATE1;
-        $apiVersion = "2016-05-31";
+        $apiVersion = '2016-05-31';
         $accountName = TestResources::ACCOUNT_NAME;
         $headers = [Resources::X_MS_DATE => $date, Resources::X_MS_VERSION => $apiVersion];
         $expected = "GET\n\n\n\n\n\n\n\n\n\n\n\n" . Resources::X_MS_DATE . ":$date\n" . Resources::X_MS_VERSION .
@@ -76,7 +76,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
     public function testGetAuthorizationHeaderSimple()
     {
         $accountName = TestResources::ACCOUNT_NAME;
-        $apiVersion = "2016-05-31";
+        $apiVersion = '2016-05-31';
         $accountKey = TestResources::KEY4;
         $url = TestResources::URI2;
         $date1 = TestResources::DATE2;
@@ -130,7 +130,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
             [
                 'snapshots',
                 'metadata',
-                'uncommittedblobs'
+                'uncommittedblobs',
             ]
         );
         $expectedQueryPart = "comp:list\ninclude:metadata,snapshots,uncommittedblobs";

@@ -97,14 +97,14 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
             //c
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $share, $file) {
+                static function () use ($proxy, $share, $file) {
                     $proxy->createFile($share, $file, Resources::MB_IN_BYTES_1);
                 }
             );
             //l
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $share) {
+                static function () use ($proxy, $share) {
                     $proxy->listDirectoriesAndFiles($share);
                 }
             );
@@ -123,7 +123,7 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
         //l
         $this->validateServiceExceptionErrorMessage(
             'Server failed to authenticate the request.',
-            function () use ($proxy, $share) {
+            static function () use ($proxy, $share) {
                 $proxy->listDirectoriesAndFiles($share);
             }
         );
@@ -145,7 +145,7 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
         //l cannot be performed
         $this->validateServiceExceptionErrorMessage(
             'The specified signed resource is not allowed for the this resource level',
-            function () use ($fileProxy, $share) {
+            static function () use ($fileProxy, $share) {
                 $fileProxy->listDirectoriesAndFiles($share);
             }
         );

@@ -107,8 +107,7 @@ class Utilities
                     $accountName . Resources::SECONDARY_STRING;
 
                 $splitTokens[0] = implode('/', $schemaAccountSplitTokens);
-                $secondaryUri = implode('.', $splitTokens);
-                return $secondaryUri;
+                return implode('.', $splitTokens);
             }
         }
         return null;
@@ -484,7 +483,7 @@ class Utilities
      */
     public static function inArrayInsensitive($needle, array $haystack)
     {
-        return in_array(strtolower($needle), array_map('strtolower', $haystack));
+        return in_array(strtolower($needle), array_map('strtolower', $haystack), true);
     }
 
     /**

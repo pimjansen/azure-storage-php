@@ -44,7 +44,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
     public function testSetAccessConditions()
     {
         $copyBlobOptions = new CopyBlobOptions();
-        $expected = AccessCondition::ifMatch("12345");
+        $expected = AccessCondition::ifMatch('12345');
         $copyBlobOptions->setAccessConditions($expected);
 
         self::assertEquals(
@@ -56,7 +56,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
     public function testSetSourceAccessConditions()
     {
         $copyBlobOptions = new CopyBlobOptions();
-        $expected = AccessCondition::IfMatch("x");
+        $expected = AccessCondition::IfMatch('x');
         $copyBlobOptions->setSourceAccessConditions($expected);
 
         self::assertEquals(

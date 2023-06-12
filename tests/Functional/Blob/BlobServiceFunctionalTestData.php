@@ -64,8 +64,8 @@ class BlobServiceFunctionalTestData
         self::$testUniqueId = 'qa-' . $rint . '-';
         self::$nonExistContainerPrefix = 'qa-' . ($rint . 1) . '-';
         self::$nonExistBlobPrefix = 'qa-' . ($rint . 2) . '-';
-        self::$testContainerNames = [ self::$testUniqueId . 'a1', self::$testUniqueId . 'a2', self::$testUniqueId . 'b1' ];
-        self::$testBlobNames = [ 'b' . self::$testUniqueId . 'a1', 'b' . self::$testUniqueId . 'a2', 'b' . self::$testUniqueId . 'b1' ];
+        self::$testContainerNames = [self::$testUniqueId . 'a1', self::$testUniqueId . 'a2', self::$testUniqueId . 'b1'];
+        self::$testBlobNames = ['b' . self::$testUniqueId . 'a1', 'b' . self::$testUniqueId . 'a2', 'b' . self::$testUniqueId . 'b1'];
         self::$blockIdCount = 0;
     }
 
@@ -190,8 +190,8 @@ class BlobServiceFunctionalTestData
     {
         $ret = [];
 
-        $past = new \DateTime("01/01/2010");
-        $future = new \DateTime("01/01/2020");
+        $past = new \DateTime('01/01/2010');
+        $future = new \DateTime('01/01/2020');
 
         array_push($ret, AccessCondition::ifModifiedSince($past));
         array_push($ret, AccessCondition::ifNotModifiedSince($past));
@@ -558,8 +558,8 @@ class BlobServiceFunctionalTestData
     {
         $ret = [];
 
-        $past = new \DateTime("01/01/2010");
-        $future = new \DateTime("01/01/2020");
+        $past = new \DateTime('01/01/2010');
+        $future = new \DateTime('01/01/2020');
 
         $options = new BlobServiceOptions();
         array_push($ret, $options);
@@ -736,8 +736,8 @@ class BlobServiceFunctionalTestData
     {
         $ret = [];
 
-        $past = new \DateTime("01/01/2010");
-        $future = new \DateTime("01/01/2020");
+        $past = new \DateTime('01/01/2010');
+        $future = new \DateTime('01/01/2020');
 
         $acl = new ContainerACL();
         array_push($ret, $acl);
@@ -932,15 +932,15 @@ class BlobServiceFunctionalTestData
         $ret[] = ['size' => Resources::MB_IN_BYTES_256];
         $ret[] = [
             'threshold' => Resources::MB_IN_BYTES_4,
-            'size' => Resources::MB_IN_BYTES_4 * 2
+            'size' => Resources::MB_IN_BYTES_4 * 2,
         ];
         $ret[] = [
             'threshold' => Resources::MB_IN_BYTES_64,
-            'size' => Resources::MB_IN_BYTES_64
+            'size' => Resources::MB_IN_BYTES_64,
         ];
         $ret[] = [
             'threshold' => Resources::MB_IN_BYTES_64,
-            'size' => Resources::MB_IN_BYTES_64 + Resources::MB_IN_BYTES_1
+            'size' => Resources::MB_IN_BYTES_64 + Resources::MB_IN_BYTES_1,
         ];
 
         return $ret;
@@ -954,49 +954,49 @@ class BlobServiceFunctionalTestData
             'putRange' => new Range(0, 511),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new Range(0, 511)]
+            'resultListRange' => [new Range(0, 511)],
         ];
 
         $ret[] = [
             'putRange' => new Range(1024, 1535),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new Range(0, 511), new Range(1024, 1535)]
+            'resultListRange' => [new Range(0, 511), new Range(1024, 1535)],
         ];
 
         $ret[] = [
             'putRange' => new Range(512, 1023),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new Range(0, 1535)]
+            'resultListRange' => [new Range(0, 1535)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => new Range(1024, 1535),
             'listRange' => null,
-            'resultListRange' => [new Range(0, 1023)]
+            'resultListRange' => [new Range(0, 1023)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => null,
             'listRange' => new Range(0, 511),
-            'resultListRange' => [new Range(0, 511)]
+            'resultListRange' => [new Range(0, 511)],
         ];
 
         $ret[] = [
             'putRange' => new Range(1024, 2047),
             'clearRange' => new Range(512, 1023),
             'listRange' => null,
-            'resultListRange' => [new Range(0, 511), new Range(1024, 2047)]
+            'resultListRange' => [new Range(0, 511), new Range(1024, 2047)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => new Range(0, 2047),
             'listRange' => null,
-            'resultListRange' => []
+            'resultListRange' => [],
         ];
 
         return $ret;
@@ -1010,28 +1010,28 @@ class BlobServiceFunctionalTestData
             'putRange' => null,
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => []
+            'resultListRange' => [],
         ];
 
         $ret[] = [
             'putRange' => new Range(0, 511),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new RangeDiff(0, 511)]
+            'resultListRange' => [new RangeDiff(0, 511)],
         ];
 
         $ret[] = [
             'putRange' => new Range(1024, 1535),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new RangeDiff(1024, 1535)]
+            'resultListRange' => [new RangeDiff(1024, 1535)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => new Range(1024, 1535),
             'listRange' => null,
-            'resultListRange' => [new RangeDiff(1024, 1535, true)]
+            'resultListRange' => [new RangeDiff(1024, 1535, true)],
         ];
 
         $ret[] = [
@@ -1040,15 +1040,15 @@ class BlobServiceFunctionalTestData
             'listRange' => null,
             'resultListRange' => [
                 new RangeDiff(512, 1023),
-                new RangeDiff(0, 511, true)
-            ]
+                new RangeDiff(0, 511, true),
+            ],
         ];
 
         $ret[] = [
             'putRange' => new Range(0, 2047),
             'clearRange' => null,
             'listRange' => new Range(0, 511),
-            'resultListRange' => [new RangeDiff(0, 511)]
+            'resultListRange' => [new RangeDiff(0, 511)],
         ];
 
         $ret[] = [
@@ -1057,15 +1057,15 @@ class BlobServiceFunctionalTestData
             'listRange' => new Range(512, 1535),
             'resultListRange' => [
                 new RangeDiff(1024, 1535),
-                new RangeDiff(512, 1023, true)
-            ]
+                new RangeDiff(512, 1023, true),
+            ],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => new Range(0, 2047),
             'listRange' => null,
-            'resultListRange' => [new RangeDiff(0, 2047, true)]
+            'resultListRange' => [new RangeDiff(0, 2047, true)],
         ];
 
         return $ret;
