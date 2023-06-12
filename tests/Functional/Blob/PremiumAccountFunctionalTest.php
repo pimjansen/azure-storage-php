@@ -46,7 +46,7 @@ class PremiumAccountFunctionalTest extends \PHPUnit\Framework\TestCase
 
         try {
             $connectionString = TestResources::getWindowsAzureStorageServicesPremiumConnectionString();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->markTestSkipped('Environment string AZURE_STORAGE_CONNECTION_STRING_PREMIUM_ACCOUNT is not provided.\
                                     Skip premium account required test cases.');
         }

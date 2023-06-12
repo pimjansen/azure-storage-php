@@ -49,4 +49,9 @@ return $config
                 'copyright',
             ],
         ],
+        'global_namespace_import' => [
+            'import_classes' => false,
+            'import_constants' => false,
+            'import_functions' => false,
+        ],
     ]);

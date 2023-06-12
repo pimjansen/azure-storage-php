@@ -46,7 +46,7 @@ class BlobStorageAccountFunctionalTest extends \PHPUnit\Framework\TestCase
 
         try {
             $connectionString = TestResources::getWindowsAzureStorageServicesBlobAccountConnectionString();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->markTestSkipped('Environment string AZURE_STORAGE_CONNECTION_STRING_BLOB_ACCOUNT is not provided.\
                                     Skip blob account required test cases.');
         }
