@@ -462,7 +462,6 @@ interface IBlob
         BlobModels\CreateBlobOptions $options = null
     );
 
-
     /**
      * Creates promise to create a new append blob.
      * If the blob already exists on the service, it will be overwritten.
@@ -1583,7 +1582,6 @@ interface IBlob
         $leaseId,
         BlobModels\BlobServiceOptions $options = null
     );
-
 
     /**
     * Frees the lease if it is no longer needed so that another client may

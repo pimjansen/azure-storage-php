@@ -1082,7 +1082,6 @@ class BlobServiceFunctionalTestData
         return $ret;
     }
 
-
     public static function getAppendBlockSetup()
     {
         $ret = [];

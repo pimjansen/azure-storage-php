@@ -32,6 +32,7 @@ class OpType
     public const INSERT_OR_REPLACE_ENTITY = 'insertOrReplaceEntity';
     public const MERGE_ENTITY = 'mergeEntity';
     public const UPDATE_ENTITY = 'updateEntity';
+
     public static function values()
     {
         return ['deleteEntity', 'insertEntity', 'insertOrMergeEntity', 'insertOrReplaceEntity', 'mergeEntity', 'updateEntity'];

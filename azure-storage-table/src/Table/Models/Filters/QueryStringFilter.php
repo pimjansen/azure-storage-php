@@ -51,7 +51,6 @@ class QueryStringFilter extends Filter
         $this->_queryString = $queryString;
     }
 
-
     /**
      * Gets raw string filter
      *

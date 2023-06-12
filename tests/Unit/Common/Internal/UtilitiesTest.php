@@ -546,7 +546,6 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-
     public function testBase256ToDec()
     {
         // Setup

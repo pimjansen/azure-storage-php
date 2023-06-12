@@ -30,6 +30,7 @@ class MutatePivot
     public const ADD_PROPERTY = 'AddProperty';
     public const REMOVE_PROPERTY = 'RemoveProperty';
     public const NULL_PROPERTY = 'NullProperty';
+
     public static function values()
     {
         return ['ChangeValues', 'AddProperty', 'RemoveProperty', 'NullProperty'];

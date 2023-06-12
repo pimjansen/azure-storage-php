@@ -252,7 +252,6 @@ class ServiceRestProxy extends RestProxy
         return $eachPromise->promise();
     }
 
-
     /**
      * Create the request to be sent.
      *

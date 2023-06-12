@@ -2075,7 +2075,6 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         }
     }
 
-
     public function testCreateBlobSnapshotNoOptionsContainer()
     {
         $container = BlobServiceFunctionalTestData::getContainerName();
@@ -2220,7 +2219,6 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             }
         }
     }
-
 
     public function testCopyBlobNoOptions()
     {

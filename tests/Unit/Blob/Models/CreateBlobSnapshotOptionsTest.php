@@ -52,7 +52,6 @@ class CreateBlobSnapshotOptionsTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-
     public function testSetLeaseId()
     {
         $createBlobSnapshotOptions = new CreateBlobSnapshotOptions();

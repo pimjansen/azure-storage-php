@@ -384,6 +384,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
         );
         $this->assertEquals($uuid, $result->getEntity()->getPropertyValue('test7'), 'GUIDs are the same');
     }
+
     public function testUpdateEntityWorks()
     {
         // Arrange

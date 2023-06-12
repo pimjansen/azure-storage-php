@@ -39,6 +39,7 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 abstract class AccessPolicyTest extends \PHPUnit\Framework\TestCase
 {
     abstract protected function createAccessPolicy();
+
     abstract protected function getResourceType();
 
     public function testGetStart()

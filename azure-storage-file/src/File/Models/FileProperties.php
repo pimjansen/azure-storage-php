@@ -274,6 +274,7 @@ class FileProperties
     {
         return $this->contentEncoding;
     }
+
     /**
      * Sets file contentEncoding.
      *

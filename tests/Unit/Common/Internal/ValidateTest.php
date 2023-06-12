@@ -220,7 +220,6 @@ class ValidateTest extends \PHPUnit\Framework\TestCase
         // Assert
     }
 
-
     public function testIsInstanceOfNullValue()
     {
         // Setup

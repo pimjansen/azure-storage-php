@@ -300,7 +300,6 @@ class SharedAccessSignatureHelper
         return $result;
     }
 
-
     /**
      * Generate the canonical resource using the given account name, service
      * type and resource.

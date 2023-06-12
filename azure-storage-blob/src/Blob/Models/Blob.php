@@ -41,6 +41,7 @@ class Blob
     private $_snapshot;
     private $_metadata;
     private $_properties;
+
     /**
      * Gets blob name.
      *

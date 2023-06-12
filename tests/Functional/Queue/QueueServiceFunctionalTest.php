@@ -194,7 +194,6 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
         );
     }
 
-
     public function testSetServiceProperties()
     {
         $interestingServiceProperties = QueueServiceFunctionalTestData::getInterestingServiceProperties();

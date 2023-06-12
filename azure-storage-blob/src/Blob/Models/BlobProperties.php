@@ -459,7 +459,6 @@ class BlobProperties
         $this->remainingRetentionDays = $remainingRetentionDays;
     }
 
-
     /**
      * Gets blob access inferred.
      *

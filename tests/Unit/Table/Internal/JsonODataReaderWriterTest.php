@@ -135,7 +135,6 @@ class JsonODataReaderWriterTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-
     public function testParseEntityStringKeys()
     {
         // Setup

@@ -437,7 +437,6 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         );
     }
 
-
     /**
      * Returns a list of the shares under the specified account
      *

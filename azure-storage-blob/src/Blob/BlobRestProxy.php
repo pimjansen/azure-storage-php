@@ -2173,7 +2173,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         return $commitBlobPromise;
     }
 
-
     /**
      * This method upload the page blob pages. This method will send the request
      * concurrently for better performance.
@@ -2562,7 +2561,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $options
         )->wait();
     }
-
 
     /**
      * Creates promise to commit a new block of data to the end of an existing append blob.
