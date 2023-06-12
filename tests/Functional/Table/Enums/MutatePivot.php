@@ -26,10 +26,10 @@ namespace MicrosoftAzure\Storage\Tests\Functional\Table\Enums;
 
 class MutatePivot
 {
-    const CHANGE_VALUES   = 'ChangeValues';
-    const ADD_PROPERTY    = 'AddProperty';
-    const REMOVE_PROPERTY = 'RemoveProperty';
-    const NULL_PROPERTY   = 'NullProperty';
+    public const CHANGE_VALUES   = 'ChangeValues';
+    public const ADD_PROPERTY    = 'AddProperty';
+    public const REMOVE_PROPERTY = 'RemoveProperty';
+    public const NULL_PROPERTY   = 'NullProperty';
     public static function values()
     {
         return array('ChangeValues', 'AddProperty', 'RemoveProperty', 'NullProperty');

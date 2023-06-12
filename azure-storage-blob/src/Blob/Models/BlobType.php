@@ -36,7 +36,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
  */
 class BlobType
 {
-    const BLOCK_BLOB = 'BlockBlob';
-    const PAGE_BLOB  = 'PageBlob';
-    const APPEND_BLOB  = 'AppendBlob';
+    public const BLOCK_BLOB = 'BlockBlob';
+    public const PAGE_BLOB  = 'PageBlob';
+    public const APPEND_BLOB  = 'AppendBlob';
 }

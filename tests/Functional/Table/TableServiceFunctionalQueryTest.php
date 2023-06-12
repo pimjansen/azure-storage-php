@@ -327,6 +327,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
                         return Filter::applyPropertyName($key);
                     }
                     //will return either way so not fall through
+                    // no break
                 default:
                     return null;
             }

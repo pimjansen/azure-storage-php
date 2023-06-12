@@ -101,7 +101,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         self::println('Trying $options: ' . self::tmptostring($options));
         $effOptions = (is_null($options) ? new TableServiceOptions() : $options);
         try {
-            $ret = (is_null($options) ?
+            $ret = (
+                is_null($options) ?
                 $this->restProxy->getServiceProperties() :
                 $this->restProxy->getServiceProperties($effOptions)
             );
@@ -217,7 +218,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
             \sleep(30);
 
-            $ret = (is_null($options) ?
+            $ret = (
+                is_null($options) ?
                 $this->restProxy->getServiceProperties() :
                 $this->restProxy->getServiceProperties($options)
             );
@@ -508,7 +510,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
         try {
             // Upload the entity.
             $this->restProxy->insertEntity($table, $ent);
-            $qer = (is_null($options) ?
+            $qer = (
+                is_null($options) ?
                 $this->restProxy->getEntity(
                     $table,
                     $ent->getPartitionKey(),
@@ -1385,8 +1388,9 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 continue;
             }
             if ($this->isEmulated() && (
-                    ($firstOpType == OpType::INSERT_OR_MERGE_ENTITY) ||
-                    ($firstOpType == OpType::INSERT_OR_REPLACE_ENTITY))) {
+                ($firstOpType == OpType::INSERT_OR_MERGE_ENTITY) ||
+                    ($firstOpType == OpType::INSERT_OR_REPLACE_ENTITY)
+            )) {
                 // Emulator does not support these operations.
                 continue;
             }
@@ -1486,7 +1490,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 $exception = null;
                 try {
                     // Execute the batch.
-                    $ret = (is_null($options) ?
+                    $ret = (
+                        is_null($options) ?
                         $this->restProxy->batch($operations) :
                         $this->restProxy->batch(
                             $operations,
@@ -1505,7 +1510,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 }
             } else {
                 // Execute the batch.
-                $ret = (is_null($options) ?
+                $ret = (
+                    is_null($options) ?
                     $this->restProxy->batch($operations) :
                     $this->restProxy->batch(
                         $operations,

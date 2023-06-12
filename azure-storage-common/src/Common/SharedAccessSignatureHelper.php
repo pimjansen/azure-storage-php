@@ -166,8 +166,8 @@ class SharedAccessSignatureHelper
         $sas .= '&srt=' . $signedResourceType;
         $sas .= '&sp=' . $signedPermissions;
         $sas .= '&se=' . $signedExpiry;
-        $sas .= $signedStart === ''? '' : '&st=' . $signedStart;
-        $sas .= $signedIP === ''? '' : '&sip=' . $signedIP;
+        $sas .= $signedStart === '' ? '' : '&st=' . $signedStart;
+        $sas .= $signedIP === '' ? '' : '&sip=' . $signedIP;
         $sas .= '&spr=' . $signedProtocol;
         $sas .= '&sig=' . $sig;
 

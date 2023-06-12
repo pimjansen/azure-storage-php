@@ -36,6 +36,6 @@ namespace MicrosoftAzure\Storage\Blob\Models;
  */
 class PageWriteOption
 {
-    const CLEAR_OPTION  = 'clear';
-    const UPDATE_OPTION = 'update';
+    public const CLEAR_OPTION  = 'clear';
+    public const UPDATE_OPTION = 'update';
 }

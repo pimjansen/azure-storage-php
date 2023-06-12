@@ -39,7 +39,7 @@ class ConnectionStringSource
 {
     private static $_defaultSources;
     private static $_isInitialized;
-    const ENVIRONMENT_SOURCE = 'environment_source';
+    public const ENVIRONMENT_SOURCE = 'environment_source';
 
     /**
      * Initializes the default sources.

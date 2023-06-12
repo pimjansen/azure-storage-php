@@ -41,27 +41,27 @@ class QueueResources extends Resources
 {
     // @codingStandardsIgnoreStart
 
-    const QUEUE_SDK_VERSION = '1.3.4';
-    const STORAGE_API_LATEST_VERSION = '2017-11-09';
+    public const QUEUE_SDK_VERSION = '1.3.4';
+    public const STORAGE_API_LATEST_VERSION = '2017-11-09';
 
     // Error messages
-    const INVALID_RECEIVE_MODE_MSG = 'The receive message option is in neither RECEIVE_AND_DELETE nor PEEK_LOCK mode.';
+    public const INVALID_RECEIVE_MODE_MSG = 'The receive message option is in neither RECEIVE_AND_DELETE nor PEEK_LOCK mode.';
 
     // Headers
-    const X_MS_APPROXIMATE_MESSAGES_COUNT = 'x-ms-approximate-messages-count';
-    const X_MS_POPRECEIPT = 'x-ms-popreceipt';
-    const X_MS_TIME_NEXT_VISIBLE = 'x-ms-time-next-visible';
+    public const X_MS_APPROXIMATE_MESSAGES_COUNT = 'x-ms-approximate-messages-count';
+    public const X_MS_POPRECEIPT = 'x-ms-popreceipt';
+    public const X_MS_TIME_NEXT_VISIBLE = 'x-ms-time-next-visible';
 
     // Query parameter names
-    const QP_VISIBILITY_TIMEOUT = 'visibilitytimeout';
-    const QP_POPRECEIPT = 'popreceipt';
-    const QP_NUM_OF_MESSAGES = 'numofmessages';
-    const QP_PEEK_ONLY = 'peekonly';
-    const QP_MESSAGE_TTL = 'messagettl';
-    const QP_QUEUE_MESSAGE = 'QueueMessage';
+    public const QP_VISIBILITY_TIMEOUT = 'visibilitytimeout';
+    public const QP_POPRECEIPT = 'popreceipt';
+    public const QP_NUM_OF_MESSAGES = 'numofmessages';
+    public const QP_PEEK_ONLY = 'peekonly';
+    public const QP_MESSAGE_TTL = 'messagettl';
+    public const QP_QUEUE_MESSAGE = 'QueueMessage';
 
     // Resource permissions
-    const ACCESS_PERMISSIONS = [
+    public const ACCESS_PERMISSIONS = [
         Resources::RESOURCE_TYPE_QUEUE => ['r', 'a', 'u', 'p']
     ];
 

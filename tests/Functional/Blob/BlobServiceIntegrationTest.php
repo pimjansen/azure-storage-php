@@ -370,9 +370,9 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         // Arrange
         $container = self::$_creatable_container_4;
 
-        $expiryStartDate = new \DateTime;
+        $expiryStartDate = new \DateTime();
         $expiryStartDate->setDate(2010, 1, 1);
-        $expiryEndDate = new \DateTime;
+        $expiryEndDate = new \DateTime();
         $expiryEndDate->setDate(2020, 1, 1);
 
         // Act
@@ -773,7 +773,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         $this->restProxy->createBlobPages($container, $blob, new Range(8192, 8192 + 511), $content);
         $this->restProxy->createBlobPages($container, $blob, new Range(16384, 16384 + 511), $content);
 
-//        $result = $this->restProxy->listBlobRegions($container, $blob);
+        //        $result = $this->restProxy->listBlobRegions($container, $blob);
         $result = $this->restProxy->listPageBlobRanges($container, $blob);
 
         // Assert

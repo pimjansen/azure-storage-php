@@ -62,7 +62,8 @@ class AppendBlockResult
         $result->setAppendOffset(
             intval(
                 Utilities::tryGetValueInsensitive(
-                    Resources::X_MS_BLOB_APPEND_OFFSET, $headers
+                    Resources::X_MS_BLOB_APPEND_OFFSET,
+                    $headers
                 )
             )
         );
@@ -70,7 +71,8 @@ class AppendBlockResult
         $result->setCommittedBlockCount(
             intval(
                 Utilities::tryGetValueInsensitive(
-                    Resources::X_MS_BLOB_COMMITTED_BLOCK_COUNT, $headers
+                    Resources::X_MS_BLOB_COMMITTED_BLOCK_COUNT,
+                    $headers
                 )
             )
         );

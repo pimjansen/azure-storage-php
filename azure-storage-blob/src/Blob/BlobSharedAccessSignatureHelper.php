@@ -98,8 +98,7 @@ class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         $contentEncoding = "",
         $contentLanguage = "",
         $contentType = ""
-    )
-    {
+    ) {
         // check that the resource name is valid.
         Validate::canCastAsString($signedResource, 'signedResource');
         Validate::notNullOrEmpty($signedResource, 'signedResource');

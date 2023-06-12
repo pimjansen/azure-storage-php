@@ -1185,7 +1185,7 @@ interface IBlob
         $blob,
         BlobModels\UndeleteBlobOptions $options = null
     );
-    
+
     /**
      * Undeletes a blob.
      *
@@ -1202,7 +1202,7 @@ interface IBlob
         $blob,
         BlobModels\UndeleteBlobOptions $options = null
     );
-    
+
     /**
     * Reads or downloads a blob from the system, including its metadata and
     * properties.

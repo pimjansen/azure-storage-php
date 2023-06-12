@@ -344,10 +344,10 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             Resources::MB_IN_BYTES_4
         );
 
-        $optionsDirPrefix = new ListDirectoriesAndFilesOptions;
+        $optionsDirPrefix = new ListDirectoriesAndFilesOptions();
         $optionsDirPrefix->setPrefix('dir');
 
-        $optionsFilePrefix = new ListDirectoriesAndFilesOptions;
+        $optionsFilePrefix = new ListDirectoriesAndFilesOptions();
         $optionsFilePrefix->setPrefix('file');
 
         $resultRootDir = $this->restProxy->listDirectoriesAndFiles($share, '', $optionsDirPrefix);

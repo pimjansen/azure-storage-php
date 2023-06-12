@@ -37,8 +37,8 @@ use MicrosoftAzure\Storage\Queue\Models\QueueServiceOptions;
 
 class QueueServiceFunctionalOptionsTest extends \PHPUnit\Framework\TestCase
 {
-    const INT_MAX_VALUE = 2147483647;
-    const INT_MIN_VALUE = -2147483648;
+    public const INT_MAX_VALUE = 2147483647;
+    public const INT_MIN_VALUE = -2147483648;
 
     public function testCheckQueueServiceOptions()
     {

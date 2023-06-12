@@ -188,13 +188,16 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->assertTrue($this->existInContainerArray($container2, $containers));
         $this->assertEquals($metadataValue, $metadata[$metadataName]);
 
-        $this->assertEquals(PublicAccessType::CONTAINER_AND_BLOBS,
+        $this->assertEquals(
+            PublicAccessType::CONTAINER_AND_BLOBS,
             $containers[0]->getProperties()->getPublicAccess()
         );
-        $this->assertEquals(PublicAccessType::NONE,
+        $this->assertEquals(
+            PublicAccessType::NONE,
             $containers[1]->getProperties()->getPublicAccess()
         );
-        $this->assertEquals(PublicAccessType::BLOBS_ONLY,
+        $this->assertEquals(
+            PublicAccessType::BLOBS_ONLY,
             $containers[2]->getProperties()->getPublicAccess()
         );
     }
@@ -586,7 +589,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
 
         // Assert
         $this->assertCount(4, $result->getBlobs());
-        
+
         // Delete blob
         $this->restProxy->deleteBlob($name, $blob4);
 
@@ -1163,7 +1166,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Assert
         $result = $this->restProxy->listBlobs($name);
         $this->assertCount(0, $result->getBlobs());
-        
+
         // Undelete blob
         $this->restProxy->undeleteBlob($name, $blob);
 

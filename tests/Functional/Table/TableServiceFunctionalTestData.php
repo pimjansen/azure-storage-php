@@ -45,15 +45,15 @@ class TableServiceFunctionalTestData
     public static $testUniqueId;
     public static $testTableNames;
 
-    const INT_MAX_VALUE = 2147483647;
+    public const INT_MAX_VALUE = 2147483647;
     // Intent is to be a constant, but cannot represent in code.
     public static $INT_MIN_VALUE;
-    const LONG_BIG_VALUE = 1234567890;
-    const LONG_BIG_VALUE_NEGATIVE = -123456789032;
+    public const LONG_BIG_VALUE = 1234567890;
+    public const LONG_BIG_VALUE_NEGATIVE = -123456789032;
 
     public function __construct()
     {
-        self:: $setupData;
+        self::$setupData;
     }
 
     public static function setupData()
@@ -479,8 +479,8 @@ class TableServiceFunctionalTestData
         $ret = array();
         array_push($ret, true);
         array_push($ret, false);
-//        array_push($ret, 'TRUE');
-//        array_push($ret, 1);
+        //        array_push($ret, 'TRUE');
+        //        array_push($ret, 1);
         return $ret;
     }
 
@@ -497,12 +497,12 @@ class TableServiceFunctionalTestData
 
         array_push($ret, new \DateTime());
 
-        $c = new \DateTime;
+        $c = new \DateTime();
         $c->setDate(2010, 2, 3);
         $c->setTime(20, 3, 4);
         array_push($ret, $c);
 
-        $c = new \DateTime;
+        $c = new \DateTime();
         $c->setDate(2012, 1, 27);
         $c->setTime(21, 46, 59);
         array_push($ret, $c);

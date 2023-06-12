@@ -21,6 +21,7 @@
  * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
+
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
 class ReflectionTestBase extends \PHPUnit\Framework\TestCase

@@ -127,7 +127,7 @@ class BlobProperties
         if (!is_null($remainingretentiondays)) {
             $result->setRemainingRetentionDays((int) $remainingretentiondays);
         }
-        
+
         $creationtime = Utilities::tryGetValue($clean, 'creation-time');
         if (!is_null($creationtime)) {
             $creationtime = Utilities::rfc1123ToDateTime($creationtime);
@@ -414,7 +414,7 @@ class BlobProperties
     {
         $this->archiveStatus = $archiveStatus;
     }
-    
+
     /**
      * Gets blob deleted time.
      *
@@ -424,7 +424,7 @@ class BlobProperties
     {
         return $this->deletedTime;
     }
-    
+
     /**
      * Sets blob deleted time.
      *
@@ -436,7 +436,7 @@ class BlobProperties
     {
         $this->deletedTime = $deletedTime;
     }
-    
+
     /**
      * Gets blob remaining retention days.
      *
@@ -459,7 +459,7 @@ class BlobProperties
         $this->remainingRetentionDays = $remainingRetentionDays;
     }
 
-    
+
     /**
      * Gets blob access inferred.
      *

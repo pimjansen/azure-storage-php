@@ -38,9 +38,9 @@ use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
  */
 class PublicAccessType
 {
-    const NONE                = null;
-    const BLOBS_ONLY          = 'blob';
-    const CONTAINER_AND_BLOBS = 'container';
+    public const NONE                = null;
+    public const BLOBS_ONLY          = 'blob';
+    public const CONTAINER_AND_BLOBS = 'container';
 
     /**
      * Validates the public access.

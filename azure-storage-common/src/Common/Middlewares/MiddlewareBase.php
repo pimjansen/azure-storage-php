@@ -42,7 +42,6 @@ use GuzzleHttp\Promise\RejectedPromise;
  */
 class MiddlewareBase implements IMiddleware
 {
-
     /**
      * Middleware augments the functionality of handlers by invoking them
      * in the process of generating responses. And it returns a function

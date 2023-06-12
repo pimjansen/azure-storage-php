@@ -52,7 +52,7 @@ class HistoryMiddleware extends MiddlewareBase
     private $path;
     private $count;
 
-    const TITLE_LENGTH = 120;
+    public const TITLE_LENGTH = 120;
 
     /**
      * Gets the saved paried history.

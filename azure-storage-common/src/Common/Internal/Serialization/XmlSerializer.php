@@ -41,9 +41,9 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  */
 class XmlSerializer implements ISerializer
 {
-    const STANDALONE  = 'standalone';
-    const ROOT_NAME   = 'rootName';
-    const DEFAULT_TAG = 'defaultTag';
+    public const STANDALONE  = 'standalone';
+    public const ROOT_NAME   = 'rootName';
+    public const DEFAULT_TAG = 'defaultTag';
 
     /**
      * Converts a SimpleXML object to an Array recursively

@@ -21,6 +21,7 @@
  * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
+
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
 use MicrosoftAzure\Storage\Common\Internal\Resources;
@@ -43,9 +44,9 @@ class ServiceRestProxyTestBase extends RestProxyTestBase
     protected $defaultProperties;
     protected $connectionString;
 
-    const NOT_SUPPORTED                     = 'The storage emulator doesn\'t support this API';
-    const TAKE_TOO_LONG                     = 'This test takes long time, skip.';
-    const SKIPPED_AFTER_SEVERAL_ATTEMPTS    = 'Test skipped after several fails.';
+    public const NOT_SUPPORTED                     = 'The storage emulator doesn\'t support this API';
+    public const TAKE_TOO_LONG                     = 'This test takes long time, skip.';
+    public const SKIPPED_AFTER_SEVERAL_ATTEMPTS    = 'Test skipped after several fails.';
 
     protected function skipIfEmulated()
     {

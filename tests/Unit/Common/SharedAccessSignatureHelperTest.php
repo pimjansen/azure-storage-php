@@ -266,7 +266,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         // Setup
         $sasHelper = $this->testConstruct();
         $validateAndSanitizeSignedService = self::getMethod('generateCanonicalResource', $sasHelper);
-        
+
         $resourceNames = array();
         $resourceNames[] = "filename";
         $resourceNames[] = "/filename";

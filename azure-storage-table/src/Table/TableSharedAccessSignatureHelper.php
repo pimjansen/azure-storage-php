@@ -86,8 +86,7 @@ class TableSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         $startingRowKey = "",
         $endingPartitionKey = "",
         $endingRowKey = ""
-    )
-    {
+    ) {
         // check that table name is valid
         Validate::notNullOrEmpty($tableName, 'tableName');
         Validate::canCastAsString($tableName, 'tableName');

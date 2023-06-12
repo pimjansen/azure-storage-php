@@ -269,7 +269,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             \sleep(10);
 
-            $ret = (is_null($options) ?
+            $ret = (
+                is_null($options) ?
                 $this->restProxy->getServiceProperties() :
                 $this->restProxy->getServiceProperties($options)
             );
@@ -313,7 +314,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $finished = false;
         while (!$finished) {
             try {
-                $ret = (is_null($options) ?
+                $ret = (
+                    is_null($options) ?
                     $this->restProxy->listContainers() :
                     $this->restProxy->listContainers($options)
                 );
@@ -1246,7 +1248,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         }
 
         try {
-            $res = (is_null($options) ?
+            $res = (
+                is_null($options) ?
                 $this->restProxy->getBlobMetadata($container, $blob) :
                 $this->restProxy->getBlobMetadata($container, $blob, $options)
             );
@@ -1498,7 +1501,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         }
 
         try {
-            $res = (is_null($options) ?
+            $res = (
+                is_null($options) ?
                 $this->restProxy->getBlobProperties($container, $blob) :
                 $this->restProxy->getBlobProperties($container, $blob, $options)
             );
@@ -1819,7 +1823,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         }
 
         try {
-            $res = (is_null($options) ?
+            $res = (
+                is_null($options) ?
                 $this->restProxy->getBlob($container, $blob) :
                 $this->restProxy->getBlob($container, $blob, $options)
             );
@@ -1839,7 +1844,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             }
             if ($options->getRangeGetContentMD5() && (
                 is_null($options->getRange()) || is_null($options->getRange()->getStart())
-                )) {
+            )) {
                 $this->assertTrue(false, 'Expect compute range MD5 to fail if range not set');
             }
 
@@ -1879,7 +1884,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 );
             } elseif ($options->getRangeGetContentMD5() && (
                 is_null($options->getRange()) || is_null($options->getRange()->getStart())
-                )) {
+            )) {
                 $this->assertEquals(
                     TestResources::STATUS_BAD_REQUEST,
                     $e->getCode(),
@@ -2112,7 +2117,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         }
 
         try {
-            $res = (is_null($options) ?
+            $res = (
+                is_null($options) ?
                 $this->restProxy->createBlobSnapshot($container, $blob) :
                 $this->restProxy->createBlobSnapshot($container, $blob, $options)
             );
@@ -2149,17 +2155,15 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     $e->getCode(),
                     'bad timeout: deleteHttpStatusCode'
                 );
-            } elseif (!BlobServiceFunctionalTestData::
-                    passTemporalAccessCondition($options->getAccessConditions())
-                ) {
+            } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())
+            ) {
                 $this->assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
                     'bad temporal access condition IF_UNMODIFIED_SINCE:' .
                     ' deleteHttpStatusCode'
                 );
-            } elseif (!BlobServiceFunctionalTestData::
-                    passETagAccessCondition($options->getAccessConditions())) {
+            } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition($options->getAccessConditions())) {
                 $this->assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
@@ -2323,39 +2327,35 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
                 $this->assertEquals(500, $e->getCode(), 'bad timeout: deleteHttpStatusCode');
-            } elseif (!BlobServiceFunctionalTestData::
-                    passTemporalAccessCondition(
-                        $options->getSourceAccessConditions()
-                    )) {
+            } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition(
+                $options->getSourceAccessConditions()
+            )) {
                 $this->assertEquals(
                     412,
                     $e->getCode(),
                     'bad source temporal access condition ' .
                     'IF_UNMODIFIED_SINCE: deleteHttpStatusCode'
                 );
-            } elseif (!BlobServiceFunctionalTestData::
-                    passETagAccessCondition(
-                        $options->getSourceAccessConditions()
-                    )) {
+            } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition(
+                $options->getSourceAccessConditions()
+            )) {
                 $this->assertEquals(
                     412,
                     $e->getCode(),
                     'bad source etag access condition: deleteHttpStatusCode'
                 );
-            } elseif (!BlobServiceFunctionalTestData::
-                    passTemporalAccessCondition(
-                        $options->getAccessConditions()
-                    )) {
+            } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition(
+                $options->getAccessConditions()
+            )) {
                 $this->assertEquals(
                     412,
                     $e->getCode(),
                     'bad dest temporal access condition ' .
                     'IF_UNMODIFIED_SINCE: deleteHttpStatusCode'
                 );
-            } elseif (!BlobServiceFunctionalTestData::
-                    passETagAccessCondition(
-                        $options->getAccessConditions()
-                    )) {
+            } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition(
+                $options->getAccessConditions()
+            )) {
                 $this->assertEquals(
                     412,
                     $e->getCode(),
@@ -2600,7 +2600,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $container = BlobServiceFunctionalTestData::getContainerName();
 
         foreach ($attrs as $attr) {
-            $threshold = array_key_exists('threshold', $attr)?
+            $threshold = array_key_exists('threshold', $attr) ?
                 $attr['threshold'] : Resources::MB_IN_BYTES_32;
             $size = $attr['size'];
             $this->createBlockBlobWorker($container, $threshold, $size);
@@ -2637,8 +2637,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $resource,
                 $options
             );
-        }
-        catch (ServiceException $e) {
+        } catch (ServiceException $e) {
             $code = $e->getCode();
             $message = $e->getMessage();
         }
@@ -2823,7 +2822,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             $options->setIncludeUncommittedBlobs(true);
         }
         $result = $this->restProxy->listBlobBlocks($container, $blob, $options);
-        $blocks = $isCommitted? $result->getCommittedBlocks() : $result->getUncommittedBlocks();
+        $blocks = $isCommitted ? $result->getCommittedBlocks() : $result->getUncommittedBlocks();
         foreach ($list as $blockId) {
             $this->assertTrue(array_key_exists($blockId, $blocks));
         }

@@ -341,7 +341,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
     public function testListMessagesWorks()
     {
         // Arrange
-        $year2010 = new \DateTime;
+        $year2010 = new \DateTime();
         $year2010->setDate(2010, 1, 1);
 
         // Act
@@ -376,7 +376,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
     public function testListMessagesWithOptionsWorks()
     {
         // Arrange
-        $year2010 = new \DateTime;
+        $year2010 = new \DateTime();
         $year2010->setDate(2010, 1, 1);
 
         // Act
@@ -416,7 +416,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
     {
         // Arrange
 
-        $year2010 = new \DateTime;
+        $year2010 = new \DateTime();
         $year2010->setDate(2010, 1, 1);
 
         // Act
@@ -447,7 +447,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
     public function testPeekMessagesWithOptionsWorks()
     {
         // Arrange
-        $year2010 = new \DateTime;
+        $year2010 = new \DateTime();
         $year2010->setDate(2010, 1, 1);
 
         // Act
@@ -527,7 +527,7 @@ class QueueServiceIntegrationTest extends IntegrationTestBase
     public function testUpdateMessageWorks()
     {
         // Arrange
-        $year2010 = new \DateTime;
+        $year2010 = new \DateTime();
         $year2010->setDate(2010, 1, 1);
 
         // Act

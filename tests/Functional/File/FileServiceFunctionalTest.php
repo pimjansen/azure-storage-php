@@ -233,7 +233,8 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $finished = false;
         while (!$finished) {
             try {
-                $ret = (is_null($options) ?
+                $ret = (
+                    is_null($options) ?
                     $this->restProxy->listShares() :
                     $this->restProxy->listShares($options)
                 );
@@ -1055,7 +1056,8 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->setFileMetadata($share, $file, $properties);
 
         try {
-            $res = (is_null($options) ?
+            $res = (
+                is_null($options) ?
                 $this->restProxy->getFileMetadata($share, $file) :
                 $this->restProxy->getFileMetadata($share, $file, $options)
             );
@@ -1315,7 +1317,8 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $sbmd = $this->restProxy->setFileMetadata($share, $file, $metadata);
 
         try {
-            $res = (is_null($options) ?
+            $res = (
+                is_null($options) ?
                 $this->restProxy->getFile($share, $file) :
                 $this->restProxy->getFile($share, $file, $options)
             );

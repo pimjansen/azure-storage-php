@@ -233,7 +233,8 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
 
             \sleep(10);
 
-            $ret = (is_null($options) ?
+            $ret = (
+                is_null($options) ?
                 $this->restProxy->getServiceProperties() :
                 $this->restProxy->getServiceProperties($options)
             );
@@ -617,7 +618,8 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
         }
 
         try {
-            $res = (is_null($options) ?
+            $res = (
+                is_null($options) ?
                 $this->restProxy->getQueueMetadata($queue) :
                 $this->restProxy->getQueueMetadata($queue, $options)
             );

@@ -21,6 +21,7 @@
  * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
+
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
 use MicrosoftAzure\Storage\Table\Models\InsertEntityResult;
@@ -41,7 +42,6 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
  */
 class InsertEntityResultTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testCreate()
     {
         // Setup

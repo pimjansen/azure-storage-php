@@ -39,10 +39,10 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  */
 class ConnectionStringParser
 {
-    const EXPECT_KEY        = 'ExpectKey';
-    const EXPECT_ASSIGNMENT = 'ExpectAssignment';
-    const EXPECT_VALUE      = 'ExpectValue';
-    const EXPECT_SEPARATOR  = 'ExpectSeparator';
+    public const EXPECT_KEY        = 'ExpectKey';
+    public const EXPECT_ASSIGNMENT = 'ExpectAssignment';
+    public const EXPECT_VALUE      = 'ExpectValue';
+    public const EXPECT_SEPARATOR  = 'ExpectSeparator';
 
     private $_argumentName;
     private $_value;

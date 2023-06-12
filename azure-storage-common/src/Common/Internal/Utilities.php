@@ -557,11 +557,11 @@ class Utilities
             mt_rand(0, 65535),          // 32 bits for "time_low"
             mt_rand(0, 65535),          // 16 bits for "time_mid"
             mt_rand(0, 4096) + 16384,   // 16 bits for "time_hi_and_version", with
-                                        // the most significant 4 bits being 0100
-                                        // to indicate randomly generated version
+            // the most significant 4 bits being 0100
+            // to indicate randomly generated version
             mt_rand(0, 64) + 128,       // 8 bits  for "clock_seq_hi", with
-                                        // the most significant 2 bits being 10,
-                                        // required by version 4 GUIDs.
+            // the most significant 2 bits being 10,
+            // required by version 4 GUIDs.
             mt_rand(0, 255),            // 8 bits  for "clock_seq_low"
             mt_rand(0, 65535),          // 16 bits for "node 0" and "node 1"
             mt_rand(0, 65535),          // 16 bits for "node 2" and "node 3"

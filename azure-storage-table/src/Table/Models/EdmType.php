@@ -42,14 +42,14 @@ class EdmType
 {
     // @codingStandardsIgnoreStart
 
-    const DATETIME = 'Edm.DateTime';
-    const BINARY   = 'Edm.Binary';
-    const BOOLEAN  = 'Edm.Boolean';
-    const DOUBLE   = 'Edm.Double';
-    const GUID     = 'Edm.Guid';
-    const INT32    = 'Edm.Int32';
-    const INT64    = 'Edm.Int64';
-    const STRING   = 'Edm.String';
+    public const DATETIME = 'Edm.DateTime';
+    public const BINARY   = 'Edm.Binary';
+    public const BOOLEAN  = 'Edm.Boolean';
+    public const DOUBLE   = 'Edm.Double';
+    public const GUID     = 'Edm.Guid';
+    public const INT32    = 'Edm.Int32';
+    public const INT64    = 'Edm.Int64';
+    public const STRING   = 'Edm.String';
 
     public static function propertyType($value)
     {
@@ -124,33 +124,33 @@ class EdmType
             return true;
         } else {
             switch ($type) {
-            case EdmType::GUID:
-            case EdmType::BINARY:
-            case EdmType::STRING:
-            case EdmType::INT64:
-            case null:
-                // NULL also is treated as EdmType::STRING
-                $condition = 'is_string';
-                return is_string($value);
+                case EdmType::GUID:
+                case EdmType::BINARY:
+                case EdmType::STRING:
+                case EdmType::INT64:
+                case null:
+                    // NULL also is treated as EdmType::STRING
+                    $condition = 'is_string';
+                    return is_string($value);
 
-            case EdmType::DOUBLE:
-                $condition = 'is_double or is_string';
-                return is_double($value) || is_int($value) || is_string($value);
+                case EdmType::DOUBLE:
+                    $condition = 'is_double or is_string';
+                    return is_double($value) || is_int($value) || is_string($value);
 
-            case EdmType::INT32:
-                $condition = 'is_int or is_string';
-                return is_int($value) || is_string($value);
+                case EdmType::INT32:
+                    $condition = 'is_int or is_string';
+                    return is_int($value) || is_string($value);
 
-            case EdmType::DATETIME:
-                $condition = 'instanceof \DateTimeInterface';
-                return $value instanceof \DateTimeInterface;
+                case EdmType::DATETIME:
+                    $condition = 'instanceof \DateTimeInterface';
+                    return $value instanceof \DateTimeInterface;
 
-            case EdmType::BOOLEAN:
-                $condition = 'is_bool';
-                return is_bool($value);
+                case EdmType::BOOLEAN:
+                    $condition = 'is_bool';
+                    return is_bool($value);
 
-            default:
-                throw new \InvalidArgumentException();
+                default:
+                    throw new \InvalidArgumentException();
             }
         }
     }
@@ -170,31 +170,31 @@ class EdmType
     public static function serializeValue($type, $value)
     {
         switch ($type) {
-        case null:
-            return $value;
+            case null:
+                return $value;
 
-        case EdmType::INT32:
-            return intval($value);
+            case EdmType::INT32:
+                return intval($value);
 
-        case EdmType::INT64:
-        case EdmType::GUID:
-        case EdmType::STRING:
-            return strval($value);
+            case EdmType::INT64:
+            case EdmType::GUID:
+            case EdmType::STRING:
+                return strval($value);
 
-        case EdmType::DOUBLE:
-            return strval($value);
+            case EdmType::DOUBLE:
+                return strval($value);
 
-        case EdmType::BINARY:
-            return base64_encode($value);
+            case EdmType::BINARY:
+                return base64_encode($value);
 
-        case EdmType::DATETIME:
-            return Utilities::convertToEdmDateTime($value);
+            case EdmType::DATETIME:
+                return Utilities::convertToEdmDateTime($value);
 
-        case EdmType::BOOLEAN:
-            return (is_null($value) ? '' : ($value == true ? true : false));
+            case EdmType::BOOLEAN:
+                return (is_null($value) ? '' : ($value == true ? true : false));
 
-        default:
-            throw new \InvalidArgumentException();
+            default:
+                throw new \InvalidArgumentException();
         }
     }
 
@@ -213,33 +213,33 @@ class EdmType
     public static function serializeQueryValue($type, $value)
     {
         switch ($type) {
-        case EdmType::DATETIME:
-            $edmDate = Utilities::convertToEdmDateTime($value);
-            return 'datetime\'' . $edmDate . '\'';
+            case EdmType::DATETIME:
+                $edmDate = Utilities::convertToEdmDateTime($value);
+                return 'datetime\'' . $edmDate . '\'';
 
-        case EdmType::BINARY:
-            return 'X\'' . implode('', unpack("H*", $value)) . '\'';
+            case EdmType::BINARY:
+                return 'X\'' . implode('', unpack("H*", $value)) . '\'';
 
-        case EdmType::BOOLEAN:
-            return ($value ? 'true' : 'false');
+            case EdmType::BOOLEAN:
+                return ($value ? 'true' : 'false');
 
-        case EdmType::DOUBLE:
-        case EdmType::INT32:
-            return $value;
+            case EdmType::DOUBLE:
+            case EdmType::INT32:
+                return $value;
 
-        case EdmType::INT64:
-            return $value . 'L';
+            case EdmType::INT64:
+                return $value . 'L';
 
-        case EdmType::GUID:
-            return 'guid\'' . $value . '\'';
+            case EdmType::GUID:
+                return 'guid\'' . $value . '\'';
 
-        case null:
-        case EdmType::STRING:
-            // NULL also is treated as EdmType::STRING
-            return '\'' . str_replace('\'', '\'\'', $value) . '\'';
+            case null:
+            case EdmType::STRING:
+                // NULL also is treated as EdmType::STRING
+                return '\'' . str_replace('\'', '\'\'', $value) . '\'';
 
-        default:
-            throw new \InvalidArgumentException();
+            default:
+                throw new \InvalidArgumentException();
         }
     }
 
@@ -263,29 +263,29 @@ class EdmType
             return null;
         } else {
             switch ($type) {
-            case self::GUID:
-            case self::STRING:
-            case self::INT64:
-            case null:
-                return strval($value);
+                case self::GUID:
+                case self::STRING:
+                case self::INT64:
+                case null:
+                    return strval($value);
 
-            case self::BINARY:
-                return base64_decode($value);
+                case self::BINARY:
+                    return base64_decode($value);
 
-            case self::DATETIME:
-                return Utilities::convertToDateTime($value);
+                case self::DATETIME:
+                    return Utilities::convertToDateTime($value);
 
-            case self::BOOLEAN:
-                return Utilities::toBoolean($value);
+                case self::BOOLEAN:
+                    return Utilities::toBoolean($value);
 
-            case self::DOUBLE:
-                return doubleval($value);
+                case self::DOUBLE:
+                    return doubleval($value);
 
-            case self::INT32:
-                return intval($value);
+                case self::INT32:
+                    return intval($value);
 
-            default:
-                throw new \InvalidArgumentException();
+                default:
+                    throw new \InvalidArgumentException();
             }
         }
     }
@@ -302,20 +302,20 @@ class EdmType
     public static function isValid($type)
     {
         switch ($type) {
-        case $type == self::DATETIME:
-        case $type == self::BINARY:
-        case $type == self::BOOLEAN:
-        case $type == self::DOUBLE:
-        case $type == self::GUID:
-        case $type == self::INT32:
-        case $type == self::INT64:
-        case $type == self::STRING:
-        case $type == null:
-            // NULL also is treated as EdmType::STRING
-            return true;
+            case $type == self::DATETIME:
+            case $type == self::BINARY:
+            case $type == self::BOOLEAN:
+            case $type == self::DOUBLE:
+            case $type == self::GUID:
+            case $type == self::INT32:
+            case $type == self::INT64:
+            case $type == self::STRING:
+            case $type == null:
+                // NULL also is treated as EdmType::STRING
+                return true;
 
-        default:
-            return false;
+            default:
+                return false;
 
         }
     }
