@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -30,12 +25,8 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * page: http://msdn.microsoft.com/en-us/library/ee758697
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class StorageServiceSettings extends ServiceSettings
 {
@@ -66,20 +57,20 @@ class StorageServiceSettings extends ServiceSettings
 
     /**
      * If initialized or not
+     *
      * @internal
      */
     protected static $isInitialized = false;
 
     /**
      * Valid setting keys
+     *
      * @internal
      */
-    protected static $validSettingKeys = array();
+    protected static $validSettingKeys = [];
 
     /**
      * Initializes static members of the class.
-     *
-     * @return void
      */
     protected static function init()
     {
@@ -104,15 +95,15 @@ class StorageServiceSettings extends ServiceSettings
         self::$accountKeySetting = self::settingWithFunc(
             Resources::ACCOUNT_KEY_NAME,
             // base64_decode will return false if the $key is not in base64 format.
-            function ($key) {
+            static function ($key) {
                 $isValidBase64String = base64_decode($key, true);
                 if ($isValidBase64String) {
                     return true;
-                } else {
-                    throw new \RuntimeException(
-                        sprintf(Resources::INVALID_ACCOUNT_KEY_FORMAT, $key)
-                    );
                 }
+                throw new \RuntimeException(
+                    sprintf(Resources::INVALID_ACCOUNT_KEY_FORMAT, $key)
+                );
+
             }
         );
 
@@ -192,17 +183,17 @@ class StorageServiceSettings extends ServiceSettings
         $fileSecondaryEndpointUri = null,
         $sas = null
     ) {
-        $this->name                      = $name;
-        $this->key                       = $key;
-        $this->sas                       = $sas;
-        $this->blobEndpointUri           = $blobEndpointUri;
-        $this->queueEndpointUri          = $queueEndpointUri;
-        $this->tableEndpointUri          = $tableEndpointUri;
-        $this->fileEndpointUri           = $fileEndpointUri;
-        $this->blobSecondaryEndpointUri  = $blobSecondaryEndpointUri;
+        $this->name = $name;
+        $this->key = $key;
+        $this->sas = $sas;
+        $this->blobEndpointUri = $blobEndpointUri;
+        $this->queueEndpointUri = $queueEndpointUri;
+        $this->tableEndpointUri = $tableEndpointUri;
+        $this->fileEndpointUri = $fileEndpointUri;
+        $this->blobSecondaryEndpointUri = $blobSecondaryEndpointUri;
         $this->queueSecondaryEndpointUri = $queueSecondaryEndpointUri;
         $this->tableSecondaryEndpointUri = $tableSecondaryEndpointUri;
-        $this->fileSecondaryEndpointUri  = $fileSecondaryEndpointUri;
+        $this->fileSecondaryEndpointUri = $fileSecondaryEndpointUri;
     }
 
     /**
@@ -215,13 +206,13 @@ class StorageServiceSettings extends ServiceSettings
      */
     private static function getDevelopmentStorageAccount($proxyUri)
     {
-        if (is_null($proxyUri)) {
+        if (null === $proxyUri) {
             return self::developmentStorageAccount();
         }
 
         $scheme = parse_url($proxyUri, PHP_URL_SCHEME);
-        $host   = parse_url($proxyUri, PHP_URL_HOST);
-        $prefix = $scheme . "://" . $host;
+        $host = parse_url($proxyUri, PHP_URL_HOST);
+        $prefix = $scheme . '://' . $host;
 
         return new StorageServiceSettings(
             Resources::DEV_STORE_NAME,
@@ -241,7 +232,7 @@ class StorageServiceSettings extends ServiceSettings
      */
     public static function developmentStorageAccount()
     {
-        if (is_null(self::$devStoreAccount)) {
+        if (null === self::$devStoreAccount) {
             self::$devStoreAccount = self::getDevelopmentStorageAccount(
                 Resources::DEV_STORE_URI
             );
@@ -279,7 +270,7 @@ class StorageServiceSettings extends ServiceSettings
             Resources::SERVICE_URI_FORMAT,
             $scheme,
             $accountName,
-            $dnsPrefix.$dnsSuffix
+            $dnsPrefix . $dnsSuffix
         );
     }
 
@@ -309,7 +300,7 @@ class StorageServiceSettings extends ServiceSettings
         $tableSecondaryEndpointUri = null,
         $fileSecondaryEndpointUri = null
     ) {
-        $blobEndpointUri  = Utilities::tryGetValueInsensitive(
+        $blobEndpointUri = Utilities::tryGetValueInsensitive(
             Resources::BLOB_ENDPOINT_NAME,
             $settings,
             $blobEndpointUri
@@ -329,15 +320,15 @@ class StorageServiceSettings extends ServiceSettings
             $settings,
             $fileEndpointUri
         );
-        $accountName      = Utilities::tryGetValueInsensitive(
+        $accountName = Utilities::tryGetValueInsensitive(
             Resources::ACCOUNT_NAME_NAME,
             $settings
         );
-        $accountKey       = Utilities::tryGetValueInsensitive(
+        $accountKey = Utilities::tryGetValueInsensitive(
             Resources::ACCOUNT_KEY_NAME,
             $settings
         );
-        $sasToken         = Utilities::tryGetValueInsensitive(
+        $sasToken = Utilities::tryGetValueInsensitive(
             Resources::SAS_TOKEN_NAME,
             $settings
         );
@@ -400,11 +391,11 @@ class StorageServiceSettings extends ServiceSettings
             )
         );
         if ($matchedSpecs) {
-            $scheme         = Utilities::tryGetValueInsensitive(
+            $scheme = Utilities::tryGetValueInsensitive(
                 Resources::DEFAULT_ENDPOINTS_PROTOCOL_NAME,
                 $tokenizedSettings
             );
-            $accountName    = Utilities::tryGetValueInsensitive(
+            $accountName = Utilities::tryGetValueInsensitive(
                 Resources::ACCOUNT_NAME_NAME,
                 $tokenizedSettings
             );
@@ -522,11 +513,11 @@ class StorageServiceSettings extends ServiceSettings
         // name.
         $tokenizedSettings = self::parseAndValidateKeys($connectionString);
 
-        $scheme         = Utilities::tryGetValueInsensitive(
+        $scheme = Utilities::tryGetValueInsensitive(
             Resources::DEFAULT_ENDPOINTS_PROTOCOL_NAME,
             $tokenizedSettings
         );
-        $accountName    = Utilities::tryGetValueInsensitive(
+        $accountName = Utilities::tryGetValueInsensitive(
             Resources::ACCOUNT_NAME_NAME,
             $tokenizedSettings
         );
@@ -614,7 +605,7 @@ class StorageServiceSettings extends ServiceSettings
     /**
      * Checks if there is a SAS token.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasSasToken()
     {

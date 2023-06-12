@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Common\Models;
 /**
  * Holds info about page blob range diffs
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RangeDiff extends Range
 {
@@ -41,9 +31,9 @@ class RangeDiff extends Range
     /**
      * Constructor
      *
-     * @param integer $start              the resource start value
-     * @param integer $end                the resource end value
-     * @param bool    $isClearedPageRange true if the page range is a cleared range, false otherwise.
+     * @param int  $start              the resource start value
+     * @param int  $end                the resource end value
+     * @param bool $isClearedPageRange true if the page range is a cleared range, false otherwise.
      */
     public function __construct($start, $end = null, $isClearedPageRange = false)
     {

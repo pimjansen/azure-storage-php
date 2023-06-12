@@ -14,37 +14,28 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Authentication;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
-use MicrosoftAzure\Storage\Tests\Mock\Common\Internal\Authentication\SharedKeyAuthSchemeMock;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
+use MicrosoftAzure\Storage\Tests\Mock\Common\Internal\Authentication\SharedKeyAuthSchemeMock;
 
 /**
  * Unit tests for SharedKeyAuthScheme class.
  *
- * @package    MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Authentication
- * @author     Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright  2016 Microsoft Corporation
- * @license    https://github.com/azure/azure-storage-php/LICENSE
- * @link       https://github.com/azure/azure-storage-php
+ * @see       https://github.com/azure/azure-storage-php
  */
 class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstruct()
     {
-        $expected = array();
+        $expected = [];
         $expected[] = Resources::CONTENT_ENCODING;
         $expected[] = Resources::CONTENT_LANGUAGE;
         $expected[] = Resources::CONTENT_LENGTH;
@@ -59,38 +50,38 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $mock = new SharedKeyAuthSchemeMock(TestResources::ACCOUNT_NAME, TestResources::KEY4);
 
-        $this->assertEquals(TestResources::ACCOUNT_NAME, $mock->getAccountName());
-        $this->assertEquals(TestResources::KEY4, $mock->getAccountKey());
-        $this->assertEquals($expected, $mock->getIncludedHeaders());
+        self::assertEquals(TestResources::ACCOUNT_NAME, $mock->getAccountName());
+        self::assertEquals(TestResources::KEY4, $mock->getAccountKey());
+        self::assertEquals($expected, $mock->getIncludedHeaders());
     }
 
     public function testComputeSignatureSimple()
     {
         $httpMethod = 'GET';
-        $queryParams = array(Resources::QP_COMP => 'list');
+        $queryParams = [Resources::QP_COMP => 'list'];
         $url = TestResources::URI1;
         $date = TestResources::DATE1;
-        $apiVersion = "2016-05-31";
+        $apiVersion = '2016-05-31';
         $accountName = TestResources::ACCOUNT_NAME;
-        $headers = array(Resources::X_MS_DATE => $date, Resources::X_MS_VERSION => $apiVersion);
+        $headers = [Resources::X_MS_DATE => $date, Resources::X_MS_VERSION => $apiVersion];
         $expected = "GET\n\n\n\n\n\n\n\n\n\n\n\n" . Resources::X_MS_DATE . ":$date\n" . Resources::X_MS_VERSION .
                 ":$apiVersion\n/$accountName" . parse_url($url, PHP_URL_PATH) . "\ncomp:list";
         $mock = new SharedKeyAuthSchemeMock($accountName, TestResources::KEY4);
 
         $actual = $mock->computeSignatureMock($headers, $url, $queryParams, $httpMethod);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetAuthorizationHeaderSimple()
     {
         $accountName = TestResources::ACCOUNT_NAME;
-        $apiVersion = "2016-05-31";
+        $apiVersion = '2016-05-31';
         $accountKey = TestResources::KEY4;
         $url = TestResources::URI2;
         $date1 = TestResources::DATE2;
-        $headers = array(Resources::X_MS_VERSION => $apiVersion, Resources::X_MS_DATE => $date1);
-        $queryParams = array(Resources::QP_COMP => 'list');
+        $headers = [Resources::X_MS_VERSION => $apiVersion, Resources::X_MS_DATE => $date1];
+        $queryParams = [Resources::QP_COMP => 'list'];
         $httpMethod = 'GET';
         $expected = 'SharedKey ' . $accountName;
 
@@ -98,28 +89,28 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->getAuthorizationHeader($headers, $url, $queryParams, $httpMethod);
 
-        $this->assertEquals($expected, substr($actual, 0, \strlen($expected)));
+        self::assertEquals($expected, substr($actual, 0, \strlen($expected)));
     }
 
     public function testComputeCanonicalizedHeadersMock()
     {
         $date = TestResources::DATE1;
-        $headers = array();
+        $headers = [];
         $headers[Resources::X_MS_DATE] = $date;
         $headers[Resources::X_MS_VERSION] = '2016-05-31';
-        $expected = array();
+        $expected = [];
         $expected[] = Resources::X_MS_DATE . ':' . $date;
         $expected[] = Resources::X_MS_VERSION . ':' . $headers[Resources::X_MS_VERSION];
         $mock = new SharedKeyAuthSchemeMock(TestResources::ACCOUNT_NAME, TestResources::KEY4);
 
         $actual = $mock->computeCanonicalizedHeadersMock($headers);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testComputeCanonicalizedResourceMockSimple()
     {
-        $queryVariables = array();
+        $queryVariables = [];
         $queryVariables['COMP'] = 'list';
         $accountName = TestResources::ACCOUNT_NAME;
         $url = TestResources::URI1;
@@ -128,19 +119,19 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->computeCanonicalizedResourceMock($url, $queryVariables);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testComputeCanonicalizedResourceMockMultipleValues()
     {
-        $queryVariables = array();
+        $queryVariables = [];
         $queryVariables['COMP'] = 'list';
         $queryVariables[Resources::QP_INCLUDE] = ServiceRestProxy::groupQueryValues(
-            array(
+            [
                 'snapshots',
                 'metadata',
-                'uncommittedblobs'
-            )
+                'uncommittedblobs',
+            ]
         );
         $expectedQueryPart = "comp:list\ninclude:metadata,snapshots,uncommittedblobs";
         $accountName = TestResources::ACCOUNT_NAME;
@@ -150,12 +141,12 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->computeCanonicalizedResourceMock($url, $queryVariables);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testComputeCanonicalizedResourceForTableMock()
     {
-        $queryVariables = array();
+        $queryVariables = [];
         $queryVariables['COMP'] = 'list';
         $accountName = TestResources::ACCOUNT_NAME;
         $url = TestResources::URI1;
@@ -164,7 +155,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
 
         $actual = $mock->computeCanonicalizedResourceForTableMock($url, $queryVariables);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSignRequest()
@@ -172,12 +163,12 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
         // Setup
         $mock = new SharedKeyAuthSchemeMock(TestResources::ACCOUNT_NAME, TestResources::KEY4);
         $uri = new Uri(TestResources::URI2);
-        $request = new Request('Get', $uri, array(), null);
+        $request = new Request('Get', $uri, [], null);
 
         // Test
         $actual = $mock->signRequest($request);
 
         // Assert
-        $this->assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
+        self::assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
     }
 }

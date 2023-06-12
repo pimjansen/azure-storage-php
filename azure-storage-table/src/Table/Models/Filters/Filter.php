@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models\Filters
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models\Filters;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Table\Models\Filters;
 /**
  * Filter operations
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models\Filters
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Filter
 {
@@ -46,8 +36,7 @@ class Filter
      */
     public static function applyAnd(Filter $left, Filter $right)
     {
-        $filter = new BinaryFilter($left, 'and', $right);
-        return $filter;
+        return new BinaryFilter($left, 'and', $right);
     }
 
     /**
@@ -59,8 +48,7 @@ class Filter
      */
     public static function applyNot(Filter $operand)
     {
-        $filter = new UnaryFilter('not', $operand);
-        return $filter;
+        return new UnaryFilter('not', $operand);
     }
 
     /**
@@ -73,8 +61,7 @@ class Filter
      */
     public static function applyOr(Filter $left, Filter $right)
     {
-        $filter = new BinaryFilter($left, 'or', $right);
-        return $filter;
+        return new BinaryFilter($left, 'or', $right);
     }
 
     /**
@@ -87,8 +74,7 @@ class Filter
      */
     public static function applyEq(Filter $left, Filter $right)
     {
-        $filter = new BinaryFilter($left, 'eq', $right);
-        return $filter;
+        return new BinaryFilter($left, 'eq', $right);
     }
 
     /**
@@ -101,8 +87,7 @@ class Filter
      */
     public static function applyNe(Filter $left, Filter $right)
     {
-        $filter = new BinaryFilter($left, 'ne', $right);
-        return $filter;
+        return new BinaryFilter($left, 'ne', $right);
     }
 
     /**
@@ -115,8 +100,7 @@ class Filter
      */
     public static function applyGe(Filter $left, Filter $right)
     {
-        $filter = new BinaryFilter($left, 'ge', $right);
-        return $filter;
+        return new BinaryFilter($left, 'ge', $right);
     }
 
     /**
@@ -129,8 +113,7 @@ class Filter
      */
     public static function applyGt(Filter $left, Filter $right)
     {
-        $filter = new BinaryFilter($left, 'gt', $right);
-        return $filter;
+        return new BinaryFilter($left, 'gt', $right);
     }
 
     /**
@@ -143,8 +126,7 @@ class Filter
      */
     public static function applyLt(Filter $left, Filter $right)
     {
-        $filter = new BinaryFilter($left, 'lt', $right);
-        return $filter;
+        return new BinaryFilter($left, 'lt', $right);
     }
 
     /**
@@ -157,8 +139,7 @@ class Filter
      */
     public static function applyLe(Filter $left, Filter $right)
     {
-        $filter = new BinaryFilter($left, 'le', $right);
-        return $filter;
+        return new BinaryFilter($left, 'le', $right);
     }
 
     /**
@@ -171,8 +152,7 @@ class Filter
      */
     public static function applyConstant($value, $edmType = null)
     {
-        $filter = new ConstantFilter($edmType, $value);
-        return $filter;
+        return new ConstantFilter($edmType, $value);
     }
 
     /**
@@ -184,8 +164,7 @@ class Filter
      */
     public static function applyPropertyName($value)
     {
-        $filter = new PropertyNameFilter($value);
-        return $filter;
+        return new PropertyNameFilter($value);
     }
 
     /**
@@ -197,7 +176,6 @@ class Filter
      */
     public static function applyQueryString($value)
     {
-        $filter = new QueryStringFilter($value);
-        return $filter;
+        return new QueryStringFilter($value);
     }
 }

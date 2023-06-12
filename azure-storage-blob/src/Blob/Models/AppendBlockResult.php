@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * The result of calling appendBlock API.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class AppendBlockResult
 {
@@ -60,7 +50,7 @@ class AppendBlockResult
         $result = new AppendBlockResult();
 
         $result->setAppendOffset(
-            intval(
+            (int) (
                 Utilities::tryGetValueInsensitive(
                     Resources::X_MS_BLOB_APPEND_OFFSET,
                     $headers
@@ -69,7 +59,7 @@ class AppendBlockResult
         );
 
         $result->setCommittedBlockCount(
-            intval(
+            (int) (
                 Utilities::tryGetValueInsensitive(
                     Resources::X_MS_BLOB_COMMITTED_BLOCK_COUNT,
                     $headers
@@ -126,8 +116,6 @@ class AppendBlockResult
      * Sets the etag value.
      *
      * @param string $etag etag as a string.
-     *
-     * @return void
      */
     protected function setEtag($etag)
     {
@@ -148,8 +136,6 @@ class AppendBlockResult
      * Sets the $lastModified value.
      *
      * @param \DateTime $lastModified $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified($lastModified)
     {
@@ -170,8 +156,6 @@ class AppendBlockResult
      * Sets the content MD5 value.
      *
      * @param string $contentMD5 conent MD5 as a string.
-     *
-     * @return void
      */
     protected function setContentMD5($contentMD5)
     {
@@ -192,8 +176,6 @@ class AppendBlockResult
      * Sets the offset at which the block was committed, in bytes.
      *
      * @param int $appendOffset append offset, in bytes.
-     *
-     * @return void
      */
     protected function setAppendOffset($appendOffset)
     {
@@ -214,8 +196,6 @@ class AppendBlockResult
      * Sets the number of committed blocks present in the blob.
      *
      * @param int $committedBlockCount the number of committed blocks present in the blob.
-     *
-     * @return void
      */
     protected function setCommittedBlockCount($committedBlockCount)
     {
@@ -225,7 +205,7 @@ class AppendBlockResult
     /**
      * Gets the whether the contents of the request are successfully encrypted.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRequestServerEncrypted()
     {
@@ -235,9 +215,7 @@ class AppendBlockResult
     /**
      * Sets the request server encryption value.
      *
-     * @param boolean $requestServerEncrypted
-     *
-     * @return void
+     * @param bool $requestServerEncrypted
      */
     public function setRequestServerEncrypted($requestServerEncrypted)
     {

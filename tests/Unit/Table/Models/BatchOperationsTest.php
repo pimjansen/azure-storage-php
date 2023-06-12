@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\BatchOperations;
 use MicrosoftAzure\Storage\Table\Models\BatchOperation;
+use MicrosoftAzure\Storage\Table\Models\BatchOperations;
 use MicrosoftAzure\Storage\Table\Models\Entity;
 
 /**
  * Unit tests for class BatchOperations
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperationsTest extends \PHPUnit\Framework\TestCase
 {
@@ -46,26 +36,26 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
         $operations = new BatchOperations();
 
         // Assert
-        $this->assertCount(0, $operations->getOperations());
+        self::assertCount(0, $operations->getOperations());
 
         return $operations;
     }
 
     /**
-                    * @depends testConstruct
+     * @depends testConstruct
      */
     public function testSetOperations($operations)
     {
         // Setup
         $operation = new BatchOperation();
-        $expected = array($operation);
+        $expected = [$operation];
         $operations->addOperation($operation);
 
         // Test
         $operations->setOperations($expected);
 
         // Assert
-        $this->assertEquals($expected, $operations->getOperations());
+        self::assertEquals($expected, $operations->getOperations());
     }
 
     public function testAddInsertEntity()
@@ -79,7 +69,7 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
         $operations->addInsertEntity($table, $entity);
 
         // Assert
-        $this->assertCount(1, $operations->getOperations());
+        self::assertCount(1, $operations->getOperations());
     }
 
     public function testAddUpdateEntity()
@@ -93,7 +83,7 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
         $operations->addUpdateEntity($table, $entity);
 
         // Assert
-        $this->assertCount(1, $operations->getOperations());
+        self::assertCount(1, $operations->getOperations());
     }
 
     public function testAddMergeEntity()
@@ -107,7 +97,7 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
         $operations->addMergeEntity($table, $entity);
 
         // Assert
-        $this->assertCount(1, $operations->getOperations());
+        self::assertCount(1, $operations->getOperations());
     }
 
     public function testAddInsertOrReplaceEntity()
@@ -121,7 +111,7 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
         $operations->addInsertOrReplaceEntity($table, $entity);
 
         // Assert
-        $this->assertCount(1, $operations->getOperations());
+        self::assertCount(1, $operations->getOperations());
     }
 
     public function testAddInsertOrMergeEntity()
@@ -135,7 +125,7 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
         $operations->addInsertOrMergeEntity($table, $entity);
 
         // Assert
-        $this->assertCount(1, $operations->getOperations());
+        self::assertCount(1, $operations->getOperations());
     }
 
     public function testAddDeleteEntity()
@@ -143,7 +133,7 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $table = 'mytable';
         $partitionKey = '123';
-        $rowKey= '456';
+        $rowKey = '456';
         $etag = 'W/datetime:2009';
         $operations = new BatchOperations();
 
@@ -151,6 +141,6 @@ class BatchOperationsTest extends \PHPUnit\Framework\TestCase
         $operations->addDeleteEntity($table, $partitionKey, $rowKey, $etag);
 
         // Assert
-        $this->assertCount(1, $operations->getOperations());
+        self::assertCount(1, $operations->getOperations());
     }
 }

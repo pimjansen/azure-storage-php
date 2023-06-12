@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Blob\Models\BreakLeaseResult;
 /**
  * Unit tests for class BreakLeaseResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BreakLeaseResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -42,12 +32,12 @@ class BreakLeaseResultTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $expected = '10';
-        $headers = array('x-ms-lease-time' => $expected);
+        $headers = ['x-ms-lease-time' => $expected];
 
         // Test
         $result = BreakLeaseResult::create($headers);
 
         // Assert
-        $this->assertEquals($expected, $result->getLeaseTime());
+        self::assertEquals($expected, $result->getLeaseTime());
     }
 }

@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Holds results of listMessages wrapper.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListMessagesResult
 {
@@ -51,8 +41,8 @@ class ListMessagesResult
      */
     public static function create(array $parsedResponse = null)
     {
-        $result        = new ListMessagesResult();
-        $queueMessages = array();
+        $result = new ListMessagesResult();
+        $queueMessages = [];
 
         if (!empty($parsedResponse)) {
             $rawMessages = Utilities::getArray($parsedResponse['QueueMessage']);
@@ -83,12 +73,10 @@ class ListMessagesResult
      * @param array $queueMessages value to use.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setQueueMessages(array $queueMessages)
     {
-        $this->_queueMessages = array();
+        $this->_queueMessages = [];
 
         foreach ($queueMessages as $value) {
             $this->_queueMessages[] = clone $value;

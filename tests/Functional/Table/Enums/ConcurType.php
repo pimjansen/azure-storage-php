@@ -14,24 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Functional\Table\Enums
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Table\Enums;
 
 class ConcurType
 {
-    public const NO_KEY_MATCH            = 'NoKeyMatch';
-    public const KEY_MATCH_NO_ETAG       = 'KeyMatchNoETag';
+    public const NO_KEY_MATCH = 'NoKeyMatch';
+    public const KEY_MATCH_NO_ETAG = 'KeyMatchNoETag';
     public const KEY_MATCH_ETAG_MISMATCH = 'KeyMatchETagMismatch';
-    public const KEY_MATCH_ETAG_MATCH    = 'KeyMatchETagMatch';
+    public const KEY_MATCH_ETAG_MATCH = 'KeyMatchETagMatch';
+
     public static function values()
     {
-        return array('NoKeyMatch', 'KeyMatchNoETag', 'KeyMatchETagMismatch', 'KeyMatchETagMatch');
+        return ['NoKeyMatch', 'KeyMatchNoETag', 'KeyMatchETagMismatch', 'KeyMatchETagMatch'];
     }
 }

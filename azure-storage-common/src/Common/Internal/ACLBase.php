@@ -15,33 +15,24 @@
  * PHP version 5
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
 
+use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Models\AccessPolicy;
 use MicrosoftAzure\Storage\Common\Models\SignedIdentifier;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 
 /**
  * Provide base class for service ACLs.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 abstract class ACLBase
 {
-    private $signedIdentifiers = array();
+    private $signedIdentifiers = [];
     private $resourceType = '';
 
     /**
@@ -54,13 +45,11 @@ abstract class ACLBase
     /**
      * Validate if the resource type for the class.
      *
-     * @param  string $resourceType the resource type to be validated.
+     * @param string $resourceType the resource type to be validated.
      *
      * @throws \InvalidArgumentException
      *
      * @internal
-     *
-     * @return void
      */
     abstract protected static function validateResourceType($resourceType);
 
@@ -73,7 +62,7 @@ abstract class ACLBase
      */
     public function toArray()
     {
-        $array = array();
+        $array = [];
 
         foreach ($this->getSignedIdentifiers() as $value) {
             $array[] = $value->toArray();
@@ -85,18 +74,16 @@ abstract class ACLBase
     /**
      * Converts this signed identifiers to XML representation.
      *
-     * @param  XmlSerializer $xmlSerializer The XML serializer.
-     *
      * @internal
      *
      * @return string
      */
     public function toXml(XmlSerializer $serializer)
     {
-        $properties = array(
+        $properties = [
             XmlSerializer::DEFAULT_TAG => Resources::XTAG_SIGNED_IDENTIFIER,
-            XmlSerializer::ROOT_NAME   => Resources::XTAG_SIGNED_IDENTIFIERS
-        );
+            XmlSerializer::ROOT_NAME => Resources::XTAG_SIGNED_IDENTIFIERS,
+        ];
 
         return $serializer->serialize($this->toArray(), $properties);
     }
@@ -105,35 +92,33 @@ abstract class ACLBase
      * Construct the signed identifiers from a given parsed XML in array
      * representation.
      *
-     * @param array|null  $parsed The parsed XML into array representation.
+     * @param array|null $parsed The parsed XML into array representation.
      *
      * @internal
-     *
-     * @return void
      */
     public function fromXmlArray(array $parsed = null)
     {
-        $this->setSignedIdentifiers(array());
+        $this->setSignedIdentifiers([]);
 
         // Initialize signed identifiers.
-        if (!empty($parsed) &&
-                is_array($parsed[Resources::XTAG_SIGNED_IDENTIFIER])
+        if (!empty($parsed)
+                && is_array($parsed[Resources::XTAG_SIGNED_IDENTIFIER])
         ) {
             $entries = $parsed[Resources::XTAG_SIGNED_IDENTIFIER];
-            $temp    = Utilities::getArray($entries);
+            $temp = Utilities::getArray($entries);
 
             foreach ($temp as $value) {
                 $accessPolicy = $value[Resources::XTAG_ACCESS_POLICY];
-                $startString  = urldecode(
+                $startString = urldecode(
                     $accessPolicy[Resources::XTAG_SIGNED_START]
                 );
                 $expiryString = urldecode(
                     $accessPolicy[Resources::XTAG_SIGNED_EXPIRY]
                 );
-                $start        = Utilities::convertToDateTime($startString);
-                $expiry       = Utilities::convertToDateTime($expiryString);
-                $permission   = $accessPolicy[Resources::XTAG_SIGNED_PERMISSION];
-                $id           = $value[Resources::XTAG_SIGNED_ID];
+                $start = Utilities::convertToDateTime($startString);
+                $expiry = Utilities::convertToDateTime($expiryString);
+                $permission = $accessPolicy[Resources::XTAG_SIGNED_PERMISSION];
+                $id = $value[Resources::XTAG_SIGNED_ID];
                 $this->addSignedIdentifier($id, $start, $expiry, $permission);
             }
         }
@@ -155,8 +140,6 @@ abstract class ACLBase
      * Set the type of resource this ACL relate to.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setResourceType($resourceType)
     {
@@ -178,8 +161,6 @@ abstract class ACLBase
      * @param string    $permissions The permissions associated with the Shared
      *                               Access Signature. The user is restricted to
      *                               operations allowed by the permissions.
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/establishing-a-stored-access-policy
      */
@@ -220,9 +201,9 @@ abstract class ACLBase
     /**
      * Remove the signed identifier with given ID.
      *
-     * @param  string $id The ID of the signed identifier to be removed.
+     * @param string $id The ID of the signed identifier to be removed.
      *
-     * @return boolean
+     * @return bool
      */
     public function removeSignedIdentifier($id)
     {

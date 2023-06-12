@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal;
@@ -30,12 +25,8 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
  * Project resources.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class TableResources extends Resources
 {
@@ -92,7 +83,7 @@ class TableResources extends Resources
 
     // Resource permissions
     public const ACCESS_PERMISSIONS = [
-        Resources::RESOURCE_TYPE_TABLE => ['r', 'a', 'u', 'd']
+        Resources::RESOURCE_TYPE_TABLE => ['r', 'a', 'u', 'd'],
     ];
 
     // @codingStandardsIgnoreEnd

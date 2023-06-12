@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Table\Models\BatchOperationType;
 /**
  * Unit tests for class BatchOperationType
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperationTypeTest extends \PHPUnit\Framework\TestCase
 {
@@ -47,7 +37,7 @@ class BatchOperationTypeTest extends \PHPUnit\Framework\TestCase
         $actual = BatchOperationType::isValid($name);
 
         // Assert
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testIsValidWithInvalid()
@@ -59,6 +49,6 @@ class BatchOperationTypeTest extends \PHPUnit\Framework\TestCase
         $actual = BatchOperationType::isValid($name);
 
         // Assert
-        $this->assertFalse($actual);
+        self::assertFalse($actual);
     }
 }

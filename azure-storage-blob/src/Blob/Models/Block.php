@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Holds information about blob block.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Block
 {
@@ -55,8 +45,6 @@ class Block
      * Sets the blockId.
      *
      * @param string $blockId The id of the block.
-     *
-     * @return void
      */
     public function setBlockId($blockId)
     {
@@ -77,8 +65,6 @@ class Block
      * Sets the type.
      *
      * @param string $type The type of the block.
-     *
-     * @return void
      */
     public function setType($type)
     {

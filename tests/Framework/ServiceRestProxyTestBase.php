@@ -14,29 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 
 /**
  * TestBase class for Storage Services test classes.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ServiceRestProxyTestBase extends RestProxyTestBase
 {
@@ -44,9 +33,9 @@ class ServiceRestProxyTestBase extends RestProxyTestBase
     protected $defaultProperties;
     protected $connectionString;
 
-    public const NOT_SUPPORTED                     = 'The storage emulator doesn\'t support this API';
-    public const TAKE_TOO_LONG                     = 'This test takes long time, skip.';
-    public const SKIPPED_AFTER_SEVERAL_ATTEMPTS    = 'Test skipped after several fails.';
+    public const NOT_SUPPORTED = 'The storage emulator doesn\'t support this API';
+    public const TAKE_TOO_LONG = 'This test takes long time, skip.';
+    public const SKIPPED_AFTER_SEVERAL_ATTEMPTS = 'Test skipped after several fails.';
 
     protected function skipIfEmulated()
     {
@@ -57,7 +46,7 @@ class ServiceRestProxyTestBase extends RestProxyTestBase
 
     protected function isEmulated()
     {
-        return (strpos($this->connectionString, Resources::USE_DEVELOPMENT_STORAGE_NAME) !== false);
+        return strpos($this->connectionString, Resources::USE_DEVELOPMENT_STORAGE_NAME) !== false;
     }
 
     public function __construct()
@@ -75,7 +64,7 @@ class ServiceRestProxyTestBase extends RestProxyTestBase
     private function _createDefaultProperties()
     {
         $this->propertiesChanged = false;
-        $propertiesArray = array();
+        $propertiesArray = [];
         $propertiesArray['HourMetrics']['Version'] = '1.0';
         $propertiesArray['HourMetrics']['Enabled'] = 'false';
         $propertiesArray['HourMetrics']['IncludeAPIs'] = 'false';

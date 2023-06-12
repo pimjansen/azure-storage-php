@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2019 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Authentication;
 
 use GuzzleHttp\Psr7\Request;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Azure authentication scheme for token credential.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2019 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class TokenAuthScheme implements IAuthScheme
 {
@@ -53,7 +43,7 @@ class TokenAuthScheme implements IAuthScheme
      */
     public function __construct(&$token)
     {
-        $this->tokenRef =& $token;
+        $this->tokenRef = &$token;
     }
 
     /**
@@ -67,7 +57,7 @@ class TokenAuthScheme implements IAuthScheme
      */
     public function signRequest(Request $request)
     {
-        $bearerToken = "Bearer ". $this->tokenRef;
+        $bearerToken = 'Bearer ' . $this->tokenRef;
         return $request->withHeader(Resources::AUTHENTICATION, $bearerToken);
     }
 }

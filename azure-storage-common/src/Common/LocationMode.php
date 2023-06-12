@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common;
@@ -27,21 +22,16 @@ namespace MicrosoftAzure\Storage\Common;
 /**
  * Location mode for the service.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class LocationMode
 {
     //Request will only be sent to primary endpoint, except for
     //getServiceStats APIs.
-    public const PRIMARY_ONLY           = 'PrimaryOnly';
+    public const PRIMARY_ONLY = 'PrimaryOnly';
 
     //Request will only be sent to secondary endpoint.
-    public const SECONDARY_ONLY         = 'SecondaryOnly';
+    public const SECONDARY_ONLY = 'SecondaryOnly';
 
     //Request will be sent to primary endpoint first, and retry for secondary
     //endpoint.

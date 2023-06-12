@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -29,12 +24,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Holds result of GetBlob API.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetBlobResult
 {
@@ -61,7 +51,7 @@ class GetBlobResult
         $result = new GetBlobResult();
         $result->setContentStream($body->detach());
         $result->setProperties(BlobProperties::createFromHttpHeaders($headers));
-        $result->setMetadata(is_null($metadata) ? array() : $metadata);
+        $result->setMetadata(null === $metadata ? [] : $metadata);
 
         return $result;
     }
@@ -80,8 +70,6 @@ class GetBlobResult
      * Sets blob metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     protected function setMetadata(array $metadata)
     {
@@ -102,8 +90,6 @@ class GetBlobResult
      * Sets blob properties.
      *
      * @param BlobProperties $properties value.
-     *
-     * @return void
      */
     protected function setProperties(BlobProperties $properties)
     {
@@ -124,8 +110,6 @@ class GetBlobResult
      * Sets blob contentStream.
      *
      * @param resource $contentStream The stream handle.
-     *
-     * @return void
      */
     protected function setContentStream($contentStream)
     {

@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -29,19 +24,14 @@ use MicrosoftAzure\Storage\Blob\Models\BlobBlockType;
 /**
  * Unit tests for class BlobBlockType
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobBlockTypeTest extends \PHPUnit\Framework\TestCase
 {
     public function testBlobBlockType()
     {
-        $this->assertEquals(BlobBlockType::COMMITTED_TYPE, 'Committed');
-        $this->assertEquals(BlobBlockType::UNCOMMITTED_TYPE, 'Uncommitted');
-        $this->assertEquals(BlobBlockType::LATEST_TYPE, 'Latest');
+        self::assertEquals(BlobBlockType::COMMITTED_TYPE, 'Committed');
+        self::assertEquals(BlobBlockType::UNCOMMITTED_TYPE, 'Uncommitted');
+        self::assertEquals(BlobBlockType::LATEST_TYPE, 'Latest');
     }
 }

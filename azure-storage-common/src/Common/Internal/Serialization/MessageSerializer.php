@@ -14,30 +14,21 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Serialization;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 use GuzzleHttp\Exception\RequestException;
+use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Provides functionality to serialize a message to a string.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MessageSerializer
 {
@@ -48,8 +39,6 @@ class MessageSerializer
      * getProtocolVersion()
      * (getUri() && getMethod()) || (getStatusCode() && getReasonPhrase())
      *
-     * @param object $message The message to be serialized.
-     *
      * @return string
      */
     public static function objectSerialize($targetObject)
@@ -58,7 +47,8 @@ class MessageSerializer
         //without checking the methods.
         if ($targetObject instanceof RequestException) {
             return self::serializeRequestException($targetObject);
-        } elseif ($targetObject instanceof \Exception) {
+        }
+        if ($targetObject instanceof \Exception) {
             return self::serializeException($targetObject);
         }
 
@@ -66,17 +56,18 @@ class MessageSerializer
         Validate::methodExists($targetObject, 'getProtocolVersion', 'targetObject');
 
         // Serialize according to the implemented method.
-        if (method_exists($targetObject, 'getUri') &&
-            method_exists($targetObject, 'getMethod')) {
+        if (method_exists($targetObject, 'getUri')
+            && method_exists($targetObject, 'getMethod')) {
             return self::serializeRequest($targetObject);
-        } elseif (method_exists($targetObject, 'getStatusCode') &&
-                   method_exists($targetObject, 'getReasonPhrase')) {
-            return self::serializeResponse($targetObject);
-        } else {
-            throw new \InvalidArgumentException(
-                Resources::INVALID_MESSAGE_OBJECT_TO_SERIALIZE
-            );
         }
+        if (method_exists($targetObject, 'getStatusCode')
+                   && method_exists($targetObject, 'getReasonPhrase')) {
+            return self::serializeResponse($targetObject);
+        }
+        throw new \InvalidArgumentException(
+            Resources::INVALID_MESSAGE_OBJECT_TO_SERIALIZE
+        );
+
     }
 
     /**
@@ -86,7 +77,7 @@ class MessageSerializer
      * getUri()
      * getMethod()
      *
-     * @param  object $request The request to be serialized.
+     * @param object $request The request to be serialized.
      *
      * @return string
      */
@@ -94,8 +85,8 @@ class MessageSerializer
     {
         $headers = $request->getHeaders();
         $version = $request->getProtocolVersion();
-        $uri     = $request->getUri();
-        $method  = $request->getMethod();
+        $uri = $request->getUri();
+        $method = $request->getMethod();
 
         $resultString = "Request:\n";
         $resultString .= "URI: {$uri}\nHTTP Version: {$version}\nMethod: {$method}\n";
@@ -111,7 +102,7 @@ class MessageSerializer
      * getStatusCode()
      * getReasonPhrase()
      *
-     * @param  object $response The response to be serialized
+     * @param object $response The response to be serialized
      *
      * @return string
      */
@@ -119,8 +110,8 @@ class MessageSerializer
     {
         $headers = $response->getHeaders();
         $version = $response->getProtocolVersion();
-        $status  = $response->getStatusCode();
-        $reason  = $response->getReasonPhrase();
+        $status = $response->getStatusCode();
+        $reason = $response->getReasonPhrase();
 
         $resultString = "Response:\n";
         $resultString .= "Status Code: {$status}\nReason: {$reason}\n";
@@ -133,7 +124,7 @@ class MessageSerializer
     /**
      * Serialize the message headers.
      *
-     * @param  array  $headers The headers to be serialized.
+     * @param array $headers The headers to be serialized.
      *
      * @return string
      */
@@ -150,7 +141,7 @@ class MessageSerializer
     /**
      * Serialize the request exception.
      *
-     * @param  RequestException $e the request exception to be serialized.
+     * @param RequestException $e the request exception to be serialized.
      *
      * @return string
      */
@@ -167,7 +158,7 @@ class MessageSerializer
     /**
      * Serialize the general exception
      *
-     * @param  \Exception $e general exception to be serialized.
+     * @param \Exception $e general exception to be serialized.
      *
      * @return string
      */

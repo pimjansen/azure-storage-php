@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Authentication;
@@ -31,12 +26,8 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
  * Base class for azure authentication schemes.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SharedAccessSignatureAuthScheme implements IAuthScheme
 {
@@ -49,7 +40,6 @@ class SharedAccessSignatureAuthScheme implements IAuthScheme
      * Constructor.
      *
      * @param string $sasToken shared access signature token.
-     *
      */
     public function __construct($sasToken)
     {
@@ -69,7 +59,7 @@ class SharedAccessSignatureAuthScheme implements IAuthScheme
     /**
      * Adds authentication header to the request headers.
      *
-     * @param  \GuzzleHttp\Psr7\Request $request HTTP request object.
+     * @param \GuzzleHttp\Psr7\Request $request HTTP request object.
      *
      * @abstract
      *
@@ -85,7 +75,7 @@ class SharedAccessSignatureAuthScheme implements IAuthScheme
 
         // append SAS token query values to existing URI
         foreach ($queryValues as $queryField) {
-            list($key, $value) = explode('=', $queryField);
+            [$key, $value] = explode('=', $queryField);
 
             $uri = \GuzzleHttp\Psr7\Uri::withQueryValue($uri, $key, $value);
         }

@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
 /**
  * Holds signed identifiers.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SignedIdentifier
 {
@@ -67,8 +57,6 @@ class SignedIdentifier
      * Sets id.
      *
      * @param string $id value.
-     *
-     * @return void
      */
     public function setId($id)
     {
@@ -89,8 +77,6 @@ class SignedIdentifier
      * Sets accessPolicy.
      *
      * @param AccessPolicy|null $accessPolicy value.
-     *
-     * @return void
      */
     public function setAccessPolicy(AccessPolicy $accessPolicy = null)
     {
@@ -106,8 +92,8 @@ class SignedIdentifier
      */
     public function toArray()
     {
-        $array = array();
-        $accessPolicyArray = array();
+        $array = [];
+        $accessPolicyArray = [];
         $accessPolicyArray[Resources::XTAG_SIGNED_ID] = $this->getId();
         $accessPolicyArray[Resources::XTAG_ACCESS_POLICY] =
             $this->getAccessPolicy()->toArray();

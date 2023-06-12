@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Table\Models\Filters\BinaryFilter;
 /**
  * Unit tests for class BinaryFilter
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BinaryFilterTest extends \PHPUnit\Framework\TestCase
 {
@@ -45,7 +35,7 @@ class BinaryFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new BinaryFilter(null, $expected, null);
 
         // Assert
-        $this->assertEquals($expected, $filter->getOperator());
+        self::assertEquals($expected, $filter->getOperator());
     }
 
     public function testGetLeft()
@@ -55,7 +45,7 @@ class BinaryFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new BinaryFilter($expected, null, null);
 
         // Assert
-        $this->assertEquals($expected, $filter->getLeft());
+        self::assertEquals($expected, $filter->getLeft());
     }
 
     public function testGetRight()
@@ -65,6 +55,6 @@ class BinaryFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new BinaryFilter(null, null, $expected);
 
         // Assert
-        $this->assertEquals($expected, $filter->getRight());
+        self::assertEquals($expected, $filter->getRight());
     }
 }

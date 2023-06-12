@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Represents blob copy state
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyState
 {
@@ -59,10 +49,10 @@ class CopyState
     public static function createFromXml(array $parsed)
     {
         $result = new CopyState();
-        $clean  = array_change_key_case($parsed);
+        $clean = array_change_key_case($parsed);
 
         $copyCompletionTime = Utilities::tryGetValue($clean, 'copycompletiontime');
-        if (!is_null($copyCompletionTime)) {
+        if (null !== $copyCompletionTime) {
             $copyCompletionTime = Utilities::rfc1123ToDateTime($copyCompletionTime);
             $result->setCompletionTime($copyCompletionTime);
         }
@@ -74,10 +64,10 @@ class CopyState
 
         $copyProgress = Utilities::tryGetValue($clean, 'copyprogress');
 
-        if (!is_null($copyProgress) && strpos($copyProgress, '/') !== false) {
+        if (null !== $copyProgress && strpos($copyProgress, '/') !== false) {
             $parts = explode('/', $copyProgress);
-            $bytesCopied = intval($parts[0]);
-            $totalBytes = intval($parts[1]);
+            $bytesCopied = (int) ($parts[0]);
+            $totalBytes = (int) ($parts[1]);
 
             $result->setBytesCopied($bytesCopied);
             $result->setTotalBytes($totalBytes);
@@ -98,10 +88,10 @@ class CopyState
     public static function createFromHttpHeaders(array $parsed)
     {
         $result = new CopyState();
-        $clean  = array_change_key_case($parsed);
+        $clean = array_change_key_case($parsed);
 
         $copyCompletionTime = Utilities::tryGetValue($clean, Resources::X_MS_COPY_COMPLETION_TIME);
-        if (!is_null($copyCompletionTime)) {
+        if (null !== $copyCompletionTime) {
             $copyCompletionTime = Utilities::rfc1123ToDateTime($copyCompletionTime);
             $result->setCompletionTime($copyCompletionTime);
         }
@@ -112,10 +102,10 @@ class CopyState
         $result->setSource(Utilities::tryGetValue($clean, Resources::X_MS_COPY_SOURCE));
 
         $copyProgress = Utilities::tryGetValue($clean, Resources::X_MS_COPY_PROGRESS);
-        if (!is_null($copyProgress) && strpos($copyProgress, '/') !== false) {
+        if (null !== $copyProgress && strpos($copyProgress, '/') !== false) {
             $parts = explode('/', $copyProgress);
-            $bytesCopied = intval($parts[0]);
-            $totalBytes = intval($parts[1]);
+            $bytesCopied = (int) ($parts[0]);
+            $totalBytes = (int) ($parts[1]);
 
             $result->setBytesCopied($bytesCopied);
             $result->setTotalBytes($totalBytes);
@@ -140,8 +130,6 @@ class CopyState
      * @param string $copyId the blob copy id.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setCopyId($copyId)
     {
@@ -164,8 +152,6 @@ class CopyState
      * @param \DateTime $completionTime the copy completion time.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setCompletionTime($completionTime)
     {
@@ -188,8 +174,6 @@ class CopyState
      * @param string $status the copy status.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setStatus($status)
     {
@@ -212,8 +196,6 @@ class CopyState
      * @param string $statusDescription the copy status description.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setStatusDescription($statusDescription)
     {
@@ -236,8 +218,6 @@ class CopyState
      * @param string $source the copy source.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setSource($source)
     {
@@ -260,8 +240,6 @@ class CopyState
      * @param int $bytesCopied the bytes copied.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setBytesCopied($bytesCopied)
     {
@@ -284,8 +262,6 @@ class CopyState
      * @param int $totalBytes the bytes copied.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setTotalBytes($totalBytes)
     {

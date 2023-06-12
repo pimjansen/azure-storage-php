@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Unit tests for class BlobPrefix
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobPrefixTest extends \PHPUnit\Framework\TestCase
 {
@@ -49,7 +39,7 @@ class BlobPrefixTest extends \PHPUnit\Framework\TestCase
         $blob->setName($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getName());
+        self::assertEquals($expected, $blob->getName());
     }
 
     public function testGetName()
@@ -63,6 +53,6 @@ class BlobPrefixTest extends \PHPUnit\Framework\TestCase
         $actual = $blob->getName();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

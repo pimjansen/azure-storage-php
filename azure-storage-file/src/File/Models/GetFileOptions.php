@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Common\Models\Range;
 /**
  * Optional parameters for getFile.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetFileOptions extends FileServiceOptions
 {
@@ -56,8 +46,6 @@ class GetFileOptions extends FileServiceOptions
      * Sets File range.
      *
      * @param Range $range value.
-     *
-     * @return void
      */
     public function setRange(Range $range)
     {
@@ -78,21 +66,19 @@ class GetFileOptions extends FileServiceOptions
      * Sets File rangeGetContentMD5.
      *
      * @param bool $rangeGetContentMD5 value.
-     *
-     * @return void
      */
     public function setRangeGetContentMD5($rangeGetContentMD5)
     {
         Validate::isBoolean($rangeGetContentMD5);
-        $this->rangeGetContentMD5 = (bool)$rangeGetContentMD5;
+        $this->rangeGetContentMD5 = (bool) $rangeGetContentMD5;
     }
 
     public function getRangeString()
     {
         if ($this->range != null) {
             return $this->range->getRangeString();
-        } else {
-            return null;
         }
+        return null;
+
     }
 }

@@ -14,30 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\GetEntityResult;
 use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
-use MicrosoftAzure\Storage\Table\Models\Entity;
+use MicrosoftAzure\Storage\Table\Models\GetEntityResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class GetEntityResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetEntityResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -51,7 +40,7 @@ class GetEntityResultTest extends \PHPUnit\Framework\TestCase
         $result = GetEntityResult::create($sampleBody, $serializer);
 
         // Assert
-        $this->assertEquals(
+        self::assertEquals(
             $serializer->parseEntity($sampleBody),
             $result->getEntity()
         );

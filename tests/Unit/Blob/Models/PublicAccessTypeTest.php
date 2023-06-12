@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -30,19 +25,14 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
 /**
  * Unit tests for class PublicAccessType
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class PublicAccessTypeTest extends \PHPUnit\Framework\TestCase
 {
     public function testPublicAccessType()
     {
-        $this->assertEquals(PublicAccessType::BLOBS_ONLY, 'blob');
-        $this->assertEquals(PublicAccessType::CONTAINER_AND_BLOBS, 'container');
-        $this->assertEquals(PublicAccessType::NONE, Resources::EMPTY_STRING);
+        self::assertEquals(PublicAccessType::BLOBS_ONLY, 'blob');
+        self::assertEquals(PublicAccessType::CONTAINER_AND_BLOBS, 'container');
+        self::assertEquals(PublicAccessType::NONE, Resources::EMPTY_STRING);
     }
 }

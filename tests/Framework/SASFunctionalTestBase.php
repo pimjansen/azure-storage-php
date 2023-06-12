@@ -14,36 +14,24 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
+use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
-use MicrosoftAzure\Storage\Common\SharedAccessSignatureHelper;
 use MicrosoftAzure\Storage\File\FileRestProxy;
 use MicrosoftAzure\Storage\Queue\QueueRestProxy;
 use MicrosoftAzure\Storage\Table\TableRestProxy;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 
 /**
  * Test base for SAS functional tests.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
 {
@@ -72,19 +60,19 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->createdContainer = array();
-        $this->createdTable     = array();
-        $this->createdQueue     = array();
-        $this->createdShare     = array();
-        $this->blobRestProxy    = null;
-        $this->tableRestProxy   = null;
-        $this->queueRestProxy   = null;
-        $this->fileRestProxy    = null;
+        $this->createdContainer = [];
+        $this->createdTable = [];
+        $this->createdQueue = [];
+        $this->createdShare = [];
+        $this->blobRestProxy = null;
+        $this->tableRestProxy = null;
+        $this->queueRestProxy = null;
+        $this->fileRestProxy = null;
     }
 
     protected function setUpWithConnectionString($connectionString)
     {
-        $this->blobRestProxy  =
+        $this->blobRestProxy =
             BlobRestProxy::createBlobService($connectionString);
         $this->queueRestProxy =
             QueueRestProxy::createQueueService($connectionString);
@@ -96,7 +84,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
 
     protected function tearDown()
     {
-        $this->blobRestProxy  =
+        $this->blobRestProxy =
             BlobRestProxy::createBlobService($this->connectionString);
         $this->queueRestProxy =
             QueueRestProxy::createQueueService($this->connectionString);
@@ -118,44 +106,44 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
             $this->safeDeleteShare($share);
         }
 
-        $this->blobRestProxy    = null;
-        $this->tableRestProxy   = null;
-        $this->queueRestProxy   = null;
-        $this->fileRestProxy    = null;
+        $this->blobRestProxy = null;
+        $this->tableRestProxy = null;
+        $this->queueRestProxy = null;
+        $this->fileRestProxy = null;
     }
 
     protected function initializeProxiesWithSASandAccountName($sas, $accountName)
     {
         $connectionString = Resources::BLOB_ENDPOINT_NAME .
-                             '='.
+                             '=' .
                              'https://' .
                              $accountName .
                              '.' .
                              Resources::BLOB_BASE_DNS_NAME .
                              ';';
         $connectionString .= Resources::QUEUE_ENDPOINT_NAME .
-                             '='.
+                             '=' .
                              'https://' .
                              $accountName .
                              '.' .
                              Resources::QUEUE_BASE_DNS_NAME .
                              ';';
         $connectionString .= Resources::TABLE_ENDPOINT_NAME .
-                             '='.
+                             '=' .
                              'https://' .
                              $accountName .
                              '.' .
                              Resources::TABLE_BASE_DNS_NAME .
                              ';';
         $connectionString .= Resources::FILE_ENDPOINT_NAME .
-                             '='.
+                             '=' .
                              'https://' .
                              $accountName .
                              '.' .
                              Resources::FILE_BASE_DNS_NAME .
                              ';';
         $connectionString .= Resources::SAS_TOKEN_NAME .
-                             '='.
+                             '=' .
                              $sas;
 
         $this->setUpWithConnectionString($connectionString);
@@ -164,13 +152,13 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
     protected function createProxyWithSAS($sas, $accountName, $signedResource)
     {
         $connectionString = Resources::SAS_TOKEN_NAME .
-                             '='.
+                             '=' .
                              $sas;
         switch ($signedResource) {
             case Resources::RESOURCE_TYPE_BLOB:
             case Resources::RESOURCE_TYPE_CONTAINER:
                 $connectionString = Resources::BLOB_ENDPOINT_NAME .
-                                    '='.
+                                    '=' .
                                     'https://' .
                                     $accountName .
                                     '.' .
@@ -181,7 +169,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
                 break;
             case Resources::RESOURCE_TYPE_QUEUE:
                 $connectionString = Resources::QUEUE_ENDPOINT_NAME .
-                                    '='.
+                                    '=' .
                                     'https://' .
                                     $accountName .
                                     '.' .
@@ -192,7 +180,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
                 break;
             case Resources::RESOURCE_TYPE_TABLE:
                 $connectionString = Resources::TABLE_ENDPOINT_NAME .
-                                    '='.
+                                    '=' .
                                     'https://' .
                                     $accountName .
                                     '.' .
@@ -204,7 +192,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
             case Resources::RESOURCE_TYPE_FILE:
             case Resources::RESOURCE_TYPE_SHARE:
                 $connectionString = Resources::FILE_ENDPOINT_NAME .
-                                    '='.
+                                    '=' .
                                     'https://' .
                                     $accountName .
                                     '.' .
@@ -214,7 +202,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
                 return FileRestProxy::createFileService($connectionString);
                 break;
             default:
-                $this->assertTrue(false);// Given signed resource not valid.
+                self::assertTrue(false);// Given signed resource not valid.
                 break;
         }
     }
@@ -310,6 +298,6 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains($errorMsg, $message, $failureMessage);
+        self::assertContains($errorMsg, $message, $failureMessage);
     }
 }

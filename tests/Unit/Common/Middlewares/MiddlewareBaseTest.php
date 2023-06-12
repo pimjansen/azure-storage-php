@@ -14,32 +14,22 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Middlewares;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareBase;
 use MicrosoftAzure\Storage\Tests\Framework\ReflectionTestBase;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Client;
 
 /**
  * Unit tests for class MiddlewareBase
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MiddlewareBaseTest extends ReflectionTestBase
 {
@@ -47,12 +37,12 @@ class MiddlewareBaseTest extends ReflectionTestBase
     {
         $middlewareBase = new MiddlewareBase();
         $client = new Client();
-        $handler = function ($request, $options) use ($client) {
+        $handler = static function ($request, $options) use ($client) {
             return $client->sendAsync($request, $options);
         };
         $callable = $middlewareBase($handler);
         $message = 'Not a callable returned by __invoke';
-        $this->assertTrue(is_callable($callable), $message);
+        self::assertIsCallable($callable, $message);
     }
 
     /**
@@ -63,8 +53,8 @@ class MiddlewareBaseTest extends ReflectionTestBase
         $middlewareBase = new MiddlewareBase();
         $onRequest = self::getMethod('onRequest', $middlewareBase);
         $request = new Request('GET', 'http://www.bing.com');
-        $newRequest = $onRequest->invokeArgs($middlewareBase, array($request));
-        $this->assertTrue($request === $newRequest, 'Not equal to original request');
+        $newRequest = $onRequest->invokeArgs($middlewareBase, [$request]);
+        self::assertTrue($request === $newRequest, 'Not equal to original request');
     }
 
     /**
@@ -75,10 +65,10 @@ class MiddlewareBaseTest extends ReflectionTestBase
         $middlewareBase = new MiddlewareBase();
         $onFulfilled = self::getMethod('onFulfilled', $middlewareBase);
         $request = new Request('GET', 'http://www.bing.com');
-        $callable = $onFulfilled->invokeArgs($middlewareBase, array($request, array()));
+        $callable = $onFulfilled->invokeArgs($middlewareBase, [$request, []]);
         $response = new Response();
         $newResponse = $callable($response);
-        $this->assertTrue($response === $newResponse, 'Not equal to original response');
+        self::assertTrue($response === $newResponse, 'Not equal to original response');
     }
 
     /**
@@ -89,7 +79,7 @@ class MiddlewareBaseTest extends ReflectionTestBase
         $middlewareBase = new MiddlewareBase();
         $onFulfilled = self::getMethod('onRejected', $middlewareBase);
         $request = new Request('GET', 'http://www.bing.com');
-        $callable = $onFulfilled->invokeArgs($middlewareBase, array($request, array()));
+        $callable = $onFulfilled->invokeArgs($middlewareBase, [$request, []]);
         $reason = new RequestException('test message', $request);
         $promise = $callable($reason);
         $newReason = null;
@@ -98,6 +88,6 @@ class MiddlewareBaseTest extends ReflectionTestBase
         } catch (RequestException $e) {
             $newReason = $e;
         }
-        $this->assertTrue($reason === $newReason, 'Not equal to original response');
+        self::assertTrue($reason === $newReason, 'Not equal to original response');
     }
 }

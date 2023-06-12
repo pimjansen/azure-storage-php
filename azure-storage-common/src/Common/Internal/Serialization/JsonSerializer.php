@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Serialization;
@@ -30,12 +25,8 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * Perform JSON serialization / deserialization
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class JsonSerializer implements ISerializer
 {
@@ -89,8 +80,8 @@ class JsonSerializer implements ISerializer
         $json = json_decode($serialized);
         if ($json && !is_array($json)) {
             return get_object_vars($json);
-        } else {
-            return $json;
         }
+        return $json;
+
     }
 }

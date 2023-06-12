@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Models;
@@ -31,12 +26,7 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Unit tests for class GetServicePropertiesResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetServicePropertiesResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -47,7 +37,7 @@ class GetServicePropertiesResultTest extends \PHPUnit\Framework\TestCase
         $expected = ServiceProperties::create(TestResources::getServicePropertiesSample());
 
         // Assert
-        $this->assertTrue(isset($result));
-        $this->assertEquals($expected, $result->getValue());
+        self::assertTrue(isset($result));
+        self::assertEquals($expected, $result->getValue());
     }
 }

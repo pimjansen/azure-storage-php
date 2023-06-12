@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\MetadataTrait;
 /**
  * Holds result of getDirectoryMetadata.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetDirectoryMetadataResult
 {
@@ -43,7 +33,7 @@ class GetDirectoryMetadataResult
     /**
      * Creates the instance from the parsed headers.
      *
-     * @param  array $parsed Parsed headers
+     * @param array $parsed Parsed headers
      *
      * @return GetDirectoryMetadataResult
      */

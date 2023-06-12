@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Holds container ACL
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetContainerACLResult
 {
@@ -48,7 +38,7 @@ class GetContainerACLResult
      * @param string    $etag         container etag
      * @param \DateTime $lastModified last modification date
      * @param array     $parsed       parsed response into array
-     * representation
+     *                                representation
      *
      * @internal
      *
@@ -83,8 +73,6 @@ class GetContainerACLResult
      * Sets container ACL
      *
      * @param ContainerACL $containerACL value.
-     *
-     * @return void
      */
     protected function setContainerAcl(ContainerACL $containerACL)
     {
@@ -105,8 +93,6 @@ class GetContainerACLResult
      * Sets container lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -127,8 +113,6 @@ class GetContainerACLResult
      * Sets container etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {

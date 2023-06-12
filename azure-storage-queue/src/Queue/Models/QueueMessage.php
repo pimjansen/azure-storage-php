@@ -14,28 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 
 /**
  * Holds data for single queue message.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueueMessage
 {
@@ -62,7 +52,7 @@ class QueueMessage
     {
         $timeNextVisible = $parsedResponse['TimeNextVisible'];
 
-        $msg  = self::createFromPeekMessages($parsedResponse);
+        $msg = self::createFromPeekMessages($parsedResponse);
         $date = Utilities::rfc1123ToDateTime($timeNextVisible);
         $msg->setTimeNextVisible($date);
         $msg->setPopReceipt($parsedResponse['PopReceipt']);
@@ -82,11 +72,11 @@ class QueueMessage
      */
     public static function createFromPeekMessages(array $parsedResponse)
     {
-        $msg            = new QueueMessage();
+        $msg = new QueueMessage();
         $expirationDate = $parsedResponse['ExpirationTime'];
-        $insertionDate  = $parsedResponse['InsertionTime'];
+        $insertionDate = $parsedResponse['InsertionTime'];
 
-        $msg->setDequeueCount(intval($parsedResponse['DequeueCount']));
+        $msg->setDequeueCount((int) ($parsedResponse['DequeueCount']));
 
         $date = Utilities::rfc1123ToDateTime($expirationDate);
         $msg->setExpirationDate($date);
@@ -114,8 +104,8 @@ class QueueMessage
     {
         $msg = new QueueMessage();
 
-        $expirationDate  = $parsedResponse['ExpirationTime'];
-        $insertionDate   = $parsedResponse['InsertionTime'];
+        $expirationDate = $parsedResponse['ExpirationTime'];
+        $insertionDate = $parsedResponse['InsertionTime'];
         $timeNextVisible = $parsedResponse['TimeNextVisible'];
 
         $date = Utilities::rfc1123ToDateTime($expirationDate);
@@ -147,8 +137,6 @@ class QueueMessage
      * Sets message text field.
      *
      * @param string $messageText message contents.
-     *
-     * @return void
      */
     public function setMessageText($messageText)
     {
@@ -169,8 +157,6 @@ class QueueMessage
      * Sets messageId field.
      *
      * @param string $messageId message contents.
-     *
-     * @return void
      */
     public function setMessageId($messageId)
     {
@@ -193,8 +179,6 @@ class QueueMessage
      * @param \DateTime $insertionDate message contents.
      *
      * @internal
-     *
-     * @return void
      */
     public function setInsertionDate(\DateTime $insertionDate)
     {
@@ -215,8 +199,6 @@ class QueueMessage
      * Sets expirationDate field.
      *
      * @param \DateTime $expirationDate the expiration date of the message.
-     *
-     * @return void
      */
     public function setExpirationDate(\DateTime $expirationDate)
     {
@@ -237,8 +219,6 @@ class QueueMessage
      * Sets timeNextVisible field.
      *
      * @param \DateTime $timeNextVisible next visibile time for the message.
-     *
-     * @return void
      */
     public function setTimeNextVisible($timeNextVisible)
     {
@@ -259,8 +239,6 @@ class QueueMessage
      * Sets popReceipt field.
      *
      * @param string $popReceipt used when deleting the message.
-     *
-     * @return void
      */
     public function setPopReceipt($popReceipt)
     {
@@ -270,7 +248,7 @@ class QueueMessage
     /**
      * Gets dequeueCount field.
      *
-     * @return integer
+     * @return int
      */
     public function getDequeueCount()
     {
@@ -280,11 +258,9 @@ class QueueMessage
     /**
      * Sets dequeueCount field.
      *
-     * @param integer $dequeueCount number of dequeues for that message.
+     * @param int $dequeueCount number of dequeues for that message.
      *
      * @internal
-     *
-     * @return void
      */
     public function setDequeueCount($dequeueCount)
     {
@@ -302,8 +278,8 @@ class QueueMessage
      */
     public function toXml(XmlSerializer $xmlSerializer)
     {
-        $array      = array('MessageText' => $this->_messageText);
-        $properties = array(XmlSerializer::ROOT_NAME => self::$xmlRootName);
+        $array = ['MessageText' => $this->_messageText];
+        $properties = [XmlSerializer::ROOT_NAME => self::$xmlRootName];
 
         return $xmlSerializer->serialize($array, $properties);
     }

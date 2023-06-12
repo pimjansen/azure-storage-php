@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 /**
  * Encapsulates service properties
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ServiceProperties
 {
@@ -51,6 +41,7 @@ class ServiceProperties
      * Creates ServiceProperties object from parsed XML response.
      *
      * @internal
+     *
      * @param array $parsedResponse XML response parsed into array.
      *
      * @return ServiceProperties.
@@ -59,8 +50,8 @@ class ServiceProperties
     {
         $result = new ServiceProperties();
 
-        if (array_key_exists(Resources::XTAG_DEFAULT_SERVICE_VERSION, $parsedResponse) &&
-            $parsedResponse[Resources::XTAG_DEFAULT_SERVICE_VERSION] != null) {
+        if (array_key_exists(Resources::XTAG_DEFAULT_SERVICE_VERSION, $parsedResponse)
+            && $parsedResponse[Resources::XTAG_DEFAULT_SERVICE_VERSION] != null) {
             $result->setDefaultServiceVersion($parsedResponse[Resources::XTAG_DEFAULT_SERVICE_VERSION]);
         }
 
@@ -71,10 +62,10 @@ class ServiceProperties
         if (array_key_exists(Resources::XTAG_MINUTE_METRICS, $parsedResponse)) {
             $result->setMinuteMetrics(Metrics::create($parsedResponse[Resources::XTAG_MINUTE_METRICS]));
         }
-        if (array_key_exists(Resources::XTAG_CORS, $parsedResponse) &&
-            $parsedResponse[Resources::XTAG_CORS] != null) {
+        if (array_key_exists(Resources::XTAG_CORS, $parsedResponse)
+            && $parsedResponse[Resources::XTAG_CORS] != null) {
             //There could be multiple CORS rules, so need to extract them all.
-            $corses = array();
+            $corses = [];
             $corsArray =
                 $parsedResponse[Resources::XTAG_CORS][Resources::XTAG_CORS_RULE];
             if (count(array_filter(array_keys($corsArray), 'is_string')) > 0) {
@@ -89,7 +80,7 @@ class ServiceProperties
 
             $result->setCorses($corses);
         } else {
-            $result->setCorses(array());
+            $result->setCorses([]);
         }
 
         return $result;
@@ -109,8 +100,6 @@ class ServiceProperties
      * Sets logging element.
      *
      * @param Logging $logging new element.
-     *
-     * @return void
      */
     public function setLogging(Logging $logging)
     {
@@ -129,10 +118,6 @@ class ServiceProperties
 
     /**
      * Sets hour metrics element.
-     *
-     * @param Metrics $metrics new element.
-     *
-     * @return void
      */
     public function setHourMetrics(Metrics $hourMetrics)
     {
@@ -151,10 +136,6 @@ class ServiceProperties
 
     /**
      * Sets minute metrics element.
-     *
-     * @param Metrics $metrics new element.
-     *
-     * @return void
      */
     public function setMinuteMetrics(Metrics $minuteMetrics)
     {
@@ -175,8 +156,6 @@ class ServiceProperties
      * Sets corses element.
      *
      * @param CORS[] $corses new elements.
-     *
-     * @return void
      */
     public function setCorses(array $corses)
     {
@@ -197,8 +176,6 @@ class ServiceProperties
      * Sets the default service version. This can obly be set for the blob service.
      *
      * @param string $defaultServiceVersion the default service version
-     *
-     * @return void
      */
     public function setDefaultServiceVersion($defaultServiceVersion)
     {
@@ -209,11 +186,12 @@ class ServiceProperties
      * Converts this object to array with XML tags
      *
      * @internal
+     *
      * @return array
      */
     public function toArray()
     {
-        $result = array();
+        $result = [];
 
         if (!empty($this->getLogging())) {
             $result[Resources::XTAG_LOGGING] =
@@ -232,7 +210,7 @@ class ServiceProperties
 
         $corsesArray = $this->getCorsesArray();
         if (!empty($corsesArray)) {
-            $result[Resources::XTAG_CORS] =$corsesArray;
+            $result[Resources::XTAG_CORS] = $corsesArray;
         }
 
         if ($this->defaultServiceVersion != null) {
@@ -249,12 +227,12 @@ class ServiceProperties
      */
     private function getCorsesArray()
     {
-        $corsesArray = array();
+        $corsesArray = [];
         if (count($this->getCorses()) == 1) {
-            $corsesArray = array(
-                Resources::XTAG_CORS_RULE => $this->getCorses()[0]->toArray()
-            );
-        } elseif ($this->getCorses() != array()) {
+            $corsesArray = [
+                Resources::XTAG_CORS_RULE => $this->getCorses()[0]->toArray(),
+            ];
+        } elseif ($this->getCorses() != []) {
             foreach ($this->getCorses() as $cors) {
                 $corsesArray[] = [Resources::XTAG_CORS_RULE => $cors->toArray()];
             }
@@ -267,13 +245,14 @@ class ServiceProperties
      * Converts this current object to XML representation.
      *
      * @internal
+     *
      * @param XmlSerializer $xmlSerializer The XML serializer.
      *
      * @return string
      */
     public function toXml(XmlSerializer $xmlSerializer)
     {
-        $properties = array(XmlSerializer::ROOT_NAME => self::$xmlRootName);
+        $properties = [XmlSerializer::ROOT_NAME => self::$xmlRootName];
         return $xmlSerializer->serialize($this->toArray(), $properties);
     }
 }

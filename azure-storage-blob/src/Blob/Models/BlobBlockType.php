@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,18 +22,13 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Holds available blob block types
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobBlockType
 {
-    public const COMMITTED_TYPE   = 'Committed';
+    public const COMMITTED_TYPE = 'Committed';
     public const UNCOMMITTED_TYPE = 'Uncommitted';
-    public const LATEST_TYPE      = 'Latest';
+    public const LATEST_TYPE = 'Latest';
 
     /**
      * Validates the provided type.
@@ -47,7 +37,7 @@ class BlobBlockType
      *
      * @internal
      *
-     * @return boolean
+     * @return bool
      */
     public static function isValid($type)
     {

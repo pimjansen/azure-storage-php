@@ -14,52 +14,39 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobSnapshotOptions;
 
 /**
  * Unit tests for class CreateBlobSnapshotOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobSnapshotOptionsTest extends \PHPUnit\Framework\TestCase
 {
     public function testSetMetadata()
     {
         $createBlobSnapshotOptions = new CreateBlobSnapshotOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $createBlobSnapshotOptions->setMetadata($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $createBlobSnapshotOptions->getMetadata()
         );
     }
 
-
     public function testSetLeaseId()
     {
         $createBlobSnapshotOptions = new CreateBlobSnapshotOptions();
-        $expected = "123456789";
+        $expected = '123456789';
         $createBlobSnapshotOptions->setLeaseId($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $createBlobSnapshotOptions->getLeaseId()
         );

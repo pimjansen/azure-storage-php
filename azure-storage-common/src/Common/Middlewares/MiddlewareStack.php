@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
@@ -28,23 +23,16 @@ namespace MicrosoftAzure\Storage\Common\Middlewares;
  * This class provides the stack that handles the logic of applying each
  * middlewares to the request or the response.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MiddlewareStack
 {
-    private $middlewares = array();
+    private $middlewares = [];
 
     /**
      * Push the given middleware into the middleware stack.
      *
-     * @param  IMiddleware|callable $middleware The middleware to be pushed.
-     *
-     * @return void
+     * @param callable|IMiddleware $middleware The middleware to be pushed.
      */
     public function push($middleware)
     {
@@ -54,7 +42,7 @@ class MiddlewareStack
     /**
      * Apply the middlewares to the handler.
      *
-     * @param  callable $handler the handler to which the middleware applies.
+     * @param callable $handler the handler to which the middleware applies.
      *
      * @return callable
      */

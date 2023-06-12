@@ -13,12 +13,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Http
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Http;
@@ -27,12 +22,8 @@ namespace MicrosoftAzure\Storage\Common\Internal\Http;
  * Helper class to format the http headers
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Http
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class HttpFormatter
 {
@@ -45,7 +36,7 @@ class HttpFormatter
      */
     public static function formatHeaders(array $headers)
     {
-        $result = array();
+        $result = [];
         foreach ($headers as $key => $value) {
             if (is_array($value) && count($value) == 1) {
                 $result[strtolower($key)] = $value[0];

@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
@@ -29,23 +24,18 @@ use MicrosoftAzure\Storage\Table\Models\QueryEntitiesResult;
 /**
  * Unit tests for class QueryEntitiesResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueryEntitiesResultTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreate()
     {
         // Test
-        $result = QueryEntitiesResult::create(array(), array());
+        $result = QueryEntitiesResult::create([], []);
 
         // Assert
-        $this->assertCount(0, $result->getEntities());
-        $this->assertNull($result->getNextPartitionKey());
-        $this->assertNull($result->getNextRowKey());
+        self::assertCount(0, $result->getEntities());
+        self::assertNull($result->getNextPartitionKey());
+        self::assertNull($result->getNextRowKey());
     }
 }

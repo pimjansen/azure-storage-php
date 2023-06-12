@@ -14,29 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
-use MicrosoftAzure\Storage\Table\TableRestProxy;
-use MicrosoftAzure\Storage\Tests\Framework\ServiceRestProxyTestBase;
 use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
+use MicrosoftAzure\Storage\Table\TableRestProxy;
 
 /**
  * TestBase class for each unit test class.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class TableServiceRestProxyTestBase extends ServiceRestProxyTestBase
 {
@@ -48,7 +37,7 @@ class TableServiceRestProxyTestBase extends ServiceRestProxyTestBase
         $tableRestProxy = TableRestProxy::createTableService($this->connectionString);
         $tableRestProxy->pushMiddleware(RetryMiddlewareFactory::create());
         parent::setProxy($tableRestProxy);
-        $this->_createdTables = array();
+        $this->_createdTables = [];
     }
 
     public function createTable($tableName, $options = null)
@@ -59,7 +48,7 @@ class TableServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function deleteTable($tableName)
     {
-        if (($key = array_search($tableName, $this->_createdTables)) !== false) {
+        if (($key = array_search($tableName, $this->_createdTables, true)) !== false) {
             unset($this->_createdTables[$key]);
         }
         $this->restProxy->deleteTable($tableName);

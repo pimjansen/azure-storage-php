@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * The result of calling PutBlob API.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class PutBlobResult
 {
@@ -106,8 +96,6 @@ class PutBlobResult
      * Sets ETag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -128,8 +116,6 @@ class PutBlobResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -150,8 +136,6 @@ class PutBlobResult
      * Sets the content MD5 value.
      *
      * @param string $contentMD5 conent MD5 as a string.
-     *
-     * @return void
      */
     protected function setContentMD5($contentMD5)
     {
@@ -161,7 +145,7 @@ class PutBlobResult
     /**
      * Gets the whether the contents of the request are successfully encrypted.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRequestServerEncrypted()
     {
@@ -171,9 +155,7 @@ class PutBlobResult
     /**
      * Sets the request server encryption value.
      *
-     * @param boolean $requestServerEncrypted
-     *
-     * @return void
+     * @param bool $requestServerEncrypted
      */
     public function setRequestServerEncrypted($requestServerEncrypted)
     {

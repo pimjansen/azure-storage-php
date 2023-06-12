@@ -14,36 +14,23 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
+use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\File\Internal\FileResources;
 use MicrosoftAzure\Storage\File\Models\File;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 
 /**
  * Unit tests for class File
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class FileTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     *
-     */
     public function testCreate()
     {
         // Setup
@@ -52,7 +39,7 @@ class FileTest extends \PHPUnit\Framework\TestCase
         $samples = $listArray[Resources::QP_ENTRIES][FileResources::QP_FILE];
 
         // Test
-        $actuals = array();
+        $actuals = [];
         $actuals[] = File::create($samples[0]);
         $actuals[] = File::create($samples[1]);
         $actuals[] = File::create($samples[2]);
@@ -64,8 +51,8 @@ class FileTest extends \PHPUnit\Framework\TestCase
             $sample = $samples[$i];
             $actual = $actuals[$i];
 
-            $this->assertEquals($sample[Resources::QP_NAME], $actual->getName());
-            $this->assertEquals(
+            self::assertEquals($sample[Resources::QP_NAME], $actual->getName());
+            self::assertEquals(
                 $sample[Resources::QP_PROPERTIES][Resources::QP_CONTENT_LENGTH],
                 $actual->getLength()
             );

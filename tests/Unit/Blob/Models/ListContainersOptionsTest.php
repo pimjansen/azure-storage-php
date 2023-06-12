@@ -14,28 +14,17 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Models\ListContainersOptions;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class ListContainersOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListContainersOptionsTest extends \PHPUnit\Framework\TestCase
 {
@@ -49,7 +38,7 @@ class ListContainersOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setPrefix($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getPrefix());
+        self::assertEquals($expected, $options->getPrefix());
     }
 
     public function testGetPrefix()
@@ -63,7 +52,7 @@ class ListContainersOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getPrefix();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetMarker()
@@ -76,7 +65,7 @@ class ListContainersOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setMarker($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getNextMarker());
+        self::assertEquals($expected, $options->getNextMarker());
     }
 
     public function testSetMaxResults()
@@ -89,7 +78,7 @@ class ListContainersOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setMaxResults($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getMaxResults());
+        self::assertEquals($expected, $options->getMaxResults());
     }
 
     public function testGetMaxResults()
@@ -103,7 +92,7 @@ class ListContainersOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getMaxResults();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetIncludeMetadata()
@@ -116,7 +105,7 @@ class ListContainersOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setIncludeMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getIncludeMetadata());
+        self::assertEquals($expected, $options->getIncludeMetadata());
     }
 
     public function testGetIncludeMetadata()
@@ -130,6 +119,6 @@ class ListContainersOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getIncludeMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

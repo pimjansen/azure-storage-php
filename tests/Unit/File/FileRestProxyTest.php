@@ -14,61 +14,27 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\File
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File;
 
+use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Models\Range;
+use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 use MicrosoftAzure\Storage\File\FileRestProxy;
 use MicrosoftAzure\Storage\File\Internal\IFile;
+use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
 use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
-use MicrosoftAzure\Storage\Tests\Framework\VirtualFileSystem;
+use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
+use MicrosoftAzure\Storage\File\Models\ShareACL;
 use MicrosoftAzure\Storage\Tests\Framework\FileServiceRestProxyTestBase;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
-use MicrosoftAzure\Storage\Common\Models\Range;
-use MicrosoftAzure\Storage\File\Models\AppendBlockOptions;
-use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
-use MicrosoftAzure\Storage\File\Models\ListSharesResult;
-use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
-use MicrosoftAzure\Storage\File\Models\GetSharePropertiesResult;
-use MicrosoftAzure\Storage\File\Models\ShareACL;
-use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesResult;
-use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
-use MicrosoftAzure\Storage\File\Models\ListFileBlocksOptions;
-use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
-use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
-use MicrosoftAzure\Storage\File\Models\SetFilePropertiesOptions;
-use MicrosoftAzure\Storage\File\Models\GetFileMetadataResult;
-use MicrosoftAzure\Storage\File\Models\SetFileMetadataResult;
-use MicrosoftAzure\Storage\File\Models\GetFileResult;
-use MicrosoftAzure\Storage\File\Models\FileType;
-use MicrosoftAzure\Storage\File\Models\PageRange;
-use MicrosoftAzure\Storage\File\Models\CreateFilePagesResult;
-use MicrosoftAzure\Storage\File\Models\BlockList;
-use MicrosoftAzure\Storage\File\Models\FileBlockType;
-use MicrosoftAzure\Storage\File\Models\GetFileOptions;
-use MicrosoftAzure\Storage\File\Models\Block;
-use MicrosoftAzure\Storage\File\Models\CopyFileOptions;
-use MicrosoftAzure\Storage\File\Models\FileProperties;
 
 /**
  * Unit tests for class FileRestProxy
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\File
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class FileRestProxyTest extends FileServiceRestProxyTestBase
 {
@@ -83,7 +49,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $fileRestProxy = FileRestProxy::createFileService(TestResources::getWindowsAzureStorageServicesConnectionString());
 
         // Assert
-        $this->assertInstanceOf(IFile::class, $fileRestProxy);
+        self::assertInstanceOf(IFile::class, $fileRestProxy);
     }
 
     public function testSetServiceProperties()
@@ -100,7 +66,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $actual = $this->restProxy->getServiceProperties();
 
         // Assert
-        $this->assertEquals($expected->toXml($this->xmlSerializer), $actual->getValue()->toXml($this->xmlSerializer));
+        self::assertEquals($expected->toXml($this->xmlSerializer), $actual->getValue()->toXml($this->xmlSerializer));
     }
 
     public function testCreateListShare()
@@ -117,21 +83,20 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         //Assert
         $shares = $result->getShares();
-        $shareNames = array();
+        $shareNames = [];
         foreach ($shares as $share) {
             $shareNames[] = $share->getName();
         }
-        $this->assertTrue(\in_array($share1, $shareNames));
-        $this->assertTrue(\in_array($share2, $shareNames));
-        $this->assertTrue(\in_array($share3, $shareNames));
+        self::assertTrue(\in_array($share1, $shareNames, true));
+        self::assertTrue(\in_array($share2, $shareNames, true));
+        self::assertTrue(\in_array($share3, $shareNames, true));
     }
 
-    /**
-     * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-     * @expectedExceptionMessage 400
-     */
     public function testGetSetShareMetadataAndProperties()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('400');
+
         $share1 = 'metaproperties1' . $this->createSuffix();
         $share2 = 'metaproperties2' . $this->createSuffix();
         $share3 = 'metaproperties3' . $this->createSuffix();
@@ -140,7 +105,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $this->createShare($share2);
         $this->createShare($share3);
 
-        $expected1 = array('name1' => 'MyName1', 'mymetaname' => '12345');
+        $expected1 = ['name1' => 'MyName1', 'mymetaname' => '12345'];
         $expected2 = 5120;
         $expected3 = 5121;
 
@@ -150,8 +115,8 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $result1 = $this->restProxy->getShareMetadata($share1);
         $result2 = $this->restProxy->getShareProperties($share2);
 
-        $this->assertEquals($expected1, $result1->getMetadata());
-        $this->assertEquals(5120, $result2->getQuota());
+        self::assertEquals($expected1, $result1->getMetadata());
+        self::assertEquals(5120, $result2->getQuota());
 
         $this->restProxy->setShareProperties($share3, $expected3);
     }
@@ -170,7 +135,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         // Assert
         $actual = $this->restProxy->getShareAcl($share);
-        $this->assertEquals($acl->getSignedIdentifiers(), $actual->getShareAcl()->getSignedIdentifiers());
+        self::assertEquals($acl->getSignedIdentifiers(), $actual->getShareAcl()->getSignedIdentifiers());
     }
 
     public function testGetShareStats()
@@ -180,15 +145,14 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $result = $this->restProxy->getShareStats($share);
 
-        $this->assertEquals(0, $result->getShareUsage());
+        self::assertEquals(0, $result->getShareUsage());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage can't be NULL.
-     */
     public function testListDirectoriesAndFilesWithNull()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('can\'t be NULL.');
+
         $this->restProxy->listDirectoriesAndFiles(null);
     }
 
@@ -200,14 +164,14 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $testdirectory0 = 'testdirectory0';
         $testdirectory1 = $testdirectory0 . '/' . 'testdirectory1';
         $testdirectory2 = $testdirectory0 . '/' . 'testdirectory2';
-        $testfile0      = 'testfile0';
-        $testfile1      = $testdirectory0 . '/' . 'testfile1';
-        $testfile2      = $testdirectory1 . '/' . 'testfile2';
-        $testfile3      = $testdirectory1 . '/' . 'testfile3';
-        $testfile4      = $testdirectory1 . '/' . 'testfile4';
-        $testfile5      = $testdirectory1 . '/' . 'testfile5';
-        $testfile6      = $testdirectory1 . '/' . 'testfile6';
-        $testfile7      = $testdirectory1 . '/' . 'testfile7';
+        $testfile0 = 'testfile0';
+        $testfile1 = $testdirectory0 . '/' . 'testfile1';
+        $testfile2 = $testdirectory1 . '/' . 'testfile2';
+        $testfile3 = $testdirectory1 . '/' . 'testfile3';
+        $testfile4 = $testdirectory1 . '/' . 'testfile4';
+        $testfile5 = $testdirectory1 . '/' . 'testfile5';
+        $testfile6 = $testdirectory1 . '/' . 'testfile6';
+        $testfile7 = $testdirectory1 . '/' . 'testfile7';
 
         $this->restProxy->createDirectory($share, $testdirectory0);
         $this->restProxy->createDirectory($share, $testdirectory1);
@@ -259,7 +223,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $result1 = $this->restProxy->listDirectoriesAndFiles($share, $testdirectory1);
         $result2 = $this->restProxy->listDirectoriesAndFiles($share, $testdirectory2);
 
-        $validator = function ($resources, $target) {
+        $validator = static function ($resources, $target) {
             $result = false;
             foreach ($resources as $resource) {
                 if ($resource->getName() == $target) {
@@ -270,17 +234,17 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             return $result;
         };
 
-        $this->assertTrue($validator($result->getDirectories(), 'testdirectory0'));
-        $this->assertTrue($validator($result->getFiles(), 'testfile0'));
-        $this->assertTrue($validator($result0->getDirectories(), 'testdirectory1'));
-        $this->assertTrue($validator($result0->getDirectories(), 'testdirectory2'));
-        $this->assertTrue($validator($result0->getFiles(), 'testfile1'));
-        $this->assertTrue($validator($result1->getFiles(), 'testfile2'));
-        $this->assertTrue($validator($result1->getFiles(), 'testfile3'));
-        $this->assertTrue($validator($result1->getFiles(), 'testfile4'));
-        $this->assertTrue($validator($result1->getFiles(), 'testfile5'));
-        $this->assertTrue($validator($result1->getFiles(), 'testfile6'));
-        $this->assertTrue($validator($result1->getFiles(), 'testfile7'));
+        self::assertTrue($validator($result->getDirectories(), 'testdirectory0'));
+        self::assertTrue($validator($result->getFiles(), 'testfile0'));
+        self::assertTrue($validator($result0->getDirectories(), 'testdirectory1'));
+        self::assertTrue($validator($result0->getDirectories(), 'testdirectory2'));
+        self::assertTrue($validator($result0->getFiles(), 'testfile1'));
+        self::assertTrue($validator($result1->getFiles(), 'testfile2'));
+        self::assertTrue($validator($result1->getFiles(), 'testfile3'));
+        self::assertTrue($validator($result1->getFiles(), 'testfile4'));
+        self::assertTrue($validator($result1->getFiles(), 'testfile5'));
+        self::assertTrue($validator($result1->getFiles(), 'testfile6'));
+        self::assertTrue($validator($result1->getFiles(), 'testfile7'));
     }
 
     public function testListDirectoriesAndFilesWithPrefix()
@@ -301,16 +265,16 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
          * share/file_1
          * share/doc_2
          */
-        $dir0    = 'dir_0';
-        $dir1    = 'dir_1';
-        $file10  = "$dir1/file_10";
-        $file11  = "$dir1/file_11";
-        $dir10   = "$dir1/dir_10";
-        $dir2    = 'dir_2';
+        $dir0 = 'dir_0';
+        $dir1 = 'dir_1';
+        $file10 = "$dir1/file_10";
+        $file11 = "$dir1/file_11";
+        $dir10 = "$dir1/dir_10";
+        $dir2 = 'dir_2';
         $folder3 = 'folder_3';
-        $file0   = 'file_0';
-        $file1   = 'file_1';
-        $doc2    = 'doc_2';
+        $file0 = 'file_0';
+        $file1 = 'file_1';
+        $doc2 = 'doc_2';
 
         $this->restProxy->createDirectory($share, $dir0);
         $this->restProxy->createDirectory($share, $dir1);
@@ -355,7 +319,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $resultDir = $this->restProxy->listDirectoriesAndFiles($share, $dir1, $optionsDirPrefix);
         $resultFile = $this->restProxy->listDirectoriesAndFiles($share, $dir1, $optionsFilePrefix);
 
-        $validator = function ($resources, $target) {
+        $validator = static function ($resources, $target) {
             $result = false;
             foreach ($resources as $resource) {
                 if ($resource->getName() == $target) {
@@ -366,20 +330,20 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             return $result;
         };
 
-        $this->assertEquals(3, count($resultRootDir->getDirectories()));
-        $this->assertEquals(2, count($resultRootFile->getFiles()));
-        $this->assertEquals(1, count($resultDir->getDirectories()));
-        $this->assertEquals(2, count($resultFile->getFiles()));
+        self::assertCount(3, $resultRootDir->getDirectories());
+        self::assertCount(2, $resultRootFile->getFiles());
+        self::assertCount(1, $resultDir->getDirectories());
+        self::assertCount(2, $resultFile->getFiles());
 
-        $this->assertTrue($validator($resultRootDir->getDirectories(), $dir0));
-        $this->assertTrue($validator($resultRootDir->getDirectories(), $dir1));
-        $this->assertTrue($validator($resultRootDir->getDirectories(), $dir2));
-        $this->assertTrue($validator($resultDir->getDirectories(), 'dir_10'));
+        self::assertTrue($validator($resultRootDir->getDirectories(), $dir0));
+        self::assertTrue($validator($resultRootDir->getDirectories(), $dir1));
+        self::assertTrue($validator($resultRootDir->getDirectories(), $dir2));
+        self::assertTrue($validator($resultDir->getDirectories(), 'dir_10'));
 
-        $this->assertTrue($validator($resultRootFile->getFiles(), $file0));
-        $this->assertTrue($validator($resultRootFile->getFiles(), $file1));
-        $this->assertTrue($validator($resultFile->getFiles(), 'file_10'));
-        $this->assertTrue($validator($resultFile->getFiles(), 'file_11'));
+        self::assertTrue($validator($resultRootFile->getFiles(), $file0));
+        self::assertTrue($validator($resultRootFile->getFiles(), $file1));
+        self::assertTrue($validator($resultFile->getFiles(), 'file_10'));
+        self::assertTrue($validator($resultFile->getFiles(), 'file_11'));
     }
 
     public function testCreateDeleteDirectory()
@@ -396,7 +360,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $result = $this->restProxy->listDirectoriesAndFiles($share);
 
-        $validator = function ($directories, $target) {
+        $validator = static function ($directories, $target) {
             $result = false;
             foreach ($directories as $directory) {
                 if ($directory->getName() == $target) {
@@ -407,24 +371,24 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             return $result;
         };
 
-        $this->assertTrue($validator($result->getDirectories(), 'testdirectory1'));
-        $this->assertTrue($validator($result->getDirectories(), 'testdirectory0'));
+        self::assertTrue($validator($result->getDirectories(), 'testdirectory1'));
+        self::assertTrue($validator($result->getDirectories(), 'testdirectory0'));
         $result = $this->restProxy->listDirectoriesAndFiles(
             $share,
             'testdirectory0'
         );
-        $this->assertTrue($validator($result->getDirectories(), 'testdirectory01'));
-        $this->assertTrue($validator($result->getDirectories(), 'testdirectory00'));
+        self::assertTrue($validator($result->getDirectories(), 'testdirectory01'));
+        self::assertTrue($validator($result->getDirectories(), 'testdirectory00'));
         $result = $this->restProxy->listDirectoriesAndFiles(
             $share,
             'testdirectory1'
         );
-        $this->assertTrue($validator($result->getDirectories(), 'testdirectory10'));
+        self::assertTrue($validator($result->getDirectories(), 'testdirectory10'));
         $result = $this->restProxy->listDirectoriesAndFiles(
             $share,
             'testdirectory0/testdirectory00'
         );
-        $this->assertTrue($validator($result->getDirectories(), 'testdirectory000'));
+        self::assertTrue($validator($result->getDirectories(), 'testdirectory000'));
     }
 
     public function testGetDirectoryProperties()
@@ -438,7 +402,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta3' => 'testmetacontent3',
             'testmeta4' => 'testmetacontent4',
             'testmeta5' => 'testmetacontent5',
-            'testmeta6' => 'testmetacontent6'
+            'testmeta6' => 'testmetacontent6',
         ];
 
         $options = new CreateDirectoryOptions();
@@ -451,8 +415,8 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $actual = $result->getMetadata();
 
         foreach ($metadata as $key => $value) {
-            $this->assertTrue(array_key_exists($key, $actual));
-            $this->assertEquals($value, $actual[$key]);
+            self::assertArrayHasKey($key, $actual);
+            self::assertEquals($value, $actual[$key]);
         }
     }
 
@@ -467,7 +431,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta3' => 'testmetacontent3',
             'testmeta4' => 'testmetacontent4',
             'testmeta5' => 'testmetacontent5',
-            'testmeta6' => 'testmetacontent6'
+            'testmeta6' => 'testmetacontent6',
         ];
 
         $options = new CreateDirectoryOptions();
@@ -480,8 +444,8 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $actual = $result->getMetadata();
 
         foreach ($metadata as $key => $value) {
-            $this->assertTrue(array_key_exists($key, $actual));
-            $this->assertEquals($value, $actual[$key]);
+            self::assertArrayHasKey($key, $actual);
+            self::assertEquals($value, $actual[$key]);
         }
 
         $metadata = [
@@ -490,7 +454,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta33' => 'testmetacontent33',
             'testmeta44' => 'testmetacontent44',
             'testmeta55' => 'testmetacontent55',
-            'testmeta66' => 'testmetacontent66'
+            'testmeta66' => 'testmetacontent66',
         ];
 
         $result = $this->restProxy->setDirectoryMetadata(
@@ -504,8 +468,8 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $actual = $result->getMetadata();
 
         foreach ($metadata as $key => $value) {
-            $this->assertTrue(array_key_exists($key, $actual));
-            $this->assertEquals($value, $actual[$key]);
+            self::assertArrayHasKey($key, $actual);
+            self::assertEquals($value, $actual[$key]);
         }
     }
 
@@ -529,7 +493,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
                 break;
             }
         }
-        $this->assertTrue($found);
+        self::assertTrue($found);
 
         $this->restProxy->deleteFile($share, $fileName);
 
@@ -546,7 +510,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             }
         }
 
-        $this->assertTrue(!$found);
+        self::assertTrue(!$found);
     }
 
     public function testGetSetFileProperties()
@@ -558,7 +522,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $properties = $this->restProxy->getFileProperties($share, $fileName);
 
-        $this->assertEquals(Resources::GB_IN_BYTES, $properties->getContentLength());
+        self::assertEquals(Resources::GB_IN_BYTES, $properties->getContentLength());
 
         $properties->setCacheControl('no-cache');
         $properties->setContentType('pdf');
@@ -571,34 +535,33 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $this->restProxy->setFileProperties($share, $fileName, $properties);
 
-
         $newProperties = $this->restProxy->getFileProperties($share, $fileName);
 
-        $this->assertEquals(
+        self::assertEquals(
             $properties->getCacheControl(),
             $newProperties->getCacheControl()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $properties->getContentType(),
             $newProperties->getContentType()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $properties->getContentMD5(),
             $newProperties->getContentMD5()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $properties->getContentEncoding(),
             $newProperties->getContentEncoding()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $properties->getContentLanguage(),
             $newProperties->getContentLanguage()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $properties->getContentDisposition(),
             $newProperties->getContentDisposition()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $properties->getContentLength(),
             $newProperties->getContentLength()
         );
@@ -617,7 +580,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta33' => 'testmetacontent33',
             'testmeta44' => 'testmetacontent44',
             'testmeta55' => 'testmetacontent55',
-            'testmeta66' => 'testmetacontent66'
+            'testmeta66' => 'testmetacontent66',
         ];
 
         $this->restProxy->setFileMetadata($share, $fileName, $metadata);
@@ -627,8 +590,8 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $actual = $result->getMetadata();
 
         foreach ($metadata as $key => $value) {
-            $this->assertTrue(array_key_exists($key, $actual));
-            $this->assertEquals($value, $actual[$key]);
+            self::assertArrayHasKey($key, $actual);
+            self::assertEquals($value, $actual[$key]);
         }
     }
 
@@ -647,7 +610,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $actual = \stream_get_contents($result->getContentStream());
 
-        $this->assertTrue($content == $actual);
+        self::assertTrue($content == $actual);
     }
 
     public function testClearFileRange()
@@ -665,7 +628,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $actual = \stream_get_contents($result->getContentStream());
 
-        $this->assertEquals($content, $actual);
+        self::assertEquals($content, $actual);
 
         $this->restProxy->clearFileRange($share, $fileName, $range);
 
@@ -673,7 +636,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $actual = \stream_get_contents($result->getContentStream());
 
-        $this->assertTrue(
+        self::assertTrue(
             str_pad('', Resources::MB_IN_BYTES_4, "\0", STR_PAD_LEFT) ==
             $actual
         );
@@ -699,10 +662,10 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $ranges = $result->getRanges();
 
-        $this->assertEquals(0, $ranges[0]->getStart());
-        $this->assertEquals(Resources::MB_IN_BYTES_1 - 1, $ranges[0]->getEnd());
-        $this->assertEquals(Resources::MB_IN_BYTES_1 * 2, $ranges[1]->getStart());
-        $this->assertEquals(Resources::MB_IN_BYTES_1 * 3 - 1, $ranges[1]->getEnd());
+        self::assertEquals(0, $ranges[0]->getStart());
+        self::assertEquals(Resources::MB_IN_BYTES_1 - 1, $ranges[0]->getEnd());
+        self::assertEquals(Resources::MB_IN_BYTES_1 * 2, $ranges[1]->getStart());
+        self::assertEquals(Resources::MB_IN_BYTES_1 * 3 - 1, $ranges[1]->getEnd());
     }
 
     public function testCopyFile()
@@ -718,7 +681,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
 
         $source = sprintf(
             '%s%s/%s',
-            (string)$this->restProxy->getPsrPrimaryUri(),
+            (string) $this->restProxy->getPsrPrimaryUri(),
             $share,
             $fileName
         );
@@ -731,7 +694,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
             'testmeta33' => 'testmetacontent33',
             'testmeta44' => 'testmetacontent44',
             'testmeta55' => 'testmetacontent55',
-            'testmeta66' => 'testmetacontent66'
+            'testmeta66' => 'testmetacontent66',
         ];
 
         $this->restProxy->copyFile($share, $destFileName, $source, $metadata);
@@ -744,19 +707,18 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $expectedMetadata = $result->getMetadata();
 
         foreach ($metadata as $key => $value) {
-            $this->assertTrue(array_key_exists($key, $expectedMetadata));
-            $this->assertEquals($value, $expectedMetadata[$key]);
+            self::assertArrayHasKey($key, $expectedMetadata);
+            self::assertEquals($value, $expectedMetadata[$key]);
         }
 
-        $this->assertTrue($content == $expectedContent);
+        self::assertTrue($content == $expectedContent);
     }
 
-    /**
-     * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-     * @expectedExceptionMessage There is currently no pending copy operation
-     */
     public function testAbortCopy()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('There is currently no pending copy operation');
+
         $share = 'abortcopy' . $this->createSuffix();
         $this->createShare($share);
         $fileName = 'testfile';
@@ -776,7 +738,7 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $content1 .= openssl_random_pseudo_bytes(Resources::MB_IN_BYTES_4);
         $content1 = str_pad($content1, Resources::MB_IN_BYTES_4 * 4, "\0", STR_PAD_RIGHT);
         $content2 = openssl_random_pseudo_bytes(Resources::MB_IN_BYTES_4 * 4);
-        $content3 = "";
+        $content3 = '';
 
         $testfile0 = 'testfile0';
         $testfile1 = 'testfile1';
@@ -798,9 +760,9 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $actual2 = \stream_get_contents($result->getContentStream());
         $result = $this->restProxy->getFile($share, $testfile3);
 
-        $this->assertTrue($content0 == $actual0);
-        $this->assertTrue($content1 == $actual1);
-        $this->assertTrue($content2 == $actual2);
-        $this->assertTrue($result->getProperties()->getContentLength() == 0);
+        self::assertTrue($content0 == $actual0);
+        self::assertTrue($content1 == $actual1);
+        self::assertTrue($content2 == $actual2);
+        self::assertTrue($result->getProperties()->getContentLength() == 0);
     }
 }

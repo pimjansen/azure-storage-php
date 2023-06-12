@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Functional\Table
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Table;
@@ -66,7 +61,7 @@ class FunctionalTestBase extends IntegrationTestBase
 
     protected function clearTable($table)
     {
-        $index = array_search($table, TableServiceFunctionalTestData::$testTableNames);
+        $index = array_search($table, TableServiceFunctionalTestData::$testTableNames, true);
         if ($index !== false) {
             // This is a well-known table, so need to create a new one to replace it.
             TableServiceFunctionalTestData::$testTableNames[$index] = TableServiceFunctionalTestData::getInterestingTableName();
@@ -89,21 +84,26 @@ class FunctionalTestBase extends IntegrationTestBase
 
     public static function tmptostring($value)
     {
-        if (is_null($value)) {
+        if (null === $value) {
             return 'null';
-        } elseif (is_bool($value)) {
-            return ($value == true ? 'true' : 'false');
-        } elseif ($value instanceof \DateTime) {
-            return Utilities::convertToEdmDateTime($value);
-        } elseif ($value instanceof Entity) {
-            return self::entityToString($value);
-        } elseif (is_array($value)) {
-            return self::entityPropsToString($value);
-        } elseif ($value instanceof Filter) {
-            return TableServiceFunctionalTestUtils::filtertoString($value);
-        } else {
-            return $value;
         }
+        if (is_bool($value)) {
+            return $value == true ? 'true' : 'false';
+        }
+        if ($value instanceof \DateTime) {
+            return Utilities::convertToEdmDateTime($value);
+        }
+        if ($value instanceof Entity) {
+            return self::entityToString($value);
+        }
+        if (is_array($value)) {
+            return self::entityPropsToString($value);
+        }
+        if ($value instanceof Filter) {
+            return TableServiceFunctionalTestUtils::filtertoString($value);
+        }
+        return $value;
+
     }
 
     public static function entityPropsToString($props)
@@ -111,7 +111,7 @@ class FunctionalTestBase extends IntegrationTestBase
         $ret = '';
         foreach ($props as $k => $value) {
             $ret .= $k . ':';
-            if (is_null($value)) {
+            if (null === $value) {
                 $ret .= 'NULL PROP!';
             } else {
                 $ret .= $value->getEdmType() . ':' . self::tmptostring($value->getValue());

@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
 
-use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
+use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
+use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 
 /**
  * Share to hold list directories and files response object.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListDirectoriesAndFilesResult
 {
@@ -62,8 +52,8 @@ class ListDirectoriesAndFilesResult
      */
     public static function create(array $parsedResponse, $location = '')
     {
-        $result               = new ListDirectoriesAndFilesResult();
-        $serviceEndpoint      = Utilities::tryGetKeysChainValue(
+        $result = new ListDirectoriesAndFilesResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsedResponse,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT
@@ -102,8 +92,8 @@ class ListDirectoriesAndFilesResult
         );
 
         if (empty($entries)) {
-            $result->setDirectories(array());
-            $result->setFiles(array());
+            $result->setDirectories([]);
+            $result->setFiles([]);
         } else {
             $directoriesArray = Utilities::tryGetValue(
                 $entries,
@@ -114,8 +104,8 @@ class ListDirectoriesAndFilesResult
                 Resources::QP_FILE
             );
 
-            $directories = array();
-            $files = array();
+            $directories = [];
+            $files = [];
 
             if ($directoriesArray != null) {
                 if (array_key_exists(Resources::QP_NAME, $directoriesArray)) {
@@ -146,12 +136,10 @@ class ListDirectoriesAndFilesResult
      * Sets Directories.
      *
      * @param array $directories list of directories.
-     *
-     * @return void
      */
     protected function setDirectories(array $directories)
     {
-        $this->directories = array();
+        $this->directories = [];
         foreach ($directories as $directory) {
             $this->directories[] = clone $directory;
         }
@@ -171,12 +159,10 @@ class ListDirectoriesAndFilesResult
      * Sets files.
      *
      * @param array $files list of files.
-     *
-     * @return void
      */
     protected function setFiles(array $files)
     {
-        $this->files = array();
+        $this->files = [];
         foreach ($files as $file) {
             $this->files[] = clone $file;
         }
@@ -206,8 +192,6 @@ class ListDirectoriesAndFilesResult
      * Sets max results.
      *
      * @param string $maxResults value.
-     *
-     * @return void
      */
     protected function setMaxResults($maxResults)
     {
@@ -228,8 +212,6 @@ class ListDirectoriesAndFilesResult
      * Sets marker.
      *
      * @param string $marker value.
-     *
-     * @return void
      */
     protected function setMarker($marker)
     {
@@ -250,8 +232,6 @@ class ListDirectoriesAndFilesResult
      * Sets account name.
      *
      * @param string $accountName value.
-     *
-     * @return void
      */
     protected function setAccountName($accountName)
     {

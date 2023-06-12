@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Holds elements of queue properties retention policy field.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RetentionPolicy
 {
@@ -55,7 +45,7 @@ class RetentionPolicy
         $result = new RetentionPolicy();
         $result->setEnabled(Utilities::toBoolean($parsedResponse['Enabled']));
         if ($result->getEnabled()) {
-            $result->setDays(intval($parsedResponse['Days']));
+            $result->setDays((int) ($parsedResponse['Days']));
         }
 
         return $result;
@@ -75,8 +65,6 @@ class RetentionPolicy
      * Sets enabled.
      *
      * @param bool $enabled value to use.
-     *
-     * @return void
      */
     public function setEnabled($enabled)
     {
@@ -97,8 +85,6 @@ class RetentionPolicy
      * Sets days field.
      *
      * @param int $days value to use.
-     *
-     * @return void
      */
     public function setDays($days)
     {
@@ -114,9 +100,9 @@ class RetentionPolicy
      */
     public function toArray()
     {
-        $array = array('Enabled' => Utilities::booleanToString($this->_enabled));
+        $array = ['Enabled' => Utilities::booleanToString($this->_enabled)];
         if (isset($this->_days)) {
-            $array['Days'] = strval($this->_days);
+            $array['Days'] = (string) ($this->_days);
         }
 
         return $array;

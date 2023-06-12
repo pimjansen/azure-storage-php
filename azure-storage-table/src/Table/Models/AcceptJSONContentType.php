@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -30,25 +25,20 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Holds constant and logic for accept JSON content type.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class AcceptJSONContentType
 {
-    public const NO_METADATA      = Resources::JSON_NO_METADATA_CONTENT_TYPE;
+    public const NO_METADATA = Resources::JSON_NO_METADATA_CONTENT_TYPE;
     public const MINIMAL_METADATA = Resources::JSON_MINIMAL_METADATA_CONTENT_TYPE;
-    public const FULL_METADATA    = Resources::JSON_FULL_METADATA_CONTENT_TYPE;
+    public const FULL_METADATA = Resources::JSON_FULL_METADATA_CONTENT_TYPE;
 
     public static function validateAcceptContentType($contentType)
     {
         Validate::isTrue(
-            $contentType == self::NO_METADATA ||
-            $contentType == self::MINIMAL_METADATA ||
-            $contentType == self::FULL_METADATA,
+            $contentType == self::NO_METADATA
+            || $contentType == self::MINIMAL_METADATA
+            || $contentType == self::FULL_METADATA,
             Resources::INVALID_ACCEPT_CONTENT_TYPE
         );
     }

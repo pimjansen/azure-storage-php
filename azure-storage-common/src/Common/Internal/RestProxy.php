@@ -15,27 +15,16 @@
  * PHP version 5
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
 
-use MicrosoftAzure\Storage\Common\Internal\IMiddleware;
-
 /**
  * Base class for all REST proxies.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RestProxy
 {
@@ -56,7 +45,7 @@ class RestProxy
      */
     public function __construct(Serialization\ISerializer $dataSerializer = null)
     {
-        $this->middlewares    = array();
+        $this->middlewares = [];
         $this->dataSerializer = $dataSerializer;
         //For logging the request and responses.
         // $this->middlewares[] = new HistoryMiddleware('.\\messages.log');
@@ -76,9 +65,7 @@ class RestProxy
      * Push a new middleware into the middlewares array. The newly added
      * middleware will be the most inner middleware when executed.
      *
-     * @param  callable|IMiddleware $middleware the middleware to be added.
-     *
-     * @return void
+     * @param callable|IMiddleware $middleware the middleware to be added.
      */
     public function pushMiddleware($middleware)
     {
@@ -93,8 +80,6 @@ class RestProxy
      * @param array  &$queryParameters The query parameters.
      * @param string $key              The query variable name.
      * @param string $value            The query variable value.
-     *
-     * @return void
      */
     protected function addOptionalQueryParam(array &$queryParameters, $key, $value)
     {
@@ -102,7 +87,7 @@ class RestProxy
         Validate::canCastAsString($key, 'key');
         Validate::canCastAsString($value, 'value');
 
-        if (!is_null($value) && Resources::EMPTY_STRING !== $value) {
+        if (null !== $value && Resources::EMPTY_STRING !== $value) {
             $queryParameters[$key] = $value;
         }
     }
@@ -115,8 +100,6 @@ class RestProxy
      * @param array  &$headers The HTTP header parameters.
      * @param string $key      The HTTP header name.
      * @param string $value    The HTTP header value.
-     *
-     * @return void
      */
     protected function addOptionalHeader(array &$headers, $key, $value)
     {
@@ -124,7 +107,7 @@ class RestProxy
         Validate::canCastAsString($key, 'key');
         Validate::canCastAsString($value, 'value');
 
-        if (!is_null($value) && Resources::EMPTY_STRING !== $value) {
+        if (null !== $value && Resources::EMPTY_STRING !== $value) {
             $headers[$key] = $value;
         }
     }

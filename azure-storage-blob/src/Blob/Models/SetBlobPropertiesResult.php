@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Holds result of calling setBlobProperties wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SetBlobPropertiesResult
 {
@@ -56,7 +46,7 @@ class SetBlobPropertiesResult
     public static function create(array $headers)
     {
         $result = new SetBlobPropertiesResult();
-        $date   = Utilities::tryGetValueInsensitive(
+        $date = Utilities::tryGetValueInsensitive(
             Resources::LAST_MODIFIED,
             $headers
         );
@@ -87,8 +77,6 @@ class SetBlobPropertiesResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -110,8 +98,6 @@ class SetBlobPropertiesResult
      * Sets blob etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -133,8 +119,6 @@ class SetBlobPropertiesResult
      * Sets blob sequenceNumber.
      *
      * @param int $sequenceNumber value.
-     *
-     * @return void
      */
     protected function setSequenceNumber($sequenceNumber)
     {

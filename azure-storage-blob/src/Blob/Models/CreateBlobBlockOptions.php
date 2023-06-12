@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Optional parameters for createBlobBlock wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobBlockOptions extends BlobServiceOptions
 {
@@ -53,8 +43,6 @@ class CreateBlobBlockOptions extends BlobServiceOptions
      * Sets blob contentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     public function setContentMD5($contentMD5)
     {
@@ -83,8 +71,6 @@ class CreateBlobBlockOptions extends BlobServiceOptions
 
     /**
      * Construct a CreateBlobBlockOptions object from a createBlobOptions.
-     *
-     * @param  CreateBlobOptions $createBlobOptions
      *
      * @return CreateBlobBlockOptions
      */

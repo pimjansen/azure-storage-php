@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Holds result of listBlobBlocks
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListBlobBlocksResult
 {
@@ -57,14 +47,14 @@ class ListBlobBlocksResult
      */
     private static function getEntries(array $parsed, $type)
     {
-        $entries = array();
+        $entries = [];
 
         if (is_array($parsed)) {
-            $rawEntries = array();
+            $rawEntries = [];
 
             if (array_key_exists($type, $parsed)
-                &&     is_array($parsed[$type])
-                &&     !empty($parsed[$type])
+                && is_array($parsed[$type])
+                && !empty($parsed[$type])
             ) {
                 $rawEntries = Utilities::getArray($parsed[$type]['Block']);
             }
@@ -90,16 +80,16 @@ class ListBlobBlocksResult
     public static function create(array $headers, array $parsed)
     {
         $result = new ListBlobBlocksResult();
-        $clean  = array_change_key_case($headers);
+        $clean = array_change_key_case($headers);
 
         $result->setETag(Utilities::tryGetValue($clean, Resources::ETAG));
         $date = Utilities::tryGetValue($clean, Resources::LAST_MODIFIED);
-        if (!is_null($date)) {
+        if (null !== $date) {
             $date = Utilities::rfc1123ToDateTime($date);
             $result->setLastModified($date);
         }
         $result->setContentLength(
-            intval(
+            (int) (
                 Utilities::tryGetValue($clean, Resources::X_MS_BLOB_CONTENT_LENGTH)
             )
         );
@@ -111,7 +101,7 @@ class ListBlobBlocksResult
             $parsed,
             'UncommittedBlocks'
         );
-        $result->committedBlocks   = self::getEntries($parsed, 'CommittedBlocks');
+        $result->committedBlocks = self::getEntries($parsed, 'CommittedBlocks');
 
         return $result;
     }
@@ -130,8 +120,6 @@ class ListBlobBlocksResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -153,8 +141,6 @@ class ListBlobBlocksResult
      * Sets blob etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -175,8 +161,6 @@ class ListBlobBlocksResult
      * Sets blob contentType.
      *
      * @param string $contentType value.
-     *
-     * @return void
      */
     protected function setContentType($contentType)
     {
@@ -186,7 +170,7 @@ class ListBlobBlocksResult
     /**
      * Gets blob contentLength.
      *
-     * @return integer
+     * @return int
      */
     public function getContentLength()
     {
@@ -196,9 +180,7 @@ class ListBlobBlocksResult
     /**
      * Sets blob contentLength.
      *
-     * @param integer $contentLength value.
-     *
-     * @return void
+     * @param int $contentLength value.
      */
     protected function setContentLength($contentLength)
     {
@@ -220,8 +202,6 @@ class ListBlobBlocksResult
      * Sets uncommitted blocks
      *
      * @param array $uncommittedBlocks The uncommitted blocks entries
-     *
-     * @return void
      */
     protected function setUncommittedBlocks(array $uncommittedBlocks)
     {
@@ -242,8 +222,6 @@ class ListBlobBlocksResult
      * Sets committed blocks
      *
      * @param array $committedBlocks The committed blocks entries
-     *
-     * @return void
      */
     protected function setCommittedBlocks(array $committedBlocks)
     {

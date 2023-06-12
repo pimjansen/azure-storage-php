@@ -14,31 +14,21 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
 
+use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Promise\RejectedPromise;
 
 /**
  * This class provides the base structure of middleware that can be used for
  * doing customized behavior including modifying the request, response or
  * other behaviors like logging, retrying and debugging.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MiddlewareBase implements IMiddleware
 {
@@ -51,12 +41,12 @@ class MiddlewareBase implements IMiddleware
      *
      * @param  callable  The handler function.
      *
-     * @return callable  The function that accepts the next handler to invoke.
+     * @return callable The function that accepts the next handler to invoke.
      */
     public function __invoke(callable $handler)
     {
         $reflection = $this;
-        return function ($request, $options) use ($handler, $reflection) {
+        return static function ($request, $options) use ($handler, $reflection) {
             $request = $reflection->onRequest($request);
             return $handler($request, $options)->then(
                 $reflection->onFulfilled($request, $options),
@@ -68,9 +58,9 @@ class MiddlewareBase implements IMiddleware
     /**
      * This function will be executed before the request is sent.
      *
-     * @param  RequestInterface $request the request before altered.
+     * @param RequestInterface $request the request before altered.
      *
-     * @return RequestInterface          the request after altered.
+     * @return RequestInterface the request after altered.
      */
     protected function onRequest(RequestInterface $request)
     {
@@ -82,14 +72,14 @@ class MiddlewareBase implements IMiddleware
      * This function will be invoked after the request is sent, if
      * the promise is fulfilled.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
     protected function onFulfilled(RequestInterface $request, array $options)
     {
-        return function (ResponseInterface $response) {
+        return static function (ResponseInterface $response) {
             //do nothing
             return $response;
         };
@@ -99,14 +89,14 @@ class MiddlewareBase implements IMiddleware
      * This function will be executed after the request is sent, if
      * the promise is rejected.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
     protected function onRejected(RequestInterface $request, array $options)
     {
-        return function ($reason) {
+        return static function ($reason) {
             //do nothing
             return new RejectedPromise($reason);
         };

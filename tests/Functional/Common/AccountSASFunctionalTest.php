@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Common;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Tests for account SAS proxy tests.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class AccountSASFunctionalTest extends SASFunctionalTestBase
 {
@@ -61,44 +51,44 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $count0 = count($this->blobRestProxy->listContainers()->getContainers());
         $this->safeCreateContainer($container);
         $count1 = count($this->blobRestProxy->listContainers()->getContainers());
-        $this->assertEquals(
+        self::assertEquals(
             $count0 + 1,
             $count1,
-            sprintf("Expected %d container(s), listed %d container(s).", $count0 + 1, $count1)
+            sprintf('Expected %d container(s), listed %d container(s).', $count0 + 1, $count1)
         );
         $blob = TestResources::getInterestingName('blob');
         $content = 'test content';
         $this->blobRestProxy->createBlockBlob($container, $blob, $content);
         $getContent = stream_get_contents($this->blobRestProxy->getBlob($container, $blob)->getContentStream());
-        $this->assertEquals($content, $getContent, "Expected {$content}, got {$getContent}.");
+        self::assertEquals($content, $getContent, "Expected {$content}, got {$getContent}.");
         $this->safeDeleteContainer($container);
         $count1 = count($this->blobRestProxy->listContainers()->getContainers());
-        $this->assertEquals(
+        self::assertEquals(
             $count0,
             $count1,
-            sprintf("Expected %d container(s), listed %d container(s).", $count0, $count1)
+            sprintf('Expected %d container(s), listed %d container(s).', $count0, $count1)
         );
 
         $share = TestResources::getInterestingName('share');
         $count0 = count($this->fileRestProxy->listShares()->getShares());
         $this->safeCreateShare($share);
         $count1 = count($this->fileRestProxy->listShares()->getShares());
-        $this->assertEquals(
+        self::assertEquals(
             $count0 + 1,
             $count1,
-            sprintf("Expected %d share(s), listed %d share(s).", $count0 + 1, $count1)
+            sprintf('Expected %d share(s), listed %d share(s).', $count0 + 1, $count1)
         );
         $file = TestResources::getInterestingName('file');
         $content = 'test content';
         $this->fileRestProxy->createFileFromContent($share, $file, $content);
         $getContent = stream_get_contents($this->fileRestProxy->getFile($share, $file)->getContentStream());
-        $this->assertEquals($content, $getContent, "Expected {$content}, got {$getContent}.");
+        self::assertEquals($content, $getContent, "Expected {$content}, got {$getContent}.");
         $this->safeDeleteShare($share);
         $count1 = count($this->fileRestProxy->listShares()->getShares());
-        $this->assertEquals(
+        self::assertEquals(
             $count0,
             $count1,
-            sprintf("Expected %d share(s), listed %d share(s).", $count0, $count1)
+            sprintf('Expected %d share(s), listed %d share(s).', $count0, $count1)
         );
 
         //Validate 'aup'
@@ -106,10 +96,10 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $count0 = count($this->queueRestProxy->listQueues()->getQueues());
         $this->safeCreateQueue($queue);
         $count1 = count($this->queueRestProxy->listQueues()->getQueues());
-        $this->assertEquals(
+        self::assertEquals(
             $count0 + 1,
             $count1,
-            sprintf("Expected %d queue(s), listed %d queue(s).", $count0 + 1, $count1)
+            sprintf('Expected %d queue(s), listed %d queue(s).', $count0 + 1, $count1)
         );
         $message = TestResources::getInterestingName('message');
         $content = 'test content';
@@ -124,7 +114,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
                 break;
             }
         }
-        $this->assertTrue($found, "Created message not found in the specified queue");
+        self::assertTrue($found, 'Created message not found in the specified queue');
         $count3 = count($messages);
         $this->queueRestProxy->deleteMessage(
             $queue,
@@ -132,17 +122,17 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             $resultMessage->getPopReceipt()
         );
         $count1 = count($this->queueRestProxy->listMessages($queue)->getQueueMessages());
-        $this->assertEquals(
+        self::assertEquals(
             $count3 - 1,
             $count1,
-            sprintf("Expected %d messages(s), listed %d messages(s).", $count3 - 1, $count1)
+            sprintf('Expected %d messages(s), listed %d messages(s).', $count3 - 1, $count1)
         );
         $this->safeDeleteQueue($queue);
         $count1 = count($this->queueRestProxy->listQueues()->getQueues());
-        $this->assertEquals(
+        self::assertEquals(
             $count0,
             $count1,
-            sprintf("Expected %d queue(s), listed %d queue(s).", $count0, $count1)
+            sprintf('Expected %d queue(s), listed %d queue(s).', $count0, $count1)
         );
     }
 
@@ -167,7 +157,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         //Validate cannot access blob service
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->blobRestProxy->listContainers();
             },
             'Error: access not blocked for blob service.'
@@ -190,7 +180,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         //Validate cannot access queue service
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->queueRestProxy->listQueues();
             },
             'Error: access not blocked for queue service.'
@@ -213,7 +203,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         //Validate cannot access table service
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->tableRestProxy->queryTables();
             },
             'Error: access not blocked for table service.'
@@ -236,7 +226,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         //Validate cannot access file service
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->fileRestProxy->listShares();
             },
             'Error: access not blocked for file service.'
@@ -266,14 +256,14 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         );
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->queueRestProxy->listQueues();
             },
             'Error: access not blocked for list queue operation.'
         );
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection) {
+            static function () use ($reflection) {
                 $reflection->queueRestProxy->createQueue('exceptionqueue');
             },
             'Error: access not blocked for create queue operation.'
@@ -294,14 +284,14 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $this->blobRestProxy->createBlockBlob($container, $blob, 'test message');
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection, $container, $blob) {
+            static function () use ($reflection, $container, $blob) {
                 $reflection->blobRestProxy->getBlob($container, $blob);
             },
             'Error: access not blocked for get blob operation.'
         );
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
-            function () use ($reflection, $container, $blob) {
+            static function () use ($reflection, $container, $blob) {
                 $reflection->blobRestProxy->deleteBlob($container, $blob);
             },
             'Error: access not blocked for delete blob operation.'

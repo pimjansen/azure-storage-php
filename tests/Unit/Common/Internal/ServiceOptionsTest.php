@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
 /**
  * Unit tests for class ServiceOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ServiceOptionsTest extends \PHPUnit\Framework\TestCase
 {
@@ -48,6 +38,6 @@ class ServiceOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setTimeout($value);
 
         // Assert
-        $this->assertEquals($value, $options->getTimeout());
+        self::assertEquals($value, $options->getTimeout());
     }
 }

@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Holds elements of queue properties metrics field.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Metrics
 {
@@ -47,6 +37,7 @@ class Metrics
      * Creates object from $parsedResponse.
      *
      * @internal
+     *
      * @param array $parsedResponse XML response parsed into array.
      *
      * @return Metrics
@@ -72,7 +63,6 @@ class Metrics
      * Gets retention policy
      *
      * @return RetentionPolicy
-     *
      */
     public function getRetentionPolicy()
     {
@@ -83,8 +73,6 @@ class Metrics
      * Sets retention policy
      *
      * @param RetentionPolicy $policy object to use
-     *
-     * @return void
      */
     public function setRetentionPolicy(RetentionPolicy $policy)
     {
@@ -105,8 +93,6 @@ class Metrics
      * Sets include APIs.
      *
      * @param bool $includeAPIs value to use.
-     *
-     * @return void
      */
     public function setIncludeAPIs($includeAPIs)
     {
@@ -127,8 +113,6 @@ class Metrics
      * Sets enabled.
      *
      * @param bool $enabled value to use.
-     *
-     * @return void
      */
     public function setEnabled($enabled)
     {
@@ -149,8 +133,6 @@ class Metrics
      * Sets version
      *
      * @param string $version new value.
-     *
-     * @return void
      */
     public function setVersion($version)
     {
@@ -161,14 +143,15 @@ class Metrics
      * Converts this object to array with XML tags
      *
      * @internal
+     *
      * @return array
      */
     public function toArray()
     {
-        $array = array(
+        $array = [
             'Version' => $this->_version,
-            'Enabled' => Utilities::booleanToString($this->_enabled)
-        );
+            'Enabled' => Utilities::booleanToString($this->_enabled),
+        ];
         if ($this->_enabled) {
             $array['IncludeAPIs'] = Utilities::booleanToString($this->_includeAPIs);
         }

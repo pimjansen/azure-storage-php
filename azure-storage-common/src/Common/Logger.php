@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
 /**
  * Logger class for debugging purpose.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Logger
 {
@@ -48,8 +38,6 @@ class Logger
      *
      * @param mixed  $var The data to log.
      * @param string $tip The help message.
-     *
-     * @return void
      */
     public static function log($var, $tip = Resources::EMPTY_STRING)
     {
@@ -68,7 +56,6 @@ class Logger
      * Sets file path to use.
      *
      * @param string $filePath The log file path.
-     * @return void
      */
     public static function setLogFile($filePath)
     {

@@ -14,44 +14,31 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
 
 use MicrosoftAzure\Storage\Queue\Models\QueueACL;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 
 /**
  * Unit tests for class QueueACL
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueueACLTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateEmpty()
     {
         // Setup
-        $sample = array();
+        $sample = [];
 
         // Test
         $acl = QueueACL::create($sample);
 
         // Assert
-        $this->assertCount(0, $acl->getSignedIdentifiers());
+        self::assertCount(0, $acl->getSignedIdentifiers());
     }
 
     public function testCreateOneEntry()
@@ -63,7 +50,7 @@ class QueueACLTest extends \PHPUnit\Framework\TestCase
         $acl = QueueACL::create($sample['SignedIdentifiers']);
 
         // Assert
-        $this->assertCount(1, $acl->getSignedIdentifiers());
+        self::assertCount(1, $acl->getSignedIdentifiers());
     }
 
     public function testCreateMultipleEntries()
@@ -75,7 +62,7 @@ class QueueACLTest extends \PHPUnit\Framework\TestCase
         $acl = QueueACL::create($sample['SignedIdentifiers']);
 
         // Assert
-        $this->assertCount(2, $acl->getSignedIdentifiers());
+        self::assertCount(2, $acl->getSignedIdentifiers());
 
         return $acl;
     }

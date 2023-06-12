@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
@@ -29,24 +24,19 @@ use MicrosoftAzure\Storage\Table\Models\UpdateEntityResult;
 /**
  * Unit tests for class UpdateEntityResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class UpdateEntityResultTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreate()
     {
         // Setup
-        $headers = array('ETag' => '0x8CACB9BD7C6B1B2');
+        $headers = ['ETag' => '0x8CACB9BD7C6B1B2'];
 
         // Test
         $result = UpdateEntityResult::create($headers);
 
         // Assert
-        $this->assertEquals($headers['ETag'], $result->getETag());
+        self::assertEquals($headers['ETag'], $result->getETag());
     }
 }

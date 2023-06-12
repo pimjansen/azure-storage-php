@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Common\Models\Range;
 /**
  * Optional parameters for getBlob wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetBlobOptions extends BlobServiceOptions
 {
@@ -57,8 +47,6 @@ class GetBlobOptions extends BlobServiceOptions
      * Sets blob snapshot.
      *
      * @param string $snapshot value.
-     *
-     * @return void
      */
     public function setSnapshot($snapshot)
     {
@@ -79,8 +67,6 @@ class GetBlobOptions extends BlobServiceOptions
      * Sets Blob range.
      *
      * @param Range $range value.
-     *
-     * @return void
      */
     public function setRange(Range $range)
     {
@@ -90,7 +76,7 @@ class GetBlobOptions extends BlobServiceOptions
     /**
      * Gets rangeGetContentMD5
      *
-     * @return boolean
+     * @return bool
      */
     public function getRangeGetContentMD5()
     {
@@ -100,9 +86,7 @@ class GetBlobOptions extends BlobServiceOptions
     /**
      * Sets rangeGetContentMD5
      *
-     * @param boolean $rangeGetContentMD5 value
-     *
-     * @return void
+     * @param bool $rangeGetContentMD5 value
      */
     public function setRangeGetContentMD5($rangeGetContentMD5)
     {

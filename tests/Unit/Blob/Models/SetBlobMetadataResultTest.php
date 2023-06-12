@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\SetBlobMetadataResult;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class SetBlobMetadataResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SetBlobMetadataResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,8 +40,8 @@ class SetBlobMetadataResultTest extends \PHPUnit\Framework\TestCase
         $result = SetBlobMetadataResult::create($sample);
 
         // Assert
-        $this->assertEquals($expectedDate, $result->getLastModified());
-        $this->assertEquals($sample['Etag'], $result->getETag());
-        $this->assertEquals(Utilities::toBoolean($sample['x-ms-request-server-encrypted']), $result->getRequestServerEncrypted());
+        self::assertEquals($expectedDate, $result->getLastModified());
+        self::assertEquals($sample['Etag'], $result->getETag());
+        self::assertEquals(Utilities::toBoolean($sample['x-ms-request-server-encrypted']), $result->getRequestServerEncrypted());
     }
 }

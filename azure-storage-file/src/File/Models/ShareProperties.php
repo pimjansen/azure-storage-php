@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Holds share properties fields
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ShareProperties
 {
@@ -46,15 +36,15 @@ class ShareProperties
     /**
      * Creates an instance with given response array.
      *
-     * @param  array  $parsedResponse The response array.
+     * @param array $parsedResponse The response array.
      *
      * @return ShareProperties
      */
     public static function create(array $parsedResponse)
     {
         $result = new ShareProperties();
-        $date   = $parsedResponse[Resources::QP_LAST_MODIFIED];
-        $date   = Utilities::rfc1123ToDateTime($date);
+        $date = $parsedResponse[Resources::QP_LAST_MODIFIED];
+        $date = Utilities::rfc1123ToDateTime($date);
         $result->setLastModified($date);
         $result->setETag($parsedResponse[Resources::QP_ETAG]);
         $result->setQuota($parsedResponse[Resources::QP_QUOTA]);
@@ -75,8 +65,6 @@ class ShareProperties
      * Sets share lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     public function setLastModified(\DateTime $lastModified)
     {
@@ -97,8 +85,6 @@ class ShareProperties
      * Sets share etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     public function setETag($etag)
     {
@@ -119,8 +105,6 @@ class ShareProperties
      * Sets share quota.
      *
      * @param string $quota value.
-     *
-     * @return void
      */
     public function setQuota($quota)
     {

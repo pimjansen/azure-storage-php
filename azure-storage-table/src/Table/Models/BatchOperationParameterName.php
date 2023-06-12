@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -27,20 +22,15 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Batch parameter names.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperationParameterName
 {
-    public const BP_TABLE         = 'table';
-    public const BP_ENTITY        = 'entity';
+    public const BP_TABLE = 'table';
+    public const BP_ENTITY = 'entity';
     public const BP_PARTITION_KEY = 'PartitionKey';
-    public const BP_ROW_KEY       = 'RowKey';
-    public const BP_ETAG          = 'etag';
+    public const BP_ROW_KEY = 'RowKey';
+    public const BP_ETAG = 'etag';
 
     /**
      * Validates if $paramName is already defined.
@@ -49,7 +39,7 @@ class BatchOperationParameterName
      *
      * @internal
      *
-     * @return boolean
+     * @return bool
      */
     public static function isValid($paramName)
     {

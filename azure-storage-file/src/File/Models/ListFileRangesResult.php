@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Models\Range;
 use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 
 /**
  * Holds result of calling ListFileRangesResult wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListFileRangesResult
 {
@@ -59,22 +49,22 @@ class ListFileRangesResult
      */
     public static function create(array $headers, array $parsed = null)
     {
-        $result  = new ListFileRangesResult();
+        $result = new ListFileRangesResult();
         $headers = array_change_key_case($headers);
 
-        $date          = $headers[Resources::LAST_MODIFIED];
-        $date          = Utilities::rfc1123ToDateTime($date);
-        $fileLength    = intval($headers[Resources::X_MS_CONTENT_LENGTH]);
-        $rawRanges = array();
+        $date = $headers[Resources::LAST_MODIFIED];
+        $date = Utilities::rfc1123ToDateTime($date);
+        $fileLength = (int) ($headers[Resources::X_MS_CONTENT_LENGTH]);
+        $rawRanges = [];
         if (!empty($parsed['Range'])) {
             $rawRanges = Utilities::getArray($parsed['Range']);
         }
 
-        $ranges = array();
+        $ranges = [];
         foreach ($rawRanges as $value) {
             $ranges[] = new Range(
-                intval($value['Start']),
-                intval($value['End'])
+                (int) ($value['Start']),
+                (int) ($value['End'])
             );
         }
         $result->setRanges($ranges);
@@ -99,8 +89,6 @@ class ListFileRangesResult
      * Sets file lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -122,8 +110,6 @@ class ListFileRangesResult
      * Sets file etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -134,7 +120,7 @@ class ListFileRangesResult
     /**
      * Gets file contentLength.
      *
-     * @return integer
+     * @return int
      */
     public function getContentLength()
     {
@@ -144,9 +130,7 @@ class ListFileRangesResult
     /**
      * Sets file contentLength.
      *
-     * @param integer $contentLength value.
-     *
-     * @return void
+     * @param int $contentLength value.
      */
     protected function setContentLength($contentLength)
     {
@@ -168,12 +152,10 @@ class ListFileRangesResult
      * Sets ranges
      *
      * @param array $ranges ranges to set
-     *
-     * @return void
      */
     protected function setRanges(array $ranges)
     {
-        $this->ranges = array();
+        $this->ranges = [];
         foreach ($ranges as $range) {
             $this->ranges[] = clone $range;
         }

@@ -14,44 +14,31 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
 use MicrosoftAzure\Storage\Table\Models\TableACL;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 
 /**
  * Unit tests for class TableACL
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class TableACLTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateEmpty()
     {
         // Setup
-        $sample = array();
+        $sample = [];
 
         // Test
         $acl = TableACL::create($sample);
 
         // Assert
-        $this->assertCount(0, $acl->getSignedIdentifiers());
+        self::assertCount(0, $acl->getSignedIdentifiers());
     }
 
     public function testCreateOneEntry()
@@ -63,7 +50,7 @@ class TableACLTest extends \PHPUnit\Framework\TestCase
         $acl = TableACL::create($sample['SignedIdentifiers']);
 
         // Assert
-        $this->assertCount(1, $acl->getSignedIdentifiers());
+        self::assertCount(1, $acl->getSignedIdentifiers());
     }
 
     public function testCreateMultipleEntries()
@@ -75,7 +62,7 @@ class TableACLTest extends \PHPUnit\Framework\TestCase
         $acl = TableACL::create($sample['SignedIdentifiers']);
 
         // Assert
-        $this->assertCount(2, $acl->getSignedIdentifiers());
+        self::assertCount(2, $acl->getSignedIdentifiers());
 
         return $acl;
     }

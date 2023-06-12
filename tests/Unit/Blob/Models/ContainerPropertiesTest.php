@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Blob\Models\ContainerProperties;
 /**
  * Unit tests for class ContainerProperties
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ContainerPropertiesTest extends \PHPUnit\Framework\TestCase
 {
@@ -49,7 +39,7 @@ class ContainerPropertiesTest extends \PHPUnit\Framework\TestCase
         $actual = $properties->getETag();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetETag()
@@ -63,7 +53,7 @@ class ContainerPropertiesTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $properties->getETag();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetLastModified()
@@ -77,7 +67,7 @@ class ContainerPropertiesTest extends \PHPUnit\Framework\TestCase
         $actual = $properties->getLastModified();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetLastModified()
@@ -91,6 +81,6 @@ class ContainerPropertiesTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $properties->getLastModified();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

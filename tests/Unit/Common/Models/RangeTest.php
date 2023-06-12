@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Models\Range;
 /**
  * Unit tests for class Range
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RangeTest extends \PHPUnit\Framework\TestCase
 {
@@ -48,8 +38,8 @@ class RangeTest extends \PHPUnit\Framework\TestCase
         $actual = new Range($expectedStart, $expectedEnd);
 
         // Assert
-        $this->assertEquals($expectedStart, $actual->getStart());
-        $this->assertEquals($expectedEnd, $actual->getEnd());
+        self::assertEquals($expectedStart, $actual->getStart());
+        self::assertEquals($expectedEnd, $actual->getEnd());
 
         return $actual;
     }
@@ -66,7 +56,7 @@ class RangeTest extends \PHPUnit\Framework\TestCase
         $obj->setStart($expected);
 
         // Assert
-        $this->assertEquals($expected, $obj->getStart());
+        self::assertEquals($expected, $obj->getStart());
     }
 
     /**
@@ -81,7 +71,7 @@ class RangeTest extends \PHPUnit\Framework\TestCase
         $obj->setEnd($expected);
 
         // Assert
-        $this->assertEquals($expected, $obj->getEnd());
+        self::assertEquals($expected, $obj->getEnd());
     }
 
     /**
@@ -97,7 +87,7 @@ class RangeTest extends \PHPUnit\Framework\TestCase
         $obj->setLength($expected);
 
         // Assert
-        $this->assertEquals($start + $expected - 1, $obj->getEnd());
+        self::assertEquals($start + $expected - 1, $obj->getEnd());
     }
 
     /**
@@ -113,6 +103,6 @@ class RangeTest extends \PHPUnit\Framework\TestCase
         $actual = $obj->getLength();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

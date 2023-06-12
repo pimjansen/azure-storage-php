@@ -15,21 +15,17 @@
  * PHP version 5
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
 
 use MicrosoftAzure\Storage\Common\LocationMode;
-use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
-use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 use MicrosoftAzure\Storage\Common\Models\GetServicePropertiesResult;
 use MicrosoftAzure\Storage\Common\Models\GetServiceStatsResult;
+use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
+use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 
 /**
  * Trait implementing common REST API for all the services, including the
@@ -37,12 +33,7 @@ use MicrosoftAzure\Storage\Common\Models\GetServiceStatsResult;
  * Get/Set Service Properties
  * Get service stats
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 trait ServiceRestTrait
 {
@@ -73,13 +64,13 @@ trait ServiceRestTrait
     public function getServicePropertiesAsync(
         ServiceOptions $options = null
     ) {
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
-        $path        = Resources::EMPTY_STRING;
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ServiceOptions();
         }
 
@@ -105,7 +96,7 @@ trait ServiceRestTrait
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return GetServicePropertiesResult::create($parsed);
         }, null);
@@ -119,8 +110,6 @@ trait ServiceRestTrait
      *
      * @param ServiceProperties $serviceProperties The service properties.
      * @param ServiceOptions    $options           The optional parameters.
-     *
-     * @return void
      *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/hh452235.aspx
      */
@@ -153,14 +142,14 @@ trait ServiceRestTrait
             Resources::INVALID_SVC_PROP_MSG
         );
 
-        $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
-        $path        = Resources::EMPTY_STRING;
-        $body        = $serviceProperties->toXml($this->dataSerializer);
+        $method = Resources::HTTP_PUT;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = Resources::EMPTY_STRING;
+        $body = $serviceProperties->toXml($this->dataSerializer);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ServiceOptions();
         }
 
@@ -198,7 +187,7 @@ trait ServiceRestTrait
      * Retrieves statistics related to replication for the service. The operation
      * will only be sent to secondary location endpoint.
      *
-     * @param  ServiceOptions|null $options The options this operation sends with.
+     * @param ServiceOptions|null $options The options this operation sends with.
      *
      * @return GetServiceStatsResult
      */
@@ -211,19 +200,19 @@ trait ServiceRestTrait
      * Creates promise that retrieves statistics related to replication for the
      * service. The operation will only be sent to secondary location endpoint.
      *
-     * @param  ServiceOptions|null $options The options this operation sends with.
+     * @param ServiceOptions|null $options The options this operation sends with.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getServiceStatsAsync(ServiceOptions $options = null)
     {
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
-        $path        = Resources::EMPTY_STRING;
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ServiceOptions();
         }
 
@@ -251,7 +240,7 @@ trait ServiceRestTrait
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return GetServiceStatsResult::create($parsed);
         }, null);

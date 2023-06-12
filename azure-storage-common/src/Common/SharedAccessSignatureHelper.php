@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common;
@@ -31,12 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Provides methods to generate Azure Storage Shared Access Signature
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SharedAccessSignatureHelper
 {
@@ -47,8 +37,7 @@ class SharedAccessSignatureHelper
      * Constructor.
      *
      * @param string $accountName the name of the storage account.
-     * @param string $accountKey the shared key of the storage account
-     *
+     * @param string $accountKey  the shared key of the storage account
      */
     public function __construct($accountName, $accountKey)
     {
@@ -65,24 +54,24 @@ class SharedAccessSignatureHelper
     /**
      * Generates a shared access signature at the account level.
      *
-     * @param string $signedVersion           Specifies the signed version to use.
-     * @param string $signedPermissions       Specifies the signed permissions for
-     *                                        the account SAS.
-     * @param string $signedService           Specifies the signed services
-     *                                        accessible with the account SAS.
-     * @param string $signedResourceType      Specifies the signed resource types
-     *                                        that are accessible with the account
-     *                                        SAS.
-     * @param \Datetime|string $signedExpiry  The time at which the shared access
-     *                                        signature becomes invalid, in an ISO
-     *                                        8601 format.
-     * @param \Datetime|string $signedStart   The time at which the SAS becomes
-     *                                        valid, in an ISO 8601 format.
-     * @param string $signedIP                Specifies an IP address or a range
-     *                                        of IP addresses from which to accept
-     *                                        requests.
-     * @param string $signedProtocol          Specifies the protocol permitted for
-     *                                        a request made with the account SAS.
+     * @param string           $signedVersion      Specifies the signed version to use.
+     * @param string           $signedPermissions  Specifies the signed permissions for
+     *                                             the account SAS.
+     * @param string           $signedService      Specifies the signed services
+     *                                             accessible with the account SAS.
+     * @param string           $signedResourceType Specifies the signed resource types
+     *                                             that are accessible with the account
+     *                                             SAS.
+     * @param \Datetime|string $signedExpiry       The time at which the shared access
+     *                                             signature becomes invalid, in an ISO
+     *                                             8601 format.
+     * @param \Datetime|string $signedStart        The time at which the SAS becomes
+     *                                             valid, in an ISO 8601 format.
+     * @param string           $signedIP           Specifies an IP address or a range
+     *                                             of IP addresses from which to accept
+     *                                             requests.
+     * @param string           $signedProtocol     Specifies the protocol permitted for
+     *                                             a request made with the account SAS.
      *
      * @see Constructing an account SAS at
      *      https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/constructing-an-account-sas
@@ -95,9 +84,9 @@ class SharedAccessSignatureHelper
         $signedService,
         $signedResourceType,
         $signedExpiry,
-        $signedStart = "",
-        $signedIP = "",
-        $signedProtocol = ""
+        $signedStart = '',
+        $signedIP = '',
+        $signedProtocol = ''
     ) {
         // check that version is valid
         Validate::canCastAsString($signedVersion, 'signedVersion');
@@ -137,7 +126,7 @@ class SharedAccessSignatureHelper
         $signedProtocol = $this->validateAndSanitizeSignedProtocol($signedProtocol);
 
         // construct an array with the parameters to generate the shared access signature at the account level
-        $parameters = array();
+        $parameters = [];
         $parameters[] = $this->accountName;
         $parameters[] = $signedPermissions;
         $parameters[] = $signedService;
@@ -152,16 +141,16 @@ class SharedAccessSignatureHelper
         $stringToSign = utf8_encode(implode("\n", $parameters) . "\n");
 
         // decode the account key from base64
-        $decodedAccountKey = base64_decode($this->accountKey);
+        $decodedAccountKey = base64_decode($this->accountKey, true);
 
         // create the signature with hmac sha256
-        $signature = hash_hmac("sha256", $stringToSign, $decodedAccountKey, true);
+        $signature = hash_hmac('sha256', $stringToSign, $decodedAccountKey, true);
 
         // encode the signature as base64 and url encode.
         $sig = urlencode(base64_encode($signature));
 
         //adding all the components for account SAS together.
-        $sas  = 'sv=' . $signedVersion;
+        $sas = 'sv=' . $signedVersion;
         $sas .= '&ss=' . $signedService;
         $sas .= '&srt=' . $signedResourceType;
         $sas .= '&sp=' . $signedPermissions;
@@ -201,9 +190,9 @@ class SharedAccessSignatureHelper
     /**
      * Validates and sanitizes the signed resource type parameter
      *
-     * @param string $signedResourceType    Specifies the signed resource types
-     *                                      that are accessible with the account
-     *                                      SAS.
+     * @param string $signedResourceType Specifies the signed resource types
+     *                                   that are accessible with the account
+     *                                   SAS.
      *
      * @return string
      */
@@ -251,6 +240,7 @@ class SharedAccessSignatureHelper
      * @param string $signedProtocol Specifies the signed protocol for the
      *                               account SAS.
 
+     *
      * @return string
      */
     protected function validateAndSanitizeSignedProtocol($signedProtocol)
@@ -259,7 +249,7 @@ class SharedAccessSignatureHelper
         // sanitize string
         $sanitizedSignedProtocol = strtolower($signedProtocol);
         if (strlen($sanitizedSignedProtocol) > 0) {
-            if (strcmp($sanitizedSignedProtocol, "https") != 0 && strcmp($sanitizedSignedProtocol, "https,http") != 0) {
+            if (strcmp($sanitizedSignedProtocol, 'https') != 0 && strcmp($sanitizedSignedProtocol, 'https,http') != 0) {
                 throw new \InvalidArgumentException(Resources::SIGNED_PROTOCOL_INVALID_VALIDATION_MSG);
             }
         }
@@ -270,8 +260,8 @@ class SharedAccessSignatureHelper
     /**
      * Removes duplicate characters from a string
      *
-     * @param string $input        The input string.
-
+     * @param string $input The input string.
+     *
      * @return string
      */
     protected function validateAndSanitizeStringWithArray($input, array $array)
@@ -300,14 +290,13 @@ class SharedAccessSignatureHelper
         return $result;
     }
 
-
     /**
      * Generate the canonical resource using the given account name, service
      * type and resource.
      *
-     * @param  string $accountName The account name of the service.
-     * @param  string $service     The service name of the service.
-     * @param  string $resource    The name of the resource.
+     * @param string $accountName The account name of the service.
+     * @param string $service     The service name of the service.
+     * @param string $resource    The name of the resource.
      *
      * @return string
      */
@@ -316,12 +305,12 @@ class SharedAccessSignatureHelper
         $service,
         $resource
     ) {
-        static $serviceMap = array(
-            Resources::RESOURCE_TYPE_BLOB  => 'blob',
-            Resources::RESOURCE_TYPE_FILE  => 'file',
+        static $serviceMap = [
+            Resources::RESOURCE_TYPE_BLOB => 'blob',
+            Resources::RESOURCE_TYPE_FILE => 'file',
             Resources::RESOURCE_TYPE_QUEUE => 'queue',
             Resources::RESOURCE_TYPE_TABLE => 'table',
-        );
+        ];
         $serviceName = $serviceMap[$service];
         if (Utilities::startsWith($resource, '/')) {
             $resource = substr($resource, 1);

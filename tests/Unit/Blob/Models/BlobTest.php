@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Models\Blob;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class Blob
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,7 +40,7 @@ class BlobTest extends \PHPUnit\Framework\TestCase
         $blob->setName($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getName());
+        self::assertEquals($expected, $blob->getName());
     }
 
     public function testGetName()
@@ -64,7 +54,7 @@ class BlobTest extends \PHPUnit\Framework\TestCase
         $actual = $blob->getName();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetUrl()
@@ -77,7 +67,7 @@ class BlobTest extends \PHPUnit\Framework\TestCase
         $blob->setUrl($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getUrl());
+        self::assertEquals($expected, $blob->getUrl());
     }
 
     public function testGetUrl()
@@ -91,7 +81,7 @@ class BlobTest extends \PHPUnit\Framework\TestCase
         $actual = $blob->getUrl();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetSnapshot()
@@ -104,7 +94,7 @@ class BlobTest extends \PHPUnit\Framework\TestCase
         $blob->setSnapshot($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getSnapshot());
+        self::assertEquals($expected, $blob->getSnapshot());
     }
 
     public function testGetSnapshot()
@@ -118,34 +108,34 @@ class BlobTest extends \PHPUnit\Framework\TestCase
         $actual = $blob->getSnapshot();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetMetadata()
     {
         // Setup
         $blob = new Blob();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $blob->setMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getMetadata());
+        self::assertEquals($expected, $blob->getMetadata());
     }
 
     public function testGetMetadata()
     {
         // Setup
         $blob = new Blob();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $blob->setMetadata($expected);
 
         // Test
         $actual = $blob->getMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetProperties()
@@ -158,7 +148,7 @@ class BlobTest extends \PHPUnit\Framework\TestCase
         $blob->setProperties($expected);
 
         // Assert
-        $this->assertEquals($expected, $blob->getProperties());
+        self::assertEquals($expected, $blob->getProperties());
     }
 
     public function testGetProperties()
@@ -172,6 +162,6 @@ class BlobTest extends \PHPUnit\Framework\TestCase
         $actual = $blob->getProperties();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

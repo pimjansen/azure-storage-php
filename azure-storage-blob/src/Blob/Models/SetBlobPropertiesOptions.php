@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Optional parameters for setBlobProperties wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SetBlobPropertiesOptions extends BlobServiceOptions
 {
@@ -48,14 +38,14 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
     public function __construct(BlobProperties $blobProperties = null)
     {
         parent::__construct();
-        $this->_blobProperties = is_null($blobProperties)
+        $this->_blobProperties = null === $blobProperties
                                  ? new BlobProperties() : clone $blobProperties;
     }
 
     /**
      * Gets blob sequenceNumber.
      *
-     * @return integer
+     * @return int
      */
     public function getSequenceNumber()
     {
@@ -65,9 +55,7 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
     /**
      * Sets blob sequenceNumber.
      *
-     * @param integer $sequenceNumber value.
-     *
-     * @return void
+     * @param int $sequenceNumber value.
      */
     public function setSequenceNumber($sequenceNumber)
     {
@@ -88,8 +76,6 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
      * Sets lease Id for the blob
      *
      * @param string $sequenceNumberAction action.
-     *
-     * @return void
      */
     public function setSequenceNumberAction($sequenceNumberAction)
     {
@@ -99,7 +85,7 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
     /**
      * Gets blob contentLength.
      *
-     * @return integer
+     * @return int
      */
     public function getContentLength()
     {
@@ -109,9 +95,7 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
     /**
      * Sets blob contentLength.
      *
-     * @param integer $contentLength value.
-     *
-     * @return void
+     * @param int $contentLength value.
      */
     public function setContentLength($contentLength)
     {
@@ -132,8 +116,6 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
      * Sets ContentType.
      *
      * @param string $contentType value.
-     *
-     * @return void
      */
     public function setContentType($contentType)
     {
@@ -154,8 +136,6 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
      * Sets ContentEncoding.
      *
      * @param string $contentEncoding value.
-     *
-     * @return void
      */
     public function setContentEncoding($contentEncoding)
     {
@@ -176,8 +156,6 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
      * Sets ContentLanguage.
      *
      * @param string $contentLanguage value.
-     *
-     * @return void
      */
     public function setContentLanguage($contentLanguage)
     {
@@ -186,8 +164,6 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
 
     /**
      * Gets ContentMD5.
-     *
-     * @return void
      */
     public function getContentMD5()
     {
@@ -198,8 +174,6 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
      * Sets blob ContentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     public function setContentMD5($contentMD5)
     {
@@ -220,8 +194,6 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
      * Sets cacheControl.
      *
      * @param string $cacheControl value to use.
-     *
-     * @return void
      */
     public function setCacheControl($cacheControl)
     {
@@ -242,8 +214,6 @@ class SetBlobPropertiesOptions extends BlobServiceOptions
      * Sets contentDisposition.
      *
      * @param string $contentDisposition value to use.
-     *
-     * @return void
      */
     public function setContentDisposition($contentDisposition)
     {

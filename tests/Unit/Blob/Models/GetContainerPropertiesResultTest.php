@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -31,12 +26,7 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Unit tests for class GetContainerPropertiesResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetContainerPropertiesResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -52,8 +42,8 @@ class GetContainerPropertiesResultTest extends \PHPUnit\Framework\TestCase
         $result = GetContainerPropertiesResult::create($expectedProperties);
 
         // Assert
-        $this->assertEquals(array('' => $expectedProperties['x-ms-meta-']), $result->getMetadata());
-        $this->assertEquals($expectedDate, $result->getLastModified());
-        $this->assertEquals($expectedProperties['Etag'], $result->getETag());
+        self::assertEquals(['' => $expectedProperties['x-ms-meta-']], $result->getMetadata());
+        self::assertEquals($expectedDate, $result->getLastModified());
+        self::assertEquals($expectedProperties['Etag'], $result->getETag());
     }
 }

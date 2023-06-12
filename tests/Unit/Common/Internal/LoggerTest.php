@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal;
 
-use MicrosoftAzure\Storage\Common\Logger;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Logger;
 use MicrosoftAzure\Storage\Tests\Framework\VirtualFileSystem;
 
 /**
  * Unit tests for class Logger
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class LoggerTest extends \PHPUnit\Framework\TestCase
 {
@@ -49,11 +39,11 @@ class LoggerTest extends \PHPUnit\Framework\TestCase
         Logger::setLogFile($virtualPath);
 
         // Test
-        Logger::log(array(), $tip);
+        Logger::log([], $tip);
 
         // Assert
         $actual = file_get_contents($virtualPath);
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testLogWithString()
@@ -69,6 +59,6 @@ class LoggerTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = file_get_contents($virtualPath);
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

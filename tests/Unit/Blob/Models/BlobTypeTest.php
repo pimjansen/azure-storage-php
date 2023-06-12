@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -29,18 +24,13 @@ use MicrosoftAzure\Storage\Blob\Models\BlobType;
 /**
  * Unit tests for class BlobType
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobTypeTest extends \PHPUnit\Framework\TestCase
 {
     public function testBlobType()
     {
-        $this->assertEquals(BlobType::BLOCK_BLOB, 'BlockBlob');
-        $this->assertEquals(BlobType::PAGE_BLOB, 'PageBlob');
+        self::assertEquals(BlobType::BLOCK_BLOB, 'BlockBlob');
+        self::assertEquals(BlobType::PAGE_BLOB, 'PageBlob');
     }
 }

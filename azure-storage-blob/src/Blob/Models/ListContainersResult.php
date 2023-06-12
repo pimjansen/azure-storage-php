@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
+use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 
 /**
  * Container to hold list container response object.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListContainersResult
 {
@@ -62,8 +52,8 @@ class ListContainersResult
      */
     public static function create(array $parsedResponse, $location = '')
     {
-        $result               = new ListContainersResult();
-        $serviceEndpoint      = Utilities::tryGetKeysChainValue(
+        $result = new ListContainersResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsedResponse,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT
@@ -96,12 +86,12 @@ class ListContainersResult
             $parsedResponse,
             Resources::QP_MAX_RESULTS
         ));
-        $containers   = array();
-        $rawContainer = array();
+        $containers = [];
+        $rawContainer = [];
 
         if (!empty($parsedResponse['Containers'])) {
             $containersArray = $parsedResponse['Containers']['Container'];
-            $rawContainer    = Utilities::getArray($containersArray);
+            $rawContainer = Utilities::getArray($containersArray);
         }
 
         foreach ($rawContainer as $value) {
@@ -109,11 +99,11 @@ class ListContainersResult
             $container->setName($value['Name']);
             $container->setUrl($serviceEndpoint . $value['Name']);
             $container->setMetadata(
-                Utilities::tryGetValue($value, Resources::QP_METADATA, array())
+                Utilities::tryGetValue($value, Resources::QP_METADATA, [])
             );
             $properties = new ContainerProperties();
-            $date       = $value['Properties']['Last-Modified'];
-            $date       = Utilities::rfc1123ToDateTime($date);
+            $date = $value['Properties']['Last-Modified'];
+            $date = Utilities::rfc1123ToDateTime($date);
             $properties->setLastModified($date);
             $properties->setETag(Utilities::tryGetValueInsensitive(Resources::ETAG, $value['Properties']));
 
@@ -140,12 +130,10 @@ class ListContainersResult
      * Sets containers.
      *
      * @param array $containers list of containers.
-     *
-     * @return void
      */
     protected function setContainers(array $containers)
     {
-        $this->containers = array();
+        $this->containers = [];
         foreach ($containers as $container) {
             $this->containers[] = clone $container;
         }
@@ -175,8 +163,6 @@ class ListContainersResult
      * Sets prefix.
      *
      * @param string $prefix value.
-     *
-     * @return void
      */
     protected function setPrefix($prefix)
     {
@@ -197,8 +183,6 @@ class ListContainersResult
      * Sets marker.
      *
      * @param string $marker value.
-     *
-     * @return void
      */
     protected function setMarker($marker)
     {
@@ -219,8 +203,6 @@ class ListContainersResult
      * Sets max results.
      *
      * @param string $maxResults value.
-     *
-     * @return void
      */
     protected function setMaxResults($maxResults)
     {
@@ -241,8 +223,6 @@ class ListContainersResult
      * Sets account name.
      *
      * @param string $accountName value.
-     *
-     * @return void
      */
     protected function setAccountName($accountName)
     {

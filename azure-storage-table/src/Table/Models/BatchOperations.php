@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Holds batch operation change set.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperations
 {
@@ -46,7 +36,7 @@ class BatchOperations
      */
     public function __construct()
     {
-        $this->_operations = array();
+        $this->_operations = [];
     }
 
     /**
@@ -63,12 +53,10 @@ class BatchOperations
      * Sets the batch operations.
      *
      * @param array $operations The batch operations.
-     *
-     * @return void
      */
     public function setOperations(array $operations)
     {
-        $this->_operations = array();
+        $this->_operations = [];
         foreach ($operations as $operation) {
             $this->addOperation($operation);
         }
@@ -78,8 +66,6 @@ class BatchOperations
      * Adds operation to the batch operations.
      *
      * @param mixed $operation The operation to add.
-     *
-     * @return void
      */
     public function addOperation($operation)
     {
@@ -96,8 +82,6 @@ class BatchOperations
      *
      * @param string $table  The table name.
      * @param Entity $entity The entity instance.
-     *
-     * @return void
      */
     public function addInsertEntity($table, Entity $entity)
     {
@@ -105,7 +89,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::INSERT_ENTITY_OPERATION;
+        $type = BatchOperationType::INSERT_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -117,8 +101,6 @@ class BatchOperations
      *
      * @param string $table  The table name.
      * @param Entity $entity The entity instance.
-     *
-     * @return void
      */
     public function addUpdateEntity($table, Entity $entity)
     {
@@ -126,7 +108,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::UPDATE_ENTITY_OPERATION;
+        $type = BatchOperationType::UPDATE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -138,8 +120,6 @@ class BatchOperations
      *
      * @param string $table  The table name.
      * @param Entity $entity The entity instance.
-     *
-     * @return void
      */
     public function addMergeEntity($table, Entity $entity)
     {
@@ -147,7 +127,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::MERGE_ENTITY_OPERATION;
+        $type = BatchOperationType::MERGE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -159,8 +139,6 @@ class BatchOperations
      *
      * @param string $table  The table name.
      * @param Entity $entity The entity instance.
-     *
-     * @return void
      */
     public function addInsertOrReplaceEntity($table, Entity $entity)
     {
@@ -168,7 +146,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::INSERT_REPLACE_ENTITY_OPERATION;
+        $type = BatchOperationType::INSERT_REPLACE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -180,8 +158,6 @@ class BatchOperations
      *
      * @param string $table  The table name.
      * @param Entity $entity The entity instance.
-     *
-     * @return void
      */
     public function addInsertOrMergeEntity($table, Entity $entity)
     {
@@ -189,7 +165,7 @@ class BatchOperations
         Validate::notNullOrEmpty($entity, 'entity');
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::INSERT_MERGE_ENTITY_OPERATION;
+        $type = BatchOperationType::INSERT_MERGE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ENTITY, $entity);
@@ -203,17 +179,15 @@ class BatchOperations
      * @param string $partitionKey The entity partition key.
      * @param string $rowKey       The entity row key.
      * @param string $etag         The entity etag.
-     *
-     * @return void
      */
     public function addDeleteEntity($table, $partitionKey, $rowKey, $etag = null)
     {
         Validate::canCastAsString($table, 'table');
-        Validate::isTrue(!is_null($partitionKey), Resources::NULL_TABLE_KEY_MSG);
-        Validate::isTrue(!is_null($rowKey), Resources::NULL_TABLE_KEY_MSG);
+        Validate::isTrue(null !== $partitionKey, Resources::NULL_TABLE_KEY_MSG);
+        Validate::isTrue(null !== $rowKey, Resources::NULL_TABLE_KEY_MSG);
 
         $operation = new BatchOperation();
-        $type      = BatchOperationType::DELETE_ENTITY_OPERATION;
+        $type = BatchOperationType::DELETE_ENTITY_OPERATION;
         $operation->setType($type);
         $operation->addParameter(BatchOperationParameterName::BP_TABLE, $table);
         $operation->addParameter(BatchOperationParameterName::BP_ROW_KEY, $rowKey);

@@ -14,40 +14,30 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\InsertEntityResult;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Table\Internal\JsonODataReaderWriter;
+use MicrosoftAzure\Storage\Table\Models\InsertEntityResult;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class InsertEntityResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class InsertEntityResultTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreate()
     {
         // Setup
-        $sampleBody     = TestResources::getInsertEntitySampleBody();
-        $sampleHeaders  = TestResources::getInsertEntitySampleHeaders();
-        $serializer     = new JsonODataReaderWriter();
+        $sampleBody = TestResources::getInsertEntitySampleBody();
+        $sampleHeaders = TestResources::getInsertEntitySampleHeaders();
+        $serializer = new JsonODataReaderWriter();
         $expectedEntity = $serializer->parseEntity($sampleBody);
         $expectedEntity->setETag(Utilities::tryGetValue(
             $sampleHeaders,
@@ -62,6 +52,6 @@ class InsertEntityResultTest extends \PHPUnit\Framework\TestCase
         );
 
         // Assert
-        $this->assertEquals($expectedEntity, $result->getEntity());
+        self::assertEquals($expectedEntity, $result->getEntity());
     }
 }

@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
 
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
+use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 
 /**
  * Share to hold list Share response object.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListSharesResult
 {
@@ -62,8 +52,8 @@ class ListSharesResult
      */
     public static function create(array $parsedResponse, $location = '')
     {
-        $result               = new ListSharesResult();
-        $serviceEndpoint      = Utilities::tryGetKeysChainValue(
+        $result = new ListSharesResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsedResponse,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT
@@ -98,12 +88,12 @@ class ListSharesResult
             $parsedResponse,
             Resources::QP_MAX_RESULTS
         ));
-        $shares = array();
-        $shareArrays = array();
+        $shares = [];
+        $shareArrays = [];
 
         if (!empty($parsedResponse[Resources::QP_SHARES])) {
             $array = $parsedResponse[Resources::QP_SHARES][Resources::QP_SHARE];
-            $shareArrays    = Utilities::getArray($array);
+            $shareArrays = Utilities::getArray($array);
         }
 
         foreach ($shareArrays as $shareArray) {
@@ -118,12 +108,10 @@ class ListSharesResult
      * Sets shares.
      *
      * @param array $shares list of shares.
-     *
-     * @return void
      */
     protected function setShares(array $shares)
     {
-        $this->shares = array();
+        $this->shares = [];
         foreach ($shares as $share) {
             $this->shares[] = clone $share;
         }
@@ -153,8 +141,6 @@ class ListSharesResult
      * Sets prefix.
      *
      * @param string $prefix value.
-     *
-     * @return void
      */
     protected function setPrefix($prefix)
     {
@@ -175,8 +161,6 @@ class ListSharesResult
      * Sets marker.
      *
      * @param string $marker value.
-     *
-     * @return void
      */
     protected function setMarker($marker)
     {
@@ -197,8 +181,6 @@ class ListSharesResult
      * Sets max results.
      *
      * @param string $maxResults value.
-     *
-     * @return void
      */
     protected function setMaxResults($maxResults)
     {
@@ -219,8 +201,6 @@ class ListSharesResult
      * Sets account name.
      *
      * @param string $accountName value.
-     *
-     * @return void
      */
     protected function setAccountName($accountName)
     {

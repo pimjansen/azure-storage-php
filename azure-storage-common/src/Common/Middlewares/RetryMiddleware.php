@@ -14,34 +14,24 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
 
-use MicrosoftAzure\Storage\Common\LocationMode;
+use GuzzleHttp\Promise\RejectedPromise;
+use GuzzleHttp\Psr7\Uri;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\LocationMode;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Psr7\Uri;
-use GuzzleHttp\Promise\RejectedPromise;
 
 /**
  * This class provides the functionality of a middleware that handles all the
  * retry logic for the request.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RetryMiddleware extends MiddlewareBase
 {
@@ -53,15 +43,15 @@ class RetryMiddleware extends MiddlewareBase
         callable $decider
     ) {
         $this->intervalCalculator = $intervalCalculator;
-        $this->decider            = $decider;
+        $this->decider = $decider;
     }
 
     /**
      * This function will be invoked after the request is sent, if
      * the promise is fulfilled.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
@@ -103,8 +93,8 @@ class RetryMiddleware extends MiddlewareBase
      * This function will be executed after the request is sent, if
      * the promise is rejected.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
@@ -133,9 +123,9 @@ class RetryMiddleware extends MiddlewareBase
     /**
      * This function does the real retry job.
      *
-     * @param  RequestInterface  $request  the request sent.
-     * @param  array             $options  the options that the request sent with.
-     * @param  ResponseInterface $response the response of the request
+     * @param RequestInterface  $request  the request sent.
+     * @param array             $options  the options that the request sent with.
+     * @param ResponseInterface $response the response of the request
      *
      * @return callable
      */
@@ -154,8 +144,8 @@ class RetryMiddleware extends MiddlewareBase
             $locationMode = $options[Resources::ROS_LOCATION_MODE];
             //If have RA-GRS enabled for the request, switch between
             //primary and secondary.
-            if ($locationMode == LocationMode::PRIMARY_THEN_SECONDARY ||
-                $locationMode == LocationMode::SECONDARY_THEN_PRIMARY) {
+            if ($locationMode == LocationMode::PRIMARY_THEN_SECONDARY
+                || $locationMode == LocationMode::SECONDARY_THEN_PRIMARY) {
                 $primaryUri = $options[Resources::ROS_PRIMARY_URI];
                 $secondaryUri = $options[Resources::ROS_SECONDARY_URI];
 
@@ -167,9 +157,9 @@ class RetryMiddleware extends MiddlewareBase
                 }
 
                 //substitute the uri.
-                if ((string)$request->getUri() == (string)$primaryUri) {
+                if ((string) $request->getUri() == (string) $primaryUri) {
                     $request = $request->withUri($secondaryUri);
-                } elseif ((string)$request->getUri() == (string)$secondaryUri) {
+                } elseif ((string) $request->getUri() == (string) $secondaryUri) {
                     $request = $request->withUri($primaryUri);
                 }
             }

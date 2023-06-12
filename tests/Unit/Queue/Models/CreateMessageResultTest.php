@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\unit\Queue\Models;
@@ -31,12 +26,7 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Unit tests for class CreateMessageResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateMessageResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,28 +40,28 @@ class CreateMessageResultTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $result->getQueueMessage();
-        $this->assertNotNull($actual);
-        $this->assertEquals(
+        self::assertNotNull($actual);
+        self::assertEquals(
             $sample['QueueMessage']['MessageId'],
             $actual->getMessageId()
         );
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime(
                 $sample['QueueMessage']['InsertionTime']
             ),
             $actual->getInsertionDate()
         );
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime(
                 $sample['QueueMessage']['ExpirationTime']
             ),
             $actual->getExpirationDate()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $sample['QueueMessage']['PopReceipt'],
             $actual->getPopReceipt()
         );
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime(
                 $sample['QueueMessage']['TimeNextVisible']
             ),

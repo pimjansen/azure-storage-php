@@ -14,29 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 
 /**
  * Unit tests for class AccessCondition
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class AccessConditionTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,8 +39,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifMatch($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeaderType, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeaderType, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testNone()
@@ -64,8 +53,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::none();
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIfModifiedSince()
@@ -78,8 +67,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifModifiedSince($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIfMatch()
@@ -92,8 +81,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifMatch($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIfNoneMatch()
@@ -106,8 +95,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifNoneMatch($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIfNotModifiedSince()
@@ -120,8 +109,8 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::ifNotModifiedSince($expectedValue);
 
         // Assert
-        $this->assertEquals($expectedHeader, $actual->getHeader());
-        $this->assertEquals($expectedValue, $actual->getValue());
+        self::assertEquals($expectedHeader, $actual->getHeader());
+        self::assertEquals($expectedValue, $actual->getValue());
     }
 
     public function testIsValidWithValid()
@@ -130,7 +119,7 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::isValid(Resources::IF_MATCH);
 
         // Assert
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testIsValidWithInvalid()
@@ -139,6 +128,6 @@ class AccessConditionTest extends \PHPUnit\Framework\TestCase
         $actual = AccessCondition::isValid('1234');
 
         // Assert
-        $this->assertFalse($actual);
+        self::assertFalse($actual);
     }
 }

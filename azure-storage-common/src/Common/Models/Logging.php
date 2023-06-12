@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * Holds elements of queue properties logging field.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Logging
 {
@@ -48,6 +38,7 @@ class Logging
      * Creates object from $parsedResponse.
      *
      * @internal
+     *
      * @param array $parsedResponse XML response parsed into array.
      *
      * @return Logging
@@ -70,7 +61,6 @@ class Logging
      * Gets the retention policy
      *
      * @return MicrosoftAzure\Storage\Common\Models\RetentionPolicy
-     *
      */
     public function getRetentionPolicy()
     {
@@ -81,8 +71,6 @@ class Logging
      * Sets retention policy
      *
      * @param RetentionPolicy $policy object to use
-     *
-     * @return void
      */
     public function setRetentionPolicy(RetentionPolicy $policy)
     {
@@ -103,8 +91,6 @@ class Logging
      * Sets whether all write requests should be logged.
      *
      * @param bool $write new value.
-     *
-     * @return void
      */
     public function setWrite($write)
     {
@@ -125,8 +111,6 @@ class Logging
      * Sets whether all read requests should be logged.
      *
      * @param bool $read new value.
-     *
-     * @return void
      */
     public function setRead($read)
     {
@@ -135,8 +119,6 @@ class Logging
 
     /**
      * Gets whether all delete requests should be logged.
-     *
-     * @return void
      */
     public function getDelete()
     {
@@ -147,8 +129,6 @@ class Logging
      * Sets whether all delete requests should be logged.
      *
      * @param bool $delete new value.
-     *
-     * @return void
      */
     public function setDelete($delete)
     {
@@ -169,8 +149,6 @@ class Logging
      * Sets the version of Storage Analytics to configure
      *
      * @param string $version new value.
-     *
-     * @return void
      */
     public function setVersion($version)
     {
@@ -181,18 +159,19 @@ class Logging
      * Converts this object to array with XML tags
      *
      * @internal
+     *
      * @return array
      */
     public function toArray()
     {
-        return array(
-            'Version'         => $this->_version,
-            'Delete'          => Utilities::booleanToString($this->_delete),
-            'Read'            => Utilities::booleanToString($this->_read),
-            'Write'           => Utilities::booleanToString($this->_write),
+        return [
+            'Version' => $this->_version,
+            'Delete' => Utilities::booleanToString($this->_delete),
+            'Read' => Utilities::booleanToString($this->_read),
+            'Write' => Utilities::booleanToString($this->_write),
             'RetentionPolicy' => !empty($this->_retentionPolicy)
                 ? $this->_retentionPolicy->toArray()
-                : null
-        );
+                : null,
+        ];
     }
 }

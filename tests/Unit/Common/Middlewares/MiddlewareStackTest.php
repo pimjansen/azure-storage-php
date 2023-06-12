@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Middlewares;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareStack;
 /**
  * Unit tests for class MiddlewareStack
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MiddlewareStackTest extends \PHPUnit\Framework\TestCase
 {
@@ -49,7 +39,7 @@ class MiddlewareStackTest extends \PHPUnit\Framework\TestCase
             $stack->push($middleware);
         }
 
-        $handler = function ($number, $callable) {
+        $handler = static function ($number, $callable) {
             if ($number != 4) {
                 return $callable;
             }
@@ -60,13 +50,13 @@ class MiddlewareStackTest extends \PHPUnit\Framework\TestCase
 
         $result = $stack->apply($handler);
 
-        $this->assertEquals(4, $result);
-        $this->assertEquals(5, $this->count);
+        self::assertEquals(4, $result);
+        self::assertEquals(5, $this->count);
     }
 
     private function getInterestingMiddlewares($count)
     {
-        $middlewares = array();
+        $middlewares = [];
         for ($i = $count; $i > 0; --$i) {
             $callable = function (callable $handler) use ($i) {
                 ++$this->count;

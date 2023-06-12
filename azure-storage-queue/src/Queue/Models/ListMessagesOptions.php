@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Queue\Models;
 /**
  * Optional parameters for list messages wrapper.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListMessagesOptions extends QueueServiceOptions
 {
@@ -42,7 +32,7 @@ class ListMessagesOptions extends QueueServiceOptions
     /**
      * Gets visibilityTimeoutInSeconds field.
      *
-     * @return integer
+     * @return int
      */
     public function getVisibilityTimeoutInSeconds()
     {
@@ -52,9 +42,7 @@ class ListMessagesOptions extends QueueServiceOptions
     /**
      * Sets visibilityTimeoutInSeconds field.
      *
-     * @param integer $visibilityTimeoutInSeconds value to use.
-     *
-     * @return void
+     * @param int $visibilityTimeoutInSeconds value to use.
      */
     public function setVisibilityTimeoutInSeconds($visibilityTimeoutInSeconds)
     {
@@ -64,7 +52,7 @@ class ListMessagesOptions extends QueueServiceOptions
     /**
      * Gets numberOfMessages field.
      *
-     * @return integer
+     * @return int
      */
     public function getNumberOfMessages()
     {
@@ -74,9 +62,7 @@ class ListMessagesOptions extends QueueServiceOptions
     /**
      * Sets numberOfMessages field.
      *
-     * @param integer $numberOfMessages value to use.
-     *
-     * @return void
+     * @param int $numberOfMessages value to use.
      */
     public function setNumberOfMessages($numberOfMessages)
     {

@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Models;
 
-use MicrosoftAzure\Storage\Common\Models\Logging;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Models\Logging;
+use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class Logging
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class LoggingTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,11 +40,11 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
         $actual = Logging::create($sample['Logging']);
 
         // Assert
-        $this->assertEquals(Utilities::toBoolean($sample['Logging']['Delete']), $actual->getDelete());
-        $this->assertEquals(Utilities::toBoolean($sample['Logging']['Read']), $actual->getRead());
-        $this->assertEquals(RetentionPolicy::create($sample['Logging']['RetentionPolicy']), $actual->getRetentionPolicy());
-        $this->assertEquals($sample['Logging']['Version'], $actual->getVersion());
-        $this->assertEquals(Utilities::toBoolean($sample['Logging']['Write']), $actual->getWrite());
+        self::assertEquals(Utilities::toBoolean($sample['Logging']['Delete']), $actual->getDelete());
+        self::assertEquals(Utilities::toBoolean($sample['Logging']['Read']), $actual->getRead());
+        self::assertEquals(RetentionPolicy::create($sample['Logging']['RetentionPolicy']), $actual->getRetentionPolicy());
+        self::assertEquals($sample['Logging']['Version'], $actual->getVersion());
+        self::assertEquals(Utilities::toBoolean($sample['Logging']['Write']), $actual->getWrite());
     }
 
     public function testGetRetentionPolicy()
@@ -69,7 +59,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
         $actual = $logging->getRetentionPolicy();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetRetentionPolicy()
@@ -84,7 +74,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $logging->getRetentionPolicy();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetWrite()
@@ -99,7 +89,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
         $actual = $logging->getWrite();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetWrite()
@@ -114,7 +104,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $logging->getWrite();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetRead()
@@ -129,7 +119,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
         $actual = $logging->getRead();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetRead()
@@ -144,7 +134,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $logging->getRead();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetDelete()
@@ -159,7 +149,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
         $actual = $logging->getDelete();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetDelete()
@@ -174,7 +164,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $logging->getDelete();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetVersion()
@@ -189,7 +179,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
         $actual = $logging->getVersion();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetVersion()
@@ -204,7 +194,7 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $logging->getVersion();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testToArray()
@@ -212,18 +202,18 @@ class LoggingTest extends \PHPUnit\Framework\TestCase
         // Setup
         $sample = TestResources::getServicePropertiesSample();
         $logging = Logging::create($sample['Logging']);
-        $expected = array(
-            'Version'         => $sample['Logging']['Version'],
-            'Delete'          => $sample['Logging']['Delete'],
-            'Read'            => $sample['Logging']['Read'],
-            'Write'           => $sample['Logging']['Write'],
-            'RetentionPolicy' => $logging->getRetentionPolicy()->toArray()
-        );
+        $expected = [
+            'Version' => $sample['Logging']['Version'],
+            'Delete' => $sample['Logging']['Delete'],
+            'Read' => $sample['Logging']['Read'],
+            'Write' => $sample['Logging']['Write'],
+            'RetentionPolicy' => $logging->getRetentionPolicy()->toArray(),
+        ];
 
         // Test
         $actual = $logging->toArray();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

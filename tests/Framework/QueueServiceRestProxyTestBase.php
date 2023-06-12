@@ -14,30 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
-use MicrosoftAzure\Storage\Queue\QueueRestProxy;
-use MicrosoftAzure\Storage\Tests\Framework\ServiceRestProxyTestBase;
-use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
+use MicrosoftAzure\Storage\Queue\QueueRestProxy;
 
 /**
  * TestBase class for each unit test class.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueueServiceRestProxyTestBase extends ServiceRestProxyTestBase
 {
@@ -49,7 +37,7 @@ class QueueServiceRestProxyTestBase extends ServiceRestProxyTestBase
         $queueRestProxy = QueueRestProxy::createQueueService($this->connectionString);
         $queueRestProxy->pushMiddleware(RetryMiddlewareFactory::create());
         parent::setProxy($queueRestProxy);
-        $this->_createdQueues = array();
+        $this->_createdQueues = [];
     }
 
     public function createQueue($queueName, $options = null)
@@ -72,7 +60,7 @@ class QueueServiceRestProxyTestBase extends ServiceRestProxyTestBase
             // queue does not exist.
             if (strpos($e->getMessage(), 'specified queue does not exist') == false) {
                 throw $e;
-            };
+            }
         }
     }
 

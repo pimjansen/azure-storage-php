@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
 /**
  * The result of creating Blob snapshot.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobSnapshotResult
 {
@@ -55,7 +45,7 @@ class CreateBlobSnapshotResult
      */
     public static function create(array $headers)
     {
-        $result                 = new CreateBlobSnapshotResult();
+        $result = new CreateBlobSnapshotResult();
         $headerWithLowerCaseKey = array_change_key_case($headers);
 
         $result->setETag($headerWithLowerCaseKey[Resources::ETAG]);
@@ -85,8 +75,6 @@ class CreateBlobSnapshotResult
      * Sets snapshot.
      *
      * @param string $snapshot value.
-     *
-     * @return void
      */
     protected function setSnapshot($snapshot)
     {
@@ -107,8 +95,6 @@ class CreateBlobSnapshotResult
      * Sets ETag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -129,8 +115,6 @@ class CreateBlobSnapshotResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified($lastModified)
     {

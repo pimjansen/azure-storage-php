@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Queue\Models;
 /**
  * Optional parameters for Create Queue REST API.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateQueueOptions extends QueueServiceOptions
 {
@@ -53,8 +43,6 @@ class CreateQueueOptions extends QueueServiceOptions
      * prefix (x-ms-meta-*).
      *
      * @param array $metadata user defined metadata object in array form.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {
@@ -67,8 +55,6 @@ class CreateQueueOptions extends QueueServiceOptions
      *
      * @param string $key   metadata key element.
      * @param string $value metadata value element.
-     *
-     * @return void
      */
     public function addMetadata($key, $value)
     {

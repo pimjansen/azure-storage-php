@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Queue\Models\CreateQueueOptions;
 /**
  * Unit tests for class CreateQueueOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateQueueOptionsTest extends \PHPUnit\Framework\TestCase
 {
@@ -42,27 +32,27 @@ class CreateQueueOptionsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $queue = new CreateQueueOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $queue->setMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $queue->getMetadata());
+        self::assertEquals($expected, $queue->getMetadata());
     }
 
     public function testGetMetadata()
     {
         // Setup
         $queue = new CreateQueueOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $queue->setMetadata($expected);
 
         // Test
         $actual = $queue->getMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testAddMetadata()
@@ -71,12 +61,12 @@ class CreateQueueOptionsTest extends \PHPUnit\Framework\TestCase
         $queue = new CreateQueueOptions();
         $key = 'key1';
         $value = 'value1';
-        $expected = array($key => $value);
+        $expected = [$key => $value];
 
         // Test
         $queue->addMetadata($key, $value);
 
         // Assert
-        $this->assertEquals($expected, $queue->getMetadata());
+        self::assertEquals($expected, $queue->getMetadata());
     }
 }

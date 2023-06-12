@@ -14,28 +14,17 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Models\Range;
 
 /**
  * Optional parameters for listPageBlobRanges wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListPageBlobRangesOptions extends BlobServiceOptions
 {
@@ -58,8 +47,6 @@ class ListPageBlobRangesOptions extends BlobServiceOptions
      * Sets blob snapshot.
      *
      * @param string $snapshot value.
-     *
-     * @return void
      */
     public function setSnapshot($snapshot)
     {
@@ -80,8 +67,6 @@ class ListPageBlobRangesOptions extends BlobServiceOptions
      * Sets Blob range.
      *
      * @param Range $range value.
-     *
-     * @return void
      */
     public function setRange(Range $range)
     {

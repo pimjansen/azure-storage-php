@@ -14,33 +14,23 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use GuzzleHttp\Psr7\Response;
 use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Table\Internal\IMimeReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\IODataReaderWriter;
-use GuzzleHttp\Psr7\Response;
+use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 
 /**
  * Holds results from batch API.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchResult
 {
@@ -56,26 +46,26 @@ class BatchResult
      */
     private static function _constructResponses($body, IMimeReaderWriter $mimeSerializer)
     {
-        $responses = array();
-        $parts     = $mimeSerializer->decodeMimeMultipart($body);
+        $responses = [];
+        $parts = $mimeSerializer->decodeMimeMultipart($body);
         // Decrease the count of parts to remove the batch response body and just
         // include change sets response body. We may need to undo this action in
         // case that batch response body has useful info.
         $count = count($parts);
 
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; ++$i) {
             $response = new \stdClass();
 
             // Split lines
-            $lines    = preg_split("/\\r\\n|\\r|\\n/", $parts[$i]);
+            $lines = preg_split('/\\r\\n|\\r|\\n/', $parts[$i]);
             // Version Status Reason
             $statusTokens = explode(' ', $lines[0], 3);
             $response->version = $statusTokens[0];
             $response->statusCode = $statusTokens[1];
             $response->reason = $statusTokens[2];
 
-            $headers = array();
-            $j       = 1;
+            $headers = [];
+            $j = 1;
             while (Resources::EMPTY_STRING != $lines[$j]) {
                 $headerLine = $lines[$j++];
                 $headerTokens = explode(':', $headerLine);
@@ -96,14 +86,14 @@ class BatchResult
      * @param mixed $r1 The first response object.
      * @param mixed $r2 The second response object.
      *
-     * @return integer
+     * @return int
      */
     private static function _compareUsingContentId($r1, $r2)
     {
         $h1 = array_change_key_case($r1->headers);
         $h2 = array_change_key_case($r2->headers);
-        $c1 = intval(Utilities::tryGetValue($h1, Resources::CONTENT_ID, 0));
-        $c2 = intval(Utilities::tryGetValue($h2, Resources::CONTENT_ID, 0));
+        $c1 = (int) (Utilities::tryGetValue($h1, Resources::CONTENT_ID, 0));
+        $c2 = (int) (Utilities::tryGetValue($h2, Resources::CONTENT_ID, 0));
 
         return $c1 < $c2 ? -1 : ($c1 === $c2 ? 0 : 1);
     }
@@ -117,9 +107,9 @@ class BatchResult
      * @param IODataReaderWriter $odataSerializer The OData reader and writer.
      * @param IMimeReaderWriter  $mimeSerializer  The MIME reader and writer.
      *
-     * @return \MicrosoftAzure\Storage\Table\Models\BatchResult
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return \MicrosoftAzure\Storage\Table\Models\BatchResult
      */
     public static function create(
         $body,
@@ -128,21 +118,21 @@ class BatchResult
         IODataReaderWriter $odataSerializer,
         IMimeReaderWriter $mimeSerializer
     ) {
-        $result       = new BatchResult();
-        $responses    = self::_constructResponses($body, $mimeSerializer);
+        $result = new BatchResult();
+        $responses = self::_constructResponses($body, $mimeSerializer);
         $callbackName = __CLASS__ . '::_compareUsingContentId';
-        $count        = count($responses);
-        $entries      = array();
+        $count = count($responses);
+        $entries = [];
         // Sort $responses based on Content-ID so they match order of $operations.
         uasort($responses, $callbackName);
 
-        for ($i = 0; $i < $count; $i++) {
-            $context   = $contexts[$i];
-            $response  = $responses[$i];
+        for ($i = 0; $i < $count; ++$i) {
+            $context = $contexts[$i];
+            $response = $responses[$i];
             $operation = $operations[$i];
-            $type      = $operation->getType();
-            $body      = $response->body;
-            $headers   = HttpFormatter::formatHeaders($response->headers);
+            $type = $operation->getType();
+            $body = $response->body;
+            $headers = HttpFormatter::formatHeaders($response->headers);
 
             //Throw the error directly if error occurs in the batch operation.
             ServiceRestProxy::throwIfError(
@@ -197,8 +187,6 @@ class BatchResult
      * Sets batch call result entries.
      *
      * @param array $entries The batch call result entries.
-     *
-     * @return void
      */
     protected function setEntries(array $entries)
     {

@@ -14,28 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\EdmType;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Table\Models\EdmType;
 
 /**
  * Unit tests for class EdmTypeTest
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class EdmTypeTest extends \PHPUnit\Framework\TestCase
 {
@@ -48,7 +38,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::processType(null);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testProcessType()
@@ -60,7 +50,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::processType($expected);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserializeQueryValueWithString()
@@ -74,7 +64,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::unserializeQueryValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserializeQueryValueWithBinary()
@@ -82,13 +72,13 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         // Setup
         $type = EdmType::BINARY;
         $value = 'MTIzNDU=';
-        $expected = base64_decode($value);
+        $expected = base64_decode($value, true);
 
         // Test
         $actual = EdmType::unserializeQueryValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserializeQueryValueWithDate()
@@ -101,7 +91,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::unserializeQueryValue($type, $value);
 
         // Assert
-        $this->assertInstanceOf('\DateTime', $actual);
+        self::assertInstanceOf('\DateTime', $actual);
     }
 
     public function testUnserializeQueryValueWithInt()
@@ -115,7 +105,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::unserializeQueryValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserializeQueryValueWithBoolean()
@@ -129,13 +119,13 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::unserializeQueryValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testUnserializeQueryValueWithInvalid()
     {
         // Assert
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         // Test
         EdmType::unserializeQueryValue('7amada', '1233');
@@ -150,7 +140,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::isValid(EdmType::STRING);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testIsValidWithInvalid()
@@ -162,7 +152,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::isValid('hobba');
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValidateEdmValueWithBinary()
@@ -176,26 +166,26 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::validateEdmValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValidateEdmValueWithDouble()
     {
         // Setup
-        $type      = EdmType::DOUBLE;
-        $values    = array();
-        $values[]  = 1;
-        $values[]  = PHP_INT_MAX;
-        $values[]  = pi();
-        $values[]  = 1.0;
-        $expected  = true;
+        $type = EdmType::DOUBLE;
+        $values = [];
+        $values[] = 1;
+        $values[] = PHP_INT_MAX;
+        $values[] = pi();
+        $values[] = 1.0;
+        $expected = true;
 
         // Test
         foreach ($values as $value) {
             $actual = EdmType::validateEdmValue($type, $value);
 
             // Assert
-            $this->assertEquals($expected, $actual);
+            self::assertEquals($expected, $actual);
         }
     }
 
@@ -210,7 +200,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::validateEdmValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValidateEdmValueWithDateTimeImmutable()
@@ -224,7 +214,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::validateEdmValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValidateEdmValueWithInt()
@@ -238,7 +228,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::validateEdmValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValidateEdmValueWithBoolean()
@@ -252,13 +242,13 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::validateEdmValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValidateEdmValueWithInvalid()
     {
         // Assert
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         // Test
         EdmType::validateEdmValue('7amada', '1233');
@@ -275,7 +265,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::serializeValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSerializeValueWithDate()
@@ -289,7 +279,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::serializeValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSerializeValueWithInt()
@@ -303,7 +293,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::serializeValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSerializeValueWithIntAsString()
@@ -317,7 +307,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::serializeValue($type, $value);
 
         // Assert
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testSerializeValueWithStringAsInt()
@@ -331,7 +321,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::serializeValue($type, $value);
 
         // Assert
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testSerializeValueWithBoolean()
@@ -345,13 +335,13 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
         $actual = EdmType::serializeValue($type, $value);
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSerializeValueWithInvalid()
     {
         // Assert
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         // Test
         EdmType::serializeValue('7amada', '1233');

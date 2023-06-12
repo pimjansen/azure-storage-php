@@ -14,28 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
+use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
 
 /**
  * Options for listBlobs API.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListContainersOptions extends BlobServiceOptions
 {
@@ -61,8 +51,6 @@ class ListContainersOptions extends BlobServiceOptions
      * begins with the specified prefix.
      *
      * @param string $prefix value.
-     *
-     * @return void
      */
     public function setPrefix($prefix)
     {
@@ -92,8 +80,6 @@ class ListContainersOptions extends BlobServiceOptions
      * the server will return status code 400 (Bad Request).
      *
      * @param string $maxResults value.
-     *
-     * @return void
      */
     public function setMaxResults($maxResults)
     {
@@ -115,8 +101,6 @@ class ListContainersOptions extends BlobServiceOptions
      * Sets the include metadata flag.
      *
      * @param bool $includeMetadata value.
-     *
-     * @return void
      */
     public function setIncludeMetadata($includeMetadata)
     {

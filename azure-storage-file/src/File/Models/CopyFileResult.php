@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 
 /**
  * Holds result of calling CopyFileResult wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyFileResult
 {
@@ -56,11 +46,11 @@ class CopyFileResult
      */
     public static function create(array $headers)
     {
-        $result  = new CopyFileResult();
+        $result = new CopyFileResult();
         $headers = array_change_key_case($headers);
 
-        $date          = $headers[Resources::LAST_MODIFIED];
-        $date          = Utilities::rfc1123ToDateTime($date);
+        $date = $headers[Resources::LAST_MODIFIED];
+        $date = Utilities::rfc1123ToDateTime($date);
 
         $result->setCopyStatus($headers[Resources::X_MS_COPY_STATUS]);
         $result->setCopyID($headers[Resources::X_MS_COPY_ID]);
@@ -84,8 +74,6 @@ class CopyFileResult
      * Sets file lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -107,8 +95,6 @@ class CopyFileResult
      * Sets file etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -130,8 +116,6 @@ class CopyFileResult
      * Sets file copyID.
      *
      * @param string $copyID value.
-     *
-     * @return void
      */
     protected function setCopyID($copyID)
     {
@@ -153,8 +137,6 @@ class CopyFileResult
      * Sets copyStatus
      *
      * @param string $copyStatus copyStatus to set
-     *
-     * @return void
      */
     protected function setCopyStatus($copyStatus)
     {

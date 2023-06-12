@@ -14,40 +14,28 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Functional\File
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\File;
 
-use MicrosoftAzure\Storage\File\FileRestProxy;
-use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\File\Models\GetFileOptions;
-use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
-use MicrosoftAzure\Storage\File\Models\FileProperties;
-use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
-use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
-use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
-use MicrosoftAzure\Storage\File\Models\PutFileRangeOptions;
-use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
-use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
-use MicrosoftAzure\Storage\Common\Models\Range;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
-use MicrosoftAzure\Storage\Common\Middlewares\HistoryMiddleware;
-use MicrosoftAzure\Storage\Common\LocationMode;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Client;
+use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Middlewares\HistoryMiddleware;
+use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
+use MicrosoftAzure\Storage\Common\Models\Range;
+use MicrosoftAzure\Storage\File\FileRestProxy;
+use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
+use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
+use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
+use MicrosoftAzure\Storage\File\Models\GetFileOptions;
+use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
+use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
+use MicrosoftAzure\Storage\File\Models\PutFileRangeOptions;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 class FileServiceFunctionalTest extends FunctionalTestBase
 {
@@ -65,11 +53,11 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $shouldReturn = false;
         try {
             $this->restProxy->setServiceProperties($serviceProperties);
-            $this->assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
+            self::assertFalse($this->isEmulated(), 'Should succeed when not running in emulator');
         } catch (ServiceException $e) {
             // Expect failure in emulator, as v1.6 doesn't support this method
             if ($this->isEmulated()) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
                 $shouldReturn = true;
             } else {
                 throw $e;
@@ -90,63 +78,63 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function getServicePropertiesWorker($options)
     {
-        $options = (is_null($options) ? new FileServiceOptions() : $options);
+        $options = (null === $options ? new FileServiceOptions() : $options);
         try {
             $ret = $this->restProxy->getServiceProperties($options);
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             $this->verifyServicePropertiesWorker($ret, null);
         } catch (ServiceException $e) {
-            if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+            if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(
-                    TestResources::STATUS_INTERNAL_SERVER_ERROR,
-                    $e->getCode(),
-                    'getCode'
-                );
             }
+            self::assertEquals(
+                TestResources::STATUS_INTERNAL_SERVER_ERROR,
+                $e->getCode(),
+                'getCode'
+            );
+
         }
     }
 
     private function verifyServicePropertiesWorker($ret, $serviceProperties)
     {
-        if (is_null($serviceProperties)) {
+        if (null === $serviceProperties) {
             $serviceProperties = FileServiceFunctionalTestData::getDefaultServiceProperties();
         }
 
         $sp = $ret->getValue();
-        $this->assertNotNull($sp, 'getValue should be non-null');
+        self::assertNotNull($sp, 'getValue should be non-null');
 
         $m = $sp->getHourMetrics();
-        $this->assertNotNull(
+        self::assertNotNull(
             $m,
             'getValue()->getHourMetrics() should be non-null'
         );
-        $this->assertEquals(
+        self::assertEquals(
             $serviceProperties->getHourMetrics()->getVersion(),
             $m->getVersion(),
             'getValue()->getHourMetrics()->getVersion'
         );
-        $this->assertEquals(
+        self::assertEquals(
             $serviceProperties->getHourMetrics()->getEnabled(),
             $m->getEnabled(),
             'getValue()->getHourMetrics()->getEnabled'
         );
-        $this->assertEquals(
+        self::assertEquals(
             $serviceProperties->getHourMetrics()->getIncludeAPIs(),
             $m->getIncludeAPIs(),
             'getValue()->getHourMetrics()->getIncludeAPIs'
         );
 
         $r = $m->getRetentionPolicy();
-        $this->assertNotNull(
+        self::assertNotNull(
             $r,
             'getValue()->getHourMetrics()->getRetentionPolicy should be non-null'
         );
-        $this->assertEquals(
+        self::assertEquals(
             $serviceProperties->getHourMetrics()->getRetentionPolicy()->getDays(),
             $r->getDays(),
             'getValue()->getHourMetrics()->getRetentionPolicy()->getDays'
@@ -176,18 +164,18 @@ class FileServiceFunctionalTest extends FunctionalTestBase
     private function setServicePropertiesWorker($serviceProperties, $options)
     {
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->setServiceProperties($serviceProperties);
             } else {
                 $this->restProxy->setServiceProperties($serviceProperties, $options);
             }
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             \sleep(10);
@@ -195,19 +183,19 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             $ret = $this->restProxy->getServiceProperties($options);
             $this->verifyServicePropertiesWorker($ret, $serviceProperties);
         } catch (ServiceException $e) {
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
             if ($this->isEmulated()) {
-                if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                    $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+                if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                    self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 } else {
-                    $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+                    self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
                 }
             } else {
-                if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                    $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+                if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                    self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 } else {
                     throw $e;
                 }
@@ -234,17 +222,17 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         while (!$finished) {
             try {
                 $ret = (
-                    is_null($options) ?
+                    null === $options ?
                     $this->restProxy->listShares() :
                     $this->restProxy->listShares($options)
                 );
 
-                if (is_null($options)) {
+                if (null === $options) {
                     $options = new ListSharesOptions();
                 }
 
-                if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                    $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+                if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                    self::assertTrue(false, 'Expect negative timeouts in $options to throw');
                 }
                 $this->verifyListSharesWorker($ret, $options);
 
@@ -255,11 +243,11 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 }
             } catch (ServiceException $e) {
                 $finished = true;
-                if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+                if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                     throw $e;
-                } else {
-                    $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 }
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
             }
         }
     }
@@ -267,32 +255,32 @@ class FileServiceFunctionalTest extends FunctionalTestBase
     private function verifyListSharesWorker($ret, $options)
     {
         // Cannot really check the next marker. Just make sure it is not null.
-        $this->assertEquals($options->getNextMarker(), $ret->getMarker(), 'getNextMarker');
-        $this->assertEquals($options->getMaxResults(), $ret->getMaxResults(), 'getMaxResults');
-        $this->assertEquals($options->getPrefix(), $ret->getPrefix(), 'getPrefix');
+        self::assertEquals($options->getNextMarker(), $ret->getMarker(), 'getNextMarker');
+        self::assertEquals($options->getMaxResults(), $ret->getMaxResults(), 'getMaxResults');
+        self::assertEquals($options->getPrefix(), $ret->getPrefix(), 'getPrefix');
 
-        $this->assertNotNull($ret->getShares(), 'getFiles');
+        self::assertNotNull($ret->getShares(), 'getFiles');
         if ($options->getMaxResults() == 0) {
-            $this->assertEquals(
+            self::assertEquals(
                 0,
                 strlen($ret->getNextMarker()),
                 'When MaxResults is 0, expect getNextMarker (' .
                     strlen($ret->getNextMarker()) . ')to be  '
             );
 
-            if (!is_null($options->getPrefix()) &&
-                $options->getPrefix() ==
+            if (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     (FileServiceFunctionalTestData::$nonExistFilePrefix)) {
-                $this->assertEquals(
+                self::assertCount(
                     0,
-                    count($ret->getShares()),
+                    $ret->getShares(),
                     'when MaxResults=0 and Prefix=(\'' .
                         $options->getPrefix() . '\'), then Files length'
                 );
-            } elseif (!is_null($options->getPrefix()) &&
-                $options->getPrefix() ==
+            } elseif (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     (FileServiceFunctionalTestData::$testUniqueId)) {
-                $this->assertEquals(
+                self::assertEquals(
                     FileServiceFunctionalTestData::$trackedShareCount,
                     count(
                         $ret->getShares()
@@ -301,11 +289,11 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                         $options->getPrefix() .
                         '\'), then Files length'
                 );
-            } else {
-                // Do not know how many there should be
             }
+            // Do not know how many there should be
+
         } elseif (strlen($ret->getNextMarker()) == 0) {
-            $this->assertTrue(
+            self::assertTrue(
                 count($ret->getShares()) <= $options->getMaxResults(),
                 'when NextMarker (\'' . $ret->getNextMarker() . '\')==\'\',
                 Files length (' . count($ret->getShares()) .
@@ -315,9 +303,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
             if (FileServiceFunctionalTestData::$nonExistFilePrefix ==
                     $options->getPrefix()) {
-                $this->assertEquals(
+                self::assertCount(
                     0,
-                    count($ret->getShares()),
+                    $ret->getShares(),
                     'when no next marker and Prefix=(\'' .
                         $options->getPrefix() . '\'), then Files length'
                 );
@@ -326,17 +314,17 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 // Need to futz with the mod because you are allowed to get MaxResults items returned.
                 $expectedCount =
                     FileServiceFunctionalTestData::$trackedShareCount % $options->getMaxResults();
-                $this->assertEquals(
+                self::assertCount(
                     $expectedCount,
-                    count($ret->getShares()),
+                    $ret->getShares(),
                     'when no next marker and Prefix=(\'' .
                     $options->getPrefix() . '\'), then Files length'
                 );
-            } else {
-                // Do not know how many there should be
             }
+            // Do not know how many there should be
+
         } else {
-            $this->assertEquals(
+            self::assertEquals(
                 count($ret->getShares()),
                 $options->getMaxResults(),
                 'when NextMarker (' . $ret->getNextMarker() .
@@ -344,10 +332,10 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 ') should be == MaxResults (' . $options->getMaxResults() .
                 ')'
             );
-            if (!is_null($options->getPrefix()) &&
-                $options->getPrefix() ==
+            if (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     FileServiceFunctionalTestData::$nonExistFilePrefix) {
-                $this->assertTrue(
+                self::assertTrue(
                     false,
                     'when a next marker and Prefix=(\'' .
                         $options->getPrefix() . '\'), impossible'
@@ -375,19 +363,19 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $created = false;
 
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->createShare($share);
             } else {
                 $this->restProxy->createShare($share, $options);
             }
             $created = true;
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new CreateShareOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             // Now check that the $share was $created correctly.
@@ -396,7 +384,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             $opts = new ListSharesOptions();
             $opts->setPrefix(FileServiceFunctionalTestData::$testUniqueId);
             $qs = $this->restProxy->listShares($opts);
-            $this->assertEquals(
+            self::assertEquals(
                 count($qs->getShares()),
                 FileServiceFunctionalTestData::$trackedShareCount + 1,
                 'After adding one, with Prefix=(\'' . FileServiceFunctionalTestData::$testUniqueId .
@@ -408,15 +396,15 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             $this->verifyCreateShareWorker($ret, $options);
             $this->restProxy->deleteShare($share);
         } catch (ServiceException $e) {
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new CreateShareOptions();
             }
 
-            if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+            if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
 
         if ($created) {
@@ -430,15 +418,15 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyCreateShareWorker($ret, $options)
     {
-        if (is_null($options->getMetadata())) {
-            $this->assertNotNull($ret->getMetadata(), 'share Metadata');
-            $this->assertEquals(0, count($ret->getMetadata()), 'count share Metadata');
+        if (null === $options->getMetadata()) {
+            self::assertNotNull($ret->getMetadata(), 'share Metadata');
+            self::assertCount(0, $ret->getMetadata(), 'count share Metadata');
         } else {
-            $this->assertNotNull($ret->getMetadata(), 'share Metadata');
-            $this->assertEquals(count($options->getMetadata()), count($ret->getMetadata()), 'Metadata');
+            self::assertNotNull($ret->getMetadata(), 'share Metadata');
+            self::assertEquals(count($options->getMetadata()), count($ret->getMetadata()), 'Metadata');
             $retMetadata = $ret->getMetadata();
             foreach ($options->getMetadata() as $key => $value) {
-                $this->assertEquals($value, $retMetadata[$key], 'Metadata(' . $key . ')');
+                self::assertEquals($value, $retMetadata[$key], 'Metadata(' . $key . ')');
             }
         }
     }
@@ -467,7 +455,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $opts = new ListSharesOptions();
         $opts->setPrefix(FileServiceFunctionalTestData::$testUniqueId);
         $qs = $this->restProxy->listShares($opts);
-        $this->assertEquals(
+        self::assertEquals(
             count($qs->getShares()),
             FileServiceFunctionalTestData::$trackedShareCount + 1,
             'After adding one, with Prefix=(\'' .
@@ -477,7 +465,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
         $deleted = false;
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->deleteShare($share);
             } else {
                 $this->restProxy->deleteShare($share, $options);
@@ -485,19 +473,19 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
             $deleted = true;
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             // Make sure that the list of all applicable shares is correctly updated.
             $opts = new ListSharesOptions();
             $opts->setPrefix(FileServiceFunctionalTestData::$testUniqueId);
             $qs = $this->restProxy->listShares($opts);
-            $this->assertEquals(
+            self::assertEquals(
                 count($qs->getShares()),
                 FileServiceFunctionalTestData::$trackedShareCount,
                 'After adding then deleting one, with Prefix=(\'' .
@@ -507,17 +495,17 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
             // Nothing else interesting to check for the $options.
         } catch (ServiceException $e) {
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
-            } elseif (!$this->isEmulated() &&
-                    !FileServiceFunctionalTestData::passTemporalAccessCondition(
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+            } elseif (!$this->isEmulated()
+                    && !FileServiceFunctionalTestData::passTemporalAccessCondition(
                         $options->getAccessConditions()
                     )) {
-                $this->assertEquals(TestResources::STATUS_PRECONDITION_FAILED, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_PRECONDITION_FAILED, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -556,25 +544,25 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->setShareMetadata($share, $metadata);
 
         try {
-            $res = (is_null($options) ?
+            $res = (null === $options ?
                 $this->restProxy->getShareMetadata($share) :
                 $this->restProxy->getShareMetadata($share, $options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() <= 0) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() <= 0) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $this->verifyGetShareMetadataWorker($res, $metadata);
         } catch (ServiceException $e) {
-            if (is_null($options->getTimeout()) || $options->getTimeout() > 0) {
+            if (null === $options->getTimeout() || $options->getTimeout() > 0) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
         // Clean up.
         $this->restProxy->deleteShare($share);
@@ -582,26 +570,26 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyGetShareMetadataWorker($ret, $metadata)
     {
-        $this->assertNotNull($ret->getMetadata(), 'share Metadata');
-        $this->assertNotNull($ret->getETag(), 'share getETag');
-        $this->assertNotNull($ret->getLastModified(), 'share getLastModified');
+        self::assertNotNull($ret->getMetadata(), 'share Metadata');
+        self::assertNotNull($ret->getETag(), 'share getETag');
+        self::assertNotNull($ret->getLastModified(), 'share getLastModified');
 
-        $this->assertEquals(count($metadata), count($ret->getMetadata()), 'Metadata');
+        self::assertEquals(count($metadata), count($ret->getMetadata()), 'Metadata');
         $md = $ret->getMetadata();
         foreach ($metadata as $key => $value) {
-            $this->assertEquals($value, $md[$key], 'Metadata(' . $key . ')');
+            self::assertEquals($value, $md[$key], 'Metadata(' . $key . ')');
         }
 
         // Make sure the last modified date is within 10 seconds
         $now = new \DateTime();
-        $this->assertTrue(
+        self::assertTrue(
             FileServiceFunctionalTestData::diffInTotalSeconds(
                 $ret->getLastModified(),
                 $now
             ) < 10,
             'Last modified date (' .
             $ret->getLastModified()->format(\DateTime::RFC1123) .
-                ')'. ' should be within 10 seconds of $now (' .
+                ')' . ' should be within 10 seconds of $now (' .
                 $now->format(\DateTime::RFC1123) . ')'
         );
     }
@@ -634,39 +622,39 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createShare($share);
 
         $firstkey = '';
-        if (!is_null($metadata) && count($metadata) > 0) {
+        if (null !== $metadata && count($metadata) > 0) {
             $firstkey = array_keys($metadata);
             $firstkey = $firstkey[0];
         }
 
         try {
             // And put in some metadata
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->setShareMetadata($share, $metadata);
             } else {
                 $this->restProxy->setShareMetadata($share, $metadata, $options);
             }
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            $this->assertFalse(
+            self::assertFalse(
                 Utilities::startsWith($firstkey, '<'),
                 'Should get HTTP request error if the metadata is invalid'
             );
 
-            if (! is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $res = $this->restProxy->getShareMetadata($share);
             $this->verifyGetShareMetadataWorker($res, $metadata);
         } catch (ServiceException $e) {
             if (Utilities::startsWith($firstkey, '<')) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
-            } elseif (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+            } elseif (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -702,25 +690,25 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->setShareMetadata($share, $metadata);
 
         try {
-            $res = (is_null($options) ?
+            $res = (null === $options ?
                 $this->restProxy->getShareProperties($share) :
                 $this->restProxy->getShareProperties($share, $options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $this->verifyGetShareMetadataWorker($res, $metadata);
         } catch (ServiceException $e) {
-            if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+            if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
 
         // Clean up.
@@ -750,25 +738,25 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createShare($share);
 
         try {
-            $res = (is_null($options) ?
+            $res = (null === $options ?
                 $this->restProxy->getShareACL($share) :
                 $this->restProxy->getShareACL($share, $options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $this->verifyGetShareACLWorker($res);
         } catch (ServiceException $e) {
-            if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+            if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                 throw $e;
-            } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
+            self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
         }
 
         // Clean up.
@@ -777,17 +765,17 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyGetShareACLWorker($ret)
     {
-        $this->assertNotNull($ret->getShareACL(), '$ret->getShareACL');
-        $this->assertNotNull($ret->getETag(), '$ret->getETag');
-        $this->assertNotNull($ret->getLastModified(), '$ret->getLastModified');
-        $this->assertNotNull(
+        self::assertNotNull($ret->getShareACL(), '$ret->getShareACL');
+        self::assertNotNull($ret->getETag(), '$ret->getETag');
+        self::assertNotNull($ret->getLastModified(), '$ret->getLastModified');
+        self::assertNotNull(
             $ret->getShareACL()->getSignedIdentifiers(),
             '$ret->getShareACL->getSignedIdentifiers'
         );
 
         // Make sure the last modified date is within 10 seconds
         $now = new \DateTime();
-        $this->assertTrue(
+        self::assertTrue(
             FileServiceFunctionalTestData::diffInTotalSeconds(
                 $ret->getLastModified(),
                 $now
@@ -830,7 +818,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createFileFromContent($share, 'test', $fileContent);
 
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->setShareACL($share, $acl);
                 $this->restProxy->setShareACL($share, $acl);
             } else {
@@ -838,19 +826,19 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 $this->restProxy->setShareACL($share, $acl, $options);
             }
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $res = $this->restProxy->getShareACL($share);
             $this->verifySetShareACLWorker($res, $share, $acl, $fileContent);
         } catch (ServiceException $e) {
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             } else {
                 throw $e;
             }
@@ -862,10 +850,10 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function verifySetShareACLWorker($ret, $share, $acl, $fileContent)
     {
-        $this->assertNotNull($ret->getShareACL(), '$ret->getShareACL');
-        $this->assertNotNull($ret->getETag(), '$ret->getShareACL->getETag');
+        self::assertNotNull($ret->getShareACL(), '$ret->getShareACL');
+        self::assertNotNull($ret->getETag(), '$ret->getShareACL->getETag');
         $now = new \DateTime();
-        $this->assertTrue(
+        self::assertTrue(
             FileServiceFunctionalTestData::diffInTotalSeconds(
                 $ret->getLastModified(),
                 $now
@@ -876,39 +864,39 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 $now->format(\DateTime::RFC1123) . ')'
         );
 
-        $this->assertNotNull(
+        self::assertNotNull(
             $ret->getShareACL()->getSignedIdentifiers(),
             '$ret->getShareACL->getSignedIdentifiers'
         );
 
         $expIds = $acl->getSignedIdentifiers();
         $actIds = $ret->getShareACL()->getSignedIdentifiers();
-        $this->assertEquals(count($expIds), count($actIds), '$ret->getShareACL->getSignedIdentifiers');
+        self::assertEquals(count($expIds), count($actIds), '$ret->getShareACL->getSignedIdentifiers');
 
-        for ($i = 0; $i < count($expIds); $i++) {
+        for ($i = 0; $i < count($expIds); ++$i) {
             $expId = $expIds[$i];
             $actId = $actIds[$i];
-            $this->assertEquals($expId->getId(), $actId->getId(), 'SignedIdentifiers[' . $i .']->getId');
-            $this->assertEquals(
+            self::assertEquals($expId->getId(), $actId->getId(), 'SignedIdentifiers[' . $i . ']->getId');
+            self::assertEquals(
                 $expId->getAccessPolicy()->getPermission(),
                 $actId->getAccessPolicy()->getPermission(),
-                'SignedIdentifiers['. $i .']->getAccessPolicy->getPermission'
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getPermission'
             );
-            $this->assertTrue(
+            self::assertTrue(
                 FileServiceFunctionalTestData::diffInTotalSeconds(
                     $expId->getAccessPolicy()->getStart(),
                     $actId->getAccessPolicy()->getStart()
                 ) < 1,
-                'SignedIdentifiers[' . $i .']->getAccessPolicy->getStart should match within 1 second, ' .
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getStart should match within 1 second, ' .
                     'exp=' . $expId->getAccessPolicy()->getStart()->format(\DateTime::RFC1123) . ', ' .
                     'act=' . $actId->getAccessPolicy()->getStart()->format(\DateTime::RFC1123)
             );
-            $this->assertTrue(
+            self::assertTrue(
                 FileServiceFunctionalTestData::diffInTotalSeconds(
                     $expId->getAccessPolicy()->getExpiry(),
                     $actId->getAccessPolicy()->getExpiry()
                 ) < 1,
-                'SignedIdentifiers['. $i .']->getAccessPolicy->getExpiry should match within 1 second, ' .
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getExpiry should match within 1 second, ' .
                     'exp=' . $expId->getAccessPolicy()->getExpiry()->format(\DateTime::RFC1123) . ', ' .
                     'act=' . $actId->getAccessPolicy()->getExpiry()->format(\DateTime::RFC1123)
             );
@@ -927,7 +915,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             $this->restProxy->createFile(
                 $shareName,
                 FileServiceFunctionalTestData::getInterestingFileName(),
-                \rand(1, 100)
+                \mt_rand(1, 100)
             );
         }
     }
@@ -959,16 +947,16 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $finished = false;
         while (!$finished) {
             try {
-                $ret = (is_null($options) ?
+                $ret = (null === $options ?
                     $this->restProxy->listDirectoriesAndFiles($share) :
                     $this->restProxy->listDirectoriesAndFiles($share, '', $options));
 
-                if (is_null($options)) {
+                if (null === $options) {
                     $options = new ListDirectoriesAndFilesOptions();
                 }
 
-                if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                    $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+                if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                    self::assertTrue(false, 'Expect negative timeouts in $options to throw');
                 }
                 $this->verifyListDirectoriesAndFilesWorker($ret, $options);
 
@@ -979,29 +967,29 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 }
             } catch (ServiceException $e) {
                 $finished = true;
-                if (is_null($options->getTimeout()) || $options->getTimeout() >= 1) {
+                if (null === $options->getTimeout() || $options->getTimeout() >= 1) {
                     throw $e;
-                } else {
-                    $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
                 }
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+
             }
         }
     }
 
     private function verifyListDirectoriesAndFilesWorker($ret, $options)
     {
-        $this->assertEquals($options->getMaxResults(), $ret->getMaxResults(), 'getMaxResults');
+        self::assertEquals($options->getMaxResults(), $ret->getMaxResults(), 'getMaxResults');
 
-        $this->assertNotNull($ret->getFiles(), 'getFiles');
+        self::assertNotNull($ret->getFiles(), 'getFiles');
         if ($options->getMaxResults() == 0) {
-            $this->assertEquals(
+            self::assertEquals(
                 0,
                 strlen($ret->getNextMarker()),
                 'When MaxResults is 0, expect getNextMarker (' .
                     strlen($ret->getNextMarker()) . ')to be  '
             );
         } elseif (strlen($ret->getNextMarker()) == 0) {
-            $this->assertTrue(
+            self::assertTrue(
                 count($ret->getFiles()) + count($ret->getDirectories()) <= $options->getMaxResults(),
                 'when NextMarker (\'' . $ret->getNextMarker() .
                 '\')==\'\', Files length (' .
@@ -1010,14 +998,14 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                     $options->getMaxResults() . ')'
             );
         } else {
-            $this->assertEquals(
+            self::assertEquals(
                 $options->getMaxResults(),
                 count($ret->getFiles()) + count($ret->getDirectories()),
                 'when NextMarker (' . $ret->getNextMarker() .
                     ')!=\'\', Files length (' .
                     count($ret->getFiles()) + count($ret->getDirectories()) .
                     ') should be == MaxResults (' .
-                    $options->getMaxResults() .')'
+                    $options->getMaxResults() . ')'
             );
         }
     }
@@ -1057,22 +1045,22 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
         try {
             $res = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->getFileMetadata($share, $file) :
                 $this->restProxy->getFileMetadata($share, $file, $options)
             );
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && ($options->getTimeout() < 1 || $options->getTimeout() == 2147483647)) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && ($options->getTimeout() < 1 || $options->getTimeout() == 2147483647)) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             $this->verifyGetFileMetadataWorker($res, $properties);
         } catch (ServiceException $e) {
-            if (!is_null($options->getTimeout()) && ($options->getTimeout() < 1 || $options->getTimeout() == 2147483647)) {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
+            if (null !== $options->getTimeout() && ($options->getTimeout() < 1 || $options->getTimeout() == 2147483647)) {
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
             } else {
                 throw $e;
             }
@@ -1081,19 +1069,19 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyGetFileMetadataWorker($res, $metadata)
     {
-        $this->assertNotNull($res->getMetadata(), 'file Metadata');
-        $this->assertNotNull($res->getETag(), 'file getETag');
-        $this->assertNotNull($res->getLastModified(), 'file getLastModified');
+        self::assertNotNull($res->getMetadata(), 'file Metadata');
+        self::assertNotNull($res->getETag(), 'file getETag');
+        self::assertNotNull($res->getLastModified(), 'file getLastModified');
 
-        $this->assertEquals(count($metadata), count($res->getMetadata()), 'Metadata');
+        self::assertEquals(count($metadata), count($res->getMetadata()), 'Metadata');
         $retMetadata = $res->getMetadata();
         foreach ($metadata as $key => $value) {
-            $this->assertEquals($value, $retMetadata[$key], 'Metadata(' . $key . ')');
+            self::assertEquals($value, $retMetadata[$key], 'Metadata(' . $key . ')');
         }
 
         // Make sure the last modified date is within 10 seconds
         $now = new \DateTime();
-        $this->assertTrue(
+        self::assertTrue(
             FileServiceFunctionalTestData::diffInTotalSeconds(
                 $res->getLastModified(),
                 $now
@@ -1140,14 +1128,14 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createFileFromContent($share, $file, $testContent);
 
         $firstkey = '';
-        if (!is_null($metadata) && count($metadata) > 0) {
+        if (null !== $metadata && count($metadata) > 0) {
             $firstkey = array_keys($metadata);
             $firstkey = $firstkey[0];
         }
 
         try {
             // And put in some properties
-            (is_null($options) ?
+            (null === $options ?
             $this->restProxy->setFileMetadata($share, $file, $metadata) :
             $this->restProxy->setFileMetadata(
                 $share,
@@ -1155,24 +1143,24 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 $metadata,
                 $options
             ));
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (Utilities::startsWith($firstkey, '<')) {
-                $this->assertTrue(false, 'Should get HTTP request error if the metadata is invalid');
+                self::assertTrue(false, 'Should get HTTP request error if the metadata is invalid');
             }
 
             $res = $this->restProxy->getFileMetadata($share, $file);
             $this->verifyGetFileMetadataWorker($res, $metadata);
         } catch (ServiceException $e) {
             if (Utilities::startsWith($firstkey, '<')) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
-            } elseif (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+            } elseif (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
             } else {
                 throw $e;
             }
@@ -1181,12 +1169,12 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function verifySetFileMetadataWorker($res)
     {
-        $this->assertNotNull($res->getETag(), 'file getETag');
-        $this->assertNotNull($res->getLastModified(), 'file getLastModified');
+        self::assertNotNull($res->getETag(), 'file getETag');
+        self::assertNotNull($res->getLastModified(), 'file getLastModified');
 
         // Make sure the last modified date is within 10 seconds
         $now = new \DateTime();
-        $this->assertTrue(
+        self::assertTrue(
             FileServiceFunctionalTestData::diffInTotalSeconds(
                 $res->getLastModified(),
                 $now
@@ -1234,39 +1222,39 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyGetSetFilePropertiesWorker($res, $properties)
     {
-        $this->assertEquals(
+        self::assertEquals(
             $res->getContentLength(),
             $properties->getContentLength()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $res->getContentType(),
             $properties->getContentType()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $res->getContentMD5(),
             $properties->getContentMD5()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $res->getContentEncoding(),
             $properties->getContentEncoding()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $res->getContentLanguage(),
             $properties->getContentLanguage()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $res->getCacheControl(),
             $properties->getCacheControl()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $res->getContentDisposition(),
             $properties->getContentDisposition()
         );
-        $this->assertNotNull($res->getETag());
+        self::assertNotNull($res->getETag());
 
         // Make sure the last modified date is within 10 seconds
         $now = new \DateTime();
-        $this->assertTrue(
+        self::assertTrue(
             FileServiceFunctionalTestData::diffInTotalSeconds(
                 $res->getLastModified(),
                 $now
@@ -1318,33 +1306,33 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
         try {
             $res = (
-                is_null($options) ?
+                null === $options ?
                 $this->restProxy->getFile($share, $file) :
                 $this->restProxy->getFile($share, $file, $options)
             );
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new GetFileOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
-            if ($options->getRangeGetContentMD5() && is_null($options->getRangeString())) {
-                $this->assertTrue(false, 'Expect compute range MD5 to fail if range not set');
+            if ($options->getRangeGetContentMD5() && null === $options->getRangeString()) {
+                self::assertTrue(false, 'Expect compute range MD5 to fail if range not set');
             }
 
             $this->verifyGetFileWorker($res, $options, $dataSize, $metadata);
         } catch (ServiceException $e) {
-            if ($options->getRangeGetContentMD5() && is_null($options->getRangeString())) {
-                $this->assertEquals(
+            if ($options->getRangeGetContentMD5() && null === $options->getRangeString()) {
+                self::assertEquals(
                     TestResources::STATUS_BAD_REQUEST,
                     $e->getCode(),
                     'Expect compute range MD5 to fail when range not set:' .
                     ' getCode'
                 );
-            } elseif (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertEquals(
+            } elseif (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertEquals(
                     TestResources::STATUS_INTERNAL_SERVER_ERROR,
                     $e->getCode(),
                     'bad timeout: getCode'
@@ -1357,9 +1345,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyGetFileWorker($res, $options, $dataSize, $metadata)
     {
-        $this->assertNotNull($res, 'result');
+        self::assertNotNull($res, 'result');
 
-        $content =  stream_get_contents($res->getContentStream());
+        $content = stream_get_contents($res->getContentStream());
 
         $range = $options->getRange();
         if ($range == null) {
@@ -1370,30 +1358,30 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             $rangeSize = $dataSize - $range->getStart();
         }
 
-        $this->assertEquals(
+        self::assertEquals(
             $rangeSize,
             \strlen($content),
             '$content length and range'
         );
 
         if ($options->getRangeGetContentMD5()) {
-            $this->assertEquals(
+            self::assertEquals(
                 'MDAwMDAwMDA=',
                 $res->getProperties()->getContentMD5(),
                 'asked for MD5, result->getProperties()->getContentMD5'
             );
         } else {
-            $this->assertNull(
+            self::assertNull(
                 $res->getProperties()->getContentMD5(),
                 'did not ask for MD5, result->getProperties()->getContentMD5'
             );
         }
 
-        $this->assertNotNull($res->getMetadata(), 'file Metadata');
+        self::assertNotNull($res->getMetadata(), 'file Metadata');
         $resMetadata = $res->getMetadata();
-        $this->assertEquals(count($metadata), count($resMetadata), 'Metadata');
+        self::assertEquals(count($metadata), count($resMetadata), 'Metadata');
         foreach ($metadata as $key => $value) {
-            $this->assertEquals($value, $resMetadata[$key], 'Metadata(' . $key . ')');
+            self::assertEquals($value, $resMetadata[$key], 'Metadata(' . $key . ')');
         }
     }
 
@@ -1426,19 +1414,19 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createFileFromContent($share, $file, $content);
 
         try {
-            if (is_null($options)) {
+            if (null === $options) {
                 $this->restProxy->deleteFile($share, $file);
             } else {
                 $this->restProxy->deleteFile($share, $file, $options);
             }
             $deleted = true;
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
 
             $listDirectoriesAndFilesResult =
@@ -1446,10 +1434,10 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
             $files = $listDirectoriesAndFilesResult->getFiles();
 
-            $this->assertEquals(0, \count($files), 'File should be deleted');
+            self::assertCount(0, $files, 'File should be deleted');
         } catch (ServiceException $e) {
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertEquals(
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertEquals(
                     TestResources::STATUS_INTERNAL_SERVER_ERROR,
                     $e->getCode(),
                     'bad timeout: deleteHttpStatusCode'
@@ -1507,18 +1495,18 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
         $sourcePath = sprintf(
             '%s%s/%s',
-            (string)$this->restProxy->getPsrPrimaryUri(),
+            (string) $this->restProxy->getPsrPrimaryUri(),
             $sourceShare,
             $sourceFile
         );
 
         try {
-            if (is_null($metadata)) {
+            if (null === $metadata) {
                 $this->restProxy->copyFile(
                     $destShare,
                     $destFile,
                     $sourcePath,
-                    array(),
+                    [],
                     $options
                 );
             } else {
@@ -1531,12 +1519,12 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 );
             }
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             $listDirectoriesAndFilesResult =
                 $this->restProxy->listDirectoriesAndFiles($destShare);
@@ -1556,12 +1544,12 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 $content
             );
         } catch (ServiceException $e) {
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new CopyFileOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertEquals(500, $e->getCode(), 'bad timeout: deleteHttpStatusCode');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertEquals(500, $e->getCode(), 'bad timeout: deleteHttpStatusCode');
             } else {
                 throw $e;
             }
@@ -1583,37 +1571,37 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $sourceMeta,
         $sourceContent
     ) {
-        $this->assertEquals(
+        self::assertEquals(
             $sourceShare == $destShare ? 2 : 1,
             count($files)
         );
-        $this->assertEquals(
+        self::assertEquals(
             $sourceDataSize,
             $getFileResult->getProperties()->getContentLength(),
             'Dest length should be the same as the source length'
         );
 
-        $this->assertNotNull($getFileResult->getMetadata(), 'file Metadata');
+        self::assertNotNull($getFileResult->getMetadata(), 'file Metadata');
         $expectedMetadata = $metadata == null ? $sourceMeta : $metadata;
         $resMetadata = $getFileResult->getMetadata();
-        $this->assertEquals(
+        self::assertEquals(
             \count($expectedMetadata),
             \count($resMetadata),
             'Metadata'
         );
         foreach ($expectedMetadata as $key => $value) {
-            $this->assertEquals(
+            self::assertEquals(
                 $value,
                 $resMetadata[\strtolower($key)],
                 'Metadata(' . $key . ')'
             );
         }
         $resContent = \stream_get_contents($getFileResult->getContentStream());
-        $this->assertEquals($sourceContent, $resContent);
+        self::assertEquals($sourceContent, $resContent);
 
         // Make sure the last modified date is within 10 seconds
         $now = new \DateTime();
-        $this->assertTrue(
+        self::assertTrue(
             FileServiceFunctionalTestData::diffInTotalSeconds(
                 $getFileResult->getProperties()->getLastModified(),
                 $now
@@ -1621,7 +1609,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             'Last modified date (' .
                 $getFileResult->getProperties()->getLastModified()->format(
                     \DateTime::RFC1123
-                ) . ')'. ' should be within 10 seconds of $now (' .
+                ) . ')' . ' should be within 10 seconds of $now (' .
                 $now->format(\DateTime::RFC1123) . ')'
         );
     }
@@ -1653,7 +1641,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $file = '0';
         $this->restProxy->createFile($share, $file, 2048);
         $res = $this->restProxy->getFileProperties($share, $file);
-        $this->assertEquals(2048, $res->getContentLength());
+        self::assertEquals(2048, $res->getContentLength());
         $this->safeDeleteShare($share);
     }
 
@@ -1680,8 +1668,8 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             } catch (ServiceException $e) {
                 $message = $e->getMessage();
             }
-            $this->assertContains('400', $message);
-            $this->assertContains(
+            self::assertContains('400', $message);
+            self::assertContains(
                 'The MD5 value specified in the request did not match with the MD5 value calculated by the server.',
                 $message
             );
@@ -1696,18 +1684,18 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             $actualContent = stream_get_contents($result->getContentStream());
             $actualMD5 = $result->getProperties()->getRangeContentMD5();
             //Validate
-            $this->assertEquals(Utilities::calculateContentMD5($content), $actualMD5);
-            $this->assertEquals($content, $actualContent);
+            self::assertEquals(Utilities::calculateContentMD5($content), $actualMD5);
+            self::assertEquals($content, $actualContent);
         }
         if ($clearRange != null) {
             $this->restProxy->clearFileRange($share, $file, $clearRange);
         }
         //Validate result
         $listResult = $this->restProxy->listFileRange($share, $file, $listRange);
-        $this->assertEquals(2048, $listResult->getContentLength());
+        self::assertEquals(2048, $listResult->getContentLength());
         $resultRanges = $listResult->getRanges();
         for ($i = 0; $i < count($resultRanges); ++$i) {
-            $this->assertEquals($resultListRange[$i], $resultRanges[$i]);
+            self::assertEquals($resultListRange[$i], $resultRanges[$i]);
         }
     }
 
@@ -1739,26 +1727,26 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $proxy = $this->restProxy;
         if ($type == 'dir') {
             if ($operation == 'create') {
-                $worker = function () use ($share, $path, $proxy) {
+                $worker = static function () use ($share, $path, $proxy) {
                     $proxy->createDirectory($share, $path);
                 };
             } elseif ($operation == 'delete') {
-                $worker = function () use ($share, $path, $proxy) {
+                $worker = static function () use ($share, $path, $proxy) {
                     $proxy->deleteDirectory($share, $path);
                 };
             }
         } elseif ($type == 'file') {
             if ($operation == 'create') {
-                $worker = function () use ($share, $path, $proxy) {
+                $worker = static function () use ($share, $path, $proxy) {
                     $proxy->createFile($share, $path, 2048);
                 };
             } elseif ($operation == 'delete') {
-                $worker = function () use ($share, $path, $proxy) {
+                $worker = static function () use ($share, $path, $proxy) {
                     $proxy->deleteFile($share, $path);
                 };
             }
         }
-        $this->assertNotNull($worker);
+        self::assertNotNull($worker);
         $message = '';
         try {
             $worker();
@@ -1766,9 +1754,9 @@ class FileServiceFunctionalTest extends FunctionalTestBase
             $message = $e->getMessage();
         }
         if ($error == '') {
-            $this->assertEquals($error, $message);
+            self::assertEquals($error, $message);
         } else {
-            $this->assertContains($error, $message);
+            self::assertContains($error, $message);
         }
     }
 
@@ -1806,14 +1794,14 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $this->restProxy->createDirectory($share, $dir);
 
         $firstkey = '';
-        if (!is_null($metadata) && count($metadata) > 0) {
+        if (null !== $metadata && count($metadata) > 0) {
             $firstkey = array_keys($metadata);
             $firstkey = $firstkey[0];
         }
 
         try {
             // And put in some properties
-            (is_null($options) ?
+            (null === $options ?
             $this->restProxy->setDirectoryMetadata($share, $dir, $metadata) :
             $this->restProxy->setDirectoryMetadata(
                 $share,
@@ -1821,24 +1809,24 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 $metadata,
                 $options
             ));
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new FileServiceOptions();
             }
 
-            if (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
+            if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
             if (Utilities::startsWith($firstkey, '<')) {
-                $this->assertTrue(false, 'Should get HTTP request error if the metadata is invalid');
+                self::assertTrue(false, 'Should get HTTP request error if the metadata is invalid');
             }
 
             $res = $this->restProxy->getDirectoryMetadata($share, $dir);
             $this->verifyGetDirectoryMetadataWorker($res, $metadata);
         } catch (ServiceException $e) {
             if (Utilities::startsWith($firstkey, '<')) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
-            } elseif (!is_null($options->getTimeout()) && $options->getTimeout() < 1) {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+            } elseif (null !== $options->getTimeout() && $options->getTimeout() < 1) {
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'bad timeout: getCode');
             } else {
                 throw $e;
             }
@@ -1847,12 +1835,12 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
     private function verifyGetDirectoryMetadataWorker($res)
     {
-        $this->assertNotNull($res->getETag(), 'directory getETag');
-        $this->assertNotNull($res->getLastModified(), 'directory getLastModified');
+        self::assertNotNull($res->getETag(), 'directory getETag');
+        self::assertNotNull($res->getLastModified(), 'directory getLastModified');
 
         // Make sure the last modified date is within 10 seconds
         $now = new \DateTime();
-        $this->assertTrue(
+        self::assertTrue(
             FileServiceFunctionalTestData::diffInTotalSeconds(
                 $res->getLastModified(),
                 $now
@@ -1890,7 +1878,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 new Response(408, ['test_header' => 'test_header_value'])
             ),
             new Response(500, ['test_header' => 'test_header_value']),
-            $response
+            $response,
         ]);
         $restOptions = ['http' => ['handler' => $mock]];
         $mockProxy = FileRestProxy::createFileService($this->connectionString, $restOptions);
@@ -1899,15 +1887,15 @@ class FileServiceFunctionalTest extends FunctionalTestBase
         $options = new ListSharesOptions();
         $options->setMiddlewares([$retryMiddleware, $historyMiddleware]);
         $newResult = $mockProxy->listShares($options);
-        $this->assertTrue(
+        self::assertTrue(
             $result == $newResult,
             'Mock result does not match server behavior'
         );
-        $this->assertTrue(
+        self::assertTrue(
             $historyMiddleware->getHistory()[1]['reason']->getMessage() == 'mock 408 exception',
             'Mock handler does not gave the first 408 exception correctly'
         );
-        $this->assertTrue(
+        self::assertTrue(
             $historyMiddleware->getHistory()[2]['reason']->getCode() == 500,
             'Mock handler does not gave the second 500 response correctly'
         );

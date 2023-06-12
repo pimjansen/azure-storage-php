@@ -14,48 +14,38 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Authentication;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
-use MicrosoftAzure\Storage\Tests\Mock\Common\Internal\Authentication\SharedAccessSignatureAuthSchemeMock;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
+use MicrosoftAzure\Storage\Tests\Mock\Common\Internal\Authentication\SharedAccessSignatureAuthSchemeMock;
 
 /**
  * Unit tests for SharedAccessSignatureAuthScheme class.
  *
- * @package    MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Authentication
- * @author     Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright  2016 Microsoft Corporation
- * @license    https://github.com/azure/azure-storage-php/LICENSE
- * @link       https://github.com/azure/azure-storage-php
+ * @see       https://github.com/azure/azure-storage-php
  */
 class SharedAccessSignatureAuthSchemeTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstruct()
     {
         $mock = new SharedAccessSignatureAuthSchemeMock(TestResources::SAS_TOKEN);
-        $this->assertEquals(TestResources::SAS_TOKEN, $mock->getSasToken());
+        self::assertEquals(TestResources::SAS_TOKEN, $mock->getSasToken());
 
         $mock = new SharedAccessSignatureAuthSchemeMock('?' . TestResources::SAS_TOKEN);
-        $this->assertEquals(TestResources::SAS_TOKEN, $mock->getSasToken());
+        self::assertEquals(TestResources::SAS_TOKEN, $mock->getSasToken());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testConstructFromInvalidSASToken()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $mock = new SharedAccessSignatureAuthSchemeMock('?' . TestResources::SAS_TOKEN . '?foo=bar');
-        $this->assertEquals(TestResources::SAS_TOKEN, $mock->getSasToken());
+        self::assertEquals(TestResources::SAS_TOKEN, $mock->getSasToken());
     }
 
     public function testSignRequest()
@@ -63,12 +53,12 @@ class SharedAccessSignatureAuthSchemeTest extends \PHPUnit\Framework\TestCase
         // Setup
         $mock = new SharedAccessSignatureAuthSchemeMock(TestResources::SAS_TOKEN);
         $uri = new Uri(TestResources::URI2);
-        $request = new Request('Get', $uri, array(), null);
+        $request = new Request('Get', $uri, [], null);
         $expected = new Uri(TestResources::URI2 . '&' . TestResources::SAS_TOKEN);
 
         // Test
         $actual = $mock->signRequest($request)->getUri();
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

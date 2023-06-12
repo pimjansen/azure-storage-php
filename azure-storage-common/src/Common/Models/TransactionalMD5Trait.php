@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2018 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -29,22 +24,19 @@ namespace MicrosoftAzure\Storage\Common\Models;
  * option classes which need support transactional MD5 validation
  * during data transferring.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2018 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 trait TransactionalMD5Trait
 {
-    /** @var $useTransactionalMD5 boolean */
+    /**
+     * @var bool
+     */
     private $useTransactionalMD5;
 
     /**
      * Gets whether using transactional MD5 validation.
      *
-     * @return boolean
+     * @return bool
      */
     public function getUseTransactionalMD5()
     {
@@ -54,8 +46,8 @@ trait TransactionalMD5Trait
     /**
      * Sets whether using transactional MD5 validation.
      *
-     * @param boolean $useTransactionalMD5 whether enable transactional
-     *                                     MD5 validation.
+     * @param bool $useTransactionalMD5 whether enable transactional
+     *                                  MD5 validation.
      */
     public function setUseTransactionalMD5($useTransactionalMD5)
     {

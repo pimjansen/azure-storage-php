@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Represents entity property.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Property
 {
@@ -54,8 +44,6 @@ class Property
      * Sets the value of the property.
      *
      * @param string $edmType The property type.
-     *
-     * @return void
      */
     public function setEdmType($edmType)
     {
@@ -65,8 +53,6 @@ class Property
 
     /**
      * Gets the value of the property.
-     *
-     * @return mixed
      */
     public function getValue()
     {
@@ -77,8 +63,6 @@ class Property
      * Sets the property value.
      *
      * @param mixed $value The value of property.
-     *
-     * @return void
      */
     public function setValue($value)
     {
@@ -99,8 +83,6 @@ class Property
      * Sets the raw property value.
      *
      * @param mixed $rawValue The raw value of property.
-     *
-     * @return void
      */
     public function setRawValue($rawValue)
     {

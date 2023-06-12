@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Models\Range;
 
 /**
  * Holds result of calling listPageBlobRanges wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListPageBlobRangesResult
 {
@@ -58,24 +48,24 @@ class ListPageBlobRangesResult
      */
     public static function create(array $headers, array $parsed = null)
     {
-        $result  = new ListPageBlobRangesResult();
+        $result = new ListPageBlobRangesResult();
         $headers = array_change_key_case($headers);
 
-        $date          = $headers[Resources::LAST_MODIFIED];
-        $date          = Utilities::rfc1123ToDateTime($date);
-        $blobLength    = intval($headers[Resources::X_MS_BLOB_CONTENT_LENGTH]);
-        $rawRanges = array();
+        $date = $headers[Resources::LAST_MODIFIED];
+        $date = Utilities::rfc1123ToDateTime($date);
+        $blobLength = (int) ($headers[Resources::X_MS_BLOB_CONTENT_LENGTH]);
+        $rawRanges = [];
 
         if (!empty($parsed[Resources::XTAG_PAGE_RANGE])) {
-            $parsed        = array_change_key_case($parsed);
+            $parsed = array_change_key_case($parsed);
             $rawRanges = Utilities::getArray($parsed[strtolower(RESOURCES::XTAG_PAGE_RANGE)]);
         }
 
-        $pageRanges = array();
+        $pageRanges = [];
         foreach ($rawRanges as $value) {
             $pageRanges[] = new Range(
-                intval($value[Resources::XTAG_RANGE_START]),
-                intval($value[Resources::XTAG_RANGE_END])
+                (int) ($value[Resources::XTAG_RANGE_START]),
+                (int) ($value[Resources::XTAG_RANGE_END])
             );
         }
         $result->setRanges($pageRanges);
@@ -100,8 +90,6 @@ class ListPageBlobRangesResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -123,8 +111,6 @@ class ListPageBlobRangesResult
      * Sets blob etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -135,7 +121,7 @@ class ListPageBlobRangesResult
     /**
      * Gets blob contentLength.
      *
-     * @return integer
+     * @return int
      */
     public function getContentLength()
     {
@@ -145,9 +131,7 @@ class ListPageBlobRangesResult
     /**
      * Sets blob contentLength.
      *
-     * @param integer $contentLength value.
-     *
-     * @return void
+     * @param int $contentLength value.
      */
     protected function setContentLength($contentLength)
     {
@@ -169,12 +153,10 @@ class ListPageBlobRangesResult
      * Sets page ranges
      *
      * @param array $pageRanges page ranges to set
-     *
-     * @return void
      */
     protected function setRanges(array $pageRanges)
     {
-        $this->_pageRanges = array();
+        $this->_pageRanges = [];
         foreach ($pageRanges as $pageRange) {
             $this->_pageRanges[] = clone $pageRange;
         }

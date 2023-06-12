@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Queue\Models;
 /**
  * WindowsAzure queue object.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Queue
 {
@@ -51,7 +41,7 @@ class Queue
     public function __construct($name, $url)
     {
         $this->_name = $name;
-        $this->_url  = $url;
+        $this->_url = $url;
     }
 
     /**
@@ -68,8 +58,6 @@ class Queue
      * Sets queue name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {
@@ -90,8 +78,6 @@ class Queue
      * Sets queue url.
      *
      * @param string $url value.
-     *
-     * @return void
      */
     public function setUrl($url)
     {
@@ -112,8 +98,6 @@ class Queue
      * Sets queue metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {

@@ -14,24 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Functional\Table\Enums
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Table\Enums;
 
 class MutatePivot
 {
-    public const CHANGE_VALUES   = 'ChangeValues';
-    public const ADD_PROPERTY    = 'AddProperty';
+    public const CHANGE_VALUES = 'ChangeValues';
+    public const ADD_PROPERTY = 'AddProperty';
     public const REMOVE_PROPERTY = 'RemoveProperty';
-    public const NULL_PROPERTY   = 'NullProperty';
+    public const NULL_PROPERTY = 'NullProperty';
+
     public static function values()
     {
-        return array('ChangeValues', 'AddProperty', 'RemoveProperty', 'NullProperty');
+        return ['ChangeValues', 'AddProperty', 'RemoveProperty', 'NullProperty'];
     }
 }

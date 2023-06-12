@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * optional parameters for CopyBlobOptions wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyBlobFromURLOptions extends BlobServiceOptions
 {
@@ -57,13 +47,11 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
      * Sets source access condition
      *
      * @param array $sourceAccessConditions value to use.
-     *
-     * @return void
      */
     public function setSourceAccessConditions($sourceAccessConditions)
     {
-        if (!is_null($sourceAccessConditions) &&
-            is_array($sourceAccessConditions)) {
+        if (null !== $sourceAccessConditions
+            && is_array($sourceAccessConditions)) {
             $this->sourceAccessConditions = $sourceAccessConditions;
         } else {
             $this->sourceAccessConditions = [$sourceAccessConditions];
@@ -84,8 +72,6 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
      * Sets metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata)
     {
@@ -106,8 +92,6 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
      * Sets source lease ID.
      *
      * @param string $sourceLeaseId value.
-     *
-     * @return void
      */
     public function setSourceLeaseId($sourceLeaseId)
     {
@@ -117,7 +101,7 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
     /**
      * Gets isIncrementalCopy.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsIncrementalCopy()
     {
@@ -127,9 +111,7 @@ class CopyBlobFromURLOptions extends BlobServiceOptions
     /**
      * Sets isIncrementalCopy.
      *
-     * @param boolean $isIncrementalCopy
-     *
-     * @return void
+     * @param bool $isIncrementalCopy
      */
     public function setIsIncrementalCopy($isIncrementalCopy)
     {

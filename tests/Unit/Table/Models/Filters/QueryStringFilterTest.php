@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Table\Models\Filters\QueryStringFilter;
 /**
  * Unit tests for class QueryStringFilter
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models\Filters
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueryStringFilterTest extends \PHPUnit\Framework\TestCase
 {
@@ -45,6 +35,6 @@ class QueryStringFilterTest extends \PHPUnit\Framework\TestCase
         $filter = new QueryStringFilter($expected);
 
         // Assert
-        $this->assertEquals($expected, $filter->getQueryString());
+        self::assertEquals($expected, $filter->getQueryString());
     }
 }

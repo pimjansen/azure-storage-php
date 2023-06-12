@@ -14,29 +14,24 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Functional\Table
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Table;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Models\CORS;
 use MicrosoftAzure\Storage\Common\Models\Logging;
 use MicrosoftAzure\Storage\Common\Models\Metrics;
-use MicrosoftAzure\Storage\Common\Models\CORS;
 use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 use MicrosoftAzure\Storage\Table\Models\EdmType;
 use MicrosoftAzure\Storage\Table\Models\Entity;
+use MicrosoftAzure\Storage\Table\Models\Filters\Filter;
 use MicrosoftAzure\Storage\Table\Models\QueryTablesOptions;
 use MicrosoftAzure\Storage\Table\Models\TableServiceOptions;
-use MicrosoftAzure\Storage\Table\Models\Filters\Filter;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 class TableServiceFunctionalTestData
 {
@@ -59,14 +54,14 @@ class TableServiceFunctionalTestData
     public static function setupData()
     {
         self::$INT_MIN_VALUE = -1 - self::INT_MAX_VALUE;
-        $rint = rand(0, 1000000);
+        $rint = mt_rand(0, 1000000);
         self::$testUniqueId = 'qaX' . $rint . 'X';
         self::$nonExistTablePrefix = 'qaX' . ($rint + 1) . 'X';
-        self::$testTableNames = array(
+        self::$testTableNames = [
             self::$testUniqueId . 'a1',
             self::$testUniqueId . 'a2',
-            self::$testUniqueId . 'b1'
-        );
+            self::$testUniqueId . 'b1',
+        ];
     }
 
     public static function getInterestingTableName()
@@ -119,115 +114,108 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingServiceProperties()
     {
-        $ret = array();
+        $ret = [];
 
         // This is the default that comes from the server.
         array_push($ret, self::getDefaultServiceProperties());
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            $rp->setDays(10);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        $rp->setDays(10);
 
-            $l = new Logging();
-            $l->setRetentionPolicy($rp);
-            // Note: looks like only v1.0 is available now.
-            // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
-            $l->setVersion('1.0');
-            $l->setDelete(true);
-            $l->setRead(true);
-            $l->setWrite(true);
+        $l = new Logging();
+        $l->setRetentionPolicy($rp);
+        // Note: looks like only v1.0 is available now.
+        // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
+        $l->setVersion('1.0');
+        $l->setDelete(true);
+        $l->setRead(true);
+        $l->setWrite(true);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $c = CORS::create(TestResources::getCORSSingle());
+        $c = CORS::create(TestResources::getCORSSingle());
 
-            $sp = new ServiceProperties();
-            $sp->setLogging($l);
-            $sp->setHourMetrics($m);
-            $sp->setCorses(array($c));
+        $sp = new ServiceProperties();
+        $sp->setLogging($l);
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(false);
-            $rp->setDays(null);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(false);
+        $rp->setDays(null);
 
-            $l = new Logging();
-            $l->setRetentionPolicy($rp);
-            // Note: looks like only v1.0 is available now.
-            // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
-            $l->setVersion('1.0');
-            $l->setDelete(false);
-            $l->setRead(false);
-            $l->setWrite(false);
+        $l = new Logging();
+        $l->setRetentionPolicy($rp);
+        // Note: looks like only v1.0 is available now.
+        // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
+        $l->setVersion('1.0');
+        $l->setDelete(false);
+        $l->setRead(false);
+        $l->setWrite(false);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setLogging($l);
-            $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+        $sp = new ServiceProperties();
+        $sp->setLogging($l);
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            // Days has to be 0 < days <= 365
-            $rp->setDays(364);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        // Days has to be 0 < days <= 365
+        $rp->setDays(364);
 
-            $l = new Logging();
-            $l->setRetentionPolicy($rp);
-            // Note: looks like only v1.0 is available now.
-            // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
-            $l->setVersion('1.0');
-            $l->setDelete(false);
-            $l->setRead(false);
-            $l->setWrite(false);
+        $l = new Logging();
+        $l->setRetentionPolicy($rp);
+        // Note: looks like only v1.0 is available now.
+        // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
+        $l->setVersion('1.0');
+        $l->setDelete(false);
+        $l->setRead(false);
+        $l->setWrite(false);
 
-            $m = new Metrics();
-            $m->setVersion('1.0');
-            $m->setEnabled(false);
-            $m->setIncludeAPIs(null);
-            $m->setRetentionPolicy($rp);
+        $m = new Metrics();
+        $m->setVersion('1.0');
+        $m->setEnabled(false);
+        $m->setIncludeAPIs(null);
+        $m->setRetentionPolicy($rp);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setLogging($l);
-            $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+        $sp = new ServiceProperties();
+        $sp->setLogging($l);
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
         return $ret;
     }
 
     public static function getInterestingQueryTablesOptions($isEmulated)
     {
-        $ret = array();
-
+        $ret = [];
 
         $options = new QueryTablesOptions();
         array_push($ret, $options);
@@ -339,7 +327,6 @@ class TableServiceFunctionalTestData
         $options->setNextTableName($nextTableName);
         array_push($ret, $options);
 
-
         return $ret;
     }
 
@@ -358,7 +345,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingEntities()
     {
-        $ret = array();
+        $ret = [];
 
         array_push($ret, self::getSimpleEntity());
 
@@ -410,7 +397,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadEntities()
     {
-        $ret = array();
+        $ret = [];
 
         $e = new Entity();
         array_push($ret, $e);
@@ -428,7 +415,7 @@ class TableServiceFunctionalTestData
 
     public static function getSimpleEntities($count)
     {
-        $ret = array();
+        $ret = [];
 
         $e = new Entity();
         $e->setPartitionKey('singlePartition');
@@ -448,7 +435,7 @@ class TableServiceFunctionalTestData
         // The random here is not to generate random values, but to
         // get a good mix of values in the table entities.
         mt_srand(123);
-        for ($i = 0; $i < $count - 1; $i++) {
+        for ($i = 0; $i < $count - 1; ++$i) {
             $e = new Entity();
             $e->setPartitionKey('singlePartition');
             $e->setRowKey(self::getNewKey());
@@ -476,7 +463,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodBooleans()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, true);
         array_push($ret, false);
         //        array_push($ret, 'TRUE');
@@ -486,14 +473,14 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadBooleans()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 'BOO!');
         return $ret;
     }
 
     public static function getInterestingGoodDates()
     {
-        $ret = array();
+        $ret = [];
 
         array_push($ret, new \DateTime());
 
@@ -515,7 +502,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadDates()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, true);
         array_push($ret, 0);
         return $ret;
@@ -523,11 +510,11 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodDoubles()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, pi());
         array_push($ret, 0.0);
-        array_push($ret, floatval(self::INT_MAX_VALUE));
-        array_push($ret, floatval(self::LONG_BIG_VALUE));
+        array_push($ret, (float) (self::INT_MAX_VALUE));
+        array_push($ret, (float) (self::LONG_BIG_VALUE));
         array_push($ret, 2.3456);
         array_push($ret, 1.0e-10);
         return $ret;
@@ -535,14 +522,14 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadDoubles()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 'ABCDEFGH-D3F8-49EC-B837-B8B5B6367B74');
         return $ret;
     }
 
     public static function getInterestingGoodGuids()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, '90ab64d6-d3f8-49ec-b837-b8b5b6367b74');
         array_push($ret, '00000000-0000-0000-0000-000000000000');
         return $ret;
@@ -550,7 +537,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadGuids()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 'ABCDEFGH-D3F8-49EC-B837-B8B5B6367B74');
         array_push($ret, '');
         return $ret;
@@ -558,7 +545,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodInts()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 0);
         array_push($ret, self::INT_MAX_VALUE);
         array_push($ret, self::$INT_MIN_VALUE);
@@ -568,7 +555,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadInts()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, false);
         array_push($ret, self::INT_MAX_VALUE + 1);
         return $ret;
@@ -576,17 +563,17 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodLongs()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, '0');
-        array_push($ret, strval(self::LONG_BIG_VALUE));
-        array_push($ret, strval(self::LONG_BIG_VALUE_NEGATIVE));
+        array_push($ret, (string) (self::LONG_BIG_VALUE));
+        array_push($ret, (string) (self::LONG_BIG_VALUE_NEGATIVE));
         array_push($ret, '35536');
         return $ret;
     }
 
     public static function getInterestingBadLongs()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, false);
         array_push($ret, '9223372036854775808');
         return $ret;
@@ -594,7 +581,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodBinaries()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, '');
         array_push($ret, chr(1) . chr(2) . chr(3) . chr(4) . chr(5));
         array_push($ret, chr(255) . chr(254) . chr(253));
@@ -603,7 +590,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadBinaries()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 12345);
         array_push($ret, new \DateTime());
         return $ret;
@@ -611,14 +598,14 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingGoodStrings()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, 'AQIDBAU='); // Base-64 encoded byte array { 0x01, 0x02, 0x03, 0x04, 0x05 };
         array_push($ret, 'false');
         array_push($ret, '12345');
         array_push($ret, '\\' . '\\' . '\'' . '(?++\\.&==/&?\'\'$@://   .ne');
         array_push($ret, '12345');
         array_push($ret, 'Some unicode: ' . self::getUnicodeString());
-        array_push($ret, strval(self::INT_MAX_VALUE));
+        array_push($ret, (string) (self::INT_MAX_VALUE));
         array_push($ret, '<some><XML></stuff>');
         array_push($ret, "\t\tSomething you entered\n\n\ttranscended parameters\r\n\r\n\t\tSo much is unknown\r\r");
         return $ret;
@@ -626,8 +613,7 @@ class TableServiceFunctionalTestData
 
     public static function getInterestingBadStrings()
     {
-        $ret = array();
+        return [];
         // Are there any?
-        return $ret;
     }
 }

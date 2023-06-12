@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Represents windows azure blob object
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Blob
 {
@@ -41,6 +31,7 @@ class Blob
     private $_snapshot;
     private $_metadata;
     private $_properties;
+
     /**
      * Gets blob name.
      *
@@ -55,8 +46,6 @@ class Blob
      * Sets blob name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {
@@ -77,8 +66,6 @@ class Blob
      * Sets blob snapshot.
      *
      * @param string $snapshot value.
-     *
-     * @return void
      */
     public function setSnapshot($snapshot)
     {
@@ -99,8 +86,6 @@ class Blob
      * Sets blob url.
      *
      * @param string $url value.
-     *
-     * @return void
      */
     public function setUrl($url)
     {
@@ -121,8 +106,6 @@ class Blob
      * Sets blob metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata = null)
     {
@@ -143,8 +126,6 @@ class Blob
      * Sets blob properties.
      *
      * @param BlobProperties $properties value.
-     *
-     * @return void
      */
     public function setProperties($properties)
     {

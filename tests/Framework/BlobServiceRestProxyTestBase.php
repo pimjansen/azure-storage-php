@@ -14,19 +14,13 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Blob\Models\Container;
-use MicrosoftAzure\Storage\Tests\Framework\ServiceRestProxyTestBase;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\ListContainersOptions;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
@@ -35,12 +29,7 @@ use MicrosoftAzure\Storage\Common\Middlewares\RetryMiddlewareFactory;
 /**
  * TestBase class for each unit test class.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
 {
@@ -52,12 +41,12 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
         $blobRestProxy = BlobRestProxy::createBlobService($this->connectionString);
         $blobRestProxy->pushMiddleware(RetryMiddlewareFactory::create());
         parent::setProxy($blobRestProxy);
-        $this->_createdContainers = array();
+        $this->_createdContainers = [];
     }
 
     public function createContainer($containerName, $options = null)
     {
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateContainerOptions();
             $options->setPublicAccess('container');
         }
@@ -79,12 +68,12 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
                 $this->createContainer($containerName, $options);
                 $ok = true;
             } catch (ServiceException $e) {
-                if ($e->getCode() != TestResources::STATUS_CONFLICT ||
-                        $counter > $retryCount) {
+                if ($e->getCode() != TestResources::STATUS_CONFLICT
+                        || $counter > $retryCount) {
                     throw $e;
                 }
                 sleep(10);
-                $counter++;
+                ++$counter;
             }
         } while (!$ok);
     }
@@ -93,7 +82,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
     {
         $containers = $this->listContainers($containerPrefix);
         foreach ($containerList as $container) {
-            if (array_search($container, $containers) === false) {
+            if (array_search($container, $containers, true) === false) {
                 $this->createContainer($container);
             } else {
                 $listResults = $this->restProxy->listBlobs($container);
@@ -127,7 +116,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function deleteContainer($containerName)
     {
-        if (($key = array_search($containerName, $this->_createdContainers)) !== false) {
+        if (($key = array_search($containerName, $this->_createdContainers, true)) !== false) {
             unset($this->_createdContainers[$key]);
         }
         $this->restProxy->deleteContainer($containerName);
@@ -137,7 +126,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
     {
         $containers = $this->listContainers($containerPrefix);
         foreach ($containerList as $container) {
-            if (in_array($container, $containers)) {
+            if (in_array($container, $containers, true)) {
                 $this->deleteContainer($container);
             }
         }
@@ -145,9 +134,9 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
 
     public function listContainers($containerPrefix = null)
     {
-        $result = array();
+        $result = [];
         $opts = new ListContainersOptions();
-        if (!is_null($containerPrefix)) {
+        if (null !== $containerPrefix) {
             $opts->setPrefix($containerPrefix);
         }
 

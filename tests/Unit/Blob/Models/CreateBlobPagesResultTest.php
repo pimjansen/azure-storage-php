@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobPagesResult;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class CreateBlobPagesResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobPagesResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -51,10 +41,10 @@ class CreateBlobPagesResultTest extends \PHPUnit\Framework\TestCase
         $actual = CreateBlobPagesResult::create($expected);
 
         // Assert
-        $this->assertEquals($expectedDate, $actual->getLastModified());
-        $this->assertEquals($expected['Etag'], $actual->getETag());
-        $this->assertEquals($expected['Content-MD5'], $actual->getContentMD5());
-        $this->assertEquals(intval($expected['x-ms-blob-sequence-number']), $actual->getSequenceNumber());
-        $this->assertEquals(Utilities::toBoolean($expected['x-ms-request-server-encrypted']), $actual->getRequestServerEncrypted());
+        self::assertEquals($expectedDate, $actual->getLastModified());
+        self::assertEquals($expected['Etag'], $actual->getETag());
+        self::assertEquals($expected['Content-MD5'], $actual->getContentMD5());
+        self::assertEquals((int) ($expected['x-ms-blob-sequence-number']), $actual->getSequenceNumber());
+        self::assertEquals(Utilities::toBoolean($expected['x-ms-request-server-encrypted']), $actual->getRequestServerEncrypted());
     }
 }

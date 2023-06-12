@@ -14,35 +14,26 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Functional\File
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\File;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\File\Models\AccessCondition;
-use MicrosoftAzure\Storage\File\Models\ShareACL;
-use MicrosoftAzure\Storage\File\Models\GetFileOptions;
-use MicrosoftAzure\Storage\File\Models\FileProperties;
-use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
-use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
-use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
-use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
-use MicrosoftAzure\Storage\File\Models\PutFileRangeOptions;
-use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
-use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Models\Range;
-use MicrosoftAzure\Storage\Common\Models\Logging;
-use MicrosoftAzure\Storage\Common\Models\Metrics;
 use MicrosoftAzure\Storage\Common\Models\CORS;
+use MicrosoftAzure\Storage\Common\Models\Metrics;
+use MicrosoftAzure\Storage\Common\Models\Range;
 use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
+use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
+use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
+use MicrosoftAzure\Storage\File\Models\FileProperties;
+use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
+use MicrosoftAzure\Storage\File\Models\GetFileOptions;
+use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
+use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
+use MicrosoftAzure\Storage\File\Models\ShareACL;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 class FileServiceFunctionalTestData
 {
@@ -60,7 +51,7 @@ class FileServiceFunctionalTestData
         self::$testUniqueId = self::getRandomHexBytes(10);
         self::$nonExistSharePrefix = self::getRandomHexBytes(10) . 'nonshr';
         self::$nonExistFilePrefix = self::getRandomHexBytes(10) . 'nonfile';
-        self::$testShareNames = array();
+        self::$testShareNames = [];
         for ($i = 0; $i < 3; ++$i) {
             self::$testShareNames[] = self::getInterestingShareName();
         }
@@ -91,9 +82,9 @@ class FileServiceFunctionalTestData
     {
         if ($length & 1 == 0) {
             return \bin2hex(self::getRandomBytes($length / 2));
-        } else {
-            return substr(\bin2hex(self::getRandomBytes(($length / 2) + 1)), 1);
         }
+        return substr(\bin2hex(self::getRandomBytes(($length / 2) + 1)), 1);
+
     }
 
     public static function getRandomBytes($length)
@@ -103,7 +94,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingTimeoutValues()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, null);
         array_push($ret, -1);
         array_push($ret, 0);
@@ -144,88 +135,79 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingServiceProperties()
     {
-        $ret = array();
+        $ret = [];
 
-        {
-            // This is the default that comes from the server.
-            array_push($ret, self::getDefaultServiceProperties());
-        }
+        // This is the default that comes from the server.
+        array_push($ret, self::getDefaultServiceProperties());
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            $rp->setDays(10);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        $rp->setDays(10);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $c = CORS::create(TestResources::getCORSSingle());
+        $c = CORS::create(TestResources::getCORSSingle());
 
-            $sp = new ServiceProperties();
-            $sp->setHourMetrics($m);
-            $sp->setCorses(array($c));
+        $sp = new ServiceProperties();
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            // The service does not accept setting days when enabled is false.
-            $rp->setEnabled(false);
-            $rp->setDays(null);
+        $rp = new RetentionPolicy();
+        // The service does not accept setting days when enabled is false.
+        $rp->setEnabled(false);
+        $rp->setDays(null);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+        $sp = new ServiceProperties();
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            // Days has to be 0 < days <= 365
-            $rp->setDays(364);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        // Days has to be 0 < days <= 365
+        $rp->setDays(364);
 
-            $m = new Metrics();
-            $m->setVersion('1.0');
-            $m->setEnabled(false);
-            $m->setIncludeAPIs(null);
-            $m->setRetentionPolicy($rp);
+        $m = new Metrics();
+        $m->setVersion('1.0');
+        $m->setEnabled(false);
+        $m->setIncludeAPIs(null);
+        $m->setRetentionPolicy($rp);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+        $sp = new ServiceProperties();
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
         return $ret;
     }
 
     public static function getInterestingListSharesOptions()
     {
-        $ret = array();
-
+        $ret = [];
 
         $options = new ListSharesOptions();
         array_push($ret, $options);
@@ -280,15 +262,15 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingMetadata()
     {
-        $ret = array();
+        $ret = [];
 
-        $metadata = array();
+        $metadata = [];
         array_push($ret, $metadata);
 
         array_push($ret, self::getNiceMetadata());
 
         // Some metadata that HTTP will not like.
-        $metadata = array('<>000' => '::::value');
+        $metadata = ['<>000' => '::::value'];
         array_push($ret, $metadata);
 
         return $ret;
@@ -296,15 +278,15 @@ class FileServiceFunctionalTestData
 
     public static function getNiceMetadata()
     {
-        return array(
+        return [
             'key' => 'value',
             'foo' => 'bar',
-            'baz' => 'boo');
+            'baz' => 'boo'];
     }
 
     public static function getInterestingCreateFileOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CreateFileOptions();
         array_push($ret, $options);
@@ -318,16 +300,16 @@ class FileServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateFileOptions();
-        $metadata = array(
+        $metadata = [
             'foo' => 'bar',
             'foo2' => 'bar2',
-            'foo3' => 'bar3');
+            'foo3' => 'bar3'];
         $options->setMetadata($metadata);
         $options->setTimeout(10);
         array_push($ret, $options);
 
         $options = new CreateFileOptions();
-        $metadata = array('foo' => 'bar');
+        $metadata = ['foo' => 'bar'];
         $options->setMetadata($metadata);
         $options->setTimeout(-10);
         array_push($ret, $options);
@@ -337,7 +319,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingListDirectoriesAndFilesOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new ListDirectoriesAndFilesOptions();
         array_push($ret, $options);
@@ -353,7 +335,6 @@ class FileServiceFunctionalTestData
         $options = new ListDirectoriesAndFilesOptions();
         $options->setTimeout(-10);
         array_push($ret, $options);
-
 
         $options = new ListDirectoriesAndFilesOptions();
         $options->setMaxResults(2);
@@ -375,7 +356,7 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingCreateShareOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CreateShareOptions();
         array_push($ret, $options);
@@ -389,10 +370,10 @@ class FileServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateShareOptions();
-        $metadata = array(
+        $metadata = [
             'foo' => 'bar',
             'boo' => 'baz',
-        );
+        ];
         $options->setMetadata($metadata);
         array_push($ret, $options);
 
@@ -401,10 +382,10 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingDeleteShareOptions()
     {
-        $ret = array();
+        $ret = [];
 
-        $past = new \DateTime("01/01/2010");
-        $future = new \DateTime("01/01/2020");
+        $past = new \DateTime('01/01/2010');
+        $future = new \DateTime('01/01/2020');
 
         $options = new FileServiceOptions();
         array_push($ret, $options);
@@ -422,7 +403,7 @@ class FileServiceFunctionalTestData
 
     public static function getFileServiceOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new FileServiceOptions();
         array_push($ret, $options);
@@ -440,7 +421,7 @@ class FileServiceFunctionalTestData
 
     public static function getSetFileProperties()
     {
-        $ret = array();
+        $ret = [];
 
         $properties = new FileProperties();
         array_push($ret, $properties);
@@ -479,10 +460,10 @@ class FileServiceFunctionalTestData
 
     public static function getInterestingACL()
     {
-        $ret = array();
+        $ret = [];
 
-        $past = new \DateTime("01/01/2010");
-        $future = new \DateTime("01/01/2020");
+        $past = new \DateTime('01/01/2010');
+        $future = new \DateTime('01/01/2020');
 
         $acl = new ShareACL();
         array_push($ret, $acl);
@@ -496,7 +477,7 @@ class FileServiceFunctionalTestData
 
     public static function getGetFileOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new GetFileOptions();
         array_push($ret, $options);
@@ -531,7 +512,7 @@ class FileServiceFunctionalTestData
 
     public static function getCopyFileMetaOptionsPairs()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new FileServiceOptions();
         $meta = null;
@@ -548,10 +529,10 @@ class FileServiceFunctionalTestData
         array_push($ret, ['metadata' => $meta, 'options' => $options]);
 
         $options = new FileServiceOptions();
-        $meta = array(
+        $meta = [
             'Xkey' => 'Avalue',
             'Yfoo' => 'Bbar',
-            'Zbaz' => 'Cboo');
+            'Zbaz' => 'Cboo'];
         array_push($ret, ['metadata' => $meta, 'options' => $options]);
 
         return $ret;
@@ -559,55 +540,55 @@ class FileServiceFunctionalTestData
 
     public static function getRangesArray()
     {
-        $ret = array();
+        $ret = [];
 
         $ret[] = [
             'putRange' => new Range(0, 511),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new Range(0, 511)]
+            'resultListRange' => [new Range(0, 511)],
         ];
 
         $ret[] = [
             'putRange' => new Range(1024, 1535),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new Range(0, 511), new Range(1024, 1535)]
+            'resultListRange' => [new Range(0, 511), new Range(1024, 1535)],
         ];
 
         $ret[] = [
             'putRange' => new Range(512, 1023),
             'clearRange' => null,
             'listRange' => null,
-            'resultListRange' => [new Range(0, 1535)]
+            'resultListRange' => [new Range(0, 1535)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => new Range(1024, 1535),
             'listRange' => null,
-            'resultListRange' => [new Range(0, 1023)]
+            'resultListRange' => [new Range(0, 1023)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => null,
             'listRange' => new Range(0, 511),
-            'resultListRange' => [new Range(0, 511)]
+            'resultListRange' => [new Range(0, 511)],
         ];
 
         $ret[] = [
             'putRange' => new Range(1024, 2047),
             'clearRange' => new Range(378, 1025),
             'listRange' => null,
-            'resultListRange' => [new Range(0, 511), new Range(1024, 2047)]
+            'resultListRange' => [new Range(0, 511), new Range(1024, 2047)],
         ];
 
         $ret[] = [
             'putRange' => null,
             'clearRange' => new Range(0, 2047),
             'listRange' => null,
-            'resultListRange' => array()
+            'resultListRange' => [],
         ];
 
         return $ret;
@@ -615,90 +596,90 @@ class FileServiceFunctionalTestData
 
     public static function getDirectoriesAndFilesToCreateOrDelete()
     {
-        $ret = array();
+        $ret = [];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'file',
             'path' => 'dir0/file0',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0/dir00',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0/dir01',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0/dir02/dir020',
-            'error' => 'The specified parent path does not exist'
+            'error' => 'The specified parent path does not exist',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'file',
             'path' => 'dir0/dir02/file020',
-            'error' => 'The specified parent path does not exist'
+            'error' => 'The specified parent path does not exist',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'dir',
             'path' => 'dir0/dir00/dir000',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'create',
             'type' => 'file',
             'path' => 'dir0/dir00/file000',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'delete',
             'type' => 'dir',
             'path' => 'dir0/dir00',
-            'error' => 'The specified directory is not empty.'
+            'error' => 'The specified directory is not empty.',
         ];
 
         $ret[] = [
             'operation' => 'delete',
             'type' => 'dir',
             'path' => 'dir0/dir00/dir000',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'delete',
             'type' => 'file',
             'path' => 'dir0/dir00/file000',
-            'error' => ''
+            'error' => '',
         ];
 
         $ret[] = [
             'operation' => 'delete',
             'type' => 'dir',
             'path' => 'dir0/dir00',
-            'error' => ''
+            'error' => '',
         ];
 
         return $ret;

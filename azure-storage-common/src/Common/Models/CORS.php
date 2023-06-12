@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -31,12 +26,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  * Provides functionality and data structure for Cross-Origin Resource Sharing
  * rules.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CORS
 {
@@ -82,7 +72,7 @@ class CORS
     /**
      * Create an instance with parsed XML response with 'CORS' root.
      *
-     * @param  array  $parsedResponse The response used to create an instance.
+     * @param array $parsedResponse The response used to create an instance.
      *
      * @internal
      *
@@ -117,23 +107,23 @@ class CORS
         );
 
         // Get the values from the parsed response.
-        $allowedOrigins  = array_filter(explode(
+        $allowedOrigins = array_filter(explode(
             ',',
             $parsedResponse[Resources::XTAG_ALLOWED_ORIGINS]
         ));
-        $allowedMethods  = array_filter(explode(
+        $allowedMethods = array_filter(explode(
             ',',
             $parsedResponse[Resources::XTAG_ALLOWED_METHODS]
         ));
-        $allowedHeaders  = array_filter(explode(
+        $allowedHeaders = array_filter(explode(
             ',',
             $parsedResponse[Resources::XTAG_ALLOWED_HEADERS]
         ));
-        $exposedHeaders  = array_filter(explode(
+        $exposedHeaders = array_filter(explode(
             ',',
             $parsedResponse[Resources::XTAG_EXPOSED_HEADERS]
         ));
-        $maxAgeInSeconds = intval(
+        $maxAgeInSeconds = (int) (
             $parsedResponse[Resources::XTAG_MAX_AGE_IN_SECONDS]
         );
 
@@ -153,18 +143,18 @@ class CORS
      */
     public function toArray()
     {
-        return array(
-            Resources::XTAG_ALLOWED_ORIGINS    =>
+        return [
+            Resources::XTAG_ALLOWED_ORIGINS =>
                 implode(',', $this->getAllowedOrigins()),
-            Resources::XTAG_ALLOWED_METHODS    =>
+            Resources::XTAG_ALLOWED_METHODS =>
                 implode(',', $this->getAllowedMethods()),
-            Resources::XTAG_ALLOWED_HEADERS    =>
+            Resources::XTAG_ALLOWED_HEADERS =>
                 implode(',', $this->getAllowedHeaders()),
-            Resources::XTAG_EXPOSED_HEADERS    =>
+            Resources::XTAG_EXPOSED_HEADERS =>
                 implode(',', $this->getExposedHeaders()),
             Resources::XTAG_MAX_AGE_IN_SECONDS =>
-                $this->getMaxedAgeInSeconds()
-        );
+                $this->getMaxedAgeInSeconds(),
+        ];
     }
 
     /**

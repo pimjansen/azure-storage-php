@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\MetadataTrait;
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
+use MicrosoftAzure\Storage\Common\Internal\MetadataTrait;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Holds result of getContainerProperties and getContainerMetadata
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetContainerPropertiesResult
 {
@@ -62,8 +52,6 @@ class GetContainerPropertiesResult
      * Sets blob leaseStatus.
      *
      * @param string $leaseStatus value.
-     *
-     * @return void
      */
     public function setLeaseStatus($leaseStatus)
     {
@@ -84,8 +72,6 @@ class GetContainerPropertiesResult
      * Sets blob lease state.
      *
      * @param string $leaseState value.
-     *
-     * @return void
      */
     public function setLeaseState($leaseState)
     {
@@ -106,8 +92,6 @@ class GetContainerPropertiesResult
      * Sets blob leaseStatus.
      *
      * @param string $leaseDuration value.
-     *
-     * @return void
      */
     public function setLeaseDuration($leaseDuration)
     {
@@ -128,8 +112,6 @@ class GetContainerPropertiesResult
      * Sets container publicAccess.
      *
      * @param string $publicAccess value.
-     *
-     * @return void
      */
     public function setPublicAccess($publicAccess)
     {
@@ -143,7 +125,7 @@ class GetContainerPropertiesResult
     /**
      * Create an instance using the response headers from the API call.
      *
-     * @param  array  $responseHeaders The array contains all the response headers
+     * @param array $responseHeaders The array contains all the response headers
      *
      * @internal
      *
@@ -151,7 +133,7 @@ class GetContainerPropertiesResult
      */
     public static function create(array $responseHeaders)
     {
-        $result   = static::createMetadataResult($responseHeaders);
+        $result = static::createMetadataResult($responseHeaders);
 
         $result->setLeaseStatus(Utilities::tryGetValueInsensitive(
             Resources::X_MS_LEASE_STATUS,

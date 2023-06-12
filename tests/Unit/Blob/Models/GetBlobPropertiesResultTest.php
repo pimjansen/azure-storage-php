@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
+use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
 use MicrosoftAzure\Storage\Blob\Models\GetBlobPropertiesResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
 
 /**
  * Unit tests for class GetBlobPropertiesResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetBlobPropertiesResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -52,7 +42,7 @@ class GetBlobPropertiesResultTest extends \PHPUnit\Framework\TestCase
         $actual = GetBlobPropertiesResult::create($expected);
 
         // Assert
-        $this->assertEquals($expectedProperties, $actual->getProperties());
-        $this->assertEquals(array('' => $expected['x-ms-meta-']), $actual->getMetadata());
+        self::assertEquals($expectedProperties, $actual->getProperties());
+        self::assertEquals(['' => $expected['x-ms-meta-']], $actual->getMetadata());
     }
 }

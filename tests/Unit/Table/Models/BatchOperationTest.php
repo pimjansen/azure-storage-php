@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
 
 use MicrosoftAzure\Storage\Table\Models\BatchOperation;
-use MicrosoftAzure\Storage\Table\Models\BatchOperationType;
 use MicrosoftAzure\Storage\Table\Models\BatchOperationParameterName;
+use MicrosoftAzure\Storage\Table\Models\BatchOperationType;
 
 /**
  * Unit tests for class BatchOperation
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperationTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,7 +40,7 @@ class BatchOperationTest extends \PHPUnit\Framework\TestCase
         $batchOperation->setType($expected);
 
         // Assert
-        $this->assertEquals($expected, $batchOperation->getType());
+        self::assertEquals($expected, $batchOperation->getType());
     }
 
     public function testAddParameter()
@@ -64,6 +54,6 @@ class BatchOperationTest extends \PHPUnit\Framework\TestCase
         $batchOperation->addParameter($name, $expected);
 
         // Assert
-        $this->assertEquals($expected, $batchOperation->getParameter($name));
+        self::assertEquals($expected, $batchOperation->getParameter($name));
     }
 }

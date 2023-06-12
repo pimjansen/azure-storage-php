@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Holds result of getShareStats.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetShareStatsResult
 {
@@ -62,8 +52,6 @@ class GetShareStatsResult
      * Sets file shareUsage.
      *
      * @param int $shareUsage value.
-     *
-     * @return void
      */
     protected function setShareUsage($shareUsage)
     {
@@ -73,7 +61,7 @@ class GetShareStatsResult
     /**
      * Create an instance using the response headers from the API call.
      *
-     * @param  array  $parsed          The array contains parsed response body
+     * @param array $parsed The array contains parsed response body
      *
      * @internal
      *
@@ -81,9 +69,9 @@ class GetShareStatsResult
      */
     public static function create(array $parsed)
     {
-        $result   = new GetShareStatsResult();
+        $result = new GetShareStatsResult();
 
-        $result->setShareUsage(\intval(Utilities::tryGetValueInsensitive(
+        $result->setShareUsage((int) (Utilities::tryGetValueInsensitive(
             Resources::XTAG_SHARE_USAGE,
             $parsed
         )));

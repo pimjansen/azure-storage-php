@@ -14,31 +14,21 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
-use MicrosoftAzure\Storage\File\Models\ShareProperties;
-use MicrosoftAzure\Storage\File\Models\Share;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\File\Models\Share;
+use MicrosoftAzure\Storage\File\Models\ShareProperties;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class Share
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ShareTest extends \PHPUnit\Framework\TestCase
 {
@@ -46,14 +36,14 @@ class ShareTest extends \PHPUnit\Framework\TestCase
     {
         $responseArray = TestResources::getInterestingShareArray();
         $share = Share::create($responseArray);
-        $expectedMeta = Utilities::tryGetValue($responseArray, Resources::QP_METADATA, array());
+        $expectedMeta = Utilities::tryGetValue($responseArray, Resources::QP_METADATA, []);
         $expectedName = $responseArray[Resources::QP_NAME];
         $expectedProperties = ShareProperties::create(
             $responseArray[Resources::QP_PROPERTIES]
         );
 
-        $this->assertEquals($expectedMeta, $share->getMetadata());
-        $this->assertEquals($expectedName, $share->getName());
-        $this->assertEquals($expectedProperties, $share->getProperties());
+        self::assertEquals($expectedMeta, $share->getMetadata());
+        self::assertEquals($expectedName, $share->getName());
+        self::assertEquals($expectedProperties, $share->getProperties());
     }
 }

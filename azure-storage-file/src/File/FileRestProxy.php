@@ -14,65 +14,54 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File;
 
+use GuzzleHttp\Psr7;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedAccessSignatureAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedKeyAuthScheme;
+use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
 use MicrosoftAzure\Storage\Common\Internal\Middlewares\CommonRequestMiddleware;
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
-use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
-use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
-use MicrosoftAzure\Storage\File\Internal\IFile;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Storage\Common\Internal\ServiceRestTrait;
+use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\LocationMode;
 use MicrosoftAzure\Storage\Common\Models\Range;
-use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
-use MicrosoftAzure\Storage\File\Models\ShareACL;
-use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
-use MicrosoftAzure\Storage\File\Models\ListSharesResult;
-use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
+use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
+use MicrosoftAzure\Storage\File\Internal\IFile;
+use MicrosoftAzure\Storage\File\Models\CopyFileResult;
 use MicrosoftAzure\Storage\File\Models\CreateDirectoryOptions;
+use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
+use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
+use MicrosoftAzure\Storage\File\Models\CreateShareOptions;
+use MicrosoftAzure\Storage\File\Models\FileProperties;
 use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
+use MicrosoftAzure\Storage\File\Models\GetDirectoryMetadataResult;
+use MicrosoftAzure\Storage\File\Models\GetDirectoryPropertiesResult;
+use MicrosoftAzure\Storage\File\Models\GetFileMetadataResult;
+use MicrosoftAzure\Storage\File\Models\GetFileOptions;
+use MicrosoftAzure\Storage\File\Models\GetFileResult;
 use MicrosoftAzure\Storage\File\Models\GetShareACLResult;
 use MicrosoftAzure\Storage\File\Models\GetSharePropertiesResult;
 use MicrosoftAzure\Storage\File\Models\GetShareStatsResult;
 use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesOptions;
 use MicrosoftAzure\Storage\File\Models\ListDirectoriesAndFilesResult;
-use MicrosoftAzure\Storage\File\Models\GetDirectoryPropertiesResult;
-use MicrosoftAzure\Storage\File\Models\GetDirectoryMetadataResult;
-use MicrosoftAzure\Storage\File\Models\GetFileMetadataResult;
-use MicrosoftAzure\Storage\File\Models\CreateFileOptions;
-use MicrosoftAzure\Storage\File\Models\FileProperties;
-use MicrosoftAzure\Storage\File\Models\PutFileRangeOptions;
-use MicrosoftAzure\Storage\File\Models\GetFileOptions;
-use MicrosoftAzure\Storage\File\Models\GetFileResult;
 use MicrosoftAzure\Storage\File\Models\ListFileRangesResult;
-use MicrosoftAzure\Storage\File\Models\CopyFileResult;
-use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
+use MicrosoftAzure\Storage\File\Models\ListSharesOptions;
+use MicrosoftAzure\Storage\File\Models\ListSharesResult;
+use MicrosoftAzure\Storage\File\Models\PutFileRangeOptions;
+use MicrosoftAzure\Storage\File\Models\ShareACL;
 use Psr\Http\Message\StreamInterface;
-use GuzzleHttp\Psr7;
 
 /**
  * This class constructs HTTP requests and receive HTTP responses for File
  * service layer.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class FileRestProxy extends ServiceRestProxy implements IFile
 {
@@ -95,6 +84,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      *
      * @param string $connectionString The configuration connection string.
      * @param array  $options          Array of options to pass to the service
+     *
      * @return FileRestProxy
      */
     public static function createFileService(
@@ -146,8 +136,8 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates URI path for file or share.
      *
-     * @param string $share      The share name.
-     * @param string $directory  The directory name.
+     * @param string $share     The share name.
+     * @param string $directory The directory name.
      *
      * @return string
      */
@@ -193,13 +183,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::FILE_SHARE_PROPERTIES_OPERATION_INVALID
         );
 
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
-        $path        = $this->createPath($share);
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -232,7 +222,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $responseHeaders = HttpFormatter::formatHeaders($response->getHeaders());
             return GetSharePropertiesResult::create($responseHeaders);
         }, null);
@@ -266,7 +256,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         );
         Validate::canCastAsString($share, 'share');
 
-        $headers = array();
+        $headers = [];
         if ($operation == 'properties') {
             $headers[Resources::X_MS_SHARE_QUOTA] =
                 $properties[Resources::X_MS_SHARE_QUOTA];
@@ -275,12 +265,12 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             $headers = $this->generateMetadataHeaders($properties);
         }
 
-        $method      = Resources::HTTP_PUT;
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share);
+        $method = Resources::HTTP_PUT;
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -316,20 +306,19 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates promise to write range of bytes (more than 4MB) to a file.
      *
-     * @param  string                   $share   The share name.
-     * @param  string                   $path    The path of the file.
-     * @param  StreamInterface          $content The content to be uploaded.
-     * @param  Range                    $range   The range in the file to be put.
-     *                                           4MB length min.
-     * @param  PutFileRangeOptions|null $options The optional parameters.
-     * @param  boolean                  $useTransactionalMD5
-     *                                           Optional. Whether enable transactional
-     *                                           MD5 validation during uploading.
+     * @param string                   $share               The share name.
+     * @param string                   $path                The path of the file.
+     * @param StreamInterface          $content             The content to be uploaded.
+     * @param Range                    $range               The range in the file to be put.
+     *                                                      4MB length min.
+     * @param PutFileRangeOptions|null $options             The optional parameters.
+     * @param bool                     $useTransactionalMD5
+     *                                                      Optional. Whether enable transactional
+     *                                                      MD5 validation during uploading.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/put-range
-     *
      */
     private function multiplePutRangeConcurrentAsync(
         $share,
@@ -339,9 +328,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         PutFileRangeOptions $options = null,
         $useTransactionalMD5 = false
     ) {
-        $queryParams  = array();
-        $headers      = array();
-        $path         = $this->createPath($share, $path);
+        $queryParams = [];
+        $headers = [];
+        $path = $this->createPath($share, $path);
         $selfInstance = $this;
 
         if ($options == null) {
@@ -423,7 +412,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
                 Resources::HTTP_PUT,
                 $headers,
                 $queryParams,
-                array(),
+                [],
                 $path,
                 LocationMode::PRIMARY_ONLY,
                 $chunkContent
@@ -437,11 +426,10 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         );
     }
 
-
     /**
      * Returns a list of the shares under the specified account
      *
-     * @param  ListSharesOptions|null $options The optional parameters
+     * @param ListSharesOptions|null $options The optional parameters
      *
      * @return ListSharesResult
      *
@@ -455,7 +443,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Create a promise to return a list of the shares under the specified account
      *
-     * @param  ListSharesOptions|null $options The optional parameters
+     * @param ListSharesOptions|null $options The optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -463,13 +451,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      */
     public function listSharesAsync(ListSharesOptions $options = null)
     {
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
-        $path        = Resources::EMPTY_STRING;
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = Resources::EMPTY_STRING;
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListSharesOptions();
         }
 
@@ -517,7 +505,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return ListSharesResult::create(
                 $parsed,
@@ -531,8 +519,6 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      *
      * @param string                  $share   The share name.
      * @param CreateShareOptions|null $options The optional parameters.
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/create-share
      */
@@ -560,17 +546,17 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::notNullOrEmpty($share, 'share');
 
-        $method      = Resources::HTTP_PUT;
-        $postParams  = array();
-        $queryParams = array(Resources::QP_REST_TYPE => 'share');
-        $path        = $this->createPath($share);
+        $method = Resources::HTTP_PUT;
+        $postParams = [];
+        $queryParams = [Resources::QP_REST_TYPE => 'share'];
+        $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateShareOptions();
         }
 
         $metadata = $options->getMetadata();
-        $headers  = $this->generateMetadataHeaders($metadata);
+        $headers = $this->generateMetadataHeaders($metadata);
         $this->addOptionalHeader(
             $headers,
             Resources::X_MS_SHARE_QUOTA,
@@ -601,8 +587,6 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * @param string                  $share   name of the share
      * @param FileServiceOptions|null $options optional parameters
      *
-     * @return void
-     *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/delete-share
      */
     public function deleteShare(
@@ -629,13 +613,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::notNullOrEmpty($share, 'share');
 
-        $method      = Resources::HTTP_DELETE;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share);
+        $method = Resources::HTTP_DELETE;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -703,8 +687,6 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * @param string                  $share   name
      * @param int                     $quota   quota of the share
      * @param FileServiceOptions|null $options optional parameters
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-properties
      */
@@ -780,9 +762,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      *
      * @param string                  $share    name
      * @param array                   $metadata metadata key/value pair.
-     * @param FileServiceOptions|null $options optional  parameters
-     *
-     * @return void
+     * @param FileServiceOptions|null $options  optional  parameters
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-metadata
      */
@@ -799,7 +779,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      *
      * @param string                  $share    name
      * @param array                   $metadata metadata key/value pair.
-     * @param FileServiceOptions|null $options optional  parameters
+     * @param FileServiceOptions|null $options  optional  parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -821,8 +801,8 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Gets the access control list (ACL) for the share.
      *
-     * @param string                  $share The share name.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return GetShareACLResult
      *
@@ -838,8 +818,8 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates the promise to get the access control list (ACL) for the share.
      *
-     * @param string                  $share The share name.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -851,13 +831,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     ) {
         Validate::canCastAsString($share, 'share');
 
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share);
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -890,7 +870,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             $options
         );
 
-        return $promise->then(function ($response) use ($dataSerializer) {
+        return $promise->then(static function ($response) use ($dataSerializer) {
             $responseHeaders = HttpFormatter::formatHeaders($response->getHeaders());
 
             $etag = Utilities::tryGetValue($responseHeaders, Resources::ETAG);
@@ -899,7 +879,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
                 Resources::LAST_MODIFIED
             );
             $modifiedDate = Utilities::convertToDateTime($modified);
-            $parsed       = $dataSerializer->unserialize($response->getBody());
+            $parsed = $dataSerializer->unserialize($response->getBody());
 
             return GetShareAclResult::create(
                 $etag,
@@ -915,8 +895,6 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * @param string                  $share   name
      * @param ShareACL                $acl     access control list for share
      * @param FileServiceOptions|null $options optional parameters
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-acl
      */
@@ -948,14 +926,14 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::notNullOrEmpty($acl, 'acl');
 
-        $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share);
-        $body        = $acl->toXml($this->dataSerializer);
+        $method = Resources::HTTP_PUT;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share);
+        $body = $acl->toXml($this->dataSerializer);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -995,8 +973,8 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Get the statistics related to the share.
      *
-     * @param  string                  $share   The name of the share.
-     * @param  FileServiceOptions|null $options The request options.
+     * @param string                  $share   The name of the share.
+     * @param FileServiceOptions|null $options The request options.
      *
      * @return GetShareStatsResult
      *
@@ -1010,8 +988,8 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Get the statistics related to the share.
      *
-     * @param  string                  $share   The name of the share.
-     * @param  FileServiceOptions|null $options The request options.
+     * @param string                  $share   The name of the share.
+     * @param FileServiceOptions|null $options The request options.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -1021,13 +999,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     {
         Validate::canCastAsString($share, 'share');
 
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
-        $path        = $this->createPath($share);
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = $this->createPath($share);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1060,7 +1038,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return GetShareStatsResult::create($parsed);
         }, null);
@@ -1069,11 +1047,11 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * List directories and files under specified path.
      *
-     * @param  string                              $share   The share that
-     *                                                      contains all the
-     *                                                      files and directories.
-     * @param  string                              $path    The path to be listed.
-     * @param  ListDirectoriesAndFilesOptions|null $options Optional parameters.
+     * @param string                              $share   The share that
+     *                                                     contains all the
+     *                                                     files and directories.
+     * @param string                              $path    The path to be listed.
+     * @param ListDirectoriesAndFilesOptions|null $options Optional parameters.
      *
      * @return ListDirectoriesAndFilesResult
      *
@@ -1090,11 +1068,11 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates promise to list directories and files under specified path.
      *
-     * @param  string                              $share   The share that
-     *                                                      contains all the
-     *                                                      files and directories.
-     * @param  string                              $path    The path to be listed.
-     * @param  ListDirectoriesAndFilesOptions|null $options Optional parameters.
+     * @param string                              $share   The share that
+     *                                                     contains all the
+     *                                                     files and directories.
+     * @param string                              $path    The path to be listed.
+     * @param ListDirectoriesAndFilesOptions|null $options Optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -1109,13 +1087,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new ListDirectoriesAndFilesOptions();
         }
 
@@ -1162,7 +1140,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return ListDirectoriesAndFilesResult::create(
                 $parsed,
@@ -1174,11 +1152,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates a new directory in the given share and path.
      *
-     * @param string                      $share     The share name.
-     * @param string                      $path      The path to create the directory.
-     * @param CreateDirectoryOptions|null $options   The optional parameters.
-     *
-     * @return void
+     * @param string                      $share   The share name.
+     * @param string                      $path    The path to create the directory.
+     * @param CreateDirectoryOptions|null $options The optional parameters.
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory
      */
@@ -1193,9 +1169,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates a promise to create a new directory in the given share and path.
      *
-     * @param string                      $share     The share name.
-     * @param string                      $path      The path to create the directory.
-     * @param CreateDirectoryOptions|null $options   The optional parameters.
+     * @param string                      $share   The share name.
+     * @param string                      $path    The path to create the directory.
+     * @param CreateDirectoryOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -1210,12 +1186,12 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($path, 'path');
         Validate::notNullOrEmpty($path, 'path');
 
-        $method      = Resources::HTTP_PUT;
-        $postParams  = array();
-        $queryParams = array(Resources::QP_REST_TYPE => 'directory');
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_PUT;
+        $postParams = [];
+        $queryParams = [Resources::QP_REST_TYPE => 'directory'];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateDirectoryOptions();
         }
 
@@ -1226,7 +1202,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         );
 
         $metadata = $options->getMetadata();
-        $headers  = $this->generateMetadataHeaders($metadata);
+        $headers = $this->generateMetadataHeaders($metadata);
 
         return $this->sendAsync(
             $method,
@@ -1243,11 +1219,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Deletes a directory in the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the directory.
-     * @param FileServiceOptions|null $options   The optional parameters.
-     *
-     * @return void
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path to delete the directory.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory
      */
@@ -1262,9 +1236,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates a promise to delete a new directory in the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the directory.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path to delete the directory.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -1278,13 +1252,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_DELETE;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array(Resources::QP_REST_TYPE => 'directory');
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_DELETE;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [Resources::QP_REST_TYPE => 'directory'];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1309,9 +1283,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Gets a directory's properties from the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path of the directory.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the directory.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return GetDirectoryPropertiesResult
      *
@@ -1329,9 +1303,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * Creates promise to get a directory's properties from the given share
      * and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path of the directory.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the directory.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -1345,13 +1319,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array(Resources::QP_REST_TYPE => 'directory');
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [Resources::QP_REST_TYPE => 'directory'];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1370,7 +1344,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $parsed = HttpFormatter::formatHeaders($response->getHeaders());
             return GetDirectoryPropertiesResult::create($parsed);
         }, null);
@@ -1379,9 +1353,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Gets a directory's metadata from the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path of the directory.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the directory.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return GetDirectoryMetadataResult
      *
@@ -1399,9 +1373,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * Creates promise to get a directory's metadata from the given share
      * and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path of the directory.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the directory.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -1415,13 +1389,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array(Resources::QP_REST_TYPE => 'directory');
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [Resources::QP_REST_TYPE => 'directory'];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1446,7 +1420,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $parsed = HttpFormatter::formatHeaders($response->getHeaders());
             return GetDirectoryMetadataResult::create($parsed);
         }, null);
@@ -1455,12 +1429,10 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Sets a directory's metadata from the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the directory.
-     * @param array                   $metadata  The metadata to be set.
-     * @param FileServiceOptions|null $options   The optional parameters.
-     *
-     * @return void
+     * @param string                  $share    The share name.
+     * @param string                  $path     The path to delete the directory.
+     * @param array                   $metadata The metadata to be set.
+     * @param FileServiceOptions|null $options  The optional parameters.
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/set-directory-metadata
      */
@@ -1482,10 +1454,10 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * Creates promise to set a directory's metadata from the given share
      * and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the directory.
-     * @param array                   $metadata  The metadata to be set.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share    The share name.
+     * @param string                  $path     The path to delete the directory.
+     * @param array                   $metadata The metadata to be set.
+     * @param FileServiceOptions|null $options  The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -1500,14 +1472,14 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_PUT;
-        $postParams  = array();
-        $queryParams = array(Resources::QP_REST_TYPE => 'directory');
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_PUT;
+        $postParams = [];
+        $queryParams = [Resources::QP_REST_TYPE => 'directory'];
+        $path = $this->createPath($share, $path);
 
         Utilities::validateMetadata($metadata);
         $headers = $this->generateMetadataHeaders($metadata);
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1542,8 +1514,6 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * @param string                 $path    The path and name of the file.
      * @param int                    $size    The size of the file.
      * @param CreateFileOptions|null $options The optional parameters.
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/create-file
      */
@@ -1585,12 +1555,12 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::notNullOrEmpty($path, 'path');
         Validate::isInteger($size, 'size');
 
-        $method      = Resources::HTTP_PUT;
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_PUT;
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new CreateFileOptions();
         }
 
@@ -1672,11 +1642,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Deletes a file in the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the file.
-     * @param FileServiceOptions|null $options   The optional parameters.
-     *
-     * @return void
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path to delete the file.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2
      */
@@ -1691,9 +1659,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates a promise to delete a new file in the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the file.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path to delete the file.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -1707,13 +1675,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_DELETE;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_DELETE;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1775,13 +1743,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new GetFileOptions();
         }
 
@@ -1810,10 +1778,10 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             $queryParams,
             $postParams,
             $path,
-            array(Resources::STATUS_OK, Resources::STATUS_PARTIAL_CONTENT),
+            [Resources::STATUS_OK, Resources::STATUS_PARTIAL_CONTENT],
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $metadata = Utilities::getMetadataArray(
                 HttpFormatter::formatHeaders($response->getHeaders())
             );
@@ -1829,9 +1797,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Gets a file's properties from the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the file.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path to delete the file.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return FileProperties
      *
@@ -1849,9 +1817,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * Creates promise to get a file's properties from the given share
      * and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the file.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path to delete the file.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -1865,13 +1833,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_HEAD;
-        $headers     = array();
-        $queryParams  = array();
-        $postParams  = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_HEAD;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -1890,7 +1858,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $parsed = HttpFormatter::formatHeaders($response->getHeaders());
             return FileProperties::createFromHttpHeaders($parsed);
         }, null);
@@ -1903,8 +1871,6 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * @param string                  $path       path of the file
      * @param FileProperties          $properties file properties.
      * @param FileServiceOptions|null $options    optional     parameters
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/set-file-properties
      */
@@ -1938,14 +1904,14 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $headers = array();
+        $headers = [];
 
-        $method      = Resources::HTTP_PUT;
-        $postParams  = array();
-        $queryParams = array(Resources::QP_COMP => 'properties');
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_PUT;
+        $postParams = [];
+        $queryParams = [Resources::QP_COMP => 'properties'];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2012,9 +1978,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Gets a file's metadata from the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path of the file.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the file.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return GetFileMetadataResult
      *
@@ -2032,9 +1998,9 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * Creates promise to get a file's metadata from the given share
      * and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path of the file.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the file.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -2048,13 +2014,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2079,7 +2045,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $parsed = HttpFormatter::formatHeaders($response->getHeaders());
             return GetFileMetadataResult::create($parsed);
         }, null);
@@ -2088,12 +2054,10 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Sets a file's metadata from the given share and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the file.
-     * @param array                   $metadata  The metadata to be set.
-     * @param FileServiceOptions|null $options   The optional parameters.
-     *
-     * @return void
+     * @param string                  $share    The share name.
+     * @param string                  $path     The path to delete the file.
+     * @param array                   $metadata The metadata to be set.
+     * @param FileServiceOptions|null $options  The optional parameters.
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/set-file-metadata
      */
@@ -2115,10 +2079,10 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * Creates promise to set a file's metadata from the given share
      * and path.
      *
-     * @param string                  $share     The share name.
-     * @param string                  $path      The path to delete the file.
-     * @param array                   $metadata  The metadata to be set.
-     * @param FileServiceOptions|null $options   The optional parameters.
+     * @param string                  $share    The share name.
+     * @param string                  $path     The path to delete the file.
+     * @param array                   $metadata The metadata to be set.
+     * @param FileServiceOptions|null $options  The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -2133,14 +2097,14 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::canCastAsString($share, 'share');
         Validate::canCastAsString($path, 'path');
 
-        $method      = Resources::HTTP_PUT;
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_PUT;
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share, $path);
 
         Utilities::validateMetadata($metadata);
         $headers = $this->generateMetadataHeaders($metadata);
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2171,14 +2135,12 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Writes range of bytes to a file. Range can be at most 4MB in length.
      *
-     * @param  string                          $share   The share name.
-     * @param  string                          $path    The path of the file.
-     * @param  string|resource|StreamInterface $content The content to be uploaded.
-     * @param  Range                           $range   The range in the file to
-     *                                                  be put.
-     * @param  PutFileRangeOptions|null        $options The optional parameters.
-     *
-     * @return void
+     * @param string                          $share   The share name.
+     * @param string                          $path    The path of the file.
+     * @param resource|StreamInterface|string $content The content to be uploaded.
+     * @param Range                           $range   The range in the file to
+     *                                                 be put.
+     * @param PutFileRangeOptions|null        $options The optional parameters.
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/put-range
      */
@@ -2202,17 +2164,16 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * Creates promise to write range of bytes to a file. Range can be at most
      * 4MB in length.
      *
-     * @param  string                          $share   The share name.
-     * @param  string                          $path    The path of the file.
-     * @param  string|resource|StreamInterface $content The content to be uploaded.
-     * @param  Range                           $range   The range in the file to
-     *                                                  be put.
-     * @param  PutFileRangeOptions|null        $options The optional parameters.
+     * @param string                          $share   The share name.
+     * @param string                          $path    The path of the file.
+     * @param resource|StreamInterface|string $content The content to be uploaded.
+     * @param Range                           $range   The range in the file to
+     *                                                 be put.
+     * @param PutFileRangeOptions|null        $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/put-range
-     *
      */
     public function putFileRangeAsync(
         $share,
@@ -2228,11 +2189,11 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::notNull($range->getLength(), Resources::RESOURCE_RANGE_LENGTH_MUST_SET);
         $stream = Psr7\Utils::streamFor($content);
 
-        $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_PUT;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = $this->createPath($share, $path);
 
         if ($options == null) {
             $options = new PutFileRangeOptions();
@@ -2289,13 +2250,11 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates a file from a provided content.
      *
-     * @param  string                             $share   the share name
-     * @param  string                             $path    the path of the file
-     * @param  StreamInterface|resource|string    $content the content used to
-     *                                                     create the file
-     * @param  CreateFileFromContentOptions|null  $options optional parameters
-     *
-     * @return void
+     * @param string                            $share   the share name
+     * @param string                            $path    the path of the file
+     * @param resource|StreamInterface|string   $content the content used to
+     *                                                   create the file
+     * @param CreateFileFromContentOptions|null $options optional parameters
      */
     public function createFileFromContent(
         $share,
@@ -2309,11 +2268,11 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates a promise to create a file from a provided content.
      *
-     * @param  string                            $share   the share name
-     * @param  string                            $path    the path of the file
-     * @param  StreamInterface|resource|string   $content the content used to
-     *                                                  create the file
-     * @param  CreateFileFromContentOptions|null $options optional parameters
+     * @param string                            $share   the share name
+     * @param string                            $path    the path of the file
+     * @param resource|StreamInterface|string   $content the content used to
+     *                                                   create the file
+     * @param CreateFileFromContentOptions|null $options optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -2382,13 +2341,11 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * that is not 512-byte aligned and free the rest of the range inside that
      * is 512-byte aligned.
      *
-     * @param  string                  $share   The share name.
-     * @param  string                  $path    The path of the file.
-     * @param  Range                   $range   The range in the file to
-     *                                          be cleared.
-     * @param  FileServiceOptions|null $options The optional parameters.
-     *
-     * @return void
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the file.
+     * @param Range                   $range   The range in the file to
+     *                                         be cleared.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/put-range
      */
@@ -2407,16 +2364,15 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * end of the range that is not 512-byte aligned and free the rest of the
      * range inside that is 512-byte aligned.
      *
-     * @param  string                  $share   The share name.
-     * @param  string                  $path    The path of the file.
-     * @param  Range                   $range   The range in the file to
-     *                                          be cleared.
-     * @param  FileServiceOptions|null $options The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the file.
+     * @param Range                   $range   The range in the file to
+     *                                         be cleared.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/put-range
-     *
      */
     public function clearFileRangeAsync(
         $share,
@@ -2429,13 +2385,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::notNullOrEmpty($path, 'path');
         Validate::notNullOrEmpty($share, 'share');
 
-        $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_PUT;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2478,11 +2434,11 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Lists range of bytes of a file.
      *
-     * @param  string                  $share   The share name.
-     * @param  string                  $path    The path of the file.
-     * @param  Range                   $range   The range in the file to
-     *                                          be listed.
-     * @param  FileServiceOptions|null $options The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the file.
+     * @param Range                   $range   The range in the file to
+     *                                         be listed.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return ListFileRangesResult
      *
@@ -2500,16 +2456,15 @@ class FileRestProxy extends ServiceRestProxy implements IFile
     /**
      * Creates promise to list range of bytes of a file.
      *
-     * @param  string                  $share   The share name.
-     * @param  string                  $path    The path of the file.
-     * @param  Range                   $range   The range in the file to
-     *                                          be listed.
-     * @param  FileServiceOptions|null $options The optional parameters.
+     * @param string                  $share   The share name.
+     * @param string                  $path    The path of the file.
+     * @param Range                   $range   The range in the file to
+     *                                         be listed.
+     * @param FileServiceOptions|null $options The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/list-ranges
-     *
      */
     public function listFileRangeAsync(
         $share,
@@ -2522,13 +2477,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::notNullOrEmpty($path, 'path');
         Validate::notNullOrEmpty($share, 'share');
 
-        $method      = Resources::HTTP_GET;
-        $headers     = array();
-        $queryParams = array();
-        $postParams  = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_GET;
+        $headers = [];
+        $queryParams = [];
+        $postParams = [];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2563,7 +2518,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(static function ($response) use ($dataSerializer) {
             $responseHeaders = HttpFormatter::formatHeaders($response->getHeaders());
             $parsed = $dataSerializer->unserialize($response->getBody());
             return ListFileRangesResult::create($responseHeaders, $parsed);
@@ -2583,13 +2538,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * https://myaccount.file.core.windows.net/myshare/mydirectorypath/myfile
      * https://myaccount.blob.core.windows.net/mycontainer/myblob?sastoken
      *
-     * @param  string                  $share      The share name.
-     * @param  string                  $path       The path of the file.
-     * @param  string                  $sourcePath The path of the source.
-     * @param  array                   $metadata   The metadata of the file.
-     *                                             If specified, source metadata
-     *                                             will not be copied.
-     * @param  FileServiceOptions|null $options    The optional parameters.
+     * @param string                  $share      The share name.
+     * @param string                  $path       The path of the file.
+     * @param string                  $sourcePath The path of the source.
+     * @param array                   $metadata   The metadata of the file.
+     *                                            If specified, source metadata
+     *                                            will not be copied.
+     * @param FileServiceOptions|null $options    The optional parameters.
      *
      * @return CopyFileResult
      *
@@ -2599,7 +2554,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         $share,
         $path,
         $sourcePath,
-        array $metadata = array(),
+        array $metadata = [],
         FileServiceOptions $options = null
     ) {
         return $this->copyFileAsync(
@@ -2625,24 +2580,23 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * https://myaccount.file.core.windows.net/myshare/mydirectorypath/myfile
      * https://myaccount.blob.core.windows.net/mycontainer/myblob?sastoken
      *
-     * @param  string                  $share      The share name.
-     * @param  string                  $path       The path of the file.
-     * @param  string                  $sourcePath The path of the source.
-     * @param  array                   $metadata   The metadata of the file.
-     *                                             If specified, source metadata
-     *                                             will not be copied.
-     * @param  FileServiceOptions|null $options    The optional parameters.
+     * @param string                  $share      The share name.
+     * @param string                  $path       The path of the file.
+     * @param string                  $sourcePath The path of the source.
+     * @param array                   $metadata   The metadata of the file.
+     *                                            If specified, source metadata
+     *                                            will not be copied.
+     * @param FileServiceOptions|null $options    The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/copy-file
-     *
      */
     public function copyFileAsync(
         $share,
         $path,
         $sourcePath,
-        array $metadata = array(),
+        array $metadata = [],
         FileServiceOptions $options = null
     ) {
         Validate::canCastAsString($share, 'share');
@@ -2652,15 +2606,15 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::notNullOrEmpty($share, 'share');
         Validate::notNullOrEmpty($sourcePath, 'sourcePath');
 
-        $method      = Resources::HTTP_PUT;
-        $queryParams = array();
-        $postParams  = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_PUT;
+        $queryParams = [];
+        $postParams = [];
+        $path = $this->createPath($share, $path);
 
         Utilities::validateMetadata($metadata);
         $headers = $this->generateMetadataHeaders($metadata);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 
@@ -2685,7 +2639,7 @@ class FileRestProxy extends ServiceRestProxy implements IFile
             Resources::STATUS_ACCEPTED,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) {
+        )->then(static function ($response) {
             $headers = HttpFormatter::formatHeaders($response->getHeaders());
             return CopyFileResult::create($headers);
         }, null);
@@ -2698,8 +2652,6 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * @param string                  $path    path of the file
      * @param string                  $copyID  copy operation identifier.
      * @param FileServiceOptions|null $options optional parameters
-     *
-     * @return void
      *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/abort-copy-file
      */
@@ -2725,8 +2677,6 @@ class FileRestProxy extends ServiceRestProxy implements IFile
      * @param string                  $copyID  copy operation identifier.
      * @param FileServiceOptions|null $options optional parameters
      *
-     * @return void
-     *
      * @see https://docs.microsoft.com/en-us/rest/api/storageservices/abort-copy-file
      */
     public function abortCopyAsync(
@@ -2742,13 +2692,13 @@ class FileRestProxy extends ServiceRestProxy implements IFile
         Validate::notNullOrEmpty($path, 'path');
         Validate::notNullOrEmpty($copyID, 'copyID');
 
-        $method      = Resources::HTTP_PUT;
-        $headers     = array();
-        $postParams  = array();
-        $queryParams = array();
-        $path        = $this->createPath($share, $path);
+        $method = Resources::HTTP_PUT;
+        $headers = [];
+        $postParams = [];
+        $queryParams = [];
+        $path = $this->createPath($share, $path);
 
-        if (is_null($options)) {
+        if (null === $options) {
             $options = new FileServiceOptions();
         }
 

@@ -15,12 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common;
@@ -30,12 +26,7 @@ use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 /**
  * Trait implementing logic for continuation tokens that has nextMarker.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 trait MarkerContinuationTokenTrait
 {
@@ -56,7 +47,7 @@ trait MarkerContinuationTokenTrait
     {
         if ($this->continuationToken == null) {
             $this->continuationToken = new MarkerContinuationToken();
-        };
+        }
         $this->continuationToken->setNextMarker($marker);
     }
 
@@ -100,10 +91,11 @@ trait MarkerContinuationTokenTrait
     {
         if ($this->continuationToken == null) {
             return parent::getLocationMode();
-        } elseif ($this->continuationToken->getLocation() == '') {
-            return parent::getLocationMode();
-        } else {
-            return $this->getLocation();
         }
+        if ($this->continuationToken->getLocation() == '') {
+            return parent::getLocationMode();
+        }
+        return $this->getLocation();
+
     }
 }

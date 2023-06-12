@@ -14,32 +14,21 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Middlewares;
 
-use MicrosoftAzure\Storage\Common\Internal\Middlewares\CommonRequestMiddleware;
+use GuzzleHttp\Psr7\Request;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\SharedKeyAuthScheme;
+use MicrosoftAzure\Storage\Common\Internal\Middlewares\CommonRequestMiddleware;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Tests\Framework\ReflectionTestBase;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\Request;
 
 /**
  * Unit tests for class CommonRequestMiddleware
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CommonRequestMiddlewareTest extends ReflectionTestBase
 {
@@ -54,9 +43,9 @@ class CommonRequestMiddlewareTest extends ReflectionTestBase
         $onRequest = self::getMethod('onRequest', $middleware);
         $request = new Request('GET', 'http://www.bing.com');
         // Apply middleware
-        $newRequest = $onRequest->invokeArgs($middleware, array($request));
+        $newRequest = $onRequest->invokeArgs($middleware, [$request]);
         // Prepare expected
-        $savedHeaders = array();
+        $savedHeaders = [];
         foreach ($newRequest->getHeaders() as $key => $value) {
             $savedHeaders[$key] = $value[0];
         }
@@ -64,17 +53,17 @@ class CommonRequestMiddlewareTest extends ReflectionTestBase
         $signedRequest = $authScheme->signRequest($requestToSign);
 
         // Assert
-        $this->assertTrue(
+        self::assertTrue(
             (array_intersect($savedHeaders, $headers) === $headers),
             'Did not add proper headers.'
         );
-        $this->assertTrue(
+        self::assertTrue(
             $signedRequest->getHeaders() === $newRequest->getHeaders(),
             'Failed to create same signed request.'
         );
         $endTime = time();
         $requestTime = strtotime($newRequest->getHeaders()[Resources::DATE][0]);
-        $this->assertTrue(
+        self::assertTrue(
             $requestTime >= $beginTime && $requestTime <= $endTime,
             'Did not add proper date header.'
         );
@@ -82,10 +71,10 @@ class CommonRequestMiddlewareTest extends ReflectionTestBase
 
     private static function getTestHeaderArray()
     {
-        return array(
+        return [
             'testKey1' => 'testValue1',
             'testKey2' => 'testValue2',
             'testKey3' => 'testValue3',
-        );
+        ];
     }
 }

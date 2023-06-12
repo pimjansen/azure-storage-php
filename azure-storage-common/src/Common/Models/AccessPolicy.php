@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
 
+use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 
 /**
  * Holds access policy elements
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 abstract class AccessPolicy
 {
@@ -61,12 +51,12 @@ abstract class AccessPolicy
     {
         Validate::canCastAsString($resourceType, 'resourceType');
         Validate::isTrue(
-            $resourceType == Resources::RESOURCE_TYPE_BLOB      ||
-            $resourceType == Resources::RESOURCE_TYPE_CONTAINER ||
-            $resourceType == Resources::RESOURCE_TYPE_QUEUE     ||
-            $resourceType == Resources::RESOURCE_TYPE_TABLE     ||
-            $resourceType == Resources::RESOURCE_TYPE_FILE      ||
-            $resourceType == Resources::RESOURCE_TYPE_SHARE,
+            $resourceType == Resources::RESOURCE_TYPE_BLOB
+            || $resourceType == Resources::RESOURCE_TYPE_CONTAINER
+            || $resourceType == Resources::RESOURCE_TYPE_QUEUE
+            || $resourceType == Resources::RESOURCE_TYPE_TABLE
+            || $resourceType == Resources::RESOURCE_TYPE_FILE
+            || $resourceType == Resources::RESOURCE_TYPE_SHARE,
             Resources::ERROR_RESOURCE_TYPE_NOT_SUPPORTED
         );
 
@@ -87,8 +77,6 @@ abstract class AccessPolicy
      * Sets start.
      *
      * @param \DateTime $start value.
-     *
-     * @return void
      */
     public function setStart(\DateTime $start = null)
     {
@@ -112,8 +100,6 @@ abstract class AccessPolicy
      * Sets expiry.
      *
      * @param \DateTime $expiry value.
-     *
-     * @return void
      */
     public function setExpiry($expiry)
     {
@@ -137,8 +123,6 @@ abstract class AccessPolicy
      * @param string $permission value.
      *
      * @throws \InvalidArgumentException
-     *
-     * @return void
      */
     public function setPermission($permission)
     {
@@ -158,7 +142,7 @@ abstract class AccessPolicy
     /**
      * Validate the permission against its corresponding allowed permissions
      *
-     * @param  string $permission The permission to be validated.
+     * @param string $permission The permission to be validated.
      *
      * @throws \InvalidArgumentException
      *
@@ -203,13 +187,13 @@ abstract class AccessPolicy
      */
     public function toArray()
     {
-        $array = array();
+        $array = [];
 
         if ($this->getStart() != null) {
             $array[Resources::XTAG_SIGNED_START] =
                 Utilities::convertToEdmDateTime($this->getStart());
         }
-        $array[Resources::XTAG_SIGNED_EXPIRY]     =
+        $array[Resources::XTAG_SIGNED_EXPIRY] =
             Utilities::convertToEdmDateTime($this->getExpiry());
         $array[Resources::XTAG_SIGNED_PERMISSION] = $this->getPermission();
 

@@ -14,19 +14,14 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Middlewares;
 
-use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareBase;
 use MicrosoftAzure\Storage\Common\Internal\Authentication\IAuthScheme;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Middlewares\MiddlewareBase;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -35,12 +30,8 @@ use Psr\Http\Message\RequestInterface;
  * is by default applied to each of the request.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CommonRequestMiddleware extends MiddlewareBase
 {
@@ -63,19 +54,19 @@ class CommonRequestMiddleware extends MiddlewareBase
         IAuthScheme $authenticationScheme = null,
         $storageAPIVersion,
         $serviceSDKVersion,
-        array $headers = array()
+        array $headers = []
     ) {
         $this->authenticationScheme = $authenticationScheme;
-        $this->msVersion            = $storageAPIVersion;
-        $this->userAgent            = self::getUserAgent($serviceSDKVersion);
-        $this->headers              = $headers;
+        $this->msVersion = $storageAPIVersion;
+        $this->userAgent = self::getUserAgent($serviceSDKVersion);
+        $this->headers = $headers;
     }
 
     /**
      * Add the provided headers, the date, then sign the request using the
      * authentication scheme, and return it.
      *
-     * @param  RequestInterface $request un-signed request.
+     * @param RequestInterface $request un-signed request.
      *
      * @return RequestInterface
      */
@@ -110,15 +101,12 @@ class CommonRequestMiddleware extends MiddlewareBase
             $result = $result->withHeader(Resources::X_MS_CLIENT_REQUEST_ID, \uniqid());
         }
         //Sign the request if authentication scheme is not null.
-        $request = $this->authenticationScheme == null ?
+        return $this->authenticationScheme == null ?
             $request : $this->authenticationScheme->signRequest($result);
-        return $request;
     }
 
     /**
      * Gets the user agent string used in request header.
-     *
-     * @param $serviceSDKVersion
      *
      * @return string
      */
@@ -127,6 +115,6 @@ class CommonRequestMiddleware extends MiddlewareBase
         // e.g. User-Agent: Azure-Storage/1.0.1-1.1.1 (PHP 5.5.32)/WINNT
         return 'Azure-Storage/' . $serviceSDKVersion . '-' .
             Resources::COMMON_SDK_VERSION .
-            ' (PHP ' . PHP_VERSION . ')' . '/' . php_uname("s");
+            ' (PHP ' . PHP_VERSION . ')' . '/' . php_uname('s');
     }
 }

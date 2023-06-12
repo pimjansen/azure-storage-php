@@ -14,40 +14,28 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
 use MicrosoftAzure\Storage\Blob\Models\CopyBlobOptions;
 
 /**
  * Unit tests for class CopyBlobBlobOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
 {
     public function testSetMetadata()
     {
         $copyBlobOptions = new CopyBlobOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $copyBlobOptions->setMetadata($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $copyBlobOptions->getMetadata()
         );
@@ -56,10 +44,10 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
     public function testSetAccessConditions()
     {
         $copyBlobOptions = new CopyBlobOptions();
-        $expected = AccessCondition::ifMatch("12345");
+        $expected = AccessCondition::ifMatch('12345');
         $copyBlobOptions->setAccessConditions($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $copyBlobOptions->getAccessConditions()[0]
         );
@@ -68,10 +56,10 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
     public function testSetSourceAccessConditions()
     {
         $copyBlobOptions = new CopyBlobOptions();
-        $expected = AccessCondition::IfMatch("x");
+        $expected = AccessCondition::IfMatch('x');
         $copyBlobOptions->setSourceAccessConditions($expected);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expected,
             $copyBlobOptions->getSourceAccessConditions()[0]
         );
@@ -83,7 +71,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options = new CopyBlobOptions();
 
         $options->setLeaseId($expected);
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 
     public function testSetSourceLeaseId()
@@ -92,7 +80,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options = new CopyBlobOptions();
 
         $options->setSourceLeaseId($expected);
-        $this->assertEquals($expected, $options->getSourceLeaseId());
+        self::assertEquals($expected, $options->getSourceLeaseId());
     }
 
     public function testSetIsIncrementalCopy()
@@ -101,7 +89,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options = new CopyBlobOptions();
 
         $options->setIsIncrementalCopy($expected);
-        $this->assertEquals($expected, $options->getIsIncrementalCopy());
+        self::assertEquals($expected, $options->getIsIncrementalCopy());
     }
 
     public function testSetSourceSnapshot()
@@ -110,6 +98,6 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options = new CopyBlobOptions();
 
         $options->setSourceSnapshot($expected);
-        $this->assertEquals($expected, $options->getSourceSnapshot());
+        self::assertEquals($expected, $options->getSourceSnapshot());
     }
 }

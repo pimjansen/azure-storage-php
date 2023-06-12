@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Models\RangeDiff;
 /**
  * Unit tests for class RangeDiff
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class RangeDiffTest extends \PHPUnit\Framework\TestCase
 {
@@ -49,9 +39,9 @@ class RangeDiffTest extends \PHPUnit\Framework\TestCase
         $actual = new RangeDiff($expectedStart, $expectedEnd, $expectedIsClearedPageRange);
 
         // Assert
-        $this->assertEquals($expectedStart, $actual->getStart());
-        $this->assertEquals($expectedEnd, $actual->getEnd());
-        $this->assertEquals($expectedIsClearedPageRange, $actual->isClearedPageRange());
+        self::assertEquals($expectedStart, $actual->getStart());
+        self::assertEquals($expectedEnd, $actual->getEnd());
+        self::assertEquals($expectedIsClearedPageRange, $actual->isClearedPageRange());
 
         return $actual;
     }
@@ -69,7 +59,7 @@ class RangeDiffTest extends \PHPUnit\Framework\TestCase
         $actual = $obj->isClearedPageRange();
 
         // Assert
-        $this->assertEquals($excepted, $actual);
+        self::assertEquals($excepted, $actual);
 
         // Setup
         $excepted = false;
@@ -79,6 +69,6 @@ class RangeDiffTest extends \PHPUnit\Framework\TestCase
         $actual = $obj->isClearedPageRange();
 
         // Assert
-        $this->assertEquals($excepted, $actual);
+        self::assertEquals($excepted, $actual);
     }
 }

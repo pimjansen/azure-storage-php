@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File;
@@ -32,12 +27,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Provides methods to generate Azure Storage Shared Access Signature
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class FileSharedAccessSignatureHelper extends SharedAccessSignatureHelper
 {
@@ -45,8 +35,7 @@ class FileSharedAccessSignatureHelper extends SharedAccessSignatureHelper
      * Constructor.
      *
      * @param string $accountName the name of the storage account.
-     * @param string $accountKey the shared key of the storage account
-     *
+     * @param string $accountKey  the shared key of the storage account
      */
     public function __construct($accountName, $accountKey)
     {
@@ -58,30 +47,31 @@ class FileSharedAccessSignatureHelper extends SharedAccessSignatureHelper
      *
      * This only supports version 2015-04-05 and later.
      *
-     * @param  string           $signedResource     Resource name to generate the
-     *                                              canonicalized resource.
-     *                                              It can be Resources::RESOURCE_TYPE_FILE
-     *                                              or Resources::RESOURCE_TYPE_SHARE.
-     * @param  string           $resourceName       The name of the resource, including
-     *                                              the path of the resource. It should be
-     *                                              - {share}/{file}: for files,
-     *                                              - {share}: for shares, e.g.:
-     *                                              mymusic/music.mp3 or
-     *                                              music.mp3
-     * @param  string           $signedPermissions  Signed permissions.
-     * @param  \Datetime|string $signedExpiry       Signed expiry date.
-     * @param  \Datetime|string $signedStart        Signed start date.
-     * @param  string           $signedIP           Signed IP address.
-     * @param  string           $signedProtocol     Signed protocol.
-     * @param  string           $signedIdentifier   Signed identifier.
-     * @param  string           $cacheControl       Cache-Control header (rscc).
-     * @param  string           $contentDisposition Content-Disposition header (rscd).
-     * @param  string           $contentEncoding    Content-Encoding header (rsce).
-     * @param  string           $contentLanguage    Content-Language header (rscl).
-     * @param  string           $contentType        Content-Type header (rsct).
+     * @param string           $signedResource     Resource name to generate the
+     *                                             canonicalized resource.
+     *                                             It can be Resources::RESOURCE_TYPE_FILE
+     *                                             or Resources::RESOURCE_TYPE_SHARE.
+     * @param string           $resourceName       The name of the resource, including
+     *                                             the path of the resource. It should be
+     *                                             - {share}/{file}: for files,
+     *                                             - {share}: for shares, e.g.:
+     *                                             mymusic/music.mp3 or
+     *                                             music.mp3
+     * @param string           $signedPermissions  Signed permissions.
+     * @param \Datetime|string $signedExpiry       Signed expiry date.
+     * @param \Datetime|string $signedStart        Signed start date.
+     * @param string           $signedIP           Signed IP address.
+     * @param string           $signedProtocol     Signed protocol.
+     * @param string           $signedIdentifier   Signed identifier.
+     * @param string           $cacheControl       Cache-Control header (rscc).
+     * @param string           $contentDisposition Content-Disposition header (rscd).
+     * @param string           $contentEncoding    Content-Encoding header (rsce).
+     * @param string           $contentLanguage    Content-Language header (rscl).
+     * @param string           $contentType        Content-Type header (rsct).
      *
      * @see Constructing an service SAS at
      * https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-a-service-sas
+     *
      * @return string
      */
     public function generateFileServiceSharedAccessSignatureToken(
@@ -89,22 +79,22 @@ class FileSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         $resourceName,
         $signedPermissions,
         $signedExpiry,
-        $signedStart = "",
-        $signedIP = "",
-        $signedProtocol = "",
-        $signedIdentifier = "",
-        $cacheControl = "",
-        $contentDisposition = "",
-        $contentEncoding = "",
-        $contentLanguage = "",
-        $contentType = ""
+        $signedStart = '',
+        $signedIP = '',
+        $signedProtocol = '',
+        $signedIdentifier = '',
+        $cacheControl = '',
+        $contentDisposition = '',
+        $contentEncoding = '',
+        $contentLanguage = '',
+        $contentType = ''
     ) {
         // check that the resource name is valid.
         Validate::canCastAsString($signedResource, 'signedResource');
         Validate::notNullOrEmpty($signedResource, 'signedResource');
         Validate::isTrue(
-            $signedResource == Resources::RESOURCE_TYPE_FILE ||
-            $signedResource == Resources::RESOURCE_TYPE_SHARE,
+            $signedResource == Resources::RESOURCE_TYPE_FILE
+            || $signedResource == Resources::RESOURCE_TYPE_SHARE,
             \sprintf(
                 Resources::INVALID_VALUE_MSG,
                 '$signedResource',
@@ -160,7 +150,7 @@ class FileSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         Validate::canCastAsString($contentType, 'contentType');
 
         // construct an array with the parameters to generate the shared access signature at the account level
-        $parameters = array();
+        $parameters = [];
         $parameters[] = $signedPermissions;
         $parameters[] = $signedStart;
         $parameters[] = $signedExpiry;
@@ -182,13 +172,13 @@ class FileSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         // implode the parameters into a string
         $stringToSign = implode("\n", $parameters);
         // decode the account key from base64
-        $decodedAccountKey = base64_decode($this->accountKey);
+        $decodedAccountKey = base64_decode($this->accountKey, true);
         // create the signature with hmac sha256
-        $signature = hash_hmac("sha256", $stringToSign, $decodedAccountKey, true);
+        $signature = hash_hmac('sha256', $stringToSign, $decodedAccountKey, true);
         // encode the signature as base64
         $sig = urlencode(base64_encode($signature));
 
-        $buildOptQueryStr = function ($string, $abrv) {
+        $buildOptQueryStr = static function ($string, $abrv) {
             return $string === '' ? '' : $abrv . $string;
         };
         //adding all the components for account SAS together.

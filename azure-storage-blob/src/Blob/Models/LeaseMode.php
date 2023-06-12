@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,18 +22,13 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Modes for leasing a blob
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class LeaseMode
 {
     public const ACQUIRE_ACTION = 'acquire';
-    public const RENEW_ACTION   = 'renew';
+    public const RENEW_ACTION = 'renew';
     public const RELEASE_ACTION = 'release';
-    public const BREAK_ACTION   = 'break';
-    public const CHANGE_ACTION   = 'change';
+    public const BREAK_ACTION = 'break';
+    public const CHANGE_ACTION = 'change';
 }

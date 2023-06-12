@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\File;
@@ -28,17 +23,11 @@ use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\File\Models\CreateFileFromContentOptions;
 use MicrosoftAzure\Storage\Tests\Framework\SASFunctionalTestBase;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Tests\Functional\File\FileSharedAccessSignatureHelperMock;
 
 /**
  * Tests for service SAS proxy tests.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class FileServiceSASFunctionalTest extends SASFunctionalTestBase
 {
@@ -52,8 +41,8 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
         //setup the proxies for creating shares
         $this->setUpWithConnectionString($this->connectionString);
 
-        $shareProxies = array();
-        $shares = array();
+        $shareProxies = [];
+        $shares = [];
         $shares[] = TestResources::getInterestingName('sha');
         $this->safeCreateShare($shares[0]);
         $shares[] = TestResources::getInterestingName('sha');
@@ -88,34 +77,34 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
             $proxy->createFileFromContent($share, $file, $content);
             //l
             $result = $proxy->listDirectoriesAndFiles($share);
-            $this->assertEquals($file, $result->getFiles()[0]->getName());
+            self::assertEquals($file, $result->getFiles()[0]->getName());
             //r
             $actualContent = \stream_get_contents(
                 $proxy->getFile($share, $file)->getContentStream()
             );
-            $this->assertEquals($content, $actualContent);
+            self::assertEquals($content, $actualContent);
             //d
             $proxy->deleteFile($share, $file);
             $result = $proxy->listDirectoriesAndFiles($share);
-            $this->assertEquals(0, \count($result->getFiles()));
+            self::assertCount(0, $result->getFiles());
         }
         //Validate that a cross access with wrong proxy/share pair
         //would not be successful
-        for ($i= 0; $i < 2; ++$i) {
+        for ($i = 0; $i < 2; ++$i) {
             $proxy = $shareProxies[$i];
             $share = $shares[1 - $i];
             $file = TestResources::getInterestingName('file');
             //c
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $share, $file) {
+                static function () use ($proxy, $share, $file) {
                     $proxy->createFile($share, $file, Resources::MB_IN_BYTES_1);
                 }
             );
             //l
             $this->validateServiceExceptionErrorMessage(
                 'Server failed to authenticate the request.',
-                function () use ($proxy, $share) {
+                static function () use ($proxy, $share) {
                     $proxy->listDirectoriesAndFiles($share);
                 }
             );
@@ -134,7 +123,7 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
         //l
         $this->validateServiceExceptionErrorMessage(
             'Server failed to authenticate the request.',
-            function () use ($proxy, $share) {
+            static function () use ($proxy, $share) {
                 $proxy->listDirectoriesAndFiles($share);
             }
         );
@@ -156,7 +145,7 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
         //l cannot be performed
         $this->validateServiceExceptionErrorMessage(
             'The specified signed resource is not allowed for the this resource level',
-            function () use ($fileProxy, $share) {
+            static function () use ($fileProxy, $share) {
                 $fileProxy->listDirectoriesAndFiles($share);
             }
         );
@@ -166,7 +155,7 @@ class FileServiceSASFunctionalTest extends SASFunctionalTestBase
         $options->setUseTransactionalMD5(true);
         $fileProxy->createFileFromContent($share, $file, $content, $options);
         $actual = stream_get_contents($fileProxy->getFile($share, $file)->getContentStream());
-        $this->assertEquals($content, $actual);
+        self::assertEquals($content, $actual);
         $fileProxy->deleteFile($share, $file);
     }
 

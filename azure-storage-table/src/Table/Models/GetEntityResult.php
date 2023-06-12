@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Table\Internal\IODataReaderWriter;
 /**
  * Holds result of calling getEntity wrapper.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetEntityResult
 {
@@ -54,8 +44,6 @@ class GetEntityResult
      * Sets table entity.
      *
      * @param Entity $entity The table entity instance.
-     *
-     * @return void
      */
     protected function setEntity($entity)
     {
@@ -65,8 +53,7 @@ class GetEntityResult
     /**
      * Create GetEntityResult object from HTTP response parts.
      *
-     * @param string             $body            The HTTP response body.
-     * @param IODataReaderWriter $odataSerializer The OData reader and writer.
+     * @param string $body The HTTP response body.
      *
      * @internal
      *

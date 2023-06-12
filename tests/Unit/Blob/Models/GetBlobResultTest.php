@@ -14,31 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Blob\Models\GetBlobResult;
-use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use GuzzleHttp\Psr7;
+use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
+use MicrosoftAzure\Storage\Blob\Models\GetBlobResult;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class GetBlobResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetBlobResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -59,9 +48,9 @@ class GetBlobResultTest extends \PHPUnit\Framework\TestCase
         );
 
         // Assert
-        $this->assertEquals($expectedProperties, $actual->getProperties());
-        $this->assertEquals($expectedMetadata, $actual->getMetadata());
+        self::assertEquals($expectedProperties, $actual->getProperties());
+        self::assertEquals($expectedMetadata, $actual->getMetadata());
         $actualContent = stream_get_contents($actual->getContentStream());
-        $this->assertEquals($expectedBody, $actualContent);
+        self::assertEquals($expectedBody, $actualContent);
     }
 }

@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Holds results of calling getBlobMetadata wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SetBlobMetadataResult
 {
@@ -62,7 +52,7 @@ class SetBlobMetadataResult
             $headers
         ));
 
-        $date   = Utilities::tryGetValueInsensitive(
+        $date = Utilities::tryGetValueInsensitive(
             Resources::LAST_MODIFIED,
             $headers
         );
@@ -95,8 +85,6 @@ class SetBlobMetadataResult
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -118,8 +106,6 @@ class SetBlobMetadataResult
      * Sets blob etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -130,7 +116,7 @@ class SetBlobMetadataResult
     /**
      * Gets the whether the contents of the request are successfully encrypted.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRequestServerEncrypted()
     {
@@ -140,9 +126,7 @@ class SetBlobMetadataResult
     /**
      * Sets the request server encryption value.
      *
-     * @param boolean $requestServerEncrypted
-     *
-     * @return void
+     * @param bool $requestServerEncrypted
      */
     public function setRequestServerEncrypted($requestServerEncrypted)
     {

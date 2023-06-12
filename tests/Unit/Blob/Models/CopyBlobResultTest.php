@@ -14,50 +14,39 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Blob\Models\CopyBlobResult;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 
 /**
  * Unit tests for class SnapshotBlobResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CopyBlobResultTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreate()
     {
-        $expectedEtag         = "12345678";
+        $expectedEtag = '12345678';
         $expectedLastModified = 'Fri, 16 Oct 2009 21:04:30 GMT';
         $headers = [
             Resources::ETAG => $expectedEtag,
-            Resources::LAST_MODIFIED => $expectedLastModified
+            Resources::LAST_MODIFIED => $expectedLastModified,
         ];
 
         $result = CopyBlobResult::create($headers);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedEtag,
             $result->getETag()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             Utilities::rfc1123ToDateTime($expectedLastModified),
             $result->getLastModified()
         );

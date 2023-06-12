@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -27,21 +22,16 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Supported batch operations.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BatchOperationType
 {
-    public const INSERT_ENTITY_OPERATION         = 'InsertEntityOperation';
-    public const UPDATE_ENTITY_OPERATION         = 'UpdateEntityOperation';
-    public const DELETE_ENTITY_OPERATION         = 'DeleteEntityOperation';
-    public const MERGE_ENTITY_OPERATION          = 'MergeEntityOperation';
+    public const INSERT_ENTITY_OPERATION = 'InsertEntityOperation';
+    public const UPDATE_ENTITY_OPERATION = 'UpdateEntityOperation';
+    public const DELETE_ENTITY_OPERATION = 'DeleteEntityOperation';
+    public const MERGE_ENTITY_OPERATION = 'MergeEntityOperation';
     public const INSERT_REPLACE_ENTITY_OPERATION = 'InsertOrReplaceEntityOperation';
-    public const INSERT_MERGE_ENTITY_OPERATION   = 'InsertOrMergeEntityOperation';
+    public const INSERT_MERGE_ENTITY_OPERATION = 'InsertOrMergeEntityOperation';
 
     /**
      * Validates if $type is already defined.
@@ -50,7 +40,7 @@ class BatchOperationType
      *
      * @internal
      *
-     * @return boolean
+     * @return bool
      */
     public static function isValid($type)
     {

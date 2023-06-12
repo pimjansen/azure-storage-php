@@ -14,37 +14,23 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
 
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Queue\Internal\QueueResources;
 use MicrosoftAzure\Storage\Queue\Models\UpdateMessageResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 
 /**
  * Unit tests for class UpdateMessageResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class UpdateMessageResultTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     *
-     */
     public function testCreate()
     {
         // Setup
@@ -57,10 +43,10 @@ class UpdateMessageResultTest extends \PHPUnit\Framework\TestCase
         $result = UpdateMessageResult::create($sample);
 
         // Assert
-        $this->assertEquals(
+        self::assertEquals(
             $sample[QueueResources::X_MS_POPRECEIPT],
             $result->getPopReceipt()
         );
-        $this->assertEquals($expectedDate, $result->getTimeNextVisible());
+        self::assertEquals($expectedDate, $result->getTimeNextVisible());
     }
 }

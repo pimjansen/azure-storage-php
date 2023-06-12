@@ -14,26 +14,22 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Functional\Table\Enums
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Table\Enums;
 
 class OpType
 {
-    public const DELETE_ENTITY            = 'deleteEntity';
-    public const INSERT_ENTITY            = 'insertEntity';
-    public const INSERT_OR_MERGE_ENTITY   = 'insertOrMergeEntity';
+    public const DELETE_ENTITY = 'deleteEntity';
+    public const INSERT_ENTITY = 'insertEntity';
+    public const INSERT_OR_MERGE_ENTITY = 'insertOrMergeEntity';
     public const INSERT_OR_REPLACE_ENTITY = 'insertOrReplaceEntity';
-    public const MERGE_ENTITY             = 'mergeEntity';
-    public const UPDATE_ENTITY            = 'updateEntity';
+    public const MERGE_ENTITY = 'mergeEntity';
+    public const UPDATE_ENTITY = 'updateEntity';
+
     public static function values()
     {
-        return array('deleteEntity', 'insertEntity', 'insertOrMergeEntity', 'insertOrReplaceEntity', 'mergeEntity', 'updateEntity');
+        return ['deleteEntity', 'insertEntity', 'insertOrMergeEntity', 'insertOrReplaceEntity', 'mergeEntity', 'updateEntity'];
     }
 }

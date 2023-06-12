@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\MetadataTrait;
 /**
  * Holds results of calling getBlobMetadata wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetBlobMetadataResult
 {
@@ -43,7 +33,7 @@ class GetBlobMetadataResult
     /**
      * Creates the instance from the parsed headers.
      *
-     * @param  array $parsed Parsed headers
+     * @param array $parsed Parsed headers
      *
      * @return GetBlobMetadataResult
      */

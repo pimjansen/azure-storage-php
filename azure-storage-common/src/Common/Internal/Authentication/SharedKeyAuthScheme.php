@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Authentication;
@@ -35,12 +30,8 @@ use MicrosoftAzure\Storage\Common\Internal\Utilities;
  * check: http://msdn.microsoft.com/en-us/library/windowsazure/dd179428.aspx
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class SharedKeyAuthScheme implements IAuthScheme
 {
@@ -69,10 +60,10 @@ class SharedKeyAuthScheme implements IAuthScheme
      */
     public function __construct($accountName, $accountKey)
     {
-        $this->accountKey  = $accountKey;
+        $this->accountKey = $accountKey;
         $this->accountName = $accountName;
 
-        $this->includedHeaders   = array();
+        $this->includedHeaders = [];
         $this->includedHeaders[] = Resources::CONTENT_ENCODING;
         $this->includedHeaders[] = Resources::CONTENT_LANGUAGE;
         $this->includedHeaders[] = Resources::CONTENT_LENGTH;
@@ -112,7 +103,7 @@ class SharedKeyAuthScheme implements IAuthScheme
             $queryParams
         );
 
-        $stringToSign   = array();
+        $stringToSign = [];
         $stringToSign[] = strtoupper($httpMethod);
 
         foreach ($this->includedHeaders as $header) {
@@ -124,9 +115,7 @@ class SharedKeyAuthScheme implements IAuthScheme
         }
 
         $stringToSign[] = $canonicalizedResource;
-        $stringToSign   = implode("\n", $stringToSign);
-
-        return $stringToSign;
+        return implode("\n", $stringToSign);
     }
 
     /**
@@ -156,7 +145,7 @@ class SharedKeyAuthScheme implements IAuthScheme
         );
 
         return 'SharedKey ' . $this->accountName . ':' . base64_encode(
-            hash_hmac('sha256', $signature, base64_decode($this->accountKey), true)
+            hash_hmac('sha256', $signature, base64_decode($this->accountKey, true), true)
         );
     }
 
@@ -172,11 +161,11 @@ class SharedKeyAuthScheme implements IAuthScheme
      */
     protected function computeCanonicalizedHeaders($headers)
     {
-        $canonicalizedHeaders = array();
-        $normalizedHeaders    = array();
-        $validPrefix          =  Resources::X_MS_HEADER_PREFIX;
+        $canonicalizedHeaders = [];
+        $normalizedHeaders = [];
+        $validPrefix = Resources::X_MS_HEADER_PREFIX;
 
-        if (is_null($normalizedHeaders)) {
+        if (null === $normalizedHeaders) {
             return $canonicalizedHeaders;
         }
 
@@ -193,7 +182,7 @@ class SharedKeyAuthScheme implements IAuthScheme
                 $value = str_replace("\r\n", ' ', $value);
 
                 // Trim any white space around the colon in the header.
-                $value  = ltrim($value);
+                $value = ltrim($value);
                 $header = rtrim($header);
 
                 $normalizedHeaders[$header] = $value;
@@ -293,7 +282,7 @@ class SharedKeyAuthScheme implements IAuthScheme
     /**
      * Adds authentication header to the request headers.
      *
-     * @param  \GuzzleHttp\Psr7\Request $request HTTP request object.
+     * @param \GuzzleHttp\Psr7\Request $request HTTP request object.
      *
      * @abstract
      *

@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
 /**
  * Blob service options.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobServiceOptions extends ServiceOptions
 {
@@ -55,8 +45,6 @@ class BlobServiceOptions extends ServiceOptions
      * Sets lease Id for the blob
      *
      * @param string $leaseId the blob lease id.
-     *
-     * @return void
      */
     public function setLeaseId($leaseId)
     {
@@ -77,13 +65,11 @@ class BlobServiceOptions extends ServiceOptions
      * Sets access condition
      *
      * @param mixed $accessConditions value to use.
-     *
-     * @return void
      */
     public function setAccessConditions($accessConditions)
     {
-        if (!is_null($accessConditions) &&
-            is_array($accessConditions)) {
+        if (null !== $accessConditions
+            && is_array($accessConditions)) {
             $this->_accessConditions = $accessConditions;
         } else {
             $this->_accessConditions = [$accessConditions];

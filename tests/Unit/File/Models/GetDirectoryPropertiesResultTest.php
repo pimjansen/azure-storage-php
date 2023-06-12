@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\File\Models;
 
-use MicrosoftAzure\Storage\File\Models\GetDirectoryPropertiesResult;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\File\Models\GetDirectoryPropertiesResult;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class GetDirectoryPropertiesResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetDirectoryPropertiesResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,12 +40,12 @@ class GetDirectoryPropertiesResultTest extends \PHPUnit\Framework\TestCase
         $expectedEtag = $sample[Resources::QP_ETAG];
         $expectedMeta = Utilities::getMetadataArray($sample);
 
-        $this->assertEquals($expectedLastModified, $directoryPropertiesResult->getLastModified());
-        $this->assertEquals($expectedEtag, $directoryPropertiesResult->getETag());
+        self::assertEquals($expectedLastModified, $directoryPropertiesResult->getLastModified());
+        self::assertEquals($expectedEtag, $directoryPropertiesResult->getETag());
         $actualMeta = $directoryPropertiesResult->getMetadata();
         foreach ($expectedMeta as $key => $value) {
-            $this->assertArrayHasKey($key, $actualMeta);
-            $this->assertEquals($value, $actualMeta[$key]);
+            self::assertArrayHasKey($key, $actualMeta);
+            self::assertEquals($value, $actualMeta[$key]);
         }
     }
 }

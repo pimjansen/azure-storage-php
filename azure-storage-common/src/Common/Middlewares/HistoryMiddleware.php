@@ -14,22 +14,17 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Middlewares;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use GuzzleHttp\Promise\RejectedPromise;
 use MicrosoftAzure\Storage\Common\Internal\Serialization\MessageSerializer;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Promise\RejectedPromise;
 
 /**
  * This class provides the functionality to log the requests/options/responses.
@@ -39,12 +34,7 @@ use GuzzleHttp\Promise\RejectedPromise;
  * The middleware should be pushed into client options if the logging is
  * intended to persist between different API calls.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Middlewares
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class HistoryMiddleware extends MiddlewareBase
 {
@@ -71,11 +61,10 @@ class HistoryMiddleware extends MiddlewareBase
      *                     no data is going to be saved to memory and the
      *                     entries are going to be serialized and saved to given
      *                     path.
-     *
      */
     public function __construct($path = '')
     {
-        $this->history = array();
+        $this->history = [];
         $this->path = $path;
         $this->count = 0;
     }
@@ -91,10 +80,10 @@ class HistoryMiddleware extends MiddlewareBase
             $this->appendNewEntryToPath($entry);
         } else {
             Validate::isTrue(
-                array_key_exists('request', $entry) &&
-                array_key_exists('options', $entry) &&
-                (array_key_exists('response', $entry) ||
-                array_key_exists('reason', $entry)),
+                array_key_exists('request', $entry)
+                && array_key_exists('options', $entry)
+                && (array_key_exists('response', $entry)
+                || array_key_exists('reason', $entry)),
                 'Given history entry not in correct format'
             );
             $this->history[] = $entry;
@@ -104,12 +93,10 @@ class HistoryMiddleware extends MiddlewareBase
 
     /**
      * Clear the history
-     *
-     * @return void
      */
     public function clearHistory()
     {
-        $this->history = array();
+        $this->history = [];
         $this->count = 0;
     }
 
@@ -117,23 +104,23 @@ class HistoryMiddleware extends MiddlewareBase
      * This function will be invoked after the request is sent, if
      * the promise is fulfilled.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
     protected function onFulfilled(RequestInterface $request, array $options)
     {
         $reflection = $this;
-        return function (ResponseInterface $response) use (
+        return static function (ResponseInterface $response) use (
             $reflection,
             $request,
             $options
         ) {
             $reflection->addHistory([
-                'request'  => $request,
+                'request' => $request,
                 'response' => $response,
-                'options'  => $options
+                'options' => $options,
             ]);
             return $response;
         };
@@ -143,23 +130,23 @@ class HistoryMiddleware extends MiddlewareBase
      * This function will be executed after the request is sent, if
      * the promise is rejected.
      *
-     * @param  RequestInterface $request the request sent.
-     * @param  array            $options the options that the request sent with.
+     * @param RequestInterface $request the request sent.
+     * @param array            $options the options that the request sent with.
      *
      * @return callable
      */
     protected function onRejected(RequestInterface $request, array $options)
     {
         $reflection = $this;
-        return function ($reason) use (
+        return static function ($reason) use (
             $reflection,
             $request,
             $options
         ) {
             $reflection->addHistory([
                 'request' => $request,
-                'reason'  => $reason,
-                'options' => $options
+                'reason' => $reason,
+                'options' => $options,
             ]);
             return new RejectedPromise($reason);
         };
@@ -169,12 +156,10 @@ class HistoryMiddleware extends MiddlewareBase
      * Append the new entry to saved file path.
      *
      * @param array $entry the entry to be added.
-     *
-     * @return void
      */
     private function appendNewEntryToPath(array $entry)
     {
-        $entryNoString = "Entry " . $this->count;
+        $entryNoString = 'Entry ' . $this->count;
         $delimiter = str_pad(
             $entryNoString,
             self::TITLE_LENGTH,
@@ -184,7 +169,7 @@ class HistoryMiddleware extends MiddlewareBase
         $entryString = $delimiter;
         $entryString .= sprintf(
             "Time: %s\n",
-            (new \DateTime("now", new \DateTimeZone('UTC')))->format('Y-m-d H:i:s')
+            (new \DateTime('now', new \DateTimeZone('UTC')))->format('Y-m-d H:i:s')
         );
         $entryString .= MessageSerializer::objectSerialize($entry['request']);
         if (array_key_exists('reason', $entry)) {

@@ -14,30 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Blob\Models\CreateBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
+use MicrosoftAzure\Storage\Blob\Models\CreateBlobOptions;
 
 /**
  * Unit tests for class CreateBlobOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
 {
@@ -52,7 +40,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentType($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentType());
+        self::assertEquals($expected, $options->getContentType());
     }
 
     public function testSetContentEncoding()
@@ -66,7 +54,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentEncoding($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentEncoding());
+        self::assertEquals($expected, $options->getContentEncoding());
     }
 
     public function testSetContentLanguage()
@@ -80,7 +68,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentLanguage($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentLanguage());
+        self::assertEquals($expected, $options->getContentLanguage());
     }
 
     public function testSetContentMD5()
@@ -94,7 +82,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentMD5($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentMD5());
+        self::assertEquals($expected, $options->getContentMD5());
     }
 
     public function testSetCacheControl()
@@ -108,7 +96,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setCacheControl($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getCacheControl());
+        self::assertEquals($expected, $options->getCacheControl());
     }
 
     public function testSetContentDisposition()
@@ -122,7 +110,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentDisposition($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentDisposition());
+        self::assertEquals($expected, $options->getContentDisposition());
     }
 
     public function testSetLeaseId()
@@ -136,7 +124,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setLeaseId($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 
     public function testSetSequenceNumber()
@@ -150,34 +138,34 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setSequenceNumber($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getSequenceNumber());
+        self::assertEquals($expected, $options->getSequenceNumber());
     }
 
     public function testSetMetadata()
     {
         // Setup
         $container = new CreateBlobOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $container->setMetadata($expected);
 
         // Assert
-        $this->assertEquals($expected, $container->getMetadata());
+        self::assertEquals($expected, $container->getMetadata());
     }
 
     public function testGetMetadata()
     {
         // Setup
         $container = new CreateBlobOptions();
-        $expected = array('key1' => 'value1', 'key2' => 'value2');
+        $expected = ['key1' => 'value1', 'key2' => 'value2'];
         $container->setMetadata($expected);
 
         // Test
         $actual = $container->getMetadata();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetAccessConditions()
@@ -191,7 +179,7 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $result->getAccessConditions();
 
         // Assert
-        $this->assertEquals($expected, $actual[0]);
+        self::assertEquals($expected, $actual[0]);
     }
 
     public function testSetAccessConditions()
@@ -204,6 +192,6 @@ class CreateBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $result->setAccessConditions($expected);
 
         // Assert
-        $this->assertEquals($expected, $result->getAccessConditions()[0]);
+        self::assertEquals($expected, $result->getAccessConditions()[0]);
     }
 }

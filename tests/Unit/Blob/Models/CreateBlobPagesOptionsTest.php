@@ -14,28 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Blob\Models\CreateBlobPagesOptions;
 use MicrosoftAzure\Storage\Blob\Models\AccessCondition;
+use MicrosoftAzure\Storage\Blob\Models\CreateBlobPagesOptions;
 
 /**
  * Unit tests for class CreateBlobPagesOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,7 +40,7 @@ class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $options->getAccessConditions();
 
         // Assert
-        $this->assertEquals($expected, $actual[0]);
+        self::assertEquals($expected, $actual[0]);
     }
 
     public function testSetAccessConditions()
@@ -63,7 +53,7 @@ class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setAccessConditions($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getAccessConditions()[0]);
+        self::assertEquals($expected, $options->getAccessConditions()[0]);
     }
 
     public function testSetContentMD5()
@@ -77,7 +67,7 @@ class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setContentMD5($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getContentMD5());
+        self::assertEquals($expected, $options->getContentMD5());
     }
 
     public function testSetLeaseId()
@@ -91,6 +81,6 @@ class CreateBlobPagesOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setLeaseId($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 }

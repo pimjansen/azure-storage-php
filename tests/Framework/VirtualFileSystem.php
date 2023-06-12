@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Framework;
@@ -31,19 +26,14 @@ use org\bovigo\vfs\vfsStreamWrapper;
 /**
  * Represents virtual file system for testing purpose.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Framework
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class VirtualFileSystem
 {
     public static function newFile($contents, $fileName = null, $root = null)
     {
-        $root = is_null($root) ? 'root' : $root;
-        $fileName = is_null($fileName) ? 'test.txt' : $fileName;
+        $root = null === $root ? 'root' : $root;
+        $fileName = null === $fileName ? 'test.txt' : $fileName;
 
         vfsStreamWrapper::register();
         vfsStreamWrapper::setRoot(new vfsStreamDirectory($root));
@@ -52,8 +42,6 @@ class VirtualFileSystem
         $file->setContent($contents);
 
         vfsStreamWrapper::getRoot()->addChild($file);
-        $virtualPath = vfsStream::url($root . '/' . $fileName);
-
-        return $virtualPath;
+        return vfsStream::url($root . '/' . $fileName);
     }
 }

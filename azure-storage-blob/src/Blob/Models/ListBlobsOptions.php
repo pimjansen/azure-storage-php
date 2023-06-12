@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
 /**
  * Optional parameters for listBlobs API.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListBlobsOptions extends BlobServiceOptions
 {
@@ -64,8 +54,6 @@ class ListBlobsOptions extends BlobServiceOptions
      * Sets prefix.
      *
      * @param string $prefix value.
-     *
-     * @return void
      */
     public function setPrefix($prefix)
     {
@@ -87,8 +75,6 @@ class ListBlobsOptions extends BlobServiceOptions
      * Sets prefix.
      *
      * @param string $delimiter value.
-     *
-     * @return void
      */
     public function setDelimiter($delimiter)
     {
@@ -99,7 +85,7 @@ class ListBlobsOptions extends BlobServiceOptions
     /**
      * Gets max results.
      *
-     * @return integer
+     * @return int
      */
     public function getMaxResults()
     {
@@ -109,9 +95,7 @@ class ListBlobsOptions extends BlobServiceOptions
     /**
      * Sets max results.
      *
-     * @param integer $maxResults value.
-     *
-     * @return void
+     * @param int $maxResults value.
      */
     public function setMaxResults($maxResults)
     {
@@ -122,7 +106,7 @@ class ListBlobsOptions extends BlobServiceOptions
     /**
      * Indicates if metadata is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeMetadata()
     {
@@ -133,8 +117,6 @@ class ListBlobsOptions extends BlobServiceOptions
      * Sets the include metadata flag.
      *
      * @param bool $includeMetadata value.
-     *
-     * @return void
      */
     public function setIncludeMetadata($includeMetadata)
     {
@@ -145,7 +127,7 @@ class ListBlobsOptions extends BlobServiceOptions
     /**
      * Indicates if snapshots is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeSnapshots()
     {
@@ -156,8 +138,6 @@ class ListBlobsOptions extends BlobServiceOptions
      * Sets the include snapshots flag.
      *
      * @param bool $includeSnapshots value.
-     *
-     * @return void
      */
     public function setIncludeSnapshots($includeSnapshots)
     {
@@ -168,7 +148,7 @@ class ListBlobsOptions extends BlobServiceOptions
     /**
      * Indicates if uncommittedBlobs is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeUncommittedBlobs()
     {
@@ -179,8 +159,6 @@ class ListBlobsOptions extends BlobServiceOptions
      * Sets the include uncommittedBlobs flag.
      *
      * @param bool $includeUncommittedBlobs value.
-     *
-     * @return void
      */
     public function setIncludeUncommittedBlobs($includeUncommittedBlobs)
     {
@@ -191,7 +169,7 @@ class ListBlobsOptions extends BlobServiceOptions
     /**
      * Indicates if copy is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeCopy()
     {
@@ -202,8 +180,6 @@ class ListBlobsOptions extends BlobServiceOptions
      * Sets the include copy flag.
      *
      * @param bool $includeCopy value.
-     *
-     * @return void
      */
     public function setIncludeCopy($includeCopy)
     {
@@ -214,7 +190,7 @@ class ListBlobsOptions extends BlobServiceOptions
     /**
      * Indicates if deleted is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeDeleted()
     {
@@ -225,8 +201,6 @@ class ListBlobsOptions extends BlobServiceOptions
      * Sets the include deleted flag.
      *
      * @param bool $includeDeleted value.
-     *
-     * @return void
      */
     public function setIncludeDeleted($includeDeleted)
     {

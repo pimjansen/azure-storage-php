@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -32,12 +27,7 @@ use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 /**
  * Hold result of calliing listBlobs wrapper.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListBlobsResult
 {
@@ -54,9 +44,9 @@ class ListBlobsResult
     /**
      * Creates ListBlobsResult object from parsed XML response.
      *
-     * @param array  $parsed      XML response parsed into array.
-     * @param string $location       Contains the location for the previous
-     *                               request.
+     * @param array  $parsed   XML response parsed into array.
+     * @param string $location Contains the location for the previous
+     *                         request.
      *
      * @internal
      *
@@ -64,13 +54,13 @@ class ListBlobsResult
      */
     public static function create(array $parsed, $location = '')
     {
-        $result                 = new ListBlobsResult();
-        $serviceEndpoint        = Utilities::tryGetKeysChainValue(
+        $result = new ListBlobsResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsed,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT
         );
-        $containerName          = Utilities::tryGetKeysChainValue(
+        $containerName = Utilities::tryGetKeysChainValue(
             $parsed,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_CONTAINER_NAME
@@ -97,17 +87,17 @@ class ListBlobsResult
             );
         }
 
-        $result->setMaxResults(intval(
+        $result->setMaxResults((int) (
             Utilities::tryGetValue($parsed, Resources::QP_MAX_RESULTS, 0)
         ));
         $result->setDelimiter(Utilities::tryGetValue(
             $parsed,
             Resources::QP_DELIMITER
         ));
-        $blobs           = array();
-        $blobPrefixes    = array();
-        $rawBlobs        = array();
-        $rawBlobPrefixes = array();
+        $blobs = [];
+        $blobPrefixes = [];
+        $rawBlobs = [];
+        $rawBlobPrefixes = [];
 
         if (is_array($parsed['Blobs'])
             && array_key_exists('Blob', $parsed['Blobs'])
@@ -126,7 +116,7 @@ class ListBlobsResult
                 )
             );
             $blob->setMetadata(
-                Utilities::tryGetValue($value, Resources::QP_METADATA, array())
+                Utilities::tryGetValue($value, Resources::QP_METADATA, [])
             );
 
             $blobs[] = $blob;
@@ -165,12 +155,10 @@ class ListBlobsResult
      * Sets blobs.
      *
      * @param Blob[] $blobs list of blobs
-     *
-     * @return void
      */
     protected function setBlobs(array $blobs)
     {
-        $this->blobs = array();
+        $this->blobs = [];
         foreach ($blobs as $blob) {
             $this->blobs[] = clone $blob;
         }
@@ -190,12 +178,10 @@ class ListBlobsResult
      * Sets blobPrefixes.
      *
      * @param array $blobPrefixes list of blobPrefixes
-     *
-     * @return void
      */
     protected function setBlobPrefixes(array $blobPrefixes)
     {
-        $this->blobPrefixes = array();
+        $this->blobPrefixes = [];
         foreach ($blobPrefixes as $blob) {
             $this->blobPrefixes[] = clone $blob;
         }
@@ -215,8 +201,6 @@ class ListBlobsResult
      * Sets prefix.
      *
      * @param string $prefix value.
-     *
-     * @return void
      */
     protected function setPrefix($prefix)
     {
@@ -237,8 +221,6 @@ class ListBlobsResult
      * Sets prefix.
      *
      * @param string $delimiter value.
-     *
-     * @return void
      */
     protected function setDelimiter($delimiter)
     {
@@ -259,8 +241,6 @@ class ListBlobsResult
      * Sets marker.
      *
      * @param string $marker value.
-     *
-     * @return void
      */
     protected function setMarker($marker)
     {
@@ -270,7 +250,7 @@ class ListBlobsResult
     /**
      * Gets max results.
      *
-     * @return integer
+     * @return int
      */
     public function getMaxResults()
     {
@@ -280,9 +260,7 @@ class ListBlobsResult
     /**
      * Sets max results.
      *
-     * @param integer $maxResults value.
-     *
-     * @return void
+     * @param int $maxResults value.
      */
     protected function setMaxResults($maxResults)
     {
@@ -303,8 +281,6 @@ class ListBlobsResult
      * Sets container name.
      *
      * @param string $containerName value.
-     *
-     * @return void
      */
     protected function setContainerName($containerName)
     {

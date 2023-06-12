@@ -14,28 +14,17 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Queue\Internal\QueueResources as Resources;
 
 /**
  * Holds results of CreateMessage wrapper.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateMessageResult
 {
@@ -54,8 +43,8 @@ class CreateMessageResult
     {
         $result = new CreateMessageResult();
 
-        if (!empty($parsedResponse) &&
-            !empty($parsedResponse[Resources::QP_QUEUE_MESSAGE])
+        if (!empty($parsedResponse)
+            && !empty($parsedResponse[Resources::QP_QUEUE_MESSAGE])
         ) {
             $result->setQueueMessage(
                 QueueMessage::createFromCreateMessage(
@@ -83,8 +72,6 @@ class CreateMessageResult
      * @param QueueMessage $queueMessage value to use.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setQueueMessage($queueMessage)
     {

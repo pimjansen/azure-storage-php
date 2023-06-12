@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Represents blob properties
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlobProperties
 {
@@ -81,7 +71,7 @@ class BlobProperties
     public static function createFromXml(array $parsed)
     {
         $result = new BlobProperties();
-        $clean  = array_change_key_case($parsed);
+        $clean = array_change_key_case($parsed);
 
         $result->setCommonBlobProperties($clean);
         $result->setLeaseStatus(Utilities::tryGetValue($clean, 'leasestatus'));
@@ -108,7 +98,7 @@ class BlobProperties
         );
 
         $accesstierchangetime = Utilities::tryGetValue($clean, 'accesstierchangetime');
-        if (!is_null($accesstierchangetime)) {
+        if (null !== $accesstierchangetime) {
             $accesstierchangetime = Utilities::rfc1123ToDateTime($accesstierchangetime);
             $result->setAccessTierChangeTime($accesstierchangetime);
         }
@@ -118,18 +108,18 @@ class BlobProperties
         );
 
         $deletedtime = Utilities::tryGetValue($clean, 'deletedtime');
-        if (!is_null($deletedtime)) {
+        if (null !== $deletedtime) {
             $deletedtime = Utilities::rfc1123ToDateTime($deletedtime);
             $result->setDeletedTime($deletedtime);
         }
 
         $remainingretentiondays = Utilities::tryGetValue($clean, 'remainingretentiondays');
-        if (!is_null($remainingretentiondays)) {
+        if (null !== $remainingretentiondays) {
             $result->setRemainingRetentionDays((int) $remainingretentiondays);
         }
 
         $creationtime = Utilities::tryGetValue($clean, 'creation-time');
-        if (!is_null($creationtime)) {
+        if (null !== $creationtime) {
             $creationtime = Utilities::rfc1123ToDateTime($creationtime);
             $result->setCreationTime($creationtime);
         }
@@ -149,7 +139,7 @@ class BlobProperties
     public static function createFromHttpHeaders(array $parsed)
     {
         $result = new BlobProperties();
-        $clean  = array_change_key_case($parsed);
+        $clean = array_change_key_case($parsed);
 
         $result->setCommonBlobProperties($clean);
 
@@ -178,7 +168,7 @@ class BlobProperties
             )
         );
         $result->setCommittedBlockCount(
-            intval(Utilities::tryGetValue(
+            (int) (Utilities::tryGetValue(
                 $clean,
                 Resources::X_MS_BLOB_COMMITTED_BLOCK_COUNT
             ))
@@ -202,7 +192,7 @@ class BlobProperties
         );
 
         $date = Utilities::tryGetValue($clean, Resources::X_MS_ACCESS_TIER_CHANGE_TIME);
-        if (!is_null($date)) {
+        if (null !== $date) {
             $date = Utilities::rfc1123ToDateTime($date);
             $result->setAccessTierChangeTime($date);
         }
@@ -228,8 +218,6 @@ class BlobProperties
      * Sets blob lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     public function setLastModified(\DateTime $lastModified)
     {
@@ -251,8 +239,6 @@ class BlobProperties
      * Sets blob creationTime.
      *
      * @param \DateTime $creationTime value.
-     *
-     * @return void
      */
     public function setCreationTime(\DateTime $creationTime)
     {
@@ -274,8 +260,6 @@ class BlobProperties
      * Sets blob etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     public function setETag($etag)
     {
@@ -296,8 +280,6 @@ class BlobProperties
      * Sets blob contentType.
      *
      * @param string $contentType value.
-     *
-     * @return void
      */
     public function setContentType($contentType)
     {
@@ -318,8 +300,6 @@ class BlobProperties
      * Sets blob contentRange.
      *
      * @param string $contentRange value.
-     *
-     * @return void
      */
     public function setContentRange($contentRange)
     {
@@ -329,7 +309,7 @@ class BlobProperties
     /**
      * Gets blob contentLength.
      *
-     * @return integer
+     * @return int
      */
     public function getContentLength()
     {
@@ -339,9 +319,7 @@ class BlobProperties
     /**
      * Sets blob contentLength.
      *
-     * @param integer $contentLength value.
-     *
-     * @return void
+     * @param int $contentLength value.
      */
     public function setContentLength($contentLength)
     {
@@ -363,8 +341,6 @@ class BlobProperties
      * Sets blob contentEncoding.
      *
      * @param string $contentEncoding value.
-     *
-     * @return void
      */
     public function setContentEncoding($contentEncoding)
     {
@@ -385,8 +361,6 @@ class BlobProperties
      * Sets blob access tier.
      *
      * @param string $accessTier value.
-     *
-     * @return void
      */
     public function setAccessTier($accessTier)
     {
@@ -407,8 +381,6 @@ class BlobProperties
      * Sets blob archive status.
      *
      * @param string $archiveStatus value.
-     *
-     * @return void
      */
     public function setArchiveStatus($archiveStatus)
     {
@@ -429,8 +401,6 @@ class BlobProperties
      * Sets blob deleted time.
      *
      * @param \DateTime $deletedTime value.
-     *
-     * @return void
      */
     public function setDeletedTime(\DateTime $deletedTime)
     {
@@ -440,7 +410,7 @@ class BlobProperties
     /**
      * Gets blob remaining retention days.
      *
-     * @return integer
+     * @return int
      */
     public function getRemainingRetentionDays()
     {
@@ -450,20 +420,17 @@ class BlobProperties
     /**
      * Sets blob remaining retention days.
      *
-     * @param integer $remainingRetentionDays value.
-     *
-     * @return void
+     * @param int $remainingRetentionDays value.
      */
     public function setRemainingRetentionDays($remainingRetentionDays)
     {
         $this->remainingRetentionDays = $remainingRetentionDays;
     }
 
-
     /**
      * Gets blob access inferred.
      *
-     * @return boolean
+     * @return bool
      */
     public function getAccessTierInferred()
     {
@@ -473,9 +440,7 @@ class BlobProperties
     /**
      * Sets blob access tier inferred.
      *
-     * @param boolean $accessTierInferred value.
-     *
-     * @return void
+     * @param bool $accessTierInferred value.
      */
     public function setAccessTierInferred($accessTierInferred)
     {
@@ -497,8 +462,6 @@ class BlobProperties
      * Sets blob access tier change time.
      *
      * @param \DateTime $accessTierChangeTime value.
-     *
-     * @return void
      */
     public function setAccessTierChangeTime(\DateTime $accessTierChangeTime)
     {
@@ -520,8 +483,6 @@ class BlobProperties
      * Sets blob contentLanguage.
      *
      * @param string $contentLanguage value.
-     *
-     * @return void
      */
     public function setContentLanguage($contentLanguage)
     {
@@ -542,8 +503,6 @@ class BlobProperties
      * Sets blob contentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     public function setContentMD5($contentMD5)
     {
@@ -564,8 +523,6 @@ class BlobProperties
      * Sets blob range contentMD5.
      *
      * @param string rangeContentMD5 value.
-     *
-     * @return void
      */
     public function setRangeContentMD5($rangeContentMD5)
     {
@@ -586,8 +543,6 @@ class BlobProperties
      * Sets blob cacheControl.
      *
      * @param string $cacheControl value.
-     *
-     * @return void
      */
     public function setCacheControl($cacheControl)
     {
@@ -608,8 +563,6 @@ class BlobProperties
      * Sets blob contentDisposition.
      *
      * @param string $contentDisposition value.
-     *
-     * @return void
      */
     public function setContentDisposition($contentDisposition)
     {
@@ -630,8 +583,6 @@ class BlobProperties
      * Sets blob blobType.
      *
      * @param string $blobType value.
-     *
-     * @return void
      */
     public function setBlobType($blobType)
     {
@@ -652,8 +603,6 @@ class BlobProperties
      * Sets blob leaseStatus.
      *
      * @param string $leaseStatus value.
-     *
-     * @return void
      */
     public function setLeaseStatus($leaseStatus)
     {
@@ -674,8 +623,6 @@ class BlobProperties
      * Sets blob lease state.
      *
      * @param string $leaseState value.
-     *
-     * @return void
      */
     public function setLeaseState($leaseState)
     {
@@ -696,8 +643,6 @@ class BlobProperties
      * Sets blob leaseStatus.
      *
      * @param string $leaseDuration value.
-     *
-     * @return void
      */
     public function setLeaseDuration($leaseDuration)
     {
@@ -718,8 +663,6 @@ class BlobProperties
      * Sets blob sequenceNumber.
      *
      * @param int $sequenceNumber value.
-     *
-     * @return void
      */
     public function setSequenceNumber($sequenceNumber)
     {
@@ -730,7 +673,7 @@ class BlobProperties
     /**
      * Gets the server encryption status of the blob.
      *
-     * @return boolean
+     * @return bool
      */
     public function getServerEncrypted()
     {
@@ -740,9 +683,7 @@ class BlobProperties
     /**
      * Sets the server encryption status of the blob.
      *
-     * @param boolean $serverEncrypted
-     *
-     * @return void
+     * @param bool $serverEncrypted
      */
     public function setServerEncrypted($serverEncrypted)
     {
@@ -763,8 +704,6 @@ class BlobProperties
      * Sets the number of committed blocks present in the blob.
      *
      * @param int $committedBlockCount the number of committed blocks present in the blob.
-     *
-     * @return void
      */
     public function setCommittedBlockCount($committedBlockCount)
     {
@@ -785,8 +724,6 @@ class BlobProperties
      * Sets the copy state of the blob.
      *
      * @param CopyState $copyState the copy state of the blob.
-     *
-     * @return void
      */
     public function setCopyState($copyState)
     {
@@ -816,7 +753,7 @@ class BlobProperties
     /**
      * Gets whether the blob is an incremental copy blob.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncrementalCopy()
     {
@@ -826,7 +763,7 @@ class BlobProperties
     /**
      * Sets whether the blob is an incremental copy blob.
      *
-     * @param boolean $incrementalCopy whether blob is an incremental copy blob.
+     * @param bool $incrementalCopy whether blob is an incremental copy blob.
      */
     public function setIncrementalCopy($incrementalCopy)
     {
@@ -836,17 +773,17 @@ class BlobProperties
     private function setCommonBlobProperties(array $clean)
     {
         $date = Utilities::tryGetValue($clean, Resources::LAST_MODIFIED);
-        if (!is_null($date)) {
+        if (null !== $date) {
             $date = Utilities::rfc1123ToDateTime($date);
             $this->setLastModified($date);
         }
 
         $this->setBlobType(Utilities::tryGetValue($clean, 'blobtype'));
 
-        $this->setContentLength(intval($clean[Resources::CONTENT_LENGTH]));
+        $this->setContentLength((int) ($clean[Resources::CONTENT_LENGTH]));
         $this->setETag(Utilities::tryGetValue($clean, Resources::ETAG));
         $this->setSequenceNumber(
-            intval(
+            (int) (
                 Utilities::tryGetValue($clean, Resources::X_MS_BLOB_SEQUENCE_NUMBER)
             )
         );
@@ -869,8 +806,8 @@ class BlobProperties
             Utilities::tryGetValue($clean, Resources::CONTENT_TYPE_LOWER_CASE)
         );
 
-        if (Utilities::tryGetValue($clean, Resources::CONTENT_MD5) &&
-            !Utilities::tryGetValue($clean, Resources::CONTENT_RANGE)
+        if (Utilities::tryGetValue($clean, Resources::CONTENT_MD5)
+            && !Utilities::tryGetValue($clean, Resources::CONTENT_RANGE)
         ) {
             $this->setContentMD5(
                 Utilities::tryGetValue($clean, Resources::CONTENT_MD5)

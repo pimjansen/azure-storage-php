@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Table\Models;
 /**
  * Query to be performed on a table
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Query
 {
@@ -54,8 +44,6 @@ class Query
      * Sets filter.
      *
      * @param Filters\Filter $filter value.
-     *
-     * @return void
      */
     public function setFilter($filter)
     {
@@ -65,7 +53,7 @@ class Query
     /**
      * Gets top.
      *
-     * @return integer
+     * @return int
      */
     public function getTop()
     {
@@ -75,9 +63,7 @@ class Query
     /**
      * Sets top.
      *
-     * @param integer $top value.
-     *
-     * @return void
+     * @param int $top value.
      */
     public function setTop($top)
     {
@@ -88,8 +74,6 @@ class Query
      * Adds a field to select fields.
      *
      * @param string $field The value of the field.
-     *
-     * @return void
      */
     public function addSelectField($field)
     {
@@ -110,8 +94,6 @@ class Query
      * Sets selectFields.
      *
      * @param array $selectFields value.
-     *
-     * @return void
      */
     public function setSelectFields(array $selectFields = null)
     {

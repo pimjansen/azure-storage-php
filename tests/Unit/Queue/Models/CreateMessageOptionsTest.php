@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Queue\Models\CreateMessageOptions;
 /**
  * Unit tests for class CreateMessageOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
 {
@@ -49,7 +39,7 @@ class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $createMessageOptions->getVisibilityTimeoutInSeconds();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetVisibilityTimeoutInSeconds()
@@ -63,7 +53,7 @@ class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $createMessageOptions->getVisibilityTimeoutInSeconds();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetTimeToLiveInSeconds()
@@ -77,7 +67,7 @@ class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $createMessageOptions->getTimeToLiveInSeconds();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetTimeToLiveInSeconds()
@@ -91,6 +81,6 @@ class CreateMessageOptionsTest extends \PHPUnit\Framework\TestCase
 
         // Assert
         $actual = $createMessageOptions->getTimeToLiveInSeconds();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

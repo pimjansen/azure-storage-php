@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Holds results of calling queryEntities API
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueryEntitiesResult
 {
@@ -55,13 +45,13 @@ class QueryEntitiesResult
      */
     public static function create(array $headers, array $entities)
     {
-        $result  = new QueryEntitiesResult();
+        $result = new QueryEntitiesResult();
         $headers = array_change_key_case($headers);
-        $nextPK  = Utilities::tryGetValue(
+        $nextPK = Utilities::tryGetValue(
             $headers,
             Resources::X_MS_CONTINUATION_NEXTPARTITIONKEY
         );
-        $nextRK  = Utilities::tryGetValue(
+        $nextRK = Utilities::tryGetValue(
             $headers,
             Resources::X_MS_CONTINUATION_NEXTROWKEY
         );
@@ -98,8 +88,6 @@ class QueryEntitiesResult
      * Sets entities.
      *
      * @param array $entities The entities array.
-     *
-     * @return void
      */
     protected function setEntities(array $entities)
     {

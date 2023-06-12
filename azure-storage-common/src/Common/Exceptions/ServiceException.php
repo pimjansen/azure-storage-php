@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Exceptions
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Exceptions;
 
-use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Fires when the response code is incorrect.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Exceptions
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ServiceException extends \LogicException
 {
@@ -64,16 +54,16 @@ class ServiceException extends \LogicException
                 $response->getBody()
             )
         );
-        $this->code         = $response->getStatusCode();
-        $this->response     = $response;
-        $this->errorText    = $response->getReasonPhrase();
+        $this->code = $response->getStatusCode();
+        $this->response = $response;
+        $this->errorText = $response->getReasonPhrase();
         $this->errorMessage = self::parseErrorMessage($response);
     }
 
     /**
      * Error message to be parsed.
      *
-     * @param  ResponseInterface $response The response with a response body.
+     * @param ResponseInterface $response The response with a response body.
      *
      * @internal
      *
@@ -88,7 +78,7 @@ class ServiceException extends \LogicException
         try {
             $internalErrors = libxml_use_internal_errors(true);
             $parsedArray = $serializer->unserialize($response->getBody());
-            $messages = array();
+            $messages = [];
             foreach (libxml_get_errors() as $error) {
                 $messages[] = $error->message;
             }

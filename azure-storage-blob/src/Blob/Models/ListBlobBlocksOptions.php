@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
 /**
  * Optional parameters for listBlobBlock wrapper
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListBlobBlocksOptions extends BlobServiceOptions
 {
@@ -49,13 +39,13 @@ class ListBlobBlocksOptions extends BlobServiceOptions
     public function __construct()
     {
         parent::__construct();
-        self::$_listType[true][true]   = 'all';
-        self::$_listType[true][false]  = 'uncommitted';
-        self::$_listType[false][true]  = 'committed';
+        self::$_listType[true][true] = 'all';
+        self::$_listType[true][false] = 'uncommitted';
+        self::$_listType[false][true] = 'committed';
         self::$_listType[false][false] = 'all';
 
         $this->_includeUncommittedBlobs = false;
-        $this->_includeCommittedBlobs   = false;
+        $this->_includeCommittedBlobs = false;
     }
 
     /**
@@ -72,8 +62,6 @@ class ListBlobBlocksOptions extends BlobServiceOptions
      * Sets blob snapshot.
      *
      * @param string $snapshot value.
-     *
-     * @return void
      */
     public function setSnapshot($snapshot)
     {
@@ -84,8 +72,6 @@ class ListBlobBlocksOptions extends BlobServiceOptions
      * Sets the include uncommittedBlobs flag.
      *
      * @param bool $includeUncommittedBlobs value.
-     *
-     * @return void
      */
     public function setIncludeUncommittedBlobs($includeUncommittedBlobs)
     {
@@ -96,7 +82,7 @@ class ListBlobBlocksOptions extends BlobServiceOptions
     /**
      * Indicates if uncommittedBlobs is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeUncommittedBlobs()
     {
@@ -107,8 +93,6 @@ class ListBlobBlocksOptions extends BlobServiceOptions
      * Sets the include committedBlobs flag.
      *
      * @param bool $includeCommittedBlobs value.
-     *
-     * @return void
      */
     public function setIncludeCommittedBlobs($includeCommittedBlobs)
     {
@@ -119,7 +103,7 @@ class ListBlobBlocksOptions extends BlobServiceOptions
     /**
      * Indicates if committedBlobs is included or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIncludeCommittedBlobs()
     {
@@ -134,7 +118,7 @@ class ListBlobBlocksOptions extends BlobServiceOptions
     public function getBlockListType()
     {
         $includeUncommitted = $this->_includeUncommittedBlobs;
-        $includeCommitted   = $this->_includeCommittedBlobs;
+        $includeCommitted = $this->_includeCommittedBlobs;
 
         return self::$_listType[$includeUncommitted][$includeCommitted];
     }

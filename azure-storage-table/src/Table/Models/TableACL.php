@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
 
+use MicrosoftAzure\Storage\Common\Internal\ACLBase;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
-use MicrosoftAzure\Storage\Common\Internal\ACLBase;
 
 /**
  * Holds table ACL members.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class TableACL extends ACLBase
 {
@@ -70,13 +60,11 @@ class TableACL extends ACLBase
     /**
      * Validate if the resource type is for the class.
      *
-     * @param  string $resourceType the resource type to be validated.
+     * @param string $resourceType the resource type to be validated.
      *
      * @throws \InvalidArgumentException
      *
      * @internal
-     *
-     * @return void
      */
     protected static function validateResourceType($resourceType)
     {

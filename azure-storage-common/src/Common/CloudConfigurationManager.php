@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common;
 
+use MicrosoftAzure\Storage\Common\Internal\ConnectionStringSource;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\ConnectionStringSource;
 
 /**
  * Configuration manager for accessing Windows Azure settings.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CloudConfigurationManager
 {
@@ -52,13 +42,11 @@ class CloudConfigurationManager
 
     /**
      * Initializes the connection string source providers.
-     *
-     * @return void
      */
     private static function _init()
     {
         if (!self::$_isInitialized) {
-            self::$_sources = array();
+            self::$_sources = [];
 
             // Get list of default connection string sources.
             $default = ConnectionStringSource::getDefaultSources();
@@ -85,7 +73,7 @@ class CloudConfigurationManager
         $value = null;
 
         foreach (self::$_sources as $source) {
-            $value = call_user_func_array($source, array($key));
+            $value = call_user_func_array($source, [$key]);
 
             if (!empty($value)) {
                 break;
@@ -101,11 +89,9 @@ class CloudConfigurationManager
      *
      * @param string   $name     The source name.
      * @param callable $provider The source callback.
-     * @param boolean  $prepend  When true, the $provider is processed first when
-     * calling getConnectionString. When false (the default) the $provider is
-     * processed after the existing callbacks.
-     *
-     * @return void
+     * @param bool     $prepend  When true, the $provider is processed first when
+     *                           calling getConnectionString. When false (the default) the $provider is
+     *                           processed after the existing callbacks.
      */
     public static function registerSource($name, $provider = null, $prepend = false)
     {
@@ -122,7 +108,7 @@ class CloudConfigurationManager
 
         if ($prepend) {
             self::$_sources = array_merge(
-                array($name => $provider),
+                [$name => $provider],
                 self::$_sources
             );
         } else {
@@ -146,7 +132,7 @@ class CloudConfigurationManager
 
         $sourceCallback = Utilities::tryGetValue(self::$_sources, $name);
 
-        if (!is_null($sourceCallback)) {
+        if (null !== $sourceCallback) {
             unset(self::$_sources[$name]);
         }
 

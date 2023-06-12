@@ -14,30 +14,18 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Models;
 
 use MicrosoftAzure\Storage\Common\Models\CORS;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 
 /**
  * Unit tests for class CORS
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CORSTest extends \PHPUnit\Framework\TestCase
 {
@@ -47,16 +35,15 @@ class CORSTest extends \PHPUnit\Framework\TestCase
 
         $cors = CORS::create($parsedResponse);
 
-        $this->assertEquals($parsedResponse, $cors->toArray());
+        self::assertEquals($parsedResponse, $cors->toArray());
     }
 
-    /**
-               * @expectedException \UnexpectedValueException
-     * @expectedExceptionMessage does not exist in the given array
-     */
     public function testCreateNegative()
     {
-        $parsedResponse = array();
+        $this->expectException(\UnexpectedValueException::class);
+        $this->expectExceptionMessage('does not exist in the given array');
+
+        $parsedResponse = [];
 
         $cors = CORS::create($parsedResponse);
     }
@@ -73,6 +60,6 @@ class CORSTest extends \PHPUnit\Framework\TestCase
             500
         );
 
-        $this->assertEquals($parsedResponse, $cors->toArray());
+        self::assertEquals($parsedResponse, $cors->toArray());
     }
 }

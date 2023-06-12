@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Blob\Models\UndeleteBlobOptions;
 /**
  * Unit tests for class UndeleteBlobOptions
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class UndeleteBlobOptionsTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,7 +40,7 @@ class UndeleteBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $options->setLeaseId($expected);
 
         // Assert
-        $this->assertEquals($expected, $options->getLeaseId());
+        self::assertEquals($expected, $options->getLeaseId());
     }
 
     public function testGetAccessConditions()
@@ -64,7 +54,7 @@ class UndeleteBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $actual = $result->getAccessConditions();
 
         // Assert
-        $this->assertEquals($expected, $actual[0]);
+        self::assertEquals($expected, $actual[0]);
     }
 
     public function testSetAccessConditions()
@@ -77,6 +67,6 @@ class UndeleteBlobOptionsTest extends \PHPUnit\Framework\TestCase
         $result->setAccessConditions($expected);
 
         // Assert
-        $this->assertEquals($expected, $result->getAccessConditions()[0]);
+        self::assertEquals($expected, $result->getAccessConditions()[0]);
     }
 }

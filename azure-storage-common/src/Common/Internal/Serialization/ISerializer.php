@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Serialization;
@@ -28,19 +23,15 @@ namespace MicrosoftAzure\Storage\Common\Internal\Serialization;
  * The serialization interface.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 interface ISerializer
 {
     /**
      * Serialize an object into a XML.
      *
-     * @param Object $targetObject The target object to be serialized.
+     * @param object $targetObject The target object to be serialized.
      * @param string $rootName     The name of the root.
      *
      * @return string
@@ -57,7 +48,6 @@ interface ISerializer
      * @return string
      */
     public function serialize(array $array, array $properties = null);
-
 
     /**
      * Unserializes given serialized string.

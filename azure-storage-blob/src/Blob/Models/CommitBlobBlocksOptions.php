@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Blob\Models;
 /**
  * Optional parameters for commitBlobBlocks
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class CommitBlobBlocksOptions extends BlobServiceOptions
 {
@@ -58,8 +48,6 @@ class CommitBlobBlocksOptions extends BlobServiceOptions
      * Sets ContentType.
      *
      * @param string $contentType value.
-     *
-     * @return void
      */
     public function setContentType($contentType)
     {
@@ -80,8 +68,6 @@ class CommitBlobBlocksOptions extends BlobServiceOptions
      * Sets ContentEncoding.
      *
      * @param string $contentEncoding value.
-     *
-     * @return void
      */
     public function setContentEncoding($contentEncoding)
     {
@@ -102,8 +88,6 @@ class CommitBlobBlocksOptions extends BlobServiceOptions
      * Sets ContentLanguage.
      *
      * @param string $contentLanguage value.
-     *
-     * @return void
      */
     public function setContentLanguage($contentLanguage)
     {
@@ -124,8 +108,6 @@ class CommitBlobBlocksOptions extends BlobServiceOptions
      * Sets ContentMD5.
      *
      * @param string $contentMD5 value.
-     *
-     * @return void
      */
     public function setContentMD5($contentMD5)
     {
@@ -146,8 +128,6 @@ class CommitBlobBlocksOptions extends BlobServiceOptions
      * Sets cacheControl.
      *
      * @param string $cacheControl value to use.
-     *
-     * @return void
      */
     public function setCacheControl($cacheControl)
     {
@@ -168,8 +148,6 @@ class CommitBlobBlocksOptions extends BlobServiceOptions
      * Sets contentDisposition.
      *
      * @param string $contentDisposition value to use.
-     *
-     * @return void
      */
     public function setContentDisposition($contentDisposition)
     {
@@ -190,8 +168,6 @@ class CommitBlobBlocksOptions extends BlobServiceOptions
      * Sets blob metadata.
      *
      * @param array $metadata value.
-     *
-     * @return void
      */
     public function setMetadata(array $metadata = null)
     {
@@ -200,7 +176,8 @@ class CommitBlobBlocksOptions extends BlobServiceOptions
 
     /**
      * Create a instance using the given options
-     * @param  mixed $options Input options
+     *
+     * @param mixed $options Input options
      *
      * @internal
      *

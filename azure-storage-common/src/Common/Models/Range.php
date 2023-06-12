@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Models;
@@ -27,12 +22,7 @@ namespace MicrosoftAzure\Storage\Common\Models;
 /**
  * Holds info about resource+ range used in HTTP requests
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Range
 {
@@ -42,23 +32,21 @@ class Range
     /**
      * Constructor
      *
-     * @param integer $start the resource start value
-     * @param integer $end   the resource end value
+     * @param int $start the resource start value
+     * @param int $end   the resource end value
      *
      * @return Range
      */
     public function __construct($start, $end = null)
     {
         $this->start = $start;
-        $this->end   = $end;
+        $this->end = $end;
     }
 
     /**
      * Sets resource start range
      *
-     * @param integer $start the resource range start
-     *
-     * @return void
+     * @param int $start the resource range start
      */
     public function setStart($start)
     {
@@ -68,7 +56,7 @@ class Range
     /**
      * Gets resource start range
      *
-     * @return integer
+     * @return int
      */
     public function getStart()
     {
@@ -78,9 +66,7 @@ class Range
     /**
      * Sets resource end range
      *
-     * @param integer $end the resource range end
-     *
-     * @return void
+     * @param int $end the resource range end
      */
     public function setEnd($end)
     {
@@ -90,7 +76,7 @@ class Range
     /**
      * Gets resource end range
      *
-     * @return integer
+     * @return int
      */
     public function getEnd()
     {
@@ -100,23 +86,21 @@ class Range
     /**
      * Gets resource range length
      *
-     * @return integer
+     * @return int
      */
     public function getLength()
     {
         if ($this->end != null) {
             return $this->end - $this->start + 1;
-        } else {
-            return null;
         }
+        return null;
+
     }
 
     /**
      * Sets resource range length
      *
-     * @param integer $value new resource range
-     *
-     * @return void
+     * @param int $value new resource range
      */
     public function setLength($value)
     {

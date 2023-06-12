@@ -14,38 +14,25 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
 
-use MicrosoftAzure\Storage\Blob\Models\GetContainerACLResult;
 use MicrosoftAzure\Storage\Blob\Models\ContainerACL;
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Blob\Models\GetContainerACLResult;
 
 /**
  * Unit tests for class GetContainerACLResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetContainerACLResultTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreate()
     {
         // Setup
-        $sample = array();
+        $sample = [];
         $expectedETag = '0x8CAFB82EFF70C46';
         $expectedDate = new \DateTime('Sun, 25 Sep 2011 19:42:18 GMT');
         $expectedPublicAccess = 'container';
@@ -60,8 +47,8 @@ class GetContainerACLResultTest extends \PHPUnit\Framework\TestCase
         );
 
         // Assert
-        $this->assertEquals($expectedContainerACL, $result->getContainerAcl());
-        $this->assertEquals($expectedDate, $result->getLastModified());
-        $this->assertEquals($expectedETag, $result->getETag());
+        self::assertEquals($expectedContainerACL, $result->getContainerAcl());
+        self::assertEquals($expectedDate, $result->getLastModified());
+        self::assertEquals($expectedETag, $result->getETag());
     }
 }

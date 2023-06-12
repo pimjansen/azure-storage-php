@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * QueryTablesResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueryTablesResult
 {
@@ -55,7 +45,7 @@ class QueryTablesResult
      */
     public static function create(array $headers, array $entries)
     {
-        $result  = new QueryTablesResult();
+        $result = new QueryTablesResult();
         $headers = array_change_key_case($headers);
 
         $result->setTables($entries);
@@ -93,8 +83,6 @@ class QueryTablesResult
      * Sets tables
      *
      * @param array $tables value
-     *
-     * @return void
      */
     protected function setTables(array $tables)
     {

@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Queue\Internal\QueueResources as Resources;
 
 /**
  * Holds results of updateMessage wrapper.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class UpdateMessageResult
 {
@@ -46,7 +36,7 @@ class UpdateMessageResult
     /**
      * Creates an instance with the given response headers.
      *
-     * @param  array  $headers The response headers used to create the instance.
+     * @param array $headers The response headers used to create the instance.
      *
      * @internal
      *
@@ -63,7 +53,7 @@ class UpdateMessageResult
             Resources::X_MS_TIME_NEXT_VISIBLE,
             $headers
         );
-        $date   = Utilities::rfc1123ToDateTime($timeNextVisible);
+        $date = Utilities::rfc1123ToDateTime($timeNextVisible);
         $result->setTimeNextVisible($date);
 
         return $result;
@@ -83,11 +73,9 @@ class UpdateMessageResult
      * Sets timeNextVisible field.
      *
      * @param \DateTime $timeNextVisible A UTC date/time value that represents when
-     * the message will be visible on the queue.
+     *                                   the message will be visible on the queue.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setTimeNextVisible(\DateTime $timeNextVisible)
     {
@@ -112,8 +100,6 @@ class UpdateMessageResult
      * @param string $popReceipt The pop receipt of the queue message.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setPopReceipt($popReceipt)
     {

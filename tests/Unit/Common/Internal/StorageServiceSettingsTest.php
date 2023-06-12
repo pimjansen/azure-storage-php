@@ -14,35 +14,25 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Common\Internal;
 
-use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings;
 use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 /**
  * Unit tests for class StorageServiceSettings
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
 {
     private $_accountName = 'mytestaccount';
 
-    public function setUp()
+    protected function setUp()
     {
         $property = new \ReflectionProperty('MicrosoftAzure\Storage\Common\Internal\StorageServiceSettings', 'isInitialized');
         $property->setAccessible(true);
@@ -63,11 +53,11 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithUseDevStoreUri()
@@ -85,11 +75,11 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithInvalidUseDevStoreFail()
@@ -100,9 +90,10 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedMsg = sprintf(
             Resources::INVALID_CONFIG_VALUE,
             $invalidValue,
-            implode("\n", array('true'))
+            implode("\n", ['true'])
         );
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage($expectedMsg);
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -112,7 +103,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $connectionString = '';
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -128,7 +119,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = $setting->getName();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetKey()
@@ -141,7 +132,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = $setting->getKey();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetBlobEndpointUri()
@@ -154,7 +145,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = $setting->getBlobEndpointUri();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetQueueEndpointUri()
@@ -167,7 +158,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = $setting->getQueueEndpointUri();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetTableEndpointUri()
@@ -180,7 +171,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = $setting->getTableEndpointUri();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetFileEndpointUri()
@@ -193,7 +184,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = $setting->getFileEndpointUri();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testGetSasToken()
@@ -206,7 +197,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = $setting->getSasToken();
 
         // Assert
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testCreateFromConnectionStringWithAutomatic()
@@ -215,7 +206,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $protocol = 'https';
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
         $expectedTableEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::TABLE_BASE_DNS_NAME);
@@ -224,11 +215,11 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithTableEndpointSpecified()
@@ -241,18 +232,18 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
         $expectedFileEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::FILE_BASE_DNS_NAME);
-        $connectionString  = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;TableEndpoint=$expectedTableEndpoint";
+        $connectionString = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;TableEndpoint=$expectedTableEndpoint";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
-        $this->assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithBlobEndpointSpecified()
@@ -264,19 +255,19 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedTableEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::TABLE_BASE_DNS_NAME);
         $expectedBlobEndpoint = 'http://myprivatedns.com';
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
-        $connectionString  = "DefaultEndpointsProtocol=$protocol;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "DefaultEndpointsProtocol=$protocol;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedFileEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::FILE_BASE_DNS_NAME);
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
-        $this->assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithQueueEndpointSpecified()
@@ -289,18 +280,18 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedFileEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::FILE_BASE_DNS_NAME);
         $expectedQueueEndpoint = 'http://myprivatedns.com';
-        $connectionString  = "QueueEndpoint=$expectedQueueEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "QueueEndpoint=$expectedQueueEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
-        $this->assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithFileEndpointSpecified()
@@ -313,18 +304,18 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
         $expectedFileEndpoint = 'http://myprivatedns.com';
-        $connectionString  = "FileEndpoint=$expectedFileEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "FileEndpoint=$expectedFileEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
-        $this->assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithQueueAndBlobEndpointSpecified()
@@ -337,18 +328,18 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedFileEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::FILE_BASE_DNS_NAME);
         $expectedBlobEndpoint = 'http://myprivateblobdns.com';
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
-        $connectionString  = "QueueEndpoint=$expectedQueueEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;BlobEndpoint=$expectedBlobEndpoint";
+        $connectionString = "QueueEndpoint=$expectedQueueEndpoint;DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;BlobEndpoint=$expectedBlobEndpoint";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
-        $this->assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithAutomaticMissingProtocolFail()
@@ -356,9 +347,10 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage($expectedMsg);
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -368,9 +360,10 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "DefaultEndpointsProtocol=http;AccountKey=$expectedKey";
+        $connectionString = "DefaultEndpointsProtocol=http;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage($expectedMsg);
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -381,9 +374,10 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $expectedName = $this->_accountName;
         $invalidKey = '__A&*INVALID-@Key';
-        $connectionString  = "DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$invalidKey";
+        $connectionString = "DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$invalidKey";
         $expectedMsg = sprintf(Resources::INVALID_ACCOUNT_KEY_FORMAT, $invalidKey);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage($expectedMsg);
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -397,17 +391,17 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedTableEndpoint = null;
         $expectedBlobEndpoint = null;
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
-        $connectionString  = "QueueEndpoint=$expectedQueueEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "QueueEndpoint=$expectedQueueEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithQueueAndBlobEndpointSpecfied()
@@ -417,19 +411,19 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedKey = TestResources::KEY4;
         $expectedTableEndpoint = null;
         $expectedBlobEndpoint = 'http://myprivateblobdns.com';
-        ;
+
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
-        $connectionString  = "QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithQueueAndBlobAndTableEndpointSpecfied()
@@ -439,19 +433,19 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedKey = TestResources::KEY4;
         $expectedTableEndpoint = 'http://myprivatetabledns.com';
         $expectedBlobEndpoint = 'http://myprivateblobdns.com';
-        ;
+
         $expectedQueueEndpoint = 'http://myprivatequeuedns.com';
-        $connectionString  = "TableEndpoint=$expectedTableEndpoint;QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "TableEndpoint=$expectedTableEndpoint;QueueEndpoint=$expectedQueueEndpoint;BlobEndpoint=$expectedBlobEndpoint;AccountName=$expectedName;AccountKey=$expectedKey";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
     }
 
     public function testCreateFromConnectionStringWithEndpointSuffixSpecfied()
@@ -462,14 +456,14 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedKey = TestResources::KEY4;
         $expectedBlobEndpoint = "$protocol://$expectedName.blob.core.chinacloudapi.cn";
         $expectedFileSecondaryEndpoint = "$protocol://$expectedName-secondary.file.core.chinacloudapi.cn";
-        $connectionString  = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;EndpointSuffix=core.chinacloudapi.cn";
+        $connectionString = "DefaultEndpointsProtocol=$protocol;AccountName=$expectedName;AccountKey=$expectedKey;EndpointSuffix=core.chinacloudapi.cn";
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedFileSecondaryEndpoint, $actual->getFileSecondaryEndpointUri());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedFileSecondaryEndpoint, $actual->getFileSecondaryEndpointUri());
     }
 
     public function testCreateFromConnectionStringMissingServicesEndpointsFail()
@@ -477,15 +471,16 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage($expectedMsg);
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertNull($actual);
+        self::assertNull($actual);
     }
 
     public function testCreateFromConnectionStringWithInvalidBlobEndpointUriFail()
@@ -494,9 +489,10 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
         $invalidUri = 'https://www.invalid_domain';
-        $connectionString  = "BlobEndpoint=$invalidUri;DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "BlobEndpoint=$invalidUri;DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::INVALID_CONFIG_URI, $invalidUri);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage($expectedMsg);
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -507,7 +503,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
-        $validKeys = array();
+        $validKeys = [];
         $validKeys[] = Resources::USE_DEVELOPMENT_STORAGE_NAME;
         $validKeys[] = Resources::DEVELOPMENT_STORAGE_PROXY_URI_NAME;
         $validKeys[] = Resources::DEFAULT_ENDPOINTS_PROTOCOL_NAME;
@@ -519,13 +515,14 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $validKeys[] = Resources::TABLE_ENDPOINT_NAME;
         $validKeys[] = Resources::FILE_ENDPOINT_NAME;
         $invalidKey = 'InvalidKey';
-        $connectionString  = "DefaultEndpointsProtocol=http;$invalidKey=MyValue;AccountName=$expectedName;AccountKey=$expectedKey";
+        $connectionString = "DefaultEndpointsProtocol=http;$invalidKey=MyValue;AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(
             Resources::INVALID_CONNECTION_STRING_SETTING_KEY,
             $invalidKey,
             implode("\n", $validKeys)
         );
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage($expectedMsg);
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -537,7 +534,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $protocol = 'https';
         $expectedName = $this->_accountName;
         $expectedKey = TestResources::KEY4;
-        $connectionString  = "defaultendpointsprotocol=$protocol;accountname=$expectedName;accountkey=$expectedKey";
+        $connectionString = "defaultendpointsprotocol=$protocol;accountname=$expectedName;accountkey=$expectedKey";
         $expectedBlobEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::BLOB_BASE_DNS_NAME);
         $expectedQueueEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::QUEUE_BASE_DNS_NAME);
         $expectedTableEndpoint = sprintf(Resources::SERVICE_URI_FORMAT, $protocol, $expectedName, Resources::TABLE_BASE_DNS_NAME);
@@ -547,11 +544,11 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
 
         // Assert
-        $this->assertEquals($expectedName, $actual->getName());
-        $this->assertEquals($expectedKey, $actual->getKey());
-        $this->assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
-        $this->assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
-        $this->assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
-        $this->assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
+        self::assertEquals($expectedName, $actual->getName());
+        self::assertEquals($expectedKey, $actual->getKey());
+        self::assertEquals($expectedBlobEndpoint, $actual->getBlobEndpointUri());
+        self::assertEquals($expectedQueueEndpoint, $actual->getQueueEndpointUri());
+        self::assertEquals($expectedTableEndpoint, $actual->getTableEndpointUri());
+        self::assertEquals($expectedFileEndpoint, $actual->getFileEndpointUri());
     }
 }

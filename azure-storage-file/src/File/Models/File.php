@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\File\Internal\FileResources as Resources;
 /**
  * Represents windows azure file object
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class File
 {
@@ -56,8 +46,6 @@ class File
      * Sets file name.
      *
      * @param string $name value.
-     *
-     * @return void
      */
     public function setName($name)
     {
@@ -78,8 +66,6 @@ class File
      * Sets file length.
      *
      * @param int $length value.
-     *
-     * @return void
      */
     public function setLength($length)
     {
@@ -89,7 +75,7 @@ class File
     /**
      * Creates a File object using the parsed array.
      *
-     * @param  array $parsed The parsed array that contains the object information.
+     * @param array $parsed The parsed array that contains the object information.
      *
      * @return File
      */
@@ -99,7 +85,7 @@ class File
         $name = Utilities::tryGetValue($parsed, Resources::QP_NAME);
         $result->setName($name);
         $properties = Utilities::tryGetValue($parsed, Resources::QP_PROPERTIES);
-        $length = \intval(Utilities::tryGetValue($properties, Resources::QP_CONTENT_LENGTH));
+        $length = (int) (Utilities::tryGetValue($properties, Resources::QP_CONTENT_LENGTH));
         $result->setLength($length);
         return $result;
     }

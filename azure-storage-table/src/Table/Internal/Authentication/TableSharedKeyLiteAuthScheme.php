@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      http://github.com/windowsazure/azure-sdk-for-php
+ * @see      http://github.com/windowsazure/azure-sdk-for-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal\Authentication;
@@ -33,12 +28,8 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
  * check: http://msdn.microsoft.com/en-us/library/windowsazure/dd179428.aspx
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Authentication
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      http://github.com/windowsazure/azure-sdk-for-php
+ *
+ * @see      http://github.com/windowsazure/azure-sdk-for-php
  */
 class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
 {
@@ -57,10 +48,10 @@ class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
      */
     public function __construct($accountName, $accountKey)
     {
-        $this->accountKey  = $accountKey;
+        $this->accountKey = $accountKey;
         $this->accountName = $accountName;
 
-        $this->includedHeaders   = array();
+        $this->includedHeaders = [];
         $this->includedHeaders[] = Resources::DATE;
     }
 
@@ -88,16 +79,14 @@ class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
             $queryParams
         );
 
-        $stringToSign = array();
+        $stringToSign = [];
 
         foreach ($this->includedHeaders as $header) {
             $stringToSign[] = Utilities::tryGetValue($headers, $header);
         }
 
         $stringToSign[] = $canonicalizedResource;
-        $stringToSign   = implode("\n", $stringToSign);
-
-        return $stringToSign;
+        return implode("\n", $stringToSign);
     }
 
     /**
@@ -127,7 +116,7 @@ class TableSharedKeyLiteAuthScheme extends SharedKeyAuthScheme
         );
 
         return 'SharedKeyLite ' . $this->accountName . ':' . base64_encode(
-            hash_hmac('sha256', $signature, base64_decode($this->accountKey), true)
+            hash_hmac('sha256', $signature, base64_decode($this->accountKey, true), true)
         );
     }
 }

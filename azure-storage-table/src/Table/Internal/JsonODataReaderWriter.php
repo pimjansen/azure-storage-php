@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal;
@@ -32,12 +27,8 @@ use MicrosoftAzure\Storage\Table\Models\Entity;
  * Serializes and unserializes results from table wrapper calls
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class JsonODataReaderWriter implements IODataReaderWriter
 {
@@ -50,7 +41,7 @@ class JsonODataReaderWriter implements IODataReaderWriter
      */
     public function getTable($name)
     {
-        return json_encode(array(Resources::JSON_TABLE_NAME => $name));
+        return json_encode([Resources::JSON_TABLE_NAME => $name]);
     }
 
     /**
@@ -75,8 +66,8 @@ class JsonODataReaderWriter implements IODataReaderWriter
      */
     public function parseTableEntries($body)
     {
-        $tables     = array();
-        $result     = json_decode($body, true);
+        $tables = [];
+        $result = json_decode($body, true);
 
         $rawEntries = $result[Resources::JSON_VALUE];
 
@@ -97,21 +88,21 @@ class JsonODataReaderWriter implements IODataReaderWriter
     public function getEntity(Entity $entity)
     {
         $entityProperties = $entity->getProperties();
-        $properties       = array();
+        $properties = [];
 
         foreach ($entityProperties as $name => $property) {
-            $edmType    = $property->getEdmType();
-            $edmValue   = $property->getValue();
+            $edmType = $property->getEdmType();
+            $edmValue = $property->getValue();
 
-            if (is_null($edmValue)) {
+            if (null === $edmValue) {
                 // No @odata.type JSON property needed for null value
                 $properties[$name] = null;
             } else {
-                if (is_null($edmType)) {
+                if (null === $edmType) {
                     $edmType = EdmType::propertyType($edmValue);
                 }
 
-                $value             = EdmType::serializeValue($edmType, $edmValue);
+                $value = EdmType::serializeValue($edmType, $edmValue);
                 $properties[$name] = $value;
 
                 if (EdmType::typeRequired($edmType)) {
@@ -146,7 +137,7 @@ class JsonODataReaderWriter implements IODataReaderWriter
     public function parseEntities($body)
     {
         $rawEntities = json_decode($body, true);
-        $entities   = array();
+        $entities = [];
 
         foreach ($rawEntities[Resources::JSON_VALUE] as $rawEntity) {
             $entities[] = $this->parseOneEntity($rawEntity);
@@ -158,12 +149,10 @@ class JsonODataReaderWriter implements IODataReaderWriter
     private function parseOneEntity($rawEntity)
     {
         $entity = new Entity();
-        $timestamp;
-        $etag;
 
         if (array_key_exists(Resources::JSON_TIMESTAMP, $rawEntity)) {
-            $rawTimestamp   = $rawEntity[Resources::JSON_TIMESTAMP];
-            $timestamp      = EdmType::unserializeQueryValue(EdmType::DATETIME, $rawTimestamp);
+            $rawTimestamp = $rawEntity[Resources::JSON_TIMESTAMP];
+            $timestamp = EdmType::unserializeQueryValue(EdmType::DATETIME, $rawTimestamp);
 
             $entity->addProperty(
                 Resources::JSON_TIMESTAMP,
@@ -174,7 +163,7 @@ class JsonODataReaderWriter implements IODataReaderWriter
 
         // Make sure etag is set
         if (array_key_exists(Resources::JSON_ODATA_ETAG, $rawEntity)) {
-            $etag = (string)$rawEntity[Resources::JSON_ODATA_ETAG];
+            $etag = (string) $rawEntity[Resources::JSON_ODATA_ETAG];
         } else {
             $etag = null;
         }
@@ -186,8 +175,8 @@ class JsonODataReaderWriter implements IODataReaderWriter
             }
 
             // Ignore keys end with Resources::JSON_ODATA_TYPE_SUFFIX
-            if (strlen($key) > strlen(Resources::JSON_ODATA_TYPE_SUFFIX) &&
-                strpos(
+            if (strlen($key) > strlen(Resources::JSON_ODATA_TYPE_SUFFIX)
+                && strpos(
                     $key,
                     Resources::JSON_ODATA_TYPE_SUFFIX,
                     strlen($key) - strlen(Resources::JSON_ODATA_TYPE_SUFFIX)
@@ -195,11 +184,10 @@ class JsonODataReaderWriter implements IODataReaderWriter
                 continue;
             }
 
-            if (strpos($key, "odata.") === 0) {
+            if (strpos($key, 'odata.') === 0) {
                 continue;
             }
 
-            $edmType;
             if (array_key_exists($key . Resources::JSON_ODATA_TYPE_SUFFIX, $rawEntity)) {
                 $edmType = $rawEntity[$key . Resources::JSON_ODATA_TYPE_SUFFIX];
             } elseif (in_array($key, [Resources::JSON_PARTITION_KEY, Resources::JSON_ROW_KEY], true)) {
@@ -210,10 +198,10 @@ class JsonODataReaderWriter implements IODataReaderWriter
             }
             //Store the raw value of the string representation.
             $rawValue = \is_string($value) ? $value : '';
-            $value      = EdmType::unserializeQueryValue((string)$edmType, $value);
+            $value = EdmType::unserializeQueryValue((string) $edmType, $value);
             $entity->addProperty(
-                (string)$key,
-                (string)$edmType,
+                (string) $key,
+                (string) $edmType,
                 $value,
                 $rawValue
             );

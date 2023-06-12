@@ -14,30 +14,20 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Queue\Models;
 
-use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
-use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
+use MicrosoftAzure\Storage\Common\Models\MarkerContinuationToken;
 use MicrosoftAzure\Storage\Queue\Internal\QueueResources as Resources;
 
 /**
  * Container to hold list queue response object.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListQueuesResult
 {
@@ -62,8 +52,8 @@ class ListQueuesResult
      */
     public static function create(array $parsedResponse, $location = '')
     {
-        $result               = new ListQueuesResult();
-        $serviceEndpoint      = Utilities::tryGetKeysChainValue(
+        $result = new ListQueuesResult();
+        $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsedResponse,
             Resources::XTAG_ATTRIBUTES,
             Resources::XTAG_SERVICE_ENDPOINT
@@ -95,17 +85,17 @@ class ListQueuesResult
             $parsedResponse,
             Resources::QP_MAX_RESULTS
         ));
-        $queues      = array();
-        $rawQueues            = array();
+        $queues = [];
+        $rawQueues = [];
 
         if (!empty($parsedResponse['Queues'])) {
             $rawQueues = Utilities::getArray($parsedResponse['Queues']['Queue']);
         }
 
         foreach ($rawQueues as $value) {
-            $queue    = new Queue($value['Name'], $serviceEndpoint . $value['Name']);
+            $queue = new Queue($value['Name'], $serviceEndpoint . $value['Name']);
             $metadata = Utilities::tryGetValue($value, Resources::QP_METADATA);
-            $queue->setMetadata(is_null($metadata) ? array() : $metadata);
+            $queue->setMetadata(null === $metadata ? [] : $metadata);
             $queues[] = $queue;
         }
         $result->setQueues($queues);
@@ -128,12 +118,10 @@ class ListQueuesResult
      * @param array $queues list of queues
      *
      * @internal
-     *
-     * @return void
      */
     protected function setQueues(array $queues)
     {
-        $this->_queues = array();
+        $this->_queues = [];
         foreach ($queues as $queue) {
             $this->_queues[] = clone $queue;
         }
@@ -155,8 +143,6 @@ class ListQueuesResult
      * @param string $prefix value.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setPrefix($prefix)
     {
@@ -179,8 +165,6 @@ class ListQueuesResult
      * @param string $marker value.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setMarker($marker)
     {
@@ -203,8 +187,6 @@ class ListQueuesResult
      * @param string $maxResults value.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setMaxResults($maxResults)
     {
@@ -227,8 +209,6 @@ class ListQueuesResult
      * @param string $accountName value.
      *
      * @internal
-     *
-     * @return void
      */
     protected function setAccountName($accountName)
     {

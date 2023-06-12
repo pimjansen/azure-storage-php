@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Table\Models;
@@ -29,26 +24,21 @@ use MicrosoftAzure\Storage\Table\Models\QueryTablesResult;
 /**
  * Unit tests for class QueryTablesResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class QueryTablesResultTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreate()
     {
         // Setup
-        $entries = array('querytablessimple1', 'querytablessimple2');
-        $headers = array('x-ms-continuation-nexttablename' => 'nextTable');
+        $entries = ['querytablessimple1', 'querytablessimple2'];
+        $headers = ['x-ms-continuation-nexttablename' => 'nextTable'];
 
         // Test
         $result = QueryTablesResult::create($headers, $entries);
 
         // Assert
-        $this->assertEquals($entries, $result->getTables());
-        $this->assertEquals($headers['x-ms-continuation-nexttablename'], $result->getNextTableName());
+        self::assertEquals($entries, $result->getTables());
+        self::assertEquals($headers['x-ms-continuation-nexttablename'], $result->getNextTableName());
     }
 }

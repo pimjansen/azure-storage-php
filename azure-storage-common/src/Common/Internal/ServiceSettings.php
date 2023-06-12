@@ -15,12 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -37,12 +33,7 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * 4- createFromConnectionString($connectionString): A public static function that
  *    takes a connection string and returns the created settings object.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 abstract class ServiceSettings
 {
@@ -51,8 +42,6 @@ abstract class ServiceSettings
      * available formats.
      *
      * @param string $connectionString The invalid formatted connection string.
-     *
-     * @return void
      *
      * @throws \RuntimeException
      */
@@ -69,9 +58,9 @@ abstract class ServiceSettings
      *
      * @param string $connectionString The user provided connection string.
      *
-     * @return array The tokenized connection string keys.
-     *
      * @throws \RuntimeException
+     *
+     * @return array The tokenized connection string keys.
      */
     protected static function parseAndValidateKeys($connectionString)
     {
@@ -105,11 +94,11 @@ abstract class ServiceSettings
     /**
      * Creates an anonymous function that acts as predicate.
      *
-     * @param array   $requirements The array of conditions to satisfy.
-     * @param boolean $isRequired   Either these conditions are all required or all
-     * optional.
-     * @param boolean $atLeastOne   Indicates that at least one requirement must
-     * succeed.
+     * @param array $requirements The array of conditions to satisfy.
+     * @param bool  $isRequired   Either these conditions are all required or all
+     *                            optional.
+     * @param bool  $atLeastOne   Indicates that at least one requirement must
+     *                            succeed.
      *
      * @return callable
      */
@@ -120,9 +109,9 @@ abstract class ServiceSettings
     ) {
         // @codingStandardsIgnoreStart
 
-        return function ($userSettings) use ($requirements, $isRequired, $atLeastOne) {
+        return static function ($userSettings) use ($requirements, $isRequired, $atLeastOne) {
             $oneFound = false;
-            $result   = array_change_key_case($userSettings);
+            $result = array_change_key_case($userSettings);
             foreach ($requirements as $requirement) {
                 $settingName = strtolower($requirement[Resources::SETTING_NAME]);
 
@@ -130,7 +119,7 @@ abstract class ServiceSettings
                 if (array_key_exists($settingName, $result)) {
                     // Check if the provided user setting value is valid.
                     $validationFunc = $requirement[Resources::SETTING_CONSTRAINT];
-                    $isValid        = $validationFunc($result[$settingName]);
+                    $isValid = $validationFunc($result[$settingName]);
 
                     if ($isValid) {
                         // Remove the setting as indicator for successful validation.
@@ -148,9 +137,9 @@ abstract class ServiceSettings
             if ($atLeastOne) {
                 // At least one requirement must succeed, otherwise fail.
                 return $oneFound ? $result : null;
-            } else {
-                return $result;
             }
+            return $result;
+
         };
 
         // @codingStandardsIgnoreEnd
@@ -199,8 +188,8 @@ abstract class ServiceSettings
      */
     protected static function settingWithFunc($name, $predicate)
     {
-        $requirement                                = array();
-        $requirement[Resources::SETTING_NAME]       = $name;
+        $requirement = [];
+        $requirement[Resources::SETTING_NAME] = $name;
         $requirement[Resources::SETTING_CONSTRAINT] = $predicate;
 
         return $requirement;
@@ -223,7 +212,7 @@ abstract class ServiceSettings
 
         $validValuesCount = func_num_args();
 
-        $predicate = function ($settingValue) use ($validValuesCount, $validValues) {
+        $predicate = static function ($settingValue) use ($validValuesCount, $validValues) {
             if (empty($validValues)) {
                 // No restrictions, succeed,
                 return true;
@@ -232,7 +221,7 @@ abstract class ServiceSettings
             // Check to find if the $settingValue is valid or not. The index must
             // start from 1 as unset deletes the value but does not update the array
             // indecies.
-            for ($index = 1; $index < $validValuesCount; $index++) {
+            for ($index = 1; $index < $validValuesCount; ++$index) {
                 if ($settingValue == $validValues[$index]) {
                     // $settingValue is found in valid values set, succeed.
                     return true;
@@ -259,8 +248,8 @@ abstract class ServiceSettings
      *
      * @param array $settings The settings to check.
      *
-     * @return boolean If any filter returns null, false. If there are any settings
-     * left over after all filters are processed, false. Otherwise true.
+     * @return bool If any filter returns null, false. If there are any settings
+     *              left over after all filters are processed, false. Otherwise true.
      */
     protected static function matchedSpecification(array $settings)
     {
@@ -272,11 +261,11 @@ abstract class ServiceSettings
         foreach ($constraints as $constraint) {
             $remainingSettings = $constraint($settings);
 
-            if (is_null($remainingSettings)) {
+            if (null === $remainingSettings) {
                 return false;
-            } else {
-                $settings = $remainingSettings;
             }
+            $settings = $remainingSettings;
+
         }
 
         if (empty($settings)) {

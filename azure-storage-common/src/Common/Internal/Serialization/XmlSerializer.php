@@ -14,35 +14,26 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal\Serialization;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Short description
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal\Serialization
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class XmlSerializer implements ISerializer
 {
-    public const STANDALONE  = 'standalone';
-    public const ROOT_NAME   = 'rootName';
+    public const STANDALONE = 'standalone';
+    public const ROOT_NAME = 'rootName';
     public const DEFAULT_TAG = 'defaultTag';
 
     /**
@@ -71,11 +62,9 @@ class XmlSerializer implements ISerializer
      * Takes an array and produces XML based on it.
      *
      * @param XMLWriter $xmlw       XMLWriter object that was previously instanted
-     * and is used for creating the XML.
+     *                              and is used for creating the XML.
      * @param array     $data       Array to be converted to XML.
      * @param string    $defaultTag Default XML tag to be used if none specified.
-     *
-     * @return void
      */
     private function arr2xml(\XMLWriter $xmlw, array $data, $defaultTag = null)
     {
@@ -110,15 +99,12 @@ class XmlSerializer implements ISerializer
      *
      * @param object $targetObject The target object.
      * @param array  $methodArray  The array of method of the target object.
-     *
-     * @return mixed
      */
     private static function getInstanceAttributes($targetObject, array $methodArray)
     {
         foreach ($methodArray as $method) {
             if ($method->name == 'getAttributes') {
-                $classProperty = $method->invoke($targetObject);
-                return $classProperty;
+                return $method->invoke($targetObject);
             }
         }
         return null;
@@ -140,14 +126,14 @@ class XmlSerializer implements ISerializer
         $xmlWriter->openMemory();
         $xmlWriter->setIndent(true);
         $reflectionClass = new \ReflectionClass($targetObject);
-        $methodArray     = $reflectionClass->getMethods();
-        $attributes      = self::getInstanceAttributes(
+        $methodArray = $reflectionClass->getMethods();
+        $attributes = self::getInstanceAttributes(
             $targetObject,
             $methodArray
         );
 
         $xmlWriter->startElement($rootName);
-        if (!is_null($attributes)) {
+        if (null !== $attributes) {
             foreach (array_keys($attributes) as $attributeKey) {
                 $xmlWriter->writeAttribute(
                     $attributeKey,
@@ -161,7 +147,7 @@ class XmlSerializer implements ISerializer
                 && $method->isPublic()
                 && ($method->name != 'getAttributes')
             ) {
-                $variableName  = substr($method->name, 3);
+                $variableName = substr($method->name, 3);
                 $variableValue = $method->invoke($targetObject);
                 if (!empty($variableValue)) {
                     if (gettype($variableValue) === 'object') {
@@ -192,11 +178,11 @@ class XmlSerializer implements ISerializer
      */
     public function serialize(array $array, array $properties = null)
     {
-        $xmlVersion   = '1.0';
-        $xmlEncoding  = 'UTF-8';
-        $standalone   = Utilities::tryGetValue($properties, self::STANDALONE);
-        $defaultTag   = Utilities::tryGetValue($properties, self::DEFAULT_TAG);
-        $rootName     = Utilities::tryGetValue($properties, self::ROOT_NAME);
+        $xmlVersion = '1.0';
+        $xmlEncoding = 'UTF-8';
+        $standalone = Utilities::tryGetValue($properties, self::STANDALONE);
+        $defaultTag = Utilities::tryGetValue($properties, self::DEFAULT_TAG);
+        $rootName = Utilities::tryGetValue($properties, self::ROOT_NAME);
         $docNamespace = Utilities::tryGetValue(
             $array,
             Resources::XTAG_NAMESPACE,
@@ -212,7 +198,7 @@ class XmlSerializer implements ISerializer
         $xmlw->setIndent(true);
         $xmlw->startDocument($xmlVersion, $xmlEncoding, $standalone);
 
-        if (is_null($docNamespace)) {
+        if (null === $docNamespace) {
             $xmlw->startElement($rootName);
         } else {
             foreach ($docNamespace as $uri => $prefix) {

@@ -14,29 +14,19 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Blob\Models;
 
 use MicrosoftAzure\Storage\Blob\Internal\BlobResources as Resources;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
  * Holds block list used for commitBlobBlocks
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class BlockList
 {
@@ -66,8 +56,6 @@ class BlockList
      *
      * @param string $blockId The block id.
      * @param string $type    The entry type, you can use BlobBlockType.
-     *
-     * @return void
      */
     public function addEntry($blockId, $type)
     {
@@ -87,8 +75,6 @@ class BlockList
      * Addds committed block entry.
      *
      * @param string $blockId The block id.
-     *
-     * @return void
      */
     public function addCommittedEntry($blockId)
     {
@@ -99,8 +85,6 @@ class BlockList
      * Addds uncommitted block entry.
      *
      * @param string $blockId The block id.
-     *
-     * @return void
      */
     public function addUncommittedEntry($blockId)
     {
@@ -111,8 +95,6 @@ class BlockList
      * Addds latest block entry.
      *
      * @param string $blockId The block id.
-     *
-     * @return void
      */
     public function addLatestEntry($blockId)
     {
@@ -158,13 +140,13 @@ class BlockList
      */
     public function toXml(XmlSerializer $xmlSerializer)
     {
-        $properties = array(XmlSerializer::ROOT_NAME => self::$xmlRootName);
-        $array      = array();
+        $properties = [XmlSerializer::ROOT_NAME => self::$xmlRootName];
+        $array = [];
 
         foreach ($this->entries as $value) {
-            $array[] = array(
-                $value->getType() => $value->getBlockId()
-            );
+            $array[] = [
+                $value->getType() => $value->getBlockId(),
+            ];
         }
 
         return $xmlSerializer->serialize($array, $properties);

@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -29,20 +24,15 @@ use MicrosoftAzure\Storage\Blob\Models\LeaseMode;
 /**
  * Unit tests for class LeaseMode
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class LeaseModeTest extends \PHPUnit\Framework\TestCase
 {
     public function testLeaseMode()
     {
-        $this->assertEquals(LeaseMode::ACQUIRE_ACTION, 'acquire');
-        $this->assertEquals(LeaseMode::BREAK_ACTION, 'break');
-        $this->assertEquals(LeaseMode::RELEASE_ACTION, 'release');
-        $this->assertEquals(LeaseMode::RENEW_ACTION, 'renew');
+        self::assertEquals(LeaseMode::ACQUIRE_ACTION, 'acquire');
+        self::assertEquals(LeaseMode::BREAK_ACTION, 'break');
+        self::assertEquals(LeaseMode::RELEASE_ACTION, 'release');
+        self::assertEquals(LeaseMode::RENEW_ACTION, 'renew');
     }
 }

@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Queue\Models;
@@ -29,12 +24,7 @@ use MicrosoftAzure\Storage\Queue\Models\GetQueueMetadataResult;
 /**
  * Unit tests for class GetQueueMetadataResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Queue\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class GetQueueMetadataResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -42,13 +32,13 @@ class GetQueueMetadataResultTest extends \PHPUnit\Framework\TestCase
     {
         // Setup
         $count = 10;
-        $metadata = array('key1' => 'value1', 'key2' => 'value2');
+        $metadata = ['key1' => 'value1', 'key2' => 'value2'];
 
         // Test
         $actual = new GetQueueMetadataResult($count, $metadata);
 
         // Assert
-        $this->assertEquals($count, $actual->getApproximateMessageCount());
-        $this->assertEquals($metadata, $actual->getMetadata());
+        self::assertEquals($count, $actual->getApproximateMessageCount());
+        self::assertEquals($metadata, $actual->getMetadata());
     }
 }

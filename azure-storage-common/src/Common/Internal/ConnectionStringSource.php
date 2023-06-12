@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -28,12 +23,8 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * Holder for default connection string sources used in CloudConfigurationManager.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ConnectionStringSource
 {
@@ -43,16 +34,14 @@ class ConnectionStringSource
 
     /**
      * Initializes the default sources.
-     *
-     * @return void
      */
     private static function _init()
     {
         if (!self::$_isInitialized) {
-            self::$_defaultSources = array(
-                self::ENVIRONMENT_SOURCE => array(__CLASS__, 'environmentSource')
-            );
-            self::$_isInitialized  = true;
+            self::$_defaultSources = [
+                self::ENVIRONMENT_SOURCE => [__CLASS__, 'environmentSource'],
+            ];
+            self::$_isInitialized = true;
         }
     }
 

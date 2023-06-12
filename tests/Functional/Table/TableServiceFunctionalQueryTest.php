@@ -14,35 +14,30 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Functional\Table
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Table;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 use MicrosoftAzure\Storage\Table\Models\BatchOperations;
 use MicrosoftAzure\Storage\Table\Models\EdmType;
 use MicrosoftAzure\Storage\Table\Models\Entity;
+use MicrosoftAzure\Storage\Table\Models\Filters\Filter;
 use MicrosoftAzure\Storage\Table\Models\Query;
 use MicrosoftAzure\Storage\Table\Models\QueryEntitiesOptions;
-use MicrosoftAzure\Storage\Table\Models\Filters\Filter;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 class TableServiceFunctionalQueryTest extends FunctionalTestBase
 {
     private static $entitiesInTable;
-    private static $Partitions = array('Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo');
+    private static $Partitions = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'];
     private static $curPartition;
     private static $curRowKey;
 
     private static $isOneTimeSetup = false;
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         if (!self::$isOneTimeSetup) {
@@ -55,10 +50,10 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
     {
         $table = TableServiceFunctionalTestData::$testTableNames[0];
         self::$entitiesInTable = self::getEntitiesToQueryOver();
-        $parts = array();
+        $parts = [];
         foreach (self::$entitiesInTable as $entity) {
             if (array_key_exists($entity->getPartitionKey(), $parts) === false) {
-                $parts[$entity->getPartitionKey()] = array();
+                $parts[$entity->getPartitionKey()] = [];
             }
             array_push($parts[$entity->getPartitionKey()], $entity);
         }
@@ -81,11 +76,11 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
     private static function getNewEntity()
     {
-        if (is_null(self::$curPartition) || self::$curPartition == count(self::$Partitions) - 1) {
+        if (null === self::$curPartition || self::$curPartition == count(self::$Partitions) - 1) {
             self::$curPartition = 0;
             self::$curRowKey = TableServiceFunctionalTestData::getNewKey();
         } else {
-            self::$curPartition++;
+            ++self::$curPartition;
         }
 
         $entity = new Entity();
@@ -96,7 +91,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
     private static function getEntitiesToQueryOver()
     {
-        $ret = array();
+        $ret = [];
 
         array_push($ret, self::getNewEntity());
 
@@ -145,7 +140,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         array_push($ret, $entity);
 
         $entity = self::getNewEntity();
-        $entity->addProperty('INT64', EdmType::INT64, strval(TableServiceFunctionalTestData::LONG_BIG_VALUE));
+        $entity->addProperty('INT64', EdmType::INT64, (string) (TableServiceFunctionalTestData::LONG_BIG_VALUE));
         array_push($ret, $entity);
 
         $entity = self::getNewEntity();
@@ -179,7 +174,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         // get a good mix of values in the table entities.
         mt_srand(123);
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 20; ++$i) {
             $e = self::getNewEntity();
             TableServiceFunctionalTestData::addProperty($e, 'BINARY', EdmType::BINARY, $binaries);
             TableServiceFunctionalTestData::addProperty($e, 'BOOLEAN', EdmType::BOOLEAN, $booleans);
@@ -197,7 +192,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
     public static function getInterestingQueryEntitiesOptions()
     {
-        $ret = array();
+        $ret = [];
         $e = self::$entitiesInTable[count(self::$entitiesInTable) - 3];
 
         $options = new QueryEntitiesOptions();
@@ -282,12 +277,12 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
     public static function getInterestingQueryEntitiesOptionsOfDepth($depth)
     {
-        $ret = array();
+        $ret = [];
 
         // The random here is not to generate random values, but to
         // get a good mix of values in the table entities.
         mt_srand(456 + $depth);
-        for ($i = 1; $i < 20; $i++) {
+        for ($i = 1; $i < 20; ++$i) {
             $filter = self::generateFilterWithBooleanParameters($depth, 0);
             $options = new QueryEntitiesOptions();
             $query = new Query();
@@ -314,7 +309,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
                     return Filter::applyConstant(mt_rand(0, 1) == 1, EdmType::BOOLEAN);
                 case 2:
                     $e = self::getEntityFromTable();
-                    $boolPropNames = array();
+                    $boolPropNames = [];
                     foreach ($e->getProperties() as $key => $p) {
                         if ($p->getEdmType() == EdmType::BOOLEAN) {
                             array_push($boolPropNames, $key);
@@ -322,12 +317,11 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
                     }
                     if (count($boolPropNames) == 0) {
                         return Filter::applyConstant(mt_rand(0, 1) == 1, EdmType::BOOLEAN);
-                    } else {
-                        $key = $boolPropNames[mt_rand(0, count($boolPropNames) - 1)];
-                        return Filter::applyPropertyName($key);
                     }
+                    $key = $boolPropNames[mt_rand(0, count($boolPropNames) - 1)];
+                    return Filter::applyPropertyName($key);
+
                     //will return either way so not fall through
-                    // no break
                 default:
                     return null;
             }
@@ -396,8 +390,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
     private static function getEntityFromTable()
     {
         $entId = mt_rand(0, count(self::$entitiesInTable) - 1);
-        $e = self::$entitiesInTable[$entId];
-        return $e;
+        return self::$entitiesInTable[$entId];
     }
 
     private static function getBinaryFilterFromIndex($index, $f1, $f2)
@@ -578,18 +571,18 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         $table = TableServiceFunctionalTestData::$testTableNames[0];
 
         try {
-            $ret = (is_null($options) ?
+            $ret = (null === $options ?
                 $this->restProxy->queryEntities($table) :
                 $this->restProxy->queryEntities($table, $options));
 
-            if (is_null($options)) {
+            if (null === $options) {
                 $options = new QueryEntitiesOptions();
             }
 
-            if (!is_null($options->getQuery()) &&
-                !is_null($options->getQuery()->getTop()) &&
-                $options->getQuery()->getTop() <= 0) {
-                $this->assertTrue(false, 'Expect non-positive Top in $options->query to throw');
+            if (null !== $options->getQuery()
+                && null !== $options->getQuery()->getTop()
+                && $options->getQuery()->getTop() <= 0) {
+                self::assertTrue(false, 'Expect non-positive Top in $options->query to throw');
             }
 
             $this->verifyqueryEntitiesWorker($ret, $options);
@@ -599,21 +592,21 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
             // not sure how useful it is.
             // To test that scenario, set NextTable in the $options.
         } catch (ServiceException $e) {
-            if (!is_null($options->getQuery()) &&
-                !is_null($options->getQuery()->getTop()) &&
-                $options->getQuery()->getTop() <= 0) {
-                $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
+            if (null !== $options->getQuery()
+                && null !== $options->getQuery()->getTop()
+                && $options->getQuery()->getTop() <= 0) {
+                self::assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
-                $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
+                self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             }
         }
     }
 
     private function verifyqueryEntitiesWorker($ret, $options)
     {
-        $this->assertNotNull($ret->getEntities(), 'getTables');
+        self::assertNotNull($ret->getEntities(), 'getTables');
 
-        $expectedData = array();
+        $expectedData = [];
         foreach (self::$entitiesInTable as $e) {
             array_push($expectedData, $e);
         }
@@ -622,12 +615,12 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
         $projected = false;
 
-        if (!is_null($options->getNextPartitionKey()) && !is_null($options->getNextRowKey())) {
-            $expectedDataTmp = array();
+        if (null !== $options->getNextPartitionKey() && null !== $options->getNextRowKey()) {
+            $expectedDataTmp = [];
             foreach ($expectedData as $e) {
-                if (($e->getPartitionKey() >  $options->getNextPartitionKey()) ||
-                    (($e->getPartitionKey() == $options->getNextPartitionKey()) &&
-                     ($e->getRowKey()       >= $options->getNextRowKey()))) {
+                if (($e->getPartitionKey() > $options->getNextPartitionKey())
+                    || (($e->getPartitionKey() == $options->getNextPartitionKey())
+                     && ($e->getRowKey() >= $options->getNextRowKey()))) {
                     array_push($expectedDataTmp, $e);
                 }
             }
@@ -640,9 +633,9 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
         $expectedData = TableServiceFunctionalTestUtils::filterEntityList($expectedFilter, $expectedData);
 
-        if (!is_null($q->getTop()) && $q->getTop() < count($expectedData)) {
-            $expectedDataTmp = array();
-            for ($i = 0; $i < $q->getTop(); $i++) {
+        if (null !== $q->getTop() && $q->getTop() < count($expectedData)) {
+            $expectedDataTmp = [];
+            for ($i = 0; $i < $q->getTop(); ++$i) {
                 array_push($expectedDataTmp, $expectedData[$i]);
             }
             $expectedData = $expectedDataTmp;
@@ -656,14 +649,14 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         // Need to sort the lists.
         $actualData = self::sortEntitiesByCompositeKey($actualData);
         $expectedData = self::sortEntitiesByCompositeKey($expectedData);
-        $this->assertEquals(count($expectedData), count($actualData), 'count(getEntities)');
-        for ($i = 0; $i < count($expectedData); $i++) {
+        self::assertEquals(count($expectedData), count($actualData), 'count(getEntities)');
+        for ($i = 0; $i < count($expectedData); ++$i) {
             $e1 = $expectedData[$i];
             $e2 = $actualData[$i];
             if (!$projected) {
-                $this->assertTrue(
-                    ($e1->getPartitionKey() == $e2->getPartitionKey()) &&
-                        ($e1->getRowKey() == $e2->getRowKey()),
+                self::assertTrue(
+                    ($e1->getPartitionKey() == $e2->getPartitionKey())
+                        && ($e1->getRowKey() == $e2->getRowKey()),
                     '(' . $e1->getPartitionKey() . ',' . $e1->getRowKey() .
                     ') == (' . $e2->getPartitionKey() . ',' . $e2->getRowKey() . ')'
                 );
@@ -675,7 +668,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
     private static function addBinaryFilter($name, $edmType, $values)
     {
         $counter = 0;
-        $ret = array();
+        $ret = [];
         foreach ($values as $o) {
             $f = self::getBinaryFilterFromIndex(
                 $counter,
@@ -694,7 +687,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
 
     public static function sortEntitiesByCompositeKey($originalArray)
     {
-        $tmpArray = array();
+        $tmpArray = [];
         $isordered = true;
         $prevIndex = '/';
         foreach ($originalArray as $e) {
@@ -711,7 +704,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         }
 
         ksort($tmpArray);
-        $ret = array();
+        $ret = [];
         foreach ($tmpArray as $e) {
             array_push($ret, $e);
         }

@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -30,19 +25,15 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * www.connectionstrings.com/articles/show/important-rules-for-connection-strings
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ConnectionStringParser
 {
-    public const EXPECT_KEY        = 'ExpectKey';
+    public const EXPECT_KEY = 'ExpectKey';
     public const EXPECT_ASSIGNMENT = 'ExpectAssignment';
-    public const EXPECT_VALUE      = 'ExpectValue';
-    public const EXPECT_SEPARATOR  = 'ExpectSeparator';
+    public const EXPECT_VALUE = 'ExpectValue';
+    public const EXPECT_SEPARATOR = 'ExpectSeparator';
 
     private $_argumentName;
     private $_value;
@@ -53,7 +44,7 @@ class ConnectionStringParser
      * Parses the connection string into a collection of key/value pairs.
      *
      * @param string $argumentName     Name of the argument to be used in error
-     * messages.
+     *                                 messages.
      * @param string $connectionString Connection string.
      *
      * @return array
@@ -73,29 +64,29 @@ class ConnectionStringParser
      * Initializes the object.
      *
      * @param string $argumentName Name of the argument to be used in error
-     * messages.
+     *                             messages.
      * @param string $value        Connection string.
      */
     private function __construct($argumentName, $value)
     {
         $this->_argumentName = $argumentName;
-        $this->_value        = $value;
-        $this->_pos          = 0;
-        $this->_state        = ConnectionStringParser::EXPECT_KEY;
+        $this->_value = $value;
+        $this->_pos = 0;
+        $this->_state = ConnectionStringParser::EXPECT_KEY;
     }
 
     /**
      * Parses the connection string.
      *
-     * @return array
-     *
      * @throws \RuntimeException
+     *
+     * @return array
      */
     private function _parse()
     {
-        $key                    = null;
-        $value                  = null;
-        $connectionStringValues = array();
+        $key = null;
+        $value = null;
+        $connectionStringValues = [];
 
         while (true) {
             $this->_skipWhiteSpaces();
@@ -110,7 +101,7 @@ class ConnectionStringParser
 
             switch ($this->_state) {
                 case ConnectionStringParser::EXPECT_KEY:
-                    $key          = $this->_extractKey();
+                    $key = $this->_extractKey();
                     $this->_state = ConnectionStringParser::EXPECT_ASSIGNMENT;
                     break;
 
@@ -120,12 +111,12 @@ class ConnectionStringParser
                     break;
 
                 case ConnectionStringParser::EXPECT_VALUE:
-                    $value                        = $this->_extractValue();
-                    $this->_state                 =
+                    $value = $this->_extractValue();
+                    $this->_state =
                     ConnectionStringParser::EXPECT_SEPARATOR;
                     $connectionStringValues[$key] = $value;
-                    $key                          = null;
-                    $value                        = null;
+                    $key = null;
+                    $value = null;
                     break;
 
                 default:
@@ -151,8 +142,8 @@ class ConnectionStringParser
      *Generates an invalid connection string exception with the detailed error
      * message.
      *
-     * @param integer $position    The position of the error.
-     * @param string  $errorString The short error formatting string.
+     * @param int    $position    The position of the error.
+     * @param string $errorString The short error formatting string.
      *
      * @return \RuntimeException
      */
@@ -185,15 +176,13 @@ class ConnectionStringParser
 
     /**
      * Skips whitespaces at the current position.
-     *
-     * @return void
      */
     private function _skipWhiteSpaces()
     {
         while ($this->_pos < strlen($this->_value)
-              &&  ctype_space($this->_value[$this->_pos])
+              && ctype_space($this->_value[$this->_pos])
         ) {
-            $this->_pos++;
+            ++$this->_pos;
         }
     }
 
@@ -211,11 +200,11 @@ class ConnectionStringParser
 
             if ($ch == '"' || $ch == '\'') {
                 // Value is contained between double quotes or skipped single quotes.
-                $this->_pos++;
+                ++$this->_pos;
                 $value = $this->_extractString($ch);
             } else {
                 $firstPos = $this->_pos;
-                $isFound  = false;
+                $isFound = false;
 
                 while ($this->_pos < strlen($this->_value) && !$isFound) {
                     $ch = $this->_value[$this->_pos];
@@ -223,7 +212,7 @@ class ConnectionStringParser
                     if ($ch == ';') {
                         $isFound = true;
                     } else {
-                        $this->_pos++;
+                        ++$this->_pos;
                     }
                 }
 
@@ -243,12 +232,12 @@ class ConnectionStringParser
      */
     private function _extractKey()
     {
-        $key      = null;
+        $key = null;
         $firstPos = $this->_pos;
-        $ch       = $this->_value[$this->_pos];
+        $ch = $this->_value[$this->_pos];
 
         if ($ch == '"' || $ch == '\'') {
-            $this->_pos++;
+            ++$this->_pos;
             $key = $this->_extractString($ch);
         } elseif ($ch == ';' || $ch == '=') {
             // Key name was expected.
@@ -265,7 +254,7 @@ class ConnectionStringParser
                     break;
                 }
 
-                $this->_pos++;
+                ++$this->_pos;
             }
             $key = rtrim(substr($this->_value, $firstPos, $this->_pos - $firstPos));
         }
@@ -293,9 +282,9 @@ class ConnectionStringParser
         $firstPos = $this->_pos;
 
         while ($this->_pos < strlen($this->_value)
-              &&  $this->_value[$this->_pos] != $quote
+              && $this->_value[$this->_pos] != $quote
         ) {
-            $this->_pos++;
+            ++$this->_pos;
         }
 
         if ($this->_pos == strlen($this->_value)) {
@@ -315,8 +304,6 @@ class ConnectionStringParser
      *
      * @param string $operatorChar The operator character.
      *
-     * @return void
-     *
      * @throws \RuntimeException
      */
     private function _skipOperator($operatorChar)
@@ -330,6 +317,6 @@ class ConnectionStringParser
             );
         }
 
-        $this->_pos++;
+        ++$this->_pos;
     }
 }

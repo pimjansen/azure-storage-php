@@ -14,26 +14,21 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Functional\Queue
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Functional\Queue;
 
-use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Models\CORS;
 use MicrosoftAzure\Storage\Common\Models\Logging;
 use MicrosoftAzure\Storage\Common\Models\Metrics;
-use MicrosoftAzure\Storage\Common\Models\CORS;
 use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 use MicrosoftAzure\Storage\Queue\Models\CreateMessageOptions;
 use MicrosoftAzure\Storage\Queue\Models\CreateQueueOptions;
 use MicrosoftAzure\Storage\Queue\Models\ListQueuesOptions;
+use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 
 class QueueServiceFunctionalTestData
 {
@@ -51,11 +46,11 @@ class QueueServiceFunctionalTestData
         $rint = mt_rand(0, 1000000);
         self::$testUniqueId = 'qa-' . $rint . '-';
         self::$nonExistQueuePrefix = 'qa-' . ($rint + 1) . '-';
-        self::$testQueueNames = array(
+        self::$testQueueNames = [
             self::$testUniqueId . 'a1',
             self::$testUniqueId . 'a2',
             self::$testUniqueId . 'b1',
-        );
+        ];
         self::$tempQueueCounter = 0;
     }
 
@@ -71,7 +66,7 @@ class QueueServiceFunctionalTestData
 
     public static function getInterestingTimeoutValues()
     {
-        $ret = array();
+        $ret = [];
         array_push($ret, null);
         array_push($ret, -1);
         array_push($ret, 0);
@@ -107,110 +102,102 @@ class QueueServiceFunctionalTestData
 
     public static function getInterestingServiceProperties()
     {
-        $ret = array();
+        $ret = [];
 
-        {
-            // This is the default that comes from the server.
-            array_push($ret, self::getDefaultServiceProperties());
-        }
+        // This is the default that comes from the server.
+        array_push($ret, self::getDefaultServiceProperties());
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            $rp->setDays(10);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        $rp->setDays(10);
 
-            $l = new Logging();
-            $l->setRetentionPolicy($rp);
-            // Note: looks like only v1.0 is available now.
-            // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
-            $l->setVersion('1.0');
-            $l->setDelete(true);
-            $l->setRead(true);
-            $l->setWrite(true);
+        $l = new Logging();
+        $l->setRetentionPolicy($rp);
+        // Note: looks like only v1.0 is available now.
+        // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
+        $l->setVersion('1.0');
+        $l->setDelete(true);
+        $l->setRead(true);
+        $l->setWrite(true);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $c = CORS::create(TestResources::getCORSSingle());
+        $c = CORS::create(TestResources::getCORSSingle());
 
-            $sp = new ServiceProperties();
-            $sp->setLogging($l);
-            $sp->setHourMetrics($m);
-            $sp->setCorses(array($c));
+        $sp = new ServiceProperties();
+        $sp->setLogging($l);
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            // The service does not accept setting days when enabled is false.
-            $rp->setEnabled(false);
-            $rp->setDays(null);
+        $rp = new RetentionPolicy();
+        // The service does not accept setting days when enabled is false.
+        $rp->setEnabled(false);
+        $rp->setDays(null);
 
-            $l = new Logging();
-            $l->setRetentionPolicy($rp);
-            // Note: looks like only v1.0 is available now.
-            // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
-            $l->setVersion('1.0');
-            $l->setDelete(false);
-            $l->setRead(false);
-            $l->setWrite(false);
+        $l = new Logging();
+        $l->setRetentionPolicy($rp);
+        // Note: looks like only v1.0 is available now.
+        // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
+        $l->setVersion('1.0');
+        $l->setDelete(false);
+        $l->setRead(false);
+        $l->setWrite(false);
 
-            $m = new Metrics();
-            $m->setRetentionPolicy($rp);
-            $m->setVersion('1.0');
-            $m->setEnabled(true);
-            $m->setIncludeAPIs(true);
+        $m = new Metrics();
+        $m->setRetentionPolicy($rp);
+        $m->setVersion('1.0');
+        $m->setEnabled(true);
+        $m->setIncludeAPIs(true);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setLogging($l);
-            $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+        $sp = new ServiceProperties();
+        $sp->setLogging($l);
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
-        {
-            $rp = new RetentionPolicy();
-            $rp->setEnabled(true);
-            // Days has to be 0 < days <= 365
-            $rp->setDays(364);
+        $rp = new RetentionPolicy();
+        $rp->setEnabled(true);
+        // Days has to be 0 < days <= 365
+        $rp->setDays(364);
 
-            $l = new Logging();
-            $l->setRetentionPolicy($rp);
-            // Note: looks like only v1.0 is available now.
-            // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
-            $l->setVersion('1.0');
-            $l->setDelete(false);
-            $l->setRead(false);
-            $l->setWrite(false);
+        $l = new Logging();
+        $l->setRetentionPolicy($rp);
+        // Note: looks like only v1.0 is available now.
+        // http://msdn.microsoft.com/en-us/library/windowsazure/hh360996.aspx
+        $l->setVersion('1.0');
+        $l->setDelete(false);
+        $l->setRead(false);
+        $l->setWrite(false);
 
-            $m = new Metrics();
-            $m->setVersion('1.0');
-            $m->setEnabled(false);
-            $m->setIncludeAPIs(null);
-            $m->setRetentionPolicy($rp);
+        $m = new Metrics();
+        $m->setVersion('1.0');
+        $m->setEnabled(false);
+        $m->setIncludeAPIs(null);
+        $m->setRetentionPolicy($rp);
 
-            $csArray =
-                TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
-            $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
-            $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
+        $csArray =
+            TestResources::getServicePropertiesSample()[Resources::XTAG_CORS];
+        $c0 = CORS::create($csArray[Resources::XTAG_CORS_RULE][0]);
+        $c1 = CORS::create($csArray[Resources::XTAG_CORS_RULE][1]);
 
-            $sp = new ServiceProperties();
-            $sp->setLogging($l);
-            $sp->setHourMetrics($m);
-            $sp->setCorses(array($c0, $c1));
+        $sp = new ServiceProperties();
+        $sp->setLogging($l);
+        $sp->setHourMetrics($m);
+        $sp->setCorses([$c0, $c1]);
 
-            array_push($ret, $sp);
-        }
+        array_push($ret, $sp);
 
         return $ret;
     }
@@ -220,7 +207,7 @@ class QueueServiceFunctionalTestData
         $ret = self::getNiceMetadata();
 
         // Some metadata that HTTP will not like.
-        $metadata = array('<>000' => '::::value');
+        $metadata = ['<>000' => '::::value'];
         array_push($ret, $metadata);
 
         return $ret;
@@ -228,17 +215,17 @@ class QueueServiceFunctionalTestData
 
     public static function getNiceMetadata()
     {
-        $ret = array();
+        $ret = [];
 
         array_push($ret, null);
 
-        $metadata = array();
+        $metadata = [];
         array_push($ret, $metadata);
 
-        $metadata = array(
+        $metadata = [
             'key' => 'value',
             'foo' => 'bar',
-            'baz' => 'boo');
+            'baz' => 'boo'];
         array_push($ret, $metadata);
 
         return $ret;
@@ -246,7 +233,7 @@ class QueueServiceFunctionalTestData
 
     public static function getInterestingCreateQueueOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new CreateQueueOptions();
         array_push($ret, $options);
@@ -260,8 +247,8 @@ class QueueServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateQueueOptions();
-        $metadata = array();
-        $metadata['foo'] =  'bar';
+        $metadata = [];
+        $metadata['foo'] = 'bar';
         $metadata['foo2'] = 'bar2';
         $metadata['foo3'] = 'bar3';
         $options->setMetadata($metadata);
@@ -269,7 +256,7 @@ class QueueServiceFunctionalTestData
         array_push($ret, $options);
 
         $options = new CreateQueueOptions();
-        $metadata = array('foo' => 'bar');
+        $metadata = ['foo' => 'bar'];
         $options->setMetadata($metadata);
         $options->setTimeout(-10);
         array_push($ret, $options);
@@ -288,7 +275,7 @@ class QueueServiceFunctionalTestData
 
     public static function getInterestingListQueuesOptions()
     {
-        $ret = array();
+        $ret = [];
 
         $options = new ListQueuesOptions();
         array_push($ret, $options);

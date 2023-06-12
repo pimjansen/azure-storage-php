@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Models;
@@ -31,12 +26,7 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
 /**
  * Represents entity object used in tables
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class Entity
 {
@@ -47,8 +37,6 @@ class Entity
      * Validates if properties is valid or not.
      *
      * @param mixed $properties The properties array.
-     *
-     * @return void
      */
     private function _validateProperties($properties)
     {
@@ -75,13 +63,11 @@ class Entity
      * Gets property value and if the property name is not found return null.
      *
      * @param string $name The property name.
-     *
-     * @return mixed
      */
     public function getPropertyValue($name)
     {
         $p = Utilities::tryGetValue($this->_properties, $name);
-        return is_null($p) ? null : $p->getValue();
+        return null === $p ? null : $p->getValue();
     }
 
     /**
@@ -92,13 +78,11 @@ class Entity
      *
      * @param string $name  The property name.
      * @param mixed  $value The property value.
-     *
-     * @return mixed
      */
     public function setPropertyValue($name, $value)
     {
         $p = Utilities::tryGetValue($this->_properties, $name);
-        if (!is_null($p)) {
+        if (null !== $p) {
             $p->setValue($value);
         }
     }
@@ -117,8 +101,6 @@ class Entity
      * Sets entity etag.
      *
      * @param string $etag The entity ETag value.
-     *
-     * @return void
      */
     public function setETag($etag)
     {
@@ -139,8 +121,6 @@ class Entity
      * Sets entity PartitionKey.
      *
      * @param string $partitionKey The entity PartitionKey value.
-     *
-     * @return void
      */
     public function setPartitionKey($partitionKey)
     {
@@ -161,8 +141,6 @@ class Entity
      * Sets entity RowKey.
      *
      * @param string $rowKey The entity RowKey value.
-     *
-     * @return void
      */
     public function setRowKey($rowKey)
     {
@@ -183,8 +161,6 @@ class Entity
      * Sets entity Timestamp.
      *
      * @param \DateTime $timestamp The entity Timestamp value.
-     *
-     * @return void
      */
     public function setTimestamp(\DateTime $timestamp)
     {
@@ -205,8 +181,6 @@ class Entity
      * Sets the entity properties array.
      *
      * @param array $properties The entity properties.
-     *
-     * @return void
      */
     public function setProperties(array $properties)
     {
@@ -231,8 +205,6 @@ class Entity
      *
      * @param string   $name     The property name.
      * @param Property $property The property object.
-     *
-     * @return void
      */
     public function setProperty($name, $property)
     {
@@ -266,7 +238,7 @@ class Entity
      *
      * @internal
      *
-     * @return boolean
+     * @return bool
      */
     public function isValid(&$msg = null)
     {
@@ -277,13 +249,13 @@ class Entity
             return false;
         }
 
-        if (is_null($this->getPartitionKey())
-            || is_null($this->getRowKey())
+        if (null === $this->getPartitionKey()
+            || null === $this->getRowKey()
         ) {
             $msg = Resources::NULL_TABLE_KEY_MSG;
             return false;
-        } else {
-            return true;
         }
+            return true;
+
     }
 }

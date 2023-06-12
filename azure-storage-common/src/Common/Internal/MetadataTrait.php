@@ -15,12 +15,8 @@
  * PHP version 5
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Common\Internal;
@@ -29,12 +25,7 @@ namespace MicrosoftAzure\Storage\Common\Internal;
  * Trait implementing common logic for metadata, last-modified and etag. The
  * code is shared for multiple REST APIs.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Common\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 trait MetadataTrait
 {
@@ -58,8 +49,6 @@ trait MetadataTrait
      * Sets share lastModified.
      *
      * @param \DateTime $lastModified value.
-     *
-     * @return void
      */
     protected function setLastModified(\DateTime $lastModified)
     {
@@ -81,8 +70,6 @@ trait MetadataTrait
      * Sets share etag.
      *
      * @param string $etag value.
-     *
-     * @return void
      */
     protected function setETag($etag)
     {
@@ -104,8 +91,6 @@ trait MetadataTrait
      * header prefix (x-ms-meta-*).
      *
      * @param array $metadata user defined metadata object in array form.
-     *
-     * @return void
      */
     protected function setMetadata(array $metadata)
     {
@@ -115,7 +100,7 @@ trait MetadataTrait
     /**
      * Create an instance using the response headers from the API call.
      *
-     * @param  array  $responseHeaders The array contains all the response headers
+     * @param array $responseHeaders The array contains all the response headers
      *
      * @internal
      *
@@ -123,13 +108,13 @@ trait MetadataTrait
      */
     public static function createMetadataResult(array $responseHeaders)
     {
-        $result   = new static();
+        $result = new static();
         $metadata = Utilities::getMetadataArray($responseHeaders);
-        $date     = Utilities::tryGetValueInsensitive(
+        $date = Utilities::tryGetValueInsensitive(
             Resources::LAST_MODIFIED,
             $responseHeaders
         );
-        $date     = Utilities::rfc1123ToDateTime($date);
+        $date = Utilities::rfc1123ToDateTime($date);
         $result->setETag(Utilities::tryGetValueInsensitive(
             Resources::ETAG,
             $responseHeaders

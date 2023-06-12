@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Tests\Unit\Blob\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Tests\Framework\TestResources;
 /**
  * Unit tests for class ListBlobsResult
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Tests\Unit\Blob\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListBlobsResultTest extends \PHPUnit\Framework\TestCase
 {
@@ -48,9 +38,9 @@ class ListBlobsResultTest extends \PHPUnit\Framework\TestCase
         $actual = ListBlobsResult::create($sample);
 
         // Assert
-        $this->assertCount(0, $actual->getBlobs());
-        $this->assertCount(0, $actual->getBlobPrefixes());
-        $this->assertEquals(0, $actual->getMaxResults());
+        self::assertCount(0, $actual->getBlobs());
+        self::assertCount(0, $actual->getBlobPrefixes());
+        self::assertEquals(0, $actual->getMaxResults());
     }
 
     public function testCreateWithOneEntry()
@@ -62,14 +52,14 @@ class ListBlobsResultTest extends \PHPUnit\Framework\TestCase
         $actual = ListBlobsResult::create($sample);
 
         // Assert
-        $this->assertCount(1, $actual->getBlobs());
-        $this->assertEquals($sample['@attributes']['ContainerName'], $actual->getContainerName());
-        $this->assertCount(1, $actual->getBlobPrefixes());
-        $this->assertEquals($sample['Marker'], $actual->getMarker());
-        $this->assertEquals(intval($sample['MaxResults']), $actual->getMaxResults());
-        $this->assertEquals($sample['NextMarker'], $actual->getNextMarker());
-        $this->assertEquals($sample['Delimiter'], $actual->getDelimiter());
-        $this->assertEquals($sample['Prefix'], $actual->getPrefix());
+        self::assertCount(1, $actual->getBlobs());
+        self::assertEquals($sample['@attributes']['ContainerName'], $actual->getContainerName());
+        self::assertCount(1, $actual->getBlobPrefixes());
+        self::assertEquals($sample['Marker'], $actual->getMarker());
+        self::assertEquals((int) ($sample['MaxResults']), $actual->getMaxResults());
+        self::assertEquals($sample['NextMarker'], $actual->getNextMarker());
+        self::assertEquals($sample['Delimiter'], $actual->getDelimiter());
+        self::assertEquals($sample['Prefix'], $actual->getPrefix());
     }
 
     public function testCreateWithMultipleEntries()
@@ -81,12 +71,12 @@ class ListBlobsResultTest extends \PHPUnit\Framework\TestCase
         $actual = ListBlobsResult::create($sample);
 
         // Assert
-        $this->assertCount(2, $actual->getBlobs());
-        $this->assertCount(2, $actual->getBlobPrefixes());
-        $this->assertEquals($sample['@attributes']['ContainerName'], $actual->getContainerName());
-        $this->assertEquals($sample['Marker'], $actual->getMarker());
-        $this->assertEquals(intval($sample['MaxResults']), $actual->getMaxResults());
-        $this->assertEquals($sample['NextMarker'], $actual->getNextMarker());
+        self::assertCount(2, $actual->getBlobs());
+        self::assertCount(2, $actual->getBlobPrefixes());
+        self::assertEquals($sample['@attributes']['ContainerName'], $actual->getContainerName());
+        self::assertEquals($sample['Marker'], $actual->getMarker());
+        self::assertEquals((int) ($sample['MaxResults']), $actual->getMaxResults());
+        self::assertEquals($sample['NextMarker'], $actual->getNextMarker());
 
         return $actual;
     }
@@ -100,14 +90,14 @@ class ListBlobsResultTest extends \PHPUnit\Framework\TestCase
         $actual = ListBlobsResult::create($sample, 'SecondaryOnly');
 
         // Assert
-        $this->assertCount(1, $actual->getBlobs());
-        $this->assertEquals($sample['@attributes']['ContainerName'], $actual->getContainerName());
-        $this->assertCount(1, $actual->getBlobPrefixes());
-        $this->assertEquals($sample['Marker'], $actual->getMarker());
-        $this->assertEquals(intval($sample['MaxResults']), $actual->getMaxResults());
-        $this->assertEquals($sample['NextMarker'], $actual->getNextMarker());
-        $this->assertEquals($sample['Delimiter'], $actual->getDelimiter());
-        $this->assertEquals($sample['Prefix'], $actual->getPrefix());
-        $this->assertEquals('SecondaryOnly', $actual->getLocation());
+        self::assertCount(1, $actual->getBlobs());
+        self::assertEquals($sample['@attributes']['ContainerName'], $actual->getContainerName());
+        self::assertCount(1, $actual->getBlobPrefixes());
+        self::assertEquals($sample['Marker'], $actual->getMarker());
+        self::assertEquals((int) ($sample['MaxResults']), $actual->getMaxResults());
+        self::assertEquals($sample['NextMarker'], $actual->getNextMarker());
+        self::assertEquals($sample['Delimiter'], $actual->getDelimiter());
+        self::assertEquals($sample['Prefix'], $actual->getPrefix());
+        self::assertEquals('SecondaryOnly', $actual->getLocation());
     }
 }

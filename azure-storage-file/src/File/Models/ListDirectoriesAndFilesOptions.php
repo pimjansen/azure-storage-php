@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\File\Models;
@@ -30,12 +25,7 @@ use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
 /**
  * The options of listing directories and files.
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2017 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 class ListDirectoriesAndFilesOptions extends FileServiceOptions
 {
@@ -68,8 +58,6 @@ class ListDirectoriesAndFilesOptions extends FileServiceOptions
      * the server will return status code 400 (Bad Request).
      *
      * @param string $maxResults value.
-     *
-     * @return void
      */
     public function setMaxResults($maxResults)
     {
@@ -91,8 +79,6 @@ class ListDirectoriesAndFilesOptions extends FileServiceOptions
      * Set a specified prefix.
      *
      * @param string $prefix
-     *
-     * @return void
      */
     public function setPrefix($prefix)
     {

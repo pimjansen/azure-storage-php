@@ -14,12 +14,7 @@
  *
  * PHP version 5
  *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ * @see      https://github.com/azure/azure-storage-php
  */
 
 namespace MicrosoftAzure\Storage\Table\Internal;
@@ -31,12 +26,8 @@ use MicrosoftAzure\Storage\Table\Internal\TableResources as Resources;
  * Reads and writes MIME for batch API.
  *
  * @ignore
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Table\Internal
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
+ *
+ * @see      https://github.com/azure/azure-storage-php
  */
 class MimeReaderWriter implements IMimeReaderWriter
 {
@@ -47,49 +38,49 @@ class MimeReaderWriter implements IMimeReaderWriter
      * @param array $bodyPartContents The MIME body parts.
      *
      * @return array Returns array with two elements 'headers' and 'body' which
-     * represents the MIME message.
+     *               represents the MIME message.
      */
     public function encodeMimeMultipart(array $bodyPartContents)
     {
-        $count         = count($bodyPartContents);
-        $mimeType      = Resources::MULTIPART_MIXED_TYPE;
-        $batchGuid     = Utilities::getGuid();
-        $batchId       = sprintf('batch_%s', $batchGuid);
-        $contentType1  = array('content_type' => "$mimeType");
+        $count = count($bodyPartContents);
+        $mimeType = Resources::MULTIPART_MIXED_TYPE;
+        $batchGuid = Utilities::getGuid();
+        $batchId = sprintf('batch_%s', $batchGuid);
+        $contentType1 = ['content_type' => "$mimeType"];
         $changeSetGuid = Utilities::getGuid();
-        $changeSetId   = sprintf('changeset_%s', $changeSetGuid);
-        $contentType2  = array('content_type' => "$mimeType; boundary=$changeSetId");
-        $options       = array(
-            'encoding'     => 'binary',
-            'content_type' => Resources::HTTP_TYPE
-        );
+        $changeSetId = sprintf('changeset_%s', $changeSetGuid);
+        $contentType2 = ['content_type' => "$mimeType; boundary=$changeSetId"];
+        $options = [
+            'encoding' => 'binary',
+            'content_type' => Resources::HTTP_TYPE,
+        ];
 
         $eof = "\r\n";
 
-        $result            = array();
-        $result['body']    = Resources::EMPTY_STRING;
-        $result['headers'] = array();
+        $result = [];
+        $result['body'] = Resources::EMPTY_STRING;
+        $result['headers'] = [];
 
-        $batchBody         =& $result['body'];
-        $batchHeaders      =& $result['headers'];
+        $batchBody = &$result['body'];
+        $batchHeaders = &$result['headers'];
 
         $batchHeaders['Content-Type'] = $mimeType . "; boundary=\"$batchId\"";
 
-        $batchBody .= "--" . $batchId . $eof;
+        $batchBody .= '--' . $batchId . $eof;
         $batchBody .= "Content-Type: $mimeType; boundary=\"$changeSetId\"" . $eof;
 
         $batchBody .= $eof;
-        for ($i = 0; $i < count($bodyPartContents); $i++) {
-            $batchBody .= "--" . $changeSetId . $eof;
+        for ($i = 0; $i < count($bodyPartContents); ++$i) {
+            $batchBody .= '--' . $changeSetId . $eof;
 
-            $batchBody .= "Content-Transfer-Encoding: binary" . $eof;
-            $batchBody .= "Content-Type: " . Resources::HTTP_TYPE . $eof;
+            $batchBody .= 'Content-Transfer-Encoding: binary' . $eof;
+            $batchBody .= 'Content-Type: ' . Resources::HTTP_TYPE . $eof;
 
             $batchBody .= $eof . $bodyPartContents[$i] . $eof;
         }
-        $batchBody .= "--" . $changeSetId . "--" . $eof;
+        $batchBody .= '--' . $changeSetId . '--' . $eof;
         $batchBody .= $eof;
-        $batchBody .= "--" . $batchId . "--" . $eof;
+        $batchBody .= '--' . $batchId . '--' . $eof;
 
         return $result;
     }
@@ -114,10 +105,10 @@ class MimeReaderWriter implements IMimeReaderWriter
         $requests = explode('--' . $boundary, $mimeBody);
 
         // Get the body of each request
-        $result = array();
+        $result = [];
 
         // The first and last element are not request
-        for ($i = 1; $i < count($requests) - 1; $i++) {
+        for ($i = 1; $i < count($requests) - 1; ++$i) {
             // Split the request header and body
             preg_match("/^.*?\r?\n\r?\n(.*)/s", $requests[$i], $matches);
             $result[] = $matches[1];
