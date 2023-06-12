@@ -1982,8 +1982,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         Validate::isTrue(
-            $options == null ||
-            $options instanceof CreateBlobOptions,
+            $options == null
+            || $options instanceof CreateBlobOptions,
             sprintf(
                 Resources::INVALID_PARAM_MSG,
                 'options',

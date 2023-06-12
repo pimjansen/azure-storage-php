@@ -174,8 +174,8 @@ class JsonODataReaderWriter implements IODataReaderWriter
             }
 
             // Ignore keys end with Resources::JSON_ODATA_TYPE_SUFFIX
-            if (strlen($key) > strlen(Resources::JSON_ODATA_TYPE_SUFFIX) &&
-                strpos(
+            if (strlen($key) > strlen(Resources::JSON_ODATA_TYPE_SUFFIX)
+                && strpos(
                     $key,
                     Resources::JSON_ODATA_TYPE_SUFFIX,
                     strlen($key) - strlen(Resources::JSON_ODATA_TYPE_SUFFIX)

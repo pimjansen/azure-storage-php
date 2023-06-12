@@ -93,8 +93,8 @@ class FileSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         Validate::canCastAsString($signedResource, 'signedResource');
         Validate::notNullOrEmpty($signedResource, 'signedResource');
         Validate::isTrue(
-            $signedResource == Resources::RESOURCE_TYPE_FILE ||
-            $signedResource == Resources::RESOURCE_TYPE_SHARE,
+            $signedResource == Resources::RESOURCE_TYPE_FILE
+            || $signedResource == Resources::RESOURCE_TYPE_SHARE,
             \sprintf(
                 Resources::INVALID_VALUE_MSG,
                 '$signedResource',

@@ -42,9 +42,9 @@ class HistoryMiddlewareTest extends ReflectionTestBase
         $newResponse = $callable($response);
         $entry = $middleware->getHistory()[0];
         $this->assertTrue(
-            $response === $entry['response'] &&
-            $request === $entry['request'] &&
-            [] === $entry['options'],
+            $response === $entry['response']
+            && $request === $entry['request']
+            && [] === $entry['options'],
             'History does not match the request, response and/or options'
         );
     }
@@ -65,9 +65,9 @@ class HistoryMiddlewareTest extends ReflectionTestBase
             $newReason = $e;
         }
         $this->assertTrue(
-            $newReason === $entry['reason'] &&
-            $request === $entry['request'] &&
-            [] === $entry['options'],
+            $newReason === $entry['reason']
+            && $request === $entry['request']
+            && [] === $entry['options'],
             'History does not match the request, reason and/or options'
         );
     }

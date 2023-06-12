@@ -74,8 +74,8 @@ class RetryMiddlewareFactory
         //Validate the input parameters
         //type
         Validate::isTrue(
-            $type == self::GENERAL_RETRY_TYPE ||
-            $type == self::APPEND_BLOB_RETRY_TYPE,
+            $type == self::GENERAL_RETRY_TYPE
+            || $type == self::APPEND_BLOB_RETRY_TYPE,
             sprintf(
                 Resources::INVALID_PARAM_GENERAL,
                 'type'
@@ -99,8 +99,8 @@ class RetryMiddlewareFactory
         );
         //accumulationMethod
         Validate::isTrue(
-            $accumulationMethod == self::LINEAR_INTERVAL_ACCUMULATION ||
-            $accumulationMethod == self::EXPONENTIAL_INTERVAL_ACCUMULATION,
+            $accumulationMethod == self::LINEAR_INTERVAL_ACCUMULATION
+            || $accumulationMethod == self::EXPONENTIAL_INTERVAL_ACCUMULATION,
             sprintf(
                 Resources::INVALID_PARAM_GENERAL,
                 'accumulationMethod'

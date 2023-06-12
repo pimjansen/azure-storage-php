@@ -84,4 +84,8 @@ return $config
         'no_whitespace_before_comma_in_array' => true,
         'no_whitespace_in_blank_line' => true,
         'non_printable_character' => true,
+        'operator_linebreak' => [
+            'only_booleans' => true,
+            'position' => 'beginning',
+        ],
     ]);

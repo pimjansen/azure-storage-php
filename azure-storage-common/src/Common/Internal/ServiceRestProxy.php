@@ -261,8 +261,8 @@ class ServiceRestProxy extends RestProxy
         $locationMode,
         $body = Resources::EMPTY_STRING
     ) {
-        if ($locationMode == LocationMode::SECONDARY_ONLY ||
-            $locationMode == LocationMode::SECONDARY_THEN_PRIMARY) {
+        if ($locationMode == LocationMode::SECONDARY_ONLY
+            || $locationMode == LocationMode::SECONDARY_THEN_PRIMARY) {
             $uri = $this->psrSecondaryUri;
         } else {
             $uri = $this->psrPrimaryUri;
@@ -633,8 +633,8 @@ class ServiceRestProxy extends RestProxy
                 Resources::X_MS_CONTINUATION_LOCATION_MODE,
                 LocationMode::SECONDARY_ONLY
             );
-        } elseif ($locationMode == LocationMode::SECONDARY_ONLY ||
-                  $locationMode == LocationMode::PRIMARY_ONLY) {
+        } elseif ($locationMode == LocationMode::SECONDARY_ONLY
+                  || $locationMode == LocationMode::PRIMARY_ONLY) {
             $response = $response->withHeader(
                 Resources::X_MS_CONTINUATION_LOCATION_MODE,
                 $locationMode

@@ -136,8 +136,8 @@ class ContainerACL extends ACLBase
     protected static function validateResourceType($resourceType)
     {
         Validate::isTrue(
-            $resourceType == Resources::RESOURCE_TYPE_BLOB ||
-            $resourceType == Resources::RESOURCE_TYPE_CONTAINER,
+            $resourceType == Resources::RESOURCE_TYPE_BLOB
+            || $resourceType == Resources::RESOURCE_TYPE_CONTAINER,
             Resources::INVALID_RESOURCE_TYPE
         );
     }

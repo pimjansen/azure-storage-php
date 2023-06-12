@@ -268,8 +268,8 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                     strlen($ret->getNextMarker()) . ')to be  '
             );
 
-            if (null !== $options->getPrefix() &&
-                $options->getPrefix() ==
+            if (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     (FileServiceFunctionalTestData::$nonExistFilePrefix)) {
                 $this->assertEquals(
                     0,
@@ -277,8 +277,8 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                     'when MaxResults=0 and Prefix=(\'' .
                         $options->getPrefix() . '\'), then Files length'
                 );
-            } elseif (null !== $options->getPrefix() &&
-                $options->getPrefix() ==
+            } elseif (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     (FileServiceFunctionalTestData::$testUniqueId)) {
                 $this->assertEquals(
                     FileServiceFunctionalTestData::$trackedShareCount,
@@ -332,8 +332,8 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                 ') should be == MaxResults (' . $options->getMaxResults() .
                 ')'
             );
-            if (null !== $options->getPrefix() &&
-                $options->getPrefix() ==
+            if (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     FileServiceFunctionalTestData::$nonExistFilePrefix) {
                 $this->assertTrue(
                     false,
@@ -501,8 +501,8 @@ class FileServiceFunctionalTest extends FunctionalTestBase
 
             if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
-            } elseif (!$this->isEmulated() &&
-                    !FileServiceFunctionalTestData::passTemporalAccessCondition(
+            } elseif (!$this->isEmulated()
+                    && !FileServiceFunctionalTestData::passTemporalAccessCondition(
                         $options->getAccessConditions()
                     )) {
                 $this->assertEquals(TestResources::STATUS_PRECONDITION_FAILED, $e->getCode(), 'getCode');

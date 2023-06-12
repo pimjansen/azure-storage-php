@@ -93,8 +93,8 @@ class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         Validate::canCastAsString($signedResource, 'signedResource');
         Validate::notNullOrEmpty($signedResource, 'signedResource');
         Validate::isTrue(
-            $signedResource == Resources::RESOURCE_TYPE_BLOB ||
-            $signedResource == Resources::RESOURCE_TYPE_CONTAINER,
+            $signedResource == Resources::RESOURCE_TYPE_BLOB
+            || $signedResource == Resources::RESOURCE_TYPE_CONTAINER,
             \sprintf(
                 Resources::INVALID_VALUE_MSG,
                 '$signedResource',

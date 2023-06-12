@@ -105,8 +105,8 @@ abstract class ACLBase
         $this->setSignedIdentifiers([]);
 
         // Initialize signed identifiers.
-        if (!empty($parsed) &&
-                is_array($parsed[Resources::XTAG_SIGNED_IDENTIFIER])
+        if (!empty($parsed)
+                && is_array($parsed[Resources::XTAG_SIGNED_IDENTIFIER])
         ) {
             $entries = $parsed[Resources::XTAG_SIGNED_IDENTIFIER];
             $temp = Utilities::getArray($entries);

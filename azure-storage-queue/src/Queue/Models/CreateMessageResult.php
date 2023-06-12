@@ -43,8 +43,8 @@ class CreateMessageResult
     {
         $result = new CreateMessageResult();
 
-        if (!empty($parsedResponse) &&
-            !empty($parsedResponse[Resources::QP_QUEUE_MESSAGE])
+        if (!empty($parsedResponse)
+            && !empty($parsedResponse[Resources::QP_QUEUE_MESSAGE])
         ) {
             $result->setQueueMessage(
                 QueueMessage::createFromCreateMessage(

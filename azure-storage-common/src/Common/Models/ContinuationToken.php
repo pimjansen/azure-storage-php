@@ -47,9 +47,9 @@ class ContinuationToken
     {
         Validate::canCastAsString($location, 'location');
         Validate::isTrue(
-            $location == LocationMode::PRIMARY_ONLY ||
-            $location == LocationMode::SECONDARY_ONLY ||
-            $location == '',
+            $location == LocationMode::PRIMARY_ONLY
+            || $location == LocationMode::SECONDARY_ONLY
+            || $location == '',
             sprintf(
                 Resources::INVALID_VALUE_MSG,
                 'location',

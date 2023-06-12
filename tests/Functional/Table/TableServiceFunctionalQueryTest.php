@@ -580,9 +580,9 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
                 $options = new QueryEntitiesOptions();
             }
 
-            if (null !== $options->getQuery() &&
-                null !== $options->getQuery()->getTop() &&
-                $options->getQuery()->getTop() <= 0) {
+            if (null !== $options->getQuery()
+                && null !== $options->getQuery()->getTop()
+                && $options->getQuery()->getTop() <= 0) {
                 $this->assertTrue(false, 'Expect non-positive Top in $options->query to throw');
             }
 
@@ -593,9 +593,9 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
             // not sure how useful it is.
             // To test that scenario, set NextTable in the $options.
         } catch (ServiceException $e) {
-            if (null !== $options->getQuery() &&
-                null !== $options->getQuery()->getTop() &&
-                $options->getQuery()->getTop() <= 0) {
+            if (null !== $options->getQuery()
+                && null !== $options->getQuery()->getTop()
+                && $options->getQuery()->getTop() <= 0) {
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
             } else {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
@@ -619,9 +619,9 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         if (null !== $options->getNextPartitionKey() && null !== $options->getNextRowKey()) {
             $expectedDataTmp = [];
             foreach ($expectedData as $e) {
-                if (($e->getPartitionKey() > $options->getNextPartitionKey()) ||
-                    (($e->getPartitionKey() == $options->getNextPartitionKey()) &&
-                     ($e->getRowKey() >= $options->getNextRowKey()))) {
+                if (($e->getPartitionKey() > $options->getNextPartitionKey())
+                    || (($e->getPartitionKey() == $options->getNextPartitionKey())
+                     && ($e->getRowKey() >= $options->getNextRowKey()))) {
                     array_push($expectedDataTmp, $e);
                 }
             }
@@ -656,8 +656,8 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
             $e2 = $actualData[$i];
             if (!$projected) {
                 $this->assertTrue(
-                    ($e1->getPartitionKey() == $e2->getPartitionKey()) &&
-                        ($e1->getRowKey() == $e2->getRowKey()),
+                    ($e1->getPartitionKey() == $e2->getPartitionKey())
+                        && ($e1->getRowKey() == $e2->getRowKey()),
                     '(' . $e1->getPartitionKey() . ',' . $e1->getRowKey() .
                     ') == (' . $e2->getPartitionKey() . ',' . $e2->getRowKey() . ')'
                 );

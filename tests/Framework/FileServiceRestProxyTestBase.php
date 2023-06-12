@@ -83,8 +83,8 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
                 $this->createShare($shareName, $options);
                 $ok = true;
             } catch (ServiceException $e) {
-                if ($e->getCode() != TestResources::STATUS_CONFLICT ||
-                        $counter > $retryCount) {
+                if ($e->getCode() != TestResources::STATUS_CONFLICT
+                        || $counter > $retryCount) {
                     throw $e;
                 }
                 sleep(10);

@@ -36,9 +36,9 @@ class AcceptJSONContentType
     public static function validateAcceptContentType($contentType)
     {
         Validate::isTrue(
-            $contentType == self::NO_METADATA ||
-            $contentType == self::MINIMAL_METADATA ||
-            $contentType == self::FULL_METADATA,
+            $contentType == self::NO_METADATA
+            || $contentType == self::MINIMAL_METADATA
+            || $contentType == self::FULL_METADATA,
             Resources::INVALID_ACCEPT_CONTENT_TYPE
         );
     }

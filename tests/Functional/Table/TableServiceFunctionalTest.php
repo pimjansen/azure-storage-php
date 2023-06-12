@@ -1282,9 +1282,9 @@ class TableServiceFunctionalTest extends FunctionalTestBase
     private function verifyinsertOrMergeEntityWorker($initialEnt, $ent, $entReturned)
     {
         $expectedProps = [];
-        if (null !== $initialEnt &&
-            $initialEnt->getPartitionKey() == $ent->getPartitionKey() &&
-            $initialEnt->getRowKey() == $ent->getRowKey()) {
+        if (null !== $initialEnt
+            && $initialEnt->getPartitionKey() == $ent->getPartitionKey()
+            && $initialEnt->getRowKey() == $ent->getRowKey()) {
             foreach ($initialEnt->getProperties() as $pname => $actualProp) {
                 if (null !== $actualProp && null !== $actualProp->getValue()) {
                     $cloneProp = null;
@@ -1381,8 +1381,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
                 continue;
             }
             if ($this->isEmulated() && (
-                ($firstOpType == OpType::INSERT_OR_MERGE_ENTITY) ||
-                    ($firstOpType == OpType::INSERT_OR_REPLACE_ENTITY)
+                ($firstOpType == OpType::INSERT_OR_MERGE_ENTITY)
+                    || ($firstOpType == OpType::INSERT_OR_REPLACE_ENTITY)
             )) {
                 // Emulator does not support these operations.
                 continue;
@@ -1671,8 +1671,8 @@ class TableServiceFunctionalTest extends FunctionalTestBase
             $entInTable = $ger->getEntity();
         } catch (ServiceException $e) {
             $this->assertTrue(
-                ($opType == OpType::DELETE_ENTITY) &&
-                    (TestResources::STATUS_NOT_FOUND == $e->getCode()),
+                ($opType == OpType::DELETE_ENTITY)
+                    && (TestResources::STATUS_NOT_FOUND == $e->getCode()),
                 '404:NotFound is expected for deletes'
             );
         }
@@ -1756,9 +1756,9 @@ class TableServiceFunctionalTest extends FunctionalTestBase
 
         switch ($concurType) {
             case ConcurType::NO_KEY_MATCH:
-                if (($opType == OpType::DELETE_ENTITY) ||
-                    ($opType == OpType::MERGE_ENTITY) ||
-                    ($opType == OpType::UPDATE_ENTITY)) {
+                if (($opType == OpType::DELETE_ENTITY)
+                    || ($opType == OpType::MERGE_ENTITY)
+                    || ($opType == OpType::UPDATE_ENTITY)) {
                     return TestResources::STATUS_NOT_FOUND;
                 }
                 break;

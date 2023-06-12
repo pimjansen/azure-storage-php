@@ -81,8 +81,8 @@ class FileProperties
             Utilities::tryGetValue($parsed, Resources::ETAG)
         );
 
-        if (Utilities::tryGetValue($parsed, Resources::CONTENT_MD5) &&
-            !Utilities::tryGetValue($parsed, Resources::CONTENT_RANGE)
+        if (Utilities::tryGetValue($parsed, Resources::CONTENT_MD5)
+            && !Utilities::tryGetValue($parsed, Resources::CONTENT_RANGE)
         ) {
             $result->setContentMD5(
                 Utilities::tryGetValue($parsed, Resources::CONTENT_MD5)

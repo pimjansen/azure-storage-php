@@ -72,8 +72,8 @@ class BlobServiceOptions extends ServiceOptions
      */
     public function setAccessConditions($accessConditions)
     {
-        if (null !== $accessConditions &&
-            is_array($accessConditions)) {
+        if (null !== $accessConditions
+            && is_array($accessConditions)) {
             $this->_accessConditions = $accessConditions;
         } else {
             $this->_accessConditions = [$accessConditions];

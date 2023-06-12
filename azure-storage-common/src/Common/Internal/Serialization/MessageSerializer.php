@@ -56,12 +56,12 @@ class MessageSerializer
         Validate::methodExists($targetObject, 'getProtocolVersion', 'targetObject');
 
         // Serialize according to the implemented method.
-        if (method_exists($targetObject, 'getUri') &&
-            method_exists($targetObject, 'getMethod')) {
+        if (method_exists($targetObject, 'getUri')
+            && method_exists($targetObject, 'getMethod')) {
             return self::serializeRequest($targetObject);
         }
-        if (method_exists($targetObject, 'getStatusCode') &&
-                   method_exists($targetObject, 'getReasonPhrase')) {
+        if (method_exists($targetObject, 'getStatusCode')
+                   && method_exists($targetObject, 'getReasonPhrase')) {
             return self::serializeResponse($targetObject);
         }
         throw new \InvalidArgumentException(

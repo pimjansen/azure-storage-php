@@ -98,8 +98,8 @@ class Utilities
         if (count($splitTokens) > 0 && $splitTokens[0] != '') {
             $schemaAccountToken = $splitTokens[0];
             $schemaAccountSplitTokens = explode('/', $schemaAccountToken);
-            if (count($schemaAccountSplitTokens) > 0 &&
-                $schemaAccountSplitTokens[0] != '') {
+            if (count($schemaAccountSplitTokens) > 0
+                && $schemaAccountSplitTokens[0] != '') {
                 $accountName = $schemaAccountSplitTokens[
                     count($schemaAccountSplitTokens) - 1
                 ];

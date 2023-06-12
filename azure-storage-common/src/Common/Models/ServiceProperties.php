@@ -49,8 +49,8 @@ class ServiceProperties
     {
         $result = new ServiceProperties();
 
-        if (array_key_exists(Resources::XTAG_DEFAULT_SERVICE_VERSION, $parsedResponse) &&
-            $parsedResponse[Resources::XTAG_DEFAULT_SERVICE_VERSION] != null) {
+        if (array_key_exists(Resources::XTAG_DEFAULT_SERVICE_VERSION, $parsedResponse)
+            && $parsedResponse[Resources::XTAG_DEFAULT_SERVICE_VERSION] != null) {
             $result->setDefaultServiceVersion($parsedResponse[Resources::XTAG_DEFAULT_SERVICE_VERSION]);
         }
 
@@ -61,8 +61,8 @@ class ServiceProperties
         if (array_key_exists(Resources::XTAG_MINUTE_METRICS, $parsedResponse)) {
             $result->setMinuteMetrics(Metrics::create($parsedResponse[Resources::XTAG_MINUTE_METRICS]));
         }
-        if (array_key_exists(Resources::XTAG_CORS, $parsedResponse) &&
-            $parsedResponse[Resources::XTAG_CORS] != null) {
+        if (array_key_exists(Resources::XTAG_CORS, $parsedResponse)
+            && $parsedResponse[Resources::XTAG_CORS] != null) {
             //There could be multiple CORS rules, so need to extract them all.
             $corses = [];
             $corsArray =

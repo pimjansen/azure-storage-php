@@ -81,10 +81,10 @@ class HistoryMiddleware extends MiddlewareBase
             $this->appendNewEntryToPath($entry);
         } else {
             Validate::isTrue(
-                array_key_exists('request', $entry) &&
-                array_key_exists('options', $entry) &&
-                (array_key_exists('response', $entry) ||
-                array_key_exists('reason', $entry)),
+                array_key_exists('request', $entry)
+                && array_key_exists('options', $entry)
+                && (array_key_exists('response', $entry)
+                || array_key_exists('reason', $entry)),
                 'Given history entry not in correct format'
             );
             $this->history[] = $entry;

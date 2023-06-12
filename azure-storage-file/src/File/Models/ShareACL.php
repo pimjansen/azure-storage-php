@@ -71,8 +71,8 @@ class ShareACL extends ACLBase
     protected static function validateResourceType($resourceType)
     {
         Validate::isTrue(
-            $resourceType == Resources::RESOURCE_TYPE_SHARE ||
-            $resourceType == Resources::RESOURCE_TYPE_FILE,
+            $resourceType == Resources::RESOURCE_TYPE_SHARE
+            || $resourceType == Resources::RESOURCE_TYPE_FILE,
             Resources::INVALID_RESOURCE_TYPE
         );
     }

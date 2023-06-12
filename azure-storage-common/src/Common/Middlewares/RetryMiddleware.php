@@ -144,8 +144,8 @@ class RetryMiddleware extends MiddlewareBase
             $locationMode = $options[Resources::ROS_LOCATION_MODE];
             //If have RA-GRS enabled for the request, switch between
             //primary and secondary.
-            if ($locationMode == LocationMode::PRIMARY_THEN_SECONDARY ||
-                $locationMode == LocationMode::SECONDARY_THEN_PRIMARY) {
+            if ($locationMode == LocationMode::PRIMARY_THEN_SECONDARY
+                || $locationMode == LocationMode::SECONDARY_THEN_PRIMARY) {
                 $primaryUri = $options[Resources::ROS_PRIMARY_URI];
                 $secondaryUri = $options[Resources::ROS_SECONDARY_URI];
 

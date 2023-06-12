@@ -858,8 +858,8 @@ class BlobProperties
             Utilities::tryGetValue($clean, Resources::CONTENT_TYPE_LOWER_CASE)
         );
 
-        if (Utilities::tryGetValue($clean, Resources::CONTENT_MD5) &&
-            !Utilities::tryGetValue($clean, Resources::CONTENT_RANGE)
+        if (Utilities::tryGetValue($clean, Resources::CONTENT_MD5)
+            && !Utilities::tryGetValue($clean, Resources::CONTENT_RANGE)
         ) {
             $this->setContentMD5(
                 Utilities::tryGetValue($clean, Resources::CONTENT_MD5)

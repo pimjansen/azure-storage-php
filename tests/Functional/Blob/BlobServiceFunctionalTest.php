@@ -353,8 +353,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     strlen($ret->getNextMarker()) . ')to be  '
             );
 
-            if (null !== $options->getPrefix() &&
-                $options->getPrefix() ==
+            if (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     (BlobServiceFunctionalTestData::$nonExistBlobPrefix)) {
                 $this->assertEquals(
                     0,
@@ -362,8 +362,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     'when MaxResults=0 and Prefix=(\'' .
                         $options->getPrefix() . '\'), then Blobs length'
                 );
-            } elseif (null !== $options->getPrefix() &&
-                $options->getPrefix() ==
+            } elseif (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     (BlobServiceFunctionalTestData::$testUniqueId)) {
                 $this->assertEquals(
                     count(BlobServiceFunctionalTestData::$testContainerNames),
@@ -419,8 +419,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 ') should be == MaxResults (' . $options->getMaxResults() .
                 ')'
             );
-            if (null !== $options->getPrefix() &&
-                $options->getPrefix() ==
+            if (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     BlobServiceFunctionalTestData::$nonExistBlobPrefix) {
                 $this->assertTrue(
                     false,
@@ -567,8 +567,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertTrue(false, 'Expect negative timeouts in $options to throw');
             }
-            if (!$this->isEmulated() &&
-                    !BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
+            if (!$this->isEmulated()
+                    && !BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
                 $this->assertTrue(false, 'Failing access condition should throw');
             }
 
@@ -592,8 +592,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 $this->assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
-            } elseif (!$this->isEmulated() &&
-                    !BlobServiceFunctionalTestData::passTemporalAccessCondition(
+            } elseif (!$this->isEmulated()
+                    && !BlobServiceFunctionalTestData::passTemporalAccessCondition(
                         $options->getAccessConditions()
                     )) {
                 $this->assertEquals(TestResources::STATUS_PRECONDITION_FAILED, $e->getCode(), 'getCode');
@@ -728,12 +728,12 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             }
 
             // setMetadata only honors If-Modified-Since
-            if (! $this->isEmulated() &&
-                !BlobServiceFunctionalTestData::passTemporalAccessCondition(
+            if (! $this->isEmulated()
+                && !BlobServiceFunctionalTestData::passTemporalAccessCondition(
                     $options->getAccessConditions()
-                ) && (null !== $options->getAccessConditions() &&
-                empty($options->getAccessConditions()) &&
-                $options->getAccessConditions()[0]->getHeader() !=
+                ) && (null !== $options->getAccessConditions()
+                && empty($options->getAccessConditions())
+                && $options->getAccessConditions()[0]->getHeader() !=
                     Resources::IF_UNMODIFIED_SINCE)) {
                 $this->assertTrue(false, 'Expect failing access condition to throw');
             }
@@ -743,11 +743,11 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             if (Utilities::startsWith($firstkey, '<')) {
                 $this->assertEquals(TestResources::STATUS_BAD_REQUEST, $e->getCode(), 'getCode');
-            } elseif (!$this->isEmulated() &&
-                    !BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions()) &&
-                    (null !== $options->getAccessConditions() &&
-                    !empty($options->getAccessConditions()) &&
-                    $options->getAccessConditions()[0]->getHeader() != Resources::IF_UNMODIFIED_SINCE)) {
+            } elseif (!$this->isEmulated()
+                    && !BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())
+                    && (null !== $options->getAccessConditions()
+                    && !empty($options->getAccessConditions())
+                    && $options->getAccessConditions()[0]->getHeader() != Resources::IF_UNMODIFIED_SINCE)) {
                 // setMetadata only honors If-Modified-Since
                 $this->assertEquals(TestResources::STATUS_PRECONDITION_FAILED, $e->getCode(), 'getCode');
             } elseif (null !== $options->getTimeout() && $options->getTimeout() < 1) {
@@ -1123,8 +1123,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     strlen($ret->getNextMarker()) . ')to be  '
             );
 
-            if (null !== $options->getPrefix() &&
-                    $options->getPrefix() ==
+            if (null !== $options->getPrefix()
+                    && $options->getPrefix() ==
                         (BlobServiceFunctionalTestData::$nonExistBlobPrefix)) {
                 $this->assertEquals(
                     0,
@@ -1132,8 +1132,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     'when MaxResults=0 and Prefix=(\'' .
                         $options->getPrefix() . '\'), then Blobs length'
                 );
-            } elseif (null !== $options->getPrefix() &&
-                $options->getPrefix() ==
+            } elseif (null !== $options->getPrefix()
+                && $options->getPrefix() ==
                     (BlobServiceFunctionalTestData::$testUniqueId)) {
                 $this->assertEquals(
                     0,
@@ -1180,8 +1180,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     $options->getMaxResults() . ')'
             );
 
-            if (null !== $options->getPrefix() &&
-                    $options->getPrefix() ==
+            if (null !== $options->getPrefix()
+                    && $options->getPrefix() ==
                         (BlobServiceFunctionalTestData::$nonExistBlobPrefix)) {
                 $this->assertTrue(
                     false,
@@ -1512,10 +1512,10 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             $this->verifyGetBlobPropertiesWorker($res, $metadata, null);
         } catch (ServiceException $e) {
-            if (null !== $options->getAccessConditions() &&
-                    !empty($options->getAccessConditions()) &&
-                    !$this->hasSecureEndpoint() &&
-                    $e->getCode() == TestResources::STATUS_FORBIDDEN) {
+            if (null !== $options->getAccessConditions()
+                    && !empty($options->getAccessConditions())
+                    && !$this->hasSecureEndpoint()
+                    && $e->getCode() == TestResources::STATUS_FORBIDDEN) {
                 // Proxies can eat the access condition headers of
                 // unsecured (http) requests, which causes the authentication
                 // to fail, with a 403:Forbidden. There is nothing much that
@@ -1593,9 +1593,9 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->assertEquals('PageBlob', $res->getProperties()->getBlobType(), 'blob getProperties->getBlobType');
         $this->assertEquals('unlocked', $res->getProperties()->getLeaseStatus(), 'blob getProperties->getLeaseStatus');
 
-        if (null === $properties ||
-                null !== $properties->getContentLength() ||
-                null !== $properties->getSequenceNumber()) {
+        if (null === $properties
+                || null !== $properties->getContentLength()
+                || null !== $properties->getSequenceNumber()) {
             $this->assertNull($res->getProperties()->getCacheControl(), 'blob getProperties->getCacheControl');
             $this->assertEquals(
                 'application/octet-stream',
@@ -1842,10 +1842,10 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             $this->verifyGetBlobWorker($res, $options, $dataSize, $metadata);
         } catch (ServiceException $e) {
-            if (null !== $options->getAccessConditions() &&
-                    !empty($options->getAccessConditions()) &&
-                    !$this->hasSecureEndpoint() &&
-                    $e->getCode() == TestResources::STATUS_FORBIDDEN) {
+            if (null !== $options->getAccessConditions()
+                    && !empty($options->getAccessConditions())
+                    && !$this->hasSecureEndpoint()
+                    && $e->getCode() == TestResources::STATUS_FORBIDDEN) {
                 // Proxies can eat the access condition headers of
                 // unsecured (http) requests, which causes the authentication
                 // to fail, with a 403:Forbidden. There is nothing much that

@@ -68,8 +68,8 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
                 $this->createContainer($containerName, $options);
                 $ok = true;
             } catch (ServiceException $e) {
-                if ($e->getCode() != TestResources::STATUS_CONFLICT ||
-                        $counter > $retryCount) {
+                if ($e->getCode() != TestResources::STATUS_CONFLICT
+                        || $counter > $retryCount) {
                     throw $e;
                 }
                 sleep(10);
