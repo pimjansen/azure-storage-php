@@ -5,14 +5,6 @@ This project was forked due the retirement of the official Azure SDK. For more i
 
 ---
 
-This project provides a set of PHP client libraries that make it easy to access Microsoft Azure Storage services (blobs, tables, queues and files). For documentation on how to host PHP applications on Microsoft Azure, please see the [Microsoft Azure PHP Developer Center](http://www.windowsazure.com/en-us/develop/php/).
-
-* azure-storage-blob [![Latest Stable Version](https://poser.pugx.org/microsoft/azure-storage-blob/v/stable)](https://packagist.org/packages/microsoft/azure-storage-blob)
-* azure-storage-table [![Latest Stable Version](https://poser.pugx.org/microsoft/azure-storage-table/v/stable)](https://packagist.org/packages/microsoft/azure-storage-table)
-* azure-storage-queue [![Latest Stable Version](https://poser.pugx.org/microsoft/azure-storage-queue/v/stable)](https://packagist.org/packages/microsoft/azure-storage-queue)
-* azure-storage-file [![Latest Stable Version](https://poser.pugx.org/microsoft/azure-storage-file/v/stable)](https://packagist.org/packages/microsoft/azure-storage-file)
-* azure-storage-common [![Latest Stable Version](https://poser.pugx.org/microsoft/azure-storage-common/v/stable)](https://packagist.org/packages/microsoft/azure-storage-common)
-
 ## Features
 
 * Blobs
@@ -34,38 +26,18 @@ Please check details on [API reference documents](http://azure.github.io/azure-s
 
 ## Minimum Requirements
 
-* PHP 5.6 or above
-* See [composer.json](composer.json) for dependencies
+* PHP 8.0 or above
 * Required extension for PHP:
-  * php_fileinfo.dll
-  * php_mbstring.dll
-  * php_openssl.dll
-  * php_xsl.dll
-
-* Recommended extension for PHP:
-  * php_curl.dll
+  * fileinfo
+  * mbstring
+  * openssl
+  * xsl
+  * curl
 
 ## Install via Composer
 
-1. Create a file named **composer.json** in the root of your project and add the following code to it:
-
-```json
-{
-  "require": {
-    "microsoft/azure-storage-blob": "*",
-    "microsoft/azure-storage-table": "*",
-    "microsoft/azure-storage-queue": "*",
-    "microsoft/azure-storage-file": "*"
-  }
-}
-```
-
-1. Download **[composer.phar](http://getcomposer.org/composer.phar)** in your project root.
-
-1. Open a command prompt and execute this in your project root
-
 ```shell
-php composer.phar install
+composer require azure-oss/storage
 ```
 
 ## Usage
