@@ -259,7 +259,7 @@ class TableServiceFunctionalTestUtils
         }
         if ($filter instanceof PropertyNameFilter) {
             $name = $filter->getPropertyName();
-            return ($obj instanceof Entity ? $obj->getPropertyValue($name) : $obj->{$name});
+            return $obj instanceof Entity ? $obj->getPropertyValue($name) : $obj->{$name};
         }
         if ($filter instanceof ConstantFilter) {
             return $filter->getValue();
