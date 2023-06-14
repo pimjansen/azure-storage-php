@@ -1,22 +1,5 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Common\Internal;
 
 use AzureOSS\Storage\Common\Exceptions\ServiceException;
@@ -33,13 +16,6 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Base class for all services rest proxies.
- *
- * @ignore
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class ServiceRestProxy extends RestProxy
 {
     private $accountName;
@@ -262,8 +238,10 @@ class ServiceRestProxy extends RestProxy
         $locationMode,
         $body = Resources::EMPTY_STRING
     ) {
-        if ($locationMode == LocationMode::SECONDARY_ONLY
-            || $locationMode == LocationMode::SECONDARY_THEN_PRIMARY) {
+        if (
+            $locationMode == LocationMode::SECONDARY_ONLY
+            || $locationMode == LocationMode::SECONDARY_THEN_PRIMARY
+        ) {
             $uri = $this->psrSecondaryUri;
         } else {
             $uri = $this->psrPrimaryUri;
@@ -570,7 +548,8 @@ class ServiceRestProxy extends RestProxy
         if (is_array($metadata) && null !== $metadata) {
             foreach ($metadata as $key => $value) {
                 $headerName = Resources::X_MS_META_HEADER_PREFIX;
-                if (strpos($value, "\r") !== false
+                if (
+                    strpos($value, "\r") !== false
                     || strpos($value, "\n") !== false
                 ) {
                     throw new \InvalidArgumentException(Resources::INVALID_META_MSG);
@@ -632,8 +611,10 @@ class ServiceRestProxy extends RestProxy
                 Resources::X_MS_CONTINUATION_LOCATION_MODE,
                 LocationMode::SECONDARY_ONLY
             );
-        } elseif ($locationMode == LocationMode::SECONDARY_ONLY
-                  || $locationMode == LocationMode::PRIMARY_ONLY) {
+        } elseif (
+            $locationMode == LocationMode::SECONDARY_ONLY
+            || $locationMode == LocationMode::PRIMARY_ONLY
+        ) {
             $response = $response->withHeader(
                 Resources::X_MS_CONTINUATION_LOCATION_MODE,
                 $locationMode

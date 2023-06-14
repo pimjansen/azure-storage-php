@@ -1,22 +1,5 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Blob;
 
 use AzureOSS\Storage\Blob\Internal\BlobResources as Resources;
@@ -83,12 +66,6 @@ use AzureOSS\Storage\Common\Models\Range;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
 
-/**
- * This class constructs HTTP requests and receive HTTP responses for blob
- * service layer.
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class BlobRestProxy extends ServiceRestProxy implements IBlob
 {
     use ServiceRestTrait;
@@ -1974,7 +1951,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         Validate::notNullOrEmpty($blob, 'blob');
         Validate::isTrue(
             $options == null
-            || $options instanceof CreateBlobOptions,
+                || $options instanceof CreateBlobOptions,
             sprintf(
                 Resources::INVALID_PARAM_MSG,
                 'options',
@@ -3354,7 +3331,6 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
                 HttpFormatter::formatHeaders($response->getHeaders()),
                 $parsed
             );
-
         }, null);
     }
 

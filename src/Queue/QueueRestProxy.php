@@ -1,22 +1,5 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Queue;
 
 use AzureOSS\Storage\Common\Internal\Authentication\SharedAccessSignatureAuthScheme;
@@ -47,12 +30,6 @@ use AzureOSS\Storage\Queue\Models\QueueMessage;
 use AzureOSS\Storage\Queue\Models\QueueServiceOptions;
 use AzureOSS\Storage\Queue\Models\UpdateMessageResult;
 
-/**
- * This class constructs HTTP requests and receive HTTP responses for queue
- * service layer.
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class QueueRestProxy extends ServiceRestProxy implements IQueue
 {
     use ServiceRestTrait;

@@ -1,35 +1,9 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Common\Internal;
 
-/**
- * Project resources.
- *
- * @ignore
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class Resources
 {
-    // @codingStandardsIgnoreStart
-
     // Connection strings
     public const USE_DEVELOPMENT_STORAGE_NAME = 'UseDevelopmentStorage';
     public const DEVELOPMENT_STORAGE_PROXY_URI_NAME = 'DevelopmentStorageProxyUri';
@@ -226,9 +200,9 @@ class Resources
     public const MAX_BLOB_BLOCKS = 50000;
     public const MAX_BLOCK_BLOB_SIZE = 5242880000000;
     public const RETURN_CONTENT = 'return-content';
-    public const NUMBER_OF_CONCURRENCY = 25;//Guzzle's default value
+    public const NUMBER_OF_CONCURRENCY = 25; //Guzzle's default value
     public const DEFAULT_NUMBER_OF_RETRIES = 3;
-    public const DEFAULT_RETRY_INTERVAL = 1000;//Milliseconds
+    public const DEFAULT_RETRY_INTERVAL = 1000; //Milliseconds
     public const BEARER = 'Bearer ';
 
     // Header values
@@ -408,6 +382,4 @@ class Resources
     public const ROS_DECODE_CONTENT = 'decode_content';
     public const ROS_STREAM = 'stream';
     public const ROS_HANDLER = 'requestHandler';
-
-    // @codingStandardsIgnoreEnd
 }

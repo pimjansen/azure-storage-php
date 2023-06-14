@@ -1,33 +1,9 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @ignore
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Common\Internal;
 
 use AzureOSS\Storage\Common\Exceptions\InvalidArgumentTypeException;
 
-/**
- * Validates against a condition and throws an exception in case of failure.
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class Validate
 {
     /**
@@ -216,7 +192,6 @@ class Validate
                 $classType
             )
         );
-
     }
 
     /**
@@ -255,7 +230,6 @@ class Validate
         throw new \RuntimeException(
             sprintf(Resources::INVALID_CONFIG_HOSTNAME, $hostname)
         );
-
     }
 
     /**
@@ -289,7 +263,6 @@ class Validate
         throw new \RuntimeException(
             sprintf(Resources::INVALID_CONFIG_URI, $uri)
         );
-
     }
 
     /**
@@ -341,7 +314,6 @@ class Validate
                 $class
             )
         );
-
     }
 
     /**
@@ -370,7 +342,6 @@ class Validate
                 $name
             )
         );
-
     }
 
     /**

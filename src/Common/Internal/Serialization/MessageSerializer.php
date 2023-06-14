@@ -1,35 +1,11 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Common\Internal\Serialization;
 
 use AzureOSS\Storage\Common\Internal\Resources;
 use AzureOSS\Storage\Common\Internal\Validate;
 use GuzzleHttp\Exception\RequestException;
 
-/**
- * Provides functionality to serialize a message to a string.
- *
- * @ignore
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class MessageSerializer
 {
     /**
@@ -56,18 +32,21 @@ class MessageSerializer
         Validate::methodExists($targetObject, 'getProtocolVersion', 'targetObject');
 
         // Serialize according to the implemented method.
-        if (method_exists($targetObject, 'getUri')
-            && method_exists($targetObject, 'getMethod')) {
+        if (
+            method_exists($targetObject, 'getUri')
+            && method_exists($targetObject, 'getMethod')
+        ) {
             return self::serializeRequest($targetObject);
         }
-        if (method_exists($targetObject, 'getStatusCode')
-                   && method_exists($targetObject, 'getReasonPhrase')) {
+        if (
+            method_exists($targetObject, 'getStatusCode')
+            && method_exists($targetObject, 'getReasonPhrase')
+        ) {
             return self::serializeResponse($targetObject);
         }
         throw new \InvalidArgumentException(
             Resources::INVALID_MESSAGE_OBJECT_TO_SERIALIZE
         );
-
     }
 
     /**

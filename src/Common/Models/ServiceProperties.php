@@ -1,32 +1,10 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Common\Models;
 
 use AzureOSS\Storage\Common\Internal\Resources;
 use AzureOSS\Storage\Common\Internal\Serialization\XmlSerializer;
 
-/**
- * Encapsulates service properties
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class ServiceProperties
 {
     private $logging;
@@ -50,8 +28,10 @@ class ServiceProperties
     {
         $result = new ServiceProperties();
 
-        if (array_key_exists(Resources::XTAG_DEFAULT_SERVICE_VERSION, $parsedResponse)
-            && $parsedResponse[Resources::XTAG_DEFAULT_SERVICE_VERSION] != null) {
+        if (
+            array_key_exists(Resources::XTAG_DEFAULT_SERVICE_VERSION, $parsedResponse)
+            && $parsedResponse[Resources::XTAG_DEFAULT_SERVICE_VERSION] != null
+        ) {
             $result->setDefaultServiceVersion($parsedResponse[Resources::XTAG_DEFAULT_SERVICE_VERSION]);
         }
 
@@ -62,8 +42,10 @@ class ServiceProperties
         if (array_key_exists(Resources::XTAG_MINUTE_METRICS, $parsedResponse)) {
             $result->setMinuteMetrics(Metrics::create($parsedResponse[Resources::XTAG_MINUTE_METRICS]));
         }
-        if (array_key_exists(Resources::XTAG_CORS, $parsedResponse)
-            && $parsedResponse[Resources::XTAG_CORS] != null) {
+        if (
+            array_key_exists(Resources::XTAG_CORS, $parsedResponse)
+            && $parsedResponse[Resources::XTAG_CORS] != null
+        ) {
             //There could be multiple CORS rules, so need to extract them all.
             $corses = [];
             $corsArray =
@@ -195,17 +177,17 @@ class ServiceProperties
 
         if (!empty($this->getLogging())) {
             $result[Resources::XTAG_LOGGING] =
-                    $this->getLogging()->toArray();
+                $this->getLogging()->toArray();
         }
 
         if (!empty($this->getHourMetrics())) {
             $result[Resources::XTAG_HOUR_METRICS] =
-                    $this->getHourMetrics()->toArray();
+                $this->getHourMetrics()->toArray();
         }
 
         if (!empty($this->getMinuteMetrics())) {
             $result[Resources::XTAG_MINUTE_METRICS] =
-                    $this->getMinuteMetrics()->toArray();
+                $this->getMinuteMetrics()->toArray();
         }
 
         $corsesArray = $this->getCorsesArray();

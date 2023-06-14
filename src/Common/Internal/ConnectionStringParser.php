@@ -1,33 +1,7 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Common\Internal;
 
-/**
- * Helper methods for parsing connection strings. The rules for formatting connection
- * strings are defined here:
- * www.connectionstrings.com/articles/show/important-rules-for-connection-strings
- *
- * @ignore
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class ConnectionStringParser
 {
     public const EXPECT_KEY = 'ExpectKey';
@@ -91,7 +65,8 @@ class ConnectionStringParser
         while (true) {
             $this->_skipWhiteSpaces();
 
-            if ($this->_pos == strlen($this->_value)
+            if (
+                $this->_pos == strlen($this->_value)
                 && $this->_state != ConnectionStringParser::EXPECT_VALUE
             ) {
                 // Not stopping after the end has been reached and a value is
@@ -113,7 +88,7 @@ class ConnectionStringParser
                 case ConnectionStringParser::EXPECT_VALUE:
                     $value = $this->_extractValue();
                     $this->_state =
-                    ConnectionStringParser::EXPECT_SEPARATOR;
+                        ConnectionStringParser::EXPECT_SEPARATOR;
                     $connectionStringValues[$key] = $value;
                     $key = null;
                     $value = null;
@@ -179,8 +154,9 @@ class ConnectionStringParser
      */
     private function _skipWhiteSpaces()
     {
-        while ($this->_pos < strlen($this->_value)
-              && ctype_space($this->_value[$this->_pos])
+        while (
+            $this->_pos < strlen($this->_value)
+            && ctype_space($this->_value[$this->_pos])
         ) {
             ++$this->_pos;
         }
@@ -281,8 +257,9 @@ class ConnectionStringParser
     {
         $firstPos = $this->_pos;
 
-        while ($this->_pos < strlen($this->_value)
-              && $this->_value[$this->_pos] != $quote
+        while (
+            $this->_pos < strlen($this->_value)
+            && $this->_value[$this->_pos] != $quote
         ) {
             ++$this->_pos;
         }

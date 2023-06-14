@@ -1,22 +1,5 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Table;
 
 use AzureOSS\Storage\Common\Internal\Authentication\SharedAccessSignatureAuthScheme;
@@ -63,12 +46,6 @@ use AzureOSS\Storage\Table\Models\TableServiceCreateOptions;
 use AzureOSS\Storage\Table\Models\TableServiceOptions;
 use AzureOSS\Storage\Table\Models\UpdateEntityResult;
 
-/**
- * This class constructs HTTP requests and receive HTTP responses for table
- * service layer.
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class TableRestProxy extends ServiceRestProxy implements ITable
 {
     use ServiceRestTrait;
@@ -852,7 +829,8 @@ class TableRestProxy extends ServiceRestProxy implements ITable
         // Azure Table service where this does not engage on the server unless
         // $filter appears in the URL. The current behavior is to just ignore the
         // NextTableName options, which is not expected or easily detectable.
-        if (array_key_exists(Resources::QP_NEXT_TABLE_NAME, $queryParams)
+        if (
+            array_key_exists(Resources::QP_NEXT_TABLE_NAME, $queryParams)
             && !array_key_exists(Resources::QP_FILTER, $queryParams)
         ) {
             $queryParams[Resources::QP_FILTER] = Resources::EMPTY_STRING;

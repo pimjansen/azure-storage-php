@@ -1,33 +1,9 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @ignore
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Common\Internal;
 
 use Psr\Http\Message\StreamInterface;
 
-/**
- * Utilities for the project
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class Utilities
 {
     /**
@@ -98,11 +74,11 @@ class Utilities
         if (count($splitTokens) > 0 && $splitTokens[0] != '') {
             $schemaAccountToken = $splitTokens[0];
             $schemaAccountSplitTokens = explode('/', $schemaAccountToken);
-            if (count($schemaAccountSplitTokens) > 0
-                && $schemaAccountSplitTokens[0] != '') {
-                $accountName = $schemaAccountSplitTokens[
-                    count($schemaAccountSplitTokens) - 1
-                ];
+            if (
+                count($schemaAccountSplitTokens) > 0
+                && $schemaAccountSplitTokens[0] != ''
+            ) {
+                $accountName = $schemaAccountSplitTokens[count($schemaAccountSplitTokens) - 1];
                 $schemaAccountSplitTokens[count($schemaAccountSplitTokens) - 1] =
                     $accountName . Resources::SECONDARY_STRING;
 
@@ -614,7 +590,6 @@ class Utilities
         Validate::methodExists($entity, $method, $type);
 
         return $entity->$method();
-
     }
 
     /**

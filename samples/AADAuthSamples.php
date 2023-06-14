@@ -1,25 +1,5 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Samples
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2019 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
- */
-
 namespace MicrosoftAzure\Storage\Samples;
 
 require_once "../vendor/autoload.php";
@@ -103,9 +83,9 @@ try {
 } catch (ServiceException $e) {
     $code = $e->getCode();
     $error_message = $e->getMessage();
-    echo $code.": ".$error_message.PHP_EOL;
+    echo $code . ": " . $error_message . PHP_EOL;
 } catch (InvalidArgumentTypeException $e) {
-    echo $e->getMessage().PHP_EOL;
+    echo $e->getMessage() . PHP_EOL;
 }
 
 try {
@@ -114,12 +94,12 @@ try {
 } catch (ServiceException $e) {
     $code = $e->getCode();
     $error_message = $e->getMessage();
-    echo $code.": ".$error_message.PHP_EOL;
+    echo $code . ": " . $error_message . PHP_EOL;
 }
 
 function setBlobServiceProperties($blobClient)
 {
-     // Get blob service properties
+    // Get blob service properties
     echo "Get Blob Service properties" . PHP_EOL;
     $originalProperties = $blobClient->getServiceProperties();
     // Set blob service properties
@@ -168,7 +148,7 @@ function createContainerSample($blobClient)
     } catch (ServiceException $e) {
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message.PHP_EOL;
+        echo $code . ": " . $error_message . PHP_EOL;
     }
 }
 
@@ -273,7 +253,8 @@ function blobMetadata($blobClient)
     $metadata = array(
         'key' => 'value',
         'foo' => 'bar',
-        'baz' => 'boo');
+        'baz' => 'boo'
+    );
     $blobClient->setBlobMetadata($container, $blob, $metadata);
     // Get blob metadata
     echo "Get blob metadata" . PHP_EOL;
@@ -311,7 +292,7 @@ function uploadBlobSample($blobClient)
     } catch (ServiceException $e) {
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message.PHP_EOL;
+        echo $code . ": " . $error_message . PHP_EOL;
     }
 }
 
@@ -323,7 +304,7 @@ function downloadBlobSample($blobClient)
     } catch (ServiceException $e) {
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message.PHP_EOL;
+        echo $code . ": " . $error_message . PHP_EOL;
     }
 
     file_put_contents("output.txt", $getBlobResult->getContentStream());
@@ -344,16 +325,15 @@ function listBlobsSample($blobClient)
             global $myContainer;
             $blob_list = $blobClient->listBlobs($myContainer, $listBlobsOptions);
             foreach ($blob_list->getBlobs() as $blob) {
-                echo $blob->getName().": ".$blob->getUrl().PHP_EOL;
+                echo $blob->getName() . ": " . $blob->getUrl() . PHP_EOL;
             }
 
             $listBlobsOptions->setContinuationToken($blob_list->getContinuationToken());
         } while ($blob_list->getContinuationToken());
-
     } catch (ServiceException $e) {
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message.PHP_EOL;
+        echo $code . ": " . $error_message . PHP_EOL;
     }
 }
 
@@ -365,10 +345,10 @@ function pageBlobOperations($blobClient)
     $containerName = $myContainer;
 
     # Create a page blob
-    echo "Create Page Blob with name {$blobName}".PHP_EOL;
+    echo "Create Page Blob with name {$blobName}" . PHP_EOL;
     $blobClient->createPageBlob($containerName, $blobName, 2560);
     # Create pages in a page blob
-    echo "Create pages in a page blob".PHP_EOL;
+    echo "Create pages in a page blob" . PHP_EOL;
 
     $blobClient->createBlobPages(
         $containerName,
@@ -385,7 +365,7 @@ function pageBlobOperations($blobClient)
     # List page blob ranges
     $listPageBlobRangesOptions = new ListPageBlobRangesOptions();
     $listPageBlobRangesOptions->setRange(new Range(0, 1023));
-    echo "List Page Blob Ranges".PHP_EOL;
+    echo "List Page Blob Ranges" . PHP_EOL;
     $listPageBlobRangesResult = $blobClient->listPageBlobRanges(
         $containerName,
         $blobName,
@@ -393,14 +373,14 @@ function pageBlobOperations($blobClient)
     );
 
     foreach ($listPageBlobRangesResult->getRanges() as $range) {
-        echo "Range:".$range->getStart()."-".$range->getEnd().PHP_EOL;
+        echo "Range:" . $range->getStart() . "-" . $range->getEnd() . PHP_EOL;
         $getBlobOptions = new GetBlobOptions();
         $getBlobOptions->setRange($range);
         $getBlobResult = $blobClient->getBlob($containerName, $blobName, $getBlobOptions);
         file_put_contents("PageContent.txt", $getBlobResult->getContentStream());
     }
     # Clean up after the sample
-      echo "Delete Blob".PHP_EOL;
+    echo "Delete Blob" . PHP_EOL;
     $blobClient->deleteBlob($containerName, $blobName);
 }
 
@@ -412,21 +392,21 @@ function snapshotOperations($blobClient)
     $containerName = $myContainer;
 
     # Upload file as a block blob
-    echo "Uploading BlockBlob".PHP_EOL;
+    echo "Uploading BlockBlob" . PHP_EOL;
 
     $content = 'test content hello hello world';
     $blobClient->createBlockBlob($containerName, $blobName, $content);
     # Create a snapshot
-    echo "Create a Snapshot".PHP_EOL;
+    echo "Create a Snapshot" . PHP_EOL;
     $snapshotResult = $blobClient->createBlobSnapshot($containerName, $blobName);
     # Retrieve snapshot
-    echo "Retrieve Snapshot".PHP_EOL;
+    echo "Retrieve Snapshot" . PHP_EOL;
     $getBlobOptions = new GetBlobOptions();
     $getBlobOptions->setSnapshot($snapshotResult->getSnapshot());
     $getBlobResult = $blobClient->getBlob($containerName, $blobName, $getBlobOptions);
     file_put_contents("HelloWorldSnapshotCopy.png", $getBlobResult->getContentStream());
     # Clean up after the sample
-    echo "Delete Blob and snapshot".PHP_EOL;
+    echo "Delete Blob and snapshot" . PHP_EOL;
     $deleteBlobOptions = new DeleteBlobOptions();
     $deleteBlobOptions->setDeleteSnaphotsOnly(false);
     $blobClient->deleteBlob($containerName, $blobName, $deleteBlobOptions);

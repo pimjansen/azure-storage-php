@@ -1,22 +1,5 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\Common\Middlewares;
 
 use AzureOSS\Storage\Common\Internal\Serialization\MessageSerializer;
@@ -26,16 +9,6 @@ use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * This class provides the functionality to log the requests/options/responses.
- * Logging large number of entries without providing a file path may exhaust
- * the memory.
- *
- * The middleware should be pushed into client options if the logging is
- * intended to persist between different API calls.
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class HistoryMiddleware extends MiddlewareBase
 {
     private $history;
@@ -81,9 +54,9 @@ class HistoryMiddleware extends MiddlewareBase
         } else {
             Validate::isTrue(
                 array_key_exists('request', $entry)
-                && array_key_exists('options', $entry)
-                && (array_key_exists('response', $entry)
-                || array_key_exists('reason', $entry)),
+                    && array_key_exists('options', $entry)
+                    && (array_key_exists('response', $entry)
+                        || array_key_exists('reason', $entry)),
                 'Given history entry not in correct format'
             );
             $this->history[] = $entry;

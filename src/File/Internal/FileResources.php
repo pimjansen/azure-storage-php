@@ -1,37 +1,11 @@
 <?php
 
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * PHP version 5
- *
- * @see      https://github.com/azure/azure-storage-php
- */
-
 namespace AzureOSS\Storage\File\Internal;
 
 use AzureOSS\Storage\Common\Internal\Resources;
 
-/**
- * Project resources.
- *
- * @ignore
- *
- * @see      https://github.com/azure/azure-storage-php
- */
 class FileResources extends Resources
 {
-    // @codingStandardsIgnoreStart
-
     public const FILE_SDK_VERSION = '1.2.5';
     public const STORAGE_API_LATEST_VERSION = '2016-05-31';
 
@@ -57,6 +31,4 @@ class FileResources extends Resources
         Resources::RESOURCE_TYPE_FILE => ['r', 'c', 'w', 'd'],
         Resources::RESOURCE_TYPE_SHARE => ['r', 'c', 'w', 'd', 'l'],
     ];
-
-    // @codingStandardsIgnoreEnd
 }

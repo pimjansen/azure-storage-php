@@ -20,7 +20,6 @@
 namespace AzureOSS\Storage\Tests\Framework;
 
 use AzureOSS\Storage\Blob\BlobRestProxy;
-use AzureOSS\Storage\Blob\Models\Container;
 use AzureOSS\Storage\Blob\Models\CreateContainerOptions;
 use AzureOSS\Storage\Blob\Models\ListContainersOptions;
 use AzureOSS\Storage\Common\Exceptions\ServiceException;

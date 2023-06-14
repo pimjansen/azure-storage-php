@@ -1,23 +1,4 @@
 <?php
-/**
- * LICENSE: The MIT License (the "License")
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * https://github.com/azure/azure-storage-php/LICENSE
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @category  Microsoft
- * @package   MicrosoftAzure\Storage\Samples
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- * @link      https://github.com/azure/azure-storage-php
- */
 
 namespace MicrosoftAzure\Storage\Samples;
 
@@ -105,22 +86,22 @@ createTableAccountSASSample();
 
 function listTables($tableService)
 {
-    $tablePrefix = "table".generateRandomString();
+    $tablePrefix = "table" . generateRandomString();
 
-    echo "Create multiple tables with prefix {$tablePrefix}".PHP_EOL;
+    echo "Create multiple tables with prefix {$tablePrefix}" . PHP_EOL;
     for ($i = 1; $i <= 5; $i++) {
-        $tableService->createTable($tablePrefix.(string)$i);
+        $tableService->createTable($tablePrefix . (string)$i);
     }
-    echo "List tables with prefix {$tablePrefix}".PHP_EOL;
+    echo "List tables with prefix {$tablePrefix}" . PHP_EOL;
     $queryTablesOptions = new QueryTablesOptions();
     $queryTablesOptions->setPrefix($tablePrefix);
     $tablesListResult = $tableService->queryTables($queryTablesOptions);
     foreach ($tablesListResult->getTables() as $table) {
-        echo "  table ".$table.PHP_EOL;
+        echo "  table " . $table . PHP_EOL;
     }
-    echo "Delete tables with prefix {$tablePrefix}".PHP_EOL;
+    echo "Delete tables with prefix {$tablePrefix}" . PHP_EOL;
     for ($i = 1; $i <= 5; $i++) {
-        $tableService->deleteTable($tablePrefix.(string)$i);
+        $tableService->deleteTable($tablePrefix . (string)$i);
     }
 }
 
@@ -166,7 +147,7 @@ function createTableSample($tableClient, $mytable)
     } catch (ServiceException $e) {
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message.PHP_EOL;
+        echo $code . ": " . $error_message . PHP_EOL;
     }
 }
 
@@ -182,7 +163,7 @@ function insertEntitySample($tableClient, $mytable)
     } catch (ServiceException $e) {
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message.PHP_EOL;
+        echo $code . ": " . $error_message . PHP_EOL;
     }
 }
 
@@ -196,12 +177,12 @@ function getSingleEntitySample($tableClient, $mytable)
         // http://msdn.microsoft.com/library/azure/dd179438.aspx
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message."<br />";
+        echo $code . ": " . $error_message . "<br />";
     }
 
     $entity = $result->getEntity();
 
-    echo $entity->getPartitionKey().":".$entity->getRowKey().":".$entity->getPropertyValue("PropertyName")."\n";
+    echo $entity->getPartitionKey() . ":" . $entity->getRowKey() . ":" . $entity->getPropertyValue("PropertyName") . "\n";
 }
 
 function batchInsertEntitiesSample($tableClient, $mytable)
@@ -210,8 +191,8 @@ function batchInsertEntitiesSample($tableClient, $mytable)
     for ($i = 2; $i < 10; ++$i) {
         $entity = new Entity();
         $entity->setPartitionKey("pk");
-        $entity->setRowKey(''.$i);
-        $entity->addProperty("PropertyName", EdmType::STRING, "Sample".$i);
+        $entity->setRowKey('' . $i);
+        $entity->addProperty("PropertyName", EdmType::STRING, "Sample" . $i);
         $entity->addProperty("Description", null, "Sample description.");
 
         $batchOp->addInsertEntity($mytable, $entity);
@@ -222,7 +203,7 @@ function batchInsertEntitiesSample($tableClient, $mytable)
     } catch (ServiceException $e) {
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message.PHP_EOL;
+        echo $code . ": " . $error_message . PHP_EOL;
     }
 }
 
@@ -238,13 +219,13 @@ function queryAllEntitiesInPartition($tableClient, $mytable)
         // http://msdn.microsoft.com/library/azure/dd179438.aspx
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message."<br />";
+        echo $code . ": " . $error_message . "<br />";
     }
 
     $entities = $result->getEntities();
 
     foreach ($entities as $entity) {
-        echo $entity->getPartitionKey().":".$entity->getRowKey()."<br />"."\n";
+        echo $entity->getPartitionKey() . ":" . $entity->getRowKey() . "<br />" . "\n";
     }
 }
 
@@ -261,15 +242,15 @@ function querySubsetEntitiesSample($tableClient, $mytable)
     } catch (ServiceException $e) {
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message.PHP_EOL;
+        echo $code . ": " . $error_message . PHP_EOL;
     }
 
     $entities = $result->getEntities();
 
     foreach ($entities as $entity) {
-        echo $entity->getPartitionKey().":".$entity->getRowKey().PHP_EOL;
+        echo $entity->getPartitionKey() . ":" . $entity->getRowKey() . PHP_EOL;
         $description = $entity->getProperty("Description")->getValue();
-        echo $description."<br />"."\n";
+        echo $description . "<br />" . "\n";
     }
 }
 
@@ -293,14 +274,14 @@ function updateEntitySample($tableClient, $mytable)
         // http://msdn.microsoft.com/library/azure/dd179438.aspx
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message."<br />";
+        echo $code . ": " . $error_message . "<br />";
     }
 }
 
 function deleteEntitySample($tableClient, $mytable)
 {
     try {
-    // Delete entity.
+        // Delete entity.
         $tableClient->deleteEntity($mytable, "pk", "2");
     } catch (ServiceException $e) {
         // Handle exception based on error codes and messages.
@@ -308,7 +289,7 @@ function deleteEntitySample($tableClient, $mytable)
         // http://msdn.microsoft.com/library/azure/dd179438.aspx
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message."<br />";
+        echo $code . ": " . $error_message . "<br />";
     }
 }
 
@@ -323,7 +304,7 @@ function deleteTableSample($tableClient, $mytable)
         // http://msdn.microsoft.com/library/azure/dd179438.aspx
         $code = $e->getCode();
         $error_message = $e->getMessage();
-        echo $code.": ".$error_message."<br />";
+        echo $code . ": " . $error_message . "<br />";
     }
 }
 
@@ -354,7 +335,7 @@ function createTableAccountSASSample()
     );
 
     $connectionStringWithSAS = Resources::TABLE_ENDPOINT_NAME .
-        '='.
+        '=' .
         'https://' .
         $accountName .
         '.' .
