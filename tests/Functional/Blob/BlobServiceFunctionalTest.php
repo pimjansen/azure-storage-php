@@ -375,7 +375,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                         '\'), then Blobs length'
                 );
             }
-            // Do not know how many there should be
+        // Do not know how many there should be
 
         } elseif (strlen($ret->getNextMarker()) == 0) {
             self::assertTrue(
@@ -408,7 +408,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     $options->getPrefix() . '\'), then Blobs length'
                 );
             }
-            // Do not know how many there should be
+        // Do not know how many there should be
 
         } else {
             self::assertEquals(
@@ -1142,7 +1142,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                         $options->getPrefix() . '\'), then Blobs length'
                 );
             }
-            // Do not know how many there should be
+        // Do not know how many there should be
 
         } elseif (strlen($ret->getNextMarker()) == 0) {
             self::assertTrue(
@@ -1168,7 +1168,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                         $options->getPrefix() . '\'), then Blobs length'
                 );
             }
-            // Do not know how many there should be
+        // Do not know how many there should be
 
         } else {
             self::assertEquals(

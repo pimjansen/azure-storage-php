@@ -1,7 +1,5 @@
-version: '3.5'
-
 services:
-  phpfpm:
+  php:
     build:
       context: .
       args:

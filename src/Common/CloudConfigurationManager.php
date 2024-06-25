@@ -14,9 +14,7 @@ class CloudConfigurationManager
     /**
      * Restrict users from creating instances from this class
      */
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Initializes the connection string source providers.

@@ -1,4 +1,4 @@
-FROM php:8.0-cli-buster
+FROM php:8.1-cli-buster
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

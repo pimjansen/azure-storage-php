@@ -345,7 +345,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
                     $options->getPrefix() . '\'), then count Queues'
                 );
             }
-            // Don't know how many there should be
+        // Don't know how many there should be
 
         } elseif (strlen($ret->getNextMarker()) == 0) {
             self::assertTrue(
@@ -376,7 +376,7 @@ class QueueServiceFunctionalTest extends FunctionalTestBase
                     '\'), then Queues->length'
                 );
             }
-            // Don't know how many there should be
+        // Don't know how many there should be
 
         } else {
             self::assertEquals(

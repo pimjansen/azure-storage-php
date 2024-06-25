@@ -2,6 +2,4 @@
 
 namespace AzureOSS\Storage\Blob\Models;
 
-class UndeleteBlobOptions extends BlobServiceOptions
-{
-}
+class UndeleteBlobOptions extends BlobServiceOptions {}

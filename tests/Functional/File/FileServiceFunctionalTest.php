@@ -290,7 +290,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                         '\'), then Files length'
                 );
             }
-            // Do not know how many there should be
+        // Do not know how many there should be
 
         } elseif (strlen($ret->getNextMarker()) == 0) {
             self::assertTrue(
@@ -321,7 +321,7 @@ class FileServiceFunctionalTest extends FunctionalTestBase
                     $options->getPrefix() . '\'), then Files length'
                 );
             }
-            // Do not know how many there should be
+        // Do not know how many there should be
 
         } else {
             self::assertEquals(
