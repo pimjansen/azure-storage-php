@@ -116,8 +116,10 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
             null,
             [RetryMiddlewareFactory::GENERAL_RETRY_TYPE, 3, true],
         );
+
         $request = new Request('PUT', '127.0.0.1');
         $retryResult = $generalDecider(1, $request, null, new ConnectException('message', $request));
+
         self::assertTrue($retryResult);
     }
 

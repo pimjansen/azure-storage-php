@@ -47,8 +47,10 @@ class RestProxyTestBase extends \PHPUnit\Framework\TestCase
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->xmlSerializer = new XmlSerializer();
-        Logger::setLogFile('C:\log.txt');
+        Logger::setLogFile('./test.log');
 
         // Enable PHP asserts
         assert_options(ASSERT_ACTIVE, 1);

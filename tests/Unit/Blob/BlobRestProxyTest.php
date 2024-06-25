@@ -1033,23 +1033,23 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
     public function testGetBlobWithRange()
     {
         // Setup
-        $name = '$root';
+        $container = 'mycontainer';
         $blob = 'myblob';
-        $this->createContainer($name);
-        $this->_createdContainers[] = '$root';
+        $this->createContainer($container);
+        $this->_createdContainers[] = $container;
         $length = 512;
         $range = new Range(0, 511);
         $contentStream = Resources::EMPTY_STRING;
-        $this->restProxy->createPageBlob('', $blob, $length);
+        $this->restProxy->createPageBlob($container, $blob, $length);
         for ($i = 0; $i < 512; ++$i) {
             $contentStream .= 'A';
         }
-        $this->restProxy->createBlobPages('', $blob, $range, $contentStream);
+        $this->restProxy->createBlobPages($container, $blob, $range, $contentStream);
         $options = new GetBlobOptions();
         $options->setRange(new Range(0, 511));
 
         // Test
-        $result = $this->restProxy->getBlob('', $blob, $options);
+        $result = $this->restProxy->getBlob($container, $blob, $options);
 
         // Assert
         self::assertEquals(BlobType::PAGE_BLOB, $result->getProperties()->getBlobType());

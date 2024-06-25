@@ -33,7 +33,7 @@ class Validate
     {
         try {
             (string) $var;
-        } catch (\Exception $e) {
+        } catch (\Error|\Exception $e) {
             throw new InvalidArgumentTypeException(gettype(''), $name);
         }
     }

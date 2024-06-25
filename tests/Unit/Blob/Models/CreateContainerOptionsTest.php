@@ -20,6 +20,7 @@
 namespace AzureOSS\Storage\Tests\Unit\Blob\Models;
 
 use AzureOSS\Storage\Blob\Models\CreateContainerOptions;
+use AzureOSS\Storage\Blob\Models\PublicAccessType;
 use AzureOSS\Storage\Common\Exceptions\InvalidArgumentTypeException;
 
 /**

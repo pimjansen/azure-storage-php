@@ -861,7 +861,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             Resources::EMPTY_STRING,
             $options,
         )->then(function ($response) use ($dataSerializer) {
-            $parsed = $this->dataSerializer->unserialize($response->getBody());
+            $parsed = $dataSerializer->unserialize($response->getBody());
             return ListContainersResult::create(
                 $parsed,
                 Utilities::getLocationFromHeaders($response->getHeaders()),
