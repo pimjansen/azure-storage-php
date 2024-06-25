@@ -133,7 +133,7 @@ class ContainerProperties
     {
         Validate::isTrue(
             PublicAccessType::isValid($publicAccess),
-            Resources::INVALID_BLOB_PAT_MSG
+            Resources::INVALID_BLOB_PAT_MSG,
         );
         $this->publicAccess = $publicAccess;
     }

@@ -57,17 +57,17 @@ class ListContainersResultTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(
             $sample['@attributes']['ServiceEndpoint'] .
                 $sample['Containers']['Container']['Name'],
-            $containers[0]->getUrl()
+            $containers[0]->getUrl(),
         );
         self::assertEquals(
             Utilities::rfc1123ToDateTime(
-                $sample['Containers']['Container']['Properties']['Last-Modified']
+                $sample['Containers']['Container']['Properties']['Last-Modified'],
             ),
-            $containers[0]->getProperties()->getLastModified()
+            $containers[0]->getProperties()->getLastModified(),
         );
         self::assertEquals(
             $sample['Containers']['Container']['Properties']['Etag'],
-            $containers[0]->getProperties()->getETag()
+            $containers[0]->getProperties()->getETag(),
         );
         self::assertEquals($sample['Marker'], $actual->getMarker());
         self::assertEquals($sample['MaxResults'], $actual->getMaxResults());
@@ -89,32 +89,32 @@ class ListContainersResultTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(
             $sample['@attributes']['ServiceEndpoint'] .
             $sample['Containers']['Container'][0]['Name'],
-            $containers[0]->getUrl()
+            $containers[0]->getUrl(),
         );
         self::assertEquals(
             Utilities::rfc1123ToDateTime($sample['Containers']['Container'][0]['Properties']['Last-Modified']),
-            $containers[0]->getProperties()->getLastModified()
+            $containers[0]->getProperties()->getLastModified(),
         );
         self::assertEquals(
             $sample['Containers']['Container'][0]['Properties']['Etag'],
-            $containers[0]->getProperties()->getETag()
+            $containers[0]->getProperties()->getETag(),
         );
         self::assertEquals(
             $sample['Containers']['Container'][1]['Name'],
-            $containers[1]->getName()
+            $containers[1]->getName(),
         );
         self::assertEquals(
             $sample['@attributes']['ServiceEndpoint'] .
             $sample['Containers']['Container'][1]['Name'],
-            $containers[1]->getUrl()
+            $containers[1]->getUrl(),
         );
         self::assertEquals(
             Utilities::rfc1123ToDateTime($sample['Containers']['Container'][1]['Properties']['Last-Modified']),
-            $containers[1]->getProperties()->getLastModified()
+            $containers[1]->getProperties()->getLastModified(),
         );
         self::assertEquals(
             $sample['Containers']['Container'][1]['Properties']['Etag'],
-            $containers[1]->getProperties()->getETag()
+            $containers[1]->getProperties()->getETag(),
         );
         self::assertEquals($sample['MaxResults'], $actual->getMaxResults());
         self::assertEquals($sample['NextMarker'], $actual->getNextMarker());

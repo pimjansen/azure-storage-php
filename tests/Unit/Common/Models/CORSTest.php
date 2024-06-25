@@ -57,7 +57,7 @@ class CORSTest extends \PHPUnit\Framework\TestCase
             ['GET', 'PUT'],
             ['x-ms-meta-customheader0', 'x-ms-meta-target0*'],
             ['x-ms-meta-customheader0', 'x-ms-meta-data0*'],
-            500
+            500,
         );
 
         self::assertEquals($parsedResponse, $cors->toArray());

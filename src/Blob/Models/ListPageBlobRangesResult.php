@@ -43,7 +43,7 @@ class ListPageBlobRangesResult
         foreach ($rawRanges as $value) {
             $pageRanges[] = new Range(
                 (int) ($value[Resources::XTAG_RANGE_START]),
-                (int) ($value[Resources::XTAG_RANGE_END])
+                (int) ($value[Resources::XTAG_RANGE_END]),
             );
         }
         $result->setRanges($pageRanges);

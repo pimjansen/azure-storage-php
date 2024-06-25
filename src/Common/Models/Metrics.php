@@ -27,11 +27,11 @@ class Metrics
         $result->setEnabled(Utilities::toBoolean($parsedResponse['Enabled']));
         if ($result->getEnabled()) {
             $result->setIncludeAPIs(
-                Utilities::toBoolean($parsedResponse['IncludeAPIs'])
+                Utilities::toBoolean($parsedResponse['IncludeAPIs']),
             );
         }
         $result->setRetentionPolicy(
-            RetentionPolicy::create($parsedResponse['RetentionPolicy'])
+            RetentionPolicy::create($parsedResponse['RetentionPolicy']),
         );
 
         return $result;

@@ -37,7 +37,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             $expected,
-            $copyBlobOptions->getMetadata()
+            $copyBlobOptions->getMetadata(),
         );
     }
 
@@ -49,7 +49,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             $expected,
-            $copyBlobOptions->getAccessConditions()[0]
+            $copyBlobOptions->getAccessConditions()[0],
         );
     }
 
@@ -61,7 +61,7 @@ class CopyBlobOptionsTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             $expected,
-            $copyBlobOptions->getSourceAccessConditions()[0]
+            $copyBlobOptions->getSourceAccessConditions()[0],
         );
     }
 

@@ -35,7 +35,7 @@ abstract class AccessPolicy
                 || $resourceType == Resources::RESOURCE_TYPE_TABLE
                 || $resourceType == Resources::RESOURCE_TYPE_FILE
                 || $resourceType == Resources::RESOURCE_TYPE_SHARE,
-            Resources::ERROR_RESOURCE_TYPE_NOT_SUPPORTED
+            Resources::ERROR_RESOURCE_TYPE_NOT_SUPPORTED,
         );
 
         $this->resourceType = $resourceType;
@@ -138,7 +138,7 @@ abstract class AccessPolicy
                 $permission = str_replace(
                     $validPermission,
                     '',
-                    $permission
+                    $permission,
                 );
             }
         }
@@ -149,8 +149,8 @@ abstract class AccessPolicy
             sprintf(
                 Resources::INVALID_PERMISSION_PROVIDED,
                 $this->getResourceType(),
-                implode(', ', $validPermissions)
-            )
+                implode(', ', $validPermissions),
+            ),
         );
 
         return $result;

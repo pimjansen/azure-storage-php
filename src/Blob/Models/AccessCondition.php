@@ -79,7 +79,7 @@ class AccessCondition
         Validate::isDate($lastModified);
         return new AccessCondition(
             Resources::IF_MODIFIED_SINCE,
-            $lastModified
+            $lastModified,
         );
     }
 
@@ -128,7 +128,7 @@ class AccessCondition
         Validate::isDate($lastModified);
         return new AccessCondition(
             Resources::IF_UNMODIFIED_SINCE,
-            $lastModified
+            $lastModified,
         );
     }
 

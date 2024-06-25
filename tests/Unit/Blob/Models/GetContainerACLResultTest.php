@@ -43,7 +43,7 @@ class GetContainerACLResultTest extends \PHPUnit\Framework\TestCase
             $expectedPublicAccess,
             $expectedETag,
             $expectedDate,
-            $sample
+            $sample,
         );
 
         // Assert

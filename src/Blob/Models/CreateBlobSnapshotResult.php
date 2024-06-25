@@ -30,8 +30,8 @@ class CreateBlobSnapshotResult
 
         $result->setLastModified(
             Utilities::rfc1123ToDateTime(
-                $headerWithLowerCaseKey[Resources::LAST_MODIFIED]
-            )
+                $headerWithLowerCaseKey[Resources::LAST_MODIFIED],
+            ),
         );
 
         $result->setSnapshot($headerWithLowerCaseKey[Resources::X_MS_SNAPSHOT]);

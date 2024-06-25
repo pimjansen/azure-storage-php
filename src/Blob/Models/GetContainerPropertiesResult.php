@@ -95,7 +95,7 @@ class GetContainerPropertiesResult
     {
         Validate::isTrue(
             PublicAccessType::isValid($publicAccess),
-            Resources::INVALID_BLOB_PAT_MSG
+            Resources::INVALID_BLOB_PAT_MSG,
         );
         $this->publicAccess = $publicAccess;
     }
@@ -115,19 +115,19 @@ class GetContainerPropertiesResult
 
         $result->setLeaseStatus(Utilities::tryGetValueInsensitive(
             Resources::X_MS_LEASE_STATUS,
-            $responseHeaders
+            $responseHeaders,
         ));
         $result->setLeaseState(Utilities::tryGetValueInsensitive(
             Resources::X_MS_LEASE_STATE,
-            $responseHeaders
+            $responseHeaders,
         ));
         $result->setLeaseDuration(Utilities::tryGetValueInsensitive(
             Resources::X_MS_LEASE_DURATION,
-            $responseHeaders
+            $responseHeaders,
         ));
         $result->setPublicAccess(Utilities::tryGetValueInsensitive(
             Resources::X_MS_BLOB_PUBLIC_ACCESS,
-            $responseHeaders
+            $responseHeaders,
         ));
 
         return $result;

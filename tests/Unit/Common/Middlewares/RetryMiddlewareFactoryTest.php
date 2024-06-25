@@ -38,7 +38,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             -1,
             Resources::DEFAULT_RETRY_INTERVAL,
-            RetryMiddlewareFactory::LINEAR_INTERVAL_ACCUMULATION
+            RetryMiddlewareFactory::LINEAR_INTERVAL_ACCUMULATION,
         );
     }
 
@@ -51,7 +51,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             Resources::DEFAULT_NUMBER_OF_RETRIES,
             -1,
-            RetryMiddlewareFactory::LINEAR_INTERVAL_ACCUMULATION
+            RetryMiddlewareFactory::LINEAR_INTERVAL_ACCUMULATION,
         );
     }
 
@@ -64,7 +64,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
             'string that does not make sense',
             Resources::DEFAULT_NUMBER_OF_RETRIES,
             Resources::DEFAULT_RETRY_INTERVAL,
-            RetryMiddlewareFactory::LINEAR_INTERVAL_ACCUMULATION
+            RetryMiddlewareFactory::LINEAR_INTERVAL_ACCUMULATION,
         );
     }
 
@@ -77,7 +77,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             Resources::DEFAULT_NUMBER_OF_RETRIES,
             Resources::DEFAULT_RETRY_INTERVAL,
-            'string that does not make sense'
+            'string that does not make sense',
         );
     }
 
@@ -86,7 +86,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         $createRetryDecider = self::getMethod('createRetryDecider', new RetryMiddlewareFactory());
         $generalDecider = $createRetryDecider->invokeArgs(
             null,
-            [RetryMiddlewareFactory::GENERAL_RETRY_TYPE, 3, false]
+            [RetryMiddlewareFactory::GENERAL_RETRY_TYPE, 3, false],
         );
         $request = new Request('PUT', '127.0.0.1');
         $retryResult_1 = $generalDecider(1, $request, new Response(408));//retry
@@ -114,7 +114,7 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         $createRetryDecider = self::getMethod('createRetryDecider', new RetryMiddlewareFactory());
         $generalDecider = $createRetryDecider->invokeArgs(
             null,
-            [RetryMiddlewareFactory::GENERAL_RETRY_TYPE, 3, true]
+            [RetryMiddlewareFactory::GENERAL_RETRY_TYPE, 3, true],
         );
         $request = new Request('PUT', '127.0.0.1');
         $retryResult = $generalDecider(1, $request, null, new ConnectException('message', $request));

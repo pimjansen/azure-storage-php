@@ -34,7 +34,7 @@ class ContainerACL extends ACLBase
     {
         Validate::isTrue(
             PublicAccessType::isValid($publicAccess),
-            Resources::INVALID_BLOB_PAT_MSG
+            Resources::INVALID_BLOB_PAT_MSG,
         );
         $result = new ContainerACL();
         $result->fromXmlArray($parsed);
@@ -62,11 +62,11 @@ class ContainerACL extends ACLBase
     {
         Validate::isTrue(
             PublicAccessType::isValid($publicAccess),
-            Resources::INVALID_BLOB_PAT_MSG
+            Resources::INVALID_BLOB_PAT_MSG,
         );
         $this->publicAccess = $publicAccess;
         $this->setResourceType(
-            self::getResourceTypeByPublicAccess($publicAccess)
+            self::getResourceTypeByPublicAccess($publicAccess),
         );
     }
 
@@ -112,7 +112,7 @@ class ContainerACL extends ACLBase
         Validate::isTrue(
             $resourceType == Resources::RESOURCE_TYPE_BLOB
                 || $resourceType == Resources::RESOURCE_TYPE_CONTAINER,
-            Resources::INVALID_RESOURCE_TYPE
+            Resources::INVALID_RESOURCE_TYPE,
         );
     }
 

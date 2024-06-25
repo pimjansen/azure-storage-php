@@ -21,7 +21,7 @@ class BreakLeaseResult
         $result = new BreakLeaseResult();
 
         $result->setLeaseTime(
-            Utilities::tryGetValue($headers, Resources::X_MS_LEASE_TIME)
+            Utilities::tryGetValue($headers, Resources::X_MS_LEASE_TIME),
         );
 
         return $result;

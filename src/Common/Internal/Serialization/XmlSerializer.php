@@ -105,7 +105,7 @@ class XmlSerializer implements ISerializer
         $methodArray = $reflectionClass->getMethods();
         $attributes = self::getInstanceAttributes(
             $targetObject,
-            $methodArray
+            $methodArray,
         );
 
         $xmlWriter->startElement($rootName);
@@ -113,7 +113,7 @@ class XmlSerializer implements ISerializer
             foreach (array_keys($attributes) as $attributeKey) {
                 $xmlWriter->writeAttribute(
                     $attributeKey,
-                    $attributes[$attributeKey]
+                    $attributes[$attributeKey],
                 );
             }
         }
@@ -130,8 +130,8 @@ class XmlSerializer implements ISerializer
                         $xmlWriter->writeRaw(
                             XmlSerializer::objectSerialize(
                                 $variableValue,
-                                $variableName
-                            )
+                                $variableName,
+                            ),
                         );
                     } else {
                         $xmlWriter->writeElement($variableName, $variableValue);
@@ -162,7 +162,7 @@ class XmlSerializer implements ISerializer
         $docNamespace = Utilities::tryGetValue(
             $array,
             Resources::XTAG_NAMESPACE,
-            null
+            null,
         );
 
         if (!is_array($array)) {

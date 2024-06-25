@@ -11,7 +11,7 @@ class ContinuationToken
     private $location;
 
     public function __construct(
-        $location = ''
+        $location = '',
     ) {
         $this->setLocation($location);
     }
@@ -31,8 +31,8 @@ class ContinuationToken
             sprintf(
                 Resources::INVALID_VALUE_MSG,
                 'location',
-                LocationMode::PRIMARY_ONLY . ' or ' . LocationMode::SECONDARY_ONLY
-            )
+                LocationMode::PRIMARY_ONLY . ' or ' . LocationMode::SECONDARY_ONLY,
+            ),
         );
 
         $this->location = $location;

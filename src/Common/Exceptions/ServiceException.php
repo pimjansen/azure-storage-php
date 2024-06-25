@@ -29,8 +29,8 @@ class ServiceException extends \LogicException
                 Resources::AZURE_ERROR_MSG,
                 $response->getStatusCode(),
                 $response->getReasonPhrase(),
-                $response->getBody()
-            )
+                $response->getBody(),
+            ),
         );
         $this->code = $response->getStatusCode();
         $this->response = $response;
@@ -62,7 +62,7 @@ class ServiceException extends \LogicException
             }
             if (!empty($messages)) {
                 throw new \Exception(
-                    sprintf(Resources::ERROR_CANNOT_PARSE_XML, implode('; ', $messages))
+                    sprintf(Resources::ERROR_CANNOT_PARSE_XML, implode('; ', $messages)),
                 );
             }
             libxml_use_internal_errors($internalErrors);
@@ -107,7 +107,7 @@ class ServiceException extends \LogicException
         $requestID = '';
         if (array_key_exists(
             Resources::X_MS_REQUEST_ID,
-            $this->getResponse()->getHeaders()
+            $this->getResponse()->getHeaders(),
         )) {
             $requestID = $this->getResponse()
                 ->getHeaders()[Resources::X_MS_REQUEST_ID][0];
@@ -125,7 +125,7 @@ class ServiceException extends \LogicException
         $date = '';
         if (array_key_exists(
             Resources::DATE,
-            $this->getResponse()->getHeaders()
+            $this->getResponse()->getHeaders(),
         )) {
             $date = $this->getResponse()
                 ->getHeaders()[Resources::DATE][0];

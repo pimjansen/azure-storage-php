@@ -57,7 +57,7 @@ class HistoryMiddleware extends MiddlewareBase
                     && array_key_exists('options', $entry)
                     && (array_key_exists('response', $entry)
                         || array_key_exists('reason', $entry)),
-                'Given history entry not in correct format'
+                'Given history entry not in correct format',
             );
             $this->history[] = $entry;
         }
@@ -137,12 +137,12 @@ class HistoryMiddleware extends MiddlewareBase
             $entryNoString,
             self::TITLE_LENGTH,
             '-',
-            STR_PAD_BOTH
+            STR_PAD_BOTH,
         ) . PHP_EOL;
         $entryString = $delimiter;
         $entryString .= sprintf(
             "Time: %s\n",
-            (new \DateTime('now', new \DateTimeZone('UTC')))->format('Y-m-d H:i:s')
+            (new \DateTime('now', new \DateTimeZone('UTC')))->format('Y-m-d H:i:s'),
         );
         $entryString .= MessageSerializer::objectSerialize($entry['request']);
         if (array_key_exists('reason', $entry)) {

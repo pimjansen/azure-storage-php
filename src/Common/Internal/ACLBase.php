@@ -87,10 +87,10 @@ abstract class ACLBase
             foreach ($temp as $value) {
                 $accessPolicy = $value[Resources::XTAG_ACCESS_POLICY];
                 $startString = urldecode(
-                    $accessPolicy[Resources::XTAG_SIGNED_START]
+                    $accessPolicy[Resources::XTAG_SIGNED_START],
                 );
                 $expiryString = urldecode(
-                    $accessPolicy[Resources::XTAG_SIGNED_EXPIRY]
+                    $accessPolicy[Resources::XTAG_SIGNED_EXPIRY],
                 );
                 $start = Utilities::convertToDateTime($startString);
                 $expiry = Utilities::convertToDateTime($expiryString);
@@ -145,7 +145,7 @@ abstract class ACLBase
         $id,
         \DateTime $start,
         \DateTime $expiry,
-        $permissions
+        $permissions,
     ) {
         Validate::canCastAsString($id, 'id');
         if ($start != null) {
@@ -169,7 +169,7 @@ abstract class ACLBase
         // There can be no more than 5 signed identifiers at the same time.
         Validate::isTrue(
             count($this->getSignedIdentifiers()) < 5,
-            Resources::ERROR_TOO_MANY_SIGNED_IDENTIFIERS
+            Resources::ERROR_TOO_MANY_SIGNED_IDENTIFIERS,
         );
 
         $this->signedIdentifiers[] = $signedIdentifier;
@@ -211,7 +211,7 @@ abstract class ACLBase
         // There can be no more than 5 signed identifiers at the same time.
         Validate::isTrue(
             count($signedIdentifiers) <= 5,
-            Resources::ERROR_TOO_MANY_SIGNED_IDENTIFIERS
+            Resources::ERROR_TOO_MANY_SIGNED_IDENTIFIERS,
         );
         $this->signedIdentifiers = $signedIdentifiers;
     }

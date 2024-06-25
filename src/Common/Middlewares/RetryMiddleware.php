@@ -17,7 +17,7 @@ class RetryMiddleware extends MiddlewareBase
 
     public function __construct(
         callable $intervalCalculator,
-        callable $decider
+        callable $decider,
     ) {
         $this->intervalCalculator = $intervalCalculator;
         $this->decider = $decider;
@@ -45,7 +45,7 @@ class RetryMiddleware extends MiddlewareBase
                 $request,
                 $response,
                 null,
-                $isSecondary
+                $isSecondary,
             )) {
                 return $this->retry($request, $options, $response);
             }
@@ -54,12 +54,12 @@ class RetryMiddleware extends MiddlewareBase
             if ($isSecondary) {
                 $response = $response->withHeader(
                     Resources::X_MS_CONTINUATION_LOCATION_MODE,
-                    LocationMode::SECONDARY_ONLY
+                    LocationMode::SECONDARY_ONLY,
                 );
             } else {
                 $response = $response->withHeader(
                     Resources::X_MS_CONTINUATION_LOCATION_MODE,
-                    LocationMode::PRIMARY_ONLY
+                    LocationMode::PRIMARY_ONLY,
                 );
             }
             return $response;
@@ -89,7 +89,7 @@ class RetryMiddleware extends MiddlewareBase
                 $request,
                 null,
                 $reason,
-                $isSecondary
+                $isSecondary,
             )) {
                 return $this->retry($request, $options);
             }
@@ -109,11 +109,11 @@ class RetryMiddleware extends MiddlewareBase
     private function retry(
         RequestInterface $request,
         array $options,
-        ResponseInterface $response = null
+        ResponseInterface $response = null,
     ) {
         $options['delay'] = call_user_func(
             $this->intervalCalculator,
-            ++$options['retries']
+            ++$options['retries'],
         );
 
         //Change the request URI according to the location mode.

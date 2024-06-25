@@ -53,7 +53,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
         $this->connectionString = TestResources::getWindowsAzureStorageServicesConnectionString();
         $this->serviceSettings =
             StorageServiceSettings::createFromConnectionString(
-                $this->connectionString
+                $this->connectionString,
             );
     }
 
@@ -290,7 +290,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
     protected function validateServiceExceptionErrorMessage(
         $errorMsg,
         callable $callable,
-        $failureMessage = ''
+        $failureMessage = '',
     ) {
         $message = '';
         try {

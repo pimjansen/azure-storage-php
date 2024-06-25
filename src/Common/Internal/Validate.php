@@ -62,7 +62,7 @@ class Validate
     {
         if (null === $var || (empty($var) && $var != '0')) {
             throw new \InvalidArgumentException(
-                sprintf(Resources::NULL_OR_EMPTY_MSG, $name)
+                sprintf(Resources::NULL_OR_EMPTY_MSG, $name),
             );
         }
     }
@@ -189,8 +189,8 @@ class Validate
                 Resources::INSTANCE_TYPE_VALIDATION_MSG,
                 $name,
                 $objectType,
-                $classType
-            )
+                $classType,
+            ),
         );
     }
 
@@ -228,7 +228,7 @@ class Validate
             return true;
         }
         throw new \RuntimeException(
-            sprintf(Resources::INVALID_CONFIG_HOSTNAME, $hostname)
+            sprintf(Resources::INVALID_CONFIG_HOSTNAME, $hostname),
         );
     }
 
@@ -261,7 +261,7 @@ class Validate
             return true;
         }
         throw new \RuntimeException(
-            sprintf(Resources::INVALID_CONFIG_URI, $uri)
+            sprintf(Resources::INVALID_CONFIG_URI, $uri),
         );
     }
 
@@ -311,8 +311,8 @@ class Validate
                 Resources::INSTANCE_TYPE_VALIDATION_MSG,
                 $name,
                 $objectType,
-                $class
-            )
+                $class,
+            ),
         );
     }
 
@@ -339,8 +339,8 @@ class Validate
             sprintf(
                 Resources::ERROR_METHOD_NOT_FOUND,
                 $method,
-                $name
-            )
+                $name,
+            ),
         );
     }
 
@@ -366,8 +366,8 @@ class Validate
                 sprintf(
                     Resources::ERROR_INVALID_DATE_STRING,
                     $name,
-                    $value
-                )
+                    $value,
+                ),
             );
         }
     }
@@ -393,8 +393,8 @@ class Validate
                 sprintf(
                     Resources::INVALID_VALUE_MSG,
                     $name,
-                    sprintf(Resources::ERROR_KEY_NOT_EXIST, $key)
-                )
+                    sprintf(Resources::ERROR_KEY_NOT_EXIST, $key),
+                ),
             );
         }
 

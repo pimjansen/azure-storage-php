@@ -23,7 +23,7 @@ class LeaseResult
         $result = new LeaseResult();
 
         $result->setLeaseId(
-            Utilities::tryGetValue($headers, Resources::X_MS_LEASE_ID)
+            Utilities::tryGetValue($headers, Resources::X_MS_LEASE_ID),
         );
 
         return $result;

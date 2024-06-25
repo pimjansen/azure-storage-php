@@ -83,11 +83,11 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
             '%s://%s%s',
             Resources::HTTP_SCHEME,
             'myaccount.',
-            Resources::BLOB_BASE_DNS_NAME
+            Resources::BLOB_BASE_DNS_NAME,
         );
 
         $blobRestProxy = BlobRestProxy::createContainerAnonymousAccess(
-            $pEndpoint
+            $pEndpoint,
         );
 
         self::assertInstanceOf(IBlob::class, $blobRestProxy);
@@ -168,15 +168,15 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
 
         self::assertEquals(
             PublicAccessType::CONTAINER_AND_BLOBS,
-            $containers[0]->getProperties()->getPublicAccess()
+            $containers[0]->getProperties()->getPublicAccess(),
         );
         self::assertEquals(
             PublicAccessType::NONE,
-            $containers[1]->getProperties()->getPublicAccess()
+            $containers[1]->getProperties()->getPublicAccess(),
         );
         self::assertEquals(
             PublicAccessType::BLOBS_ONLY,
-            $containers[2]->getProperties()->getPublicAccess()
+            $containers[2]->getProperties()->getPublicAccess(),
         );
     }
 
@@ -1005,7 +1005,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         self::assertIsBool($result->getProperties()->getServerEncrypted());
         self::assertEquals(
             $contentStream,
-            stream_get_contents($result->getContentStream())
+            stream_get_contents($result->getContentStream()),
         );
     }
 
@@ -1056,7 +1056,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         self::assertIsBool($result->getProperties()->getServerEncrypted());
         self::assertEquals(
             $contentStream,
-            stream_get_contents($result->getContentStream())
+            stream_get_contents($result->getContentStream()),
         );
     }
 
@@ -1085,7 +1085,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         self::assertIsBool($result->getProperties()->getServerEncrypted());
         self::assertEquals(
             $contentStream,
-            stream_get_contents($result->getContentStream())
+            stream_get_contents($result->getContentStream()),
         );
     }
 
@@ -1111,7 +1111,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         self::assertEquals($metadata, $result->getMetadata());
         self::assertEquals(
             $contentStream,
-            stream_get_contents($result->getContentStream())
+            stream_get_contents($result->getContentStream()),
         );
     }
 
@@ -1591,7 +1591,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->restProxy->createBlockBlob(
             $sourceContainerName,
             $sourceBlobName,
-            $blobValue
+            $blobValue,
         );
 
         // Test
@@ -1599,7 +1599,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
             $destinationContainerName,
             $destinationBlobName,
             $sourceContainerName,
-            $sourceBlobName
+            $sourceBlobName,
         );
         $copyId = $result->getCopyId();
         $copyStatus = $result->getCopyStatus();
@@ -1664,7 +1664,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->restProxy->createBlockBlob(
             $containerName,
             $sourceBlobName,
-            $blobValue
+            $blobValue,
         );
 
         // Test
@@ -1672,14 +1672,14 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
             $containerName,
             $destinationBlobName,
             $containerName,
-            $sourceBlobName
+            $sourceBlobName,
         );
 
         // Assert
         $sourceBlob = $this->restProxy->getBlob($containerName, $sourceBlobName);
         $destinationBlob = $this->restProxy->getBlob(
             $containerName,
-            $destinationBlobName
+            $destinationBlobName,
         );
 
         $sourceBlobContent =
@@ -1701,12 +1701,12 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->restProxy->createBlockBlob(
             $containerName,
             $sourceBlobName,
-            $blobValue
+            $blobValue,
         );
         $this->restProxy->createBlockBlob(
             $containerName,
             $destinationBlobName,
-            $oldBlobValue
+            $oldBlobValue,
         );
 
         // Test
@@ -1714,7 +1714,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
             $containerName,
             $destinationBlobName,
             $containerName,
-            $sourceBlobName
+            $sourceBlobName,
         );
 
         // Assert
@@ -1747,7 +1747,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
             $destinationBlobName,
             $containerName,
             $sourceBlobName,
-            $options
+            $options,
         );
 
         // Assert
@@ -1782,12 +1782,12 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
             $sourceBlobName,
             $sourceContentLength,
             $sourceBlobContent,
-            $options
+            $options,
         );
 
         $sourceSnapshotResult = $this->restProxy->createBlobSnapshot(
             $sourceContainerName,
-            $sourceBlobName
+            $sourceBlobName,
         );
 
         // Test
@@ -1800,7 +1800,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
             $destinationBlobName,
             $sourceContainerName,
             $sourceBlobName,
-            $options
+            $options,
         );
 
         // Wait several seconds until copying ends
@@ -1813,17 +1813,17 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $options->setIncludeSnapshots(true);
         $listDestContainerResult = $this->restProxy->listBlobs(
             $destinationContainerName,
-            $options
+            $options,
         );
 
         // List destination blobs, including one incremental blob and one incremental blob snapshot
         self::assertCount(
             2,
-            $listDestContainerResult->getBlobs()
+            $listDestContainerResult->getBlobs(),
         );
         foreach ($listDestContainerResult->getBlobs() as $blob) {
             self::assertTrue(
-                $blob->getProperties()->getIncrementalCopy()
+                $blob->getProperties()->getIncrementalCopy(),
             );
 
             if ($blob->getSnapshot()) {
@@ -1836,7 +1836,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Validate properties of incremental blob and snapshots
         $destBlobProperties = $this->restProxy->getBlobProperties(
             $destinationContainerName,
-            $destinationBlobName
+            $destinationBlobName,
         )->getProperties();
 
         $options = new GetBlobPropertiesOptions();
@@ -1844,19 +1844,19 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $destBlobSnapshotProperties = $this->restProxy->getBlobProperties(
             $destinationContainerName,
             $destinationBlobName,
-            $options
+            $options,
         )->getProperties();
 
         self::assertTrue($destBlobProperties->getIncrementalCopy());
         self::assertEquals(
             $destBlobSnapshot->getSnapshot(),
-            $destBlobProperties->getCopyDestinationSnapshot()
+            $destBlobProperties->getCopyDestinationSnapshot(),
         );
 
         self::assertTrue($destBlobSnapshotProperties->getIncrementalCopy());
         self::assertEquals(
             $destBlobSnapshot->getSnapshot(),
-            $destBlobSnapshotProperties->getCopyDestinationSnapshot()
+            $destBlobSnapshotProperties->getCopyDestinationSnapshot(),
         );
 
         // Validate incremental blob snapshot content
@@ -1865,7 +1865,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $destinationBlobSnapshot = $this->restProxy->getBlob(
             $destinationContainerName,
             $destinationBlobName,
-            $options
+            $options,
         );
 
         $sourceBlobContent = stream_get_contents($sourceBlob->getContentStream());
@@ -2002,7 +2002,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
             $name,
             $blob,
             $contentStream,
-            $options
+            $options,
         );
 
         //get current working directory for the path to download
@@ -2051,7 +2051,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         // Assert
         self::assertEquals(
             BlobType::PAGE_BLOB,
-            $result->getProperties()->getBlobType()
+            $result->getProperties()->getBlobType(),
         );
         self::assertIsBool($result->getProperties()->getServerEncrypted());
         self::assertEquals($content, $contents);
@@ -2075,7 +2075,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
                 $name,
                 $blob,
                 $range,
-                $body
+                $body,
             );
         } catch (\RuntimeException $e) {
             $errorMsg = $e->getMessage();
@@ -2101,7 +2101,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
             $name,
             $blob,
             $contentStr,
-            $options
+            $options,
         );
         // Test
         //get the path for the file to be downloaded into.

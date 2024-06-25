@@ -66,11 +66,11 @@ class AnonymousAccessFunctionalTest extends \PHPUnit\Framework\TestCase
             '%s://%s.%s',
             Resources::HTTPS_SCHEME,
             self::$accountName,
-            Resources::BLOB_BASE_DNS_NAME
+            Resources::BLOB_BASE_DNS_NAME,
         );
 
         $proxy = BlobRestProxy::createContainerAnonymousAccess(
-            $pEndpoint
+            $pEndpoint,
         );
 
         $result = $proxy->listBlobs($this->containerName);
@@ -103,11 +103,11 @@ class AnonymousAccessFunctionalTest extends \PHPUnit\Framework\TestCase
             '%s://%s.%s',
             Resources::HTTPS_SCHEME,
             self::$accountName,
-            Resources::BLOB_BASE_DNS_NAME
+            Resources::BLOB_BASE_DNS_NAME,
         );
 
         $proxy = BlobRestProxy::createContainerAnonymousAccess(
-            $pEndpoint
+            $pEndpoint,
         );
 
         $result = self::$blobRestProxy->listBlobs($this->containerName);

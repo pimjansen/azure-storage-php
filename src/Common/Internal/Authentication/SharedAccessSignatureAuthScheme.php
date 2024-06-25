@@ -26,8 +26,8 @@ class SharedAccessSignatureAuthScheme implements IAuthScheme
             throw new \InvalidArgumentException(
                 sprintf(
                     Resources::INVALID_SAS_TOKEN,
-                    $sasToken
-                )
+                    $sasToken,
+                ),
             );
         }
     }

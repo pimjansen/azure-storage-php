@@ -34,18 +34,18 @@ class ListContainersResult
         $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsedResponse,
             Resources::XTAG_ATTRIBUTES,
-            Resources::XTAG_SERVICE_ENDPOINT
+            Resources::XTAG_SERVICE_ENDPOINT,
         );
         $result->setAccountName(Utilities::tryParseAccountNameFromUrl(
-            $serviceEndpoint
+            $serviceEndpoint,
         ));
         $result->setPrefix(Utilities::tryGetValue(
             $parsedResponse,
-            Resources::QP_PREFIX
+            Resources::QP_PREFIX,
         ));
         $result->setMarker(Utilities::tryGetValue(
             $parsedResponse,
-            Resources::QP_MARKER
+            Resources::QP_MARKER,
         ));
 
         $nextMarker =
@@ -55,14 +55,14 @@ class ListContainersResult
             $result->setContinuationToken(
                 new MarkerContinuationToken(
                     $nextMarker,
-                    $location
-                )
+                    $location,
+                ),
             );
         }
 
         $result->setMaxResults(Utilities::tryGetValue(
             $parsedResponse,
-            Resources::QP_MAX_RESULTS
+            Resources::QP_MAX_RESULTS,
         ));
         $containers = [];
         $rawContainer = [];
@@ -77,7 +77,7 @@ class ListContainersResult
             $container->setName($value['Name']);
             $container->setUrl($serviceEndpoint . $value['Name']);
             $container->setMetadata(
-                Utilities::tryGetValue($value, Resources::QP_METADATA, [])
+                Utilities::tryGetValue($value, Resources::QP_METADATA, []),
             );
             $properties = new ContainerProperties();
             $date = $value['Properties']['Last-Modified'];

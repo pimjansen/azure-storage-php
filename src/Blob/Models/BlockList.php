@@ -40,7 +40,7 @@ class BlockList
         Validate::canCastAsString($blockId, 'blockId');
         Validate::isTrue(
             BlobBlockType::isValid($type),
-            sprintf(Resources::INVALID_BTE_MSG, get_class(new BlobBlockType()))
+            sprintf(Resources::INVALID_BTE_MSG, get_class(new BlobBlockType())),
         );
         $block = new Block();
         $block->setBlockId($blockId);

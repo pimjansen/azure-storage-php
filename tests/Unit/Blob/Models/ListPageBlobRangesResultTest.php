@@ -46,7 +46,7 @@ class ListPageBlobRangesResultTest extends \PHPUnit\Framework\TestCase
         foreach ($rawPageRanges as $value) {
             $pageRanges[] = new Range(
                 (int) ($value['Start']),
-                (int) ($value['End'])
+                (int) ($value['End']),
             );
         }
         // Prepare expected last modified date

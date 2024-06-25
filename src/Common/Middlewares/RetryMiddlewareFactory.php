@@ -47,7 +47,7 @@ class RetryMiddlewareFactory
         $numberOfRetries = Resources::DEFAULT_NUMBER_OF_RETRIES,
         $interval = Resources::DEFAULT_RETRY_INTERVAL,
         $accumulationMethod = self::LINEAR_INTERVAL_ACCUMULATION,
-        $retryConnect = false
+        $retryConnect = false,
     ) {
         //Validate the input parameters
         //type
@@ -56,24 +56,24 @@ class RetryMiddlewareFactory
                 || $type == self::APPEND_BLOB_RETRY_TYPE,
             sprintf(
                 Resources::INVALID_PARAM_GENERAL,
-                'type'
-            )
+                'type',
+            ),
         );
         //numberOfRetries
         Validate::isTrue(
             $numberOfRetries > 0,
             sprintf(
                 Resources::INVALID_NEGATIVE_PARAM,
-                'numberOfRetries'
-            )
+                'numberOfRetries',
+            ),
         );
         //interval
         Validate::isTrue(
             $interval > 0,
             sprintf(
                 Resources::INVALID_NEGATIVE_PARAM,
-                'interval'
-            )
+                'interval',
+            ),
         );
         //accumulationMethod
         Validate::isTrue(
@@ -81,8 +81,8 @@ class RetryMiddlewareFactory
                 || $accumulationMethod == self::EXPONENTIAL_INTERVAL_ACCUMULATION,
             sprintf(
                 Resources::INVALID_PARAM_GENERAL,
-                'accumulationMethod'
-            )
+                'accumulationMethod',
+            ),
         );
         //retryConnect
         Validate::isBoolean($retryConnect);
@@ -121,7 +121,7 @@ class RetryMiddlewareFactory
             $request,
             $response = null,
             $exception = null,
-            $isSecondary = false
+            $isSecondary = false,
         ) use (
             $type,
             $maxRetries,
@@ -148,12 +148,12 @@ class RetryMiddlewareFactory
             if ($type == self::GENERAL_RETRY_TYPE) {
                 return static::generalRetryDecider(
                     $response->getStatusCode(),
-                    $isSecondary
+                    $isSecondary,
                 );
             }
             return static::appendBlobRetryDecider(
                 $response->getStatusCode(),
-                $isSecondary
+                $isSecondary,
             );
 
             return true;

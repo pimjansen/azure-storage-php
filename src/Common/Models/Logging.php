@@ -29,7 +29,7 @@ class Logging
         $result->setRead(Utilities::toBoolean($parsedResponse['Read']));
         $result->setWrite(Utilities::toBoolean($parsedResponse['Write']));
         $result->setRetentionPolicy(
-            RetentionPolicy::create($parsedResponse['RetentionPolicy'])
+            RetentionPolicy::create($parsedResponse['RetentionPolicy']),
         );
 
         return $result;

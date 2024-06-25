@@ -53,7 +53,7 @@ class TokenAuthSchemeTest extends ReflectionTestBase
         self::assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
         self::assertEquals(
             'Bearer', // Trims the trailing space
-            $actual->getHeaders()[strtolower(Resources::AUTHENTICATION)][0]
+            $actual->getHeaders()[strtolower(Resources::AUTHENTICATION)][0],
         );
 
         $bearerToken = 'changed';
@@ -62,7 +62,7 @@ class TokenAuthSchemeTest extends ReflectionTestBase
         self::assertArrayHasKey(strtolower(Resources::AUTHENTICATION), $actual->getHeaders());
         self::assertEquals(
             'Bearer changed',
-            $actual->getHeaders()[strtolower(Resources::AUTHENTICATION)][0]
+            $actual->getHeaders()[strtolower(Resources::AUTHENTICATION)][0],
         );
     }
 }

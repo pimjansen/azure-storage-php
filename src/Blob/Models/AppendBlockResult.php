@@ -31,35 +31,35 @@ class AppendBlockResult
             (int) (
                 Utilities::tryGetValueInsensitive(
                     Resources::X_MS_BLOB_APPEND_OFFSET,
-                    $headers
+                    $headers,
                 )
-            )
+            ),
         );
 
         $result->setCommittedBlockCount(
             (int) (
                 Utilities::tryGetValueInsensitive(
                     Resources::X_MS_BLOB_COMMITTED_BLOCK_COUNT,
-                    $headers
+                    $headers,
                 )
-            )
+            ),
         );
 
         $result->setContentMD5(
-            Utilities::tryGetValueInsensitive(Resources::CONTENT_MD5, $headers)
+            Utilities::tryGetValueInsensitive(Resources::CONTENT_MD5, $headers),
         );
 
         $result->setEtag(
-            Utilities::tryGetValueInsensitive(Resources::ETAG, $headers)
+            Utilities::tryGetValueInsensitive(Resources::ETAG, $headers),
         );
 
         if (Utilities::arrayKeyExistsInsensitive(
             Resources::LAST_MODIFIED,
-            $headers
+            $headers,
         )) {
             $lastModified = Utilities::tryGetValueInsensitive(
                 Resources::LAST_MODIFIED,
-                $headers
+                $headers,
             );
             $lastModified = Utilities::rfc1123ToDateTime($lastModified);
 
@@ -70,10 +70,10 @@ class AppendBlockResult
             Utilities::toBoolean(
                 Utilities::tryGetValueInsensitive(
                     Resources::X_MS_REQUEST_SERVER_ENCRYPTED,
-                    $headers
+                    $headers,
                 ),
-                true
-            )
+                true,
+            ),
         );
 
         return $result;

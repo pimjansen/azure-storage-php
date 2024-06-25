@@ -10,7 +10,7 @@ class MarkerContinuationToken extends ContinuationToken
 
     public function __construct(
         $nextMarker = '',
-        $location = ''
+        $location = '',
     ) {
         parent::__construct($location);
         $this->setNextMarker($nextMarker);

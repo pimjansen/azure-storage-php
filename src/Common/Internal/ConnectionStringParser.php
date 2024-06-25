@@ -106,7 +106,7 @@ class ConnectionStringParser
             throw $this->_createException(
                 $this->_pos,
                 Resources::MISSING_CONNECTION_STRING_CHAR,
-                '='
+                '=',
             );
         }
 
@@ -136,14 +136,14 @@ class ConnectionStringParser
         $errorString = sprintf(
             Resources::ERROR_PARSING_STRING,
             $errorString,
-            $position
+            $position,
         );
 
         // Create final error message.
         $errorString = sprintf(
             Resources::INVALID_CONNECTION_STRING,
             $this->_argumentName,
-            $errorString
+            $errorString,
         );
 
         return new \RuntimeException($errorString);
@@ -193,7 +193,7 @@ class ConnectionStringParser
                 }
 
                 $value = rtrim(
-                    substr($this->_value, $firstPos, $this->_pos - $firstPos)
+                    substr($this->_value, $firstPos, $this->_pos - $firstPos),
                 );
             }
         }
@@ -219,7 +219,7 @@ class ConnectionStringParser
             // Key name was expected.
             throw $this->_createException(
                 $firstPos,
-                Resources::ERROR_CONNECTION_STRING_MISSING_KEY
+                Resources::ERROR_CONNECTION_STRING_MISSING_KEY,
             );
         } else {
             while ($this->_pos < strlen($this->_value)) {
@@ -239,7 +239,7 @@ class ConnectionStringParser
             // Empty key name.
             throw $this->_createException(
                 $firstPos,
-                Resources::ERROR_CONNECTION_STRING_EMPTY_KEY
+                Resources::ERROR_CONNECTION_STRING_EMPTY_KEY,
             );
         }
 
@@ -269,7 +269,7 @@ class ConnectionStringParser
             throw $this->_createException(
                 $this->_pos,
                 Resources::ERROR_CONNECTION_STRING_MISSING_CHARACTER,
-                $quote
+                $quote,
             );
         }
 
@@ -290,7 +290,7 @@ class ConnectionStringParser
             throw $this->_createException(
                 $this->_pos,
                 Resources::MISSING_CONNECTION_STRING_CHAR,
-                $operatorChar
+                $operatorChar,
             );
         }
 

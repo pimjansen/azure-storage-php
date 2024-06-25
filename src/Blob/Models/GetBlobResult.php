@@ -29,7 +29,7 @@ class GetBlobResult
     public static function create(
         array $headers,
         StreamInterface $body,
-        array $metadata
+        array $metadata,
     ) {
         $result = new GetBlobResult();
         $result->setContentStream($body->detach());

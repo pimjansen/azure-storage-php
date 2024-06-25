@@ -17,7 +17,7 @@ class InvalidArgumentTypeException extends \InvalidArgumentException
     public function __construct($validType, $name = null)
     {
         parent::__construct(
-            sprintf(Resources::INVALID_PARAM_MSG, $name, $validType)
+            sprintf(Resources::INVALID_PARAM_MSG, $name, $validType),
         );
     }
 }

@@ -43,7 +43,7 @@ class ListBlobBlocksResultTest extends \PHPUnit\Framework\TestCase
         // Test
         $actual = ListBlobBlocksResult::create(
             $sampleHeaders,
-            $sampleBody
+            $sampleBody,
         );
 
         // Assert

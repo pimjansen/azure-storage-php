@@ -1,5 +1,5 @@
 services:
-  php:
+  phpfpm:
     build:
       context: .
       args:

@@ -65,7 +65,7 @@ class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         $contentDisposition = '',
         $contentEncoding = '',
         $contentLanguage = '',
-        $contentType = ''
+        $contentType = '',
     ) {
         // check that the resource name is valid.
         Validate::canCastAsString($signedResource, 'signedResource');
@@ -76,8 +76,8 @@ class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
             \sprintf(
                 Resources::INVALID_VALUE_MSG,
                 '$signedResource',
-                'Can only be \'b\' or \'c\'.'
-            )
+                'Can only be \'b\' or \'c\'.',
+            ),
         );
 
         // check that the resource name is valid.
@@ -87,7 +87,7 @@ class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         // validate and sanitize signed permissions
         $signedPermissions = $this->validateAndSanitizeStringWithArray(
             strtolower($signedPermissions),
-            Resources::ACCESS_PERMISSIONS[$signedResource]
+            Resources::ACCESS_PERMISSIONS[$signedResource],
         );
 
         // check that expiry is valid
@@ -117,7 +117,7 @@ class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         Validate::canCastAsString($signedIdentifier, 'signedIdentifier');
         Validate::isTrue(
             strlen($signedIdentifier) <= 64,
-            sprintf(Resources::INVALID_STRING_LENGTH, 'signedIdentifier', 'maximum 64')
+            sprintf(Resources::INVALID_STRING_LENGTH, 'signedIdentifier', 'maximum 64'),
         );
 
         Validate::canCastAsString($cacheControl, 'cacheControl');
@@ -134,7 +134,7 @@ class BlobSharedAccessSignatureHelper extends SharedAccessSignatureHelper
         $parameters[] = static::generateCanonicalResource(
             $this->accountName,
             Resources::RESOURCE_TYPE_BLOB,
-            $resourceName
+            $resourceName,
         );
         $parameters[] = $signedIdentifier;
         $parameters[] = $signedIP;

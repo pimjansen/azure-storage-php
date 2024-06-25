@@ -193,7 +193,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertEquals(
             self::$_creatable_container_1,
             $container0->getName(),
-            '$results->getContainers()[0]->getName'
+            '$results->getContainers()[0]->getName',
         );
     }
 
@@ -207,13 +207,13 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         $this->restProxy->createContainer(self::$_creatable_container_2, $opts);
 
         $prop = $this->restProxy->getContainerMetadata(
-            self::$_creatable_container_2
+            self::$_creatable_container_2,
         );
         $prop2 = $this->restProxy->getContainerProperties(
-            self::$_creatable_container_2
+            self::$_creatable_container_2,
         );
         $acl = $this->restProxy->getContainerACL(
-            self::$_creatable_container_2
+            self::$_creatable_container_2,
         )->getContainerACL();
 
         $opts = new ListContainersOptions();
@@ -231,66 +231,66 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertCount(
             2,
             $prop->getMetadata(),
-            'count($prop->getMetadata())'
+            'count($prop->getMetadata())',
         );
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive(
                 'test',
-                $prop->getMetadata()
+                $prop->getMetadata(),
             ),
-            'Utilities::arrayKeyExistsInsensitive(\'test\', $prop->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'test\', $prop->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bar', $prop->getMetadata(), true) === false),
-            '!(array_search(\'bar\', $prop->getMetadata()) === FALSE)'
+            '!(array_search(\'bar\', $prop->getMetadata()) === FALSE)',
         );
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive('blah', $prop->getMetadata()),
-            'Utilities::arrayKeyExistsInsensitive(\'blah\', $prop->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'blah\', $prop->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bleah', $prop->getMetadata(), true) === false),
-            '!(array_search(\'bleah\', $prop->getMetadata()) === FALSE)'
+            '!(array_search(\'bleah\', $prop->getMetadata()) === FALSE)',
         );
 
         self::assertNotNull($prop2, '$prop2');
         self::assertNotNull($prop2->getETag(), '$prop2->getETag()');
         self::assertNotNull(
             $prop2->getLastModified(),
-            '$prop2->getLastModified()'
+            '$prop2->getLastModified()',
         );
         self::assertNotNull($prop2->getMetadata(), '$prop2->getMetadata()');
         self::assertCount(
             2,
             $prop2->getMetadata(),
-            'count($prop2->getMetadata())'
+            'count($prop2->getMetadata())',
         );
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive(
                 'test',
-                $prop2->getMetadata()
+                $prop2->getMetadata(),
             ),
             'Utilities::arrayKeyExistsInsensitive(\'test\',
-            $prop2->getMetadata())'
+            $prop2->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bar', $prop2->getMetadata(), true) === false),
-            '!(array_search(\'bar\', $prop2->getMetadata()) === FALSE)'
+            '!(array_search(\'bar\', $prop2->getMetadata()) === FALSE)',
         );
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive('blah', $prop2->getMetadata()),
-            'Utilities::arrayKeyExistsInsensitive(\'blah\', $prop2->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'blah\', $prop2->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bleah', $prop2->getMetadata(), true) === false),
-            '!(array_search(\'bleah\', $prop2->getMetadata()) === FALSE)'
+            '!(array_search(\'bleah\', $prop2->getMetadata()) === FALSE)',
         );
 
         self::assertNotNull($results2, '$results2');
         self::assertCount(
             1,
             $results2->getContainers(),
-            'count($results2->getContainers())'
+            'count($results2->getContainers())',
         );
         $container0 = $results2->getContainers();
         $container0 = $container0[0];
@@ -298,24 +298,24 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive(
                 'test',
-                $container0->getMetadata()
+                $container0->getMetadata(),
             ),
-            'Utilities::arrayKeyExistsInsensitive(\'test\', $container0->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'test\', $container0->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bar', $container0->getMetadata(), true) === false),
-            '!(array_search(\'bar\', $container0->getMetadata()) === FALSE)'
+            '!(array_search(\'bar\', $container0->getMetadata()) === FALSE)',
         );
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive(
                 'blah',
-                $container0->getMetadata()
+                $container0->getMetadata(),
             ),
-            'Utilities::arrayKeyExistsInsensitive(\'blah\', $container0->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'blah\', $container0->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bleah', $container0->getMetadata(), true) === false),
-            '!(array_search(\'bleah\', $container0->getMetadata()) === FALSE)'
+            '!(array_search(\'bleah\', $container0->getMetadata()) === FALSE)',
         );
 
         self::assertNotNull($acl, '$acl');
@@ -341,21 +341,21 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive(
                 'test',
-                $prop->getMetadata()
+                $prop->getMetadata(),
             ),
-            'Utilities::arrayKeyExistsInsensitive(\'test\', $prop->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'test\', $prop->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bar', $prop->getMetadata(), true) === false),
-            '!(array_search(\'bar\', $prop->getMetadata()) === FALSE)'
+            '!(array_search(\'bar\', $prop->getMetadata()) === FALSE)',
         );
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive('blah', $prop->getMetadata()),
-            'Utilities::arrayKeyExistsInsensitive(\'blah\', $prop->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'blah\', $prop->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bleah', $prop->getMetadata(), true) === false),
-            '!(array_search(\'bleah\', $prop->getMetadata()) === FALSE)'
+            '!(array_search(\'bleah\', $prop->getMetadata()) === FALSE)',
         );
     }
 
@@ -389,7 +389,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertEquals(
             PublicAccessType::BLOBS_ONLY,
             $acl2->getPublicAccess(),
-            '$acl2->getPublicAccess()'
+            '$acl2->getPublicAccess()',
         );
         self::assertCount(1, $acl2->getSignedIdentifiers(), 'count($acl2->getSignedIdentifiers())');
         $signedids = $acl2->getSignedIdentifiers();
@@ -399,21 +399,21 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertEquals(
             Utilities::convertToDateTime($expiryStartDate),
             Utilities::convertToDateTime(
-                $signedids[0]->getAccessPolicy()->getStart()
+                $signedids[0]->getAccessPolicy()->getStart(),
             ),
-            '$signedids[0]->getAccessPolicy()->getStart()'
+            '$signedids[0]->getAccessPolicy()->getStart()',
         );
         self::assertEquals(
             Utilities::convertToDateTime($expiryEndDate),
             Utilities::convertToDateTime(
-                $signedids[0]->getAccessPolicy()->getExpiry()
+                $signedids[0]->getAccessPolicy()->getExpiry(),
             ),
-            '$signedids[0]->getAccessPolicy()->getExpiry()'
+            '$signedids[0]->getAccessPolicy()->getExpiry()',
         );
         self::assertEquals(
             'rwd',
             $signedids[0]->getAccessPolicy()->getPermission(),
-            '$signedids[0]->getAccessPolicy()->getPermission()'
+            '$signedids[0]->getAccessPolicy()->getPermission()',
         );
     }
 
@@ -426,7 +426,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertNotNull($results, '$results');
         self::assertTrue(
             count(self::$_testContainers) <= count($results->getContainers()),
-            'count(self::$_testContainers) <= count($results->getContainers())'
+            'count(self::$_testContainers) <= count($results->getContainers())',
         );
         $container0 = $results->getContainers();
         $container0 = $container0[0];
@@ -436,7 +436,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertNotNull($container0->getProperties()->getETag(), '$container0->getProperties()->getETag()');
         self::assertNotNull(
             $container0->getProperties()->getLastModified(),
-            '$container0->getProperties()->getLastModified()'
+            '$container0->getProperties()->getLastModified()',
         );
         self::assertNotNull($container0->getUrl(), '$container0->getUrl()');
     }
@@ -460,7 +460,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertNotNull($results2, '$results2');
         self::assertTrue(
             count(self::$_testContainers) - 3 <= count($results2->getContainers()),
-            'count(self::$_testContainers) - 3 <= count($results2->getContainers())'
+            'count(self::$_testContainers) - 3 <= count($results2->getContainers())',
         );
         self::assertEquals('', $results2->getNextMarker(), '$results2->getNextMarker()');
         self::assertEquals(0, $results2->getMaxResults(), '$results2->getMaxResults()');
@@ -499,7 +499,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertEquals(
             count($results->getContainers()) + count($results2->getContainers()),
             count($results3->getContainers()),
-            'count($results3->getContainers())'
+            'count($results3->getContainers())',
         );
     }
 
@@ -1068,32 +1068,32 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertEquals(
             $snapshot->getETag(),
             $result->getProperties()->getETag(),
-            '$result->getProperties()->getETag()'
+            '$result->getProperties()->getETag()',
         );
         self::assertEquals(
             $snapshot->getLastModified(),
             $result->getProperties()->getLastModified(),
-            '$result->getProperties()->getLastModified()'
+            '$result->getProperties()->getLastModified()',
         );
         // The capitalizaion gets changed.
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive('test', $result->getMetadata()),
-            'Utilities::arrayKeyExistsInsensitive(\'test\', $result->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'test\', $result->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bar', $result->getMetadata(), true) === false),
-            '!(array_search(\'bar\', $result->getMetadata()) === FALSE)'
+            '!(array_search(\'bar\', $result->getMetadata()) === FALSE)',
         );
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive(
                 'blah',
-                $result->getMetadata()
+                $result->getMetadata(),
             ),
-            'Utilities::arrayKeyExistsInsensitive(\'blah\', $result->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'blah\', $result->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bleah', $result->getMetadata(), true) === false),
-            '!(array_search(\'bleah\', $result->getMetadata()) === FALSE)'
+            '!(array_search(\'bleah\', $result->getMetadata()) === FALSE)',
         );
     }
 
@@ -1173,7 +1173,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertEquals(
             4096,
             strlen(stream_get_contents($result->getContentStream())),
-            'strlen($result->getContentStream())'
+            'strlen($result->getContentStream())',
         );
     }
 
@@ -1321,21 +1321,21 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive(
                 'test',
-                $props->getMetadata()
+                $props->getMetadata(),
             ),
-            'Utilities::arrayKeyExistsInsensitive(\'test\', $props->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'test\', $props->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bar', $props->getMetadata(), true) === false),
-            '!(array_search(\'bar\', $props->getMetadata()) === FALSE)'
+            '!(array_search(\'bar\', $props->getMetadata()) === FALSE)',
         );
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive('blah', $props->getMetadata()),
-            'Utilities::arrayKeyExistsInsensitive(\'blah\', $props->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'blah\', $props->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bleah', $props->getMetadata(), true) === false),
-            '!(array_search(\'bleah\', $props->getMetadata()) === FALSE)'
+            '!(array_search(\'bleah\', $props->getMetadata()) === FALSE)',
         );
         self::assertNotNull($props->getLastModified(), '$props->getLastModified()');
     }
@@ -1409,19 +1409,19 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
         self::assertCount(2, $props->getMetadata(), 'count($props->getMetadata())');
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive('test', $props->getMetadata()),
-            'Utilities::arrayKeyExistsInsensitive(\'test\', $props->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'test\', $props->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bar', $props->getMetadata(), true) === false),
-            '!(array_search(\'bar\', $props->getMetadata()) === FALSE)'
+            '!(array_search(\'bar\', $props->getMetadata()) === FALSE)',
         );
         self::assertTrue(
             Utilities::arrayKeyExistsInsensitive('blah', $props->getMetadata()),
-            'Utilities::arrayKeyExistsInsensitive(\'blah\', $props->getMetadata())'
+            'Utilities::arrayKeyExistsInsensitive(\'blah\', $props->getMetadata())',
         );
         self::assertTrue(
             !(array_search('bleah', $props->getMetadata(), true) === false),
-            '!(array_search(\'bleah\', $props->getMetadata()) === FALSE)'
+            '!(array_search(\'bleah\', $props->getMetadata()) === FALSE)',
         );
     }
 
@@ -1446,7 +1446,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
             self::$_test_container_for_blobs_2,
             'test5',
             self::$_test_container_for_blobs,
-            'test6'
+            'test6',
         );
 
         $result = $this->restProxy->getBlob(self::$_test_container_for_blobs_2, 'test5');

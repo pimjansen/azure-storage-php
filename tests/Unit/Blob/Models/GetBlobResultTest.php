@@ -44,7 +44,7 @@ class GetBlobResultTest extends \PHPUnit\Framework\TestCase
         $actual = GetBlobResult::create(
             $expected,
             Psr7\Utils::streamFor($expectedBody),
-            $expectedMetadata
+            $expectedMetadata,
         );
 
         // Assert

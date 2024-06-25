@@ -37,7 +37,7 @@ class CORS
         array $allowedMethods,
         array $allowedHeaders,
         array $exposedHeaders,
-        $maxAgeInSeconds
+        $maxAgeInSeconds,
     ) {
         $this->setAllowedOrigins($allowedOrigins);
         $this->setAllowedMethods($allowedMethods);
@@ -60,45 +60,45 @@ class CORS
         Validate::hasKey(
             Resources::XTAG_ALLOWED_ORIGINS,
             'parsedResponse',
-            $parsedResponse
+            $parsedResponse,
         );
         Validate::hasKey(
             Resources::XTAG_ALLOWED_METHODS,
             'parsedResponse',
-            $parsedResponse
+            $parsedResponse,
         );
         Validate::hasKey(
             Resources::XTAG_ALLOWED_HEADERS,
             'parsedResponse',
-            $parsedResponse
+            $parsedResponse,
         );
         Validate::hasKey(
             Resources::XTAG_EXPOSED_HEADERS,
             'parsedResponse',
-            $parsedResponse
+            $parsedResponse,
         );
         Validate::hasKey(
             Resources::XTAG_MAX_AGE_IN_SECONDS,
             'parsedResponse',
-            $parsedResponse
+            $parsedResponse,
         );
 
         // Get the values from the parsed response.
         $allowedOrigins = array_filter(explode(
             ',',
-            $parsedResponse[Resources::XTAG_ALLOWED_ORIGINS]
+            $parsedResponse[Resources::XTAG_ALLOWED_ORIGINS],
         ));
         $allowedMethods = array_filter(explode(
             ',',
-            $parsedResponse[Resources::XTAG_ALLOWED_METHODS]
+            $parsedResponse[Resources::XTAG_ALLOWED_METHODS],
         ));
         $allowedHeaders = array_filter(explode(
             ',',
-            $parsedResponse[Resources::XTAG_ALLOWED_HEADERS]
+            $parsedResponse[Resources::XTAG_ALLOWED_HEADERS],
         ));
         $exposedHeaders = array_filter(explode(
             ',',
-            $parsedResponse[Resources::XTAG_EXPOSED_HEADERS]
+            $parsedResponse[Resources::XTAG_EXPOSED_HEADERS],
         ));
         $maxAgeInSeconds = (int) (
             $parsedResponse[Resources::XTAG_MAX_AGE_IN_SECONDS]
@@ -109,7 +109,7 @@ class CORS
             $allowedMethods,
             $allowedHeaders,
             $exposedHeaders,
-            $maxAgeInSeconds
+            $maxAgeInSeconds,
         );
     }
 

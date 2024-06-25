@@ -24,19 +24,19 @@ class GetServiceStatsResult
         $result = new GetServiceStatsResult();
         if (Utilities::arrayKeyExistsInsensitive(
             Resources::XTAG_GEO_REPLICATION,
-            $parsedResponse
+            $parsedResponse,
         )) {
             $geoReplication = $parsedResponse[Resources::XTAG_GEO_REPLICATION];
             if (Utilities::arrayKeyExistsInsensitive(
                 Resources::XTAG_STATUS,
-                $geoReplication
+                $geoReplication,
             )) {
                 $result->setStatus($geoReplication[Resources::XTAG_STATUS]);
             }
 
             if (Utilities::arrayKeyExistsInsensitive(
                 Resources::XTAG_LAST_SYNC_TIME,
-                $geoReplication
+                $geoReplication,
             )) {
                 $lastSyncTime = $geoReplication[Resources::XTAG_LAST_SYNC_TIME];
                 $result->setLastSyncTime(Utilities::convertToDateTime($lastSyncTime));

@@ -35,26 +35,26 @@ class CreateBlobPagesResult
         $result->setLastModified($date);
 
         $result->setContentMD5(
-            Utilities::tryGetValue($clean, Resources::CONTENT_MD5)
+            Utilities::tryGetValue($clean, Resources::CONTENT_MD5),
         );
 
         $result->setRequestServerEncrypted(
             Utilities::toBoolean(
                 Utilities::tryGetValueInsensitive(
                     Resources::X_MS_REQUEST_SERVER_ENCRYPTED,
-                    $headers
+                    $headers,
                 ),
-                true
-            )
+                true,
+            ),
         );
 
         $result->setSequenceNumber(
             (int) (
                 Utilities::tryGetValue(
                     $clean,
-                    Resources::X_MS_BLOB_SEQUENCE_NUMBER
+                    Resources::X_MS_BLOB_SEQUENCE_NUMBER,
                 )
-            )
+            ),
         );
 
         return $result;

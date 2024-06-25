@@ -27,25 +27,25 @@ class CopyBlobResult
         $result->setETag(
             Utilities::tryGetValueInsensitive(
                 Resources::ETAG,
-                $headers
-            )
+                $headers,
+            ),
         );
         $result->setCopyId(
             Utilities::tryGetValueInsensitive(
                 Resources::X_MS_COPY_ID,
-                $headers
-            )
+                $headers,
+            ),
         );
         $result->setCopyStatus(
             Utilities::tryGetValueInsensitive(
                 Resources::X_MS_COPY_STATUS,
-                $headers
-            )
+                $headers,
+            ),
         );
         if (Utilities::arrayKeyExistsInsensitive(Resources::LAST_MODIFIED, $headers)) {
             $lastModified = Utilities::tryGetValueInsensitive(
                 Resources::LAST_MODIFIED,
-                $headers
+                $headers,
             );
             $result->setLastModified(Utilities::rfc1123ToDateTime($lastModified));
         }

@@ -85,7 +85,7 @@ class CloudConfigurationManager
         if ($prepend) {
             self::$_sources = array_merge(
                 [$name => $provider],
-                self::$_sources
+                self::$_sources,
             );
         } else {
             self::$_sources[$name] = $provider;

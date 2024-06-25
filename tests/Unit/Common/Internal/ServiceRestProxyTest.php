@@ -47,7 +47,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
             $primaryUri,
             $secondaryUri,
             $accountName,
-            $options
+            $options,
         );
 
         // Assert
@@ -74,7 +74,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
             $primaryUri,
             $secondaryUri,
             $accountName,
-            $options
+            $options,
         );
 
         $ref = new \ReflectionProperty(ServiceRestProxy::class, 'client');
@@ -161,7 +161,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
         // Assert
         self::assertEquals(
             $expected,
-            $actual
+            $actual,
         );
     }
 

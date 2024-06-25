@@ -26,7 +26,7 @@ class MiddlewareBase implements IMiddleware
             $request = $reflection->onRequest($request);
             return $handler($request, $options)->then(
                 $reflection->onFulfilled($request, $options),
-                $reflection->onRejected($request, $options)
+                $reflection->onRejected($request, $options),
             );
         };
     }

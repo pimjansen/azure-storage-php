@@ -90,7 +90,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedMsg = sprintf(
             Resources::INVALID_CONFIG_VALUE,
             $invalidValue,
-            implode("\n", ['true'])
+            implode("\n", ['true']),
         );
         $this->expectException('\RuntimeException');
         $this->expectExceptionMessage($expectedMsg);
@@ -519,7 +519,7 @@ class StorageServiceSettingsTest extends \PHPUnit\Framework\TestCase
         $expectedMsg = sprintf(
             Resources::INVALID_CONNECTION_STRING_SETTING_KEY,
             $invalidKey,
-            implode("\n", $validKeys)
+            implode("\n", $validKeys),
         );
         $this->expectException('\RuntimeException');
         $this->expectExceptionMessage($expectedMsg);

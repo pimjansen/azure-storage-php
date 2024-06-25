@@ -155,65 +155,65 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertEquals(
             $serviceProperties->getLogging()->getVersion(),
             $l->getVersion(),
-            'getValue()->getLogging()->getVersion'
+            'getValue()->getLogging()->getVersion',
         );
         self::assertEquals(
             $serviceProperties->getLogging()->getDelete(),
             $l->getDelete(),
-            'getValue()->getLogging()->getDelete'
+            'getValue()->getLogging()->getDelete',
         );
         self::assertEquals(
             $serviceProperties->getLogging()->getRead(),
             $l->getRead(),
-            'getValue()->getLogging()->getRead'
+            'getValue()->getLogging()->getRead',
         );
         self::assertEquals(
             $serviceProperties->getLogging()->getWrite(),
             $l->getWrite(),
-            'getValue()->getLogging()->getWrite'
+            'getValue()->getLogging()->getWrite',
         );
 
         $r = $l->getRetentionPolicy();
         self::assertNotNull(
             $r,
-            'getValue()->getLogging()->getRetentionPolicy should be non-null'
+            'getValue()->getLogging()->getRetentionPolicy should be non-null',
         );
         self::assertEquals(
             $serviceProperties->getLogging()->getRetentionPolicy()->getDays(),
             $r->getDays(),
-            'getValue()->getLogging()->getRetentionPolicy()->getDays'
+            'getValue()->getLogging()->getRetentionPolicy()->getDays',
         );
 
         $m = $sp->getHourMetrics();
         self::assertNotNull(
             $m,
-            'getValue()->getHourMetrics() should be non-null'
+            'getValue()->getHourMetrics() should be non-null',
         );
         self::assertEquals(
             $serviceProperties->getHourMetrics()->getVersion(),
             $m->getVersion(),
-            'getValue()->getHourMetrics()->getVersion'
+            'getValue()->getHourMetrics()->getVersion',
         );
         self::assertEquals(
             $serviceProperties->getHourMetrics()->getEnabled(),
             $m->getEnabled(),
-            'getValue()->getHourMetrics()->getEnabled'
+            'getValue()->getHourMetrics()->getEnabled',
         );
         self::assertEquals(
             $serviceProperties->getHourMetrics()->getIncludeAPIs(),
             $m->getIncludeAPIs(),
-            'getValue()->getHourMetrics()->getIncludeAPIs'
+            'getValue()->getHourMetrics()->getIncludeAPIs',
         );
 
         $r = $m->getRetentionPolicy();
         self::assertNotNull(
             $r,
-            'getValue()->getHourMetrics()->getRetentionPolicy should be non-null'
+            'getValue()->getHourMetrics()->getRetentionPolicy should be non-null',
         );
         self::assertEquals(
             $serviceProperties->getHourMetrics()->getRetentionPolicy()->getDays(),
             $r->getDays(),
-            'getValue()->getHourMetrics()->getRetentionPolicy()->getDays'
+            'getValue()->getHourMetrics()->getRetentionPolicy()->getDays',
         );
     }
 
@@ -350,7 +350,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 0,
                 strlen($ret->getNextMarker()),
                 'When MaxResults is 0, expect getNextMarker (' .
-                    strlen($ret->getNextMarker()) . ')to be  '
+                    strlen($ret->getNextMarker()) . ')to be  ',
             );
 
             if (null !== $options->getPrefix()
@@ -360,7 +360,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     0,
                     $ret->getContainers(),
                     'when MaxResults=0 and Prefix=(\'' .
-                        $options->getPrefix() . '\'), then Blobs length'
+                        $options->getPrefix() . '\'), then Blobs length',
                 );
             } elseif (null !== $options->getPrefix()
                 && $options->getPrefix() ==
@@ -368,14 +368,14 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 self::assertEquals(
                     count(BlobServiceFunctionalTestData::$testContainerNames),
                     count(
-                        $ret->getContainers()
+                        $ret->getContainers(),
                     ),
                     'when MaxResults=0 and Prefix=(\'' .
                         $options->getPrefix() .
-                        '\'), then Blobs length'
+                        '\'), then Blobs length',
                 );
             }
-        // Do not know how many there should be
+            // Do not know how many there should be
 
         } elseif (strlen($ret->getNextMarker()) == 0) {
             self::assertTrue(
@@ -383,7 +383,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 'when NextMarker (\'' . $ret->getNextMarker() . '\')==\'\',
                 Blobs length (' . count($ret->getContainers()) .
                 ') should be <= MaxResults (' . $options->getMaxResults() .
-                ')'
+                ')',
             );
 
             if (BlobServiceFunctionalTestData::$nonExistBlobPrefix ==
@@ -392,7 +392,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     0,
                     $ret->getContainers(),
                     'when no next marker and Prefix=(\'' .
-                        $options->getPrefix() . '\'), then Blobs length'
+                        $options->getPrefix() . '\'), then Blobs length',
                 );
             } elseif (BlobServiceFunctionalTestData::$testUniqueId ==
                     $options->getPrefix()) {
@@ -405,10 +405,10 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     $expectedCount,
                     $ret->getContainers(),
                     'when no next marker and Prefix=(\'' .
-                    $options->getPrefix() . '\'), then Blobs length'
+                    $options->getPrefix() . '\'), then Blobs length',
                 );
             }
-        // Do not know how many there should be
+            // Do not know how many there should be
 
         } else {
             self::assertEquals(
@@ -417,7 +417,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 'when NextMarker (' . $ret->getNextMarker() .
                 ')!=\'\', Blobs length (' . count($ret->getContainers()) .
                 ') should be == MaxResults (' . $options->getMaxResults() .
-                ')'
+                ')',
             );
             if (null !== $options->getPrefix()
                 && $options->getPrefix() ==
@@ -425,7 +425,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 self::assertTrue(
                     false,
                     'when a next marker and Prefix=(\'' .
-                        $options->getPrefix() . '\'), impossible'
+                        $options->getPrefix() . '\'), impossible',
                 );
             }
         }
@@ -475,7 +475,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 count($qs->getContainers()),
                 count(BlobServiceFunctionalTestData::$testContainerNames) + 1,
                 'After adding one, with Prefix=(\'' . BlobServiceFunctionalTestData::$testUniqueId .
-                    '\'), then Containers length'
+                    '\'), then Containers length',
             );
 
             // Check the metadata on the container
@@ -547,7 +547,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             count(BlobServiceFunctionalTestData::$testContainerNames) + 1,
             'After adding one, with Prefix=(\'' .
                 BlobServiceFunctionalTestData::$testUniqueId .
-                '\'), then Containers length'
+                '\'), then Containers length',
         );
 
         $deleted = false;
@@ -581,7 +581,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 count(BlobServiceFunctionalTestData::$testContainerNames),
                 'After adding then deleting one, with Prefix=(\'' .
                     BlobServiceFunctionalTestData::$testUniqueId .
-                    '\'), then Containers length'
+                    '\'), then Containers length',
             );
 
             // Nothing else interesting to check for the $options.
@@ -594,7 +594,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 self::assertEquals(TestResources::STATUS_INTERNAL_SERVER_ERROR, $e->getCode(), 'getCode');
             } elseif (!$this->isEmulated()
                     && !BlobServiceFunctionalTestData::passTemporalAccessCondition(
-                        $options->getAccessConditions()
+                        $options->getAccessConditions(),
                     )) {
                 self::assertEquals(TestResources::STATUS_PRECONDITION_FAILED, $e->getCode(), 'getCode');
             } else {
@@ -676,12 +676,12 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $ret->getLastModified(),
-                $now
+                $now,
             ) < 10,
             'Last modified date (' .
             $ret->getLastModified()->format(\DateTime::RFC1123) .
                 ')' . ' should be within 10 seconds of $now (' .
-                $now->format(\DateTime::RFC1123) . ')'
+                $now->format(\DateTime::RFC1123) . ')',
         );
     }
 
@@ -720,7 +720,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
             self::assertFalse(
                 Utilities::startsWith($firstkey, '<'),
-                'Should get HTTP request error if the metadata is invalid'
+                'Should get HTTP request error if the metadata is invalid',
             );
 
             if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
@@ -730,7 +730,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             // setMetadata only honors If-Modified-Since
             if (!$this->isEmulated()
                 && !BlobServiceFunctionalTestData::passTemporalAccessCondition(
-                    $options->getAccessConditions()
+                    $options->getAccessConditions(),
                 ) && (null !== $options->getAccessConditions()
                 && empty($options->getAccessConditions())
                 && $options->getAccessConditions()[0]->getHeader() !=
@@ -868,7 +868,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertNull($ret->getContainerACL()->getPublicAccess(), '$ret->getContainerACL->getPublicAccess');
         self::assertNotNull(
             $ret->getContainerACL()->getSignedIdentifiers(),
-            '$ret->getContainerACL->getSignedIdentifiers'
+            '$ret->getContainerACL->getSignedIdentifiers',
         );
 
         // Make sure the last modified date is within 10 seconds
@@ -876,12 +876,12 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $ret->getLastModified(),
-                $now
+                $now,
             ) < 10000,
             'Last modified date (' .
                 $ret->getLastModified()->format(\DateTime::RFC1123) .
                 ') ' . 'should be within 10 seconds of $now (' .
-                $now->format(\DateTime::RFC1123) . ')'
+                $now->format(\DateTime::RFC1123) . ')',
         );
     }
 
@@ -954,23 +954,23 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $ret->getLastModified(),
-                $now
+                $now,
             ) < 10000,
             'Last modified date (' .
                 $ret->getLastModified()->format(\DateTime::RFC1123) .
                 ') ' . 'should be within 10 seconds of $now (' .
-                $now->format(\DateTime::RFC1123) . ')'
+                $now->format(\DateTime::RFC1123) . ')',
         );
 
         self::assertNotNull(
             $ret->getContainerACL()->getSignedIdentifiers(),
-            '$ret->getContainerACL->getSignedIdentifiers'
+            '$ret->getContainerACL->getSignedIdentifiers',
         );
 
         self::assertEquals(
             (null === $acl->getPublicAccess() ? '' : $acl->getPublicAccess()),
             $ret->getContainerACL()->getPublicAccess(),
-            '$ret->getContainerACL->getPublicAccess'
+            '$ret->getContainerACL->getPublicAccess',
         );
         $expIds = $acl->getSignedIdentifiers();
         $actIds = $ret->getContainerACL()->getSignedIdentifiers();
@@ -983,25 +983,25 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             self::assertEquals(
                 $expId->getAccessPolicy()->getPermission(),
                 $actId->getAccessPolicy()->getPermission(),
-                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getPermission'
+                'SignedIdentifiers[' . $i . ']->getAccessPolicy->getPermission',
             );
             self::assertTrue(
                 BlobServiceFunctionalTestData::diffInTotalSeconds(
                     $expId->getAccessPolicy()->getStart(),
-                    $actId->getAccessPolicy()->getStart()
+                    $actId->getAccessPolicy()->getStart(),
                 ) < 1,
                 'SignedIdentifiers[' . $i . ']->getAccessPolicy->getStart should match within 1 second, ' .
                     'exp=' . $expId->getAccessPolicy()->getStart()->format(\DateTime::RFC1123) . ', ' .
-                    'act=' . $actId->getAccessPolicy()->getStart()->format(\DateTime::RFC1123)
+                    'act=' . $actId->getAccessPolicy()->getStart()->format(\DateTime::RFC1123),
             );
             self::assertTrue(
                 BlobServiceFunctionalTestData::diffInTotalSeconds(
                     $expId->getAccessPolicy()->getExpiry(),
-                    $actId->getAccessPolicy()->getExpiry()
+                    $actId->getAccessPolicy()->getExpiry(),
                 ) < 1,
                 'SignedIdentifiers[' . $i . ']->getAccessPolicy->getExpiry should match within 1 second, ' .
                     'exp=' . $expId->getAccessPolicy()->getExpiry()->format(\DateTime::RFC1123) . ', ' .
-                    'act=' . $actId->getAccessPolicy()->getExpiry()->format(\DateTime::RFC1123)
+                    'act=' . $actId->getAccessPolicy()->getExpiry()->format(\DateTime::RFC1123),
             );
         }
 
@@ -1014,7 +1014,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             $canDownloadBlobList = $this->canDownloadFromUrl(
                 $blobListAddress,
                 '<?xml version="1.0" encoding="utf-8"?' .
-                    '><EnumerationResults'
+                    '><EnumerationResults',
             );
             $canDownloadBlob = $this->canDownloadFromUrl($blobAddress, $blobContent);
 
@@ -1120,7 +1120,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 0,
                 strlen($ret->getNextMarker()),
                 'When MaxResults is 0, expect getNextMarker (' .
-                    strlen($ret->getNextMarker()) . ')to be  '
+                    strlen($ret->getNextMarker()) . ')to be  ',
             );
 
             if (null !== $options->getPrefix()
@@ -1130,7 +1130,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     0,
                     $ret->getBlobs(),
                     'when MaxResults=0 and Prefix=(\'' .
-                        $options->getPrefix() . '\'), then Blobs length'
+                        $options->getPrefix() . '\'), then Blobs length',
                 );
             } elseif (null !== $options->getPrefix()
                 && $options->getPrefix() ==
@@ -1139,17 +1139,17 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     0,
                     $ret->getBlobs(),
                     'when MaxResults=0 and Prefix=(\'' .
-                        $options->getPrefix() . '\'), then Blobs length'
+                        $options->getPrefix() . '\'), then Blobs length',
                 );
             }
-        // Do not know how many there should be
+            // Do not know how many there should be
 
         } elseif (strlen($ret->getNextMarker()) == 0) {
             self::assertTrue(
                 count($ret->getBlobs()) <= $options->getMaxResults(),
                 'when NextMarker (\'' . $ret->getNextMarker() . '\')==\'\', Blobs length (' . count($ret->getBlobs()) .
                     ') should be <= MaxResults (' .
-                    $options->getMaxResults() . ')'
+                    $options->getMaxResults() . ')',
             );
 
             if (BlobServiceFunctionalTestData::$nonExistBlobPrefix == $options->getPrefix()) {
@@ -1157,7 +1157,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     0,
                     $ret->getBlobs(),
                     'when no next marker and Prefix=(\'' .
-                        $options->getPrefix() . '\'), then Blobs length'
+                        $options->getPrefix() . '\'), then Blobs length',
                 );
             } elseif (BlobServiceFunctionalTestData::$testUniqueId == $options->getPrefix()) {
                 // Need to futz with the mod because you are allowed to get MaxResults items returned.
@@ -1165,10 +1165,10 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     0,
                     count($ret->getBlobs()) % $options->getMaxResults(),
                     'when no next marker and Prefix=(\'' .
-                        $options->getPrefix() . '\'), then Blobs length'
+                        $options->getPrefix() . '\'), then Blobs length',
                 );
             }
-        // Do not know how many there should be
+            // Do not know how many there should be
 
         } else {
             self::assertEquals(
@@ -1177,7 +1177,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 'when NextMarker (' . $ret->getNextMarker() .
                     ')!=\'\', Blobs length (' . count($ret->getBlobs()) .
                     ') should be == MaxResults (' .
-                    $options->getMaxResults() . ')'
+                    $options->getMaxResults() . ')',
             );
 
             if (null !== $options->getPrefix()
@@ -1186,7 +1186,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 self::assertTrue(
                     false,
                     'when a next marker and Prefix=(\'' .
-                        $options->getPrefix() . '\'), impossible'
+                        $options->getPrefix() . '\'), impossible',
                 );
             }
         }
@@ -1235,7 +1235,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
-                $createBlockBlobResult->getETag()
+                $createBlockBlobResult->getETag(),
             );
         }
 
@@ -1268,13 +1268,13 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
-                    'bad temporal access condition: getCode'
+                    'bad temporal access condition: getCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition($options->getAccessConditions())) {
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
-                    'bad etag access condition: getCode'
+                    'bad etag access condition: getCode',
                 );
             } else {
                 throw $e;
@@ -1302,12 +1302,12 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $res->getLastModified(),
-                $now
+                $now,
             ) < 10000,
             'Last modified date (' .
                 $res->getLastModified()->format(\DateTime::RFC1123) .
                 ') ' . 'should be within 10 seconds of $now (' .
-                $now->format(\DateTime::RFC1123) . ')'
+                $now->format(\DateTime::RFC1123) . ')',
         );
     }
 
@@ -1360,7 +1360,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
-                $createBlockBlobResult->getETag()
+                $createBlockBlobResult->getETag(),
             );
         }
 
@@ -1378,7 +1378,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $container,
                 $blob,
                 $metadata,
-                $options
+                $options,
             ));
             if (null === $options) {
                 $options = new BlobServiceOptions();
@@ -1410,13 +1410,13 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
-                    'bad temporal access condition: getCode'
+                    'bad temporal access condition: getCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition($options->getAccessConditions())) {
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
-                    'bad etag access condition: getCode'
+                    'bad etag access condition: getCode',
                 );
             } else {
                 throw $e;
@@ -1437,12 +1437,12 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $res->getLastModified(),
-                $now
+                $now,
             ) < 10000,
             'Last modified date (' .
             $res->getLastModified()->format(\DateTime::RFC1123) . ') ' .
                 'should be within 10 seconds of $now (' .
-                $now->format(\DateTime::RFC1123) . ')'
+                $now->format(\DateTime::RFC1123) . ')',
         );
     }
 
@@ -1488,7 +1488,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
-                $createPageBlobResult->getETag()
+                $createPageBlobResult->getETag(),
             );
         }
 
@@ -1528,13 +1528,13 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                         TestResources::STATUS_NOT_MODIFIED,
                         $e->getCode(),
                         'bad temporal access condition IF_MODIFIED_SINCE:' .
-                            'getCode'
+                            'getCode',
                     );
                 } else {
                     self::assertEquals(
                         TestResources::STATUS_PRECONDITION_FAILED,
                         $e->getCode(),
-                        'bad temporal access condition: getCode'
+                        'bad temporal access condition: getCode',
                     );
                 }
             } else {
@@ -1600,7 +1600,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             self::assertEquals(
                 'application/octet-stream',
                 $res->getProperties()->getContentType(),
-                'blob getProperties->getContentType'
+                'blob getProperties->getContentType',
             );
             self::assertNull($res->getProperties()->getContentMD5(), 'blob getProperties->getContentMD5');
             self::assertNull($res->getProperties()->getContentEncoding(), 'blob getProperties->getContentEncoding');
@@ -1609,27 +1609,27 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             self::assertEquals(
                 $properties->getCacheControl(),
                 $res->getProperties()->getCacheControl(),
-                'blob getProperties->getCacheControl'
+                'blob getProperties->getCacheControl',
             );
             self::assertEquals(
                 $properties->getContentType(),
                 $res->getProperties()->getContentType(),
-                'blob getProperties->getContentType'
+                'blob getProperties->getContentType',
             );
             self::assertEquals(
                 $properties->getContentMD5(),
                 $res->getProperties()->getContentMD5(),
-                'blob getProperties->getContentMD5'
+                'blob getProperties->getContentMD5',
             );
             self::assertEquals(
                 $properties->getContentEncoding(),
                 $res->getProperties()->getContentEncoding(),
-                'blob getProperties->getContentEncoding'
+                'blob getProperties->getContentEncoding',
             );
             self::assertEquals(
                 $properties->getContentLanguage(),
                 $res->getProperties()->getContentLanguage(),
-                'blob getProperties->getContentLanguage'
+                'blob getProperties->getContentLanguage',
             );
         }
 
@@ -1639,7 +1639,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             self::assertEquals(
                 $properties->getContentLength(),
                 $res->getProperties()->getContentLength(),
-                'blob getProperties->getContentLength'
+                'blob getProperties->getContentLength',
             );
         }
 
@@ -1649,7 +1649,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             self::assertEquals(
                 $properties->getSequenceNumber(),
                 $res->getProperties()->getSequenceNumber(),
-                'blob getProperties->getSequenceNumber'
+                'blob getProperties->getSequenceNumber',
             );
         }
 
@@ -1658,14 +1658,14 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $res->getProperties()->getLastModified(),
-                $now
+                $now,
             ) < 10000,
             'Last modified date (' .
                 $res->getProperties()->getLastModified()->format(
-                    \DateTime::RFC1123
+                    \DateTime::RFC1123,
                 ) . ') ' .
                     'should be within 10 seconds of $now (' .
-                    $now->format(\DateTime::RFC1123) . ')'
+                    $now->format(\DateTime::RFC1123) . ')',
         );
     }
 
@@ -1701,7 +1701,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $createPageBlobResult = $this->restProxy->createPageBlob($container, $blob, 512);
         BlobServiceFunctionalTestData::fixETagAccessCondition(
             $properties->getAccessConditions(),
-            $createPageBlobResult->getETag()
+            $createPageBlobResult->getETag(),
         );
 
         try {
@@ -1729,13 +1729,13 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
-                    'bad temporal access condition: getCode'
+                    'bad temporal access condition: getCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition($properties->getAccessConditions())) {
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
-                    'bad etag access condition: getCode'
+                    'bad etag access condition: getCode',
                 );
             }
 
@@ -1757,12 +1757,12 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $res->getLastModified(),
-                $now
+                $now,
             ) < 10000,
             'Last modified date (' .
                 $res->getLastModified()->format(\DateTime::RFC1123) . ') ' .
                 'should be within 10 seconds of $now (' .
-                $now->format(\DateTime::RFC1123) . ')'
+                $now->format(\DateTime::RFC1123) . ')',
         );
     }
 
@@ -1858,21 +1858,21 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                         TestResources::STATUS_NOT_MODIFIED,
                         $e->getCode(),
                         'bad temporal access condition IF_MODIFIED_SINCE:' .
-                        ' getCode'
+                        ' getCode',
                     );
                 } else {
                     self::assertEquals(
                         TestResources::STATUS_PRECONDITION_FAILED,
                         $e->getCode(),
                         'bad temporal access condition IF_UNMODIFIED_SINCE:' .
-                        ' getCode'
+                        ' getCode',
                     );
                 }
             } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition($options->getAccessConditions())) {
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
-                    'bad etag access condition: getCode'
+                    'bad etag access condition: getCode',
                 );
             } elseif ($options->getRangeGetContentMD5() && (
                 null === $options->getRange() || null === $options->getRange()->getStart()
@@ -1881,7 +1881,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     TestResources::STATUS_BAD_REQUEST,
                     $e->getCode(),
                     'Expect compute range MD5 to fail when range not set:' .
-                    ' getCode'
+                    ' getCode',
                 );
             } else {
                 throw $e;
@@ -1923,12 +1923,12 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             self::assertEquals(
                 $md5,
                 $res->getProperties()->getContentMD5(),
-                'asked for MD5, result->getProperties()->getContentMD5'
+                'asked for MD5, result->getProperties()->getContentMD5',
             );
         } else {
             self::assertNull(
                 $res->getProperties()->getContentMD5(),
-                'did not ask for MD5, result->getProperties()->getContentMD5'
+                'did not ask for MD5, result->getProperties()->getContentMD5',
             );
         }
 
@@ -1981,7 +1981,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
-                $blobinfo->getProperties()->getETag()
+                $blobinfo->getProperties()->getETag(),
             );
             $options->setSnapshot(null === $options->getSnapshot() ? null : $snapshot->getSnapshot());
         }
@@ -2021,20 +2021,20 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 self::assertEquals(
                     TestResources::STATUS_INTERNAL_SERVER_ERROR,
                     $e->getCode(),
-                    'bad timeout: deleteHttpStatusCode'
+                    'bad timeout: deleteHttpStatusCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())) {
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
                     'bad temporal access condition IF_UNMODIFIED_SINCE: ' .
-                        'deleteHttpStatusCode'
+                        'deleteHttpStatusCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition($options->getAccessConditions())) {
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
-                    'bad etag access condition: deleteHttpStatusCode'
+                    'bad etag access condition: deleteHttpStatusCode',
                 );
             } else {
                 throw $e;
@@ -2053,14 +2053,14 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             self::assertCount(
                 2,
                 $blobs,
-                'when give a snapshot, $blobs with same name as main blob'
+                'when give a snapshot, $blobs with same name as main blob',
             );
         } elseif ($options->getDeleteSnaphotsOnly()) {
             self::assertCount(
                 1,
                 $blobs,
                 'when getDeleteSnaphotsOnly=true, ' .
-                    '$blobs with same name as main blob'
+                    '$blobs with same name as main blob',
             );
         } else {
             self::assertCount(0, $blobs, 'when getDeleteSnaphotsOnly=false, blob with same name as main blob');
@@ -2103,7 +2103,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
-                $snapshot1->getETag()
+                $snapshot1->getETag(),
             );
         }
 
@@ -2144,7 +2144,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 self::assertEquals(
                     TestResources::STATUS_INTERNAL_SERVER_ERROR,
                     $e->getCode(),
-                    'bad timeout: deleteHttpStatusCode'
+                    'bad timeout: deleteHttpStatusCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition($options->getAccessConditions())
             ) {
@@ -2152,13 +2152,13 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
                     'bad temporal access condition IF_UNMODIFIED_SINCE:' .
-                    ' deleteHttpStatusCode'
+                    ' deleteHttpStatusCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition($options->getAccessConditions())) {
                 self::assertEquals(
                     TestResources::STATUS_PRECONDITION_FAILED,
                     $e->getCode(),
-                    'bad etag access condition: deleteHttpStatusCode'
+                    'bad etag access condition: deleteHttpStatusCode',
                 );
             } else {
                 throw $e;
@@ -2181,23 +2181,23 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $snapshotDate,
-                $now
+                $now,
             ) < 10,
             'Last modified date (' . $snapshotDate->format(\DateTime::RFC1123) .
                 ')' . ' should be within 10 seconds of $now (' .
-                $now->format(\DateTime::RFC1123) . ')'
+                $now->format(\DateTime::RFC1123) . ')',
         );
 
         // Make sure the last modified date is within 10 seconds
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $res->getLastModified(),
-                $now
+                $now,
             ) < 10,
             'Last modified date (' .
                 $res->getLastModified()->format(\DateTime::RFC1123) . ')' .
                 ' should be within 10 seconds of $now (' .
-                $now->format(\DateTime::RFC1123) . ')'
+                $now->format(\DateTime::RFC1123) . ')',
         );
 
         self::assertCount(3, $blobs, 'Should end up with 3 $blobs with same name as main blob');
@@ -2261,11 +2261,11 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         if (null !== $options) {
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getSourceAccessConditions(),
-                $snapshot->getETag()
+                $snapshot->getETag(),
             );
             BlobServiceFunctionalTestData::fixETagAccessCondition(
                 $options->getAccessConditions(),
-                $destBlobInfo->getETag()
+                $destBlobInfo->getETag(),
             );
             $options->setSourceSnapshot(null === $options->getSourceSnapshot() ? null : $snapshot->getSnapshot());
         }
@@ -2303,7 +2303,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             $listBlobsResult = $this->restProxy->listBlobs(
                 $destContainer == '' ? '$root' :
                 $destContainer,
-                $listOptions
+                $listOptions,
             );
             $blobs = $listBlobsResult->getBlobs();
 
@@ -2318,38 +2318,38 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             if (null !== $options->getTimeout() && $options->getTimeout() < 1) {
                 self::assertEquals(500, $e->getCode(), 'bad timeout: deleteHttpStatusCode');
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition(
-                $options->getSourceAccessConditions()
+                $options->getSourceAccessConditions(),
             )) {
                 self::assertEquals(
                     412,
                     $e->getCode(),
                     'bad source temporal access condition ' .
-                    'IF_UNMODIFIED_SINCE: deleteHttpStatusCode'
+                    'IF_UNMODIFIED_SINCE: deleteHttpStatusCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition(
-                $options->getSourceAccessConditions()
+                $options->getSourceAccessConditions(),
             )) {
                 self::assertEquals(
                     412,
                     $e->getCode(),
-                    'bad source etag access condition: deleteHttpStatusCode'
+                    'bad source etag access condition: deleteHttpStatusCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passTemporalAccessCondition(
-                $options->getAccessConditions()
+                $options->getAccessConditions(),
             )) {
                 self::assertEquals(
                     412,
                     $e->getCode(),
                     'bad dest temporal access condition ' .
-                    'IF_UNMODIFIED_SINCE: deleteHttpStatusCode'
+                    'IF_UNMODIFIED_SINCE: deleteHttpStatusCode',
                 );
             } elseif (!BlobServiceFunctionalTestData::passETagAccessCondition(
-                $options->getAccessConditions()
+                $options->getAccessConditions(),
             )) {
                 self::assertEquals(
                     412,
                     $e->getCode(),
-                    'bad dest etag access condition: deleteHttpStatusCode'
+                    'bad dest etag access condition: deleteHttpStatusCode',
                 );
             } else {
                 throw $e;
@@ -2367,12 +2367,12 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             2,
             $blobs,
             'Should end up with 2 blob with same name as dest blob,' .
-            ' snapshot and copied blob'
+            ' snapshot and copied blob',
         );
         self::assertEquals(
             $sourceDataSize,
             $getBlobResult->getProperties()->getContentLength(),
-            'Dest length should be the same as the source length'
+            'Dest length should be the same as the source length',
         );
 
         self::assertNotNull($getBlobResult->getMetadata(), 'blob Metadata');
@@ -2388,13 +2388,13 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertTrue(
             BlobServiceFunctionalTestData::diffInTotalSeconds(
                 $getBlobResult->getProperties()->getLastModified(),
-                $now
+                $now,
             ) < 10,
             'Last modified date (' .
                 $getBlobResult->getProperties()->getLastModified()->format(
-                    \DateTime::RFC1123
+                    \DateTime::RFC1123,
                 ) . ')' . ' should be within 10 seconds of $now (' .
-                $now->format(\DateTime::RFC1123) . ')'
+                $now->format(\DateTime::RFC1123) . ')',
         );
     }
 
@@ -2405,7 +2405,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $retryMiddleware = RetryMiddlewareFactory::create(
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             3,
-            1
+            1,
         );
 
         //setup options for the first try.
@@ -2421,7 +2421,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             new RequestException(
                 'mock 408 exception',
                 $request,
-                new Response(408, ['test_header' => 'test_header_value'])
+                new Response(408, ['test_header' => 'test_header_value']),
             ),
             new Response(500, ['test_header' => 'test_header_value']),
             $response,
@@ -2435,15 +2435,15 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $newResult = $mockProxy->listContainers($options);
         self::assertTrue(
             $result == $newResult,
-            'Mock result does not match server behavior'
+            'Mock result does not match server behavior',
         );
         self::assertTrue(
             $historyMiddleware->getHistory()[1]['reason']->getMessage() == 'mock 408 exception',
-            'Mock handler does not gave the first 408 exception correctly'
+            'Mock handler does not gave the first 408 exception correctly',
         );
         self::assertTrue(
             $historyMiddleware->getHistory()[2]['reason']->getCode() == 500,
-            'Mock handler does not gave the second 500 response correctly'
+            'Mock handler does not gave the second 500 response correctly',
         );
     }
 
@@ -2454,7 +2454,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $retryMiddleware = RetryMiddlewareFactory::create(
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             3,
-            1
+            1,
         );
 
         //setup options for the first try.
@@ -2471,7 +2471,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             new RequestException(
                 'mock 404 exception',
                 $request,
-                new Response(404, ['test_header' => 'test_header_value'])
+                new Response(404, ['test_header' => 'test_header_value']),
             ),
             $response,
         ]);
@@ -2485,15 +2485,15 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $newResult = $mockProxy->listContainers($options);
         self::assertTrue(
             $result == $newResult,
-            'Mock result does not match server behavior'
+            'Mock result does not match server behavior',
         );
         self::assertTrue(
             $historyMiddleware->getHistory()[1]['reason']->getCode() == 500,
-            'Mock handler does not gave the second 500 response correctly'
+            'Mock handler does not gave the second 500 response correctly',
         );
         self::assertTrue(
             $historyMiddleware->getHistory()[2]['reason']->getMessage() == 'mock 404 exception',
-            'Mock handler does not gave the first 404 exception correctly'
+            'Mock handler does not gave the first 404 exception correctly',
         );
 
         $uri2 = (string) ($historyMiddleware->getHistory()[2]['request']->getUri());
@@ -2501,11 +2501,11 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
 
         self::assertTrue(
             strpos($uri2, '-secondary') !== false,
-            'Did not retry to secondary uri.'
+            'Did not retry to secondary uri.',
         );
         self::assertFalse(
             strpos($uri3, '-secondary'),
-            'Did not switch back to primary uri.'
+            'Did not switch back to primary uri.',
         );
     }
 
@@ -2516,7 +2516,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $retryMiddleware = RetryMiddlewareFactory::create(
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             3,
-            1
+            1,
         );
         $marker = 'next';
         //Construct response
@@ -2543,8 +2543,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertNotNull(
             strpos(
                 (string) $request->getUri(),
-                (string) $options[Resources::ROS_SECONDARY_URI]
-            )
+                (string) $options[Resources::ROS_SECONDARY_URI],
+            ),
         );
 
         //List containers with the continuation token.
@@ -2569,16 +2569,16 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         self::assertNotNull(
             strpos(
                 (string) $request->getUri(),
-                (string) $options[Resources::ROS_SECONDARY_URI]
-            )
+                (string) $options[Resources::ROS_SECONDARY_URI],
+            ),
         );
 
         //Make sure queried with next marker.
         self::assertNotNull(
             strpos(
                 (string) $request->getUri(),
-                'marker=' . $marker
-            )
+                'marker=' . $marker,
+            ),
         );
     }
 
@@ -2623,7 +2623,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $container,
                 $blobName,
                 $resource,
-                $options
+                $options,
             );
         } catch (ServiceException $e) {
             $code = $e->getCode();
@@ -2663,7 +2663,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             $container,
             $blobName,
             $resource,
-            $options
+            $options,
         );
 
         // Test
@@ -2679,14 +2679,14 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         while (!feof($content)) {
             fwrite(
                 $downloadResource,
-                stream_get_contents($content, Resources::MB_IN_BYTES_32)
+                stream_get_contents($content, Resources::MB_IN_BYTES_32),
             );
         }
 
         // Assert
         self::assertEquals(
             BlobType::BLOCK_BLOB,
-            $result->getProperties()->getBlobType()
+            $result->getProperties()->getBlobType(),
         );
         self::assertEquals($metadata, $result->getMetadata());
         $originMd5 = md5_file($path);
@@ -2733,7 +2733,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->verifyBlocks(
             $container,
             $blob,
-            [$blockIds[1], $blockIds[3]]
+            [$blockIds[1], $blockIds[3]],
         );
 
         //update blob with blocks 3 and 4.
@@ -2742,7 +2742,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $container,
                 $blob,
                 $blockIds[$i],
-                $contents[$i]
+                $contents[$i],
             );
         }
         $blockList = [
@@ -2755,7 +2755,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->verifyBlocks(
             $container,
             $blob,
-            [$blockIds[3], $blockIds[4]]
+            [$blockIds[3], $blockIds[4]],
         );
 
         //commit a blob with same id with block 3
@@ -2773,7 +2773,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->verifyBlocks(
             $container,
             $blob,
-            [$blockIds[0], $blockIds[3]]
+            [$blockIds[0], $blockIds[3]],
         );
         //test BlobBlockType::LATEST_TYPE
         $this->restProxy->createBlobBlock($container, $blob, $blockIds[0], $contents[0]);
@@ -2789,7 +2789,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $this->verifyBlocks(
             $container,
             $blob,
-            [$blockIds[3], $blockIds[0]]
+            [$blockIds[3], $blockIds[0]],
         );
     }
 
@@ -2830,7 +2830,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $array['putRange'],
                 $array['clearRange'],
                 $array['listRange'],
-                $array['resultListRange']
+                $array['resultListRange'],
             );
         }
         $this->deleteContainer($container);
@@ -2842,7 +2842,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $putRange,
         $clearRange,
         $listRange,
-        $resultListRange
+        $resultListRange,
     ) {
         if ($putRange != null) {
             $length = $putRange->getLength();
@@ -2860,7 +2860,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     $blob,
                     $putRange,
                     $content,
-                    $options
+                    $options,
                 );
             } catch (ServiceException $e) {
                 $message = $e->getMessage();
@@ -2868,7 +2868,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             self::assertContains('400', $message);
             self::assertContains(
                 'The MD5 value specified in the request did not match with the MD5 value calculated by the server.',
-                $message
+                $message,
             );
             //Ends debug code snippet
             // Now set the correct content MD5
@@ -2878,7 +2878,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $blob,
                 $putRange,
                 $content,
-                $options
+                $options,
             );
             $getOptions = new GetBlobOptions();
             $getOptions->setRange($putRange);
@@ -2921,7 +2921,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $container,
                 $blob,
                 new Range(0, $length - 1),
-                $content
+                $content,
             );
 
             $snapshot = $this->restProxy->createBlobSnapshot($container, $blob)->getSnapshot();
@@ -2934,7 +2934,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $array['listRange'],
                 $array['resultListRange'],
                 $snapshot,
-                $length
+                $length,
             );
         }
     }
@@ -2947,7 +2947,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         $listRange,
         $resultListRange,
         $snapshot,
-        $length
+        $length,
     ) {
         if ($putRange != null) {
             $rangeLength = $putRange->getLength();
@@ -2960,7 +2960,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                 $container,
                 $blob,
                 $putRange,
-                $content
+                $content,
             );
         }
         if ($clearRange != null) {
@@ -2998,7 +2998,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
                     $container,
                     $blob,
                     $content,
-                    $options
+                    $options,
                 );
             } catch (ServiceException $e) {
                 $message = $e->getMessage();

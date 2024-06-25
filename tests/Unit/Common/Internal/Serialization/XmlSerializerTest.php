@@ -93,7 +93,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
         // Assert
         self::assertEquals(
             $expected,
-            $actual
+            $actual,
         );
     }
 
@@ -110,7 +110,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
         // Assert
         self::assertEquals(
             $expected,
-            $actual
+            $actual,
         );
     }
 

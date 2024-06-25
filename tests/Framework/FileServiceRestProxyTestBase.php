@@ -70,7 +70,7 @@ class FileServiceRestProxyTestBase extends ServiceRestProxyTestBase
     public function createShareWithRetry(
         $shareName,
         $options = null,
-        $retryCount = 6
+        $retryCount = 6,
     ) {
         // Shares cannot be recreated within a minute of them being
         // deleted; the service will give response of 409:Conflict.

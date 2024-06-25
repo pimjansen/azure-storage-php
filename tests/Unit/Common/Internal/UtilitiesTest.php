@@ -376,42 +376,42 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(
             'http://account-secondary.blob.core.windows.net',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
-                'http://account.blob.core.windows.net'
-            )
+                'http://account.blob.core.windows.net',
+            ),
         );
 
         self::assertEquals(
             'https://account-secondary.blob.core.windows.net',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
-                'https://account.blob.core.windows.net'
-            )
+                'https://account.blob.core.windows.net',
+            ),
         );
 
         self::assertEquals(
             'account-secondary.blob.core.windows.net',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
-                'account.blob.core.windows.net'
-            )
+                'account.blob.core.windows.net',
+            ),
         );
 
         self::assertEquals(
             'http://account-secondary.customized',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
-                'http://account.customized'
-            )
+                'http://account.customized',
+            ),
         );
 
         self::assertEquals(
             'http://account-secondary.blob.core.windows.net/foo/bar?a=b',
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
-                'http://account.blob.core.windows.net/foo/bar?a=b'
-            )
+                'http://account.blob.core.windows.net/foo/bar?a=b',
+            ),
         );
 
         self::assertNull(
             Utilities::tryGetSecondaryEndpointFromPrimaryEndpoint(
-                ''
-            )
+                '',
+            ),
         );
     }
 
@@ -575,11 +575,11 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $stream = Psr7\Utils::streamFor($resource);
         $result_0 = Utilities::isStreamLargerThanSizeOrNotSeekable(
             $stream,
-            4194304 * 16 - 1
+            4194304 * 16 - 1,
         );
         $result_1 = Utilities::isStreamLargerThanSizeOrNotSeekable(
             $stream,
-            4194304 * 16
+            4194304 * 16,
         );
         //prepare a string
         $count = 64 / 4;
@@ -587,11 +587,11 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $stream = Psr7\Utils::streamFor($testStr);
         $result_2 = Utilities::isStreamLargerThanSizeOrNotSeekable(
             $stream,
-            4194304 * 16 - 1
+            4194304 * 16 - 1,
         );
         $result_3 = Utilities::isStreamLargerThanSizeOrNotSeekable(
             $stream,
-            4194304 * 16
+            4194304 * 16,
         );
 
         self::assertFalse($result_1);

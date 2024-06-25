@@ -280,7 +280,7 @@ class TestResources
      */
     public static function getInterestingListDirectoriesAndFilesResultArray(
         $directoriesCount = 0,
-        $filesCount = 0
+        $filesCount = 0,
     ) {
         $result = [];
         $result['@attributes'][Resources::XTAG_SERVICE_ENDPOINT] = 'http://myaccount.file.core.windows.net/';
@@ -400,7 +400,7 @@ class TestResources
             ],
             self::RESPONSE_BODY,
             '1.1',
-            $reason
+            $reason,
         );
     }
 
@@ -411,7 +411,7 @@ class TestResources
             [],
             self::RESPONSE_BODY_JSON,
             '1.1',
-            $reason
+            $reason,
         );
     }
 
@@ -1469,7 +1469,7 @@ class TestResources
         $signedResourceType,
         $signedExpiry = '',
         $signedStart = '',
-        $signedIP = ''
+        $signedIP = '',
     ) {
         if ($signedExpiry == '') {
             $signedExpiry = Utilities::isoDate(self::getRandomLaterTime());
@@ -1507,7 +1507,7 @@ class TestResources
         $contentDisposition = '',
         $contentEncoding = '',
         $contentLanguage = '',
-        $contentType = ''
+        $contentType = '',
     ) {
         if ($signedExpiry == '') {
             $signedExpiry = Utilities::isoDate(self::getRandomLaterTime());
@@ -1548,7 +1548,7 @@ class TestResources
         $startingPartitionKey = '',
         $startingRowKey = '',
         $endingPartitionKey = '',
-        $endingRowKey = ''
+        $endingRowKey = '',
     ) {
         if ($signedExpiry == '') {
             $signedExpiry = Utilities::isoDate(self::getRandomLaterTime());
@@ -1583,7 +1583,7 @@ class TestResources
         $queueName,
         $signedExpiry = '',
         $signedStart = '',
-        $signedIP = ''
+        $signedIP = '',
     ) {
         if ($signedExpiry == '') {
             $signedExpiry = Utilities::isoDate(self::getRandomLaterTime());
@@ -1612,13 +1612,13 @@ class TestResources
     public static function getExpectedBatchResultEntries()
     {
         $entityResult1 = UpdateEntityResult::create(
-            [Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"']
+            [Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"'],
         );
         $entityResult2 = UpdateEntityResult::create(
-            [Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"']
+            [Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"'],
         );
         $entityResult3 = UpdateEntityResult::create(
-            [Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"']
+            [Resources::ETAG => 'W/"datetime\'2017-02-16T02%3A46%3A47.89766Z\'"'],
         );
         return [
             'The entity was deleted successfully.',

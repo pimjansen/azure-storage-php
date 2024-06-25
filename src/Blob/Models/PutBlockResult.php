@@ -24,17 +24,17 @@ class PutBlockResult
         $result = new PutBlockResult();
 
         $result->setContentMD5(
-            Utilities::tryGetValueInsensitive(Resources::CONTENT_MD5, $headers)
+            Utilities::tryGetValueInsensitive(Resources::CONTENT_MD5, $headers),
         );
 
         $result->setRequestServerEncrypted(
             Utilities::toBoolean(
                 Utilities::tryGetValueInsensitive(
                     Resources::X_MS_REQUEST_SERVER_ENCRYPTED,
-                    $headers
+                    $headers,
                 ),
-                true
-            )
+                true,
+            ),
         );
 
         return $result;

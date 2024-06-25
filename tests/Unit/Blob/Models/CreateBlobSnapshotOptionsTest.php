@@ -36,7 +36,7 @@ class CreateBlobSnapshotOptionsTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             $expected,
-            $createBlobSnapshotOptions->getMetadata()
+            $createBlobSnapshotOptions->getMetadata(),
         );
     }
 
@@ -48,7 +48,7 @@ class CreateBlobSnapshotOptionsTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             $expected,
-            $createBlobSnapshotOptions->getLeaseId()
+            $createBlobSnapshotOptions->getLeaseId(),
         );
     }
 }

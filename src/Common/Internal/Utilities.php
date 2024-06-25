@@ -249,7 +249,7 @@ class Utilities
         array $array,
         $rootName,
         $defaultTag = null,
-        $standalone = null
+        $standalone = null,
     ) {
         $xmlVersion = '1.0';
         $xmlEncoding = 'UTF-8';
@@ -282,7 +282,7 @@ class Utilities
     private static function _arr2xml(
         \XMLWriter $xmlw,
         array $data,
-        $defaultTag = null
+        $defaultTag = null,
     ) {
         foreach ($data as $key => $value) {
             if (strcmp($key, '@attributes') == 0) {
@@ -522,7 +522,7 @@ class Utilities
             mt_rand(0, 255),            // 8 bits  for "clock_seq_low"
             mt_rand(0, 65535),          // 16 bits for "node 0" and "node 1"
             mt_rand(0, 65535),          // 16 bits for "node 2" and "node 3"
-            mt_rand(0, 65535)           // 16 bits for "node 4" and "node 5"
+            mt_rand(0, 65535),           // 16 bits for "node 4" and "node 5"
         );
 
         // @codingStandardsIgnoreEnd
@@ -642,7 +642,7 @@ class Utilities
         Validate::isInteger($size, 'size');
         Validate::isTrue(
             $stream instanceof StreamInterface,
-            sprintf(Resources::INVALID_PARAM_MSG, 'stream', 'Psr\Http\Message\StreamInterface')
+            sprintf(Resources::INVALID_PARAM_MSG, 'stream', 'Psr\Http\Message\StreamInterface'),
         );
         $result = true;
         if ($stream->isSeekable()) {
@@ -652,7 +652,7 @@ class Utilities
             } catch (\RuntimeException $e) {
                 $pos = strpos(
                     $e->getMessage(),
-                    'to seek to stream position '
+                    'to seek to stream position ',
                 );
                 if ($pos == null) {
                     throw $e;
@@ -682,7 +682,7 @@ class Utilities
         foreach ($headers as $key => $value) {
             $isMetadataHeader = Utilities::startsWith(
                 strtolower($key),
-                Resources::X_MS_META_HEADER_PREFIX
+                Resources::X_MS_META_HEADER_PREFIX,
             );
 
             if ($isMetadataHeader) {
@@ -690,7 +690,7 @@ class Utilities
                 $MetadataName = str_ireplace(
                     Resources::X_MS_META_HEADER_PREFIX,
                     Resources::EMPTY_STRING,
-                    $key
+                    $key,
                 );
                 $metadata[$MetadataName] = $value;
             }
@@ -785,7 +785,7 @@ class Utilities
      */
     public static function requestSentToSecondary(
         \Psr\Http\Message\RequestInterface $request,
-        array $options
+        array $options,
     ) {
         $uri = $request->getUri();
         $secondaryUri = $options[Resources::ROS_SECONDARY_URI];
@@ -807,7 +807,7 @@ class Utilities
     {
         $value = Utilities::tryGetValue(
             $headers,
-            Resources::X_MS_CONTINUATION_LOCATION_MODE
+            Resources::X_MS_CONTINUATION_LOCATION_MODE,
         );
 
         $result = '';

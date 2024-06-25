@@ -58,7 +58,7 @@ class CreateBlobBlockOptions extends BlobServiceOptions
         $result->setTimeout($createBlobOptions->getTimeout());
         $result->setLeaseId($createBlobOptions->getLeaseId());
         $result->setNumberOfConcurrency(
-            $createBlobOptions->getNumberOfConcurrency()
+            $createBlobOptions->getNumberOfConcurrency(),
         );
         return $result;
     }

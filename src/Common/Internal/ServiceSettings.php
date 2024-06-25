@@ -27,7 +27,7 @@ abstract class ServiceSettings
     protected static function noMatch($connectionString)
     {
         throw new \RuntimeException(
-            sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString)
+            sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString),
         );
     }
 
@@ -51,7 +51,7 @@ abstract class ServiceSettings
 
         $tokenizedSettings = ConnectionStringParser::parseConnectionString(
             'connectionString',
-            $connectionString
+            $connectionString,
         );
 
         // Assure that all given keys are valid.
@@ -61,8 +61,8 @@ abstract class ServiceSettings
                     sprintf(
                         Resources::INVALID_CONNECTION_STRING_SETTING_KEY,
                         $key,
-                        implode("\n", static::$validSettingKeys)
-                    )
+                        implode("\n", static::$validSettingKeys),
+                    ),
                 );
             }
         }
@@ -84,7 +84,7 @@ abstract class ServiceSettings
     protected static function getValidator(
         array $requirements,
         $isRequired,
-        $atLeastOne
+        $atLeastOne,
     ) {
         // @codingStandardsIgnoreStart
 
@@ -210,8 +210,8 @@ abstract class ServiceSettings
                 sprintf(
                     Resources::INVALID_CONFIG_VALUE,
                     $settingValue,
-                    implode("\n", $validValues)
-                )
+                    implode("\n", $validValues),
+                ),
             );
 
             // $settingValue is missing in valid values set, fail.

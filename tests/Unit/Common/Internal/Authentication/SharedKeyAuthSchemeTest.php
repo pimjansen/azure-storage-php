@@ -131,7 +131,7 @@ class SharedKeyAuthSchemeTest extends \PHPUnit\Framework\TestCase
                 'snapshots',
                 'metadata',
                 'uncommittedblobs',
-            ]
+            ],
         );
         $expectedQueryPart = "comp:list\ninclude:metadata,snapshots,uncommittedblobs";
         $accountName = TestResources::ACCOUNT_NAME;

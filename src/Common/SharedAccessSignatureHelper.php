@@ -64,7 +64,7 @@ class SharedAccessSignatureHelper
         $signedExpiry,
         $signedStart = '',
         $signedIP = '',
-        $signedProtocol = ''
+        $signedProtocol = '',
     ) {
         // check that version is valid
         Validate::canCastAsString($signedVersion, 'signedVersion');
@@ -161,7 +161,7 @@ class SharedAccessSignatureHelper
 
         return $this->validateAndSanitizeStringWithArray(
             strtolower($signedService),
-            $validServices
+            $validServices,
         );
     }
 
@@ -185,7 +185,7 @@ class SharedAccessSignatureHelper
 
         return $this->validateAndSanitizeStringWithArray(
             strtolower($signedResourceType),
-            $validResourceTypes
+            $validResourceTypes,
         );
     }
 
@@ -198,7 +198,7 @@ class SharedAccessSignatureHelper
      * @return string
      */
     protected function validateAndSanitizeSignedPermissions(
-        $signedPermissions
+        $signedPermissions,
     ) {
         // validate signed permissions are not null or empty
         Validate::canCastAsString($signedPermissions, 'signedPermissions');
@@ -208,7 +208,7 @@ class SharedAccessSignatureHelper
 
         return $this->validateAndSanitizeStringWithArray(
             strtolower($signedPermissions),
-            $validPermissions
+            $validPermissions,
         );
     }
 
@@ -253,7 +253,7 @@ class SharedAccessSignatureHelper
                 $input = str_replace(
                     $value,
                     '',
-                    $input
+                    $input,
                 );
             }
         }
@@ -262,8 +262,8 @@ class SharedAccessSignatureHelper
             strlen($input) == 0,
             sprintf(
                 Resources::STRING_NOT_WITH_GIVEN_COMBINATION,
-                implode(', ', $array)
-            )
+                implode(', ', $array),
+            ),
         );
         return $result;
     }
@@ -281,7 +281,7 @@ class SharedAccessSignatureHelper
     protected static function generateCanonicalResource(
         $accountName,
         $service,
-        $resource
+        $resource,
     ) {
         static $serviceMap = [
             Resources::RESOURCE_TYPE_BLOB => 'blob',

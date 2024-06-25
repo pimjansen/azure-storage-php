@@ -58,7 +58,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
                 if ($key == $expectedKey) {
                     return $expectedValue;
                 }
-            }
+            },
         );
 
         // Assert
@@ -81,7 +81,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
                     return $expectedValue;
                 }
             },
-            true
+            true,
         );
 
         // Assert
@@ -104,7 +104,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
                 if ($key == $expectedKey) {
                     return $expectedValue;
                 }
-            }
+            },
         );
 
         // Test
@@ -147,7 +147,7 @@ class CloudConfigurationManagerTest extends \PHPUnit\Framework\TestCase
                 if ($key == $expectedKey) {
                     return $expectedValue;
                 }
-            }
+            },
         );
 
         // Test

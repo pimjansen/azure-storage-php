@@ -87,12 +87,12 @@ trait MetadataTrait
         $metadata = Utilities::getMetadataArray($responseHeaders);
         $date = Utilities::tryGetValueInsensitive(
             Resources::LAST_MODIFIED,
-            $responseHeaders
+            $responseHeaders,
         );
         $date = Utilities::rfc1123ToDateTime($date);
         $result->setETag(Utilities::tryGetValueInsensitive(
             Resources::ETAG,
-            $responseHeaders
+            $responseHeaders,
         ));
         $result->setMetadata($metadata);
         $result->setLastModified($date);

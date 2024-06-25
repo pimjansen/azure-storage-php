@@ -46,7 +46,7 @@ class ListPageBlobRangesDiffResult extends ListPageBlobRangesResult
         foreach ($rawRanges as $value) {
             $pageRanges[] = new RangeDiff(
                 (int) ($value[Resources::XTAG_RANGE_START]),
-                (int) ($value[Resources::XTAG_RANGE_END])
+                (int) ($value[Resources::XTAG_RANGE_END]),
             );
         }
 
@@ -59,7 +59,7 @@ class ListPageBlobRangesDiffResult extends ListPageBlobRangesResult
             $pageRanges[] = new RangeDiff(
                 (int) ($value[Resources::XTAG_RANGE_START]),
                 (int) ($value[Resources::XTAG_RANGE_END]),
-                true
+                true,
             );
         }
 

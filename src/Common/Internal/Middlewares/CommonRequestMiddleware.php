@@ -28,7 +28,7 @@ class CommonRequestMiddleware extends MiddlewareBase
         IAuthScheme $authenticationScheme = null,
         $storageAPIVersion,
         $serviceSDKVersion,
-        array $headers = []
+        array $headers = [],
     ) {
         $this->authenticationScheme = $authenticationScheme;
         $this->msVersion = $storageAPIVersion;
@@ -59,11 +59,11 @@ class CommonRequestMiddleware extends MiddlewareBase
         //rewriting version and user-agent.
         $result = $result->withHeader(
             Resources::X_MS_VERSION,
-            $this->msVersion
+            $this->msVersion,
         );
         $result = $result->withHeader(
             Resources::USER_AGENT,
-            $this->userAgent
+            $this->userAgent,
         );
 
         //Adding date.

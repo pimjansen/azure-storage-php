@@ -70,15 +70,15 @@ class ListBlobBlocksResult
         $result->setContentLength(
             (int) (
                 Utilities::tryGetValue($clean, Resources::X_MS_BLOB_CONTENT_LENGTH)
-            )
+            ),
         );
         $result->setContentType(
-            Utilities::tryGetValue($clean, Resources::CONTENT_TYPE_LOWER_CASE)
+            Utilities::tryGetValue($clean, Resources::CONTENT_TYPE_LOWER_CASE),
         );
 
         $result->uncommittedBlocks = self::getEntries(
             $parsed,
-            'UncommittedBlocks'
+            'UncommittedBlocks',
         );
         $result->committedBlocks = self::getEntries($parsed, 'CommittedBlocks');
 

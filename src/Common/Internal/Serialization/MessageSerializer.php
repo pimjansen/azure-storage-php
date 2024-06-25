@@ -45,7 +45,7 @@ class MessageSerializer
             return self::serializeResponse($targetObject);
         }
         throw new \InvalidArgumentException(
-            Resources::INVALID_MESSAGE_OBJECT_TO_SERIALIZE
+            Resources::INVALID_MESSAGE_OBJECT_TO_SERIALIZE,
         );
     }
 

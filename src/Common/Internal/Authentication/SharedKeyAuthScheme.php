@@ -69,13 +69,13 @@ class SharedKeyAuthScheme implements IAuthScheme
         array $headers,
         $url,
         array $queryParams,
-        $httpMethod
+        $httpMethod,
     ) {
         $canonicalizedHeaders = $this->computeCanonicalizedHeaders($headers);
 
         $canonicalizedResource = $this->computeCanonicalizedResource(
             $url,
-            $queryParams
+            $queryParams,
         );
 
         $stringToSign = [];
@@ -110,17 +110,17 @@ class SharedKeyAuthScheme implements IAuthScheme
         array $headers,
         $url,
         array $queryParams,
-        $httpMethod
+        $httpMethod,
     ) {
         $signature = $this->computeSignature(
             $headers,
             $url,
             $queryParams,
-            $httpMethod
+            $httpMethod,
         );
 
         return 'SharedKey ' . $this->accountName . ':' . base64_encode(
-            hash_hmac('sha256', $signature, base64_decode($this->accountKey, true), true)
+            hash_hmac('sha256', $signature, base64_decode($this->accountKey, true), true),
         );
     }
 
@@ -271,9 +271,9 @@ class SharedKeyAuthScheme implements IAuthScheme
             $requestHeaders,
             $request->getUri(),
             Query::parse(
-                $request->getUri()->getQuery()
+                $request->getUri()->getQuery(),
             ),
-            $request->getMethod()
+            $request->getMethod(),
         );
 
         return $request->withHeader(Resources::AUTHENTICATION, $signedKey);

@@ -115,7 +115,7 @@ abstract class AccessPolicyTest extends \PHPUnit\Framework\TestCase
             } catch (\InvalidArgumentException $e) {
                 self::assertStringStartsWith(
                     'Invalid permission provided',
-                    $e->getMessage()
+                    $e->getMessage(),
                 );
                 continue;
             }

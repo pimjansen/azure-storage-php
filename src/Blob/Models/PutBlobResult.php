@@ -28,33 +28,33 @@ class PutBlobResult
         $result->setETag(
             Utilities::tryGetValueInsensitive(
                 Resources::ETAG,
-                $headers
-            )
+                $headers,
+            ),
         );
 
         if (Utilities::arrayKeyExistsInsensitive(
             Resources::LAST_MODIFIED,
-            $headers
+            $headers,
         )) {
             $lastModified = Utilities::tryGetValueInsensitive(
                 Resources::LAST_MODIFIED,
-                $headers
+                $headers,
             );
             $result->setLastModified(Utilities::rfc1123ToDateTime($lastModified));
         }
 
         $result->setContentMD5(
-            Utilities::tryGetValueInsensitive(Resources::CONTENT_MD5, $headers)
+            Utilities::tryGetValueInsensitive(Resources::CONTENT_MD5, $headers),
         );
 
         $result->setRequestServerEncrypted(
             Utilities::toBoolean(
                 Utilities::tryGetValueInsensitive(
                     Resources::X_MS_REQUEST_SERVER_ENCRYPTED,
-                    $headers
+                    $headers,
                 ),
-                true
-            )
+                true,
+            ),
         );
 
         return $result;

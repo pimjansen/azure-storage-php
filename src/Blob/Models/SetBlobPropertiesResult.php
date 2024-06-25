@@ -26,16 +26,16 @@ class SetBlobPropertiesResult
         $result = new SetBlobPropertiesResult();
         $date = Utilities::tryGetValueInsensitive(
             Resources::LAST_MODIFIED,
-            $headers
+            $headers,
         );
         $result->setLastModified(Utilities::rfc1123ToDateTime($date));
         $result->setETag(Utilities::tryGetValueInsensitive(
             Resources::ETAG,
-            $headers
+            $headers,
         ));
         $result->setSequenceNumber(Utilities::tryGetValueInsensitive(
             Resources::X_MS_BLOB_SEQUENCE_NUMBER,
-            $headers
+            $headers,
         ));
 
         return $result;

@@ -36,21 +36,21 @@ class ListBlobsResult
         $serviceEndpoint = Utilities::tryGetKeysChainValue(
             $parsed,
             Resources::XTAG_ATTRIBUTES,
-            Resources::XTAG_SERVICE_ENDPOINT
+            Resources::XTAG_SERVICE_ENDPOINT,
         );
         $containerName = Utilities::tryGetKeysChainValue(
             $parsed,
             Resources::XTAG_ATTRIBUTES,
-            Resources::XTAG_CONTAINER_NAME
+            Resources::XTAG_CONTAINER_NAME,
         );
         $result->setContainerName($containerName);
         $result->setPrefix(Utilities::tryGetValue(
             $parsed,
-            Resources::QP_PREFIX
+            Resources::QP_PREFIX,
         ));
         $result->setMarker(Utilities::tryGetValue(
             $parsed,
-            Resources::QP_MARKER
+            Resources::QP_MARKER,
         ));
 
         $nextMarker =
@@ -60,8 +60,8 @@ class ListBlobsResult
             $result->setContinuationToken(
                 new MarkerContinuationToken(
                     $nextMarker,
-                    $location
-                )
+                    $location,
+                ),
             );
         }
 
@@ -70,7 +70,7 @@ class ListBlobsResult
         ));
         $result->setDelimiter(Utilities::tryGetValue(
             $parsed,
-            Resources::QP_DELIMITER
+            Resources::QP_DELIMITER,
         ));
         $blobs = [];
         $blobPrefixes = [];
@@ -91,11 +91,11 @@ class ListBlobsResult
             $blob->setSnapshot(Utilities::tryGetValue($value, 'Snapshot'));
             $blob->setProperties(
                 BlobProperties::createFromXml(
-                    Utilities::tryGetValue($value, 'Properties')
-                )
+                    Utilities::tryGetValue($value, 'Properties'),
+                ),
             );
             $blob->setMetadata(
-                Utilities::tryGetValue($value, Resources::QP_METADATA, [])
+                Utilities::tryGetValue($value, Resources::QP_METADATA, []),
             );
 
             $blobs[] = $blob;

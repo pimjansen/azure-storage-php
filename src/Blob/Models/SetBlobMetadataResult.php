@@ -27,12 +27,12 @@ class SetBlobMetadataResult
 
         $result->setETag(Utilities::tryGetValueInsensitive(
             Resources::ETAG,
-            $headers
+            $headers,
         ));
 
         $date = Utilities::tryGetValueInsensitive(
             Resources::LAST_MODIFIED,
-            $headers
+            $headers,
         );
         $result->setLastModified(Utilities::rfc1123ToDateTime($date));
 
@@ -40,10 +40,10 @@ class SetBlobMetadataResult
             Utilities::toBoolean(
                 Utilities::tryGetValueInsensitive(
                     Resources::X_MS_REQUEST_SERVER_ENCRYPTED,
-                    $headers
+                    $headers,
                 ),
-                true
-            )
+                true,
+            ),
         );
 
         return $result;

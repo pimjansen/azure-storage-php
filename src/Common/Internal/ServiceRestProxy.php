@@ -39,7 +39,7 @@ class ServiceRestProxy extends RestProxy
         $primaryUri,
         $secondaryUri,
         $accountName,
-        array $options = []
+        array $options = [],
     ) {
         $primaryUri = Utilities::appendDelimiter($primaryUri, '/');
         $secondaryUri = Utilities::appendDelimiter($secondaryUri, '/');
@@ -93,8 +93,8 @@ class ServiceRestProxy extends RestProxy
                     ],
                     'cookies' => true,
                     'verify' => $verify,
-                ]
-            )
+                ],
+            ),
         );
     }
 
@@ -170,7 +170,7 @@ class ServiceRestProxy extends RestProxy
     protected function sendConcurrentAsync(
         callable $generator,
         $statusCode,
-        ServiceOptions $options
+        ServiceOptions $options,
     ) {
         $client = $this->client;
         $middlewareStack = $this->createMiddlewareStack($options);
@@ -195,7 +195,7 @@ class ServiceRestProxy extends RestProxy
                 while (is_callable($generator) && ($request = $generator())) {
                     yield \call_user_func($handler, $request, $requestOptions);
                 }
-            }
+            },
         );
 
         $eachPromise = new EachPromise($promises, [
@@ -204,7 +204,7 @@ class ServiceRestProxy extends RestProxy
                 //the promise is fulfilled, evaluate the response
                 self::throwIfError(
                     $response,
-                    $statusCode
+                    $statusCode,
                 );
             },
             'rejected' => static function ($reason, $index) {
@@ -236,7 +236,7 @@ class ServiceRestProxy extends RestProxy
         array $postParameters,
         $path,
         $locationMode,
-        $body = Resources::EMPTY_STRING
+        $body = Resources::EMPTY_STRING,
     ) {
         if (
             $locationMode == LocationMode::SECONDARY_ONLY
@@ -282,7 +282,7 @@ class ServiceRestProxy extends RestProxy
             $method,
             $uri,
             $headers,
-            $actualBody
+            $actualBody,
         );
 
         //add content-length to header
@@ -315,7 +315,7 @@ class ServiceRestProxy extends RestProxy
         $path,
         $expected = Resources::STATUS_OK,
         $body = Resources::EMPTY_STRING,
-        ServiceOptions $serviceOptions = null
+        ServiceOptions $serviceOptions = null,
     ) {
         if ($serviceOptions == null) {
             $serviceOptions = new ServiceOptions();
@@ -323,7 +323,7 @@ class ServiceRestProxy extends RestProxy
         $this->addOptionalQueryParam(
             $queryParams,
             Resources::QP_TIMEOUT,
-            $serviceOptions->getTimeout()
+            $serviceOptions->getTimeout(),
         );
 
         $request = $this->createRequest(
@@ -333,7 +333,7 @@ class ServiceRestProxy extends RestProxy
             $postParameters,
             $path,
             $serviceOptions->getLocationMode(),
-            $body
+            $body,
         );
 
         $client = $this->client;
@@ -359,17 +359,17 @@ class ServiceRestProxy extends RestProxy
             static function ($response) use ($expected, $requestOptions) {
                 self::throwIfError(
                     $response,
-                    $expected
+                    $expected,
                 );
 
                 return self::addLocationHeaderToResponse(
                     $response,
-                    $requestOptions[Resources::ROS_LOCATION_MODE]
+                    $requestOptions[Resources::ROS_LOCATION_MODE],
                 );
             },
             function ($reason) use ($expected) {
                 return $this->onRejected($reason, $expected);
-            }
+            },
         );
     }
 
@@ -391,7 +391,7 @@ class ServiceRestProxy extends RestProxy
         if ($response != null) {
             self::throwIfError(
                 $response,
-                $expected
+                $expected,
             );
         } else {
             //if could not get response but promise rejected, throw reason.
@@ -413,7 +413,7 @@ class ServiceRestProxy extends RestProxy
      */
     protected function generateRequestOptions(
         ServiceOptions $serviceOptions,
-        callable $handler
+        callable $handler,
     ) {
         $result = [];
         $result[Resources::ROS_LOCATION_MODE] = $serviceOptions->getLocationMode();
@@ -455,7 +455,7 @@ class ServiceRestProxy extends RestProxy
             $context->getPath(),
             $context->getStatusCodes(),
             $context->getBody(),
-            $context->getServiceOptions()
+            $context->getServiceOptions(),
         );
     }
 
@@ -488,7 +488,7 @@ class ServiceRestProxy extends RestProxy
     public function addPostParameter(
         array $postParameters,
         $key,
-        $value
+        $value,
     ) {
         Validate::isArray($postParameters, 'postParameters');
         $postParameters[$key] = $value;
@@ -591,7 +591,7 @@ class ServiceRestProxy extends RestProxy
      */
     private static function addLocationHeaderToResponse(
         ResponseInterface $response,
-        $locationMode
+        $locationMode,
     ) {
         //If the response already has this header, return itself.
         if ($response->hasHeader(Resources::X_MS_CONTINUATION_LOCATION_MODE)) {
@@ -604,12 +604,12 @@ class ServiceRestProxy extends RestProxy
         if ($locationMode == LocationMode::PRIMARY_THEN_SECONDARY) {
             $response = $response->withHeader(
                 Resources::X_MS_CONTINUATION_LOCATION_MODE,
-                LocationMode::PRIMARY_ONLY
+                LocationMode::PRIMARY_ONLY,
             );
         } elseif ($locationMode == LocationMode::SECONDARY_THEN_PRIMARY) {
             $response = $response->withHeader(
                 Resources::X_MS_CONTINUATION_LOCATION_MODE,
-                LocationMode::SECONDARY_ONLY
+                LocationMode::SECONDARY_ONLY,
             );
         } elseif (
             $locationMode == LocationMode::SECONDARY_ONLY
@@ -617,7 +617,7 @@ class ServiceRestProxy extends RestProxy
         ) {
             $response = $response->withHeader(
                 Resources::X_MS_CONTINUATION_LOCATION_MODE,
-                $locationMode
+                $locationMode,
             );
         }
         return $response;

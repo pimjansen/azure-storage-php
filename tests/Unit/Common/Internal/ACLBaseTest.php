@@ -67,7 +67,7 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
         $acl = QueueACL::create($array);
         self::assertEquals(
             $expected->getSignedIdentifiers(),
-            $acl->getSignedIdentifiers()
+            $acl->getSignedIdentifiers(),
         );
     }
 
@@ -85,11 +85,11 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
         // Assert
         self::assertEquals(
             $expected['SignedIdentifier'][0],
-            $actual[0]['SignedIdentifier']
+            $actual[0]['SignedIdentifier'],
         );
         self::assertEquals(
             $expected['SignedIdentifier'][1],
-            $actual[1]['SignedIdentifier']
+            $actual[1]['SignedIdentifier'],
         );
     }
 
@@ -105,7 +105,7 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
                 $sample[$i]['Id'],
                 $sample[$i]['AccessPolicy']['Start'],
                 $sample[$i]['AccessPolicy']['Expiry'],
-                $sample[$i]['AccessPolicy']['Permission']
+                $sample[$i]['AccessPolicy']['Permission'],
             );
         }
 
@@ -122,7 +122,7 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
             $sample[0]['Id'],
             $sample[0]['AccessPolicy']['Start'],
             $sample[0]['AccessPolicy']['Expiry'],
-            $sample[0]['AccessPolicy']['Permission']
+            $sample[0]['AccessPolicy']['Permission'],
         );
         self::assertCount(5, $acl->getSignedIdentifiers());
         //add a signed identifier with existing ID.
@@ -130,7 +130,7 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
             $sample[0]['Id'],
             $sample[0]['AccessPolicy']['Start'],
             $sample[0]['AccessPolicy']['Expiry'],
-            $sample[0]['AccessPolicy']['Permission']
+            $sample[0]['AccessPolicy']['Permission'],
         );
         self::assertCount(5, $acl->getSignedIdentifiers());
         //add 6th signed identifier, expect error.
@@ -138,7 +138,7 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
             $sample[5]['Id'],
             $sample[5]['AccessPolicy']['Start'],
             $sample[5]['AccessPolicy']['Expiry'],
-            $sample[5]['AccessPolicy']['Permission']
+            $sample[5]['AccessPolicy']['Permission'],
         );
     }
 }

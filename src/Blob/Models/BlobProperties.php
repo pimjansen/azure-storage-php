@@ -60,8 +60,8 @@ class BlobProperties
         $result->setIncrementalCopy(
             Utilities::toBoolean(
                 Utilities::tryGetValue($clean, 'incrementalcopy'),
-                true
-            )
+                true,
+            ),
         );
 
         $result->setAccessTier((
@@ -71,8 +71,8 @@ class BlobProperties
         $result->setAccessTierInferred(
             Utilities::toBoolean(
                 Utilities::tryGetValue($clean, 'accesstierinferred'),
-                true
-            )
+                true,
+            ),
         );
 
         $accesstierchangetime = Utilities::tryGetValue($clean, 'accesstierchangetime');
@@ -82,7 +82,7 @@ class BlobProperties
         }
 
         $result->setArchiveStatus(
-            Utilities::tryGetValue($clean, 'archivestatus')
+            Utilities::tryGetValue($clean, 'archivestatus'),
         );
 
         $deletedtime = Utilities::tryGetValue($clean, 'deletedtime');
@@ -131,31 +131,31 @@ class BlobProperties
             Utilities::toBoolean(
                 Utilities::tryGetValue(
                     $clean,
-                    Resources::X_MS_SERVER_ENCRYPTED
+                    Resources::X_MS_SERVER_ENCRYPTED,
                 ),
-                true
-            )
+                true,
+            ),
         );
         $result->setIncrementalCopy(
             Utilities::toBoolean(
                 Utilities::tryGetValue(
                     $clean,
-                    Resources::X_MS_INCREMENTAL_COPY
+                    Resources::X_MS_INCREMENTAL_COPY,
                 ),
-                true
-            )
+                true,
+            ),
         );
         $result->setCommittedBlockCount(
             (int) (Utilities::tryGetValue(
                 $clean,
-                Resources::X_MS_BLOB_COMMITTED_BLOCK_COUNT
-            ))
+                Resources::X_MS_BLOB_COMMITTED_BLOCK_COUNT,
+            )),
         );
         $result->setCopyDestinationSnapshot(
             Utilities::tryGetValue(
                 $clean,
-                Resources::X_MS_COPY_DESTINATION_SNAPSHOT
-            )
+                Resources::X_MS_COPY_DESTINATION_SNAPSHOT,
+            ),
         );
 
         $result->setAccessTier((
@@ -165,8 +165,8 @@ class BlobProperties
         $result->setAccessTierInferred(
             Utilities::toBoolean(
                 Utilities::tryGetValue($clean, Resources::X_MS_ACCESS_TIER_INFERRED),
-                true
-            )
+                true,
+            ),
         );
 
         $date = Utilities::tryGetValue($clean, Resources::X_MS_ACCESS_TIER_CHANGE_TIME);
@@ -176,7 +176,7 @@ class BlobProperties
         }
 
         $result->setArchiveStatus(
-            Utilities::tryGetValue($clean, Resources::X_MS_ARCHIVE_STATUS)
+            Utilities::tryGetValue($clean, Resources::X_MS_ARCHIVE_STATUS),
         );
 
         return $result;
@@ -763,25 +763,25 @@ class BlobProperties
         $this->setSequenceNumber(
             (int) (
                 Utilities::tryGetValue($clean, Resources::X_MS_BLOB_SEQUENCE_NUMBER)
-            )
+            ),
         );
         $this->setContentRange(
-            Utilities::tryGetValue($clean, Resources::CONTENT_RANGE)
+            Utilities::tryGetValue($clean, Resources::CONTENT_RANGE),
         );
         $this->setCacheControl(
-            Utilities::tryGetValue($clean, Resources::CACHE_CONTROL)
+            Utilities::tryGetValue($clean, Resources::CACHE_CONTROL),
         );
         $this->setContentDisposition(
-            Utilities::tryGetValue($clean, Resources::CONTENT_DISPOSITION)
+            Utilities::tryGetValue($clean, Resources::CONTENT_DISPOSITION),
         );
         $this->setContentEncoding(
-            Utilities::tryGetValue($clean, Resources::CONTENT_ENCODING)
+            Utilities::tryGetValue($clean, Resources::CONTENT_ENCODING),
         );
         $this->setContentLanguage(
-            Utilities::tryGetValue($clean, Resources::CONTENT_LANGUAGE)
+            Utilities::tryGetValue($clean, Resources::CONTENT_LANGUAGE),
         );
         $this->setContentType(
-            Utilities::tryGetValue($clean, Resources::CONTENT_TYPE_LOWER_CASE)
+            Utilities::tryGetValue($clean, Resources::CONTENT_TYPE_LOWER_CASE),
         );
 
         if (
@@ -789,14 +789,14 @@ class BlobProperties
             && !Utilities::tryGetValue($clean, Resources::CONTENT_RANGE)
         ) {
             $this->setContentMD5(
-                Utilities::tryGetValue($clean, Resources::CONTENT_MD5)
+                Utilities::tryGetValue($clean, Resources::CONTENT_MD5),
             );
         } else {
             $this->setContentMD5(
-                Utilities::tryGetValue($clean, Resources::BLOB_CONTENT_MD5)
+                Utilities::tryGetValue($clean, Resources::BLOB_CONTENT_MD5),
             );
             $this->setRangeContentMD5(
-                Utilities::tryGetValue($clean, Resources::CONTENT_MD5)
+                Utilities::tryGetValue($clean, Resources::CONTENT_MD5),
             );
         }
     }

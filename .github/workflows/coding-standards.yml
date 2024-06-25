@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - 8.0 # Always run on the lowest supported version due to compatibility
+          - 8.1 # Always run on the lowest supported version due to compatibility
 
     steps:
       - name: Checkout code

@@ -33,7 +33,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
     {
         $helper = new SharedAccessSignatureHelperMock(
             $this->serviceSettings->getName(),
-            $this->serviceSettings->getKey()
+            $this->serviceSettings->getKey(),
         );
 
         //Full permission
@@ -42,8 +42,8 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             TestResources::getInterestingAccountSASTestCase(
                 'pucaldwr',
                 'ftqb',
-                'ocs'
-            )
+                'ocs',
+            ),
         );
 
         //Validate 'rwdlc'
@@ -54,7 +54,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0 + 1,
             $count1,
-            sprintf('Expected %d container(s), listed %d container(s).', $count0 + 1, $count1)
+            sprintf('Expected %d container(s), listed %d container(s).', $count0 + 1, $count1),
         );
         $blob = TestResources::getInterestingName('blob');
         $content = 'test content';
@@ -66,7 +66,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0,
             $count1,
-            sprintf('Expected %d container(s), listed %d container(s).', $count0, $count1)
+            sprintf('Expected %d container(s), listed %d container(s).', $count0, $count1),
         );
 
         $share = TestResources::getInterestingName('share');
@@ -76,7 +76,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0 + 1,
             $count1,
-            sprintf('Expected %d share(s), listed %d share(s).', $count0 + 1, $count1)
+            sprintf('Expected %d share(s), listed %d share(s).', $count0 + 1, $count1),
         );
         $file = TestResources::getInterestingName('file');
         $content = 'test content';
@@ -88,7 +88,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0,
             $count1,
-            sprintf('Expected %d share(s), listed %d share(s).', $count0, $count1)
+            sprintf('Expected %d share(s), listed %d share(s).', $count0, $count1),
         );
 
         //Validate 'aup'
@@ -99,7 +99,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         self::assertEquals(
             $count0 + 1,
             $count1,
-            sprintf('Expected %d queue(s), listed %d queue(s).', $count0 + 1, $count1)
+            sprintf('Expected %d queue(s), listed %d queue(s).', $count0 + 1, $count1),
         );
         $message = TestResources::getInterestingName('message');
         $content = 'test content';
@@ -119,20 +119,20 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
         $this->queueRestProxy->deleteMessage(
             $queue,
             $resultMessage->getMessageId(),
-            $resultMessage->getPopReceipt()
+            $resultMessage->getPopReceipt(),
         );
         $count1 = count($this->queueRestProxy->listMessages($queue)->getQueueMessages());
         self::assertEquals(
             $count3 - 1,
             $count1,
-            sprintf('Expected %d messages(s), listed %d messages(s).', $count3 - 1, $count1)
+            sprintf('Expected %d messages(s), listed %d messages(s).', $count3 - 1, $count1),
         );
         $this->safeDeleteQueue($queue);
         $count1 = count($this->queueRestProxy->listQueues()->getQueues());
         self::assertEquals(
             $count0,
             $count1,
-            sprintf('Expected %d queue(s), listed %d queue(s).', $count0, $count1)
+            sprintf('Expected %d queue(s), listed %d queue(s).', $count0, $count1),
         );
     }
 
@@ -140,7 +140,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
     {
         $helper = new SharedAccessSignatureHelperMock(
             $this->serviceSettings->getName(),
-            $this->serviceSettings->getKey()
+            $this->serviceSettings->getKey(),
         );
 
         //qtf permission
@@ -149,8 +149,8 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             TestResources::getInterestingAccountSASTestCase(
                 'pucaldwr',
                 'ftq',
-                'ocs'
-            )
+                'ocs',
+            ),
         );
 
         $reflection = $this;
@@ -160,7 +160,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             static function () use ($reflection) {
                 $reflection->blobRestProxy->listContainers();
             },
-            'Error: access not blocked for blob service.'
+            'Error: access not blocked for blob service.',
         );
         //Validate can access table, file and queue service
         $this->tableRestProxy->queryTables();
@@ -173,8 +173,8 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             TestResources::getInterestingAccountSASTestCase(
                 'pucaldwr',
                 'btf',
-                'ocs'
-            )
+                'ocs',
+            ),
         );
 
         //Validate cannot access queue service
@@ -183,7 +183,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             static function () use ($reflection) {
                 $reflection->queueRestProxy->listQueues();
             },
-            'Error: access not blocked for queue service.'
+            'Error: access not blocked for queue service.',
         );
         //Validate can access blob, file and table service
         $this->tableRestProxy->queryTables();
@@ -196,8 +196,8 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             TestResources::getInterestingAccountSASTestCase(
                 'pucaldwr',
                 'fqb',
-                'ocs'
-            )
+                'ocs',
+            ),
         );
 
         //Validate cannot access table service
@@ -206,7 +206,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             static function () use ($reflection) {
                 $reflection->tableRestProxy->queryTables();
             },
-            'Error: access not blocked for table service.'
+            'Error: access not blocked for table service.',
         );
         //Validate can access blob, queue and file service
         $this->queueRestProxy->listQueues();
@@ -219,8 +219,8 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             TestResources::getInterestingAccountSASTestCase(
                 'pucaldwr',
                 'qtb',
-                'ocs'
-            )
+                'ocs',
+            ),
         );
 
         //Validate cannot access file service
@@ -229,7 +229,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             static function () use ($reflection) {
                 $reflection->fileRestProxy->listShares();
             },
-            'Error: access not blocked for file service.'
+            'Error: access not blocked for file service.',
         );
         //Validate can access blob, table and queue service
         $this->queueRestProxy->listQueues();
@@ -241,7 +241,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
     {
         $helper = new SharedAccessSignatureHelperMock(
             $this->serviceSettings->getName(),
-            $this->serviceSettings->getKey()
+            $this->serviceSettings->getKey(),
         );
 
         $reflection = $this;
@@ -251,22 +251,22 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             TestResources::getInterestingAccountSASTestCase(
                 'rdaup',
                 'btqf',
-                'ocs'
-            )
+                'ocs',
+            ),
         );
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
             static function () use ($reflection) {
                 $reflection->queueRestProxy->listQueues();
             },
-            'Error: access not blocked for list queue operation.'
+            'Error: access not blocked for list queue operation.',
         );
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
             static function () use ($reflection) {
                 $reflection->queueRestProxy->createQueue('exceptionqueue');
             },
-            'Error: access not blocked for create queue operation.'
+            'Error: access not blocked for create queue operation.',
         );
 
         //wlcu permit
@@ -275,8 +275,8 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             TestResources::getInterestingAccountSASTestCase(
                 'wlcu',
                 'btqf',
-                'ocs'
-            )
+                'ocs',
+            ),
         );
         $container = TestResources::getInterestingName('container');
         $blob = TestResources::getInterestingName('blob');
@@ -287,14 +287,14 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             static function () use ($reflection, $container, $blob) {
                 $reflection->blobRestProxy->getBlob($container, $blob);
             },
-            'Error: access not blocked for get blob operation.'
+            'Error: access not blocked for get blob operation.',
         );
         $this->validateServiceExceptionErrorMessage(
             'not authorized to perform this operation',
             static function () use ($reflection, $container, $blob) {
                 $reflection->blobRestProxy->deleteBlob($container, $blob);
             },
-            'Error: access not blocked for delete blob operation.'
+            'Error: access not blocked for delete blob operation.',
         );
     }
 
@@ -308,7 +308,7 @@ class AccountSASFunctionalTest extends SASFunctionalTestBase
             $testCase['signedExpiry'],
             $testCase['signedStart'],
             $testCase['signedIP'],
-            $testCase['signedProtocol']
+            $testCase['signedProtocol'],
         );
 
         $accountName = $helper->getAccountName();

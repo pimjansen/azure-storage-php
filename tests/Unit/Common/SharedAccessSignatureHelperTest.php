@@ -91,7 +91,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
             // Test
             $actual = $validateAndSanitizeSignedResourceType->invokeArgs(
                 $sasHelper,
-                [$authorizedSignedResourceType[$i]]
+                [$authorizedSignedResourceType[$i]],
             );
 
             // Assert
@@ -151,7 +151,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         // Test: should throw an InvalidArgumentException
         $validateAndSanitizeSignedProtocol->invokeArgs(
             $sasHelper,
-            [$unauthorizedSignedProtocol]
+            [$unauthorizedSignedProtocol],
         );
     }
 
@@ -177,7 +177,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
                 $testCase[4],
                 $testCase[5],
                 $testCase[6],
-                $testCase[7]
+                $testCase[7],
             );
 
             // assert
@@ -191,7 +191,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         $sasHelper = $this->testConstruct();
         $validateAndSanitizeSignedPermissions = self::getMethod(
             'validateAndSanitizeSignedPermissions',
-            $sasHelper
+            $sasHelper,
         );
 
         $pairs = TestResources::getInterestingSignedResourcePermissionsPair();
@@ -199,7 +199,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         $expectedErrorMessage = \substr(
             Resources::STRING_NOT_WITH_GIVEN_COMBINATION,
             0,
-            strpos(Resources::STRING_NOT_WITH_GIVEN_COMBINATION, '%s')
+            strpos(Resources::STRING_NOT_WITH_GIVEN_COMBINATION, '%s'),
         );
 
         foreach ($pairs as $pair) {
@@ -208,19 +208,19 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
                 try {
                     $validateAndSanitizeSignedPermissions->invokeArgs(
                         $sasHelper,
-                        [$pair['sp'], $pair['sr']]
+                        [$pair['sp'], $pair['sr']],
                     );
                 } catch (\InvalidArgumentException $e) {
                     $message = $e->getMessage();
                 }
                 self::assertStringContainsString(
                     $expectedErrorMessage,
-                    $message
+                    $message,
                 );
             } else {
                 $result = $validateAndSanitizeSignedPermissions->invokeArgs(
                     $sasHelper,
-                    [$pair['sp'], $pair['sr']]
+                    [$pair['sp'], $pair['sr']],
                 );
                 self::assertEquals($pair['expected'], $result);
             }
@@ -255,7 +255,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
             // Test
             $actual = $validateAndSanitizeSignedService->invokeArgs(
                 $sasHelper,
-                ['test', Resources::RESOURCE_TYPE_BLOB, $resourceNames[$i]]
+                ['test', Resources::RESOURCE_TYPE_BLOB, $resourceNames[$i]],
             );
 
             // Assert

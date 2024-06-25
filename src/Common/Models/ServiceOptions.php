@@ -257,7 +257,7 @@ class ServiceOptions
         if (!(is_callable($middleware) || $middleware instanceof IMiddleware)) {
             Validate::isTrue(
                 false,
-                Resources::INVALID_TYPE_MSG . 'callable or IMiddleware'
+                Resources::INVALID_TYPE_MSG . 'callable or IMiddleware',
             );
         }
     }

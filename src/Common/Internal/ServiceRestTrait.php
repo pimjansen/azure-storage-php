@@ -20,7 +20,7 @@ trait ServiceRestTrait
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/hh452239.aspx
      */
     public function getServiceProperties(
-        ServiceOptions $options = null
+        ServiceOptions $options = null,
     ) {
         return $this->getServicePropertiesAsync($options)->wait();
     }
@@ -35,7 +35,7 @@ trait ServiceRestTrait
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/hh452239.aspx
      */
     public function getServicePropertiesAsync(
-        ServiceOptions $options = null
+        ServiceOptions $options = null,
     ) {
         $method = Resources::HTTP_GET;
         $headers = [];
@@ -50,12 +50,12 @@ trait ServiceRestTrait
         $this->addOptionalQueryParam(
             $queryParams,
             Resources::QP_REST_TYPE,
-            'service'
+            'service',
         );
         $this->addOptionalQueryParam(
             $queryParams,
             Resources::QP_COMP,
-            'properties'
+            'properties',
         );
 
         $dataSerializer = $this->dataSerializer;
@@ -68,7 +68,7 @@ trait ServiceRestTrait
             $path,
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
-            $options
+            $options,
         )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return GetServicePropertiesResult::create($parsed);
@@ -88,7 +88,7 @@ trait ServiceRestTrait
      */
     public function setServiceProperties(
         ServiceProperties $serviceProperties,
-        ServiceOptions $options = null
+        ServiceOptions $options = null,
     ) {
         $this->setServicePropertiesAsync($serviceProperties, $options)->wait();
     }
@@ -108,11 +108,11 @@ trait ServiceRestTrait
      */
     public function setServicePropertiesAsync(
         ServiceProperties $serviceProperties,
-        ServiceOptions $options = null
+        ServiceOptions $options = null,
     ) {
         Validate::isTrue(
             $serviceProperties instanceof ServiceProperties,
-            Resources::INVALID_SVC_PROP_MSG
+            Resources::INVALID_SVC_PROP_MSG,
         );
 
         $method = Resources::HTTP_PUT;
@@ -129,17 +129,17 @@ trait ServiceRestTrait
         $this->addOptionalQueryParam(
             $queryParams,
             Resources::QP_REST_TYPE,
-            'service'
+            'service',
         );
         $this->addOptionalQueryParam(
             $queryParams,
             Resources::QP_COMP,
-            'properties'
+            'properties',
         );
         $this->addOptionalHeader(
             $headers,
             Resources::CONTENT_TYPE,
-            Resources::URL_ENCODED_CONTENT_TYPE
+            Resources::URL_ENCODED_CONTENT_TYPE,
         );
 
         $options->setLocationMode(LocationMode::PRIMARY_ONLY);
@@ -152,7 +152,7 @@ trait ServiceRestTrait
             $path,
             Resources::STATUS_ACCEPTED,
             $body,
-            $options
+            $options,
         );
     }
 
@@ -192,12 +192,12 @@ trait ServiceRestTrait
         $this->addOptionalQueryParam(
             $queryParams,
             Resources::QP_REST_TYPE,
-            'service'
+            'service',
         );
         $this->addOptionalQueryParam(
             $queryParams,
             Resources::QP_COMP,
-            'stats'
+            'stats',
         );
 
         $dataSerializer = $this->dataSerializer;
@@ -212,7 +212,7 @@ trait ServiceRestTrait
             $path,
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
-            $options
+            $options,
         )->then(static function ($response) use ($dataSerializer) {
             $parsed = $dataSerializer->unserialize($response->getBody());
             return GetServiceStatsResult::create($parsed);

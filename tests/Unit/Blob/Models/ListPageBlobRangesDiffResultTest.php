@@ -53,7 +53,7 @@ class ListPageBlobRangesDiffResultTest extends \PHPUnit\Framework\TestCase
             $pageRanges[] = new RangeDiff(
                 (int) ($value['Start']),
                 (int) ($value['End']),
-                false
+                false,
             );
         }
 
@@ -61,7 +61,7 @@ class ListPageBlobRangesDiffResultTest extends \PHPUnit\Framework\TestCase
             $rawClearRanges[] = new RangeDiff(
                 (int) ($value['Start']),
                 (int) ($value['End']),
-                true
+                true,
             );
         }
 

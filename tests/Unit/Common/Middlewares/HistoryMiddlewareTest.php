@@ -45,7 +45,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
             $response === $entry['response']
             && $request === $entry['request']
             && [] === $entry['options'],
-            'History does not match the request, response and/or options'
+            'History does not match the request, response and/or options',
         );
     }
 
@@ -68,7 +68,7 @@ class HistoryMiddlewareTest extends ReflectionTestBase
             $newReason === $entry['reason']
             && $request === $entry['request']
             && [] === $entry['options'],
-            'History does not match the request, reason and/or options'
+            'History does not match the request, reason and/or options',
         );
     }
 

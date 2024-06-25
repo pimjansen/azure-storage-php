@@ -10,27 +10,27 @@ help:
 
 .PHONY: install
 install: ## Fixes coding standard issues with php-cs-fixer
-	docker compose run php composer install
+	docker compose run phpfpm composer install
 
 .PHONY: cs
 cs: ## Fixes coding standard issues with php-cs-fixer
-	docker compose run php vendor/bin/php-cs-fixer fix --diff --verbose
+	docker compose run phpfpm vendor/bin/php-cs-fixer fix --diff --verbose
 
 .PHONY: coverage
 coverage: ## Collects coverage with phpunit
-	docker compose run php vendor/bin/phpunit --coverage-text --coverage-clover=.build/logs/clover.xml
+	docker compose run phpfpm vendor/bin/phpunit --coverage-text --coverage-clover=.build/logs/clover.xml
 
 .PHONY: test
 test: ## Runs tests with phpunit
-	docker compose run php vendor/bin/phpunit
+	docker compose run phpfpm vendor/bin/phpunit
 
 .PHONY: static
 static: ## Runs static analyzers
-	docker compose run php vendor/bin/phpstan --memory-limit=2G
+	docker compose run phpfpm vendor/bin/phpstan --memory-limit=2G
 
 .PHONY: baseline
 baseline: ## Generate baseline files
-	docker compose run php vendor/bin/phpstan --memory-limit=2G --generate-baseline
+	docker compose run phpfpm vendor/bin/phpstan --memory-limit=2G --generate-baseline
 
 .PHONY: clean
 clean:   ## Cleans up build and vendor files

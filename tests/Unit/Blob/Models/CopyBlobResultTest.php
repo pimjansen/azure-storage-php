@@ -43,12 +43,12 @@ class CopyBlobResultTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             $expectedEtag,
-            $result->getETag()
+            $result->getETag(),
         );
 
         self::assertEquals(
             Utilities::rfc1123ToDateTime($expectedLastModified),
-            $result->getLastModified()
+            $result->getLastModified(),
         );
     }
 }
